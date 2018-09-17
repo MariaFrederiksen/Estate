@@ -1,0 +1,24 @@
+{
+  "id": "592fb3f9-a41b-421a-9a4f-713faab79c09",
+  "name": "Estate",
+  "publisher": "Svane IT",
+  "brief": "Nav Ejendom",
+  "description": "Ejendomsadministrationsløsning til Microsoft Dynamics Business Central",
+  "version": "1.0.0.0",
+  "compatibilityId": "1.0.0.0",
+  "privacyStatement": "",
+  "EULA": "",
+  "help": "",
+  "url": "",
+  "logo": "",
+  "capabilities": [],
+  "dependencies": [],
+  "screenshots": [],
+  "platform": "11.0.0.0",
+  "application": "11.0.0.0",
+  "idRange": {
+    "from": 50100,
+    "to": 79149},
+  "showMyCode": false
+
+} 
