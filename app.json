@@ -17,8 +17,8 @@
   "platform": "11.0.0.0",
   "application": "11.0.0.0",
   "idRange": {
-    "from": 50100,
+    "from": 50000,
     "to": 79149},
-  "showMyCode": false
-
+    "showMyCode": false
+  
 } 
