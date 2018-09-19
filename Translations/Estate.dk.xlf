@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 xliff-core-1.2-transitional.xsd">
+  <file datatype="xml" source-language="da-DK" original="Estate">
+    <body>
+      <group id="body">
+        <trans-unit id="TableExtension 3014437974 - Field 238970296 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Medtages</source>
+          <note from="Developer" annotates="general" priority="2" />
+          <note from="Xliff Generator" annotates="general" priority="3">TableExtension - Field</note>
+        </trans-unit>
+        <trans-unit id="TableExtension 3014437974 - Field 1200665988 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Sendt</source>
+          <note from="Developer" annotates="general" priority="2" />
+          <note from="Xliff Generator" annotates="general" priority="3">TableExtension - Field</note>
+        </trans-unit>
+        <trans-unit id="TableExtension 3014437974 - Field 932921128 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Sendt den</source>
+          <note from="Developer" annotates="general" priority="2" />
+          <note from="Xliff Generator" annotates="general" priority="3">TableExtension - Field</note>
+        </trans-unit>
+        <trans-unit id="TableExtension 2668206278 - Field 1557466911 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Konteringsart</source>
+          <note from="Developer" annotates="general" priority="2" />
+          <note from="Xliff Generator" annotates="general" priority="3">TableExtension - Field</note>
+        </trans-unit>
+        <trans-unit id="TableExtension 3422517517 - Field 238970296 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Medtages</source>
+          <note from="Developer" annotates="general" priority="2" />
+          <note from="Xliff Generator" annotates="general" priority="3">TableExtension - Field</note>
+        </trans-unit>
+        <trans-unit id="TableExtension 3422517517 - Field 1200665988 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Sendt</source>
+          <note from="Developer" annotates="general" priority="2" />
+          <note from="Xliff Generator" annotates="general" priority="3">TableExtension - Field</note>
+        </trans-unit>
+        <trans-unit id="TableExtension 3422517517 - Field 932921128 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Sendt den</source>
+          <note from="Developer" annotates="general" priority="2" />
+          <note from="Xliff Generator" annotates="general" priority="3">TableExtension - Field</note>
+        </trans-unit>
+        <trans-unit id="TableExtension 2588173685 - Field 1557466911 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Konteringsart</source>
+          <note from="Developer" annotates="general" priority="2" />
+          <note from="Xliff Generator" annotates="general" priority="3">TableExtension - Field</note>
+        </trans-unit>
+        <trans-unit id="TableExtension 1674449865 - Field 1270347883 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Ledige lejemål</source>
+          <note from="Developer" annotates="general" priority="2" />
+          <note from="Xliff Generator" annotates="general" priority="3">TableExtension - Field</note>
+        </trans-unit>
+        <trans-unit id="TableExtension 1674449865 - Field 3787440363 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Ejendomme</source>
+          <note from="Developer" annotates="general" priority="2" />
+          <note from="Xliff Generator" annotates="general" priority="3">TableExtension - Field</note>
+        </trans-unit>
+        <trans-unit id="TableExtension 1674449865 - Field 1594949657 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Boligaftaler</source>
+          <note from="Developer" annotates="general" priority="2" />
+          <note from="Xliff Generator" annotates="general" priority="3">TableExtension - Field</note>
+        </trans-unit>
+        <trans-unit id="TableExtension 1674449865 - Field 3539270036 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Dato filter</source>
+          <note from="Developer" annotates="general" priority="2" />
+          <note from="Xliff Generator" annotates="general" priority="3">TableExtension - Field</note>
+        </trans-unit>
+      </group>
+    </body>
+  </file>
+</xliff>
