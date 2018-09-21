@@ -15,6 +15,10 @@ tableextension 50001 "SVA SalesHeaderExt" extends "Sales Header"
         {
             Caption = 'Send date';
         }
+        field(50004;"SVA Occupant";Code[10])
+        {
+            Caption = 'Occupant';
+        }       
                 
     }
         

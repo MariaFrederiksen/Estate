@@ -3,7 +3,7 @@ tableextension 50004 "SVA Sales Invoice Line" extends "Sales Invoice Line"
 {
     fields
     {
-        field(50001;"SVA Cost Type Estate";Text[10])
+        field(50001;"SVA CostType";Text[10])
         {
             Caption = 'Cost Type Estate';
         }

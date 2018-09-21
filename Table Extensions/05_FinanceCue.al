@@ -4,19 +4,23 @@ tableextension 50005 "SVA Finance Cue" extends "Finance Cue"
     fields
     {
         
-        field(50001;"SVA Estate Empty Tenancy";Integer)
+        field(50001;"SVA Empty Tenancy";Integer)
         {
-            Caption = 'Estate Empty Tenancies';
+            Caption = 'Empty Tenancies';
         }
-        field(50002;"SVA Estate Property";Integer)
+        field(50002;"SVA Property";Integer)
         {
-            Caption = 'Estate Properties';
+            Caption = 'Properties';
         }
-        field(50003;"SVA Estate Occupant";Integer)
+        field(50003;"SVA Tenancy";Integer)
         {
-            Caption = 'Estate Occupants';
+            Caption = 'Properties';
         }
-        field(50004;"SVA Date Filter";Date)
+        field(50004;"SVA Occupant";Integer)
+        {
+            Caption = 'Occupants';
+        }
+        field(50005;"SVA Date Filter";Date)
         {
             Caption = 'Date filter';
         }
