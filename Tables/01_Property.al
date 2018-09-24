@@ -14,7 +14,7 @@ table 50001 "SVA Property"
         }
         field(2;Name;Text[50])
         {
-            Caption='Proberty name';
+            Caption='Property name';
         }
         field(3;Address1;Text[50])
         {
