@@ -21,7 +21,7 @@ codeunit 60530 "SVA Estate MF"
 
     var
         OcTrans : Record "SVA Occupant Trans";
-        CosttypeEstate : Record "SVA Cost type Estate";
+        CosttypeEstate : Record "SVA Cost type";
         LedTable : Record "G/L Account";
         Occupant : Record "SVA Occupant";
         Tenancy : Record "SVA Tenancy";

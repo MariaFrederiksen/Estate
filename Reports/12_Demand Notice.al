@@ -176,7 +176,7 @@ report 50600 "SVA DemandNoticeResidence"
         CompanyInfo : Record "Company Information";
         InvoiceAmountTotal : Decimal;
         TotalAmount : Decimal;
-        Costtype : Record "SVA Cost type Estate";
+        Costtype : Record "SVA Cost type";
         LiableAmountTotal : Decimal;
 }
 

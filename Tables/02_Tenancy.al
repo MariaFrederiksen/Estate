@@ -124,7 +124,7 @@ table 50002 "SVA Tenancy"
         }
         field(30;Deposit;Integer)
         {
-            Caption='Deposit';
+            Caption='Deposit mth';
         }
         field(31;PrepaidRent;Integer)
         {
@@ -132,7 +132,7 @@ table 50002 "SVA Tenancy"
         }
         field(32;"AreaTotal";Decimal)
         {
-            Caption='Area';
+            Caption='Total Area';
             Description = 'Dan=Bruttoareal:ENU=Gros area';
 
             trigger OnValidate();
@@ -331,7 +331,7 @@ table 50002 "SVA Tenancy"
         }
         field(512;TypeA9_5_lOil;Boolean)
         {
-            Caption='Central heating wtih oil';
+            Caption='Central heating with oil';
 
             trigger OnValidate();
             begin
@@ -420,7 +420,7 @@ table 50002 "SVA Tenancy"
         }
         field(524;TypeA9_5_TNatgas;Boolean)
         {
-            Caption='natural gas';
+            Caption='Natural gas';
 
             trigger OnValidate();
             begin

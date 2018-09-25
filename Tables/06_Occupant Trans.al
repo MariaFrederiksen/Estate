@@ -15,12 +15,12 @@ table 50006 "SVA Occupant Trans"
         }
         field(3;"Cost type Estate";Code[10])
         {
-            Caption='Cost type';
-            TableRelation = "SVA Cost type Estate".Costtype;
+            Caption='Costtype';
+            TableRelation = "SVA Cost type".Costtype;
         }
         field(4;Description;Text[30])
         {
-            Caption='Text';
+            Caption='Description';
         }
         field(5;Qty;Decimal)
         {
@@ -67,6 +67,6 @@ table 50006 "SVA Occupant Trans"
     end;
 
     var
-        CosttypeEstateRec : Record "SVA Cost type Estate";
+        CosttypeEstateRec : Record "SVA Cost type";
 }
 

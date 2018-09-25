@@ -948,7 +948,7 @@ page 60580 Leasecontract_A9
         cust : Record Customer;
         SalesLine : Record "Sales Line";
         LedAccount : Record "G/L Account";
-        CostTypeEstate : Record "SVA Cost type Estate";
+        CostTypeEstate : Record "SVA Cost type";
         Invoice : Record "Sales Invoice Header";
         InvoiceLine : Record "Sales Invoice Line";
         OcTrans : Record "SVA Occupant Trans";

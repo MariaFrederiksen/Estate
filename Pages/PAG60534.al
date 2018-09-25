@@ -611,7 +611,7 @@ page 60534 "Occupant Card"
         InvoiceLine : Record "Sales Invoice Line";
         Contract : Record "SVA LeaseContract_A9";
         LineNo : Integer;
-        CostTypeEstate : Record "SVA Cost type Estate";
+        CostTypeEstate : Record "SVA Cost Type";
         Ledaccount : Record "G/L Account";
         OcTrans : Record "SVA Occupant Trans";
         DemandNoticeResidens : Report "SVA DemandNoticeResidence";

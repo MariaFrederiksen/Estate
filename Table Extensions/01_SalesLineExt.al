@@ -5,7 +5,7 @@ tableextension 50002 "SVA Sales Line" extends "Sales Line"
     {
         field(50001;"SVA CostType";Text[10])
         {
-            Caption = 'Cost Type Estate';
+            Caption = 'Costtype';
         }
     }
         

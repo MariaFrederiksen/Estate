@@ -592,7 +592,7 @@ page 60590 "SVA Leasecontract_Garage"
         SalesLine : Record "Sales Line";
         Cust : Record Customer;
         LineNo : Integer;
-        CostTypeEstate : Record "SVA Cost type Estate";
+        CostTypeEstate : Record "SVA Cost type";
         LedAccount : Record "G/L Account";
         Invoice : Record "Sales Invoice Header";
         InvoiceLine : Record "Sales Invoice Line";

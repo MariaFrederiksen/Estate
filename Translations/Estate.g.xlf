@@ -1229,7 +1229,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">TableExtension - Field</note>
         </trans-unit>
         <trans-unit id="TableExtension 2668206278 - Field 3673444617 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Cost Type Estate</source>
+          <source>Costtype</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">TableExtension - Field</note>
         </trans-unit>
@@ -1254,7 +1254,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">TableExtension - Field</note>
         </trans-unit>
         <trans-unit id="TableExtension 2588173685 - Field 3673444617 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Cost Type Estate</source>
+          <source>Costtype</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">TableExtension - Field</note>
         </trans-unit>
@@ -1369,7 +1369,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 803675570 - Field 3179732978 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>PostingText</source>
+          <source>Trans Text</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -1464,7 +1464,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 3877982941 - Field 1285973296 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Email</source>
+          <source>E-mail</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -1534,7 +1534,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 3877982941 - Field 1524523321 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Bank reg.no.</source>
+          <source>Bank branch no.</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -1754,7 +1754,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 3877982941 - Field 444777627 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>ManLatest</source>
+          <source>Latest report</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -1839,7 +1839,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 3877982941 - Field 2655344065 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>natural gas</source>
+          <source>Natural gas</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -2019,7 +2019,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 1355808586 - Field 1610154708 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Deposit</source>
+          <source>Deposit mth</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -2029,7 +2029,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 1355808586 - Field 2401374439 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Area</source>
+          <source>Total Area</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -2139,7 +2139,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 1355808586 - Field 3653119149 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Central heating wtih oil</source>
+          <source>Central heating with oil</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -2179,7 +2179,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 1355808586 - Field 2655344065 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>natural gas</source>
+          <source>Natural gas</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -2429,12 +2429,12 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 3026221127 - Field 646935216 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Phone No</source>
+          <source>Phone</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 3026221127 - Field 797285533 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Cellphone No</source>
+          <source>Cellphone</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -2444,12 +2444,12 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 3026221127 - Field 2254531839 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Email</source>
+          <source>E-mail</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 3026221127 - Field 4167621690 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Email 2</source>
+          <source>E-mail 2</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -2479,7 +2479,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 3026221127 - Field 1553754502 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Bank reg. no</source>
+          <source>Bank branch no</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -2523,47 +2523,47 @@
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
-        <trans-unit id="Table 1509585023 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Cost type</source>
+        <trans-unit id="Table 544466105 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Costtype</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Table</note>
         </trans-unit>
-        <trans-unit id="Table 1509585023 - Field 1044426285 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Cost type</source>
+        <trans-unit id="Table 544466105 - Field 1044426285 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Costtype</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
-        <trans-unit id="Table 1509585023 - Field 3461834954 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
+        <trans-unit id="Table 544466105 - Field 3461834954 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
           <source>Desciption</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
-        <trans-unit id="Table 1509585023 - Field 1267408499 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
+        <trans-unit id="Table 544466105 - Field 1267408499 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
           <source>Account</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
-        <trans-unit id="Table 1509585023 - Field 1878130204 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
+        <trans-unit id="Table 544466105 - Field 1878130204 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
           <source>Type</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
-        <trans-unit id="Table 1509585023 - Field 1878130204 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
+        <trans-unit id="Table 544466105 - Field 1878130204 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
           <source>Other,Rent,ACheat,ACwater,ACElectric,ACCooling,Antenna,Internet,OccGroup,Deposit,Prepaid rent,Settlement,MovingCost</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
-        <trans-unit id="Table 1509585023 - Field 87408810 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
+        <trans-unit id="Table 544466105 - Field 87408810 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
           <source>Reminder</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
-        <trans-unit id="Table 1509585023 - Field 146219450 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
+        <trans-unit id="Table 544466105 - Field 146219450 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
           <source>Order</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
-        <trans-unit id="Table 1509585023 - Field 2076622736 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
+        <trans-unit id="Table 544466105 - Field 2076622736 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
           <source>VAT Bus. Posting Group</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
@@ -2579,7 +2579,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 624170318 - Field 3390747284 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Cost type</source>
+          <source>Costtype</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -2654,12 +2654,12 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 3803432801 - Field 3356713795 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Cost type</source>
+          <source>Costtype</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 3803432801 - Field 3461834954 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Text</source>
+          <source>Description</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -3699,7 +3699,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Table</note>
         </trans-unit>
         <trans-unit id="Table 1840855993 - Field 353423233 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Indeks Number</source>
+          <source>Indeks</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>

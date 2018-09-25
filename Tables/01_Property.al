@@ -70,7 +70,7 @@ table 50001 "SVA Property"
         }
         field(10;Email;Text[250])
         {
-            Caption='Email';
+            Caption='E-mail';
             ExtendedDatatype = EMail;
         }
         field(20;Owner;Text[50])
@@ -164,7 +164,7 @@ table 50001 "SVA Property"
         }
         field(51;BankRegNo;Text[10])
         {
-            Caption='Bank reg.no.';
+            Caption='Bank branch no.';
         }
         field(52;Bankaccount;Text[30])
         {
@@ -202,7 +202,7 @@ table 50001 "SVA Property"
         field(110;FinancialYearFrom;Option)
         {
             Caption='Financial year start';
-            OptionMembers = "-",Jan,Feb,Mar,April,Maj,Jun,Jul,Aug,Sep,Okt,Nov,Dec;
+            OptionMembers = None,Jan,Feb,Mar,April,Maj,Jun,Jul,Aug,Sep,Okt,Nov,Dec;
 
             trigger OnValidate();
             begin
@@ -414,6 +414,7 @@ table 50001 "SVA Property"
         }
         field(190;ManLatest;Date)
         {
+            Caption='Latest report';
         }
         field(500;TypeA9_1_Laundry;Boolean)
         {
@@ -569,7 +570,7 @@ table 50001 "SVA Property"
         }
         field(524;TypeA9_5_TNatgas;Boolean)
         {
-            Caption='natural gas';
+            Caption='Natural gas';
 
             trigger OnValidate();
             begin

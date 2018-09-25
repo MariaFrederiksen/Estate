@@ -2,7 +2,7 @@ page 60540 "Cost Type Estate List"
 {
     Caption='Cost types';
     PageType = List;
-    SourceTable = "SVA Cost type Estate";
+    SourceTable = "SVA Cost Type";
 
     layout
     {

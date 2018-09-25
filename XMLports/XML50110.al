@@ -8,7 +8,7 @@ xmlport 50110 "SVA Import Estate Cost Type"
     {
         textelement(Root)
         {
-            tableelement("SVA Cost type Estate";"SVA Cost type Estate")
+            tableelement("SVA Cost type Estate";"SVA Cost type")
             {
                 XmlName = 'Konteringsart';
                 fieldattribute(Costtype;"SVA Cost type Estate".Costtype)

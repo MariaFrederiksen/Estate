@@ -134,7 +134,7 @@ report 50220 "SVA Moving out Journal"
     }
 
     var
-        CostTypeType : Record "SVA Cost type Estate";
+        CostTypeType : Record "SVA Cost type";
         Customer : Record "Customer";
         Tenancy : Record "SVA Tenancy";
         CAddress : Text[30];

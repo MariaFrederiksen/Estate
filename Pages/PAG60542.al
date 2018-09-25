@@ -58,6 +58,6 @@ page 60542 "Subscription Lines"
     }
 
     var
-        Costtype : Record "SVA Cost type Estate";
+        Costtype : Record "SVA Cost Type";
 }
 

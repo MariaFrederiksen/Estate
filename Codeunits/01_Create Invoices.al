@@ -72,7 +72,7 @@ codeunit 60500 "SVA Create Invoice Estate"
         SalesHeader : Record "Sales Header";
         SalesLine : Record "Sales Line";
         LineNo : Integer;
-        CostTypeAccounts : Record "SVA Cost type Estate";
+        CostTypeAccounts : Record "SVA Cost type";
         Ledaccount : Record "G/L Account";
         PostingCodeunitID : Integer;
         Invoice : Record "Sales Invoice Header";

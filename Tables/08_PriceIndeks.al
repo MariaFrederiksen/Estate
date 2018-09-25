@@ -6,7 +6,7 @@ table 50008 "SVA PriceIndeks"
     {
         field(1;IndeksNo;Code[10])
         {
-            Caption='Indeks Number';
+            Caption='Indeks';
             trigger OnValidate();
             begin
                 IndeksNo := 'NETTO';

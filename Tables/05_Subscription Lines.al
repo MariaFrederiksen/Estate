@@ -11,8 +11,8 @@ table 50005 "SVA Subscription Lines"
         }
         field(3;"Cost Types";Code[10])
         {
-            Caption='Cost type';
-            TableRelation = "SVA Cost type Estate";
+            Caption='Costtype';
+            TableRelation = "SVA Cost type";
 
             trigger OnValidate();
             begin
@@ -96,7 +96,7 @@ table 50005 "SVA Subscription Lines"
 
     var
         TEXT001 : Label 'To date must be after from date';
-        CosttypeEstate : Record "SVA Cost type Estate";
+        CosttypeEstate : Record "SVA Cost type";
         Periodtype : Integer;
         Periods : Integer;
         Tenancy : Record "SVA Tenancy";

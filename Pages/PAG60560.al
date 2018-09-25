@@ -50,6 +50,6 @@ page 60560 "Subscription lines subform"
 
     var
         TenancyCard : Record "SVA Tenancy";
-        CosttypeEstate : Record "SVA Cost type Estate";
+        CosttypeEstate : Record "SVA Cost type";
 }
 

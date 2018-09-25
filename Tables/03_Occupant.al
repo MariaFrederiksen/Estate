@@ -118,12 +118,12 @@ table 50003 "SVA Occupant"
         }
         field(20;Phone;Text[20])
         {
-            Caption='Phone No';
+            Caption='Phone';
             ExtendedDatatype = PhoneNo;
         }
         field(22;CellPhone1;Text[20])
         {
-            Caption='Cellphone No';
+            Caption='Cellphone';
             ExtendedDatatype = PhoneNo;
         }
         field(23;CellPhone2;Text[20])
@@ -133,12 +133,12 @@ table 50003 "SVA Occupant"
         }
         field(24;Email1;Text[80])
         {
-            Caption='Email';
+            Caption='E-mail';
             ExtendedDatatype = EMail;
         }
         field(25;Email2;Text[80])
         {
-            Caption='Email 2';
+            Caption='E-mail 2';
             ExtendedDatatype = EMail;
         }
         field(30;StartDate;Date)
@@ -216,7 +216,7 @@ table 50003 "SVA Occupant"
         }
         field(35;"Bankreg-no";Text[30])
         {
-            Caption='Bank reg. no';
+            Caption='Bank branch no';
         }
         field(36;BankAccount;Text[30])
         {

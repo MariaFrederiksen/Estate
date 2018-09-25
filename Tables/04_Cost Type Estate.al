@@ -1,8 +1,8 @@
-table 50004 "SVA Cost type Estate"
+table 50004 "SVA Cost type"
 {
     // Tabel for opsætning af konteringer for NAV Ejendom.
 
-    Caption='Cost type';
+    Caption='Costtype';
     DrillDownPageID = 60540;
     LookupPageID = 60540;
 
@@ -10,7 +10,7 @@ table 50004 "SVA Cost type Estate"
     {
         field(1;Costtype;Code[10])
         {
-            Caption='Cost type';
+            Caption='Costtype';
         }
         field(2;Description;Text[30])
         {

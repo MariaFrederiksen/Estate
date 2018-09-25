@@ -94,6 +94,6 @@ report 50200 "SVA Collection Journal"
 
     var
         PrDate : Date;
-        CostTypeEstate : Record "SVA Cost type Estate";
+        CostTypeEstate : Record "SVA Cost type";
 }
 

@@ -1204,7 +1204,7 @@ table 50007 "SVA LeaseContract_A9"
         PeriodType : Integer;
         Periods : Integer;
         SubscriptionLines : Record "SVA Subscription Lines";
-        Costtype : Record "SVA Cost type Estate";
+        Costtype : Record "SVA Cost type";
 
     local procedure SetBoolean();
     begin

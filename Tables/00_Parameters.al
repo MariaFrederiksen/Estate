@@ -144,7 +144,7 @@ table 50000 "SVA Parameters"
         }
         field(451;BS_ImportText;Text[50])
         {
-            Caption='PostingText';
+            Caption='Trans Text';
             Description = 'Tekst til bogføring af betalinger';
             InitValue = 'NETS indbetaling';
         }
