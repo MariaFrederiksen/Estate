@@ -5,7 +5,7 @@ table 50007 "SVA LeaseContract_A9"
     // Boolean er konverteret til text-tabelfelter, da udskriften er til Word.
     // Feltnavne referer både til udgave og hvilken paragraf. Således er TypeA9_1_ type A, 9. udgave paragraf 1.
 
-    Caption='Leasecontract';
+    Caption='Leasecontract Type A 9. edition';
 
     fields
     {

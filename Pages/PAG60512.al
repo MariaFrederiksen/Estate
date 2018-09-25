@@ -59,7 +59,7 @@ page 60512 "Property Card"
             }
             group(Own)
             {
-                Caption = 'Ejer';
+                Caption = 'Owner';
                 field(Owner;Owner)
                 {
                 }
@@ -90,7 +90,7 @@ page 60512 "Property Card"
             }
             group(Bankinformations)
             {
-                Caption = 'Bank og NETS';
+                Caption = 'Bank and NETS';
                 field(Bankname;Bankname)
                 {
                 }
@@ -108,11 +108,9 @@ page 60512 "Property Card"
                 }
                 field(ESRAgrType;ESRAgrType)
                 {
-                    Caption = 'PBS aftaletype';
                 }
                 field(DataVendor;DataVendor)
                 {
-                    Caption = 'Dataleverandør';
                 }
                 field(ESRSystem;ESRSystem)
                 {
@@ -120,6 +118,7 @@ page 60512 "Property Card"
             }
             group(Periods)
             {
+                Caption = 'Periods';
                 field(FinCompany;FinCompany)
                 {
                 }
@@ -142,7 +141,7 @@ page 60512 "Property Card"
             
                 group(Heat)
                 {
-                    Caption = 'Varmeregnskab';
+                    Caption = 'Heat accounting';
                     field(HeatCompany;HeatCompany)
                     {
                 
@@ -166,7 +165,6 @@ page 60512 "Property Card"
                     }
                     field(HeatLatest;HeatLatest)
                     {
-                        Caption = 'Seneste regnskab';
                     }
                 }
                 group(Water)
@@ -195,7 +193,6 @@ page 60512 "Property Card"
                     }
                     field(WaterLatest;WaterLatest)
                     {
-                        Caption = 'Seneste regnskab';
                     }
                 }
                 group(Electric)
@@ -229,7 +226,7 @@ page 60512 "Property Card"
                 }
                 group(Manage)
                 {
-                    Caption = 'Driftsregnskab';
+                    Caption = 'Maintenance accounting';
                     field(ManYearFrom;ManYearFrom)
                     {
             
@@ -443,7 +440,7 @@ page 60512 "Property Card"
                 }
                 action("Consumption Man")
                 {
-                    Caption='AC Man';
+                    Caption='AC Maintenace';
                     Image = "Report";
                     
                     trigger OnAction();

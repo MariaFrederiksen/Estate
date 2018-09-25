@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 xliff-core-1.2-transitional.xsd">
-  <file datatype="xml" source-language="en-US" source-language="da-DK" original="Estate">
+  <file datatype="xml" source-language="en-US" target-language="da-DK" original="Estate">
     <body>
       <group id="body">
         <trans-unit id="Page 2842537119 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
@@ -23,7 +23,7 @@
         </trans-unit>
         <trans-unit id="Page 2842537119 - Control 1467654877 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
           <source>Other setup</source>
-          <target>Øvrig Opsætning</target>
+          <target>Øvrig opsætning</target>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Page - Control</note>
         </trans-unit>
@@ -53,13 +53,13 @@
         </trans-unit>
         <trans-unit id="Page 2613068915 - Action 2714808800 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
           <source>Tenancies</source>
-          <target>Lejligheder</target>
+          <target>Lejemål</target>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Page - Action</note>
         </trans-unit>
         <trans-unit id="Page 2613068915 - Action 1541900691 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
           <source>Occupants</source>
-          <target>Boligaftaler</target>
+          <target>Beboeraftaler</target>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Page - Action</note>
         </trans-unit>
@@ -71,7 +71,7 @@
         </trans-unit>
         <trans-unit id="Page 2613068915 - Action 3453762597 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
           <source>Vacant tenancies</source>
-          <target>Tomgangslejemål</target>
+          <target>Ledige lejemål</target>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Page - Action</note>
         </trans-unit>
@@ -118,8 +118,8 @@
           <note from="Xliff Generator" annotates="general" priority="3">Page - Control</note>
         </trans-unit>
         <trans-unit id="Page 473448325 - Control 2052980562 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Owner</source>
-          <target>Ejer</target>
+          <source>Ejer</source>
+          <target></target>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Page - Control</note>
         </trans-unit>
@@ -131,13 +131,13 @@
         </trans-unit>
         <trans-unit id="Page 473448325 - Control 3302059532 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
           <source>PBS aftaletype</source>
-          <target>NETS aftaletype</target>
+          <target></target>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Page - Control</note>
         </trans-unit>
         <trans-unit id="Page 473448325 - Control 2999994440 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
           <source>Dataleverandør</source>
-          <target>Dataleverandør</target>
+          <target></target>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Page - Control</note>
         </trans-unit>
@@ -161,7 +161,7 @@
         </trans-unit>
         <trans-unit id="Page 473448325 - Control 1613176186 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
           <source>Seneste regnskab</source>
-          <target>Seneste regnskab</target>
+          <target></target>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Page - Control</note>
         </trans-unit>
@@ -173,7 +173,7 @@
         </trans-unit>
         <trans-unit id="Page 473448325 - Control 3496562731 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
           <source>Driftsregnskab</source>
-          <target>Driftsregnskab</target>
+          <target></target>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Page - Control</note>
         </trans-unit>
@@ -257,7 +257,7 @@
         </trans-unit>
         <trans-unit id="Page 473448325 - Action 3453762597 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
           <source>Vacant tenancies</source>
-          <target>Tomgangslejemål</target>
+          <target>Ledige lejemål</target>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Page - Action</note>
         </trans-unit>
@@ -275,13 +275,13 @@
         </trans-unit>
         <trans-unit id="Page 3934914152 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
           <source>Tenancies</source>
-          <target>Lejligheder</target>
+          <target>Lejemål</target>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Page - Page</note>
         </trans-unit>
         <trans-unit id="Page 3934914152 - Control 179365352 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
           <source>Adresse 2</source>
-          <target>Adresse 2</target>
+          <target></target>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Page - Control</note>
         </trans-unit>
@@ -293,7 +293,7 @@
         </trans-unit>
         <trans-unit id="Page 3934914152 - Control 1134860662 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
           <source>Mth,Qtr,Half year,Year</source>
-          <target>Mdn,Kvartal, halvår, årligt</target>
+          <target>Måned, kvartal, halvår, år</target>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Page - Control</note>
         </trans-unit>
@@ -305,7 +305,7 @@
         </trans-unit>
         <trans-unit id="Page 3934914152 - Action 3628640662 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
           <source>Occupants</source>
-          <target>Boligaftaler</target>
+          <target>Beboeraftaler</target>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Page - Action</note>
         </trans-unit>
@@ -317,43 +317,43 @@
         </trans-unit>
         <trans-unit id="Page 2940606862 - Control 958383762 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
           <source>Ejendom</source>
-          <target>Ejendom</target>
+          <target></target>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Page - Control</note>
         </trans-unit>
         <trans-unit id="Page 2940606862 - Control 2272340397 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
           <source>Nummer</source>
-          <target>Nummer</target>
+          <target></target>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Page - Control</note>
         </trans-unit>
         <trans-unit id="Page 2940606862 - Control 817061969 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
           <source>Adresse 1</source>
-          <target>Adresse 1</target>
+          <target></target>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Page - Control</note>
         </trans-unit>
         <trans-unit id="Page 2940606862 - Control 179365352 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
           <source>Adresse 2</source>
-          <target>Adresse 2</target>
+          <target></target>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Page - Control</note>
         </trans-unit>
         <trans-unit id="Page 2940606862 - Control 3660300303 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
           <source>Postnummer</source>
-          <target>Postnummer</target>
+          <target></target>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Page - Control</note>
         </trans-unit>
         <trans-unit id="Page 2940606862 - Control 714791889 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
           <source>By</source>
-          <target>By</target>
+          <target></target>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Page - Control</note>
         </trans-unit>
         <trans-unit id="Page 2940606862 - Control 284764054 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
           <source>Land</source>
-          <target>Land</target>
+          <target></target>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Page - Control</note>
         </trans-unit>
@@ -371,7 +371,7 @@
         </trans-unit>
         <trans-unit id="Page 2940606862 - Control 620152269 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
           <source>Areal ialt</source>
-          <target>Areal i alt</target>
+          <target></target>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Page - Control</note>
         </trans-unit>
@@ -383,7 +383,7 @@
         </trans-unit>
         <trans-unit id="Page 2940606862 - Control 536852174 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
           <source>Erhvervsareal</source>
-          <target>Erhvervsareal</target>
+          <target></target>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Page - Control</note>
         </trans-unit>
@@ -449,13 +449,13 @@
         </trans-unit>
         <trans-unit id="Page 3707276689 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
           <source>Occupants</source>
-          <target>Boligaftaler</target>
+          <target>Beboeraftaler</target>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Page - Page</note>
         </trans-unit>
         <trans-unit id="Page 2314951999 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
           <source>Occupants</source>
-          <target>Boligaftaler</target>
+          <target>Beboeraftaler</target>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Page - Page</note>
         </trans-unit>
@@ -845,43 +845,43 @@
         </trans-unit>
         <trans-unit id="Page 3240232555 - Action 1500503578 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
           <source>Bank &amp;Detail Trial Balance</source>
-          <target></target>
+          <target>Bank - kontokort</target>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Page - Action</note>
         </trans-unit>
         <trans-unit id="Page 3240232555 - Action 1212747606 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
           <source>T&amp;rial Balance/Budget</source>
-          <target></target>
+          <target>B&alance/budget</target>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Page - Action</note>
         </trans-unit>
         <trans-unit id="Page 3240232555 - Action 582021113 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
           <source>Trial Balance by &amp;Period</source>
-          <target></target>
+          <target>Råbalance efter &periode</target>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Page - Action</note>
         </trans-unit>
         <trans-unit id="Page 3240232555 - Action 1281605169 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
           <source>Closing Tria&amp;l Balance</source>
-          <target></target>
+          <target>Årsregnskab</target>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Page - Action</note>
         </trans-unit>
         <trans-unit id="Page 3240232555 - Action 1838980395 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
           <source>&amp;Fiscal Year Balance</source>
-          <target></target>
+          <target>Saldo for regnskabgsår</target>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Page - Action</note>
         </trans-unit>
         <trans-unit id="Page 3240232555 - Action 1851928487 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
           <source>Balance C&amp;omp. . Prev. Year</source>
-          <target></target>
+          <target>Saldosammenlign. - Forr. år</target>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Page - Action</note>
         </trans-unit>
         <trans-unit id="Page 3240232555 - Action 1826002621 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
           <source>&amp;Aged Accounts Receivable</source>
-          <target></target>
+          <target>&Aldersfordelte tilgodehavender</target>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Page - Action</note>
         </trans-unit>
@@ -893,7 +893,7 @@
         </trans-unit>
         <trans-unit id="Page 3240232555 - Action 43289193 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
           <source>Reconcile Cust. and &amp;Vend. Accs</source>
-          <target></target>
+          <target>Afste&m deb.- og kred.konti</target>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Page - Action</note>
         </trans-unit>
@@ -905,13 +905,13 @@
         </trans-unit>
         <trans-unit id="Page 3240232555 - Action 2218268502 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
           <source>VAT E&amp;xceptions</source>
-          <target></target>
+          <target>Momsu&ndtagelser</target>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Page - Action</note>
         </trans-unit>
         <trans-unit id="Page 3240232555 - Action 1811831734 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
           <source>VAT State&amp;ment</source>
-          <target></target>
+          <target>Kontoudtog</target>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Page - Action</note>
         </trans-unit>
@@ -929,7 +929,7 @@
         </trans-unit>
         <trans-unit id="Page 3240232555 - Action 2570269693 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
           <source>EC &amp;Sales List</source>
-          <target></target>
+          <target>Oversigt over EU-salg</target>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Page - Action</note>
         </trans-unit>
@@ -983,13 +983,13 @@
         </trans-unit>
         <trans-unit id="Page 3240232555 - Action 2649574021 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
           <source>Purchase Invoices</source>
-          <target>købsfakturaer</target>
+          <target>Købsfakturaer</target>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Page - Action</note>
         </trans-unit>
         <trans-unit id="Page 3240232555 - Action 3204146370 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
           <source>Purchase Orders</source>
-          <target>købsordrer</target>
+          <target>Købsordrer</target>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Page - Action</note>
         </trans-unit>
@@ -1043,13 +1043,13 @@
         </trans-unit>
         <trans-unit id="Page 3240232555 - Action 679555641 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
           <source>Posted Documents</source>
-          <target>Bogørte dokumenter</target>
+          <target>Bogførte dokumenter</target>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Page - Action</note>
         </trans-unit>
         <trans-unit id="Page 3240232555 - Action 679555641 - Property 1295455071" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
           <source>View posted invoices and credit memos, and analyze G/L registers.</source>
-          <target></target>
+          <target>Se bogf. faktura og creditnotaer, og analyser</target>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Page - Action</note>
         </trans-unit>
@@ -1091,7 +1091,7 @@
         </trans-unit>
         <trans-unit id="Page 3240232555 - Action 860399524 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
           <source>Posted Return Shipments</source>
-          <target>Bogørte returvareleverancer</target>
+          <target>Bogførte returvareleverancer</target>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Page - Action</note>
         </trans-unit>
@@ -1169,19 +1169,19 @@
         </trans-unit>
         <trans-unit id="Page 3240232555 - Action 1765173007 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
           <source>C&amp;ustomer</source>
-          <target></target>
+          <target>C&ustomer</target>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Page - Action</note>
         </trans-unit>
         <trans-unit id="Page 3240232555 - Action 519831062 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
           <source>Sales &amp;Invoice</source>
-          <target></target>
+          <target>Salgsfaktura</target>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Page - Action</note>
         </trans-unit>
         <trans-unit id="Page 3240232555 - Action 4276407927 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
           <source>Sales Credit &amp;Memo</source>
-          <target></target>
+          <target>&Salgskreditnota</target>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Page - Action</note>
         </trans-unit>
@@ -1193,7 +1193,7 @@
         </trans-unit>
         <trans-unit id="Page 3240232555 - Action 4201103430 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
           <source>Sales &amp;Reminder</source>
-          <target></target>
+          <target>Rykker</target>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Page - Action</note>
         </trans-unit>
@@ -1205,7 +1205,7 @@
         </trans-unit>
         <trans-unit id="Page 3240232555 - Action 3798984574 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
           <source>&amp;Purchase Invoice</source>
-          <target></target>
+          <target>Købsfaktura</target>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Page - Action</note>
         </trans-unit>
@@ -1217,13 +1217,13 @@
         </trans-unit>
         <trans-unit id="Page 3240232555 - Action 3228300333 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
           <source>Cash Re&amp;ceipt Journal</source>
-          <target></target>
+          <target>Indbetalingskladde</target>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Page - Action</note>
         </trans-unit>
         <trans-unit id="Page 3240232555 - Action 1371822675 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
           <source>Payment &amp;Journal</source>
-          <target></target>
+          <target>Udbetalingskladde</target>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Page - Action</note>
         </trans-unit>
@@ -1241,7 +1241,7 @@
         </trans-unit>
         <trans-unit id="Page 3240232555 - Action 2920150417 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
           <source>B&amp;ank Account Reconciliations</source>
-          <target></target>
+          <target>Bankkontoafstemning</target>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Page - Action</note>
         </trans-unit>
@@ -1283,13 +1283,13 @@
         </trans-unit>
         <trans-unit id="Page 592193920 - Control 2842863030 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
           <source>Occupants</source>
-          <target>Boligaftaler</target>
+          <target>Beboeraftaler</target>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Page - Control</note>
         </trans-unit>
         <trans-unit id="Page 592193920 - Control 2714808800 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
           <source>Tenancies</source>
-          <target>Lejligheder</target>
+          <target>Lejemål</target>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Page - Control</note>
         </trans-unit>
@@ -1300,7 +1300,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Page - Control</note>
         </trans-unit>
         <trans-unit id="Page 592193920 - Control 1810678115 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Empty tenancies</source>
+          <source>Empty tenancy</source>
           <target>Ledige lejemål</target>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Page - Control</note>
@@ -1349,7 +1349,7 @@
         </trans-unit>
         <trans-unit id="Report 1469919168 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
           <source>Property datasheet</source>
-          <target>Ejendom stamkort</target>
+          <target>Stamoplysninger pr. ejendom</target>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Report - Report</note>
         </trans-unit>
@@ -1403,7 +1403,7 @@
         </trans-unit>
         <trans-unit id="Report 1813157450 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
           <source>Contract type A, 9. edition</source>
-          <target>Kontrakt Type A, 9. udgave</target>
+          <target>Kontrakt type A 9. udgave</target>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Report - Report</note>
         </trans-unit>
@@ -1445,13 +1445,13 @@
         </trans-unit>
         <trans-unit id="Report 423105921 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
           <source>Vacant tenancies</source>
-          <target>Tomgangslejemål</target>
+          <target>Ledige lejemål</target>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Report - Report</note>
         </trans-unit>
         <trans-unit id="TableExtension 3014437974 - Field 238970296 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
           <source>Included</source>
-          <target></target>
+          <target>Medtaget</target>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">TableExtension - Field</note>
         </trans-unit>
@@ -1475,13 +1475,13 @@
         </trans-unit>
         <trans-unit id="TableExtension 2668206278 - Field 3673444617 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
           <source>Cost Type Estate</source>
-          <target>Konteringsart</target>
+          <target></target>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">TableExtension - Field</note>
         </trans-unit>
         <trans-unit id="TableExtension 3422517517 - Field 238970296 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
           <source>Included</source>
-          <target>Medtages</target>
+          <target>Medtaget</target>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">TableExtension - Field</note>
         </trans-unit>
@@ -1505,7 +1505,7 @@
         </trans-unit>
         <trans-unit id="TableExtension 2588173685 - Field 3673444617 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
           <source>Cost Type Estate</source>
-          <target>Konteringsart</target>
+          <target></target>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">TableExtension - Field</note>
         </trans-unit>
@@ -1529,13 +1529,13 @@
         </trans-unit>
         <trans-unit id="TableExtension 1674449865 - Field 3026221127 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
           <source>Occupants</source>
-          <target>Boligaftaler</target>
+          <target>Beboeraftaler</target>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">TableExtension - Field</note>
         </trans-unit>
         <trans-unit id="TableExtension 1674449865 - Field 3539270036 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
           <source>Date filter</source>
-          <target></target>
+          <target>Datofilter</target>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">TableExtension - Field</note>
         </trans-unit>
@@ -1667,25 +1667,25 @@
         </trans-unit>
         <trans-unit id="Table 803675570 - Field 130490898 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
           <source>Rate for §22 stk. 1.</source>
-          <target>Sats §22</target>
+          <target></target>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 803675570 - NamedType 2290359564" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
           <source>There must be 5 digits</source>
-          <target>Der skal være 5 tal</target>
+          <target>Der skal være 5 cifre</target>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Label</note>
         </trans-unit>
         <trans-unit id="Table 803675570 - NamedType 3806477151" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
           <source>Path must have a valid value</source>
-          <target></target>
+          <target>Stien skal være gyldig</target>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Label</note>
         </trans-unit>
         <trans-unit id="Table 803675570 - NamedType 4203449415" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
           <source>There must be 8 digits</source>
-          <target></target>
+          <target>Der skal være 8 cifre</target>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Label</note>
         </trans-unit>
@@ -1871,7 +1871,7 @@
         </trans-unit>
         <trans-unit id="Table 3877982941 - Field 2999994440 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
           <source>Data vendor</source>
-          <target>Dataleverandør</target>
+          <target>Dataleverandær</target>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -2141,7 +2141,7 @@
         </trans-unit>
         <trans-unit id="Table 3877982941 - Field 1938342266 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
           <source>PrePaid rent, month</source>
-          <target>Forudbetalt leje, mdr</target>
+          <target>Forudbetalt leje</target>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -2153,7 +2153,7 @@
         </trans-unit>
         <trans-unit id="Table 3877982941 - Field 2441084745 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
           <source>Natural Gas</source>
-          <target>Fjernevarme/naturgas</target>
+          <target>Fjernvarme/Naturgas</target>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -2201,13 +2201,13 @@
         </trans-unit>
         <trans-unit id="Table 3877982941 - Field 2702610757 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
           <source>Oil</source>
-          <target>Olie/petroleum</target>
+          <target>Olie</target>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 3877982941 - Field 2655344065 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
           <source>natural gas</source>
-          <target>Fjernevarme/naturgas</target>
+          <target>Fjernvarme/Naturgas</target>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -2261,13 +2261,13 @@
         </trans-unit>
         <trans-unit id="Table 3877982941 - Field 3096803925 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
           <source>Coolingmeter</source>
-          <target>kølemåler</target>
+          <target>Forbrugsmåler</target>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 3877982941 - Field 2149674381 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
           <source>Cooling accounting</source>
-          <target>køleregnskab</target>
+          <target>Køleregnskab</target>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -2291,7 +2291,7 @@
         </trans-unit>
         <trans-unit id="Table 3877982941 - Field 3386389507 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
           <source>Inspection</source>
-          <target>Indflytningssyn</target>
+          <target>Eftersyn</target>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -2321,7 +2321,7 @@
         </trans-unit>
         <trans-unit id="Table 1355808586 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
           <source>Tenancies</source>
-          <target>Lejligheder</target>
+          <target>Lejemål</target>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Table</note>
         </trans-unit>
@@ -2393,7 +2393,7 @@
         </trans-unit>
         <trans-unit id="Table 1355808586 - Field 1878130204 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
           <source>Living,Commercial Leases, Partial, Owner,house,Other</source>
-          <target></target>
+          <target>Bolig, erhverv, andel, ejerlejlighed, hus, andet</target>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -2405,7 +2405,7 @@
         </trans-unit>
         <trans-unit id="Table 1355808586 - Field 389783846 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
           <source>Living,Commercial Lease</source>
-          <target></target>
+          <target>Beboelse,Erhverv</target>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -2417,7 +2417,7 @@
         </trans-unit>
         <trans-unit id="Table 1355808586 - Field 1134860662 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
           <source>Mth,Qtr,Half year,Year</source>
-          <target></target>
+          <target>Måned, kvartal, halvår, år</target>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -2453,7 +2453,7 @@
         </trans-unit>
         <trans-unit id="Table 1355808586 - Field 4261021872 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
           <source>Rooms</source>
-          <target>Rum</target>
+          <target>Antal værelser</target>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -2561,7 +2561,7 @@
         </trans-unit>
         <trans-unit id="Table 1355808586 - Field 2441084745 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
           <source>Natural Gas</source>
-          <target>Fjernevarme/naturgas</target>
+          <target>Fjernvarme/Naturgas</target>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -2609,13 +2609,13 @@
         </trans-unit>
         <trans-unit id="Table 1355808586 - Field 2702610757 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
           <source>Oil</source>
-          <target>Olie/petroleum</target>
+          <target>Olie</target>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 1355808586 - Field 2655344065 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
           <source>natural gas</source>
-          <target>Fjernevarme/naturgas</target>
+          <target>Fjernvarme/Naturgas</target>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -2657,7 +2657,7 @@
         </trans-unit>
         <trans-unit id="Table 1355808586 - Field 655711539 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
           <source>CoolingMeter</source>
-          <target>kølemåler</target>
+          <target>Forbrugsmåler</target>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -2717,7 +2717,7 @@
         </trans-unit>
         <trans-unit id="Table 1355808586 - Field 426186142 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
           <source>Fridge</source>
-          <target>køleskab</target>
+          <target>Køleskab</target>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -2759,7 +2759,7 @@
         </trans-unit>
         <trans-unit id="Table 1355808586 - Field 4274418805 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
           <source>Electric panels, qty</source>
-          <target></target>
+          <target>Varme paneler, antal</target>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -2771,7 +2771,7 @@
         </trans-unit>
         <trans-unit id="Table 1355808586 - Field 1652502788 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
           <source>Waterheater, qty</source>
-          <target></target>
+          <target>Vandvarmere, antal</target>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -2903,13 +2903,13 @@
         </trans-unit>
         <trans-unit id="Table 3026221127 - Field 4073202475 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
           <source>Social Securety No (1. tenant)</source>
-          <target></target>
+          <target>CPRnr (1. lejer)</target>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 3026221127 - Field 1691325030 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
           <source>Social Securety No (2. tenant)</source>
-          <target></target>
+          <target>CPRnr (2. lejer)</target>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -2957,7 +2957,7 @@
         </trans-unit>
         <trans-unit id="Table 3026221127 - Field 229152810 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
           <source>First time for NETS</source>
-          <target>Første gang via NETS</target>
+          <target>første gang via NETS</target>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -3017,7 +3017,7 @@
         </trans-unit>
         <trans-unit id="Table 3026221127 - Field 197726303 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
           <source>ResidentRepresentative</source>
-          <target>Beboerrepræsentant</target>
+          <target>Beboerrepræsentation</target>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -3029,13 +3029,13 @@
         </trans-unit>
         <trans-unit id="Table 1509585023 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
           <source>Cost type</source>
-          <target>Konteringsarter</target>
+          <target>Konteringsart</target>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Table</note>
         </trans-unit>
         <trans-unit id="Table 1509585023 - Field 1044426285 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
           <source>Cost type</source>
-          <target>Konteringsarter</target>
+          <target>Konteringsart</target>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -3095,7 +3095,7 @@
         </trans-unit>
         <trans-unit id="Table 624170318 - Field 3390747284 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
           <source>Cost type</source>
-          <target>Konteringsarter</target>
+          <target>Konteringsart</target>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -3161,7 +3161,7 @@
         </trans-unit>
         <trans-unit id="Table 624170318 - NamedType 4034540392" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
           <source>To date must be after from date</source>
-          <target></target>
+          <target>Til dato skal være efter fradato</target>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Label</note>
         </trans-unit>
@@ -3185,7 +3185,7 @@
         </trans-unit>
         <trans-unit id="Table 3803432801 - Field 3356713795 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
           <source>Cost type</source>
-          <target>Konteringsarter</target>
+          <target>Konteringsart</target>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -3251,7 +3251,7 @@
         </trans-unit>
         <trans-unit id="Table 3859899673 - Field 2528347786 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
           <source>Room</source>
-          <target>Værelse</target>
+          <target>Rum</target>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -3341,7 +3341,7 @@
         </trans-unit>
         <trans-unit id="Table 3859899673 - Field 1004833719 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
           <source>Rooms</source>
-          <target>Rum</target>
+          <target>Antal værelser</target>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -3521,7 +3521,7 @@
         </trans-unit>
         <trans-unit id="Table 3859899673 - Field 1979115081 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
           <source>Taxes per</source>
-          <target>Skatter og afgifter pr.</target>
+          <target>Skat pr.</target>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -3599,13 +3599,13 @@
         </trans-unit>
         <trans-unit id="Table 3859899673 - Field 2009882809 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
           <source>First rent from</source>
-          <target></target>
+          <target>første leje fra</target>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 3859899673 - Field 2405894326 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
           <source>First rent to</source>
-          <target></target>
+          <target>første leje til</target>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -3677,7 +3677,7 @@
         </trans-unit>
         <trans-unit id="Table 3859899673 - Field 824258463 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
           <source>Central heat, oil</source>
-          <target></target>
+          <target>Centralvarme med olie</target>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -3785,13 +3785,13 @@
         </trans-unit>
         <trans-unit id="Table 3859899673 - Field 655711539 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
           <source>CoolingMeter</source>
-          <target>kølemåler</target>
+          <target>Forbrugsmåler</target>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 3859899673 - Field 3469126111 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
           <source>Cooling accing from</source>
-          <target>køleregnskabet begynder den</target>
+          <target>Kåleregnskabet begynder den</target>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -3851,7 +3851,7 @@
         </trans-unit>
         <trans-unit id="Table 3859899673 - Field 426186142 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
           <source>Fridge</source>
-          <target>køleskab</target>
+          <targetø>Køleskab</target>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -3905,7 +3905,7 @@
         </trans-unit>
         <trans-unit id="Table 3859899673 - Field 1652502788 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
           <source>Waterheater, qty</source>
-          <target></target>
+          <target>Vandvarmere, antal</target>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -4361,37 +4361,37 @@
         </trans-unit>
         <trans-unit id="Table 3859899673 - Field 1771823716 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
           <source>I_Minregulation</source>
-          <target></target>
+          <target>Min. stigning</target>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 3859899673 - Field 1431171082 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
           <source>I_MaxRegulation</source>
-          <target></target>
+          <target>Max. stigning</target>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 3859899673 - Field 1752189776 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
           <source>I_FixedRegulation</source>
-          <target></target>
+          <target>Fast regulering</target>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 3859899673 - Field 3340238366 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
           <source>I_RegDate</source>
-          <target></target>
+          <target>Reguleringsdato</target>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 3859899673 - Field 892591104 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
           <source>I_RegIndeksDate</source>
-          <target></target>
+          <target>Indeksdato</target>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 3859899673 - Field 3834545948 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
           <source>I_LastRegulation</source>
-          <target></target>
+          <target>Seneste regulering</target>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -4433,7 +4433,7 @@
         </trans-unit>
         <trans-unit id="Table 1840855993 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
           <source>Netto price indeks</source>
-          <target></target>
+          <target>Prisindeks</target>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Table</note>
         </trans-unit>

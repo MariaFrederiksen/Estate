@@ -35,7 +35,7 @@ page 61100 "Bookkeeper ESTATE Activities"
                 field("Empty tenancies";"SVA Empty Tenancy")
                 {
                     ApplicationArea = Basic,Suite;
-                    Caption='Empty tenancies';
+                    Caption='Empty tenancy';
                     DrillDownPageID = "SVA Tenancy List";
                     Image = "None";
                     
