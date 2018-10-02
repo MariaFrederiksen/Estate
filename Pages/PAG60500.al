@@ -4,6 +4,7 @@ page 60500 "SVA Setup Estate Card"
     CardPageID = "SVA Setup Estate Card";
     PageType = Card;
     SourceTable = "SVA Parameters";
+    DeleteAllowed = false;
 
     layout
     {

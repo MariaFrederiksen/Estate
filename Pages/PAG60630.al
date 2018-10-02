@@ -7,6 +7,7 @@ page 60630 "Sales Invoice NETS"
     SourceTable = "Sales Invoice Header";
     SourceTableView = SORTING("No.") 
                 WHERE(Closed=CONST(false));
+    UsageCategory = Tasks;
 
     layout
     {

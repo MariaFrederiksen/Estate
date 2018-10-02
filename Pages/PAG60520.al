@@ -5,6 +5,7 @@ page 60520 "SVA Tenancy List"
     Editable = false;
     PageType = List;
     SourceTable = "SVA Tenancy";
+    UsageCategory = Lists;
 
     layout
     {

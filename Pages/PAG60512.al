@@ -138,7 +138,7 @@ page 60512 "Property Card"
             }
             group(Balances)
             {
-            
+                Caption = 'Periods';
                 group(Heat)
                 {
                     Caption = 'Heat accounting';

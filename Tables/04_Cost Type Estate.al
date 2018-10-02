@@ -14,7 +14,7 @@ table 50004 "SVA Cost type"
         }
         field(2;Description;Text[30])
         {
-            Caption='Desciption';
+            Caption='Description';
         }
         field(3;Account;Code[10])
         {

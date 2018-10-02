@@ -4,7 +4,7 @@ page 60510 "SVA Property List"
     CardPageID = "Property Card";
     PageType = List;
     SourceTable = "SVA Property";
-
+    UsageCategory = Lists;
     layout
     {
         area(content)

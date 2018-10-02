@@ -3,6 +3,7 @@ report 50610 "SVA Vacant Tenancies"
     DefaultLayout = RDLC;
     RDLCLayout = './Layouts/Vacant Tenancies.rdlc';
     Caption='Vacant tenancies';
+    UsageCategory=ReportsAndAnalysis;
 
     dataset
     {

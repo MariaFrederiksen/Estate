@@ -3,7 +3,7 @@ report 50100 "SVA Property Data sheet"
     DefaultLayout = RDLC;
     RDLCLayout = './Layouts/Property Data sheet.rdlc';
     Caption='Property datasheet';
-
+    UsageCategory=ReportsAndAnalysis;
     dataset
     {
         dataitem(DataItem1000000000;"SVA Property")

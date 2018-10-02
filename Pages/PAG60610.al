@@ -6,6 +6,7 @@ page 60610 Priceindeks
     Caption='Priceindeks';
     PageType = List;
     SourceTable = "SVA PriceIndeks";
+    UsageCategory = Administration;
 
     layout
     {

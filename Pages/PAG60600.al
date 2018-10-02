@@ -3,6 +3,7 @@ page 60600 "Subscription regulations"
     Caption='Subscription regulations';
     PageType = Card;
     SourceTable = "SVA LeaseContract_A9";
+    UsageCategory = Tasks;
 
     layout
     {

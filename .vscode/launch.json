@@ -10,7 +10,7 @@
             "serverInstance": "nav144",
             "authentication": "UserPassword",
             "port": 14449,
-            "schemaUpdateMode": "Recreate"
+            "schemaUpdateMode": "Synchronize"
                       
         }
     ]

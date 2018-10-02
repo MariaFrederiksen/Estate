@@ -4,6 +4,8 @@ page 60501 "SVA Setup Estate List"
     CardPageID = "SVA Setup Estate Card";
     PageType = List;
     SourceTable = "SVA Parameters";
+    UsageCategory = Administration;
+    DeleteAllowed = false;
 
     layout
     {

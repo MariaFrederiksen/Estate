@@ -216,7 +216,7 @@ table 50001 "SVA Property"
         field(111;FinancialYearTo;Option)
         {
             Caption='Financial year end';
-            OptionCaption='-,Jan,Feb,Mar,April,May,Jun,Jul,Aug,Sep,Oct,Nov,Dec';
+            OptionCaption='None,Jan,Feb,Mar,April,May,Jun,Jul,Aug,Sep,Oct,Nov,Dec';
             OptionMembers = "-",Jan,Feb,Mar,April,Maj,Jun,Jul,Aug,Sep,Okt,Nov,Dec;
 
             trigger OnValidate();
@@ -246,7 +246,7 @@ table 50001 "SVA Property"
         field(113;HeatingYearTo;Option)
         {
             Caption='Heating year end';
-            OptionCaption='-,Jan,Feb,Mar,April,May,Jun,Jul,Aug,Sep,Oct,Nov,Dec';
+            OptionCaption='None,Jan,Feb,Mar,April,May,Jun,Jul,Aug,Sep,Oct,Nov,Dec';
             OptionMembers = "-",Jan,Feb,Mar,April,Maj,Jun,Jul,Aug,Sep,Okt,Nov,Dec;
 
             trigger OnValidate();
@@ -261,7 +261,7 @@ table 50001 "SVA Property"
         field(114;WaterYearFrom;Option)
         {
             Caption='Water year start';
-            OptionCaption='-,Jan,Feb,Mar,April,May,Jun,Jul,Aug,Sep,Oct,Nov,Dec';
+            OptionCaption='None,Jan,Feb,Mar,April,May,Jun,Jul,Aug,Sep,Oct,Nov,Dec';
             OptionMembers = "-",Jan,Feb,Mar,April,Maj,Jun,Jul,Aug,Sep,Okt,Nov,Dec;
 
             trigger OnValidate();
@@ -276,7 +276,7 @@ table 50001 "SVA Property"
         field(115;WaterYearTo;Option)
         {
             Caption='Water year end';
-            OptionCaption='-,Jan,Feb,Mar,April,May,Jun,Jul,Aug,Sep,Oct,Nov,Dec';
+            OptionCaption='None,Jan,Feb,Mar,April,May,Jun,Jul,Aug,Sep,Oct,Nov,Dec';
             OptionMembers = "-",Jan,Feb,Mar,April,Maj,Jun,Jul,Aug,Sep,Okt,Nov,Dec;
 
             trigger OnValidate();
@@ -291,7 +291,7 @@ table 50001 "SVA Property"
         field(116;ElectricYearFrom;Option)
         {
             Caption='Electric year start';
-            OptionCaption='-,Jan,Feb,Mar,April,May,Jun,Jul,Aug,Sep,Oct,Nov,Dec';
+            OptionCaption='None,Jan,Feb,Mar,April,May,Jun,Jul,Aug,Sep,Oct,Nov,Dec';
             OptionMembers = "-",Jan,Feb,Mar,April,Maj,Jun,Jul,Aug,Sep,Okt,Nov,Dec;
 
             trigger OnValidate();
@@ -306,7 +306,7 @@ table 50001 "SVA Property"
         field(117;ElectricYearTo;Option)
         {
             Caption='Electric year end';
-            OptionCaption='-,Jan,Feb,Mar,April,May,Jun,Jul,Aug,Sep,Oct,Nov,Dec';
+            OptionCaption='None,Jan,Feb,Mar,April,May,Jun,Jul,Aug,Sep,Oct,Nov,Dec';
             OptionMembers = "-",Jan,Feb,Mar,April,Maj,Jun,Jul,Aug,Sep,Okt,Nov,Dec;
 
             trigger OnValidate();
@@ -321,7 +321,7 @@ table 50001 "SVA Property"
         field(118;ManYearFrom;Option)
         {
             Caption='Mantainence year start';
-            OptionCaption='-,Jan,Feb,Mar,April,May,Jun,Jul,Aug,Sep,Oct,Nov,Dec';
+            OptionCaption='None,Jan,Feb,Mar,April,May,Jun,Jul,Aug,Sep,Oct,Nov,Dec';
             OptionMembers = "-",Jan,Feb,Mar,April,Maj,Jun,Jul,Aug,Sep,Okt,Nov,Dec;
 
             trigger OnValidate();
@@ -336,7 +336,7 @@ table 50001 "SVA Property"
         field(119;ManYearTo;Option)
         {
             Caption='Mantainence year end';
-            OptionCaption='-,Jan,Feb,Mar,April,May,Jun,Jul,Aug,Sep,Oct,Nov,Dec';
+            OptionCaption='None,Jan,Feb,Mar,April,May,Jun,Jul,Aug,Sep,Oct,Nov,Dec';
             OptionMembers = "-",Jan,Feb,Mar,April,Maj,Jun,Jul,Aug,Sep,Okt,Nov,Dec;
 
             trigger OnValidate();
@@ -694,8 +694,8 @@ table 50001 "SVA Property"
           SquareMetersTotal := 0;
         IF Tenancies.FIND('-') THEN BEGIN
           REPEAT
-            //SquareMetersLiv += Tenancies.AreaLiv;
-            //SquareMetersProf += Tenancies.AreaPro;
+            SquareMetersLiv += Tenancies.AreaLiv;
+            SquareMetersProf += Tenancies.AreaPro;
             UNTIL Tenancies.NEXT = 0;
             END;
         SquareMetersTotal := SquareMetersLiv+SquareMetersProf;

@@ -4,6 +4,7 @@ page 60530 "SVA Occupant List"
     CardPageID = "Occupant Card";
     PageType = List;
     SourceTable = "SVA Occupant";
+    UsageCategory = Lists;
 
     layout
     {

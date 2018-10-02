@@ -3,6 +3,7 @@ page 60620 Regulations
     Caption='Regulations';
     PageType = List;
     SourceTable = "SVA Occupant";
+    UsageCategory = Tasks;
 
     layout
     {
