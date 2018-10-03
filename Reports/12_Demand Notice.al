@@ -7,7 +7,7 @@ report 50600 "SVA DemandNoticeResidence"
 
     dataset
     {
-        dataitem(DataItem1000000000;"SVA Occupant")
+        dataitem(Occupant;"SVA Occupant")
         {
             column(Number_Occupant;Number)
             {
@@ -42,7 +42,7 @@ report 50600 "SVA DemandNoticeResidence"
             column(CountryRegionCode_Occupant;"Country/Region Code")
             {
             }
-            dataitem(DataItem1000000013;"SVA Tenancy")
+            dataitem(Tenancy;"SVA Tenancy")
             {
                 DataItemLink = Number=FIELD(TenancyNo);
                 column(Address1_Tenancy;Address1)
@@ -55,7 +55,7 @@ report 50600 "SVA DemandNoticeResidence"
                 {
                 }
             }
-            dataitem(DataItem1000000001;"Sales Invoice Header")
+            dataitem("Sales Invoice Header";"Sales Invoice Header")
             {
                 DataItemLink = "SVA Occupant"=FIELD(Number);
                 column(No_SalesInvoiceHeader;"No.")
@@ -76,7 +76,7 @@ report 50600 "SVA DemandNoticeResidence"
                 column(PostingDescr;"Posting Description")
                 {
                 }
-                dataitem(DataItem1000000020;"Sales Invoice Line")
+                dataitem("Sales Invoice Line";"Sales Invoice Line")
                 {
                     DataItemLink = "Document No."=FIELD("No.");
                     column(DocumentNo_SalesInvoiceLine;"Document No.")
@@ -109,7 +109,7 @@ report 50600 "SVA DemandNoticeResidence"
                     LiableAmountTotal += "Amount Including VAT";
                 end;
             }
-            dataitem(DataItem1000000030;"SVA Parameters")
+            dataitem(Parameters;"SVA Parameters")
             {
                 column(ReminderFeeRes;ReminderFeeRes)
                 {
@@ -125,7 +125,7 @@ report 50600 "SVA DemandNoticeResidence"
                 end;
             }
         }
-        dataitem(DataItem1000000033;"Company Information")
+        dataitem("Company information";"Company Information")
         {
             column(CName;Name)
             {

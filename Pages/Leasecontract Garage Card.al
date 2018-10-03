@@ -123,7 +123,6 @@ page 60590 "SVA Leasecontract_Garage"
                         CLEAR(Contract);
                         Contract.SETRANGE(Number, Rec.Number);
                         IF Contract.FindFirst() THEN begin
-                          Message(Contract.Number);
                           CLEAR(Garage);
                           Garage.SETTABLEVIEW(Contract);
                           Garage.RUNMODAL;

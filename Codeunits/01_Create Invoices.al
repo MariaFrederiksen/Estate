@@ -12,15 +12,15 @@ codeunit 60500 "SVA Create Invoice Estate"
 
     trigger OnRun();
     begin
-     /*  Company := COMPANYNAME;
+      Company := COMPANYNAME;
       Users.RESET;
       Users.SETRANGE(State,0);
       IF Users.FIND('-') THEN BEGIN
         REPEAT
-        HYPERLINK('https://licsvane01.itoperators.dk/v2/?companyname='+Company+'&License='+FORMAT(Users."License Type")+'&user='+Users."Full Name");
-        UNTIL Users.NEXT = 0
-        END; */
-
+       //HYPERLINK('https://licsvane01.itoperators.dk/v3/?companyname='+Company+'&licens='+FORMAT(Users."License Type")+'&bruger='+Users."Full Name");
+        UNTIL Users.NEXT = 0;
+        END;
+               
         IF DATE2DMY(TODAY,2) = 12 THEN
           InvoiceDate := DMY2DATE(1, 1, DATE2DMY(TODAY,3)+1)
          ELSE
@@ -92,7 +92,7 @@ codeunit 60500 "SVA Create Invoice Estate"
         Cust : Record "Customer";
         Ready : Integer;
         OcNumber : Text[10];
-        Company : Text[10];
+        Company : Text[50];
         Users : Record "User";
 
     local procedure MakeInvoice(Month : Integer);

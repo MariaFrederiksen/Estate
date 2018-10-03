@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Report xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner" xmlns:cl="http://schemas.microsoft.com/sqlserver/reporting/2010/01/componentdefinition" xmlns="http://schemas.microsoft.com/sqlserver/reporting/2010/01/reportdefinition">
   <Author>Claus Lundstr¹m</Author>
   <AutoRefresh>0</AutoRefresh>
@@ -13,10 +13,6 @@
   </DataSources>
   <DataSets>
     <DataSet Name="DataSet_Result">
-      <Query>
-        <DataSourceName>DataSource</DataSourceName>
-        <CommandText />
-      </Query>
       <Fields>
         <Field Name="ONo">
           <DataField>ONo</DataField>
@@ -57,7 +53,23 @@
         <Field Name="PrDate">
           <DataField>PrDate</DataField>
         </Field>
+        <Field Name="Vatrate">
+          <DataField>Vatrate</DataField>
+        </Field>
+        <Field Name="VatrateFormat">
+          <DataField>VatrateFormat</DataField>
+        </Field>
+        <Field Name="AmountInclVat">
+          <DataField>AmountInclVat</DataField>
+        </Field>
+        <Field Name="AmountInclVatFormat">
+          <DataField>AmountInclVatFormat</DataField>
+        </Field>
       </Fields>
+      <Query>
+        <DataSourceName>DataSource</DataSourceName>
+        <CommandText />
+      </Query>
       <rd:DataSetInfo>
         <rd:DataSetName>DataSet</rd:DataSetName>
         <rd:SchemaPath>Report.xsd</rd:SchemaPath>
@@ -377,7 +389,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=Fields!SVatGroup.Value</Value>
+                                  <Value EvaluationMode="Auto">=IIF(Fields!Vatrate.Value &gt;1,"25 %","")</Value>
                                   <Style>
                                     <FontFamily>Segoe UI</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -548,7 +560,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=Sum(Fields!SAmountPer.Value)</Value>
+                                  <Value EvaluationMode="Auto">=Sum(Fields!AmountInclVat.Value)</Value>
                                   <Style>
                                     <FontFamily>Segoe UI</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -803,7 +815,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=Sum(Fields!SAmountPer.Value)</Value>
+                                  <Value EvaluationMode="Auto">=Sum(Fields!AmountInclVat.Value)</Value>
                                   <Style>
                                     <FontFamily>Segoe UI</FontFamily>
                                     <FontSize>8pt</FontSize>

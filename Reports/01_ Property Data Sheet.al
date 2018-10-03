@@ -6,7 +6,7 @@ report 50100 "SVA Property Data sheet"
     UsageCategory=ReportsAndAnalysis;
     dataset
     {
-        dataitem(DataItem1000000000;"SVA Property")
+        dataitem(Property;"SVA Property")
         {
             column(Number;Property)
             {

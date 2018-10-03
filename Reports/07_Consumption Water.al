@@ -6,7 +6,7 @@ report 50420 "SVA Consumption Water"
 
     dataset
     {
-        dataitem(DataItem1000000000;"SVA Occupant")
+        dataitem(Occupant;"SVA Occupant")
         {
             column(OProperty;PropertyNo)
             {
@@ -32,7 +32,7 @@ report 50420 "SVA Consumption Water"
             column(OID;ConsumptionAccountNo)
             {
             }
-            dataitem(DataItem1000000004;"SVA Occupant Trans")
+            dataitem("Occupant Trans";"SVA Occupant Trans")
             {
                 DataItemLink = Occupant=FIELD(Number);
                 DataItemTableView = SORTING(Occupant,Date,"Cost type Estate","Invoice No")

@@ -6,7 +6,7 @@ report 50220 "SVA Moving out Journal"
 
     dataset
     {
-        dataitem(DataItem1000000000;"SVA Occupant")
+        dataitem(Occupant;"SVA Occupant")
         {
             column(Number_Occupant;Number)
             {
@@ -44,7 +44,7 @@ report 50220 "SVA Moving out Journal"
             column(TCity;TCity)
             {
             }
-            dataitem(DataItem1000000004;"SVA Occupant Trans")
+            dataitem("Occupant Trans";"SVA Occupant Trans")
             {
                 DataItemLink = Occupant=FIELD(Number);
                 DataItemTableView = WHERE(Type=FILTER(>OccGroup));

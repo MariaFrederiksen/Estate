@@ -30,6 +30,8 @@ table 50002 "SVA Tenancy"
                   TypeA9_1_BicycleStorage := PropertyCard.TypeA9_1_Bicycle;
                   TypeA9_1_Courtyard := PropertyCard.TypeA9_1_Courtyard;
                   TypeA9_1_Use := 'Beboelse';
+                  Deposit := PropertyCard.TypeA9_4_DepMth;
+                  PrepaidRent := PropertyCard.TypeA9_4_PrePaidMth;
                   TypeA9_5_LandlordHeat := PropertyCard.TypeA9_5_LandlordHeat;
                   TypeA9_5_LNatgas := PropertyCard.TypeA9_5_LNatgas;
                   TypeA9_5_lOil := PropertyCard.TypeA9_5_lOil;

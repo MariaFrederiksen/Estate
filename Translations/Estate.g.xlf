@@ -973,66 +973,6 @@
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Page - Page</note>
         </trans-unit>
-        <trans-unit id="Page 2940606862 - Control 958383762 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Ejendom</source>
-          <note from="Developer" annotates="general" priority="2" />
-          <note from="Xliff Generator" annotates="general" priority="3">Page - Control</note>
-        </trans-unit>
-        <trans-unit id="Page 2940606862 - Control 2272340397 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Nummer</source>
-          <note from="Developer" annotates="general" priority="2" />
-          <note from="Xliff Generator" annotates="general" priority="3">Page - Control</note>
-        </trans-unit>
-        <trans-unit id="Page 2940606862 - Control 817061969 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Adresse 1</source>
-          <note from="Developer" annotates="general" priority="2" />
-          <note from="Xliff Generator" annotates="general" priority="3">Page - Control</note>
-        </trans-unit>
-        <trans-unit id="Page 2940606862 - Control 179365352 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Adresse 2</source>
-          <note from="Developer" annotates="general" priority="2" />
-          <note from="Xliff Generator" annotates="general" priority="3">Page - Control</note>
-        </trans-unit>
-        <trans-unit id="Page 2940606862 - Control 3660300303 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Postnummer</source>
-          <note from="Developer" annotates="general" priority="2" />
-          <note from="Xliff Generator" annotates="general" priority="3">Page - Control</note>
-        </trans-unit>
-        <trans-unit id="Page 2940606862 - Control 714791889 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>By</source>
-          <note from="Developer" annotates="general" priority="2" />
-          <note from="Xliff Generator" annotates="general" priority="3">Page - Control</note>
-        </trans-unit>
-        <trans-unit id="Page 2940606862 - Control 284764054 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Land</source>
-          <note from="Developer" annotates="general" priority="2" />
-          <note from="Xliff Generator" annotates="general" priority="3">Page - Control</note>
-        </trans-unit>
-        <trans-unit id="Page 2940606862 - Control 1878130204 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Type</source>
-          <note from="Developer" annotates="general" priority="2" />
-          <note from="Xliff Generator" annotates="general" priority="3">Page - Control</note>
-        </trans-unit>
-        <trans-unit id="Page 2940606862 - Control 389783846 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Kontratktype</source>
-          <note from="Developer" annotates="general" priority="2" />
-          <note from="Xliff Generator" annotates="general" priority="3">Page - Control</note>
-        </trans-unit>
-        <trans-unit id="Page 2940606862 - Control 620152269 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Areal ialt</source>
-          <note from="Developer" annotates="general" priority="2" />
-          <note from="Xliff Generator" annotates="general" priority="3">Page - Control</note>
-        </trans-unit>
-        <trans-unit id="Page 2940606862 - Control 595127976 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Boligareal</source>
-          <note from="Developer" annotates="general" priority="2" />
-          <note from="Xliff Generator" annotates="general" priority="3">Page - Control</note>
-        </trans-unit>
-        <trans-unit id="Page 2940606862 - Control 536852174 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Erhvervsareal</source>
-          <note from="Developer" annotates="general" priority="2" />
-          <note from="Xliff Generator" annotates="general" priority="3">Page - Control</note>
-        </trans-unit>
         <trans-unit id="Page 2940606862 - Control 431686883 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
           <source>Lease contract Type A</source>
           <note from="Developer" annotates="general" priority="2" />

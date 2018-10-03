@@ -101,7 +101,7 @@
         </trans-unit>
         <trans-unit id="Page 2613068915 - Action 2029777256 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
           <source>File for NETS type 0601</source>
-          <target>Opkrævninger til NETS</target>
+          <target>Dan opkrævningsfil til NETS</target>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Page - Action</note>
         </trans-unit>
@@ -543,7 +543,7 @@
         </trans-unit>
         <trans-unit id="Page 2314951999 - Action 3430843873 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
           <source>Regulation of rent</source>
-          <target>Regulering af leje</target>
+          <target>Aftalt regulering af leje</target>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Page - Action</note>
         </trans-unit>

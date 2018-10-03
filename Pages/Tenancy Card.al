@@ -10,56 +10,47 @@ page 60522 "SVA Tenancy Card"
         {
             group(Generelt)
             {
-                field(PropertyNo;PropertyNo)
-                {
-                    Caption = 'Ejendom';
-                }
-                field(Number;Number)
-                {
-                    Caption = 'Nummer';
-                }
-                field(Address1;Address1)
-                {
-                    Caption = 'Adresse 1';
-                }
-                field(Address2;Address2)
-                {
-                    Caption = 'Adresse 2';
-                }
-                field("Post Code";"Post Code")
-                {
-                    Caption = 'Postnummer';
-                }
-                field(City;City)
-                {
-                    Caption = 'By';
-                }
-                field("Country/Region Code";"Country/Region Code")
-                {
-                    Caption = 'Land';
-                }
-                field(Type;Type)
-                {
-                    Caption ='Type';
-                }
-                field(Contract;Contract)
-                {
-                    Caption = 'Kontratktype';
-                }
-                field(PeriodYear;PeriodYear)
+                field(PropertyNo; PropertyNo)
                 {
                 }
+                field(Number; Number)
+                {
+                }
+                field(Address1; Address1)
+                {
+                }
+                field(Address2; Address2)
+                {
+                }
+                field("Post Code"; "Post Code")
+                {
+                }
+                field(City; City)
+                {
+                }
+                field("Country/Region Code"; "Country/Region Code")
+                {
+                }
+                field(Type; Type)
+                {
+                }
+                field(Contract; Contract)
+                {
+                }
+                field(PeriodYear; PeriodYear)
+                {
+                }
+                field(Rooms; Rooms)
+                {
+                }              
                 field(AreaT;AreaTotal)
                 {
-                    Caption = 'Areal ialt';
                 }
                 field(AreaLiv;AreaLiv)
                 {
-                    Caption = 'Boligareal';
                 }
                 field(AreaPro;AreaPro)
                 {
-                    Caption = 'Erhvervsareal';
                 }
             }
             group("Type A")

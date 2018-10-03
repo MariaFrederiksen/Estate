@@ -9,7 +9,7 @@ report 50200 "SVA Collection Journal"
 
     dataset
     {
-        dataitem(DataItem1000000000;"SVA Occupant")
+        dataitem("Occupant";"SVA Occupant")
         {
             column(ONo;Number)
             {
@@ -26,7 +26,7 @@ report 50200 "SVA Collection Journal"
             column(OEndDate;EndDate)
             {
             }
-            dataitem(DataItem1000000008;"SVA Subscription Lines")
+            dataitem("Subscription Lines";"SVA Subscription Lines")
             {
                 DataItemLink = Tenancies=FIELD(TenancyNo);
                 DataItemTableView = SORTING(Tenancies,"Cost Types","Date From","Date To",KeyNumber)
@@ -66,12 +66,18 @@ report 50200 "SVA Collection Journal"
             trigger OnAfterGetRecord();
             begin
                 PrDate := DMY2DATE(1, DATE2DMY(TODAY,2)+1, DATE2DMY(TODAY,3));
+                Vatrate := 1;
                 IF (EndDate < TODAY) AND (EndDate <> 0D) THEN
                   CurrReport.SKIP;
                 IF (StartDate > PrDate) THEN
                   CurrReport.SKIP;
                 IF Blocked <> 0D THEN
                   CurrReport.SKIP;
+                Vatpostinggroup.Reset;
+                Vatpostinggroup.SetRange("Vat Prod. Posting Group","Subscription Lines".VatGroup);  
+                IF Vatpostinggroup.FindFirst() then 
+                    Vatrate := Vatpostinggroup."VAT %";
+                AmountInclVat := 1+(Vatpostinggroup."VAT %");  
             end;
         }
     }
@@ -94,6 +100,9 @@ report 50200 "SVA Collection Journal"
 
     var
         PrDate : Date;
+        Vatrate : Decimal;
+        AmountInclVat : Decimal;
         CostTypeEstate : Record "SVA Cost type";
+        Vatpostinggroup : Record "VAT Posting Setup";
 }
 

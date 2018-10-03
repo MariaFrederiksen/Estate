@@ -6,7 +6,7 @@ report 50310 "SVA Occupant Report (out)"
 
     dataset
     {
-        dataitem(DataItem1000000000;"SVA Occupant")
+        dataitem(Occupant;"SVA Occupant")
         {
             column(OTenancy;TenancyNo)
             {
@@ -20,7 +20,7 @@ report 50310 "SVA Occupant Report (out)"
             column(OStartdate;StartDate)
             {
             }
-            dataitem(DataItem1000000005;"SVA Tenancy")
+            dataitem(Tenancy;"SVA Tenancy")
             {
                 DataItemLink = PropertyNo=FIELD(PropertyNo),
                                Number=FIELD(TenancyNo);

@@ -9,7 +9,7 @@ report 50510 "SVA Contract Garage"
 
     dataset
     {
-        dataitem("Garage";"SVA LeaseContract_A9")
+        dataitem("LeaseContract_A9";"SVA LeaseContract_A9")
         {
             column(Number;Number)
             {

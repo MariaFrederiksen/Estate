@@ -7,7 +7,7 @@ report 50610 "SVA Vacant Tenancies"
 
     dataset
     {
-        dataitem(DataItem1000000000;"SVA Tenancy")
+        dataitem(Tenancy;"SVA Tenancy")
         {
             column(Number_Tenancy;Number)
             {
