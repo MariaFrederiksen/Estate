@@ -202,11 +202,13 @@ table 50001 "SVA Property"
         field(110;FinancialYearFrom;Option)
         {
             Caption='Financial year start';
+            OptionCaption='None,Jan,Feb,Mar,April,May,Jun,Jul,Aug,Sep,Oct,Nov,Dec';
             OptionMembers = None,Jan,Feb,Mar,April,Maj,Jun,Jul,Aug,Sep,Okt,Nov,Dec;
 
             trigger OnValidate();
             begin
-                FinancialYearTo := FinancialYearFrom + 11;
+                IF FinancialYearTo > 0 then
+                  FinancialYearTo := FinancialYearFrom + 11;
                 IF FinancialYearTo > 11 THEN
                   FinancialYearTo := FinancialYearTo - 12;
                 IF FinancialYearFrom = 1 THEN
@@ -236,7 +238,8 @@ table 50001 "SVA Property"
 
             trigger OnValidate();
             begin
-                HeatingYearTo := HeatingYearFrom + 11;
+                IF HeatingYearFrom > 0 THEN
+                  HeatingYearTo := HeatingYearFrom + 11;
                 IF HeatingYearTo > 11 THEN
                   HeatingYearTo := HeatingYearTo - 12;
                 IF HeatingYearFrom = 1 THEN
@@ -266,7 +269,8 @@ table 50001 "SVA Property"
 
             trigger OnValidate();
             begin
-                WaterYearTo := WaterYearFrom + 11;
+                IF WaterYearFrom > 0 then
+                  WaterYearTo := WaterYearFrom + 11;
                 IF WaterYearTo > 11 THEN
                   WaterYearTo := WaterYearTo - 12;
                 IF WaterYearFrom = 1 THEN
@@ -296,7 +300,8 @@ table 50001 "SVA Property"
 
             trigger OnValidate();
             begin
-                ElectricYearTo := ElectricYearFrom + 11;
+                IF ElectricYearFrom > 0 then
+                  ElectricYearTo := ElectricYearFrom + 11;
                 IF ElectricYearTo > 11 THEN
                   ElectricYearTo := ElectricYearTo - 12;
                 IF ElectricYearFrom = 1 THEN
@@ -326,7 +331,8 @@ table 50001 "SVA Property"
 
             trigger OnValidate();
             begin
-                ManYearTo := ManYearFrom + 11;
+                IF ManYearFrom > 0 then
+                  ManYearTo := ManYearFrom + 11;
                 IF ManYearTo > 11 THEN
                   ManYearTo := ManYearTo - 12;
                 IF ManYearFrom = 1 THEN

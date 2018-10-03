@@ -138,7 +138,7 @@ page 60512 "Property Card"
             }
             group(Balances)
             {
-                Caption = 'Periods';
+                Caption = 'Balances';
                 group(Heat)
                 {
                     Caption = 'Heat accounting';
@@ -397,9 +397,11 @@ page 60512 "Property Card"
                            END;
                          CLEAR(Occupant);
                          Occupant.SETRANGE(PropertyNo,Rec.Property);
-                         CLEAR(Heatreport);
-                         Heatreport.SETTABLEVIEW(Occupant);
-                         Heatreport.RUNMODAL;
+                         IF Occupant.FindFirst() THEN begin
+                            CLEAR(Heatreport);
+                            Heatreport.SETTABLEVIEW(Occupant);
+                            Heatreport.RUNMODAL;
+                            end;
                     end;
                 }
                 action("Consumption Water")
@@ -415,9 +417,11 @@ page 60512 "Property Card"
                            END;
                          CLEAR(Occupant);
                          Occupant.SETRANGE(PropertyNo,Rec.Property);
-                         CLEAR(Waterreport);
-                         Waterreport.SETTABLEVIEW(Occupant);
-                         Waterreport.RUNMODAL;
+                         IF Occupant.FindFirst() then begin
+                            CLEAR(Waterreport);
+                            Waterreport.SETTABLEVIEW(Occupant);
+                            Waterreport.RUNMODAL;
+                            END;
                     end;
                 }
                 action("Consumption Electricity")
@@ -433,9 +437,11 @@ page 60512 "Property Card"
                            END;
                          CLEAR(Occupant);
                          Occupant.SETRANGE(PropertyNo,Rec.Property);
-                         CLEAR(ElReport);
-                         ElReport.SETTABLEVIEW(Occupant);
-                         ElReport.RUNMODAL;
+                         IF Occupant.FindFirst() then begin
+                            CLEAR(ElReport);
+                            ElReport.SETTABLEVIEW(Occupant);
+                            ElReport.RUNMODAL;
+                            END;
                     end;
                 }
                 action("Consumption Man")
@@ -451,9 +457,11 @@ page 60512 "Property Card"
                            END;
                          CLEAR(Occupant);
                          Occupant.SETRANGE(PropertyNo,Rec.Property);
-                         CLEAR(ManReport);
-                         ManReport.SETTABLEVIEW(Occupant);
-                         ManReport.RUNMODAL;
+                         IF Occupant.FindFirst() then begin
+                            CLEAR(ManReport);
+                            ManReport.SETTABLEVIEW(Occupant);
+                            ManReport.RUNMODAL;
+                            end;
                     end;
                 }
                 action("Vacant tenancies")
@@ -465,9 +473,11 @@ page 60512 "Property Card"
                     begin
                         CLEAR(TenancyRecords);
                         TenancyRecords.SETRANGE(TenancyRecords.PropertyNo,Rec.Property);
-                        CLEAR(VacantTenancies);
-                        VacantTenancies.SETTABLEVIEW(TenancyRecords);
-                        VacantTenancies.RUNMODAL;
+                        if TenancyRecords.FindFirst() then begin 
+                            CLEAR(VacantTenancies);
+                            VacantTenancies.SETTABLEVIEW(TenancyRecords);
+                            VacantTenancies.RUNMODAL;
+                            end;
                     end;
                 }
             }

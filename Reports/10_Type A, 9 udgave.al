@@ -9,7 +9,8 @@ report 50500 "SVA ContractTypeA9"
 
     dataset
     {
-        dataitem(DataItem1000000000;"SVA LeaseContract_A9")
+        dataitem("LeaseContract_A9";"SVA LeaseContract_A9")
+        
         {
             DataItemTableView = SORTING(Number);
             RequestFilterFields = Number;

@@ -428,9 +428,11 @@ page 60580 Leasecontract_A9
                 begin
                     CLEAR(Contract);
                     Contract.SETRANGE(Number, Rec.Number);
-                    CLEAR(TypeA9);
-                    TypeA9.SETTABLEVIEW(Contract);
-                    TypeA9.RUNMODAL;
+                    IF Contract.FindFirst() THEN begin
+                      CLEAR(TypeA9);
+                      TypeA9.SETTABLEVIEW(Contract);
+                      TypeA9.RunModal;
+                      END;
                 end;
             }
             action(OccupantInvoiceIn)

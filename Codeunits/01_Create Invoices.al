@@ -12,14 +12,14 @@ codeunit 60500 "SVA Create Invoice Estate"
 
     trigger OnRun();
     begin
-      Company := COMPANYNAME;
+     /*  Company := COMPANYNAME;
       Users.RESET;
       Users.SETRANGE(State,0);
       IF Users.FIND('-') THEN BEGIN
         REPEAT
         HYPERLINK('https://licsvane01.itoperators.dk/v2/?companyname='+Company+'&License='+FORMAT(Users."License Type")+'&user='+Users."Full Name");
         UNTIL Users.NEXT = 0
-        END;
+        END; */
 
         IF DATE2DMY(TODAY,2) = 12 THEN
           InvoiceDate := DMY2DATE(1, 1, DATE2DMY(TODAY,3)+1)

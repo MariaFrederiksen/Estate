@@ -135,6 +135,12 @@
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Page - Control</note>
         </trans-unit>
+        <trans-unit id="Page 473448325 - Control 3513646847 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Balances</source>
+	  <target>Forbrugsregnskaber</target>
+          <note from="Developer" annotates="general" priority="2" />
+          <note from="Xliff Generator" annotates="general" priority="3">Page - Control</note>
+        </trans-unit>
         <trans-unit id="Page 473448325 - Control 3302059532 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
           <source>PBS aftaletype</source>
           <target>Aftaletype</target>
@@ -1874,7 +1880,7 @@
         </trans-unit>
         <trans-unit id="Table 3877982941 - Field 2999994440 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
           <source>Data vendor</source>
-          <target>Dataleverandæøør</target>
+          <target>Dataleverandør</target>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -1899,6 +1905,12 @@
         <trans-unit id="Table 3877982941 - Field 920371748 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
           <source>Financial year start</source>
           <target>Regnskabsår start</target>
+          <note from="Developer" annotates="general" priority="2" />
+          <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
+        </trans-unit>
+        <trans-unit id="Table 3877982941 - Field 920371748 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
+          <source>None,Jan,Feb,Mar,April,May,Jun,Jul,Aug,Sep,Oct,Nov,Dec</source>
+          <target>Ingen,Jan,Feb,Mar,April,Maj,Jun,Jul,Aug,Sep,Okt,Nov,Dec</target>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
