@@ -15,6 +15,19 @@ codeunit 60520 "SVA NETS BS 0601"
 
         ToDate := CALCDATE('<1M-1D>',FromDate);
 
+        Parameters.Reset;
+        IF Parameters.Findfirst() then begin
+          Datasupplier := Parameters.BS_Dataprovider;
+          Subsystem := Parameters.BS_Delsystem;
+          CreditorPBSno := Parameters.BS_AftaleNo;
+          DebtorGroupNo := Parameters.BS_DebGrp;
+          Advis := Parameters.BS_Advis;
+          end;
+        IF StrLen(Datasupplier) = 0 then begin
+          Message('Der mangler opsætning. Kørslen afbrydes.');  
+          exit;
+          end;  
+
         F002;
 
         F012; //section start
@@ -118,7 +131,7 @@ codeunit 60520 "SVA NETS BS 0601"
                    CLEAR(SpecText);
                    SpecText := SalesInvoiceLine.Description;
                    SpecText := PADSTR(SpecText,60,' ');
-                   SpecText := INSSTR(SpecText,FORMAT(SalesInvoiceLine.Amount,10),50);
+                   SpecText := INSSTR(SpecText,FORMAT(SalesInvoiceLine.Amount,10,'<Precision,2:2><Standard Format,0>'),50);
                    //SpecText := PADSTR(SpecText,60,' ');
                    SpecText := DELSTR(SpecText,60,50);
                    CountRecord += 1;
@@ -170,14 +183,14 @@ codeunit 60520 "SVA NETS BS 0601"
         FilePathExport : Text[250];
         FileToWrite : Text[250];
         FileText : File;
-        STR002 : Text[250];
-        TMP : Text[250];
-        STR012 : Text[250];
-        STR022 : Text[250];
-        STR042 : Text[250];
-        STR052 : Text[250];
-        STR092 : Text[250];
-        STR992 : Text[250];
+        STR002 : Text[128];
+        TMP : Text[128];
+        STR012 : Text[128];
+        STR022 : Text[128];
+        STR042 : Text[128];
+        STR052 : Text[128];
+        STR092 : Text[128];
+        STR992 : Text[128];
         CountSection : Integer;
         Count22 : Integer;
         Count22_all : Integer;
@@ -202,18 +215,25 @@ codeunit 60520 "SVA NETS BS 0601"
         ToDate : Date;
         TempTable : Record "CAL Test Line";
         TempCount : Integer;
+        Datasupplier : text[8];
+        Subsystem : text [3];
+        CreditorPBSno : text [8];
+        DebtorGroupNo : text [5];
+        Advis : text [30];
 
     local procedure F002();
     begin
         CLEAR(TMP);
         CLEAR(STR002);
         STR002 := 'BS002';
-        IF STRLEN(Parameters."VAT Registration No.") > 8 THEN
-            TMP := DELSTR(Parameters."VAT Registration No.",9,2)
+
+        IF STRLEN(Datasupplier) > 8 THEN
+            TMP := DELSTR(Datasupplier,9,2)
          ELSE
-          TMP := Parameters."VAT Registration No.";
+          TMP := Datasupplier;
+
         STR002 := INSSTR(STR002,TMP,6);
-        TMP := Parameters.BS_Delsystem;
+        TMP := Subsystem;
         STR002 := INSSTR(STR002,TMP,14);
         TMP := '0601';
         STR002 := INSSTR(STR002,TMP,17);
@@ -224,7 +244,7 @@ codeunit 60520 "SVA NETS BS 0601"
         TMP := FORMAT(TODAY,6,2);
         STR002 := INSSTR(STR002,TMP,50);
         TMP := PADSTR(TMP,73,' ');
-        STR002 := INSSTR(STR002,TMP,56);
+        STR002 := INSSTR(STR002,TMP,50);
         STR002 := DELSTR(STR002,129,50);
         F_Save_Table(STR002);
     end;
@@ -234,11 +254,11 @@ codeunit 60520 "SVA NETS BS 0601"
         CLEAR(TMP);
         CLEAR(STR012);
         STR012 := 'BS012';
-        TMP := Parameters.BS_AftaleNo;
+        TMP := CreditorPBSno;
         STR012 := INSSTR(STR012,TMP,6);
         TMP := '0112     ';
         STR012 := INSSTR(STR012,TMP,14);
-        TMP := Parameters.BS_DebGrp;
+        TMP := DebtorGroupNo;
         STR012 := INSSTR(STR012,TMP,23);
         TMP := '000000000'+FORMAT(TODAY,6,2);
         STR012 := INSSTR(STR012,TMP,28);
@@ -251,7 +271,7 @@ codeunit 60520 "SVA NETS BS 0601"
         STR012 := INSSTR(STR012,TMP,55);
         TMP := '          ';
         STR012 := INSSTR(STR012,TMP,59);
-        TMP := Parameters.BS_Advis+PADSTR(TMP,60,' ');
+        TMP := Advis+PADSTR(TMP,60,' ');
         TMP := DELSTR(TMP,129,60);
         STR012 := INSSTR(STR012,TMP,69);
         STR012 := DELSTR(STR012,129,50);
@@ -267,13 +287,13 @@ codeunit 60520 "SVA NETS BS 0601"
         CLEAR(TMP);
         CLEAR(STR022);
         STR022 := 'BS022';
-        TMP := Parameters.BS_AftaleNo;
+        TMP := CreditorPBSno;
         STR022 := INSSTR(STR022,TMP,6);
         TMP := '0240';
         STR022 := INSSTR(STR022,TMP,14);
         TMP := RecordNo;
         STR022 := INSSTR(STR022,TMP,18);
-        TMP := Parameters.BS_DebGrp;
+        TMP := DebtorGroupNo;
         STR022 := INSSTR(STR022,TMP,23);
         TMP := '000000000000000';
         TMP := INSSTR(TMP,SalesInvoiceHeader."Bill-to Customer No.",15-STRLEN(SalesInvoiceHeader."Bill-to Customer No."));
@@ -305,13 +325,13 @@ codeunit 60520 "SVA NETS BS 0601"
         CLEAR(TMP);
         CLEAR(STR042);
         STR042 := 'BS042';
-        TMP := Parameters.BS_AftaleNo;
+        TMP := CreditorPBSno;
         STR042 := INSSTR(STR042,TMP,6);
         TMP := '0280';
         STR042 := INSSTR(STR042,TMP,14);
         TMP := '00000';
         STR042 := INSSTR(STR042,TMP,18);
-        TMP := Parameters.BS_DebGrp;
+        TMP := DebtorGroupNo;
         STR042 := INSSTR(STR042,TMP,23);
         TMP := '000000000000000';
         TMP := INSSTR(TMP,SalesInvoiceHeader."Bill-to Customer No.",15-STRLEN(SalesInvoiceHeader."Bill-to Customer No."));
@@ -363,13 +383,13 @@ codeunit 60520 "SVA NETS BS 0601"
         CLEAR(STR052);
         //IF Amount52_ExVat <> 0 THEN BEGIN
         STR052 := 'BS052';
-        TMP := Parameters.BS_AftaleNo;
+        TMP := CreditorPBSno;
         STR052 := INSSTR(STR052,TMP,6);
         TMP := '0241';
         STR052 := INSSTR(STR052,TMP,14);
         TMP := Counter;
         STR052 := INSSTR(STR052,TMP,18);
-        TMP := Parameters.BS_DebGrp;
+        TMP := DebtorGroupNo;
         STR052 := INSSTR(STR052,TMP,23);
         TMP := '000000000000000';
         TMP := INSSTR(TMP,SalesInvoiceHeader."Bill-to Customer No.",15-STRLEN(SalesInvoiceHeader."Bill-to Customer No."));
@@ -397,11 +417,11 @@ codeunit 60520 "SVA NETS BS 0601"
         CLEAR(TMP);
         CLEAR(STR092);
         STR092 := 'BS092';
-        TMP := Parameters.BS_AftaleNo;
+        TMP := CreditorPBSno;
         STR092 := INSSTR(STR092,TMP,6);
         TMP := '011200000';
         STR092 := INSSTR(STR092,TMP,14);
-        TMP := Parameters.BS_DebGrp;
+        TMP := DebtorGroupNo;
         STR092 := INSSTR(STR092,TMP,23);
         TMP := '    ';
         STR092 := INSSTR(STR092,TMP,28);
@@ -546,12 +566,9 @@ codeunit 60520 "SVA NETS BS 0601"
         CLEAR(TMP);
         CLEAR(STR992);
         STR992 := 'BS992';
-        IF STRLEN(Parameters."VAT Registration No.") > 8 THEN
-            TMP := DELSTR(Parameters."VAT Registration No.",9,2)
-         ELSE
-          TMP := Parameters."VAT Registration No.";
+        TMP := Datasupplier;
         STR992 := INSSTR(STR992,TMP,6);
-        TMP := Parameters.BS_Delsystem;
+        TMP := Subsystem;
         STR992 := INSSTR(STR992,TMP,14);
         TMP := '0601';
         STR992 := INSSTR(STR992,TMP,17);
@@ -701,10 +718,7 @@ codeunit 60520 "SVA NETS BS 0601"
         F_Save_Table(STR992);
 
         IF Count22_all = 0 THEN
-         MESSAGE('Der er ingen faktura til NETS.')
-        ELSE BEGIN
-         MESSAGE('Fil til NETS er klar.');
-         END;
+         MESSAGE('Der er ingen faktura til NETS.');
     end;
 
     local procedure F_Save_Table(Text250 : Text[250]);

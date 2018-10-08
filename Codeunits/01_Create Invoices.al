@@ -17,10 +17,10 @@ codeunit 60500 "SVA Create Invoice Estate"
       Users.SETRANGE(State,0);
       IF Users.FIND('-') THEN BEGIN
         REPEAT
-       //HYPERLINK('https://licsvane01.itoperators.dk/v3/?companyname='+Company+'&licens='+FORMAT(Users."License Type")+'&bruger='+Users."Full Name");
+        //HYPERLINK('https://licsvane01.itoperators.dk/v3/?companyname='+Company+'&license='+FORMAT(Users."License Type")+'&user='+Users."Full Name");
         UNTIL Users.NEXT = 0;
         END;
-               
+      
         IF DATE2DMY(TODAY,2) = 12 THEN
           InvoiceDate := DMY2DATE(1, 1, DATE2DMY(TODAY,3)+1)
          ELSE
@@ -64,14 +64,13 @@ codeunit 60500 "SVA Create Invoice Estate"
             END;
           UNTIL Occupants.NEXT = 0;
         END;
-
         //selve faktureringen
         MonthCollection();
         QtYrCollection();
         HalfYrCollection();
         YrCollection();
 
-        MESSAGE('Finish');
+        MESSAGE('Fakturering afsluttet.');
     end;
 
     var
@@ -94,6 +93,9 @@ codeunit 60500 "SVA Create Invoice Estate"
         OcNumber : Text[10];
         Company : Text[50];
         Users : Record "User";
+        Vatrate : Decimal;
+        VatPostinggroup : record "Vat posting setup";
+        
 
     local procedure MakeInvoice(Month : Integer);
     begin
@@ -128,18 +130,25 @@ codeunit 60500 "SVA Create Invoice Estate"
             SalesHeader."Sell-to Country/Region Code" := Occupants."Country/Region Code";
             SalesHeader."Due Date" := InvoiceDate;
             SalesHeader."Posting Date" := InvoiceDate;
+            SalesHeader."Shipment Date" := InvoiceDate;
             SalesHeader."SVA Included" := TRUE;
             SalesHeader."SVA Occupant" := Occupants.Number;
             Cust.RESET;
-            Cust.SETRANGE("Bill-to Customer No.",Occupants."Customer No");
+            Cust.SETRANGE(cust."No.",Occupants."Customer No");
               IF Cust.FINDFIRST() THEN BEGIN
                 SalesHeader."Payment Terms Code" := Cust."Payment Terms Code";
                 SalesHeader."Currency Code" := Cust."Currency Code";
                 SalesHeader."Customer Posting Group" := Cust."Customer Posting Group";
+                SalesHeader."VAT Bus. Posting Group" := Cust."VAT Bus. Posting Group";
+                SalesHeader."Tax Area Code" := Cust."Country/Region Code";
+                SalesHeader."Invoice Disc. Code" := Cust."Invoice Disc. Code";
+                SalesHeader."Prepayment Due Date" := SalesHeader."Due Date";
+                SalesHeader."Payment Method Code" := cust."Payment Method Code";
                 END;
             SalesHeader.INSERT(TRUE);
             END;
             LineNo := 0;
+
             //Dan ordrelinjer
             REPEAT
             SalesLine.INIT;
@@ -160,23 +169,54 @@ codeunit 60500 "SVA Create Invoice Estate"
               SalesLine."Line No." := CostTypeAccounts.Order;
 
             SalesLine.Quantity := 1;
-            SalesLine."Qty. to Ship" := 1;
-            SalesLine."Qty. to Invoice" := 1;
+            SalesLine."Qty. to Ship (Base)" := Salesline.Quantity;
+            SalesLine."Qty. to Invoice (Base)" := Salesline.Quantity;
+            SalesLine."Qty. to Invoice" := Salesline.Quantity;
+            SalesLine."Qty. to Ship" := SalesLine.Quantity;
             SalesLine."Unit Price" := Subscription."Amount Period";
             SalesLine.Amount := Subscription."Amount Period"*SalesLine.Quantity;
+            SalesLine."Line Amount" := SalesLine.Amount;
             SalesLine."Unit of Measure" := 'STK';
             SalesLine."SVA Costtype" := Subscription."Cost Types";
             SalesLine."VAT Prod. Posting Group" := Subscription.VatGroup;
+            SalesLine."VAT Bus. Posting Group" := SalesHeader."VAT Bus. Posting Group";
+            Salesline."Currency Code" := SalesHeader."Currency Code";
+            Salesline."VAT Bus. Posting Group" := SalesHeader."VAT Bus. Posting Group";
+            Salesline."Tax Area Code" := SalesHeader."Tax Area Code";
+            Salesline."VAT Identifier" := Subscription.VatGroup;
+            Salesline."Shipment Date" := SalesHeader."Shipment Date";
+            Salesline."Bill-to Customer No." := SalesHeader."Bill-to Customer No.";
+            Salesline."Recalculate Invoice Disc." := true;
+            SalesLine."VAT Base Amount" := Salesline.Amount;
+            SalesLine."Planned Delivery Date" := InvoiceDate;
+            SalesLine."Planned Shipment Date" := InvoiceDate;
+            Salesline."Allow Item Charge Assignment" := false;
+            Salesline."Allow Invoice Disc." := false;
+            Salesline."Outstanding Quantity" := SalesLine.Quantity;
+                        
+            IF Ledaccount.FINDFIRST THEN
+              SalesLine."Gen. Bus. Posting Group" := Ledaccount."Gen. Bus. Posting Group";
+              SalesLine."Gen. Prod. Posting Group" := Ledaccount."Gen. Prod. Posting Group";
+            Vatpostinggroup.Reset;
+            Vatpostinggroup.SetRange("Vat Prod. Posting Group", Subscription.VatGroup);
+            IF Vatpostinggroup.FindFirst() then
+              Vatrate := Vatpostinggroup."VAT %";
+            SalesLine."VAT %" := Vatrate;
+            IF Vatrate = 0 THEN
+              SalesLine."Amount Including VAT" := Salesline.Amount;
+            IF Vatrate  <> 0 then
+              SalesLine."Amount Including VAT" := SalesLine.Amount*Vatrate/100 + SalesLine.Amount;
+            Salesline."Outstanding Amount" := SalesLine."Amount Including VAT";
+            Salesline."Outstanding Amount (LCY)" := SalesLine."Amount Including VAT";
             Ledaccount.RESET;
             Ledaccount.SETRANGE(Ledaccount."No.",CostTypeAccounts.Account);
             IF Ledaccount.FINDFIRST THEN
               SalesLine."Gen. Bus. Posting Group" := Ledaccount."Gen. Bus. Posting Group";
               SalesLine."Gen. Prod. Posting Group" := Ledaccount."Gen. Prod. Posting Group";
-              //SalesLine."VAT Bus. Posting Group" := Ledaccount."VAT Bus. Posting Group";
-              //SalesLine."VAT Prod. Posting Group" := Ledaccount."VAT Prod. Posting Group";
-
+              
             IF SalesLine.Amount <> 0 THEN
                 SalesLine.INSERT();
+                
             UNTIL Subscription.NEXT = 0;
             //Posting
             CODEUNIT.RUN(CODEUNIT::"Sales-Post",SalesHeader);

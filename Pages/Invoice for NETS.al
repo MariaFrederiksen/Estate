@@ -29,13 +29,15 @@ page 60630 "Sales Invoice NETS"
                 }
                 field("Posting Date";"Posting Date")
                 {
+                    Editable = false;
                 }
                 field("Due Date";"Due Date")
                 {
                     Editable = false;
                 }
-                field(Amount;Amount)
+                field("Amount Including VAT";"Amount Including VAT")
                 {
+                    Editable = false;
                 }
                 field("SVA Included";"SVA Included")
                 {
@@ -83,6 +85,16 @@ page 60630 "Sales Invoice NETS"
                         XMLPORT.RUN(50000);
                     end;
                 }
+                action(Reset)
+                {
+                    Caption='Reset';
+                    Image = PostDocument;
+                    trigger OnAction();
+                    begin
+                        Codeunit.run(60510);
+                    END;    
+                }
+
             }
         }
     }
@@ -102,10 +114,12 @@ page 60630 "Sales Invoice NETS"
     trigger OnOpenPage();
     begin
         SETRANGE("Due Date",FromDate,ToDate);
+        SetRange("Payment Method Code",'nets');
     end;
 
     var
         FromDate : Date;
         ToDate : Date;
+        SalesHeader : Record "Sales Invoice Header";
 }
 

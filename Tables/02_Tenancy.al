@@ -84,7 +84,9 @@ table 50002 "SVA Tenancy"
         field(7;City;Text[50])
         {
             Caption='City';
-
+            TableRelation = IF ("Country/Region Code"=CONST()) "Post Code".City
+                            ELSE IF ("Country/Region Code"=FILTER(<>'')) "Post Code".City WHERE ("Country/Region Code"=FIELD("Country/Region Code"));
+        
             trigger OnValidate();
             begin
                 Postcode.ValidateCity(City,"Post Code",Country,"Country/Region Code",(CurrFieldNo <> 0) AND GUIALLOWED);

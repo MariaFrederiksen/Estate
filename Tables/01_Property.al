@@ -138,11 +138,11 @@ table 50001 "SVA Property"
         }
         field(40;SquareMetersTotal;Decimal)
         {
-            Caption='Square meters Total';
+            Caption='Area';
         }
         field(41;SquareMetersProf;Decimal)
         {
-            Caption='Square meters Prof';
+            Caption='Area prof';
 
             trigger OnValidate();
             begin
@@ -151,7 +151,7 @@ table 50001 "SVA Property"
         }
         field(42;SquareMetersLiv;Decimal)
         {
-            Caption='Square meters Living';
+            Caption='Area residens';
 
             trigger OnValidate();
             begin

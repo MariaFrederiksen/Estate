@@ -444,8 +444,10 @@ page 60580 Leasecontract_A9
                 begin
                     CLEAR(Occupant);
                     Occupant.SETRANGE(Number, Rec.Number);
+                  
                     IF Occupant.FINDFIRST() THEN BEGIN
                         //Dan ordrehoved
+                      
                         Salesheader.INIT;
                         Salesheader.VALIDATE("Document Type",Salesheader."Document Type"::Invoice);
                         Salesheader."No.":='';
@@ -501,6 +503,7 @@ page 60580 Leasecontract_A9
                     LineNo := 0;
                     CLEAR(Contract);
                     Contract.SETRANGE(Number,Occupant.Number);
+              
                     IF Contract.FINDFIRST() THEN BEGIN
                         //Depositum
                         IF Contract.TypeA9_4_DepMth > 0 THEN BEGIN
@@ -520,8 +523,6 @@ page 60580 Leasecontract_A9
                           CostTypeEstate.SETRANGE(Type,9);
                           CostTypeEstate.SETRANGE(VatGroup,VatType);
                           IF CostTypeEstate.FINDFIRST() THEN BEGIN
-                            IF CostTypeEstate.Order <> 0 THEN
-                              SalesLine."Line No." := CostTypeEstate.Order;
                             SalesLine."No." := CostTypeEstate.Account;
                             SalesLine.Description := CostTypeEstate.Description;
                             SalesLine."VAT Prod. Posting Group" := CostTypeEstate.VatGroup;
@@ -533,6 +534,7 @@ page 60580 Leasecontract_A9
                             SalesLine."Gen. Bus. Posting Group" := LedAccount."Gen. Bus. Posting Group";
                             SalesLine."Gen. Prod. Posting Group" := LedAccount."Gen. Prod. Posting Group";
                             END;
+                    
                           SalesLine.INSERT(TRUE);
                           END;
                         //Forudbetalt leje
@@ -553,8 +555,6 @@ page 60580 Leasecontract_A9
                           CostTypeEstate.SETRANGE(Type,10);
                           CostTypeEstate.SETRANGE(VatGroup,VatType);
                           IF CostTypeEstate.FINDFIRST() THEN BEGIN
-                            IF CostTypeEstate.Order <> 0 THEN
-                              SalesLine."Line No." := CostTypeEstate.Order;
                             SalesLine."No." := CostTypeEstate.Account;
                             SalesLine.Description := CostTypeEstate.Description;
                             SalesLine."VAT Prod. Posting Group" := CostTypeEstate.VatGroup;
@@ -566,6 +566,7 @@ page 60580 Leasecontract_A9
                             SalesLine."Gen. Bus. Posting Group" := LedAccount."Gen. Bus. Posting Group";
                             SalesLine."Gen. Prod. Posting Group" := LedAccount."Gen. Prod. Posting Group";
                             END;
+                       
                           SalesLine.INSERT(TRUE);
                           END;
                         //Første måneds leje
@@ -582,23 +583,26 @@ page 60580 Leasecontract_A9
                           SalesLine."Unit Price" := Contract.TypeA9_3_RentPerPeriode;
                           SalesLine.Amount := Contract.TypeA9_3_RentPerPeriode;
                           SalesLine."Line Amount" := Contract.TypeA9_3_RentPerPeriode;
-                          CostTypeEstate.RESET;
-                          CostTypeEstate.SETRANGE(Type,1);
-                          CostTypeEstate.SETRANGE(VatGroup,VatType);
-                          IF CostTypeEstate.FINDFIRST() THEN BEGIN
-                            IF CostTypeEstate.Order <> 0 THEN
-                              SalesLine."Line No." := CostTypeEstate.Order;
-                            SalesLine."No." := CostTypeEstate.Account;
-                            SalesLine.Description := 'Leje '+FORMAT(TypeA9_4_RentFrom)+' til '+FORMAT(TypeA9_4_RentTo);
-                            SalesLine."VAT Prod. Posting Group" := CostTypeEstate.VatGroup;
-                            SalesLine."SVA Costtype" := CostTypeEstate.Costtype;
-                            END;
+                          Subscription.Reset;
+                          Subscription.SetRange(Tenancies,Occupant.TenancyNo);
+                          Subscription.SetRange(Type,1); //husleje
+                          IF Subscription.FindFirst() THEN begin
+                            CostTypeEstate.RESET;
+                            CostTypeEstate.SETRANGE(Costtype,Subscription."Cost Types");
+                            IF CostTypeEstate.FINDFIRST() THEN BEGIN
+                              SalesLine."No." := CostTypeEstate.Account;
+                              SalesLine.Description := 'Leje '+FORMAT(TypeA9_4_RentFrom)+' til '+FORMAT(TypeA9_4_RentTo);
+                              SalesLine."VAT Prod. Posting Group" := CostTypeEstate.VatGroup;
+                              SalesLine."SVA Costtype" := CostTypeEstate.Costtype;
+                              END;
+                            END;  
                           LedAccount.RESET;
                           LedAccount.SETRANGE(LedAccount."No.",CostTypeEstate.Account);
                           IF LedAccount.FINDFIRST THEN BEGIN
                             SalesLine."Gen. Bus. Posting Group" := LedAccount."Gen. Bus. Posting Group";
                             SalesLine."Gen. Prod. Posting Group" := LedAccount."Gen. Prod. Posting Group";
                             END;
+                      
                           SalesLine.INSERT(TRUE);
                           END;
                         //ACVarme
@@ -619,8 +623,6 @@ page 60580 Leasecontract_A9
                           CostTypeEstate.SETRANGE(Type,2);
                           CostTypeEstate.SETRANGE(VatGroup,VatType);
                           IF CostTypeEstate.FINDFIRST() THEN BEGIN
-                            IF CostTypeEstate.Order <> 0 THEN
-                              SalesLine."Line No." := CostTypeEstate.Order;
                             SalesLine."No." := CostTypeEstate.Account;
                             SalesLine.Description := CostTypeEstate.Description;
                             SalesLine."VAT Prod. Posting Group" := CostTypeEstate.VatGroup;
@@ -632,7 +634,7 @@ page 60580 Leasecontract_A9
                             SalesLine."Gen. Bus. Posting Group" := LedAccount."Gen. Bus. Posting Group";
                             SalesLine."Gen. Prod. Posting Group" := LedAccount."Gen. Prod. Posting Group";
                             END;
-                          SalesLine.INSERT(TRUE);
+                            SalesLine.INSERT(TRUE);
                           END;
                        //ACVand
                         IF Contract.TypeA9_3_ACWater > 0 THEN BEGIN
@@ -652,8 +654,6 @@ page 60580 Leasecontract_A9
                           CostTypeEstate.SETRANGE(Type,3);
                           CostTypeEstate.SETRANGE(VatGroup,VatType);
                           IF CostTypeEstate.FINDFIRST() THEN BEGIN
-                            IF CostTypeEstate.Order <> 0 THEN
-                              SalesLine."Line No." := CostTypeEstate.Order;
                             SalesLine."No." := CostTypeEstate.Account;
                             SalesLine.Description := CostTypeEstate.Description;
                             SalesLine."VAT Prod. Posting Group" := CostTypeEstate.VatGroup;
@@ -665,7 +665,7 @@ page 60580 Leasecontract_A9
                             SalesLine."Gen. Bus. Posting Group" := LedAccount."Gen. Bus. Posting Group";
                             SalesLine."Gen. Prod. Posting Group" := LedAccount."Gen. Prod. Posting Group";
                             END;
-                          SalesLine.INSERT(TRUE);
+                            SalesLine.INSERT(TRUE);
                           END;
                         //ACEl
                         IF Contract.TypeA9_3_ACElectricity > 0 THEN BEGIN
@@ -685,8 +685,6 @@ page 60580 Leasecontract_A9
                           CostTypeEstate.SETRANGE(Type,4);
                           CostTypeEstate.SETRANGE(VatGroup,VatType);
                           IF CostTypeEstate.FINDFIRST() THEN BEGIN
-                            IF CostTypeEstate.Order <> 0 THEN
-                              SalesLine."Line No." := CostTypeEstate.Order;
                             SalesLine."No." := CostTypeEstate.Account;
                             SalesLine.Description := CostTypeEstate.Description;
                             SalesLine."VAT Prod. Posting Group" := CostTypeEstate.VatGroup;
@@ -718,8 +716,6 @@ page 60580 Leasecontract_A9
                           CostTypeEstate.SETRANGE(Type,5);
                           CostTypeEstate.SETRANGE(VatGroup,VatType);
                           IF CostTypeEstate.FINDFIRST() THEN BEGIN
-                            IF CostTypeEstate.Order <> 0 THEN
-                              SalesLine."Line No." := CostTypeEstate.Order;
                             SalesLine."No." := CostTypeEstate.Account;
                             SalesLine.Description := CostTypeEstate.Description;
                             SalesLine."VAT Prod. Posting Group" := CostTypeEstate.VatGroup;
@@ -751,8 +747,6 @@ page 60580 Leasecontract_A9
                           CostTypeEstate.SETRANGE(Type,6);
                           CostTypeEstate.SETRANGE(VatGroup,VatType);
                           IF CostTypeEstate.FINDFIRST() THEN BEGIN
-                            IF CostTypeEstate.Order <> 0 THEN
-                              SalesLine."Line No." := CostTypeEstate.Order;
                             SalesLine."No." := CostTypeEstate.Account;
                             SalesLine.Description := CostTypeEstate.Description;
                             SalesLine."VAT Prod. Posting Group" := CostTypeEstate.VatGroup;
@@ -784,8 +778,6 @@ page 60580 Leasecontract_A9
                           CostTypeEstate.SETRANGE(Type,7);
                           CostTypeEstate.SETRANGE(VatGroup,VatType);
                           IF CostTypeEstate.FINDFIRST() THEN BEGIN
-                            IF CostTypeEstate.Order <> 0 THEN
-                              SalesLine."Line No." := CostTypeEstate.Order;
                             SalesLine."No." := CostTypeEstate.Account;
                             SalesLine.Description := CostTypeEstate.Description;
                             SalesLine."VAT Prod. Posting Group" := CostTypeEstate.VatGroup;
@@ -817,8 +809,6 @@ page 60580 Leasecontract_A9
                           CostTypeEstate.SETRANGE(Type,8);
                           CostTypeEstate.SETRANGE(VatGroup,VatType);
                           IF CostTypeEstate.FINDFIRST() THEN BEGIN
-                            IF CostTypeEstate.Order <> 0 THEN
-                              SalesLine."Line No." := CostTypeEstate.Order;
                             SalesLine."No." := CostTypeEstate.Account;
                             SalesLine.Description := CostTypeEstate.Description;
                             SalesLine."VAT Prod. Posting Group" := CostTypeEstate.VatGroup;

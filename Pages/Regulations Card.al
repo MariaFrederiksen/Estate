@@ -3,7 +3,6 @@ page 60620 Regulations
     Caption='Regulations';
     PageType = List;
     SourceTable = "SVA Occupant";
-    UsageCategory = Tasks;
 
     layout
     {
@@ -89,6 +88,7 @@ page 60620 Regulations
         SubLines.RESET;
         SubLines.SETRANGE(PriceIndeks,TRUE);
         SubLines.SETRANGE(Sublines.Tenancies,TenancyNo);
+        SubLines.SetRange(SubLines.PriceIndeks,TRUE);
         IF SubLines.FINDFIRST() THEN BEGIN
           Contract.RESET;
           Contract.SETRANGE(Number,Number);

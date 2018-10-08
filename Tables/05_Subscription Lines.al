@@ -80,6 +80,11 @@ table 50005 "SVA Subscription Lines"
         field(40;PriceIndeks;Boolean)
         {
             Caption='Priceindekseres';
+            trigger OnValidate();
+            begin
+                IF Type <> 1 then
+                    PriceIndeks := false;
+            end;    
         }
     }
 

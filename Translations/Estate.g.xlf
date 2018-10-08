@@ -88,6 +88,11 @@
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Page - Action</note>
         </trans-unit>
+        <trans-unit id="Page 256873615 - Action 685580383 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Reset</source>
+          <note from="Developer" annotates="general" priority="2" />
+          <note from="Xliff Generator" annotates="general" priority="3">Page - Action</note>
+        </trans-unit>
         <trans-unit id="Page 3487239677 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
           <source>Leasecontract A9</source>
           <note from="Developer" annotates="general" priority="2" />
@@ -273,8 +278,23 @@
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Page - Action</note>
         </trans-unit>
+        <trans-unit id="Page 2314951999 - Action 179704015 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Letters</source>
+          <note from="Developer" annotates="general" priority="2" />
+          <note from="Xliff Generator" annotates="general" priority="3">Page - Action</note>
+        </trans-unit>
         <trans-unit id="Page 2314951999 - Action 2100802623 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
           <source>Demand Notice</source>
+          <note from="Developer" annotates="general" priority="2" />
+          <note from="Xliff Generator" annotates="general" priority="3">Page - Action</note>
+        </trans-unit>
+        <trans-unit id="Page 2314951999 - Action 2053562937 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Repeal</source>
+          <note from="Developer" annotates="general" priority="2" />
+          <note from="Xliff Generator" annotates="general" priority="3">Page - Action</note>
+        </trans-unit>
+        <trans-unit id="Page 2314951999 - Action 1074715950 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Journals</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Page - Action</note>
         </trans-unit>
@@ -1138,6 +1158,21 @@
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Report - Report</note>
         </trans-unit>
+        <trans-unit id="Report 1447637758 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Demand notice</source>
+          <note from="Developer" annotates="general" priority="2" />
+          <note from="Xliff Generator" annotates="general" priority="3">Report - Report</note>
+        </trans-unit>
+        <trans-unit id="Report 2686254081 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Repeal Residense</source>
+          <note from="Developer" annotates="general" priority="2" />
+          <note from="Xliff Generator" annotates="general" priority="3">Report - Report</note>
+        </trans-unit>
+        <trans-unit id="Report 1340860308 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Repeal professional</source>
+          <note from="Developer" annotates="general" priority="2" />
+          <note from="Xliff Generator" annotates="general" priority="3">Report - Report</note>
+        </trans-unit>
         <trans-unit id="TableExtension 3014437974 - Field 238970296 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
           <source>Included</source>
           <note from="Developer" annotates="general" priority="2" />
@@ -1444,17 +1479,17 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 3877982941 - Field 3420118813 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Square meters Total</source>
+          <source>Area</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 3877982941 - Field 2894716182 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Square meters Prof</source>
+          <source>Area prof</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 3877982941 - Field 4294736798 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Square meters Living</source>
+          <source>Area residens</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>

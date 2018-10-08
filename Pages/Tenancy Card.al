@@ -34,9 +34,6 @@ page 60522 "SVA Tenancy Card"
                 field(Type; Type)
                 {
                 }
-                field(Contract; Contract)
-                {
-                }
                 field(PeriodYear; PeriodYear)
                 {
                 }

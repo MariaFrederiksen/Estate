@@ -189,6 +189,7 @@ page 60534 "Occupant Card"
             }
             group(Letters)
             {
+                Caption='Letters';
                 action(DemandNotice)
                 {
                     Caption='Demand Notice';
@@ -196,16 +197,53 @@ page 60534 "Occupant Card"
 
                     trigger OnAction();
                     begin
-                        CLEAR(Occupant);
-                        Occupant.SETRANGE(Number, Rec.Number);
-                        CLEAR(DemandNoticeResidens);
-                        DemandNoticeResidens.SETTABLEVIEW(Occupant);
-                        DemandNoticeResidens.RUNMODAL;
+                        Clear(TenancyCard);
+                        TenancyCard.SetRange(number,Rec.TenancyNo);
+                        IF TenancyCard.Type = 0 then begin //bolig
+                            CLEAR(Occupant);
+                            Occupant.SETRANGE(Number, Rec.Number);
+                            CLEAR(DemandNoticeResidens);
+                            DemandNoticeResidens.SETTABLEVIEW(Occupant);
+                            DemandNoticeResidens.RUNMODAL;
+                            END;
+                        IF TenancyCard.Type = 1 then begin //erhverv
+                            CLEAR(Occupant);
+                            Occupant.SETRANGE(Number, Rec.Number);
+                            CLEAR(DemandNoticeProf);
+                            DemandNoticeProf.SETTABLEVIEW(Occupant);
+                            DemandNoticeProf.RUNMODAL;    
+                            END;
+                    end;
+                }
+                action(Repeal)
+                {
+                    Caption='Repeal';
+                    Image = Report2;
+
+                    trigger OnAction();
+                    begin
+                        Clear(TenancyCard);
+                        TenancyCard.SetRange(number,Rec.TenancyNo);
+                        IF TenancyCard.Type = 0 then begin //bolig
+                            CLEAR(Occupant);
+                            Occupant.SETRANGE(Number, Rec.Number);
+                            CLEAR(RepealR);
+                            RepealR.SETTABLEVIEW(Occupant);
+                            RepealR.RUNMODAL;
+                            END;
+                        IF TenancyCard.Type = 1 then begin //erhverv
+                            CLEAR(Occupant);
+                            Occupant.SETRANGE(Number, Rec.Number);
+                            CLEAR(RepealP);
+                            RepealP.SETTABLEVIEW(Occupant);
+                            RepealP.RUNMODAL;    
+                            END;
                     end;
                 }
             }
             group(Journals)
             {
+                Caption='Journals';
                 action(MovingOutJournal)
                 {
                     Caption='Journal for moving out invoice';
@@ -231,7 +269,7 @@ page 60534 "Occupant Card"
                         InvoiceCreditnota;
                         //Invoice
                         IF InvoiceCreditmemo = TRUE THEN BEGIN
-                          MESSAGE('faktura');
+                       
                          CLEAR(OccupantInvoice);
                          OccupantInvoice.SETRANGE(Number, Rec.Number);
                          IF OccupantInvoice.FINDFIRST() THEN BEGIN
@@ -624,6 +662,11 @@ page 60534 "Occupant Card"
         CreditHeader : Record "Sales Cr.Memo Header";
         CreditLine : Record "Sales Cr.Memo Line";
         OccNo : Code[10];
+        DemandNoticeProf : Report "SVA DemandNoticeProf";
+        RepealP : report "SVA Repeal Prof";
+        RepealR : report "SVA Repeal Res";
+        
+                
 
     local procedure InvoiceCreditnota();
     begin

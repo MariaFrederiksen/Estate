@@ -105,6 +105,12 @@
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Page - Action</note>
         </trans-unit>
+        <trans-unit id="Page 256873615 - Action 685580383 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Reset</source>
+          <target>Nulstil</target>
+          <note from="Developer" annotates="general" priority="2" />
+          <note from="Xliff Generator" annotates="general" priority="3">Page - Action</note>
+        </trans-unit>
         <trans-unit id="Page 473448325 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
           <source>Property</source>
           <target>Ejendom</target>
@@ -400,8 +406,8 @@
           <note from="Xliff Generator" annotates="general" priority="3">Page - Control</note>
         </trans-unit>
         <trans-unit id="Page 2940606862 - Control 431686883 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Lease contract Type A</source>
-          <target>Lejekontrakt Type A</target>
+          <source>Lease contract Type A 9.edition</source>
+          <target>Lejekontrakt Type A, 9. udgave</target>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Page - Control</note>
         </trans-unit>
@@ -531,7 +537,7 @@
         </trans-unit>
         <trans-unit id="Page 2314951999 - Action 3581054475 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
           <source>Leasecontract A9</source>
-          <target>Lejekontrakt Type A</target>
+          <target>Lejekontrakt Type A, 9. udgave</target>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Page - Action</note>
         </trans-unit>
@@ -565,9 +571,27 @@
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Page - Action</note>
         </trans-unit>
+        <trans-unit id="Page 2314951999 - Action 179704015 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Letters</source>
+          <target>Varslingsbreve</target>
+          <note from="Developer" annotates="general" priority="2" />
+          <note from="Xliff Generator" annotates="general" priority="3">Page - Action</note>
+        </trans-unit>
         <trans-unit id="Page 2314951999 - Action 2100802623 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
           <source>Demand Notice</source>
-          <target>Påkravsbrev (bolig)</target>
+          <target>Påkrav</target>
+          <note from="Developer" annotates="general" priority="2" />
+          <note from="Xliff Generator" annotates="general" priority="3">Page - Action</note>
+        </trans-unit>
+        <trans-unit id="Page 2314951999 - Action 2053562937 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Repeal</source>
+          <target>Ophævelse</target>
+          <note from="Developer" annotates="general" priority="2" />
+          <note from="Xliff Generator" annotates="general" priority="3">Page - Action</note>
+        </trans-unit>
+        <trans-unit id="Page 2314951999 - Action 1074715950 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Journals</source>
+          <target>Journaler</target>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Page - Action</note>
         </trans-unit>
@@ -609,7 +633,7 @@
         </trans-unit>
         <trans-unit id="Page 3487239677 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
           <source>Leasecontract A9</source>
-          <target>Lejekontrakt Type A</target>
+          <target>Lejekontrakt Type A, 9. udgave</target>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Page - Page</note>
         </trans-unit>
@@ -1179,7 +1203,7 @@
         </trans-unit>
         <trans-unit id="Page 3240232555 - Action 1765173007 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
           <source>Customer</source>
-          <target>Customer</target>
+          <target>Debitor</target>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Page - Action</note>
         </trans-unit>
@@ -1412,7 +1436,7 @@
         </trans-unit>
         <trans-unit id="Report 1813157450 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
           <source>Contract type A, 9. edition</source>
-          <target>Kontrakt type A 9. udgave</target>
+          <target>Kontrakt type A, 9. udgave</target>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Report - Report</note>
         </trans-unit>
@@ -1448,7 +1472,7 @@
         </trans-unit>
         <trans-unit id="Report 2424166991 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
           <source>Demand notice</source>
-          <target>Påkravsbrev (bolig)</target>
+          <target>Påkrav</target>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Report - Report</note>
         </trans-unit>
@@ -2972,7 +2996,7 @@
         </trans-unit>
         <trans-unit id="Table 3026221127 - Field 229152810 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
           <source>First time for NETS</source>
-          <target>første gang via NETS</target>
+          <target>Første gang via NETS</target>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -3068,7 +3092,7 @@
         </trans-unit>
         <trans-unit id="Table 544466105 - Field 1878130204 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
           <source>Type</source>
-	        <target>type</target>
+	  <target>Type</target>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -3092,7 +3116,7 @@
         </trans-unit>
         <trans-unit id="Table 544466105 - Field 2076622736 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
           <source>VAT Bus. Posting Group</source>
-          <source>Moms virksomhedsbogf. gruppe</source>
+          <target>Moms virksomhedsbogf. gruppe</target>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>

@@ -20,7 +20,8 @@ table 50007 "SVA LeaseContract_A9"
                   CompanyInfo.GET;
                   TypeA9_1_Landlord := CompanyInfo.Name;
                   TypeA9_1_LandlordCVR := CompanyInfo."VAT Registration No.";
-                  TypeA9_1_LandlordAddress := CompanyInfo.Address + ', ' + CompanyInfo."Post Code" + ' ' + CompanyInfo.City;
+                  IF CompanyInfo.Address <> '' then
+                    TypeA9_1_LandlordAddress := CompanyInfo.Address + ', ' + CompanyInfo."Post Code" + ' ' + CompanyInfo.City;
 
                   Occupant.RESET;
                   Occupant.SETRANGE(Occupant.Number,Number);
