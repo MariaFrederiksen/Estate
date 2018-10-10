@@ -178,11 +178,7 @@ codeunit 60520 "SVA NETS BS 0601"
 
     var
         Parameters : Record "SVA Parameters";
-        Filename : Text[250];
-        FilePathTmp : Text[250];
-        FilePathExport : Text[250];
-        FileToWrite : Text[250];
-        FileText : File;
+         FileText : File;
         STR002 : Text[128];
         TMP : Text[128];
         STR012 : Text[128];
@@ -210,7 +206,7 @@ codeunit 60520 "SVA NETS BS 0601"
         Amount52_ExVat : Decimal;
         Amount52_InVat : Decimal;
         CustAccount : Text[15];
-        SpecText : Text[250];
+        SpecText : Text[128];
         FromDate : Date;
         ToDate : Date;
         TempTable : Record "CAL Test Line";
@@ -245,7 +241,7 @@ codeunit 60520 "SVA NETS BS 0601"
         STR002 := INSSTR(STR002,TMP,50);
         TMP := PADSTR(TMP,73,' ');
         STR002 := INSSTR(STR002,TMP,50);
-        STR002 := DELSTR(STR002,129,50);
+        STR002 := DELSTR(STR002,129,100);
         F_Save_Table(STR002);
     end;
 
@@ -271,11 +267,8 @@ codeunit 60520 "SVA NETS BS 0601"
         STR012 := INSSTR(STR012,TMP,55);
         TMP := '          ';
         STR012 := INSSTR(STR012,TMP,59);
-        TMP := Advis+PADSTR(TMP,60,' ');
-        TMP := DELSTR(TMP,129,60);
+        TMP := Advis+PADSTR(TMP,60-Strlen(advis),' ');
         STR012 := INSSTR(STR012,TMP,69);
-        STR012 := DELSTR(STR012,129,50);
-
         F_Save_Table(STR012);
         CountSection := CountSection+1;
         CLEAR(SpecText);
@@ -310,10 +303,8 @@ codeunit 60520 "SVA NETS BS 0601"
           STR022 := INSSTR(STR022,TMP,43);
         END;
         CLEAR(TMP);
-        TMP := AddressInto+PADSTR(TMP,60,' ');
-        TMP := DELSTR(TMP,129,60);
+        TMP := AddressInto+PADSTR(TMP,60-StrLen(AddressInto),' ');
         STR022 := INSSTR(STR022,TMP,52);
-        STR022 := DELSTR(STR022,129,50);
         Count22 += 1;
         Count22_all += 1;
         F_Save_Table(STR022);
@@ -346,15 +337,17 @@ codeunit 60520 "SVA NETS BS 0601"
          ELSE
           TMP := '2';
         STR042 := INSSTR(STR042,TMP,60);
+        STR042 := DelStr(STR042,61,10);
         TMP := '0000000000000';
         STR042 := INSSTR(STR042,TMP,61);
         TMP := FORMAT(Amount42*100,14,4);
         STR042 := INSSTR(STR042,TMP,75-STRLEN(TMP));
+        STR042 := DelStr(STR042,74,15);
         TMP := '';
-        TMP := PADSTR(TMP,30,' ');
-        STR042 := INSSTR(STR042,TMP,74);
         TMP := SalesInvoiceHeader."No.";
         STR042 := INSSTR(STR042,TMP,74);
+        TMP := PADSTR(TMP,30-Strlen(SalesInvoiceHeader."No."),' ');
+        STR042 := INSSTR(STR042,TMP,74+Strlen(SalesInvoiceHeader."No."));
         TMP := '00';
         STR042 := INSSTR(STR042,TMP,104);
         TMP := '';
@@ -363,8 +356,7 @@ codeunit 60520 "SVA NETS BS 0601"
         TMP := '';
         TMP := PADSTR(TMP,8,' ');
         STR042 := INSSTR(STR042,TMP,121);
-        STR042 := DELSTR(STR042,129,60);
-
+                
         Count42 := Count42+1;
         Count42_all := Count42_all+1;
         CountAmount42 += Amount42;
@@ -399,12 +391,13 @@ codeunit 60520 "SVA NETS BS 0601"
         STR052 := INSSTR(STR052,TMP,43);
         TMP := ' ';
         STR052 := INSSTR(STR052,TMP,52);
-        TMP := SpecText+PADSTR(TMP,60,' ');
+        TMP := SpecText+PADSTR(TMP,60-StrLen(SpecText),' ');
         STR052 := INSSTR(STR052,TMP,53);
+        STR052 := Delstr(STR052,112,50);
         TMP := '';
         TMP := PADSTR(TMP,16,' ');
         STR052 := INSSTR(STR052,TMP,113);
-        STR052 := DELSTR(STR052,129,60);
+        
         Count52 := Count52+1;
         count52_all := count52_all+1;
         F_Save_Table(STR052);
@@ -721,11 +714,11 @@ codeunit 60520 "SVA NETS BS 0601"
          MESSAGE('Der er ingen faktura til NETS.');
     end;
 
-    local procedure F_Save_Table(Text250 : Text[250]);
+    local procedure F_Save_Table(Text128 : Text[128]);
     begin
         TempCount += 1;
         TempTable."Line No." := TempCount;
-        TempTable.Name := Text250;
+        TempTable.Name := Text128;
         TempTable.INSERT;
     end;
 }

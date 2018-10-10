@@ -76,6 +76,7 @@ page 60630 "Sales Invoice NETS"
                 action(Nets)
                 {
                     Caption='File for NETS';
+                    ToolTip='Danner en fil til NETS med de viste opkrævninger type 0601';
                     Image = PostDocument;
 
                     trigger OnAction();
@@ -88,6 +89,7 @@ page 60630 "Sales Invoice NETS"
                 action(Reset)
                 {
                     Caption='Reset';
+                    ToolTip='Nulstiller sendt så der kan dannes en ny fil til NETS';
                     Image = PostDocument;
                     trigger OnAction();
                     begin
