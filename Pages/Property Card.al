@@ -363,6 +363,9 @@ page 60512 "Property Card"
                     field(TypeA9_10_Houserules;TypeA9_10_Houserules)
                     {
                     }
+                    field(TypeA9_10_Occgroup;TypeA9_10_Occgroup)
+                    {
+                    }
                 }
             }
         }

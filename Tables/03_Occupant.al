@@ -225,8 +225,8 @@ table 50003 "SVA Occupant"
         field(37;"Collection Month";Option)
         {
             Caption='Collection Month';
-            OptionCaption='Jan, Feb,Mar,Apr,May,Jun,Jul,Aug,Sep,Oct,Nov,Dec';
-            OptionMembers = jan," feb",mar,apr,may,jun,jul,aug,sep,oct,nov,dec;
+            OptionCaption='Jan,Feb,Mar,Apr,May,Jun,Jul,Aug,Sep,Oct,Nov,Dec';
+            OptionMembers = jan,"feb",mar,apr,may,jun,jul,aug,sep,oct,nov,dec;
         }
         field(40;ChairmanOfTheBoard;Boolean)
         {

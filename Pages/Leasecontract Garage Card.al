@@ -579,6 +579,7 @@ page 60590 "SVA Leasecontract_Garage"
     trigger OnAfterGetCurrRecord();
     begin
         CurrPage.UPDATE;
+        CurrPage.UPDATE;
     end;
 
     var

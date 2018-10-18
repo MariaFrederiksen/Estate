@@ -1,6 +1,6 @@
 table 50010 "SVA MovingIn Status"
 {
-
+    caption='Moving in status';
     fields
     {
         field(10;Occupant;Code[10])
@@ -30,6 +30,34 @@ table 50010 "SVA MovingIn Status"
                     TenancyAddress := Tenancy.Address1;
                     TenancyPostCode := Tenancy."Post Code";
                     TenancyCity := Tenancy.City;
+                    //appliances
+                    StoveManufactor := Tenancy.StoveManufactor;
+                    StoveModel := Tenancy.StoveModel;
+                    StoveYear := Tenancy.StoveYear;
+                    CookManufactor := Tenancy.CookManufactor;
+                    CookModel := Tenancy.CookModel;
+                    CookYear := Tenancy.CookYear;
+                    OvenManufactor := Tenancy.OvenManufactor;
+                    OvenModel := Tenancy.OvenModel;
+                    OvenYear := Tenancy.OvenYear;
+                    HoodManufactor := Tenancy.HoodManufactor;
+                    HoodStoveModel := Tenancy.HoodStoveModel;
+                    HoodYear := Tenancy.HoodYear;
+                    FridgeManufactor := Tenancy.FridgeManufactor;
+                    FridgeModel := Tenancy.FridgeModel;
+                    FridgeYear := Tenancy.FridgeYear;
+                    FreezerManufactor := Tenancy.FreezerManufactor;
+                    FreezerModel := Tenancy.FreezerModel;
+                    FreezerYear := Tenancy.FreezerYear;
+                    DishwasherManufactor := Tenancy.DishwasherManufactor;
+                    DishwasherModel := Tenancy.DishwasherModel;
+                    DishwasherYear := Tenancy.DishwasherYear;
+                    WasherManufactor := Tenancy.WasherManufactor;
+                    WasherModel := Tenancy.WasherModel;
+                    WasherYear := Tenancy.WasherYear;
+                    DryerManufactor := Tenancy.DryerManufactor;
+                    DryerModel := Tenancy.DryerModel;
+                    DryerYear := Tenancy.DryerYear;
                     END;
                   END;
 
@@ -39,6 +67,7 @@ table 50010 "SVA MovingIn Status"
                       BebrepProperty := Property.TypeA9_10_Occgroup;
                       end;
             end;
+
         }
         field(11;Name;Text[50])
         {
@@ -1443,6 +1472,24 @@ table 50010 "SVA MovingIn Status"
             DataClassification = CustomerContent;
             OptionCaption = 'None,Repair,Replaced';
             OptionMembers = None,Repair,Replaced;
+        }
+               field(980; Phone; Text[20])
+        {
+            Caption = 'Phone';
+            ExtendedDatatype = PhoneNo;
+        }
+        field(981; Email1; Text[80])
+        {
+            Caption = 'E-mail';
+            ExtendedDatatype = EMail;
+        }
+        field(982; StartDate; Date)
+        {
+            Caption = 'Startdate';
+        }
+        field(983; EndDate; Date)
+        {
+            Caption = 'Enddate';
         }
     }
 

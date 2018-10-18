@@ -22,7 +22,8 @@ table 50005 "SVA Subscription Lines"
                 IF CosttypeEstate.FINDFIRST THEN BEGIN
                   Description := CosttypeEstate.Description;
                   VatGroup := CosttypeEstate.VatGroup;
-                  Type := CosttypeEstate.Type
+                  Type := CosttypeEstate.Type;
+                  KeyNumber := CosttypeEstate.Order;
                   END;
             end;
         }
@@ -84,13 +85,13 @@ table 50005 "SVA Subscription Lines"
             begin
                 IF Type <> 1 then
                     PriceIndeks := false;
-            end;    
+                end;    
         }
     }
 
     keys
     {
-        key(Key1;Tenancies,"Cost Types","Date From","Date To",KeyNumber)
+        key(Key1;Tenancies,"Cost Types","Date From","Date To",Keynumber)
         {
         }
     }

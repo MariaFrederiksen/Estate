@@ -153,54 +153,31 @@ page 60534 "Occupant Card"
                     RunPageLink = Number = FIELD (Number);
                 }
             }
-            group(Rapporter)
+            group(Reports)
             {
-                Caption = 'Reports';
-                action(Moving)
+                Caption = 'Process';
+                action(MovingIn)
                 {
-                    Caption = 'Moving in status';
+                    Caption = 'Moving in';
                     Image = MakeAgreement;
                     Promoted = true;
-                    PromotedCategory = Report;
+                    PromotedCategory = Process;
                     RunObject = Page 50110;
                     RunPageLink = Occupant = FIELD (Number);
                     RunPageMode = Edit;
                 }
-                action(OccupancyReportIn)
+                action(MovingOut)
                 {
-                    Caption = 'Occupancy Report (in)';
-                    Image = "Report";
+                    Caption = 'Moving out';
+                    Image = MakeAgreement;
                     Promoted = true;
-                    PromotedCategory = Report;
-                    //The property 'PromotedCategory' can only be set if the property 'Promoted' is set to 'true'
-                    //PromotedCategory = "Report";
-
-                    trigger OnAction();
-                    begin
-                        CLEAR(Occupant);
-                        Occupant.SETRANGE(Number, Rec.Number);
-                        CLEAR(MoveIn);
-                        MoveIn.SETTABLEVIEW(Occupant);
-                        MoveIn.RUNMODAL;
-                    end;
-                }
-                action(OccupacyReportOut)
-                {
-                    Caption = 'Occupancy Report (out)';
-                    Image = "Report";
-                    Promoted = true;
-                    PromotedCategory = Report;
-
-                    trigger OnAction();
-                    begin
-                        CLEAR(Occupant);
-                        Occupant.SETRANGE(Number, Rec.Number);
-                        CLEAR(MoveOut);
-                        MoveOut.SETTABLEVIEW(Occupant);
-                        MoveOut.RUNMODAL;
-                    end;
+                    PromotedCategory = Process;
+                    RunObject = Page 50120;
+                    RunPageLink = Occupant = FIELD (Number);
+                    RunPageMode = Edit;
                 }
             }
+
             group(Letters)
             {
                 Caption = 'Letters';
@@ -647,14 +624,29 @@ page 60534 "Occupant Card"
         Number := NoSeriesMgt.GetNextNo('LEJEAFTALE', WORKDATE, TRUE);
     end;
 
+    trigger OnDeleteRecord(): Boolean;
+    begin
+        OCtrans.Reset;
+        OcTrans.SetRange(Octrans.Occupant, rec.Number);
+        IF OcTrans.FindFirst() then begin
+            Message('Kontrakten kan ikke slettes, da der er posteringer.')
+        end;
+        exit;
+        PageTypeA9.Reset;
+        PageTypeA9.SetRange(PageTypeA9.Number, rec.Number);
+        IF PageTypeA9.FindFirst() then begin
+            PageTypeA9.Delete;
+        end;
+
+
+    end;
+
     var
         TenancyCard: Record "SVA Tenancy";
         Custcard: Record "Customer";
         Property: Record "SVA Property";
         Occupant: Record "SVA Occupant";
         PageTypeA9: Record "SVA LeaseContract_A9";
-        MoveIn: Report "SVA Occupant Report (in)";
-        MoveOut: Report "SVA Occupant Report (out)";
         NoSeriesMgt: Codeunit "NoSeriesManagement";
         Occ: Record "SVA Occupant";
         Cust: Record Customer;
@@ -680,8 +672,6 @@ page 60534 "Occupant Card"
         DemandNoticeProf: Report "SVA DemandNoticeProf";
         RepealP: report "SVA Repeal Prof";
         RepealR: report "SVA Repeal Res";
-
-
 
     local procedure InvoiceCreditnota();
     begin

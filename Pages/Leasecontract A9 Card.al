@@ -924,6 +924,7 @@ page 60580 Leasecontract_A9
     trigger OnAfterGetCurrRecord();
     begin
         CurrPage.UPDATE;
+        CurrPage.UPDATE;
     end;
 
     var
