@@ -26,7 +26,9 @@ codeunit 60520 "SVA NETS BS 0601"
         IF StrLen(Datasupplier) = 0 then begin
           Message('Der mangler opsætning. Kørslen afbrydes.');  
           exit;
-          end;  
+          end;
+        CompanyInfo.Get;
+        FromCompanyRegNo := CompanyInfo."Registration No.";
 
         F002;
 
@@ -46,39 +48,37 @@ codeunit 60520 "SVA NETS BS 0601"
             SalesInvoiceHeader.SETRANGE(SalesInvoiceHeader."Due Date",FromDate,ToDate);
             IF SalesInvoiceHeader.FINDFIRST THEN BEGIN
               RecordNo := '00001';
-              AddressInto := Customer.Name;
+              AddressInto := SalesInvoiceHeader."Bill-to Name";
             F022;
 
-            RecordNo := '00002';
-            AddressInto := Customer."Name 2";
+            RecordNo := '00002'; //navn 2 eller adresse 1
+            AddressInto := SalesInvoiceHeader."Bill-to Name 2";
             IF STRLEN(AddressInto) = 0 THEN
-              AddressInto := Customer.Address;
+              AddressInto := SalesInvoiceHeader."Bill-to Address";
             F022;
 
-            RecordNo := '00003';
-            IF STRLEN(Customer."Name 2") > 0 THEN
-              AddressInto := Customer.Address
+            RecordNo := '00003'; //adresse eller tom
+            IF STRLEN(SalesInvoiceHeader."Bill-to Name 2") > 0 THEN
+              AddressInto := SalesInvoiceHeader."Bill-to Address"
              ELSE
-              AddressInto := '';
+              AddressInto := SalesInvoiceHeader."Bill-to Address 2";
             IF STRLEN(AddressInto) <> 0 THEN
             F022;
 
-            RecordNo := '00004';
-            IF STRLEN(Customer."Name 2") > 0 THEN
-              AddressInto := Customer."Address 2"
-             ELSE
-              AddressInto := '';
-            IF STRLEN(AddressInto) <> 0 THEN
+            RecordNo := '00004'; //Adresse 2 eller tom
+            IF STRLEN(SalesInvoiceHeader."Bill-to Name 2") > 0 THEN
+              AddressInto := SalesInvoiceHeader."Bill-to Address 2";
+            If STRLEN(AddressInto) <> 0 THEN
             F022;
 
             RecordNo := '00009';
             AddressInto := '               '+Customer."Post Code";
-            IF Customer."Country/Region Code" <> 'DK' THEN
-              AddressInto := '               '+'0000'+Customer."Country/Region Code";
+            IF SalesInvoiceHeader."Bill-to Country/Region Code" <> 'DK' THEN
+              AddressInto := '               '+'0000'+SalesInvoiceHeader."Bill-to Country/Region Code";
             F022;
-            IF Customer."VAT Registration No." <> '' THEN BEGIN
+            IF SalesInvoiceHeader."VAT Registration No." <> '' THEN BEGIN
               RecordNo := '00010';
-              AddressInto := '                               '+Customer."VAT Registration No.";
+              AddressInto := '                               '+SalesInvoiceHeader."VAT Registration No.";
               F022;
               END;
             END; //salesheader and F022
@@ -114,12 +114,21 @@ codeunit 60520 "SVA NETS BS 0601"
             CountRecord := 0;
             IF SalesInvoiceHeader.FIND('-') THEN BEGIN
               REPEAT
+              //Vi skal bruge lejemålets adresse
+              Occupant.Reset;
+              Occupant.SetRange(Number,SalesInvoiceHeader."SVA Occupant");
+              IF Occupant.FindFirst() then
+                Tenancy.Reset;
+                Tenancy.SetRange(Number,Occupant.TenancyNo);
+                IF Tenancy.FindFirst() then
+                  TenAdd := Tenancy.Address1+' '+Tenancy.Address2+', '+Tenancy."Post Code"+' '+Tenancy.City;
+
               SalesInvoiceLine.RESET;
               SalesInvoiceLine.SETRANGE(SalesInvoiceLine."Document No.",SalesInvoiceHeader."No.");
               CLEAR(Amount52_ExVat);
               CLEAR(Amount52_InVat);
                IF SalesInvoiceLine.FIND('-') THEN BEGIN
-                 SpecText := 'Faktura nr.: ' + SalesInvoiceHeader."No.";
+                 SpecText := 'Opkrævning nr.: ' + SalesInvoiceHeader."No." + ' fra CVRnr. '+CompanyInfo."Registration No.";
                  SpecText := PADSTR(SpecText,60,' ');
                  CountRecord += 1;
                  IF CountRecord>9 THEN
@@ -127,6 +136,15 @@ codeunit 60520 "SVA NETS BS 0601"
                   ELSE
                    RecordNo := '0000'+FORMAT(CountRecord,1);
                  F052(RecordNo,SpecText);
+                 SpecText := 'Vedr.: '+TenAdd;
+                 SpecText := PADSTR(SpecText,60,' ');
+                 CountRecord += 1;
+                 IF CountRecord>9 THEN
+                   RecordNo := '000'+FORMAT(CountRecord,2)
+                  ELSE
+                   RecordNo := '0000'+FORMAT(CountRecord,1);
+                 F052(RecordNo,SpecText);
+
                  REPEAT
                    CLEAR(SpecText);
                    SpecText := SalesInvoiceLine.Description;
@@ -178,7 +196,7 @@ codeunit 60520 "SVA NETS BS 0601"
 
     var
         Parameters : Record "SVA Parameters";
-         FileText : File;
+        FileText : File;
         STR002 : Text[128];
         TMP : Text[128];
         STR012 : Text[128];
@@ -201,6 +219,7 @@ codeunit 60520 "SVA NETS BS 0601"
         AddressInto : Text[50];
         Customer : Record "Customer";
         SalesInvoiceHeader : Record "Sales Invoice Header";
+        
         SalesInvoiceLine : Record "Sales Invoice Line";
         Amount42 : Decimal;
         Amount52_ExVat : Decimal;
@@ -216,6 +235,11 @@ codeunit 60520 "SVA NETS BS 0601"
         CreditorPBSno : text [8];
         DebtorGroupNo : text [5];
         Advis : text [30];
+        CompanyInfo :Record "Company Information";
+        FromCompanyRegNo : Text[8];
+        Tenancy : Record "SVA Tenancy";
+        Occupant : Record "SVA Occupant";
+        TenAdd : Text [50];
 
     local procedure F002();
     begin

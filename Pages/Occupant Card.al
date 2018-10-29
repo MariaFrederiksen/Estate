@@ -22,7 +22,6 @@ page 60534 "Occupant Card"
                 }
                 field("Collection Month"; "Collection Month")
                 {
-                    OptionCaption = 'Jan,Feb,Mar,Apr,May,Jun,Jul,Aug,Sep,Oct,Nov,Dec';
                 }
                 field(FirstNets; FirstNets)
                 {
@@ -31,6 +30,9 @@ page 60534 "Occupant Card"
                 {
                 }
                 field(Name2; Name2)
+                {
+                }
+                field(Address; Address)
                 {
                 }
                 field(Address2; Address2)
@@ -209,7 +211,7 @@ page 60534 "Occupant Card"
                 action(Repeal)
                 {
                     Caption = 'Repeal';
-                    Image = Report2;
+                    Image = Report;
 
                     trigger OnAction();
                     begin
@@ -238,21 +240,21 @@ page 60534 "Occupant Card"
                 action(MovingOutJournal)
                 {
                     Caption = 'Journal for moving out invoice';
-                    Image = "report";
+                    Image = report;
 
                     trigger OnAction();
                     begin
                         CLEAR(Occupant);
                         Occupant.SETRANGE(Number, Rec.Number);
-                        CLEAR(InvoiceJournal);
-                        InvoiceJournal.SETTABLEVIEW(Occupant);
-                        InvoiceJournal.RUNMODAL;
+                        CLEAR(MoveOutJournal);
+                        MoveOutJournal.SETTABLEVIEW(Occupant);
+                        MoveOutJournal.RUNMODAL;
                     end;
                 }
                 action(MovingOutInvoice)
                 {
                     Caption = 'Invoice Moving out';
-                    Image = "report";
+                    Image = report;
 
                     trigger OnAction();
                     begin
@@ -660,7 +662,7 @@ page 60534 "Occupant Card"
         Ledaccount: Record "G/L Account";
         OcTrans: Record "SVA Occupant Trans";
         DemandNoticeResidens: Report "SVA DemandNoticeResidence";
-        InvoiceJournal: Report "SVA Moving out Journal";
+        MoveOutJournal: Report "SVA Moving out Journal";
         SubLines: Record "SVA Subscription Lines";
         OccupantInvoice: Record "SVA Occupant";
         Tenancy: Text[10];

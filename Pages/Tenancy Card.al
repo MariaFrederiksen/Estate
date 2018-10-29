@@ -55,6 +55,7 @@ page 60522 "SVA Tenancy Card"
                 Caption = 'Appliancies';
                 group("Stove")
                 {
+                    Caption='Stove';
                     field(StoveManufactor; StoveManufactor)
                     {
                     }

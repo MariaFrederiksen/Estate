@@ -28,8 +28,8 @@
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Page - Control</note>
         </trans-unit>
-        <trans-unit id="Page 592193920 - Control 1810678115 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Empty tenancy</source>
+        <trans-unit id="Page 592193920 - Control 3453762597 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Vacant tenancies</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Page - Control</note>
         </trans-unit>
@@ -475,11 +475,6 @@
         </trans-unit>
         <trans-unit id="Page 2314951999 - Control 207185386 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
           <source>General</source>
-          <note from="Developer" annotates="general" priority="2" />
-          <note from="Xliff Generator" annotates="general" priority="3">Page - Control</note>
-        </trans-unit>
-        <trans-unit id="Page 2314951999 - Control 3497842 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Jan,Feb,Mar,Apr,May,Jun,Jul,Aug,Sep,Oct,Nov,Dec</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Page - Control</note>
         </trans-unit>
@@ -1273,6 +1268,11 @@
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Page - Control</note>
         </trans-unit>
+        <trans-unit id="Page 2940606862 - Control 2953386637 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Stove</source>
+          <note from="Developer" annotates="general" priority="2" />
+          <note from="Xliff Generator" annotates="general" priority="3">Page - Control</note>
+        </trans-unit>
         <trans-unit id="Page 2940606862 - Control 1812048316 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
           <source>Cook</source>
           <note from="Developer" annotates="general" priority="2" />
@@ -1404,7 +1404,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Report - Report</note>
         </trans-unit>
         <trans-unit id="Report 1415043457 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Collection Journal</source>
+          <source>Move out collection Journal</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Report - Report</note>
         </trans-unit>
@@ -1554,7 +1554,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">TableExtension - Field</note>
         </trans-unit>
         <trans-unit id="TableExtension 1674449865 - Field 2684369869 - Property 2879900210" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Empty Tenancies</source>
+          <source>Vacant Tenancies</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">TableExtension - Field</note>
         </trans-unit>
@@ -4264,7 +4264,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2252210870 - Field 355454989 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -4284,7 +4284,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2252210870 - Field 1421767767 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -4304,7 +4304,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2252210870 - Field 2426118533 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -4324,7 +4324,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2252210870 - Field 417412142 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -4344,7 +4344,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2252210870 - Field 3317085483 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -4364,7 +4364,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2252210870 - Field 3848664664 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -4384,7 +4384,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2252210870 - Field 3183413618 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -4404,7 +4404,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2252210870 - Field 2814842195 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -4424,7 +4424,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2252210870 - Field 3807325863 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -4449,7 +4449,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2252210870 - Field 439031396 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -4469,7 +4469,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2252210870 - Field 1110765298 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -4489,7 +4489,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2252210870 - Field 2767331124 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -4509,7 +4509,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2252210870 - Field 2267360643 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -4529,7 +4529,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2252210870 - Field 1356935782 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -4549,7 +4549,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2252210870 - Field 2095550721 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -4569,7 +4569,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2252210870 - Field 2514976767 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -4589,7 +4589,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2252210870 - Field 2304177366 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -4609,7 +4609,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2252210870 - Field 3265559202 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -4634,7 +4634,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2252210870 - Field 1026470363 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -4654,7 +4654,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2252210870 - Field 471911849 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -4674,7 +4674,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2252210870 - Field 1240089699 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -4694,7 +4694,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2252210870 - Field 2495850332 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -4714,7 +4714,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2252210870 - Field 71130205 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -4734,7 +4734,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2252210870 - Field 199210 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -4754,7 +4754,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2252210870 - Field 3593563664 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -4774,7 +4774,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2252210870 - Field 1098233077 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -4794,7 +4794,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2252210870 - Field 3645296025 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -4819,7 +4819,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2252210870 - Field 882589746 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -4839,7 +4839,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2252210870 - Field 577540868 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -4859,7 +4859,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2252210870 - Field 2153972690 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -4879,7 +4879,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2252210870 - Field 1134213553 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -4899,7 +4899,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2252210870 - Field 4053202768 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -4919,7 +4919,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2252210870 - Field 254635283 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -4939,7 +4939,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2252210870 - Field 4038537509 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -4959,7 +4959,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2252210870 - Field 209575600 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -4979,7 +4979,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2252210870 - Field 1799366548 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -4999,7 +4999,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2252210870 - Field 2279752932 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -5019,7 +5019,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2252210870 - Field 1560163698 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -5039,7 +5039,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2252210870 - Field 437848500 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -5059,7 +5059,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2252210870 - Field 4108082179 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -5079,7 +5079,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2252210870 - Field 2893859046 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -5099,7 +5099,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2252210870 - Field 3632473985 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -5119,7 +5119,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2252210870 - Field 1060278911 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -5139,7 +5139,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2252210870 - Field 2523205462 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -5159,7 +5159,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2252210870 - Field 3714957602 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -5179,7 +5179,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2252210870 - Field 3828139570 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -5199,7 +5199,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2252210870 - Field 2538715396 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -5219,7 +5219,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2252210870 - Field 4068186578 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -5239,7 +5239,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2252210870 - Field 4079763377 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -5259,7 +5259,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2252210870 - Field 1916460368 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -5279,7 +5279,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2252210870 - Field 2412860179 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -5299,7 +5299,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2252210870 - Field 1497573157 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -5319,7 +5319,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2252210870 - Field 95532208 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -5339,7 +5339,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2252210870 - Field 3760541076 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -5359,7 +5359,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2252210870 - Field 1098807451 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -5379,7 +5379,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2252210870 - Field 2144874957 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -5399,7 +5399,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2252210870 - Field 4153318022 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -5419,7 +5419,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2252210870 - Field 3214821532 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -5439,7 +5439,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2252210870 - Field 3903111514 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -5459,7 +5459,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2252210870 - Field 1073809948 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -5479,7 +5479,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2252210870 - Field 977349002 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -5499,7 +5499,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2252210870 - Field 342780252 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -5519,7 +5519,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2252210870 - Field 1884389947 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -5539,7 +5539,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2252210870 - Field 1174401566 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -5559,7 +5559,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2252210870 - Field 2220126745 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -5579,7 +5579,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2252210870 - Field 4040055223 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -5599,7 +5599,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2252210870 - Field 3224950846 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -5619,7 +5619,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2252210870 - Field 3343196634 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -5639,7 +5639,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2252210870 - Field 2674003208 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -5659,7 +5659,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2252210870 - Field 2154879950 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -5679,7 +5679,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2252210870 - Field 1558994142 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -5699,7 +5699,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2252210870 - Field 2770445073 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -5719,7 +5719,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2252210870 - Field 1727717185 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -5739,7 +5739,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2252210870 - Field 3661880932 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -5759,7 +5759,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2252210870 - Field 3209061665 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -5779,7 +5779,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2252210870 - Field 1562790835 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -5799,7 +5799,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2252210870 - Field 1601549129 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -5819,7 +5819,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2252210870 - Field 1379433794 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -5839,7 +5839,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2252210870 - Field 503412255 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -5859,7 +5859,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2252210870 - Field 3084170548 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -5879,7 +5879,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2252210870 - Field 1750654798 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -5899,7 +5899,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2252210870 - Field 1440100695 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -5919,7 +5919,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2252210870 - Field 2320588611 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -5939,7 +5939,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2252210870 - Field 1238863021 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -5959,7 +5959,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2252210870 - Field 3213475367 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -5979,7 +5979,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2252210870 - Field 3570060231 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -5999,7 +5999,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2252210870 - Field 95423657 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -6034,7 +6034,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2252210870 - Field 2597719316 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -6069,7 +6069,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2252210870 - Field 2426359661 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -6104,7 +6104,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2252210870 - Field 3214435091 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -6139,7 +6139,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2252210870 - Field 3534697985 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -6174,7 +6174,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2252210870 - Field 2176384108 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -6209,7 +6209,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2252210870 - Field 2238491702 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -6244,7 +6244,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2252210870 - Field 1675169577 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -6279,7 +6279,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2252210870 - Field 3486511059 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -6314,7 +6314,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2252210870 - Field 2151234333 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -6349,7 +6349,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2252210870 - Field 2233358861 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -6369,7 +6369,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2252210870 - Field 1351376920 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -6389,7 +6389,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2252210870 - Field 1430658432 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -6544,7 +6544,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2392557061 - Field 355454989 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -6564,7 +6564,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2392557061 - Field 1421767767 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -6584,7 +6584,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2392557061 - Field 2426118533 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -6604,7 +6604,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2392557061 - Field 417412142 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -6624,7 +6624,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2392557061 - Field 3317085483 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -6644,7 +6644,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2392557061 - Field 3848664664 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -6664,7 +6664,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2392557061 - Field 3183413618 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -6684,7 +6684,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2392557061 - Field 2814842195 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -6704,7 +6704,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2392557061 - Field 3807325863 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -6729,7 +6729,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2392557061 - Field 439031396 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -6749,7 +6749,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2392557061 - Field 1110765298 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -6769,7 +6769,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2392557061 - Field 2767331124 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -6789,7 +6789,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2392557061 - Field 2267360643 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -6809,7 +6809,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2392557061 - Field 1356935782 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -6829,7 +6829,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2392557061 - Field 2095550721 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -6849,7 +6849,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2392557061 - Field 2514976767 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -6869,7 +6869,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2392557061 - Field 2304177366 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -6889,7 +6889,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2392557061 - Field 3265559202 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -6914,7 +6914,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2392557061 - Field 1026470363 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -6934,7 +6934,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2392557061 - Field 471911849 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -6954,7 +6954,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2392557061 - Field 1240089699 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -6974,7 +6974,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2392557061 - Field 2495850332 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -6994,7 +6994,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2392557061 - Field 71130205 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -7014,7 +7014,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2392557061 - Field 199210 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -7034,7 +7034,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2392557061 - Field 3593563664 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -7054,7 +7054,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2392557061 - Field 1098233077 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -7074,7 +7074,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2392557061 - Field 3645296025 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -7099,7 +7099,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2392557061 - Field 882589746 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -7119,7 +7119,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2392557061 - Field 577540868 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -7139,7 +7139,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2392557061 - Field 2153972690 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -7159,7 +7159,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2392557061 - Field 1134213553 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -7179,7 +7179,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2392557061 - Field 4053202768 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -7199,7 +7199,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2392557061 - Field 254635283 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -7219,7 +7219,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2392557061 - Field 4038537509 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -7239,7 +7239,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2392557061 - Field 209575600 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -7259,7 +7259,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2392557061 - Field 1799366548 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -7279,7 +7279,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2392557061 - Field 2279752932 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -7299,7 +7299,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2392557061 - Field 1560163698 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -7319,7 +7319,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2392557061 - Field 437848500 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -7339,7 +7339,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2392557061 - Field 4108082179 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -7359,7 +7359,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2392557061 - Field 2893859046 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -7379,7 +7379,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2392557061 - Field 3632473985 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -7399,7 +7399,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2392557061 - Field 1060278911 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -7419,7 +7419,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2392557061 - Field 2523205462 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -7439,7 +7439,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2392557061 - Field 3714957602 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -7459,7 +7459,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2392557061 - Field 3828139570 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -7479,7 +7479,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2392557061 - Field 2538715396 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -7499,7 +7499,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2392557061 - Field 4068186578 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -7519,7 +7519,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2392557061 - Field 4079763377 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -7539,7 +7539,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2392557061 - Field 1916460368 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -7559,7 +7559,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2392557061 - Field 2412860179 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -7579,7 +7579,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2392557061 - Field 1497573157 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -7599,7 +7599,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2392557061 - Field 95532208 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -7619,7 +7619,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2392557061 - Field 3760541076 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -7639,7 +7639,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2392557061 - Field 1098807451 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -7659,7 +7659,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2392557061 - Field 2144874957 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -7679,7 +7679,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2392557061 - Field 4153318022 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -7699,7 +7699,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2392557061 - Field 3214821532 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -7719,7 +7719,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2392557061 - Field 3903111514 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -7739,7 +7739,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2392557061 - Field 1073809948 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -7759,7 +7759,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2392557061 - Field 977349002 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -7779,7 +7779,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2392557061 - Field 342780252 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -7799,7 +7799,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2392557061 - Field 1884389947 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -7819,7 +7819,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2392557061 - Field 1174401566 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -7839,7 +7839,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2392557061 - Field 2220126745 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -7859,7 +7859,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2392557061 - Field 4040055223 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -7879,7 +7879,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2392557061 - Field 3224950846 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -7899,7 +7899,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2392557061 - Field 3343196634 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -7919,7 +7919,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2392557061 - Field 2674003208 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -7939,7 +7939,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2392557061 - Field 2154879950 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -7959,7 +7959,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2392557061 - Field 1558994142 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -7979,7 +7979,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2392557061 - Field 2770445073 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -7999,7 +7999,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2392557061 - Field 1727717185 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -8019,7 +8019,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2392557061 - Field 3661880932 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -8039,7 +8039,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2392557061 - Field 3209061665 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -8059,7 +8059,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2392557061 - Field 1562790835 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -8079,7 +8079,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2392557061 - Field 1601549129 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -8099,7 +8099,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2392557061 - Field 1379433794 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -8119,7 +8119,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2392557061 - Field 503412255 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -8139,7 +8139,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2392557061 - Field 3084170548 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -8159,7 +8159,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2392557061 - Field 1750654798 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -8179,7 +8179,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2392557061 - Field 1440100695 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -8199,7 +8199,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2392557061 - Field 2320588611 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -8219,7 +8219,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2392557061 - Field 1238863021 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -8239,7 +8239,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2392557061 - Field 3213475367 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -8259,7 +8259,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2392557061 - Field 3570060231 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -8279,7 +8279,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2392557061 - Field 95423657 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -8314,7 +8314,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2392557061 - Field 2597719316 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -8349,7 +8349,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2392557061 - Field 2426359661 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -8384,7 +8384,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2392557061 - Field 3214435091 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -8419,7 +8419,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2392557061 - Field 3534697985 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -8454,7 +8454,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2392557061 - Field 2176384108 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -8489,7 +8489,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2392557061 - Field 2238491702 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -8524,7 +8524,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2392557061 - Field 1675169577 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -8559,7 +8559,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2392557061 - Field 3486511059 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -8594,7 +8594,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2392557061 - Field 2151234333 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -8629,7 +8629,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2392557061 - Field 2233358861 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -8649,7 +8649,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2392557061 - Field 1351376920 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
@@ -8669,7 +8669,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>
         <trans-unit id="Table 2392557061 - Field 1430658432 - Property 62802879" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Refurnished,Good condition,Bad condition,Worn,Not existing</source>
+          <source>Not existing,Refurnished,Good condition,Bad condition,Worn</source>
           <note from="Developer" annotates="general" priority="2" />
           <note from="Xliff Generator" annotates="general" priority="3">Table - Field</note>
         </trans-unit>

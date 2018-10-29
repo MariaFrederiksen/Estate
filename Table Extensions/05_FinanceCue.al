@@ -6,7 +6,7 @@ tableextension 50005 "SVA Finance Cue" extends "Finance Cue"
         
         field(50001;"SVA Empty Tenancy";Integer)
         {
-            Caption = 'Empty Tenancies';
+            Caption = 'Vacant Tenancies';
             FieldClass = FlowField;
             CalcFormula = count("SVA Tenancy" where (Vacant=const(true)));
         }

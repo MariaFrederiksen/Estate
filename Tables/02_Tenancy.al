@@ -115,6 +115,7 @@ table 50002 "SVA Tenancy"
         }
         field(21; Contract; Option)
         {
+           //Not in use
             Caption = 'Contract type';
             Description = 'Contrakt type';
             OptionCaption = 'Living,Commercial Lease';

@@ -678,13 +678,14 @@ page 50120 MoveOut
                     field(CookRepairs; CookRepairs)
                     {
                     }
-                    field(OvenYear; OvenYear)
-                    {
-                    }
+                    
                 }
                 Group(Oven)
                 {
                     Caption = 'Oven';
+                    field(OvenYear; OvenYear)
+                    {
+                    }
                     field(OvenManufactor; OvenManufactor)
                     {
                     }

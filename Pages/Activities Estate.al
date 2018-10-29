@@ -32,10 +32,10 @@ page 61100 "Bookkeeper ESTATE Activities"
                     DrillDownPageID = "SVA Property List";
                     Image = Library;
                 }
-                field("Empty tenancies";"SVA Empty Tenancy")
+                field("Vacant tenancies";"SVA Empty Tenancy")
                 {
                     ApplicationArea = Basic,Suite;
-                    Caption='Empty tenancy';
+                    Caption='Vacant tenancies';
                     DrillDownPageID = "SVA Tenancy List";
                     Image = "None";
                     

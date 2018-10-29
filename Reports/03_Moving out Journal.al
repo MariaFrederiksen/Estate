@@ -2,7 +2,7 @@ report 50220 "SVA Moving out Journal"
 {
     DefaultLayout = RDLC;
     RDLCLayout = './layouts/Moving out collections.rdlc';
-    Caption='Collection Journal';
+    Caption='Move out collection Journal';
 
     dataset
     {

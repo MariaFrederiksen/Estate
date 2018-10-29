@@ -9104,14 +9104,14 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="DishwasherCondition_MovingOutStatus2">
+                        <Textbox Name="WasherCondition_MovingOutStatus">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!DishwasherCondition_MovingOutStatus.Value</Value>
+                                  <Value>=Fields!WasherCondition_MovingOutStatus.Value</Value>
                                   <Style>
                                     <FontSize>9pt</FontSize>
                                   </Style>
@@ -9120,7 +9120,7 @@
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>DishwasherCondition_MovingOutStatus2</rd:DefaultName>
+                          <rd:DefaultName>WasherCondition_MovingOutStatus</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -9132,6 +9132,7 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
+                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell>
@@ -10569,7 +10570,6 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
-                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                   </TablixCells>
@@ -15733,7 +15733,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>parterne er enige om den vedligeholdelsestilstand for lejligheden, der fremgår af rapporten og om at de arbejder, som partnerne har aftalt, skal gennemføres i forbindelse med frafltytningen, udføres for </Value>
+                    <Value>Parterne er enige om den vedligeholdelsestilstand for lejligheden, der fremgår af rapporten og om at de arbejder, som partnerne har aftalt, skal gennemføres i forbindelse med frafltytningen, udføres for </Value>
                     <Style>
                       <FontSize>9pt</FontSize>
                     </Style>

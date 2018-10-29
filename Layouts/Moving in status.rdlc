@@ -10771,7 +10771,6 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
-                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                   </TablixCells>
@@ -15403,7 +15402,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>Lejer bekræfter hermed at havemodtaget en kopi af indflytningsrapporten:</Value>
+                    <Value>Lejer bekræfter hermed at have modtaget en kopi af indflytningsrapporten:</Value>
                     <Style>
                       <FontSize>9pt</FontSize>
                     </Style>
@@ -15523,7 +15522,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>Er det lejede mangelfuldt ved lejeforholdets begyndelse, skal lejer for ikke at mist retten til at påberåbe sig manglen, senest 14</Value>
+                    <Value>Er det lejede mangelfuldt ved lejeforholdets begyndelse, skal lejer for ikke at miste retten til at påberåbe sig manglen, senest 14</Value>
                     <Style>
                       <FontSize>9pt</FontSize>
                     </Style>
@@ -15545,7 +15544,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>Parterne er enige om at den vedligeholdelsetilstand for lejligheden, der fremgår af skemaerne og de ovenfor anførte særlige </Value>
+                    <Value>Parterne er enige om den vedligeholdelsestilstand for lejligheden, der fremgår af skemaerne og de ovenfor anførte særlige </Value>
                     <Style>
                       <FontSize>9pt</FontSize>
                     </Style>
@@ -15556,7 +15555,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>bemærkninger. De arbejder, som parterne har aftalt skal gennemføres i forbindelse med inflytningen, udføres for udlejers regning.</Value>
+                    <Value>bemærkninger. De arbejder, som parterne har aftalt skal gennemføres i forbindelse med indflytningen, udføres for udlejers regning.</Value>
                     <Style>
                       <FontSize>9pt</FontSize>
                     </Style>

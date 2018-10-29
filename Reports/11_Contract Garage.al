@@ -1,7 +1,6 @@
 report 50510 "SVA Contract Garage"
 {
     // Garagekontrakten er baseret på samme kartotek som lejekontrakt TypeA 9. udgave. Der kan kun være en lejekontrakt pr. beboeraftale.
-    RDLCLayout = './Layouts/Contract Garage.rdlc';
     WordLayout = './Layouts/Contract Garage.docx';
 
     Caption='Leasecontract for garage';

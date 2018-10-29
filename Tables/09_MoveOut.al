@@ -156,8 +156,8 @@ table 50009 "SVA MovingOut Status"
         field(101; Rum1CeilingCondition; Option)
         {
             DataClassification = CustomerContent;
-            OptionCaption = 'Refurnished,Good condition,Bad condition,Worn,Not existing';
-            OptionMembers = Refurnished, "Good condition", "Bad condition", Worn, "Not existing";
+            OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
 
         }
         field(102; Rum1CeilingRepairs; Option)
@@ -169,8 +169,8 @@ table 50009 "SVA MovingOut Status"
         field(103; Rum1WallsCondition; Option)
         {
             DataClassification = CustomerContent;
-            OptionCaption = 'Refurnished,Good condition,Bad condition,Worn,Not existing';
-            OptionMembers = Refurnished, "Good condition", "Bad condition", Worn, "Not existing";
+            OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(104; Rum1WallsRepairs; Option)
         {
@@ -181,8 +181,8 @@ table 50009 "SVA MovingOut Status"
         field(105; Rum1FloorsCondition; Option)
         {
             DataClassification = CustomerContent;
-            OptionCaption = 'Refurnished,Good condition,Bad condition,Worn,Not existing';
-            OptionMembers = Refurnished, "Good condition", "Bad condition", Worn, "Not existing";
+            OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(106; Rum1FloorsRepairs; Option)
         {
@@ -193,8 +193,8 @@ table 50009 "SVA MovingOut Status"
         field(107; Rum1CarpetsCondition; Option)
         {
             DataClassification = CustomerContent;
-            OptionCaption = 'Refurnished,Good condition,Bad condition,Worn,Not existing';
-            OptionMembers = Refurnished, "Good condition", "Bad condition", Worn, "Not existing";
+            OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(108; Rum1CarpetsRepairs; Option)
         {
@@ -205,8 +205,8 @@ table 50009 "SVA MovingOut Status"
         field(109; Rum1WoodworksCondition; Option)
         {
             DataClassification = CustomerContent;
-            OptionCaption = 'Refurnished,Good condition,Bad condition,Worn,Not existing';
-            OptionMembers = Refurnished, "Good condition", "Bad condition", Worn, "Not existing";
+            OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(110; Rum1WoodworksRepairs; Option)
         {
@@ -217,8 +217,8 @@ table 50009 "SVA MovingOut Status"
         field(111; Rum1WindowsmvCondition; Option)
         {
             DataClassification = CustomerContent;
-            OptionCaption = 'Refurnished,Good condition,Bad condition,Worn,Not existing';
-            OptionMembers = Refurnished, "Good condition", "Bad condition", Worn, "Not existing";
+            OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(112; Rum1WindowsRepairs; Option)
         {
@@ -229,8 +229,8 @@ table 50009 "SVA MovingOut Status"
         field(113; Rum1RadiatorCondition; Option)
         {
             DataClassification = CustomerContent;
-            OptionCaption = 'Refurnished,Good condition,Bad condition,Worn,Not existing';
-            OptionMembers = Refurnished, "Good condition", "Bad condition", Worn, "Not existing";
+            OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(114; Rum1RadiatorRepairs; Option)
         {
@@ -241,8 +241,8 @@ table 50009 "SVA MovingOut Status"
         field(115; Rum1ElCondition; Option)
         {
             DataClassification = CustomerContent;
-            OptionCaption = 'Refurnished,Good condition,Bad condition,Worn,Not existing';
-            OptionMembers = Refurnished, "Good condition", "Bad condition", Worn, "Not existing";
+            OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(116; Rum1ElRepairs; Option)
         {
@@ -253,8 +253,8 @@ table 50009 "SVA MovingOut Status"
         field(117; Rum1DoorsCondition; Option)
         {
             DataClassification = CustomerContent;
-            OptionCaption = 'Refurnished,Good condition,Bad condition,Worn,Not existing';
-            OptionMembers = Refurnished, "Good condition", "Bad condition", Worn, "Not existing";
+            OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(118; Rum1DoorsRepairs; Option)
         {
@@ -269,8 +269,8 @@ table 50009 "SVA MovingOut Status"
         field(201; Rum2CeilingCondition; Option)
         {
             DataClassification = CustomerContent;
-            OptionCaption = 'Refurnished,Good condition,Bad condition,Worn,Not existing';
-            OptionMembers = Refurnished, "Good condition", "Bad condition", Worn, "Not existing";
+            OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(202; Rum2CeilingRepairs; Option)
         {
@@ -281,8 +281,8 @@ table 50009 "SVA MovingOut Status"
         field(203; Rum2WallsCondition; Option)
         {
             DataClassification = CustomerContent;
-            OptionCaption = 'Refurnished,Good condition,Bad condition,Worn,Not existing';
-            OptionMembers = Refurnished, "Good condition", "Bad condition", Worn, "Not existing";
+            OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(204; Rum2WallsRepairs; Option)
         {
@@ -293,8 +293,8 @@ table 50009 "SVA MovingOut Status"
         field(205; Rum2FloorsCondition; Option)
         {
             DataClassification = CustomerContent;
-            OptionCaption = 'Refurnished,Good condition,Bad condition,Worn,Not existing';
-            OptionMembers = Refurnished, "Good condition", "Bad condition", Worn, "Not existing";
+            OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(206; Rum2FloorsRepairs; Option)
         {
@@ -305,8 +305,8 @@ table 50009 "SVA MovingOut Status"
         field(207; Rum2CarpetsCondition; Option)
         {
             DataClassification = CustomerContent;
-            OptionCaption = 'Refurnished,Good condition,Bad condition,Worn,Not existing';
-            OptionMembers = Refurnished, "Good condition", "Bad condition", Worn, "Not existing";
+            OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(208; Rum2CarpetsRepairs; Option)
         {
@@ -317,8 +317,8 @@ table 50009 "SVA MovingOut Status"
         field(209; Rum2WoodworksCondition; Option)
         {
             DataClassification = CustomerContent;
-            OptionCaption = 'Refurnished,Good condition,Bad condition,Worn,Not existing';
-            OptionMembers = Refurnished, "Good condition", "Bad condition", Worn, "Not existing";
+            OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(210; Rum2WoodworksRepairs; Option)
         {
@@ -329,8 +329,8 @@ table 50009 "SVA MovingOut Status"
         field(211; Rum2WindowsmvCondition; Option)
         {
             DataClassification = CustomerContent;
-            OptionCaption = 'Refurnished,Good condition,Bad condition,Worn,Not existing';
-            OptionMembers = Refurnished, "Good condition", "Bad condition", Worn, "Not existing";
+            OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(212; Rum2WindowsRepairs; Option)
         {
@@ -341,8 +341,8 @@ table 50009 "SVA MovingOut Status"
         field(213; Rum2RadiatorCondition; Option)
         {
             DataClassification = CustomerContent;
-            OptionCaption = 'Refurnished,Good condition,Bad condition,Worn,Not existing';
-            OptionMembers = Refurnished, "Good condition", "Bad condition", Worn, "Not existing";
+            OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(214; Rum2RadiatorRepairs; Option)
         {
@@ -353,8 +353,8 @@ table 50009 "SVA MovingOut Status"
         field(215; Rum2ElCondition; Option)
         {
             DataClassification = CustomerContent;
-            OptionCaption = 'Refurnished,Good condition,Bad condition,Worn,Not existing';
-            OptionMembers = Refurnished, "Good condition", "Bad condition", Worn, "Not existing";
+            OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(216; Rum2ElRepairs; Option)
         {
@@ -365,8 +365,8 @@ table 50009 "SVA MovingOut Status"
         field(217; Rum2DoorsCondition; Option)
         {
             DataClassification = CustomerContent;
-            OptionCaption = 'Refurnished,Good condition,Bad condition,Worn,Not existing';
-            OptionMembers = Refurnished, "Good condition", "Bad condition", Worn, "Not existing";
+            OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(218; Rum2DoorsRepairs; Option)
         {
@@ -381,8 +381,8 @@ table 50009 "SVA MovingOut Status"
         field(301; Rum3CeilingCondition; Option)
         {
             DataClassification = CustomerContent;
-            OptionCaption = 'Refurnished,Good condition,Bad condition,Worn,Not existing';
-            OptionMembers = Refurnished, "Good condition", "Bad condition", Worn, "Not existing";
+            OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(302; Rum3CeilingRepairs; Option)
         {
@@ -393,8 +393,8 @@ table 50009 "SVA MovingOut Status"
         field(303; Rum3WallsCondition; Option)
         {
             DataClassification = CustomerContent;
-            OptionCaption = 'Refurnished,Good condition,Bad condition,Worn,Not existing';
-            OptionMembers = Refurnished, "Good condition", "Bad condition", Worn, "Not existing";
+            OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(304; Rum3WallsRepairs; Option)
         {
@@ -405,8 +405,8 @@ table 50009 "SVA MovingOut Status"
         field(305; Rum3FloorsCondition; Option)
         {
             DataClassification = CustomerContent;
-            OptionCaption = 'Refurnished,Good condition,Bad condition,Worn,Not existing';
-            OptionMembers = Refurnished, "Good condition", "Bad condition", Worn, "Not existing";
+            OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(306; Rum3FloorsRepairs; Option)
         {
@@ -417,8 +417,8 @@ table 50009 "SVA MovingOut Status"
         field(307; Rum3CarpetsCondition; Option)
         {
             DataClassification = CustomerContent;
-            OptionCaption = 'Refurnished,Good condition,Bad condition,Worn,Not existing';
-            OptionMembers = Refurnished, "Good condition", "Bad condition", Worn, "Not existing";
+            OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(308; Rum3CarpetsRepairs; Option)
         {
@@ -429,8 +429,8 @@ table 50009 "SVA MovingOut Status"
         field(309; Rum3WoodworksCondition; Option)
         {
             DataClassification = CustomerContent;
-            OptionCaption = 'Refurnished,Good condition,Bad condition,Worn,Not existing';
-            OptionMembers = Refurnished, "Good condition", "Bad condition", Worn, "Not existing";
+            OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(310; Rum3WoodworksRepairs; Option)
         {
@@ -441,8 +441,8 @@ table 50009 "SVA MovingOut Status"
         field(311; Rum3WindowsmvCondition; Option)
         {
             DataClassification = CustomerContent;
-            OptionCaption = 'Refurnished,Good condition,Bad condition,Worn,Not existing';
-            OptionMembers = Refurnished, "Good condition", "Bad condition", Worn, "Not existing";
+            OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(312; Rum3WindowsRepairs; Option)
         {
@@ -453,8 +453,8 @@ table 50009 "SVA MovingOut Status"
         field(313; Rum3RadiatorCondition; Option)
         {
             DataClassification = CustomerContent;
-            OptionCaption = 'Refurnished,Good condition,Bad condition,Worn,Not existing';
-            OptionMembers = Refurnished, "Good condition", "Bad condition", Worn, "Not existing";
+            OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(314; Rum3RadiatorRepairs; Option)
         {
@@ -465,8 +465,8 @@ table 50009 "SVA MovingOut Status"
         field(315; Rum3ElCondition; Option)
         {
             DataClassification = CustomerContent;
-            OptionCaption = 'Refurnished,Good condition,Bad condition,Worn,Not existing';
-            OptionMembers = Refurnished, "Good condition", "Bad condition", Worn, "Not existing";
+            OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(316; Rum3ElRepairs; Option)
         {
@@ -477,8 +477,8 @@ table 50009 "SVA MovingOut Status"
         field(317; Rum3DoorsCondition; Option)
         {
             DataClassification = CustomerContent;
-            OptionCaption = 'Refurnished,Good condition,Bad condition,Worn,Not existing';
-            OptionMembers = Refurnished, "Good condition", "Bad condition", Worn, "Not existing";
+            OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(318; Rum3DoorsRepairs; Option)
         {
@@ -493,8 +493,8 @@ table 50009 "SVA MovingOut Status"
         field(401; Rum4CeilingCondition; Option)
         {
             DataClassification = CustomerContent;
-            OptionCaption = 'Refurnished,Good condition,Bad condition,Worn,Not existing';
-            OptionMembers = Refurnished, "Good condition", "Bad condition", Worn, "Not existing";
+            OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(402; Rum4CeilingRepairs; Option)
         {
@@ -505,8 +505,8 @@ table 50009 "SVA MovingOut Status"
         field(403; Rum4WallsCondition; Option)
         {
             DataClassification = CustomerContent;
-            OptionCaption = 'Refurnished,Good condition,Bad condition,Worn,Not existing';
-            OptionMembers = Refurnished, "Good condition", "Bad condition", Worn, "Not existing";
+            OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(404; Rum4WallsRepairs; Option)
         {
@@ -517,8 +517,8 @@ table 50009 "SVA MovingOut Status"
         field(405; Rum4FloorsCondition; Option)
         {
             DataClassification = CustomerContent;
-            OptionCaption = 'Refurnished,Good condition,Bad condition,Worn,Not existing';
-            OptionMembers = Refurnished, "Good condition", "Bad condition", Worn, "Not existing";
+            OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(406; Rum4FloorsRepairs; Option)
         {
@@ -529,8 +529,8 @@ table 50009 "SVA MovingOut Status"
         field(407; Rum4CarpetsCondition; Option)
         {
             DataClassification = CustomerContent;
-            OptionCaption = 'Refurnished,Good condition,Bad condition,Worn,Not existing';
-            OptionMembers = Refurnished, "Good condition", "Bad condition", Worn, "Not existing";
+            OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(408; Rum4CarpetsRepairs; Option)
         {
@@ -541,8 +541,8 @@ table 50009 "SVA MovingOut Status"
         field(409; Rum4WoodworksCondition; Option)
         {
             DataClassification = CustomerContent;
-            OptionCaption = 'Refurnished,Good condition,Bad condition,Worn,Not existing';
-            OptionMembers = Refurnished, "Good condition", "Bad condition", Worn, "Not existing";
+            OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(410; Rum4WoodworksRepairs; Option)
         {
@@ -553,8 +553,8 @@ table 50009 "SVA MovingOut Status"
         field(411; Rum4WindowsmvCondition; Option)
         {
             DataClassification = CustomerContent;
-            OptionCaption = 'Refurnished,Good condition,Bad condition,Worn,Not existing';
-            OptionMembers = Refurnished, "Good condition", "Bad condition", Worn, "Not existing";
+            OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(412; Rum4WindowsRepairs; Option)
         {
@@ -565,8 +565,8 @@ table 50009 "SVA MovingOut Status"
         field(413; Rum4RadiatorCondition; Option)
         {
             DataClassification = CustomerContent;
-            OptionCaption = 'Refurnished,Good condition,Bad condition,Worn,Not existing';
-            OptionMembers = Refurnished, "Good condition", "Bad condition", Worn, "Not existing";
+            OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(414; Rum4RadiatorRepairs; Option)
         {
@@ -577,8 +577,8 @@ table 50009 "SVA MovingOut Status"
         field(415; Rum4ElCondition; Option)
         {
             DataClassification = CustomerContent;
-            OptionCaption = 'Refurnished,Good condition,Bad condition,Worn,Not existing';
-            OptionMembers = Refurnished, "Good condition", "Bad condition", Worn, "Not existing";
+            OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(416; Rum4ElRepairs; Option)
         {
@@ -589,8 +589,8 @@ table 50009 "SVA MovingOut Status"
         field(417; Rum4DoorsCondition; Option)
         {
             DataClassification = CustomerContent;
-            OptionCaption = 'Refurnished,Good condition,Bad condition,Worn,Not existing';
-            OptionMembers = Refurnished, "Good condition", "Bad condition", Worn, "Not existing";
+            OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(418; Rum4DoorsRepairs; Option)
         {
@@ -601,8 +601,8 @@ table 50009 "SVA MovingOut Status"
         field(501; EntreCeilingCondition; Option)
         {
             DataClassification = CustomerContent;
-            OptionCaption = 'Refurnished,Good condition,Bad condition,Worn,Not existing';
-            OptionMembers = Refurnished, "Good condition", "Bad condition", Worn, "Not existing";
+            OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(502; EntreCeilingRepairs; Option)
         {
@@ -613,8 +613,8 @@ table 50009 "SVA MovingOut Status"
         field(503; EntreWallsCondition; Option)
         {
             DataClassification = CustomerContent;
-            OptionCaption = 'Refurnished,Good condition,Bad condition,Worn,Not existing';
-            OptionMembers = Refurnished, "Good condition", "Bad condition", Worn, "Not existing";
+            OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(504; EntreWallsRepairs; Option)
         {
@@ -625,8 +625,8 @@ table 50009 "SVA MovingOut Status"
         field(505; EntreFloorsCondition; Option)
         {
             DataClassification = CustomerContent;
-            OptionCaption = 'Refurnished,Good condition,Bad condition,Worn,Not existing';
-            OptionMembers = Refurnished, "Good condition", "Bad condition", Worn, "Not existing";
+            OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(506; EntreFloorsRepairs; Option)
         {
@@ -637,8 +637,8 @@ table 50009 "SVA MovingOut Status"
         field(507; EntreCarpetsCondition; Option)
         {
             DataClassification = CustomerContent;
-            OptionCaption = 'Refurnished,Good condition,Bad condition,Worn,Not existing';
-            OptionMembers = Refurnished, "Good condition", "Bad condition", Worn, "Not existing";
+            OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(508; EntreCarpetsRepairs; Option)
         {
@@ -649,8 +649,8 @@ table 50009 "SVA MovingOut Status"
         field(509; EntreWoodworksCondition; Option)
         {
             DataClassification = CustomerContent;
-            OptionCaption = 'Refurnished,Good condition,Bad condition,Worn,Not existing';
-            OptionMembers = Refurnished, "Good condition", "Bad condition", Worn, "Not existing";
+            OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(510; EntreWoodworksRepairs; Option)
         {
@@ -661,8 +661,8 @@ table 50009 "SVA MovingOut Status"
         field(511; EntreWindowsmvCondition; Option)
         {
             DataClassification = CustomerContent;
-            OptionCaption = 'Refurnished,Good condition,Bad condition,Worn,Not existing';
-            OptionMembers = Refurnished, "Good condition", "Bad condition", Worn, "Not existing";
+            OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(512; EntreWindowsRepairs; Option)
         {
@@ -673,8 +673,8 @@ table 50009 "SVA MovingOut Status"
         field(513; EntreRadiatorCondition; Option)
         {
             DataClassification = CustomerContent;
-            OptionCaption = 'Refurnished,Good condition,Bad condition,Worn,Not existing';
-            OptionMembers = Refurnished, "Good condition", "Bad condition", Worn, "Not existing";
+            OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(514; EntreRadiatorRepairs; Option)
         {
@@ -685,8 +685,8 @@ table 50009 "SVA MovingOut Status"
         field(515; EntreElCondition; Option)
         {
             DataClassification = CustomerContent;
-            OptionCaption = 'Refurnished,Good condition,Bad condition,Worn,Not existing';
-            OptionMembers = Refurnished, "Good condition", "Bad condition", Worn, "Not existing";
+            OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(516; EntreElRepairs; Option)
         {
@@ -697,8 +697,8 @@ table 50009 "SVA MovingOut Status"
         field(517; EntreDoorsCondition; Option)
         {
             DataClassification = CustomerContent;
-            OptionCaption = 'Refurnished,Good condition,Bad condition,Worn,Not existing';
-            OptionMembers = Refurnished, "Good condition", "Bad condition", Worn, "Not existing";
+            OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(518; EntreDoorsRepairs; Option)
         {
@@ -709,8 +709,8 @@ table 50009 "SVA MovingOut Status"
         field(601; KitchenCeilingCondition; Option)
         {
             DataClassification = CustomerContent;
-            OptionCaption = 'Refurnished,Good condition,Bad condition,Worn,Not existing';
-            OptionMembers = Refurnished, "Good condition", "Bad condition", Worn, "Not existing";
+            OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(602; KitchenCeilingRepairs; Option)
         {
@@ -721,8 +721,8 @@ table 50009 "SVA MovingOut Status"
         field(603; KitchenWallsCondition; Option)
         {
             DataClassification = CustomerContent;
-            OptionCaption = 'Refurnished,Good condition,Bad condition,Worn,Not existing';
-            OptionMembers = Refurnished, "Good condition", "Bad condition", Worn, "Not existing";
+            OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(604; KitchenWallsRepairs; Option)
         {
@@ -733,8 +733,8 @@ table 50009 "SVA MovingOut Status"
         field(605; KitchenFloorsCondition; Option)
         {
             DataClassification = CustomerContent;
-            OptionCaption = 'Refurnished,Good condition,Bad condition,Worn,Not existing';
-            OptionMembers = Refurnished, "Good condition", "Bad condition", Worn, "Not existing";
+            OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(606; KitchenFloorsRepairs; Option)
         {
@@ -745,8 +745,8 @@ table 50009 "SVA MovingOut Status"
         field(607; KitchenCarpetsCondition; Option)
         {
             DataClassification = CustomerContent;
-            OptionCaption = 'Refurnished,Good condition,Bad condition,Worn,Not existing';
-            OptionMembers = Refurnished, "Good condition", "Bad condition", Worn, "Not existing";
+            OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(608; KitchenCarpetsRepairs; Option)
         {
@@ -757,8 +757,8 @@ table 50009 "SVA MovingOut Status"
         field(609; KitchenWoodworksCondition; Option)
         {
             DataClassification = CustomerContent;
-            OptionCaption = 'Refurnished,Good condition,Bad condition,Worn,Not existing';
-            OptionMembers = Refurnished, "Good condition", "Bad condition", Worn, "Not existing";
+            OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(610; KitchenWoodworksRepairs; Option)
         {
@@ -769,8 +769,8 @@ table 50009 "SVA MovingOut Status"
         field(611; KitchenWindowsmvCondition; Option)
         {
             DataClassification = CustomerContent;
-            OptionCaption = 'Refurnished,Good condition,Bad condition,Worn,Not existing';
-            OptionMembers = Refurnished, "Good condition", "Bad condition", Worn, "Not existing";
+            OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(612; KitchenWindowsRepairs; Option)
         {
@@ -781,8 +781,8 @@ table 50009 "SVA MovingOut Status"
         field(613; KitchenRadiatorCondition; Option)
         {
             DataClassification = CustomerContent;
-            OptionCaption = 'Refurnished,Good condition,Bad condition,Worn,Not existing';
-            OptionMembers = Refurnished, "Good condition", "Bad condition", Worn, "Not existing";
+            OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(614; KitchenRadiatorRepairs; Option)
         {
@@ -793,8 +793,8 @@ table 50009 "SVA MovingOut Status"
         field(615; KitchenElCondition; Option)
         {
             DataClassification = CustomerContent;
-            OptionCaption = 'Refurnished,Good condition,Bad condition,Worn,Not existing';
-            OptionMembers = Refurnished, "Good condition", "Bad condition", Worn, "Not existing";
+            OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(616; KitchenElRepairs; Option)
         {
@@ -805,8 +805,8 @@ table 50009 "SVA MovingOut Status"
         field(617; KitchenDoorsCondition; Option)
         {
             DataClassification = CustomerContent;
-            OptionCaption = 'Refurnished,Good condition,Bad condition,Worn,Not existing';
-            OptionMembers = Refurnished, "Good condition", "Bad condition", Worn, "Not existing";
+            OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(618; KitchenDoorsRepairs; Option)
         {
@@ -817,8 +817,8 @@ table 50009 "SVA MovingOut Status"
         field(619; KitchenTilesConditions; Option)
         {
             DataClassification = CustomerContent;
-            OptionCaption = 'Refurnished,Good condition,Bad condition,Worn,Not existing';
-            OptionMembers = Refurnished, "Good condition", "Bad condition", Worn, "Not existing";
+            OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(620; KitchenTilesRepairs; Option)
         {
@@ -829,8 +829,8 @@ table 50009 "SVA MovingOut Status"
         field(621; KitchenTableCondition; Option)
         {
             DataClassification = CustomerContent;
-            OptionCaption = 'Refurnished,Good condition,Bad condition,Worn,Not existing';
-            OptionMembers = Refurnished, "Good condition", "Bad condition", Worn, "Not existing";
+            OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(622; KitchenTableRepairs; Option)
         {
@@ -841,8 +841,8 @@ table 50009 "SVA MovingOut Status"
         field(623; KitchenSinkCondition; Option)
         {
             DataClassification = CustomerContent;
-            OptionCaption = 'Refurnished,Good condition,Bad condition,Worn,Not existing';
-            OptionMembers = Refurnished, "Good condition", "Bad condition", Worn, "Not existing";
+            OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(624; KitchensinkRepairs; Option)
         {
@@ -853,8 +853,8 @@ table 50009 "SVA MovingOut Status"
         field(625; KitchenCabinetsCondition; Option)
         {
             DataClassification = CustomerContent;
-            OptionCaption = 'Refurnished,Good condition,Bad condition,Worn,Not existing';
-            OptionMembers = Refurnished, "Good condition", "Bad condition", Worn, "Not existing";
+            OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(626; KitchenCabinetsRepairs; Option)
         {
@@ -865,8 +865,8 @@ table 50009 "SVA MovingOut Status"
         field(627; KitchenWatertapsCondition; Option)
         {
             DataClassification = CustomerContent;
-            OptionCaption = 'Refurnished,Good condition,Bad condition,Worn,Not existing';
-            OptionMembers = Refurnished, "Good condition", "Bad condition", Worn, "Not existing";
+            OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(628; KitchenWatertapsRepairs; Option)
         {
@@ -877,8 +877,8 @@ table 50009 "SVA MovingOut Status"
         field(701; BathroomCeilingCondition; Option)
         {
             DataClassification = CustomerContent;
-            OptionCaption = 'Refurnished,Good condition,Bad condition,Worn,Not existing';
-            OptionMembers = Refurnished, "Good condition", "Bad condition", Worn, "Not existing";
+            OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(702; BathroomCeilingRepairs; Option)
         {
@@ -889,8 +889,8 @@ table 50009 "SVA MovingOut Status"
         field(703; BathroomWallsCondition; Option)
         {
             DataClassification = CustomerContent;
-            OptionCaption = 'Refurnished,Good condition,Bad condition,Worn,Not existing';
-            OptionMembers = Refurnished, "Good condition", "Bad condition", Worn, "Not existing";
+            OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(704; BathroomWallsRepairs; Option)
         {
@@ -901,8 +901,8 @@ table 50009 "SVA MovingOut Status"
         field(705; BathroomFloorsCondition; Option)
         {
             DataClassification = CustomerContent;
-            OptionCaption = 'Refurnished,Good condition,Bad condition,Worn,Not existing';
-            OptionMembers = Refurnished, "Good condition", "Bad condition", Worn, "Not existing";
+            OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(706; BathroomFloorsRepairs; Option)
         {
@@ -913,8 +913,8 @@ table 50009 "SVA MovingOut Status"
         field(707; BathroomCarpetsCondition; Option)
         {
             DataClassification = CustomerContent;
-            OptionCaption = 'Refurnished,Good condition,Bad condition,Worn,Not existing';
-            OptionMembers = Refurnished, "Good condition", "Bad condition", Worn, "Not existing";
+            OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(708; BathroomCarpetsRepairs; Option)
         {
@@ -925,8 +925,8 @@ table 50009 "SVA MovingOut Status"
         field(709; BathroomWoodworksCondition; Option)
         {
             DataClassification = CustomerContent;
-            OptionCaption = 'Refurnished,Good condition,Bad condition,Worn,Not existing';
-            OptionMembers = Refurnished, "Good condition", "Bad condition", Worn, "Not existing";
+            OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(710; BathroomWoodworksRepairs; Option)
         {
@@ -937,8 +937,8 @@ table 50009 "SVA MovingOut Status"
         field(711; BathroomWindowsmvCondition; Option)
         {
             DataClassification = CustomerContent;
-            OptionCaption = 'Refurnished,Good condition,Bad condition,Worn,Not existing';
-            OptionMembers = Refurnished, "Good condition", "Bad condition", Worn, "Not existing";
+            OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(712; BathroomWindowsRepairs; Option)
         {
@@ -949,8 +949,8 @@ table 50009 "SVA MovingOut Status"
         field(713; BathroomRadiatorCondition; Option)
         {
             DataClassification = CustomerContent;
-            OptionCaption = 'Refurnished,Good condition,Bad condition,Worn,Not existing';
-            OptionMembers = Refurnished, "Good condition", "Bad condition", Worn, "Not existing";
+            OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(714; BathroomRadiatorRepairs; Option)
         {
@@ -961,8 +961,8 @@ table 50009 "SVA MovingOut Status"
         field(715; BathroomElCondition; Option)
         {
             DataClassification = CustomerContent;
-            OptionCaption = 'Refurnished,Good condition,Bad condition,Worn,Not existing';
-            OptionMembers = Refurnished, "Good condition", "Bad condition", Worn, "Not existing";
+            OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(716; BathroomElRepairs; Option)
         {
@@ -973,8 +973,8 @@ table 50009 "SVA MovingOut Status"
         field(717; BathroomDoorsCondition; Option)
         {
             DataClassification = CustomerContent;
-            OptionCaption = 'Refurnished,Good condition,Bad condition,Worn,Not existing';
-            OptionMembers = Refurnished, "Good condition", "Bad condition", Worn, "Not existing";
+            OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(718; BathroomDoorsRepairs; Option)
         {
@@ -985,8 +985,8 @@ table 50009 "SVA MovingOut Status"
         field(719; BathroomSinkCondition; Option)
         {
             DataClassification = CustomerContent;
-            OptionCaption = 'Refurnished,Good condition,Bad condition,Worn,Not existing';
-            OptionMembers = Refurnished, "Good condition", "Bad condition", Worn, "Not existing";
+            OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(720; BathroomSinkRepairs; Option)
         {
@@ -997,8 +997,8 @@ table 50009 "SVA MovingOut Status"
         field(721; BathroomCisternDoorsCondition; Option)
         {
             DataClassification = CustomerContent;
-            OptionCaption = 'Refurnished,Good condition,Bad condition,Worn,Not existing';
-            OptionMembers = Refurnished, "Good condition", "Bad condition", Worn, "Not existing";
+            OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(722; BathroomCisternRepairs; Option)
         {
@@ -1009,8 +1009,8 @@ table 50009 "SVA MovingOut Status"
         field(723; BathroomToiletBowlCondition; Option)
         {
             DataClassification = CustomerContent;
-            OptionCaption = 'Refurnished,Good condition,Bad condition,Worn,Not existing';
-            OptionMembers = Refurnished, "Good condition", "Bad condition", Worn, "Not existing";
+            OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(724; BathroomToiletBowlRepairs; Option)
         {
@@ -1021,8 +1021,8 @@ table 50009 "SVA MovingOut Status"
         field(725; BathroomBathtopCondition; Option)
         {
             DataClassification = CustomerContent;
-            OptionCaption = 'Refurnished,Good condition,Bad condition,Worn,Not existing';
-            OptionMembers = Refurnished, "Good condition", "Bad condition", Worn, "Not existing";
+            OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(726; BathroombathTopRepairs; Option)
         {
@@ -1033,8 +1033,8 @@ table 50009 "SVA MovingOut Status"
         field(727; BathroomShowerCondition; Option)
         {
             DataClassification = CustomerContent;
-            OptionCaption = 'Refurnished,Good condition,Bad condition,Worn,Not existing';
-            OptionMembers = Refurnished, "Good condition", "Bad condition", Worn, "Not existing";
+            OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(728; BathroomShowerRepairs; Option)
         {
@@ -1045,8 +1045,8 @@ table 50009 "SVA MovingOut Status"
         field(729; BathroomWaterTapsCondition; Option)
         {
             DataClassification = CustomerContent;
-            OptionCaption = 'Refurnished,Good condition,Bad condition,Worn,Not existing';
-            OptionMembers = Refurnished, "Good condition", "Bad condition", Worn, "Not existing";
+            OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(730; BathroomWaterTapsRepairs; Option)
         {
@@ -1057,8 +1057,8 @@ table 50009 "SVA MovingOut Status"
         field(801; ToiletCeilingCondition; Option)
         {
             DataClassification = CustomerContent;
-            OptionCaption = 'Refurnished,Good condition,Bad condition,Worn,Not existing';
-            OptionMembers = Refurnished, "Good condition", "Bad condition", Worn, "Not existing";
+            OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(802; ToiletCeilingRepairs; Option)
         {
@@ -1069,8 +1069,8 @@ table 50009 "SVA MovingOut Status"
         field(803; ToiletWallsCondition; Option)
         {
             DataClassification = CustomerContent;
-            OptionCaption = 'Refurnished,Good condition,Bad condition,Worn,Not existing';
-            OptionMembers = Refurnished, "Good condition", "Bad condition", Worn, "Not existing";
+            OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(804; ToiletWallsRepairs; Option)
         {
@@ -1081,8 +1081,8 @@ table 50009 "SVA MovingOut Status"
         field(805; ToiletFloorsCondition; Option)
         {
             DataClassification = CustomerContent;
-            OptionCaption = 'Refurnished,Good condition,Bad condition,Worn,Not existing';
-            OptionMembers = Refurnished, "Good condition", "Bad condition", Worn, "Not existing";
+            OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(806; ToiletFloorsRepairs; Option)
         {
@@ -1093,8 +1093,8 @@ table 50009 "SVA MovingOut Status"
         field(807; ToiletCarpetsCondition; Option)
         {
             DataClassification = CustomerContent;
-            OptionCaption = 'Refurnished,Good condition,Bad condition,Worn,Not existing';
-            OptionMembers = Refurnished, "Good condition", "Bad condition", Worn, "Not existing";
+            OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(808; ToiletCarpetsRepairs; Option)
         {
@@ -1105,8 +1105,8 @@ table 50009 "SVA MovingOut Status"
         field(809; ToiletWoodworksCondition; Option)
         {
             DataClassification = CustomerContent;
-            OptionCaption = 'Refurnished,Good condition,Bad condition,Worn,Not existing';
-            OptionMembers = Refurnished, "Good condition", "Bad condition", Worn, "Not existing";
+            OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(810; ToiletWoodworksRepairs; Option)
         {
@@ -1117,8 +1117,8 @@ table 50009 "SVA MovingOut Status"
         field(811; ToiletWindowsmvCondition; Option)
         {
             DataClassification = CustomerContent;
-            OptionCaption = 'Refurnished,Good condition,Bad condition,Worn,Not existing';
-            OptionMembers = Refurnished, "Good condition", "Bad condition", Worn, "Not existing";
+            OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(812; ToiletWindowsRepairs; Option)
         {
@@ -1129,8 +1129,8 @@ table 50009 "SVA MovingOut Status"
         field(813; ToiletRadiatorCondition; Option)
         {
             DataClassification = CustomerContent;
-            OptionCaption = 'Refurnished,Good condition,Bad condition,Worn,Not existing';
-            OptionMembers = Refurnished, "Good condition", "Bad condition", Worn, "Not existing";
+            OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(814; ToiletRadiatorRepairs; Option)
         {
@@ -1141,8 +1141,8 @@ table 50009 "SVA MovingOut Status"
         field(815; ToiletElCondition; Option)
         {
             DataClassification = CustomerContent;
-            OptionCaption = 'Refurnished,Good condition,Bad condition,Worn,Not existing';
-            OptionMembers = Refurnished, "Good condition", "Bad condition", Worn, "Not existing";
+            OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(816; ToiletElRepairs; Option)
         {
@@ -1153,8 +1153,8 @@ table 50009 "SVA MovingOut Status"
         field(817; ToiletDoorsCondition; Option)
         {
             DataClassification = CustomerContent;
-            OptionCaption = 'Refurnished,Good condition,Bad condition,Worn,Not existing';
-            OptionMembers = Refurnished, "Good condition", "Bad condition", Worn, "Not existing";
+            OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(818; ToiletDoorsRepairs; Option)
         {
@@ -1165,8 +1165,8 @@ table 50009 "SVA MovingOut Status"
         field(819; ToiletSinkCondition; Option)
         {
             DataClassification = CustomerContent;
-            OptionCaption = 'Refurnished,Good condition,Bad condition,Worn,Not existing';
-            OptionMembers = Refurnished, "Good condition", "Bad condition", Worn, "Not existing";
+            OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(820; ToiletSinkRepairs; Option)
         {
@@ -1177,8 +1177,8 @@ table 50009 "SVA MovingOut Status"
         field(821; ToiletCisternDoorsCondition; Option)
         {
             DataClassification = CustomerContent;
-            OptionCaption = 'Refurnished,Good condition,Bad condition,Worn,Not existing';
-            OptionMembers = Refurnished, "Good condition", "Bad condition", Worn, "Not existing";
+            OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(822; ToiletCisternRepairs; Option)
         {
@@ -1189,8 +1189,8 @@ table 50009 "SVA MovingOut Status"
         field(823; ToiletToiletBowlCondition; Option)
         {
             DataClassification = CustomerContent;
-            OptionCaption = 'Refurnished,Good condition,Bad condition,Worn,Not existing';
-            OptionMembers = Refurnished, "Good condition", "Bad condition", Worn, "Not existing";
+            OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(824; ToiletToiletBowlRepairs; Option)
         {
@@ -1201,8 +1201,8 @@ table 50009 "SVA MovingOut Status"
         field(825; ToiletwaterTapsCondition; Option)
         {
             DataClassification = CustomerContent;
-            OptionCaption = 'Refurnished,Good condition,Bad condition,Worn,Not existing';
-            OptionMembers = Refurnished, "Good condition", "Bad condition", Worn, "Not existing";
+            OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(826; ToiletWaterTapsRepairs; Option)
         {
@@ -1225,8 +1225,8 @@ table 50009 "SVA MovingOut Status"
         field(904; StoveCondition; Option)
         {
             DataClassification = CustomerContent;
-            OptionCaption = 'Refurnished,Good condition,Bad condition,Worn,Not existing';
-            OptionMembers = Refurnished, "Good condition", "Bad condition", Worn, "Not existing";
+            OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(905; StoveRepairs; Option)
         {
@@ -1249,8 +1249,8 @@ table 50009 "SVA MovingOut Status"
         field(909; CookCondition; Option)
         {
             DataClassification = CustomerContent;
-            OptionCaption = 'Refurnished,Good condition,Bad condition,Worn,Not existing';
-            OptionMembers = Refurnished, "Good condition", "Bad condition", Worn, "Not existing";
+            OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(910; CookRepairs; Option)
         {
@@ -1273,8 +1273,8 @@ table 50009 "SVA MovingOut Status"
         field(914; OvenCondition; Option)
         {
             DataClassification = CustomerContent;
-            OptionCaption = 'Refurnished,Good condition,Bad condition,Worn,Not existing';
-            OptionMembers = Refurnished, "Good condition", "Bad condition", Worn, "Not existing";
+            OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(915; OvenRepairs; Option)
         {
@@ -1297,8 +1297,8 @@ table 50009 "SVA MovingOut Status"
         field(919; HoodCondition; Option)
         {
             DataClassification = CustomerContent;
-            OptionCaption = 'Refurnished,Good condition,Bad condition,Worn,Not existing';
-            OptionMembers = Refurnished, "Good condition", "Bad condition", Worn, "Not existing";
+            OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(920; HoodeRepairs; Option)
         {
@@ -1321,8 +1321,8 @@ table 50009 "SVA MovingOut Status"
         field(924; FridgeCondition; Option)
         {
             DataClassification = CustomerContent;
-            OptionCaption = 'Refurnished,Good condition,Bad condition,Worn,Not existing';
-            OptionMembers = Refurnished, "Good condition", "Bad condition", Worn, "Not existing";
+            OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(925; FridgeRepairs; Option)
         {
@@ -1345,8 +1345,8 @@ table 50009 "SVA MovingOut Status"
         field(929; FreezerCondition; Option)
         {
             DataClassification = CustomerContent;
-            OptionCaption = 'Refurnished,Good condition,Bad condition,Worn,Not existing';
-            OptionMembers = Refurnished, "Good condition", "Bad condition", Worn, "Not existing";
+            OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(930; FreezerRepairs; Option)
         {
@@ -1369,8 +1369,8 @@ table 50009 "SVA MovingOut Status"
         field(934; DishwasherCondition; Option)
         {
             DataClassification = CustomerContent;
-            OptionCaption = 'Refurnished,Good condition,Bad condition,Worn,Not existing';
-            OptionMembers = Refurnished, "Good condition", "Bad condition", Worn, "Not existing";
+            OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(935; DishwasherRepairs; Option)
         {
@@ -1393,8 +1393,8 @@ table 50009 "SVA MovingOut Status"
         field(939; WasherCondition; Option)
         {
             DataClassification = CustomerContent;
-            OptionCaption = 'Refurnished,Good condition,Bad condition,Worn,Not existing';
-            OptionMembers = Refurnished, "Good condition", "Bad condition", Worn, "Not existing";
+            OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(940; WasherRepairs; Option)
         {
@@ -1417,8 +1417,8 @@ table 50009 "SVA MovingOut Status"
         field(944; DryerCondition; Option)
         {
             DataClassification = CustomerContent;
-            OptionCaption = 'Refurnished,Good condition,Bad condition,Worn,Not existing';
-            OptionMembers = Refurnished, "Good condition", "Bad condition", Worn, "Not existing";
+            OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(945; DryerRepairs; Option)
         {
@@ -1441,8 +1441,8 @@ table 50009 "SVA MovingOut Status"
         field(949; EntryPhoneCondition; Option)
         {
             DataClassification = CustomerContent;
-            OptionCaption = 'Refurnished,Good condition,Bad condition,Worn,Not existing';
-            OptionMembers = Refurnished, "Good condition", "Bad condition", Worn, "Not existing";
+            OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(950; EntryPhoneRepairs; Option)
         {
@@ -1453,8 +1453,8 @@ table 50009 "SVA MovingOut Status"
         field(951; AntennaCondition; Option)
         {
             DataClassification = CustomerContent;
-            OptionCaption = 'Refurnished,Good condition,Bad condition,Worn,Not existing';
-            OptionMembers = Refurnished, "Good condition", "Bad condition", Worn, "Not existing";
+            OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(952; AntennaRepairs; Option)
         {
@@ -1465,8 +1465,8 @@ table 50009 "SVA MovingOut Status"
         field(953; KeyCondition; Option)
         {
             DataClassification = CustomerContent;
-            OptionCaption = 'Refurnished,Good condition,Bad condition,Worn,Not existing';
-            OptionMembers = Refurnished, "Good condition", "Bad condition", Worn, "Not existing";
+            OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(954; KeyRepairs; Option)
         {
