@@ -78,7 +78,7 @@ page 60510 "SVA Property List"
                 action("Basic data report")
                 {
                     Caption='Data sheet report';
-                    Image = "report";
+                    Image = report;
                     RunObject = Report 50100;
                 }
             }

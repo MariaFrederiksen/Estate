@@ -23,7 +23,7 @@ table 50005 "SVA Subscription Lines"
                   Description := CosttypeEstate.Description;
                   VatGroup := CosttypeEstate.VatGroup;
                   Type := CosttypeEstate.Type;
-                  KeyNumber := CosttypeEstate.Order;
+                  //KeyNumber := CosttypeEstate.Order;
                   END;
             end;
         }
