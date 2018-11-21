@@ -1,4 +1,4 @@
-page 50120 MoveOut
+page 50120 "SVA MoveOut"
 {
     PageType = Card;
     SourceTable = "SVA MovingOut Status";
@@ -866,9 +866,9 @@ page 50120 MoveOut
     {
         area(Reporting)
         {
-            group(Reports)
-            {
-                Caption = 'Reports';
+        //    group(Reports)
+        //    {
+        //        Caption = 'Reports';
                 action(MovingOut)
                 {
                     Caption = 'Moving out report';
@@ -885,7 +885,7 @@ page 50120 MoveOut
                     end;
                 }
 
-            }
+            //}
         }
     }
 

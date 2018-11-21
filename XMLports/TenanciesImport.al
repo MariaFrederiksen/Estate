@@ -1,4 +1,4 @@
-xmlport 50103 "Import Tenancies"
+xmlport 50103 "SVA Import Tenancies"
 {
     FieldSeparator = ';';
     Format = VariableText;
@@ -30,12 +30,6 @@ xmlport 50103 "Import Tenancies"
                 {
                 }
                 fieldattribute(City;"SVA Tenancy".City)
-                {
-                }
-                fieldattribute(Type;"SVA Tenancy".Type)
-                {
-                }
-                fieldattribute(Period;"SVA Tenancy".PeriodYear)
                 {
                 }
                 fieldattribute("AreaTotal";"SVA Tenancy".AreaTotal)

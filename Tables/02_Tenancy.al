@@ -9,11 +9,13 @@ table 50002 "SVA Tenancy"
         field(1; Number; Code[10])
         {
             Caption = 'Number';
+            NotBlank = true;
         }
         field(2; PropertyNo; Code[10])
         {
             Caption = 'Property';
             TableRelation = "SVA Property";
+            NotBlank = true;
 
             trigger OnValidate();
             begin
@@ -110,12 +112,12 @@ table 50002 "SVA Tenancy"
         {
             Caption = 'Type';
             Description = 'Type of tenancy';
-            OptionCaption = 'Living,Commercial Leases, Partial, Owner,house,Other';
-            OptionMembers = Bolig, Erhverv, Andel, Ejer, hus, andet;
+            OptionCaption = 'Living,Commercial Leases,Partial,Owner,House,Other';
+            OptionMembers = Bolig,Erhverv,Andel,Ejer,hus,andet;
         }
         field(21; Contract; Option)
         {
-           //Not in use
+            //Not in use
             Caption = 'Contract type';
             Description = 'Contrakt type';
             OptionCaption = 'Living,Commercial Lease';
@@ -138,7 +140,6 @@ table 50002 "SVA Tenancy"
         field(32; "AreaTotal"; Decimal)
         {
             Caption = 'Total Area';
-            Description = 'Dan=Bruttoareal:ENU=Gros area';
 
             trigger OnValidate();
             begin
@@ -148,7 +149,6 @@ table 50002 "SVA Tenancy"
         field(33; AreaLiv; Decimal)
         {
             Caption = 'Living area';
-            Description = 'Living area';
 
             trigger OnValidate();
             begin
@@ -158,7 +158,6 @@ table 50002 "SVA Tenancy"
         field(34; AreaPro; Decimal)
         {
             Caption = 'Prof. area';
-            Description = 'Profesional area';
 
             trigger OnValidate();
             begin
@@ -606,110 +605,137 @@ table 50002 "SVA Tenancy"
         }
         field(2011; StoveYear; Text[10])
         {
+            Caption='Year';
             DataClassification = CustomerContent;
         }
         field(2012; StoveManufactor; Text[30])
         {
+            Caption='Manufactor';
             DataClassification = CustomerContent;
         }
         field(2013; StoveModel; Text[30])
         {
+            Caption='Model';
             DataClassification = CustomerContent;
         }
         field(2014; CookYear; Text[10])
         {
+            Caption='Year';
             DataClassification = CustomerContent;
         }
         field(2015; CookManufactor; Text[30])
         {
+            Caption='Manufactor';
             DataClassification = CustomerContent;
         }
         field(2016; CookModel; Text[30])
         {
+            Caption='Model';
             DataClassification = CustomerContent;
         }
         field(2017; OvenYear; Text[10])
         {
+            Caption='Year';
             DataClassification = CustomerContent;
         }
         field(2018; OvenManufactor; Text[30])
         {
+            Caption='Manufactor';
             DataClassification = CustomerContent;
         }
         field(2019; OvenModel; Text[30])
         {
+            Caption='Model';
             DataClassification = CustomerContent;
         }
         field(2020; HoodYear; Text[10])
         {
+            Caption='Year';
             DataClassification = CustomerContent;
         }
         field(2021; HoodManufactor; Text[30])
         {
+            Caption='Manufactor';
             DataClassification = CustomerContent;
         }
         field(2022; HoodStoveModel; Text[30])
         {
+            Caption='Model';
             DataClassification = CustomerContent;
         }
         field(2023; FridgeYear; Text[10])
         {
+            Caption='Year';
             DataClassification = CustomerContent;
         }
         field(2024; FridgeManufactor; Text[30])
         {
+            Caption='Manufactor';
             DataClassification = CustomerContent;
         }
         field(2025; FridgeModel; Text[30])
         {
+            Caption='Model';
             DataClassification = CustomerContent;
         }
         field(2026; FreezerYear; Text[10])
         {
+            Caption='Year';
             DataClassification = CustomerContent;
         }
         field(2027; FreezerManufactor; Text[30])
         {
+            Caption='Manufactor';
             DataClassification = CustomerContent;
         }
         field(2028; FreezerModel; Text[30])
         {
+            Caption='Model';
             DataClassification = CustomerContent;
         }
         field(2029; DishwasherYear; Text[10])
         {
+            Caption='Year';
             DataClassification = CustomerContent;
         }
         field(2030; DishwasherManufactor; Text[30])
         {
+            Caption='Manufactor';
             DataClassification = CustomerContent;
         }
         field(2031; DishwasherModel; Text[30])
         {
+            Caption='Model';
             DataClassification = CustomerContent;
         }
         field(2032; WasherYear; Text[10])
         {
+            Caption='Year';
             DataClassification = CustomerContent;
         }
         field(2033; WasherManufactor; Text[30])
         {
+            Caption='Manufactor';
             DataClassification = CustomerContent;
         }
         field(2034; WasherModel; Text[30])
         {
+            Caption='Model';
             DataClassification = CustomerContent;
         }
         field(2035; DryerYear; Text[10])
         {
+            Caption='Year';
             DataClassification = CustomerContent;
         }
         field(2036; DryerManufactor; Text[30])
         {
+            Caption='Manufactor';
             DataClassification = CustomerContent;
         }
         field(2037; DryerModel; Text[30])
         {
+            Caption='Model';
             DataClassification = CustomerContent;
         }
     }
@@ -734,8 +760,18 @@ table 50002 "SVA Tenancy"
     trigger OnModify();
     begin
         Areas;
-        IF(Vacant = TRUE) AND(vacantDate = 0D) THEN
-            vacantDate := DMY2DATE(1, 1, 1960);
+        //Check vacant
+        Occupant.reset;
+        Occupant.SetRange(TenancyNo, Number);
+        Rec.VacantDate := DMY2DATE(1, 1, 1960);
+        Rec.Vacant := true;
+        IF Occupant.Find('-') then begin
+            repeat
+                vacantDate := Occupant.EndDate;
+                IF vacantDate = 0D then
+                    Vacant := false;
+            until Next = 0;
+        end;
     end;
 
     var
@@ -743,6 +779,7 @@ table 50002 "SVA Tenancy"
         Country: Text;
         PropertyCard: Record "SVA Property";
         Tenancies: Record "SVA Tenancy";
+        Occupant: Record "SVA Occupant";
 
     local procedure Areas();
     begin

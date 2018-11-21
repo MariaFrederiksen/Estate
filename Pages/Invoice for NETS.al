@@ -1,4 +1,5 @@
-page 60630 "Sales Invoice NETS"
+page 60630 "SVA Sales Invoice NETS"
+//Tooltip created.
 {
     Caption='Invoices for NETS';
     DeleteAllowed = false;
@@ -18,40 +19,50 @@ page 60630 "Sales Invoice NETS"
                 field("No.";"No.")
                 {
                     Editable = false;
+                    ToolTip='Number. No change posible';
                 }
                 field("Bill-to Customer No.";"Bill-to Customer No.")
                 {
                     Editable = false;
+                    ToolTip='Customer Number. No change posible';
                 }
                 field("Bill-to Name";"Bill-to Name")
                 {
                     Editable = false;
+                    ToolTip='Customer name. No change posible';
                 }
                 field("Posting Date";"Posting Date")
                 {
                     Editable = false;
+                    ToolTip='Posting date. No change posible';
                 }
                 field("Due Date";"Due Date")
                 {
                     Editable = false;
+                    ToolTip='Duedate. No change posible';
                 }
                 field("Amount Including VAT";"Amount Including VAT")
                 {
                     Editable = false;
+                    ToolTip='Amount including VAT. No change posible';
                 }
                 field("SVA Included";"SVA Included")
                 {
+                    ToolTip='This invoice will be included in the file for NETS';
                 }
                 field("SVA Send";"SVA Send")
                 {
+                    ToolTip='This invoice has been added to the file for NETS';
                 }
                 field("SVA Send date";"SVA Send date")
                 {
                     Editable = false;
+                    ToolTip='This invoice has been added to the file for NETS at this date.';
                 }
                 field("SVA Occupant";"SVA Occupant")
                 {
                     Editable = false;
+                    ToolTip='Occupant. No change posible';
                 }
             }
         }
@@ -76,7 +87,7 @@ page 60630 "Sales Invoice NETS"
                 action(Nets)
                 {
                     Caption='File for NETS';
-                    ToolTip='Danner en fil til NETS med de viste opkrævninger type 0601';
+                    ToolTip='Make a file for NETS.';
                     Image = PostDocument;
 
                     trigger OnAction();
@@ -89,7 +100,7 @@ page 60630 "Sales Invoice NETS"
                 action(Reset)
                 {
                     Caption='Reset';
-                    ToolTip='Nulstiller sendt så der kan dannes en ny fil til NETS';
+                    ToolTip='Reset. It will then be possible to create a new file for NETS';
                     Image = PostDocument;
                     trigger OnAction();
                     begin
@@ -104,13 +115,12 @@ page 60630 "Sales Invoice NETS"
     trigger OnInit();
     begin
         IF DATE2DMY(TODAY,2) = 12 THEN BEGIN
-          FromDate := DMY2DATE(1, DATE2DMY(TODAY,2)+1, DATE2DMY(TODAY,3)+1);
+          FromDate := DMY2DATE(1, DATE2DMY(TODAY,2)-11, DATE2DMY(TODAY,3)+1); //01-01-Next year
           END;
         IF DATE2DMY(TODAY,2) < 12 THEN BEGIN
-          FromDate := DMY2DATE(1, DATE2DMY(TODAY,2)+1, DATE2DMY(TODAY,3));
-          END;
-        ToDate := DMY2DATE(1, DATE2DMY(TODAY,2)+1+1, DATE2DMY(TODAY,3));
-        ToDate := ToDate - 1;
+          FromDate := DMY2DATE(1, DATE2DMY(TODAY,2)+1, DATE2DMY(TODAY,3)); //01-next month
+          end;
+        ToDate := CalcDate('<1M>-1D',FromDate);
     end;
 
     trigger OnOpenPage();

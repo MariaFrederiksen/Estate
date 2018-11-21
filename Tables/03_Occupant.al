@@ -12,16 +12,19 @@ table 50003 "SVA Occupant"
         field(1;Number;Code[10])
         {
             Caption='Number';
-        }
+            NotBlank=True;
+                    }
         field(2;PropertyNo;Code[10])
         {
             Caption='Property';
             TableRelation = "SVA Tenancy".PropertyNo;
+            NotBlank=true;
         }
         field(3;TenancyNo;Code[10])
         {
             Caption='Tenancy';
             TableRelation = "SVA Tenancy".Number;
+            NotBlank=true;
 
             trigger OnValidate();
             begin
@@ -34,13 +37,11 @@ table 50003 "SVA Occupant"
                   City := TenancyCard.City;
                   "Country/Region Code" := TenancyCard."Country/Region Code";
                   PropertyNo  := TenancyCard.PropertyNo;
-                  END;
-
-                //Sæt forbrugskontonummer.
-                Lbno := 2;
-                ConsumptionAccountNo := TenancyNo+'0'+FORMAT(Lbno);
-                ConsumptionAccountNo := DELSTR(ConsumptionAccountNo,STRPOS(ConsumptionAccountNo,'-'),1);
-
+                  //Sæt forbrugskontonummer.
+                  Lbno := 2;
+                  ConsumptionAccountNo := TenancyNo+'0'+FORMAT(Lbno);
+                  ConsumptionAccountNo := DELSTR(ConsumptionAccountNo,STRPOS(ConsumptionAccountNo,'-'),1);
+                  //Check for om nummeret eksisterer.  
                   OccupantList.RESET;
                   OccupantList.SETRANGE(ConsumptionAccountNo,ConsumptionAccountNo);
                   IF OccupantList.FIND('-') THEN BEGIN
@@ -50,8 +51,8 @@ table 50003 "SVA Occupant"
                     ConsumptionAccountNo := DELSTR(ConsumptionAccountNo,STRPOS(ConsumptionAccountNo,'-'),1);
                     UNTIL NEXT = 0
                     END;
-
-            end;
+                end;
+             end;
         }
         field(4;"Customer No";Code[10])
         {
@@ -150,7 +151,6 @@ table 50003 "SVA Occupant"
                 IF StartDate > 0D THEN BEGIN
                   TenancyCard.RESET;
                   TenancyCard.SETRANGE(TenancyCard.Number,TenancyNo);
-                  TenancyCard.SETRANGE(Vacant, TRUE);
                   IF TenancyCard.FINDFIRST() THEN BEGIN
                     //Ingen opsagt dato på lejemålet
                     IF TenancyCard.vacantDate <= StartDate THEN
@@ -270,5 +270,37 @@ table 50003 "SVA Occupant"
         Lbno : Integer;
         Property : Record "SVA Property";
         Occupant : Record "SVA Occupant";
+        SubscriptionLines : Record "SVA Subscription Lines";
+        Vacant : Record "SVA Tenancy";
+        TypeA9 : Record "SVA LeaseContract_A9";
+
+        trigger OnDelete();
+        begin
+        //Tenancy is vacant
+        TenancyCard.Reset;
+        TenancyCard.SetRange(Number, Occupant.TenancyNo);
+        if TenancyCard.FindFirst then begin
+            TenancyCard.Vacant := true;
+            
+            Occupant.Reset;
+            Occupant.SetRange(TenancyNo, Rec.TenancyNo);
+            IF Occupant.Find('-') then begin
+                repeat
+                    TenancyCard.vacantDate := Occupant.EndDate;
+                until Next = 0;
+            end;
+            IF TenancyCard.vacantDate = 0D then begin
+                TenancyCard.vacant := false;
+                end;
+            TenancyCard.Modify(true);
+            end; //Search tenancycard
+            //Delete Contracts
+            TypeA9.Reset;
+            TypeA9.SetRange(TypeA9.Number, Occupant.Number);
+            IF TypeA9.FindFirst() then begin
+                TypeA9.Delete;
+                end;   
+        end;    
 }
+
 

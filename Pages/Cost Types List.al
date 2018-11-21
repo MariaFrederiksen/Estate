@@ -1,4 +1,5 @@
-page 60540 "Cost Type Estate List"
+page 60540 "SVA Cost Type Estate List"
+//Tooltip created
 {
     Caption='Cost types';
     PageType = List;
@@ -13,29 +14,31 @@ page 60540 "Cost Type Estate List"
             {
                 field(Costtype;Costtype)
                 {
+                    ToolTip='Name on costtype';
                 }
                 field(Description;Description)
                 {
-                    ToolTip = 'Beskrivlese af konteringsarten. Det er denne tekst, der vil fremgå af opkrævningen.';
+                    ToolTip = 'Description of costtype. Will appear on invoces and creditmemos';
                 }
                 field(Type;Type)
                 {
-                    ToolTip = 'Konteringartens type. Anvendes til håndtering af deposita, forudbetalt leje samt acontobeløb.';
+                    ToolTip = 'Costtype. Is used so different acconts can be used for the same purpose (ex. with or without Vat';
                 }
                 field(Account;Account)
                 {
-                    ToolTip = 'Her angives den finanskonto, konteringarten skal bogføres på.';
+                    ToolTip = 'Ledaccount for accounting';
                 }
                 field(VatGroup;VatGroup)
                 {
+                    ToolTip = 'Vatgroup. Mandatory field';
                 }
                 field(Order;Order)
                 {
-                    ToolTip = 'Rækkefølge for udskrivning af linjerne på faktura';
+                    ToolTip = 'In wich order will costtypes be shown on invoices.';
                 }
                 field(Reminder;Reminder)
                 {
-                    ToolTip = 'Er konteringsarten en æligtig pengeydelse?';
+                    ToolTip = 'Is the costtype a mandatory payment?';
                 }
             }
         }

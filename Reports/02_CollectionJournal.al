@@ -29,9 +29,9 @@ report 50200 "SVA Collection Journal"
             dataitem("Subscription Lines"; "SVA Subscription Lines")
             {
                 DataItemLink = Tenancies = FIELD (TenancyNo);
-                DataItemTableView = SORTING (Tenancies, "Cost Types", "Date From", "Date To", KeyNumber)
+                DataItemTableView = SORTING (Tenancies, Order, "Cost Types", "Date From", "Date To", KeyNumber)
                                     ORDER(Ascending)
-                                    WHERE (Type = FILTER (<> MoveOut));
+                                    WHERE (Type = FILTER (<> 12));
                 column(STenancy; Tenancies)
                 {
                 }
@@ -63,8 +63,10 @@ report 50200 "SVA Collection Journal"
 
                 trigger OnAfterGetRecord();
                 begin
-                    IF("Date To" < PrDate) AND("Date To" <> 0D) THEN
+                    IF("Date To" < PrDate) AND ("Date To" <> 0D) THEN
                         CurrReport.SKIP;
+                    IF ("Date From" > PrDate) then  
+                        CurrReport.Skip;    
                     IF Type = 12 THEN //Fraflytninger
                         CurrReport.SKIP;
                     Vatpostinggroup.Reset;

@@ -1,4 +1,5 @@
-page 60534 "Occupant Card"
+page 60534 "SVA Occupant Card"
+//Tooltip created
 {
     Caption = 'Occupants';
     PageType = Card;
@@ -13,69 +14,104 @@ page 60534 "Occupant Card"
                 Caption = 'General';
                 field("Customer No"; "Customer No")
                 {
+                    ToolTip='Costumer no. from customer table.';
                 }
                 field(TenancyNo; TenancyNo)
                 {
+                    ToolTip='The tenancy, the customer rents';
                 }
                 field(startdate; StartDate)
                 {
+                    ToolTip='Startdate of the contract.';
                 }
                 field("Collection Month"; "Collection Month")
                 {
+                    ToolTip='Collection month. Importen when the collecion period is quarter, halfyear or year';
                 }
                 field(FirstNets; FirstNets)
                 {
+                    ToolTip='First time to NETS. Can be left blank';
                 }
                 field(Name1; Name1)
                 {
+                    ToolTip='Tenants full name';
                 }
                 field(Name2; Name2)
                 {
+                    ToolTip='Second tenants name';
                 }
                 field(Address; Address)
                 {
+                    
+                    ToolTip='Invoice address';
                 }
                 field(Address2; Address2)
                 {
+                    ToolTip='Invoice address 2';
                 }
                 field("Post Code"; "Post Code")
                 {
+                    
+                    ToolTip='Invoice post code';
                 }
                 field(City; City)
                 {
+                    
+                    ToolTip='Invoice city';
                 }
                 field("Country/Region Code"; "Country/Region Code")
                 {
+                    
+                    ToolTip='Invoice Country code';
                 }
                 field(Email1; Email1)
                 {
+                    
+                    ToolTip='Tenants email';
                 }
                 field(Email2; Email2)
                 {
+                    
+                    ToolTip='Second email';
                 }
                 field(Phone; Phone)
                 {
+                    
+                    ToolTip='Tenants phone no.';
                 }
                 field(CellPhone1; CellPhone1)
                 {
+                    
+                    ToolTip='Tenants cellphone no.';
                 }
                 field(CellPhone2; CellPhone2)
                 {
+                    
+                    ToolTip='Tenants cellphone no.';
                 }
                 field(CPRno1; CPRno1)
                 {
+                    ToolTip='Tenants security no.';
                 }
                 field(CPRno2; CPRno2)
                 {
+                    
+                    ToolTip='Second Tenants social security no.';
                 }
                 field(EndDate; EndDate)
                 {
+                    
+                    ToolTip='The date this contract expire';
                 }
                 field(Blocked; Blocked)
                 {
+                    
+                    ToolTip='Blocked date';
                 }
                 field(ConsumptionAccountNo; ConsumptionAccountNo)
                 {
+                    
+                    ToolTip='Tenants consumption account no.';
                 }
             }
             group("Div. oplysniger")
@@ -83,31 +119,37 @@ page 60534 "Occupant Card"
                 Caption = 'Mis. information';
                 field(ChairmanOfTheBoard; ChairmanOfTheBoard)
                 {
-                    Caption = 'Chairman of the Board';
+                    
+                    ToolTip='Is tenant chairman of the board? Not relevant if the tenancy is rented';
                 }
                 field(BoardMember; BoardMember)
                 {
-                    Caption = 'Member of the Board';
+                    
+                    ToolTip='Is tenant member of the board? Not relevant if the tenancy is rented';
                 }
                 field(BoardAccountent; BoardAccountent)
                 {
-                    Caption = 'Accountant';
+                    
+                    ToolTip='Is tenant accountant of the board? Not relevant if the tenancy is rented';
                 }
                 field(ResidentRepresentative; ResidentRepresentative)
                 {
-                    Caption = 'Residents representative';
+                    
+                    ToolTip='Is tenant Residents representative? Only relevant if the tenancy is rented';
                 }
             }
-            part("Opkrævningslinjer"; 60560)
+            part("Subscription lines"; 60560)
             {
-                Caption = 'Subscription Lines';
+                Caption='Subscription lines';
+                Tooltip='Subscription lines for this contract.';
                 SubPageLink = Tenancies = FIELD (TenancyNo);
                 SubPageView = SORTING (Tenancies, "Cost Types", "Date From", "Date To")
                               ORDER(Ascending);
             }
-            part("Opkrævningsposter"; 60570)
+            part("Occupant transactions"; 60570)
             {
                 Caption = 'Occupant Trans';
+                Tooltip='Occupant trans for this contract.';
                 SubPageLink = Occupant = FIELD (Number);
                 SubPageView = SORTING (Occupant, Date, "Cost type Estate", "Invoice No");
             }
@@ -129,10 +171,11 @@ page 60534 "Occupant Card"
         {
             group(Kontrakter)
             {
-                Caption = 'Contract';
+                Caption = 'Contracts';
                 action(LeasContractA9)
                 {
-                    Caption = 'Leasecontract A9';
+                    Caption = 'Leasecontract Type A, 9. edistion';
+                    Tooltip='Go to leasecontract type A, 9. edition for filling';
                     Image = MakeAgreement;
                     RunObject = Page 60580;
                     RunPageLink = Number = FIELD (Number);
@@ -141,7 +184,8 @@ page 60534 "Occupant Card"
                 }
                 action(LeasContractGarage)
                 {
-                    Caption = 'LeaseContractGarage';
+                    Caption = 'Leasecontract for garage';
+                    Tooltip='Go to leasecontract for garage for filling';
                     Image = MakeAgreement;
                     RunObject = Page 60590;
                     RunPageLink = Number = FIELD (Number);
@@ -149,7 +193,8 @@ page 60534 "Occupant Card"
                 }
                 action(Regulations)
                 {
-                    Caption = 'Regulation of rent';
+                    Caption = 'Agreed regulation of rent';
+                    Tooltip='Contract conditions for regulations';
                     Image = MakeAgreement;
                     RunObject = Page 60600;
                     RunPageLink = Number = FIELD (Number);
@@ -160,7 +205,8 @@ page 60534 "Occupant Card"
                 Caption = 'Process';
                 action(MovingIn)
                 {
-                    Caption = 'Moving in';
+                    Caption = 'Moving in inspection';
+                    Tooltip='Go to moving in status for filling';
                     Image = MakeAgreement;
                     Promoted = true;
                     PromotedCategory = Process;
@@ -170,7 +216,8 @@ page 60534 "Occupant Card"
                 }
                 action(MovingOut)
                 {
-                    Caption = 'Moving out';
+                    Caption = 'Moving out inspection';
+                    Tooltip='Go to moving out status for filling';
                     Image = MakeAgreement;
                     Promoted = true;
                     PromotedCategory = Process;
@@ -186,6 +233,7 @@ page 60534 "Occupant Card"
                 action(DemandNotice)
                 {
                     Caption = 'Demand Notice';
+                    Tooltip='The formal demand notice';
                     Image = Reminder;
 
                     trigger OnAction();
@@ -211,6 +259,7 @@ page 60534 "Occupant Card"
                 action(Repeal)
                 {
                     Caption = 'Repeal';
+                    Tooltip='Letter for repeal the tenant';
                     Image = Report;
 
                     trigger OnAction();
@@ -240,6 +289,7 @@ page 60534 "Occupant Card"
                 action(MovingOutJournal)
                 {
                     Caption = 'Journal for moving out invoice';
+                    ToolTip='Journal for moving out invoice. Use before making an invoice.';
                     Image = report;
 
                     trigger OnAction();
@@ -254,6 +304,7 @@ page 60534 "Occupant Card"
                 action(MovingOutInvoice)
                 {
                     Caption = 'Invoice Moving out';
+                    Tooltip='Make a moving out invoice based on transactions and subscription lines.';
                     Image = report;
 
                     trigger OnAction();
@@ -303,7 +354,7 @@ page 60534 "Occupant Card"
                                     CLEAR(OcTrans);
                                     OcTrans.RESET;
                                     OcTrans.SETRANGE(Occupant, SalesHeader."SVA Occupant");
-                                    OcTrans.SETRANGE(Type, 9);
+                                    OcTrans.SETRANGE(Type, 10);
                                     IF FINDSET THEN BEGIN
                                         REPEAT
                                         IF OcTrans.Occupant = SalesHeader."SVA Occupant" THEN BEGIN
@@ -342,7 +393,7 @@ page 60534 "Occupant Card"
                                     CLEAR(OcTrans);
                                     OcTrans.RESET;
                                     OcTrans.SETRANGE(Occupant, SalesHeader."SVA Occupant");
-                                    OcTrans.SETRANGE(Type, 10);
+                                    OcTrans.SETRANGE(Type, 11);
                                     IF FINDSET THEN BEGIN
                                         REPEAT
                                         IF OcTrans.Occupant = SalesHeader."SVA Occupant" THEN BEGIN
@@ -421,7 +472,6 @@ page 60534 "Occupant Card"
 
                         //Kreditnota
                         IF InvoiceCreditmemo = FALSE THEN BEGIN
-                            MESSAGE('kreditnota');
                             CLEAR(OccupantInvoice);
                             OccupantInvoice.SETRANGE(Number, OccNo);
                             IF OccupantInvoice.FINDFIRST() THEN BEGIN
@@ -462,7 +512,7 @@ page 60534 "Occupant Card"
                                     CLEAR(OcTrans);
                                     OcTrans.RESET;
                                     OcTrans.SETRANGE(Occupant, SalesHeader."SVA Occupant");
-                                    OcTrans.SETRANGE(Type, 9);
+                                    OcTrans.SETRANGE(Type, 10);
                                     IF FINDSET THEN BEGIN
                                         REPEAT
                                         IF OcTrans.Occupant = SalesHeader."SVA Occupant" THEN BEGIN
@@ -480,7 +530,7 @@ page 60534 "Occupant Card"
                                             SalesLine."Line Amount" := SalesLine.Quantity * SalesLine."Unit Price";
                                             SalesLine.Amount := SalesLine.Quantity * SalesLine."Unit Price";
                                             CostTypeEstate.RESET;
-                                            CostTypeEstate.SETRANGE(Type, 9);
+                                            CostTypeEstate.SETRANGE(Type, 10); //Deposit
                                             IF CostTypeEstate.FINDFIRST() THEN BEGIN
                                                 SalesLine."No." := CostTypeEstate.Account;
                                                 SalesLine.Description := CostTypeEstate.Description;
@@ -499,7 +549,7 @@ page 60534 "Occupant Card"
                                         UNTIL OcTrans.NEXT = 0
                                     END;//Deposita
 
-                                    //Forudbetalt leje
+                                    //Prepaid rent
                                     CLEAR(OcTrans);
                                     OcTrans.RESET;
                                     OcTrans.SETRANGE(Occupant, SalesHeader."SVA Occupant");
@@ -519,7 +569,7 @@ page 60534 "Occupant Card"
                                             SalesLine."Line Amount" := SalesLine.Quantity * SalesLine."Unit Price";
                                             SalesLine.Amount := SalesLine.Quantity * SalesLine."Unit Price";
                                             CostTypeEstate.RESET;
-                                            CostTypeEstate.SETRANGE(Type, 10);
+                                            CostTypeEstate.SETRANGE(Type, 11); //Prepaid rent
                                             IF CostTypeEstate.FINDFIRST() THEN BEGIN
                                                 SalesLine."No." := CostTypeEstate.Account;
                                                 SalesLine.Description := CostTypeEstate.Description;
@@ -619,11 +669,17 @@ page 60534 "Occupant Card"
 
         }
     }
-
     trigger OnNewRecord(BelowxRec: Boolean);
     begin
-        Occupant.INIT;
-        Number := NoSeriesMgt.GetNextNo('LEJEAFTALE', WORKDATE, TRUE);
+        Occupant.Init;
+        EstateSetup.Reset;
+        IF EstateSetup.FindFirst then begin
+            Number := NoSeriesMgt.GetNextNo(EstateSetup.Numberserie, WORKDATE, TRUE);
+        end;
+        IF Number = '' then begin
+            Message('Nummerserie er ikke opsat. Kørslen afbrydes');
+            exit;
+        end;
     end;
 
     trigger OnDeleteRecord(): Boolean;
@@ -634,13 +690,6 @@ page 60534 "Occupant Card"
             Message('Kontrakten kan ikke slettes, da der er posteringer.')
         end;
         exit;
-        PageTypeA9.Reset;
-        PageTypeA9.SetRange(PageTypeA9.Number, rec.Number);
-        IF PageTypeA9.FindFirst() then begin
-            PageTypeA9.Delete;
-        end;
-
-
     end;
 
     var
@@ -650,6 +699,8 @@ page 60534 "Occupant Card"
         Occupant: Record "SVA Occupant";
         PageTypeA9: Record "SVA LeaseContract_A9";
         NoSeriesMgt: Codeunit "NoSeriesManagement";
+        NoSeries: Record "No. Series";
+        EstateSetup: Record "SVA Parameters";
         Occ: Record "SVA Occupant";
         Cust: Record Customer;
         Salesheader: Record "Sales header";

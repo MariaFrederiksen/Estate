@@ -2,7 +2,7 @@ report 50010 "SVA Moving in status"
 {
     DefaultLayout = RDLC;
     RDLCLayout = './Layouts/Moving in status.rdlc';
-    Caption = 'Moving in Status';
+    Caption = 'Moving in report';
 
     dataset
     {

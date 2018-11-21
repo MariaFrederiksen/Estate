@@ -72,11 +72,11 @@ report 50220 "SVA Moving out Journal"
 
                 trigger OnAfterGetRecord();
                 begin
-                    IF Type = 11 THEN //Afregning
+                    IF Type = 12 THEN //Afregning
                         CurrReport.SKIP;
-                    IF Type = 9 THEN //Depositum
+                    IF Type = 10 THEN //Depositum
                         Qty := Qty*-1;
-                    IF Type = 10 THEN //Forudbetalt leje
+                    IF Type = 11 THEN //Forudbetalt leje
                         Qty := Qty*-1;
                     Amount := Qty*Price;
                 end;
@@ -84,7 +84,7 @@ report 50220 "SVA Moving out Journal"
             dataitem(DataItem1000000014;"SVA Subscription Lines")
             {
                 DataItemLink = Tenancies=FIELD(TenancyNo);
-                DataItemTableView = WHERE(Type=FILTER(MoveOut));
+                DataItemTableView = WHERE(Type=FILTER(11));
                 column(CostTypes_SubscriptionLines;"Cost Types")
                 {
                 }

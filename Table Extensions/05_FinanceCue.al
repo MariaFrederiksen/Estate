@@ -27,9 +27,8 @@ tableextension 50005 "SVA Finance Cue" extends "Finance Cue"
         {
             Caption = 'Occupants';
             FieldClass = FlowField;
-            CalcFormula  = count("SVA Occupant" where (EndDate=field("SVA Date Filter")));
-            
-            
+            CalcFormula  = count("SVA Occupant" where (Blocked=field("SVA Date Filter")));
+    
         }
         field(50005;"SVA Date Filter";Date)
         {

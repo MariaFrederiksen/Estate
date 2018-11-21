@@ -39,10 +39,11 @@ table 50007 "SVA LeaseContract_A9"
                     TypeA9_3_BankAccount := Property.Bankaccount;
                     TypeA9_3_Bankname := Property.Bankname;
                     TypeA9_3_TaxesPer := Property.TypeA9_3_Taxes;
-                    TypeA9_5_WaterAccounting := FORMAT(Property.TypeA9_5_Wperiod);
+                    TypeA9_5_WaterAccounting := FORMAT(Property.WaterYearFrom);
                     TypeA9_5_HeatAccounting := FORMAT(Property.HeatingYearFrom);
                     TypeA9_5_ElAccounting := FORMAT(Property.ElectricYearFrom);
                     END;
+
 
                   Customer.RESET;
                   Customer.SETRANGE(Customer."No.",Occupant."Customer No");
@@ -53,41 +54,47 @@ table 50007 "SVA LeaseContract_A9"
                     TypeA9_1_TenentAddress := Occupant.Address + ', '+ Occupant."Post Code"+' '+Occupant.City;
                     END;
 
+                  IF TypeA9_4_DueDate = 0D THEN
+                    TypeA9_4_DueDate := TODAY+8;
+
                   SubscriptionLines.RESET;
                   SubscriptionLines.SETRANGE(Tenancies,Occupant.TenancyNo);
-                  //SubscriptionLines.SETRANGE("Date From",0D);
-                  IF SubscriptionLines.FIND('-') THEN
+                  SubscriptionLines.SetRange("Date From",Today-20000,Occupant.StartDate);
+                  IF SubscriptionLines.FIND('-') THEN begin
                     REPEAT
-                    Costtype.RESET;
-                    Costtype.SETRANGE(Costtype,SubscriptionLines."Cost Types");
-                    IF Costtype.FIND('-') THEN
-
-                    IF Costtype.Type = 1 THEN BEGIN //Rent
-                      TypeA9_3_RentPerYear := SubscriptionLines."Amount Year";
-                      TypeA9_3_RentPerPeriode := SubscriptionLines."Amount Period";
-                      END;
-                    IF Costtype.Type = 2 THEN BEGIN //ACVarme
-                      TypeA9_3_ACHeat := SubscriptionLines."Amount Period";
-                      END;
-                    IF Costtype.Type = 3 THEN BEGIN //ACVand
-                      TypeA9_3_ACWater := SubscriptionLines."Amount Period";
-                      END;
-                    IF Costtype.Type = 4 THEN BEGIN //ACEl
-                      TypeA9_3_ACElectricity := SubscriptionLines."Amount Period";
-                      END;
-                    IF Costtype.Type = 5 THEN BEGIN //ACCooling
-                      TypeA9_3_ACCooling := SubscriptionLines."Amount Period";
-                      END;
-                    IF Costtype.Type = 6 THEN BEGIN //Antenna
-                      TypeA9_3_Antenna := SubscriptionLines."Amount Period";
-                      END;
-                    IF Costtype.Type = 7 THEN BEGIN //Internet
-                      TypeA9_3_Internet := SubscriptionLines."Amount Period";
-                      END;
-                    IF Costtype.Type = 8 THEN BEGIN //Tenantgroup
-                      TypeA9_3_TenantGroup := SubscriptionLines."Amount Period";
-                      END;
+                    if (SubscriptionLines."Date To" = 0D) or (SubscriptionLines."Date To">Occupant.StartDate) then begin
+                        Costtype.RESET;
+                        Costtype.SETRANGE(Costtype,SubscriptionLines."Cost Types");
+                        IF Costtype.FIND('-') THEN begin
+                            IF Costtype.Type = 1 THEN BEGIN //Rent
+                                TypeA9_3_RentPerYear := SubscriptionLines."Amount Year";
+                                TypeA9_3_RentPerPeriode := SubscriptionLines."Amount Period";
+                                END;
+                            IF Costtype.Type = 2 THEN BEGIN //ACVarme
+                                TypeA9_3_ACHeat := SubscriptionLines."Amount Period";
+                                END;
+                            IF Costtype.Type = 3 THEN BEGIN //ACVand
+                                TypeA9_3_ACWater := SubscriptionLines."Amount Period";
+                                END;
+                            IF Costtype.Type = 4 THEN BEGIN //ACEl
+                                TypeA9_3_ACElectricity := SubscriptionLines."Amount Period";
+                                END;
+                            IF Costtype.Type = 5 THEN BEGIN //ACCooling
+                                TypeA9_3_ACCooling := SubscriptionLines."Amount Period";
+                                END;
+                            IF Costtype.Type = 7 THEN BEGIN //Antenna
+                                TypeA9_3_Antenna := SubscriptionLines."Amount Period";
+                                END;
+                            IF Costtype.Type = 8 THEN BEGIN //Internet
+                                TypeA9_3_Internet := SubscriptionLines."Amount Period";
+                                END;
+                            IF Costtype.Type = 9 THEN BEGIN //Tenantgroup
+                                TypeA9_3_TenantGroup := SubscriptionLines."Amount Period";
+                                END;
+                            end; //costtype find    
+                        end;//range for Date to    
                     UNTIL SubscriptionLines.NEXT = 0;
+                    end; //subscriptionlines
 
                   Tenancy.RESET;
                   Tenancy.SETRANGE(Number,Occupant.TenancyNo);
@@ -129,6 +136,7 @@ table 50007 "SVA LeaseContract_A9"
                         TypeA9_3_Monthly := FALSE;
                         TypeA9_3_Quater := TRUE;
                       END;
+
                       //4
                       TypeA9_4_DepMth := Tenancy.Deposit;
                       TypeA9_4_PrepaidRentMth := Tenancy.PrepaidRent;
@@ -136,6 +144,8 @@ table 50007 "SVA LeaseContract_A9"
                       TypeA9_4_PrepaidRent := TypeA9_3_RentPerYear/12*TypeA9_4_PrepaidRentMth;
                       TypeA9_4_RentFrom := Occupant.StartDate;
                       TypeA9_4_RentTo := CALCDATE('<+1M-1D>',Occupant.StartDate);
+                      IF TypeA9_4_DueDate = 0D THEN
+                        TypeA9_4_DueDate := TODAY+8;
                       //5 - Varme
                       TypeA9_5_LandlordHeat := Tenancy.TypeA9_5_LandlordHeat;
                       TypeA9_5_LandlorNatGas := Tenancy.TypeA9_5_LNatgas;
@@ -276,7 +286,7 @@ table 50007 "SVA LeaseContract_A9"
         {
             Caption='Address';
         }
-        field(113;TypeA9_1_TenentName;Text[30])
+        field(113;TypeA9_1_TenentName;Text[50])
         {
             Caption='Tenant Name';
         }
@@ -359,7 +369,7 @@ table 50007 "SVA LeaseContract_A9"
         }
         field(302;TypeA9_3_DueDay;Text[2])
         {
-            Caption='Due date';
+            Caption='Due day';
         }
         field(303;TypeA9_3_Monthly;Boolean)
         {
@@ -485,7 +495,7 @@ table 50007 "SVA LeaseContract_A9"
         }
         field(411;TypeA9_4_PrepaidRentDate;Date)
         {
-            Caption='Duedata prerent';
+            Caption='Duedate prepaid rent';
         }
         field(412;TypeA9_4_PrepaidRentMth;Integer)
         {
@@ -507,7 +517,7 @@ table 50007 "SVA LeaseContract_A9"
         }
         field(423;TypeA9_4_PrepaidRent;Decimal)
         {
-            Caption='Prepaid rent';
+            Caption='Prepaid rent amount';
 
             trigger OnValidate();
             begin
@@ -875,7 +885,7 @@ table 50007 "SVA LeaseContract_A9"
         }
         field(1102;TextT9_1_Room;Text[2])
         {
-                    }
+        }
         field(1103;TextT9_1_Condominium;Text[2])
         {
             
@@ -924,6 +934,10 @@ table 50007 "SVA LeaseContract_A9"
             
         }
         field(1304;TextT9_3_Quater;Text[2])
+        {
+            
+        }
+        field(1305;TextT9_3_Taxes;Text[10])
         {
             
         }
@@ -1176,14 +1190,14 @@ table 50007 "SVA LeaseContract_A9"
 
     trigger OnInsert();
     begin
-
+        IF TypeA9_4_DueDate = 0D THEN
+          TypeA9_4_DueDate := TODAY;
         SetBoolean;
         SetDate;
         PeriodAmount;
         MoveInAmount;
         SetHeat;
-        IF TypeA9_4_DueDate = 0D THEN
-          TypeA9_4_DueDate := TODAY;
+
     end;
 
     trigger OnModify();
@@ -1497,6 +1511,7 @@ table 50007 "SVA LeaseContract_A9"
     local procedure SetDate();
     begin
         TextT9_2_Date := FORMAT(TypeA9_2_Startdate);
+        TextT9_3_Taxes := Format(TypeA9_3_TaxesPer);
         TextT9_4_DueDate := FORMAT(TypeA9_4_DueDate);
         TextT9_4_PrepaidrentDate := FORMAT(TypeA9_4_PrepaidRentDate);
         TextT9_4_RentFrom := FORMAT(TypeA9_4_RentFrom);

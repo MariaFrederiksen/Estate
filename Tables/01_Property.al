@@ -11,6 +11,7 @@ table 50001 "SVA Property"
         field(1;Property;Code[10])
         {
             Caption='Number';
+            NotBlank=true;
         }
         field(2;Name;Text[50])
         {

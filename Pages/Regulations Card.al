@@ -1,4 +1,5 @@
-page 60620 Regulations
+page 60620 "SVA Regulations"
+//
 {
     Caption='Regulations';
     PageType = List;
@@ -12,48 +13,60 @@ page 60620 Regulations
             {
                 field(Number;Number)
                 {
+                    ToolTip='Occupant';
                 }
                 field(TenancyNo;TenancyNo)
                 {
+                    ToolTip='Tenancy number';
                 }
                 field(Name1;Name1)
                 {
+                    ToolTip='Name';
                 }
                 field("Cost Types";Sublines."Cost Types")
                 {
-                    Caption='Costtype';
+                    Caption='Konteringsart';
+                    ToolTip='Costtype to be regulated';
                 }
                 field("Amount Year";SubLines."Amount Year")
                 {
                     Caption='Amount year';
+                    ToolTip='Applicable amount year ';
                 }
                 field(IndeksDateOld;IndeksOld.IndeksDate)
                 {
-                    Caption='Rate';
+                    caption='Date';
+                    ToolTip='Indeksdate (old)';
                 }
                 field(IndeksrateOld;IndeksOld.Indeksrate)
                 {
-                    Caption='Rate';
+                    caption='Rate';
+                    ToolTip='Indeksrate (old)';
                 }
                 field(IndeksDateNew;IndeksNew.IndeksDate)
                 {
-                    Caption='Date';
+                   caption='Date';
+                   ToolTip='Indeksdate (new)';
                 }
                 field(IndeksrateNew;IndeksNew.Indeksrate)
                 {
-                    Caption='Rate';
+                    caption='Rate';
+                    ToolTip='Indeksrate (new)';
                 }
                 field(I_RegDate;Contract.I_RegDate)
                 {
-                    Caption='Reg.date';
+                   Caption='Reg.date'; 
+                   ToolTip='Reg.date';
                 }
                 field(AmountNew;AmountNew)
                 {
                     Caption='Amount new';
+                    ToolTip='Amount year (new)';
                 }
                 field(Regulation;Regulation)
                 {
                     Caption='Regulation';
+                    ToolTip='The regulation is representing.';
                 }
             }
         }
@@ -88,7 +101,7 @@ page 60620 Regulations
         SubLines.RESET;
         SubLines.SETRANGE(PriceIndeks,TRUE);
         SubLines.SETRANGE(Sublines.Tenancies,TenancyNo);
-        SubLines.SetRange(SubLines.PriceIndeks,TRUE);
+        AmountNew := 0;
         IF SubLines.FINDFIRST() THEN BEGIN
           Contract.RESET;
           Contract.SETRANGE(Number,Number);

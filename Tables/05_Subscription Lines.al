@@ -8,6 +8,8 @@ table 50005 "SVA Subscription Lines"
         {
             Caption='Tenancy no';
             TableRelation = "SVA Tenancy".Number;
+            NotBlank = true;
+            
         }
         field(3;"Cost Types";Code[10])
         {
@@ -23,7 +25,7 @@ table 50005 "SVA Subscription Lines"
                   Description := CosttypeEstate.Description;
                   VatGroup := CosttypeEstate.VatGroup;
                   Type := CosttypeEstate.Type;
-                  //KeyNumber := CosttypeEstate.Order;
+                  Order := CosttypeEstate.Order;
                   END;
             end;
         }
@@ -35,12 +37,18 @@ table 50005 "SVA Subscription Lines"
         {
             Caption='Type';
             DataClassification = ToBeClassified;
-            OptionCaption='Other,Rent,ACheat,ACwater,ACElectric,ACCooling,Antenna,Internet,OccGroup,Deposit,Prepaid rent, Settlement,Move Out';
-            OptionMembers = Other,Rent,ACheat,ACwater,ACElectric,ACCooling,Antenna,Internet,OccGroup,Deposit,"Prepaid rent"," Settlement",MoveOut;
+            OptionCaption='Other,Rent,ACheat,ACwater,ACElectric,ACCooling,ACOperating,Antenna,Internet,OccGroup,Deposit,Prepaid rent,Settlement,MovingCost';
+            OptionMembers = Other,Rent,ACheat,ACwater,ACElectric,ACCooling,ACOperating,Antenna,Internet,OccGroup,Deposit,"Prepaid rent",Settlement,Movingcost;
         }
+        field(6;Order;Integer)
+        {
+            Caption='Order';
+        }
+
         field(11;"Date From";Date)
         {
             Caption='From date';
+            NotBlank = true;
         }
         field(12;"Date To";Date)
         {
@@ -75,8 +83,9 @@ table 50005 "SVA Subscription Lines"
         }
         field(31;VatGroup;Code[10])
         {
-            Caption='VAT Bus. Posting Group';
+            Caption='VAT Prod. Posting Group';
             TableRelation = "VAT Product Posting Group".Code;
+            NotBlank = true;
         }
         field(40;PriceIndeks;Boolean)
         {
@@ -91,7 +100,7 @@ table 50005 "SVA Subscription Lines"
 
     keys
     {
-        key(Key1;Tenancies,"Cost Types","Date From","Date To",Keynumber)
+        key(Key1;Tenancies,Order,"Cost Types","Date From","Date To",Keynumber)
         {
         }
     }

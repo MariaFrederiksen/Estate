@@ -1,4 +1,5 @@
 page 60520 "SVA Tenancy List"
+//Tooltip created.
 {
     Caption = 'Tenancies';
     CardPageID = "SVA Tenancy Card";
@@ -13,50 +14,59 @@ page 60520 "SVA Tenancy List"
         {
             repeater(Group)
             {
-                field(PropertyNo;PropertyNo)
+                field(PropertyNo; PropertyNo)
                 {
+                    ToolTip='Attached to property number';
                 }
-                field(Number;Number)
+                field(Number; Number)
                 {
+                    ToolTip='Tenancy number';
                 }
-                field(Address1;Address1)
+                field(Address1; Address1)
                 {
+                    ToolTip='Tenancy address';
                 }
-                field(Address2;Address2)
+                field(Address2; Address2)
                 {
-                    Caption = 'Adresse 2';
+                    ToolTip='Tenancy address 2';
+
                 }
-                field(City;City)
+                field(City; City)
                 {
+                    ToolTip='Tenancy city';
                 }
-                field(Type;Type)
+                field(Type; Type)
                 {
-                    Caption = 'Type';
+                    ToolTip='Tenancy type (Living,Commercial Leases,Partial,Owner,House,Other). ';
                 }
-                field(PeriodYear;PeriodYear)
+                field(PeriodYear; PeriodYear)
                 {
-                    OptionCaption='Mth,Qtr,Half year,Year';
+                    ToolTip='Periods for invoiced collection';
                 }
-                field(AreaTotal;AreaTotal)
+                field(AreaTotal; AreaTotal)
                 {
+                    ToolTip='Total area of tenancy';
                 }
-                field(Rooms;Rooms)
+                field(Rooms; Rooms)
                 {
+                    ToolTip='Quantity of rooms';
                 }
-                field(Vacant;Vacant)
+                field(Vacant; Vacant)
                 {
+                    ToolTip='Is the tenancy vacant';
                 }
-                field(vacantDate;vacantDate)
+                field(vacantDate; vacantDate)
                 {
+                    ToolTip='When is the tenancy vacant from.';
                 }
             }
         }
         area(factboxes)
         {
-            systempart(Notes;Notes)
+            systempart(Notes; Notes)
             {
             }
-            systempart(LinksSVAS;Links)
+            systempart(LinksSVAS; Links)
             {
             }
         }
@@ -68,13 +78,14 @@ page 60520 "SVA Tenancy List"
         {
             group(Naviger)
             {
-                Caption='Navigation';
+                Caption = 'Navigation';
                 action(Occupants)
                 {
                     Caption = 'Occupants';
+                    ToolTip='List of occupants in this tenancy.';
                     Image = Customer;
                     RunObject = Page "SVA Occupant List";
-                    RunPageLink = TenancyNo=FIELD(Number);
+                    RunPageLink = TenancyNo = FIELD (Number);
                 }
             }
         }

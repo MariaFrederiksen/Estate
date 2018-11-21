@@ -125,18 +125,18 @@ report 50600 "SVA DemandNoticeResidence"
                 end;
             }
         }
-        dataitem("Company information";"Company Information")
+        dataitem(Company;"Company Information")
         {
-            column(CName;Name)
+            column(CName;CName)
             {
             }
-            column(CAdress;Address)
+            column(CAdress;CAddress)
             {
             }
-            column(CPostcode;"Post Code")
+            column(CPostcode;CPostCode)
             {
             }
-            column(CCIty;City)
+            column(CCIty;CCity)
             {
             }
             column(InvoicesAmount;InvoiceAmountTotal)
@@ -170,6 +170,11 @@ report 50600 "SVA DemandNoticeResidence"
     trigger OnInitReport();
     begin
         CompanyInfo.GET;
+        CName := CompanyInfo.Name;
+        CAddress := CompanyInfo.Address;
+        CPostcode := CompanyInfo."Post Code";
+        CCity := CompanyInfo.City;
+        
     end;
 
     var
@@ -178,5 +183,10 @@ report 50600 "SVA DemandNoticeResidence"
         TotalAmount : Decimal;
         Costtype : Record "SVA Cost type";
         LiableAmountTotal : Decimal;
+        CName : Text [50];
+        CAddress : Text [50];
+        CPostcode : Text [4];
+        CCity : Text [50];
+
 }
 

@@ -36,7 +36,7 @@ report 50440 "SVA Consumption Man"
             {
                 DataItemLink = Occupant=FIELD(Number);
                 DataItemTableView = SORTING(Occupant,Date,"Cost type Estate","Invoice No")
-                                    WHERE(Type=CONST(ACCooling));
+                                    WHERE(Type=CONST(6));
                 column(OTransNo;Occupant)
                 {
                 }

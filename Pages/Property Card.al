@@ -1,4 +1,5 @@
-page 60512 "Property Card"
+page 60512 "SVA Property Card"
+//Tooltip created
 {
     Caption='Property';
     PageType = Card;
@@ -13,48 +14,63 @@ page 60512 "Property Card"
                 Caption='General';
                 field(Property;Property)
                 {
+                    ToolTip='Property number';
                 }
                 field(Name;Name)
                 {
+                    ToolTip='Possibly property name';
                 }
                 field(Address1;Address1)
                 {
+                    ToolTip='Property address';
                 }
                 field(Address2;Address2)
                 {
+                    ToolTip='Property address 2';
                 }
                 field("Post Code";"Post Code")
                 {
+                    ToolTip='Property post code';
                 }
                 field(City;City)
                 {
+                    ToolTip='Property city';
                 }
                 field("Country/Region Code";"Country/Region Code")
                 {
+                    ToolTip='Property country';
                 }
                 field(Email;Email)
                 {
+                    ToolTip='Main email.';
                 }
                 field(CompanyRegNo;CompanyRegNo)
                 {
+                    ToolTip='Company registration number';
                 }
                 field(CadastralNo;CadastralNo)
                 {
+                    ToolTip='Property cadastral number';
                 }
                 field(SquareMetersTotal;SquareMetersTotal)
                 {
+                    ToolTip='Property total square meter.';
                 }
                 field(SquareMetersProf;SquareMetersProf)
                 {
+                    ToolTip='Property square meter used for business';
                 }
                 field(SquareMetersLiv;SquareMetersLiv)
                 {
+                    ToolTip='Property square meter used for living';
                 }
                 field(Startdate;Startdate)
                 {
+                    ToolTip='Startdate for the administration';
                 }
                 field(ArchiveDate;ArchiveDate)
                 {
+                    ToolTip='Archived date. The date, administration of the property stopped';
                 }
             }
             group(Own)
@@ -62,30 +78,39 @@ page 60512 "Property Card"
                 Caption = 'Owner';
                 field(Owner;Owner)
                 {
+                    ToolTip='Owner name. Not uset for associations';
                 }
                 field(OwnerAddress1;OwnerAddress1)
                 {
+                    ToolTip='Owner address. Not uset for associations';
                 }
                 field(OwnerAddress2;OwnerAddress2)
                 {
+                    ToolTip='Owner address 2. Not uset for associations';
                 }
                 field(OwnerPostCode;OwnerPostCode)
                 {
+                    ToolTip='Owner post code. Not uset for associations';
                 }
                 field(OwnerCity;OwnerCity)
                 {
+                    ToolTip='Owner city. Not uset for associations';
                 }
                 field(OwnerCountry;OwnerCountry)
                 {
+                    ToolTip='Owner country. Not uset for associations';
                 }
                 field(OwnerPhone;OwnerPhone)
                 {
+                    ToolTip='Owner phone. Not uset for associations';
                 }
                 field(OwnerCell;OwnerCell)
                 {
+                    ToolTip='Owner cellphone. Not uset for associations';
                 }
                 field(OwnerEmail;OwnerEmail)
                 {
+                    ToolTip='Owner email. Not uset for associations';
                 }
             }
             group(Bankinformations)
@@ -93,27 +118,35 @@ page 60512 "Property Card"
                 Caption = 'Bank and NETS';
                 field(Bankname;Bankname)
                 {
+                    ToolTip='Bankname for this property';
                 }
                 field(BankRegNo;BankRegNo)
                 {
+                    ToolTip='Bank branch no for this property';
                 }
                 field(Bankaccount;Bankaccount)
                 {
+                    ToolTip='Bankaccount for this property';
                 }
                 field(CGPNumber;CGPNumber)
                 {
+                    ToolTip='CPG number for this property';
                 }
                 field(ESRNumber;ESRNumber)
                 {
+                    ToolTip='ESR number for agreement with NETS';
                 }
                 field(ESRAgrType;ESRAgrType)
                 {
+                    ToolTip='ESR type for agreement with NETS';
                 }
                 field(DataVendor;DataVendor)
                 {
+                    ToolTip='Datavendor for agreement with NETS';
                 }
                 field(ESRSystem;ESRSystem)
                 {
+                    ToolTip='ESRsystem type for agreement with NETS';
                 }
             }
             group(Periods)
@@ -121,19 +154,24 @@ page 60512 "Property Card"
                 Caption = 'Periods';
                 field(FinCompany;FinCompany)
                 {
+                    ToolTip='Audit office';
                 }
                 field(FinCompanyNo;FinCompanyNo)
                 {
+                    ToolTip='Our account at audit office';
                 }
                 field(FinEmail;FinEmail)
                 {
                      ExtendedDatatype = EMail;
+                     ToolTip='Audit office email';
                 }
                 field(FinancialYearFrom;FinancialYearFrom)
                 {
+                    ToolTip='Financial year from';
                 }
                 field(FinancialYearTo;FinancialYearTo)
                 {
+                    ToolTip='Financial year to';
                 }
             }
             group(Balances)
@@ -144,27 +182,29 @@ page 60512 "Property Card"
                     Caption = 'Heat accounting';
                     field(HeatCompany;HeatCompany)
                     {
-                
+                        ToolTip='Company, wich prepare accounting';
                     }
                     field(HeatCompanyNo;HeatCompanyNo)
                     {
-                    
+                        ToolTip='Our account at heatcompany';
                     }
                     field(HeatEmail;HeatEmail)
                     {
                    
                         ExtendedDatatype = EMail;
+                        ToolTip='Heatcompany email';
                     }
                     field(HeatingYearFrom;HeatingYearFrom)
                     {
-                   
+                        ToolTip='Year from';
                     }
                     field(HeatingYearTo;HeatingYearTo)
                     {
-                    
+                        ToolTip='Year to';
                     }
                     field(HeatLatest;HeatLatest)
                     {
+                        ToolTip='Latest accounting';
                     }
                 }
                 group(Water)
@@ -172,27 +212,28 @@ page 60512 "Property Card"
                     Caption = 'Water accounting';
                     field(WaterCompany;WaterCompany)
                     {
-                   
+                        ToolTip='Company, wich prepare accounting';
                     }
                     field(WaterCompanyNo;WaterCompanyNo)
                     {
-                   
+                        ToolTip='Our account at watercompany';
                     }
                     field(WaterEmail;WaterEmail)
                     {
-                    
+                        ToolTip='Watercompany email';
                         ExtendedDatatype = EMail;
                     }
                     field(WaterYearFrom;WaterYearFrom)
                     {
-                    
+                         ToolTip='Year from';                                              
                     }
                     field(WaterYearTo;WaterYearTo)
                     {
-                    
+                        ToolTip='Year to';
                     }
                     field(WaterLatest;WaterLatest)
                     {
+                        ToolTip='Latest accounting';
                     }
                 }
                 group(Electric)
@@ -200,28 +241,28 @@ page 60512 "Property Card"
                     Caption = 'El-accounting';
                     field(ElCompany;ElCompany)
                     {
-                  
+                        ToolTip='Company, wich prepare accounting';
                     }
                     field(ELCompanyNo;ELCompanyNo)
                     {
-      
+                        ToolTip='Our account at el-company';
                     }
                     field(ElEmail;ElEmail)
                     {
-
+                        ToolTip='El-company email';
                         ExtendedDatatype = EMail;
                     }
                     field(ElectricYearFrom;ElectricYearFrom)
                     {
-                 
+                        ToolTip='Year from';
                     }
                     field(ElectricYearTo;ElectricYearTo)
                     {
-                 
+                        ToolTip='Year to';
                     }
                     field(ElLatest;ElLatest)
                     {
-             
+                        ToolTip='Latest accounting';
                     }
                 }
                 group(Manage)
@@ -229,11 +270,11 @@ page 60512 "Property Card"
                     Caption = 'Maintenance accounting';
                     field(ManYearFrom;ManYearFrom)
                     {
-            
+                        ToolTip='Year from';
                     }
                     field(ManYearTo;ManYearTo)
                     {
-
+                        ToolTip='Year to';
                     }
                 }
             }
@@ -245,12 +286,15 @@ page 60512 "Property Card"
                         Caption='Paragraph 1';
                         field(TypeA9_1_Laundry;TypeA9_1_Laundry)
                         {
+                            ToolTip='Is there access to laundy?';
                         }
                         field(TypeA9_1_Bicycle;TypeA9_1_Bicycle)
                         {
+                            ToolTip='Is there access to bicyclestorage?';
                         }
                         field(TypeA9_1_Courtyard;TypeA9_1_Courtyard)
                         {
+                            ToolTip='Is there access to Courtyard?';
                         }
                 }    
                 group(Par3)
@@ -258,6 +302,8 @@ page 60512 "Property Card"
                     Caption='Paragraph 3';
                     field(TypeA9_3_Taxes;TypeA9_3_Taxes)
                     {
+
+                        ToolTip='The rent is based on taxes per date.';
                     }
                 }
                 group(Par4)
@@ -265,9 +311,11 @@ page 60512 "Property Card"
                     Caption='Paragraph 4';
                     field(TypeA9_4_Deposit;TypeA9_4_DepMth)
                     {
+                        ToolTip='Month of deposit.';
                     }
                     field(TypeA9_4_PrepaidRent;TypeA9_4_PrePaidMth)
                     {
+                        Tooltip='Month of prepaid rent';
                     }
                 }
                 group(Par5)
@@ -275,76 +323,90 @@ page 60512 "Property Card"
                     Caption = 'Paragraph 5';
                     field(TypeA9_5_LandlordHeat;TypeA9_5_LandlordHeat)
                     {
+                        Tooltip='Landlord provides heat.';
                     }
                     field(TypeA9_5_LNatgas;TypeA9_5_LNatgas)
                     {
+                        Tooltip='The tenancy is heatet by natural gas/distant heat .';
                     }
                     field(TypeA9_5_lOil;TypeA9_5_lOil)
                     {
+                        Tooltip='The tenancy is heatet by Oil.';
                     }
                     field(TypeA9_5_LEl;TypeA9_5_LEl)
                     {
+                        Tooltip='The tenancy is heatet by electricity.';
                     }
                     field(TypeA9_5_LOther;TypeA9_5_LOther)
                     {
+                        Tooltip='The tenancy is heatet by other.';
                     }
                     field(TypeA9_5_LOtherText;TypeA9_5_LOtherText)
                     {
+                        Tooltip='Wich type of heat?';
                     }
                     field(TypeA9_5_TenantHeat;TypeA9_5_TenantHeat)
                     {
+                        Tooltip='Tenant provides heat.';
                     }
                     field(TypeA9_5_TEl;TypeA9_5_TEl)
                     {
+                        Tooltip='The tenancy is heatet by electricity.';
                     }
                     field(TypeA9_5_Tgas;TypeA9_5_Tgas)
                     {
+                        Tooltip='The tenancy is heatet by gas.';
                     }
                     field(TypeA9_5_TOil;TypeA9_5_TOil)
                     {
+                        Tooltip='The tenancy is heatet by oil.';
                     }
                     field(TypeA9_5_TNatgas;TypeA9_5_TNatgas)
                     {
+                        Tooltip='The tenancy is heatet by natural gas.';
                     }
                     field(TypeA9_5_TOTher;TypeA9_5_TOTher)
                     {
+                        Tooltip='The tenancy is heatet by other.';
                     }
                     field(TypeA9_5_TOtherText;TypeA9_5_TOtherText)
                     {
+                        Tooltip='What is the tenancy heatet by.';
                     }
                     field(TypeA9_5_Water;TypeA9_5_Water)
                     {
+                        Tooltip='Landlord provides water.';
                     }
                     field(TypeA9_5_WM;TypeA9_5_WM)
                     {
+                        Tooltip='Tenancy has water meter';
                     }
-                    field(TypeA9_5_Wperiod;TypeA9_5_Wperiod)
-                    {
-                    }
+                   
                     field(TypeA9_5_El;TypeA9_5_El)
                     {
+                        Tooltip='Landlord provides electricity for other use than heat.';
                     }
-                    field(TypeA9_5_ElPeriod;TypeA9_5_ElPeriod)
-                    {
-                    }
+                    
                     field(TypeA9_5_Cooling;TypeA9_5_Cooling)
                     {
+                        Tooltip='Landlord provides cooling.';
                     }
                     field(TypeA9_5_CM;TypeA9_5_CM)
                     {
+                        Tooltip='Tenancy has cooling meter';
                     }
-                    field(TypeA9_5_CPeriod;TypeA9_5_CPeriod)
-                    {
-                    }
+                    
                 }
                 group(Par6)
                 {
                     Caption='Paragraph 6';
                     field(TypeA9_6_TAntenna;TypeA9_6_TAntenna)
                     {
+                        Tooltip='Tenant pays for common signal';
                     }
                     field(TypeA9_6_Internet;TypeA9_6_Internet)
                     {
+                        Tooltip='Landlord provides for internet which tenants pays contribution';
                     }
                 }
                 group(Par8)
@@ -352,6 +414,7 @@ page 60512 "Property Card"
                     Caption='Paragraph 8';
                     field(TypeA9_8_MainLandlord;TypeA9_8_MainLandlord)
                     {
+                        Tooltip='Inside maintenance by landlord';
                     }
                 }
                 group(Par10)
@@ -359,12 +422,15 @@ page 60512 "Property Card"
                     Caption='Paragraph 10';
                     field(TypeA9_10_HouseStock;TypeA9_10_HouseStock)
                     {
+                        Tooltip='Er det tilladt at holde husdyr i lejemålet?';
                     }
                     field(TypeA9_10_Houserules;TypeA9_10_Houserules)
                     {
+                        Tooltip='Foreligger der ved lejeforholdets indgåelse en husorden for ejendommen?';
                     }
                     field(TypeA9_10_Occgroup;TypeA9_10_Occgroup)
                     {
+                        Tooltip='Er der ved kontraktens indgåelse etableret beboerrepræsentation i ejendommen?';
                     }
                 }
             }
@@ -390,6 +456,7 @@ page 60512 "Property Card"
                 action("Consumption Heat")
                 {
                     Caption='AC Heat';
+                    ToolTip='Making a status report for paid ac heat for the period';
                     Image = "Report";
                     
                     trigger OnAction();
@@ -410,6 +477,7 @@ page 60512 "Property Card"
                 action("Consumption Water")
                 {
                     Caption='AC Water';
+                    ToolTip='Making a status report for paid ac water for the period';
                     Image = "Report";
                     
                     trigger OnAction();
@@ -430,6 +498,7 @@ page 60512 "Property Card"
                 action("Consumption Electricity")
                 {
                     Caption='AC Electricity';
+                    ToolTip='Making a status report for paid ac electricity for the period';
                     Image = "Report";
                     
                     trigger OnAction();
@@ -470,6 +539,7 @@ page 60512 "Property Card"
                 action("Vacant tenancies")
                 {
                     Caption='Vacant tenancies';
+                    ToolTip='Making report showing vacant tenancies in this company.';
                     Image = "Report";
                   
                     trigger OnAction();
@@ -489,7 +559,8 @@ page 60512 "Property Card"
                 Caption='Regulations';
                 action(Regulations)
                 {
-                    Caption='Rent regulations';
+                    Caption='Rent regulations (indeks)';
+                    ToolTip='Making a list of rent regulations.';
                     Image = Recalculate;
                     RunObject = Page 60620;
                     RunPageLink = PropertyNo=FIELD(Property);

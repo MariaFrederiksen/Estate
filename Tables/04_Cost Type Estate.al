@@ -24,8 +24,8 @@ table 50004 "SVA Cost type"
         field(4;Type;Option)
         {
             Caption='Type';
-            OptionCaption='Other,Rent,ACheat,ACwater,ACElectric,ACCooling,Antenna,Internet,OccGroup,Deposit,Prepaid rent,Settlement,MovingCost';
-            OptionMembers = Other,Rent,ACheat,ACwater,ACElectric,ACCooling,Antenna,Internet,OccGroup,Deposit,"Prepaid rent",Settlement,Movingcost;
+            OptionCaption='Other,Rent,ACheat,ACwater,ACElectric,ACCooling,ACOperating,Antenna,Internet,OccGroup,Deposit,Prepaid rent,Settlement,MovingCost';
+            OptionMembers = Other,Rent,ACheat,ACwater,ACElectric,ACCooling,ACOperating,Antenna,Internet,OccGroup,Deposit,"Prepaid rent",Settlement,Movingcost;
         }
         field(5;Reminder;Boolean)
         {
@@ -39,6 +39,7 @@ table 50004 "SVA Cost type"
         {
             Caption='VAT Bus. Posting Group';
             TableRelation = "VAT Product Posting Group".Code;
+            NotBlank = true;
         }
     }
 

@@ -1,6 +1,7 @@
-page 61100 "Bookkeeper ESTATE Activities"
+page 61100 "SVA Bookkeeper Activities"
 {
     // version NAVW110.00,NAVDK10.00
+    //Tooltip created.
 
     Caption='Activities';
     PageType = CardPart;
@@ -14,21 +15,25 @@ page 61100 "Bookkeeper ESTATE Activities"
             cuegroup(Stamdata)
             {
                 Caption='Basic data';
+                
                 field("Occpupants";"SVA Occupant")
                 {
                     Caption='Occupants';
+                    ToolTip = 'Liste over beboeraftaler for alle ejendomme';
                     DrillDownPageID = "SVA Occupant List";
                     Image = Person;
                 }
                 field("Tenancies";"SVA Tenancy")
                 {
                     Caption='Tenancies';
+                    ToolTip = 'Liste over alle lejemål';
                     DrillDownPageID = "SVA Tenancy List";
                     Image = "Key";
                 }
                 field("Properties";"SVA Property")
                 {
                     Caption='Properties';
+                    ToolTip = 'Liste over ejendomme i virksomheden';
                     DrillDownPageID = "SVA Property List";
                     Image = Library;
                 }
@@ -36,37 +41,10 @@ page 61100 "Bookkeeper ESTATE Activities"
                 {
                     ApplicationArea = Basic,Suite;
                     Caption='Vacant tenancies';
+                    ToolTip = 'Liste over ledige lejemål for alle ejendomme';
                     DrillDownPageID = "SVA Tenancy List";
                     Image = "None";
                     
-                }
-            }
-            cuegroup("Gæld")
-            {
-                Caption='Payables';
-                field("Purchase Documents Due Today";"Purchase Documents Due Today")
-                {
-                    ApplicationArea = Basic,Suite;
-                    Caption='Purchase Documents Due Today';
-                    DrillDownPageID = "Vendor Ledger Entries";
-                    Image = Stack;
-                }
-                field("Vendors - Payment on Hold";"Vendors - Payment on Hold")
-                {
-                    ApplicationArea = Basic,Suite;
-                    DrillDownPageID = "Vendor List";
-                    Image = Stack;
-                }
-
-                actions
-                {
-                    action("Rediger udbetalingskladde")
-                    {
-                        ApplicationArea = Basic,Suite;
-                        Caption='Edit Payment Journal';
-                        RunObject = Page "Payment Journal";
-                        
-                    }
                 }
             }
             cuegroup(Tilgodehavender)
@@ -76,6 +54,7 @@ page 61100 "Bookkeeper ESTATE Activities"
                 {
                     ApplicationArea = Basic,Suite;
                     Caption='Overdue Sales Documents';
+                    ToolTip='Liste over forfaldne opkrævninger';
                     DrillDownPageID = "Customer Ledger Entries";
                     Image = Stack;
                 }

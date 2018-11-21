@@ -17,10 +17,13 @@ xmlport 50110 "SVA Import Estate Cost Type"
                 fieldattribute(Description;"SVA Cost type Estate".Description)
                 {
                 }
+                fieldattribute(Type;"SVA Cost type Estate".Type)
+                {
+                }
                 fieldattribute(Account;"SVA Cost type Estate".Account)
                 {
                 }
-                fieldattribute(Type;"SVA Cost type Estate".Type)
+                fieldattribute(Vatgrp;"SVA Cost type Estate".VatGroup)
                 {
                 }
                 fieldattribute(Rkf;"SVA Cost type Estate".Order)

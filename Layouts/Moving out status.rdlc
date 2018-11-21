@@ -9132,7 +9132,6 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
-                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell>
@@ -15733,7 +15732,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>Parterne er enige om den vedligeholdelsestilstand for lejligheden, der fremgår af rapporten og om at de arbejder, som partnerne har aftalt, skal gennemføres i forbindelse med frafltytningen, udføres for </Value>
+                    <Value>Parterne er enige om den vedligeholdelsestilstand for lejligheden, der fremgår af rapporten og om at de arbejder, som parterne har aftalt, skal gennemføres i forbindelse med frafltytningen, udføres for </Value>
                     <Style>
                       <FontSize>9pt</FontSize>
                     </Style>

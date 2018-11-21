@@ -127,13 +127,13 @@ report 50620 "SVA DemandNoticeProf"
         }
         dataitem("Company information";"Company Information")
         {
-            column(CName;Name)
+            column(CName;Companyinfo.Name)
             {
             }
-            column(CAdress;Address)
+            column(CAdress;Companyinfo.Address)
             {
             }
-            column(CPostcode;"Post Code")
+            column(CPostcode;Companyinfo."Post Code")
             {
             }
             column(CCIty;City)

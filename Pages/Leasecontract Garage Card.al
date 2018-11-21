@@ -1,7 +1,9 @@
 page 60590 "SVA Leasecontract_Garage"
+//Tooltip created
 {
     // Page er oprettet for at kunne udfylde Lejekontrakt for garage korrekt. En del informationer findes i andre tabeller, og
     // udfyldes (se tabllen), når man går ind på kontrakten første gang. Senere ændringer overskrives ikke.
+    //Tooltip created.
 
     Caption='Leasecontract Garage';
     PageType = Card;
@@ -16,83 +18,107 @@ page 60590 "SVA Leasecontract_Garage"
                 Caption='Leasecontract';
                 field(Number;Number)
                 {
+                  ToolTip='Number on leasecontract';
                 }
                 field(TypeA9_1_Address;TypeA9_1_Address)
                 {
+                  ToolTip='Tenancy address';
                 }
                 field(TypeA9_1_City;TypeA9_1_City)
                 {
+                  ToolTip='Tenancy city';
                 }
                 field(TypeA9_1_Landlord;TypeA9_1_Landlord)
                 {
+                  ToolTip='Landlord name';
                 }
                 field(TypeA9_1_LandlordCVR;TypeA9_1_LandlordCVR)
                 {
+                  ToolTip='Landlord ESRno.';
                 }
                 field(TypeA9_1_LandlordAddress;TypeA9_1_LandlordAddress)
                 {
+                  ToolTip='Landlord address';
                 }
                 field(TypeA9_1_TenentName;TypeA9_1_TenentName)
                 {
+                  ToolTip='Tenant name(s)';
                 }
                 field(TypeA9_1_TenentAddress;TypeA9_1_TenentAddress)
                 {
+                  ToolTip='Tenant invoice address';
                 }
                 field(TypeA9_1_TenantCPR;TypeA9_1_TenantCPR)
                 {
+                  ToolTip='Tenant social security number';
                 }
                 field(TypeA9_1_GarageNo;TypeA9_1_GarageNo)
                 {
+                  ToolTip='Garage no. or letter';
                 }
                 field(TypeA9_2_Startdate;TypeA9_2_Startdate)
                 {
+                  ToolTip='Startdate leaseperiod';
                 }
                 field(TypeA9_3_RentPerPeriode;TypeA9_3_RentPerPeriode)
                 {
-                    Caption='Rent per period';
+                    ToolTip='Rent per period (month, quarter, halfyear or year).';
                 }
                 field(TypeA9_3_RentPerYear;TypeA9_3_RentPerYear)
                 {
+                    ToolTip='Rent per year';
                 }
                 field(TypeA9_4_DepMth;TypeA9_4_DepMth)
                 {
+                  ToolTip='Deposit qty month';
                 }
                 field(TypeA9_4_DepAmount;TypeA9_4_DepAmount)
                 {
+                  ToolTip='Deposit amount. If deposit month is blank, amount can be filled out';
                 }
                 field(TypeA9_4_PrepaidRentMth;TypeA9_4_PrepaidRentMth)
                 {
+                  ToolTip='Prepaid rent qty month';
                 }
                 field(TypeA9_4_PrepaidRent;TypeA9_4_PrepaidRent)
                 {
+                  ToolTip='Prepaid rent amount';
                 }
                 field(TypeA9_4_Rentetc;TypeA9_4_Rentetc)
                 {
-                    Caption='Rent';
+                  ToolTip='Rent first period';
                 }
                 field(TypeA9_4_RentFrom;TypeA9_4_RentFrom)
                 {
+                  ToolTip='Rent first period startdate';
                 }
                 field(TypeA9_4_RentTo;TypeA9_4_RentTo)
                 {
+                  ToolTip='Rent first period enddate';
                 }
                 field(TypeA9_4_TotalAmount;TypeA9_4_TotalAmount)
-                {
+                {                  
+                  ToolTip='Total amount to be paid at commissioning';
                 }
                 field(TypeA9_4_DueDate;TypeA9_4_DueDate)
                 {
+                  ToolTip='Duedate for moving in costs';
                 }
                 field(TypeA9_4_RentFirstTime;TypeA9_4_RentFirstTime)
                 {
+                  ToolTip='Rent first time then';
                 }
                 field(TypeA9_3_Bankname;TypeA9_3_Bankname)
                 {
+                  ToolTip='Landlords bankname';
                 }
                 field(TypeA9_3_BankRegNo;TypeA9_3_BankRegNo)
                 {
+                  ToolTip='Landlord bank branch no';
                 }
                 field(TypeA9_3_BankAccount;TypeA9_3_BankAccount)
                 {
+                  ToolTip='Landlord bank account no.';
                 }
             }
         }
@@ -116,6 +142,7 @@ page 60590 "SVA Leasecontract_Garage"
                 action(LeaseContract)
                 {
                     Caption='Leasecontract';
+                    ToolTip='Print leasecontract for garage';
                     Image = "report";
 
                     trigger OnAction();
@@ -132,6 +159,7 @@ page 60590 "SVA Leasecontract_Garage"
                 action(MoveInInvoice)
                 {
                     Caption='Move in invoice';
+                    ToolTip='Making move in invoice.';
                     Image = Invoice;
 
                     trigger OnAction();
@@ -578,7 +606,6 @@ page 60590 "SVA Leasecontract_Garage"
 
     trigger OnAfterGetCurrRecord();
     begin
-        CurrPage.UPDATE;
         CurrPage.UPDATE;
     end;
 

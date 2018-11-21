@@ -1,7 +1,8 @@
 page 60510 "SVA Property List"
+//Tooltip created
 {
     Caption='Properties';
-    CardPageID = "Property Card";
+    CardPageID = "SVA Property Card";
     PageType = List;
     SourceTable = "SVA Property";
     UsageCategory = Lists;
@@ -13,18 +14,23 @@ page 60510 "SVA Property List"
             {
                 field(Property;Property)
                 {
+                    ToolTip='Property number';
                 }
                 field(Name;Name)
                 {
+                    ToolTip='Possibly property name';
                 }
                 field(Address1;Address1)
                 {
+                    ToolTip='Property address';
                 }
                 field("Post Code";"Post Code")
                 {
+                    ToolTip='Property post code';
                 }
                 field(City;City)
                 {
+                    ToolTip='Property city';
                 }
             }
         }
@@ -49,7 +55,7 @@ page 60510 "SVA Property List"
                 action(Tenancies)
                 {
                     Caption='Tenancies';
-                    Image = StepInto;
+                    Image = AlternativeAddress;
                     RunObject = Page "SVA Tenancy List";
                     RunPageLink = PropertyNo=FIELD(Property);
                     
@@ -78,7 +84,7 @@ page 60510 "SVA Property List"
                 action("Basic data report")
                 {
                     Caption='Data sheet report';
-                    Image = report;
+                    Image = Report2;
                     RunObject = Report 50100;
                 }
             }
@@ -97,7 +103,7 @@ page 60510 "SVA Property List"
                 action(Invoicing)
                 {
                     Caption='Subscription invoicing';
-                    Image = Invoice;
+                    Image = PostBatch;
                     RunObject = Codeunit 60500;
                 }
                 action(Nets)

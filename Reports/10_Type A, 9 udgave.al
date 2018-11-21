@@ -114,6 +114,9 @@ report 50500 "SVA ContractTypeA9"
             column(Quater;TextT9_3_Quater)
             {
             }
+            column(Taxes;TextT9_3_Taxes)
+            {
+            }
             column(RentPPeriod;TypeA9_3_RentPerPeriode)
             {
             }

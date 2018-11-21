@@ -1,54 +1,54 @@
 table 50006 "SVA Occupant Trans"
 {
-    Caption='Occupant postings';
+    Caption = 'Occupant postings';
 
     fields
     {
-        field(1;Occupant;Code[10])
+        field(1; Occupant; Code[10])
         {
-            Caption='Occupant';
+            Caption = 'Occupant';
             TableRelation = "SVA Occupant".Number;
         }
-        field(2;Date;Date)
+        field(2; Date; Date)
         {
-            Caption='Date';
+            Caption = 'Date';
         }
-        field(3;"Cost type Estate";Code[10])
+        field(3; "Cost type Estate"; Code[10])
         {
-            Caption='Costtype';
+            Caption = 'Costtype';
             TableRelation = "SVA Cost type".Costtype;
         }
-        field(4;Description;Text[30])
+        field(4; Description; Text[30])
         {
-            Caption='Description';
+            Caption = 'Description';
         }
-        field(5;Qty;Decimal)
+        field(5; Qty; Decimal)
         {
-            Caption='Qty';
+            Caption = 'Qty';
         }
-        field(6;Price;Decimal)
+        field(6; Price; Decimal)
         {
-            Caption='Price';
+            Caption = 'Price';
         }
-        field(7;Amount;Decimal)
+        field(7; Amount; Decimal)
         {
-            Caption='Amount';
+            Caption = 'Amount';
         }
-        field(8;"Invoice No";Text[30])
+        field(8; "Invoice No"; Text[30])
         {
-            Caption='Invoice No';
+            Caption = 'Invoice No';
         }
-        field(9;Type;Option)
+        field(9; Type; Option)
         {
-            Caption='Type';
-            OptionCaption='Other,Rent,ACheat,ACwater,ACElectric,ACCooling,Antenna,Internet,OccGroup,Deposit,Prepaid rent, Settlement,Move Out';
-            OptionMembers = Other,Rent,ACheat,ACwater,ACElectric,ACCooling,Antenna,Internet,OccGroup,Deposit,"Prepaid rent"," Settlement",MoveOut;
+            Caption = 'Type';
+            OptionCaption = 'Other,Rent,ACheat,ACwater,ACElectric,ACCooling,ACOperating,Antenna,Internet,OccGroup,Deposit,Prepaid rent,Settlement,MovingCost';
+            OptionMembers = Other, Rent, ACheat, ACwater, ACElectric, ACCooling, ACOperating, Antenna, Internet, OccGroup, Deposit, "Prepaid rent", Settlement, Movingcost;
         }
     }
 
     keys
     {
-        key(Key1;Occupant,Date,"Cost type Estate","Invoice No")
+        key(Key1; Occupant, Date, "Cost type Estate", "Invoice No")
         {
         }
     }
@@ -60,13 +60,13 @@ table 50006 "SVA Occupant Trans"
     trigger OnInsert();
     begin
         CosttypeEstateRec.RESET;
-        CosttypeEstateRec.SETRANGE(Costtype,"Cost type Estate");
+        CosttypeEstateRec.SETRANGE(Costtype, "Cost type Estate");
         IF FINDFIRST() THEN BEGIN
-          Type := CosttypeEstateRec.Type;
-          END;
+            Type := CosttypeEstateRec.Type;
+        END;
     end;
 
     var
-        CosttypeEstateRec : Record "SVA Cost type";
+        CosttypeEstateRec: Record "SVA Cost type";
 }
 

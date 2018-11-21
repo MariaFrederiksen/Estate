@@ -1,7 +1,8 @@
-page 60610 Priceindeks
+page 60610 "SVA Priceindeks"
 {
     // Indlæser indeksværdier fra 1.1.2017 til 1.6.2018.
     // Redigeret aug. 2018
+    //Tooltips created
 
     Caption='Priceindeks';
     PageType = List;
@@ -16,12 +17,15 @@ page 60610 Priceindeks
             {
                 field(IndeksNo;IndeksNo)
                 {
+                    ToolTip='Indeks number.';
                 }
                 field(IndeksDate;IndeksDate)
                 {
+                    ToolTip='Indeks per date';
                 }
                 field(Indeksrate;Indeksrate)
                 {
+                    ToolTip='Indeks rate.';
                 }
             }
         }
@@ -44,6 +48,7 @@ page 60610 Priceindeks
             action("Read old indeks")
             {
                 Caption='Read indeks from 2017';
+                ToolTip='Load old indekses from january 2017 to the end of 2018';
                 Image = Add;
 
                 trigger OnAction();
@@ -126,6 +131,19 @@ page 60610 Priceindeks
                     Indeksrate := 103.6;
                     IndeksNo := 'NETTO';
                     INSERT;
+                    IndeksNo := 'NETTO';
+                    IndeksDate := DMY2DATE(1,8,2018);
+                    Indeksrate := 103.1;
+                    IndeksNo := 'NETTO';
+                    Insert;
+                    IndeksDate := DMY2DATE(1,9,2018);
+                    Indeksrate := 102.8;
+                    IndeksNo := 'NETTO';
+                    Insert;
+                    IndeksDate := DMY2DATE(1,10,2018);
+                    Indeksrate := 103.1;
+                    IndeksNo := 'NETTO';
+                    Insert;
                 end;
             }
         }

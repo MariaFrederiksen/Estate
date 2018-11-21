@@ -8,9 +8,8 @@ trigger OnRun();
         IF DATE2DMY(TODAY,2) < 12 THEN BEGIN
           FromDate := DMY2DATE(1, DATE2DMY(TODAY,2)+1, DATE2DMY(TODAY,3));
           END;
-        ToDate := DMY2DATE(1, DATE2DMY(TODAY,2)+1+1, DATE2DMY(TODAY,3));
-        ToDate := ToDate - 1;
-        
+        ToDate := CalcDate('<1m>-1D',FromDate);
+                
         Salesheader.reset;
         Salesheader.SETRANGE("Due Date",FromDate,ToDate);
         Salesheader.SetRange("Payment Method Code",'NETS');

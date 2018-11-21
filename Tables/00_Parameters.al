@@ -169,6 +169,12 @@ table 50000 "SVA Parameters"
             Caption='Rate for §22 stk. 1.';
             Description = 'Sats for vedligeholdelse (§22)';
         }
+        field(560;Numberserie;Code[10])
+        {
+            Caption='Numberserie for contracts';
+            Description='Nummerserie for beboeraftaler';
+            TableRelation = "No. Series".Code;
+        }
     }
 
     keys

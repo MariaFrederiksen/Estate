@@ -1,4 +1,4 @@
-page 60600 "Subscription regulations"
+page 60600 "SVA Subscription regulations"
 {
     Caption='Subscription regulations';
     PageType = Card;
