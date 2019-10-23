@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Report xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner" xmlns:cl="http://schemas.microsoft.com/sqlserver/reporting/2010/01/componentdefinition" xmlns="http://schemas.microsoft.com/sqlserver/reporting/2010/01/reportdefinition">
   <Author>Maria Frederiksen</Author>
   <AutoRefresh>0</AutoRefresh>
@@ -11,99 +11,6 @@
       <rd:DataSourceID>9f466647-1f22-4156-bc56-d2d94315525c</rd:DataSourceID>
     </DataSource>
   </DataSources>
-  <DataSets>
-    <DataSet Name="DataSet_Result">
-      <Query>
-        <DataSourceName>DataSource</DataSourceName>
-        <CommandText />
-      </Query>
-      <Fields>
-        <Field Name="Number_Occupant">
-          <DataField>Number_Occupant</DataField>
-        </Field>
-        <Field Name="TenancyNo_Occupant">
-          <DataField>TenancyNo_Occupant</DataField>
-        </Field>
-        <Field Name="CustomerNo_Occupant">
-          <DataField>CustomerNo_Occupant</DataField>
-        </Field>
-        <Field Name="Name1_Occupant">
-          <DataField>Name1_Occupant</DataField>
-        </Field>
-        <Field Name="Name2_Occupant">
-          <DataField>Name2_Occupant</DataField>
-        </Field>
-        <Field Name="EndDate_Occupant">
-          <DataField>EndDate_Occupant</DataField>
-        </Field>
-        <Field Name="CAddress">
-          <DataField>CAddress</DataField>
-        </Field>
-        <Field Name="CPostcode">
-          <DataField>CPostcode</DataField>
-        </Field>
-        <Field Name="CCIty">
-          <DataField>CCIty</DataField>
-        </Field>
-        <Field Name="TAddress">
-          <DataField>TAddress</DataField>
-        </Field>
-        <Field Name="TPostCode">
-          <DataField>TPostCode</DataField>
-        </Field>
-        <Field Name="TCity">
-          <DataField>TCity</DataField>
-        </Field>
-        <Field Name="Date">
-          <DataField>Date</DataField>
-        </Field>
-        <Field Name="CostType">
-          <DataField>CostType</DataField>
-        </Field>
-        <Field Name="Description">
-          <DataField>Description</DataField>
-        </Field>
-        <Field Name="Qty">
-          <DataField>Qty</DataField>
-        </Field>
-        <Field Name="QtyFormat">
-          <DataField>QtyFormat</DataField>
-        </Field>
-        <Field Name="Price">
-          <DataField>Price</DataField>
-        </Field>
-        <Field Name="PriceFormat">
-          <DataField>PriceFormat</DataField>
-        </Field>
-        <Field Name="Amount">
-          <DataField>Amount</DataField>
-        </Field>
-        <Field Name="AmountFormat">
-          <DataField>AmountFormat</DataField>
-        </Field>
-        <Field Name="Type">
-          <DataField>Type</DataField>
-        </Field>
-        <Field Name="CostTypes_SubscriptionLines">
-          <DataField>CostTypes_SubscriptionLines</DataField>
-        </Field>
-        <Field Name="Description_SubscriptionLines">
-          <DataField>Description_SubscriptionLines</DataField>
-        </Field>
-        <Field Name="AmountPeriod_SubscriptionLines">
-          <DataField>AmountPeriod_SubscriptionLines</DataField>
-        </Field>
-        <Field Name="AmountPeriod_SubscriptionLinesFormat">
-          <DataField>AmountPeriod_SubscriptionLinesFormat</DataField>
-        </Field>
-      </Fields>
-      <rd:DataSetInfo>
-        <rd:DataSetName>DataSet</rd:DataSetName>
-        <rd:SchemaPath>Report.xsd</rd:SchemaPath>
-        <rd:TableName>Result</rd:TableName>
-      </rd:DataSetInfo>
-    </DataSet>
-  </DataSets>
   <ReportSections>
     <ReportSection>
       <Body>
@@ -1764,4 +1671,92 @@ End Function
   <ConsumeContainerWhitespace>true</ConsumeContainerWhitespace>
   <rd:ReportUnitType>Cm</rd:ReportUnitType>
   <rd:ReportID>0eeb6585-38ae-40f1-885b-8d50088d51b4</rd:ReportID>
+  <DataSets>
+    <DataSet Name="DataSet_Result">
+      <Fields>
+        <Field Name="Number_Occupant">
+          <DataField>Number_Occupant</DataField>
+        </Field>
+        <Field Name="TenancyNo_Occupant">
+          <DataField>TenancyNo_Occupant</DataField>
+        </Field>
+        <Field Name="CustomerNo_Occupant">
+          <DataField>CustomerNo_Occupant</DataField>
+        </Field>
+        <Field Name="Name1_Occupant">
+          <DataField>Name1_Occupant</DataField>
+        </Field>
+        <Field Name="Name2_Occupant">
+          <DataField>Name2_Occupant</DataField>
+        </Field>
+        <Field Name="EndDate_Occupant">
+          <DataField>EndDate_Occupant</DataField>
+        </Field>
+        <Field Name="CAddress">
+          <DataField>CAddress</DataField>
+        </Field>
+        <Field Name="CPostcode">
+          <DataField>CPostcode</DataField>
+        </Field>
+        <Field Name="CCIty">
+          <DataField>CCIty</DataField>
+        </Field>
+        <Field Name="TAddress">
+          <DataField>TAddress</DataField>
+        </Field>
+        <Field Name="TPostCode">
+          <DataField>TPostCode</DataField>
+        </Field>
+        <Field Name="TCity">
+          <DataField>TCity</DataField>
+        </Field>
+        <Field Name="Date">
+          <DataField>Date</DataField>
+        </Field>
+        <Field Name="CostType">
+          <DataField>CostType</DataField>
+        </Field>
+        <Field Name="Description">
+          <DataField>Description</DataField>
+        </Field>
+        <Field Name="Qty">
+          <DataField>Qty</DataField>
+        </Field>
+        <Field Name="QtyFormat">
+          <DataField>QtyFormat</DataField>
+        </Field>
+        <Field Name="Price">
+          <DataField>Price</DataField>
+        </Field>
+        <Field Name="PriceFormat">
+          <DataField>PriceFormat</DataField>
+        </Field>
+        <Field Name="Amount">
+          <DataField>Amount</DataField>
+        </Field>
+        <Field Name="AmountFormat">
+          <DataField>AmountFormat</DataField>
+        </Field>
+        <Field Name="Type">
+          <DataField>Type</DataField>
+        </Field>
+        <Field Name="CostTypes_SubscriptionLines">
+          <DataField>CostTypes_SubscriptionLines</DataField>
+        </Field>
+        <Field Name="Description_SubscriptionLines">
+          <DataField>Description_SubscriptionLines</DataField>
+        </Field>
+        <Field Name="AmountPeriod_SubscriptionLines">
+          <DataField>AmountPeriod_SubscriptionLines</DataField>
+        </Field>
+        <Field Name="AmountPeriod_SubscriptionLinesFormat">
+          <DataField>AmountPeriod_SubscriptionLinesFormat</DataField>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>DataSource</DataSourceName>
+        <CommandText />
+      </Query>
+    </DataSet>
+  </DataSets>
 </Report>

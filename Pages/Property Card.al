@@ -1,7 +1,7 @@
-page 60512 "SVA Property Card"
+page 50014 "SVA Property Card"
 //Tooltip created
 {
-    Caption='Property';
+    Caption = 'Property';
     PageType = Card;
     SourceTable = "SVA Property";
 
@@ -11,167 +11,205 @@ page 60512 "SVA Property Card"
         {
             group(General)
             {
-                Caption='General';
-                field(Property;Property)
+                Caption = 'General';
+                field(Property; Property)
                 {
-                    ToolTip='Property number';
+                    ApplicationArea = All;
+                    ToolTip = 'Property number';
                 }
-                field(Name;Name)
+                field(Name; Name)
                 {
-                    ToolTip='Possibly property name';
+                    ApplicationArea = All;
+                    ToolTip = 'Possibly property name';
                 }
-                field(Address1;Address1)
+                field(Address1; Address1)
                 {
-                    ToolTip='Property address';
+                    ApplicationArea = All;
+                    ToolTip = 'Property address';
                 }
-                field(Address2;Address2)
+                field(Address2; Address2)
                 {
-                    ToolTip='Property address 2';
+                    ApplicationArea = All;
+                    ToolTip = 'Property address 2';
                 }
-                field("Post Code";"Post Code")
+                field("Post Code"; "Post Code")
                 {
-                    ToolTip='Property post code';
+                    ApplicationArea = All;
+                    ToolTip = 'Property post code';
                 }
-                field(City;City)
+                field(City; City)
                 {
-                    ToolTip='Property city';
+                    ApplicationArea = All;
+                    ToolTip = 'Property city';
                 }
-                field("Country/Region Code";"Country/Region Code")
+                field("Country/Region Code"; "Country/Region Code")
                 {
-                    ToolTip='Property country';
+                    ApplicationArea = All;
+                    ToolTip = 'Property country';
                 }
-                field(Email;Email)
+                field(Email; Email)
                 {
-                    ToolTip='Main email.';
+                    ApplicationArea = All;
+                    ToolTip = 'Main email.';
                 }
-                field(CompanyRegNo;CompanyRegNo)
+                field(CompanyRegNo; CompanyRegNo)
                 {
-                    ToolTip='Company registration number';
+                    ApplicationArea = All;
+                    ToolTip = 'Company registration number';
                 }
-                field(CadastralNo;CadastralNo)
+                field(CadastralNo; CadastralNo)
                 {
-                    ToolTip='Property cadastral number';
+                    ApplicationArea = All;
+                    ToolTip = 'Property cadastral number';
                 }
-                field(SquareMetersTotal;SquareMetersTotal)
+                field(SquareMetersTotal; SquareMetersTotal)
                 {
-                    ToolTip='Property total square meter.';
+                    ApplicationArea = All;
+                    ToolTip = 'Property total square meter.';
                 }
-                field(SquareMetersProf;SquareMetersProf)
+                field(SquareMetersProf; SquareMetersProf)
                 {
-                    ToolTip='Property square meter used for business';
+                    ApplicationArea = All;
+                    ToolTip = 'Property square meter used for business';
                 }
-                field(SquareMetersLiv;SquareMetersLiv)
+                field(SquareMetersLiv; SquareMetersLiv)
                 {
-                    ToolTip='Property square meter used for living';
+                    ApplicationArea = All;
+                    ToolTip = 'Property square meter used for living';
                 }
-                field(Startdate;Startdate)
+                field(Startdate; Startdate)
                 {
-                    ToolTip='Startdate for the administration';
+                    ApplicationArea = All;
+                    ToolTip = 'Startdate for the administration';
                 }
-                field(ArchiveDate;ArchiveDate)
+                field(ArchiveDate; ArchiveDate)
                 {
-                    ToolTip='Archived date. The date, administration of the property stopped';
+                    ApplicationArea = All;
+                    ToolTip = 'Archived date. The date, administration of the property stopped';
                 }
             }
             group(Own)
             {
                 Caption = 'Owner';
-                field(Owner;Owner)
+                field(Owner; Owner)
                 {
-                    ToolTip='Owner name. Not uset for associations';
+                    ApplicationArea = All;
+                    ToolTip = 'Owner name. Not uset for associations';
                 }
-                field(OwnerAddress1;OwnerAddress1)
+                field(OwnerAddress1; OwnerAddress1)
                 {
-                    ToolTip='Owner address. Not uset for associations';
+                    ApplicationArea = All;
+                    ToolTip = 'Owner address. Not uset for associations';
                 }
-                field(OwnerAddress2;OwnerAddress2)
+                field(OwnerAddress2; OwnerAddress2)
                 {
-                    ToolTip='Owner address 2. Not uset for associations';
+                    ApplicationArea = All;
+                    ToolTip = 'Owner address 2. Not uset for associations';
                 }
-                field(OwnerPostCode;OwnerPostCode)
+                field(OwnerPostCode; OwnerPostCode)
                 {
-                    ToolTip='Owner post code. Not uset for associations';
+                    ApplicationArea = All;
+                    ToolTip = 'Owner post code. Not uset for associations';
                 }
-                field(OwnerCity;OwnerCity)
+                field(OwnerCity; OwnerCity)
                 {
-                    ToolTip='Owner city. Not uset for associations';
+                    ApplicationArea = All;
+                    ToolTip = 'Owner city. Not uset for associations';
                 }
-                field(OwnerCountry;OwnerCountry)
+                field(OwnerCountry; OwnerCountry)
                 {
-                    ToolTip='Owner country. Not uset for associations';
+                    ApplicationArea = All;
+                    ToolTip = 'Owner country. Not uset for associations';
                 }
-                field(OwnerPhone;OwnerPhone)
+                field(OwnerPhone; OwnerPhone)
                 {
-                    ToolTip='Owner phone. Not uset for associations';
+                    ApplicationArea = All;
+                    ToolTip = 'Owner phone. Not uset for associations';
                 }
-                field(OwnerCell;OwnerCell)
+                field(OwnerCell; OwnerCell)
                 {
-                    ToolTip='Owner cellphone. Not uset for associations';
+                    ApplicationArea = All;
+                    ToolTip = 'Owner cellphone. Not uset for associations';
                 }
-                field(OwnerEmail;OwnerEmail)
+                field(OwnerEmail; OwnerEmail)
                 {
-                    ToolTip='Owner email. Not uset for associations';
+                    ApplicationArea = All;
+                    ToolTip = 'Owner email. Not uset for associations';
                 }
             }
             group(Bankinformations)
             {
                 Caption = 'Bank and NETS';
-                field(Bankname;Bankname)
+                field(Bankname; Bankname)
                 {
-                    ToolTip='Bankname for this property';
+                    ApplicationArea = All;
+                    ToolTip = 'Bankname for this property';
                 }
-                field(BankRegNo;BankRegNo)
+                field(BankRegNo; BankRegNo)
                 {
-                    ToolTip='Bank branch no for this property';
+                    ApplicationArea = All;
+                    ToolTip = 'Bank branch no for this property';
                 }
-                field(Bankaccount;Bankaccount)
+                field(Bankaccount; Bankaccount)
                 {
-                    ToolTip='Bankaccount for this property';
+                    ApplicationArea = All;
+                    ToolTip = 'Bankaccount for this property';
                 }
-                field(CGPNumber;CGPNumber)
+                field(ESRAgrType; ESRAgrType)
                 {
-                    ToolTip='CPG number for this property';
+                    ApplicationArea = All;
+                    ToolTip = 'ESR type for agreement with NETS';
                 }
-                field(ESRNumber;ESRNumber)
+                field(ESRNumber; ESRNumber)
                 {
-                    ToolTip='ESR number for agreement with NETS';
+                    ApplicationArea = All;
+                    ToolTip = 'ESR number for agreement with NETS';
                 }
-                field(ESRAgrType;ESRAgrType)
+                field(ESRSystem; ESRSystem)
                 {
-                    ToolTip='ESR type for agreement with NETS';
+                    ApplicationArea = All;
+                    ToolTip = 'ESRsystem type for agreement with NETS';
                 }
-                field(DataVendor;DataVendor)
+                field(ESRCustgrp; ESRCustgrp)
                 {
-                    ToolTip='Datavendor for agreement with NETS';
+                    ApplicationArea = All;
+                    ToolTip = 'ESR customer group at NETS';
                 }
-                field(ESRSystem;ESRSystem)
+                field("ESR Advis"; "ESR Advis")
                 {
-                    ToolTip='ESRsystem type for agreement with NETS';
+                    ApplicationArea = All;
+                    ToolTip = 'ESR advis';
+
                 }
             }
             group(Periods)
             {
                 Caption = 'Periods';
-                field(FinCompany;FinCompany)
+                field(FinCompany; FinCompany)
                 {
-                    ToolTip='Audit office';
+                    ApplicationArea = All;
+                    ToolTip = 'Audit office';
                 }
-                field(FinCompanyNo;FinCompanyNo)
+                field(FinCompanyNo; FinCompanyNo)
                 {
-                    ToolTip='Our account at audit office';
+                    ApplicationArea = All;
+                    ToolTip = 'Our account at audit office';
                 }
-                field(FinEmail;FinEmail)
+                field(FinEmail; FinEmail)
                 {
-                     ExtendedDatatype = EMail;
-                     ToolTip='Audit office email';
+                    ExtendedDatatype = EMail;
+                    ToolTip = 'Audit office email';
+                    ApplicationArea = All;
                 }
-                field(FinancialYearFrom;FinancialYearFrom)
+                field(FinancialYearFrom; FinancialYearFrom)
                 {
-                    ToolTip='Financial year from';
+                    ApplicationArea = All;
+                    ToolTip = 'Financial year from';
                 }
-                field(FinancialYearTo;FinancialYearTo)
+                field(FinancialYearTo; FinancialYearTo)
                 {
-                    ToolTip='Financial year to';
+                    ApplicationArea = All;
+                    ToolTip = 'Financial year to';
                 }
             }
             group(Balances)
@@ -180,101 +218,120 @@ page 60512 "SVA Property Card"
                 group(Heat)
                 {
                     Caption = 'Heat accounting';
-                    field(HeatCompany;HeatCompany)
+                    field(HeatCompany; HeatCompany)
                     {
-                        ToolTip='Company, wich prepare accounting';
+                        ToolTip = 'Company, wich prepare accounting';
+                        ApplicationArea = all;
                     }
-                    field(HeatCompanyNo;HeatCompanyNo)
+                    field(HeatCompanyNo; HeatCompanyNo)
                     {
-                        ToolTip='Our account at heatcompany';
+                        ToolTip = 'Our account at heatcompany';
+                        ApplicationArea = all;
                     }
-                    field(HeatEmail;HeatEmail)
+                    field(HeatEmail; HeatEmail)
                     {
-                   
                         ExtendedDatatype = EMail;
-                        ToolTip='Heatcompany email';
+                        ToolTip = 'Heatcompany email';
+                        ApplicationArea = all;
                     }
-                    field(HeatingYearFrom;HeatingYearFrom)
+                    field(HeatingYearFrom; HeatingYearFrom)
                     {
-                        ToolTip='Year from';
+                        ToolTip = 'Year from';
+                        ApplicationArea = all;
                     }
-                    field(HeatingYearTo;HeatingYearTo)
+                    field(HeatingYearTo; HeatingYearTo)
                     {
-                        ToolTip='Year to';
+                        ApplicationArea = All;
+                        ToolTip = 'Year to';
                     }
-                    field(HeatLatest;HeatLatest)
+                    field(HeatLatest; HeatLatest)
                     {
-                        ToolTip='Latest accounting';
+                        ApplicationArea = All;
+                        ToolTip = 'Latest accounting';
                     }
                 }
                 group(Water)
                 {
                     Caption = 'Water accounting';
-                    field(WaterCompany;WaterCompany)
+                    field(WaterCompany; WaterCompany)
                     {
-                        ToolTip='Company, wich prepare accounting';
+                        ApplicationArea = All;
+                        ToolTip = 'Company, wich prepare accounting';
                     }
-                    field(WaterCompanyNo;WaterCompanyNo)
+                    field(WaterCompanyNo; WaterCompanyNo)
                     {
-                        ToolTip='Our account at watercompany';
+                        ApplicationArea = All;
+                        ToolTip = 'Our account at watercompany';
                     }
-                    field(WaterEmail;WaterEmail)
+                    field(WaterEmail; WaterEmail)
                     {
-                        ToolTip='Watercompany email';
+                        ApplicationArea = All;
+                        ToolTip = 'Watercompany email';
                         ExtendedDatatype = EMail;
                     }
-                    field(WaterYearFrom;WaterYearFrom)
+                    field(WaterYearFrom; WaterYearFrom)
                     {
-                         ToolTip='Year from';                                              
+                        ApplicationArea = All;
+                        ToolTip = 'Year from';
                     }
-                    field(WaterYearTo;WaterYearTo)
+                    field(WaterYearTo; WaterYearTo)
                     {
-                        ToolTip='Year to';
+                        ApplicationArea = All;
+                        ToolTip = 'Year to';
                     }
-                    field(WaterLatest;WaterLatest)
+                    field(WaterLatest; WaterLatest)
                     {
-                        ToolTip='Latest accounting';
+                        ApplicationArea = All;
+                        ToolTip = 'Latest accounting';
                     }
                 }
                 group(Electric)
                 {
                     Caption = 'El-accounting';
-                    field(ElCompany;ElCompany)
+                    field(ElCompany; ElCompany)
                     {
-                        ToolTip='Company, wich prepare accounting';
+                        ApplicationArea = All;
+                        ToolTip = 'Company, wich prepare accounting';
                     }
-                    field(ELCompanyNo;ELCompanyNo)
+                    field(ELCompanyNo; ELCompanyNo)
                     {
-                        ToolTip='Our account at el-company';
+                        ApplicationArea = All;
+                        ToolTip = 'Our account at el-company';
                     }
-                    field(ElEmail;ElEmail)
+                    field(ElEmail; ElEmail)
                     {
-                        ToolTip='El-company email';
+                        ApplicationArea = All;
+                        ToolTip = 'El-company email';
                         ExtendedDatatype = EMail;
                     }
-                    field(ElectricYearFrom;ElectricYearFrom)
+                    field(ElectricYearFrom; ElectricYearFrom)
                     {
-                        ToolTip='Year from';
+                        ApplicationArea = All;
+                        ToolTip = 'Year from';
                     }
-                    field(ElectricYearTo;ElectricYearTo)
+                    field(ElectricYearTo; ElectricYearTo)
                     {
-                        ToolTip='Year to';
+                        ApplicationArea = All;
+                        ToolTip = 'Year to';
                     }
-                    field(ElLatest;ElLatest)
+                    field(ElLatest; ElLatest)
                     {
-                        ToolTip='Latest accounting';
+                        ApplicationArea = All;
+                        ToolTip = 'Latest accounting';
                     }
                 }
                 group(Manage)
                 {
                     Caption = 'Maintenance accounting';
-                    field(ManYearFrom;ManYearFrom)
+                    field(ManYearFrom; ManYearFrom)
                     {
-                        ToolTip='Year from';
+                        ApplicationArea = All;
+                        ToolTip = 'Year from';
                     }
-                    field(ManYearTo;ManYearTo)
+                    field(ManYearTo; ManYearTo)
                     {
-                        ToolTip='Year to';
+                        ApplicationArea = All;
+                        ToolTip = 'Year to';
                     }
                 }
             }
@@ -283,164 +340,202 @@ page 60512 "SVA Property Card"
                 Caption = 'Fields for Type A 9. edition';
                 group(Par1)
                 {
-                        Caption='Paragraph 1';
-                        field(TypeA9_1_Laundry;TypeA9_1_Laundry)
-                        {
-                            ToolTip='Is there access to laundy?';
-                        }
-                        field(TypeA9_1_Bicycle;TypeA9_1_Bicycle)
-                        {
-                            ToolTip='Is there access to bicyclestorage?';
-                        }
-                        field(TypeA9_1_Courtyard;TypeA9_1_Courtyard)
-                        {
-                            ToolTip='Is there access to Courtyard?';
-                        }
-                }    
+                    Caption = 'Paragraph 1';
+                    field(TypeA9_1_Laundry; TypeA9_1_Laundry)
+                    {
+                        ApplicationArea = All;
+                        ToolTip = 'Is there access to laundy?';
+                    }
+                    field(TypeA9_1_Bicycle; TypeA9_1_Bicycle)
+                    {
+                        ApplicationArea = All;
+                        ToolTip = 'Is there access to bicyclestorage?';
+                    }
+                    field(TypeA9_1_Courtyard; TypeA9_1_Courtyard)
+                    {
+                        ApplicationArea = All;
+                        ToolTip = 'Is there access to Courtyard?';
+                    }
+                }
                 group(Par3)
                 {
-                    Caption='Paragraph 3';
-                    field(TypeA9_3_Taxes;TypeA9_3_Taxes)
+                    Caption = 'Paragraph 3';
+                    field(TypeA9_3_Taxes; TypeA9_3_Taxes)
                     {
-
-                        ToolTip='The rent is based on taxes per date.';
+                        ApplicationArea = all;
+                        ToolTip = 'The rent is based on taxes per date.';
                     }
                 }
                 group(Par4)
                 {
-                    Caption='Paragraph 4';
-                    field(TypeA9_4_Deposit;TypeA9_4_DepMth)
+                    Caption = 'Paragraph 4';
+                    field(TypeA9_4_Deposit; TypeA9_4_DepMth)
                     {
-                        ToolTip='Month of deposit.';
+                        ApplicationArea = All;
+                        ToolTip = 'Month of deposit.';
                     }
-                    field(TypeA9_4_PrepaidRent;TypeA9_4_PrePaidMth)
+                    field(TypeA9_4_PrepaidRent; TypeA9_4_PrePaidMth)
                     {
-                        Tooltip='Month of prepaid rent';
+                        ApplicationArea = All;
+                        Tooltip = 'Month of prepaid rent';
                     }
                 }
                 group(Par5)
                 {
                     Caption = 'Paragraph 5';
-                    field(TypeA9_5_LandlordHeat;TypeA9_5_LandlordHeat)
+                    field(TypeA9_5_LandlordHeat; TypeA9_5_LandlordHeat)
                     {
-                        Tooltip='Landlord provides heat.';
+                        ApplicationArea = All;
+                        Tooltip = 'Landlord provides heat.';
                     }
-                    field(TypeA9_5_LNatgas;TypeA9_5_LNatgas)
+                    field(TypeA9_5_LNatgas; TypeA9_5_LNatgas)
                     {
-                        Tooltip='The tenancy is heatet by natural gas/distant heat .';
+                        ApplicationArea = All;
+                        Tooltip = 'The tenancy is heatet by natural gas/distant heat .';
                     }
-                    field(TypeA9_5_lOil;TypeA9_5_lOil)
+                    field(TypeA9_5_lOil; TypeA9_5_lOil)
                     {
-                        Tooltip='The tenancy is heatet by Oil.';
+                        ApplicationArea = All;
+                        Tooltip = 'The tenancy is heatet by Oil.';
                     }
-                    field(TypeA9_5_LEl;TypeA9_5_LEl)
+                    field(TypeA9_5_LEl; TypeA9_5_LEl)
                     {
-                        Tooltip='The tenancy is heatet by electricity.';
+                        ApplicationArea = All;
+                        Tooltip = 'The tenancy is heatet by electricity.';
                     }
-                    field(TypeA9_5_LOther;TypeA9_5_LOther)
+                    field(TypeA9_5_LOther; TypeA9_5_LOther)
                     {
-                        Tooltip='The tenancy is heatet by other.';
+                        ApplicationArea = All;
+                        Tooltip = 'The tenancy is heatet by other.';
                     }
-                    field(TypeA9_5_LOtherText;TypeA9_5_LOtherText)
+                    field(TypeA9_5_LOtherText; TypeA9_5_LOtherText)
                     {
-                        Tooltip='Wich type of heat?';
+                        ApplicationArea = All;
+                        Tooltip = 'Wich type of heat?';
                     }
-                    field(TypeA9_5_TenantHeat;TypeA9_5_TenantHeat)
+                    field(TypeA9_5_TenantHeat; TypeA9_5_TenantHeat)
                     {
-                        Tooltip='Tenant provides heat.';
+                        ApplicationArea = All;
+                        Tooltip = 'Tenant provides heat.';
                     }
-                    field(TypeA9_5_TEl;TypeA9_5_TEl)
+                    field(TypeA9_5_TEl; TypeA9_5_TEl)
                     {
-                        Tooltip='The tenancy is heatet by electricity.';
+                        ApplicationArea = All;
+                        Tooltip = 'The tenancy is heatet by electricity.';
                     }
-                    field(TypeA9_5_Tgas;TypeA9_5_Tgas)
+                    field(TypeA9_5_Tgas; TypeA9_5_Tgas)
                     {
-                        Tooltip='The tenancy is heatet by gas.';
+                        ApplicationArea = All;
+                        Tooltip = 'The tenancy is heatet by gas.';
                     }
-                    field(TypeA9_5_TOil;TypeA9_5_TOil)
+                    field(TypeA9_5_TOil; TypeA9_5_TOil)
                     {
-                        Tooltip='The tenancy is heatet by oil.';
+                        ApplicationArea = All;
+                        Tooltip = 'The tenancy is heatet by oil.';
                     }
-                    field(TypeA9_5_TNatgas;TypeA9_5_TNatgas)
+                    field(TypeA9_5_TNatgas; TypeA9_5_TNatgas)
                     {
-                        Tooltip='The tenancy is heatet by natural gas.';
+                        ApplicationArea = All;
+                        Tooltip = 'The tenancy is heatet by natural gas.';
                     }
-                    field(TypeA9_5_TOTher;TypeA9_5_TOTher)
+                    field(TypeA9_5_TOTher; TypeA9_5_TOTher)
                     {
-                        Tooltip='The tenancy is heatet by other.';
+                        ApplicationArea = All;
+                        Tooltip = 'The tenancy is heatet by other.';
                     }
-                    field(TypeA9_5_TOtherText;TypeA9_5_TOtherText)
+                    field(TypeA9_5_TOtherText; TypeA9_5_TOtherText)
                     {
-                        Tooltip='What is the tenancy heatet by.';
+                        ApplicationArea = All;
+                        Tooltip = 'What is the tenancy heatet by.';
                     }
-                    field(TypeA9_5_Water;TypeA9_5_Water)
+                    field(TypeA9_5_Water; TypeA9_5_Water)
                     {
-                        Tooltip='Landlord provides water.';
+                        ApplicationArea = All;
+                        Tooltip = 'Landlord provides water.';
                     }
-                    field(TypeA9_5_WM;TypeA9_5_WM)
+                    field(TypeA9_5_WM; TypeA9_5_WM)
                     {
-                        Tooltip='Tenancy has water meter';
+                        ApplicationArea = All;
+                        Tooltip = 'Tenancy has water meter';
                     }
-                   
-                    field(TypeA9_5_El;TypeA9_5_El)
+
+                    field(TypeA9_5_El; TypeA9_5_El)
                     {
-                        Tooltip='Landlord provides electricity for other use than heat.';
+                        ApplicationArea = All;
+                        Tooltip = 'Landlord provides electricity for other use than heat.';
                     }
-                    
-                    field(TypeA9_5_Cooling;TypeA9_5_Cooling)
+
+                    field(TypeA9_5_Cooling; TypeA9_5_Cooling)
                     {
-                        Tooltip='Landlord provides cooling.';
+                        ApplicationArea = All;
+                        Tooltip = 'Landlord provides cooling.';
                     }
-                    field(TypeA9_5_CM;TypeA9_5_CM)
+                    field(TypeA9_5_CM; TypeA9_5_CM)
                     {
-                        Tooltip='Tenancy has cooling meter';
+                        ApplicationArea = All;
+                        Tooltip = 'Tenancy has cooling meter';
                     }
-                    
+
                 }
                 group(Par6)
                 {
-                    Caption='Paragraph 6';
-                    field(TypeA9_6_TAntenna;TypeA9_6_TAntenna)
+                    Caption = 'Paragraph 6';
+                    field(TypeA9_6_TAntenna; TypeA9_6_TAntenna)
                     {
-                        Tooltip='Tenant pays for common signal';
+                        ApplicationArea = All;
+                        Tooltip = 'Tenant pays for common signal';
                     }
-                    field(TypeA9_6_Internet;TypeA9_6_Internet)
+                    field(TypeA9_6_Internet; TypeA9_6_Internet)
                     {
-                        Tooltip='Landlord provides for internet which tenants pays contribution';
+                        ApplicationArea = All;
+                        Tooltip = 'Landlord provides for internet which tenants pays contribution';
                     }
                 }
+                group(Par7)
+                {
+                    Caption = 'Paragraph 7';
+                    field(TypeA9_7_MoveIn; TypeA9_7_MoveIn)
+                    {
+                        ApplicationArea = all;
+                    }
+                }
+
                 group(Par8)
                 {
-                    Caption='Paragraph 8';
-                    field(TypeA9_8_MainLandlord;TypeA9_8_MainLandlord)
+                    Caption = 'Paragraph 8';
+                    field(TypeA9_8_MainLandlord; TypeA9_8_MainLandlord)
                     {
-                        Tooltip='Inside maintenance by landlord';
+                        ApplicationArea = All;
+                        Tooltip = 'Inside maintenance by landlord';
                     }
                 }
                 group(Par10)
                 {
-                    Caption='Paragraph 10';
-                    field(TypeA9_10_HouseStock;TypeA9_10_HouseStock)
+                    Caption = 'Paragraph 10';
+                    field(TypeA9_10_HouseStock; TypeA9_10_HouseStock)
                     {
-                        Tooltip='Er det tilladt at holde husdyr i lejemålet?';
+                        ApplicationArea = All;
+                        Tooltip = 'Er det tilladt at holde husdyr i lejemålet?';
                     }
-                    field(TypeA9_10_Houserules;TypeA9_10_Houserules)
+                    field(TypeA9_10_Houserules; TypeA9_10_Houserules)
                     {
-                        Tooltip='Foreligger der ved lejeforholdets indgåelse en husorden for ejendommen?';
+                        ApplicationArea = All;
+                        Tooltip = 'Foreligger der ved lejeforholdets indgåelse en husorden for ejendommen?';
                     }
-                    field(TypeA9_10_Occgroup;TypeA9_10_Occgroup)
+                    field(TypeA9_10_Occgroup; TypeA9_10_Occgroup)
                     {
-                        Tooltip='Er der ved kontraktens indgåelse etableret beboerrepræsentation i ejendommen?';
+                        ApplicationArea = All;
+                        Tooltip = 'Er der ved kontraktens indgåelse etableret beboerrepræsentation i ejendommen?';
                     }
                 }
             }
         }
         area(factboxes)
         {
-            systempart(Notat;Notes)
+            systempart(Notat; Notes)
             {
             }
-            systempart(Links;Links)
+            systempart(Links; Links)
             {
             }
         }
@@ -448,160 +543,428 @@ page 60512 "SVA Property Card"
 
     actions
     {
-        area(processing)
+        area(Reporting)
         {
-            group(Rapporter)
+            group(Reports)
             {
-                Caption='Reports';
+                Caption = 'AC opgørelser';
                 action("Consumption Heat")
                 {
-                    Caption='AC Heat';
-                    ToolTip='Making a status report for paid ac heat for the period';
+                    ApplicationArea = All;
+                    Caption = 'AC Heat';
+                    ToolTip = 'Making a status report for paid ac heat for the period';
                     Image = "Report";
-                    
+
                     trigger OnAction();
                     begin
-                         IF Rec.HeatCompany = '' THEN BEGIN
-                           MESSAGE('Denne ejendom har ikke varmeregnskab.');
-                           EXIT;
-                           END;
-                         CLEAR(Occupant);
-                         Occupant.SETRANGE(PropertyNo,Rec.Property);
-                         IF Occupant.FindFirst() THEN begin
+                        IF Rec.HeatCompany = '' THEN BEGIN
+                            Error('Denne ejendom har ikke varmeregnskab.');
+                        END;
+                        CLEAR(Occupant);
+                        Occupant.SETRANGE(PropertyNo, Rec.Property);
+                        IF Occupant.FindFirst() THEN begin
                             CLEAR(Heatreport);
                             Heatreport.SETTABLEVIEW(Occupant);
                             Heatreport.RUNMODAL;
-                            end;
+                        end;
                     end;
                 }
                 action("Consumption Water")
                 {
-                    Caption='AC Water';
-                    ToolTip='Making a status report for paid ac water for the period';
+                    ApplicationArea = All;
+                    Caption = 'AC Water';
+                    ToolTip = 'Making a status report for paid ac water for the period';
                     Image = "Report";
-                    
+
                     trigger OnAction();
                     begin
-                         IF Rec.WaterCompany = '' THEN BEGIN
-                           MESSAGE('Denne ejendom har ikke vandregnskab.');
-                           EXIT;
-                           END;
-                         CLEAR(Occupant);
-                         Occupant.SETRANGE(PropertyNo,Rec.Property);
-                         IF Occupant.FindFirst() then begin
+                        IF Rec.WaterCompany = '' THEN BEGIN
+                            Error('Denne ejendom har ikke vandregnskab.');
+                        END;
+                        CLEAR(Occupant);
+                        Occupant.SETRANGE(PropertyNo, Rec.Property);
+                        IF Occupant.FindFirst() then begin
                             CLEAR(Waterreport);
                             Waterreport.SETTABLEVIEW(Occupant);
                             Waterreport.RUNMODAL;
-                            END;
+                        END;
                     end;
                 }
                 action("Consumption Electricity")
                 {
-                    Caption='AC Electricity';
-                    ToolTip='Making a status report for paid ac electricity for the period';
+                    ApplicationArea = All;
+                    Caption = 'AC Electricity';
+                    ToolTip = 'Making a status report for paid ac electricity for the period';
                     Image = "Report";
-                    
+
                     trigger OnAction();
                     begin
-                         IF Rec.ElCompany = '' THEN BEGIN
-                           MESSAGE('Denne ejendom har ikke el-regnskab.');
-                           EXIT;
-                           END;
-                         CLEAR(Occupant);
-                         Occupant.SETRANGE(PropertyNo,Rec.Property);
-                         IF Occupant.FindFirst() then begin
+                        IF Rec.ElCompany = '' THEN BEGIN
+                            Error('Denne ejendom har ikke el-regnskab.');
+                        END;
+                        CLEAR(Occupant);
+                        Occupant.SETRANGE(PropertyNo, Rec.Property);
+                        IF Occupant.FindFirst() then begin
                             CLEAR(ElReport);
                             ElReport.SETTABLEVIEW(Occupant);
                             ElReport.RUNMODAL;
-                            END;
+                        END;
                     end;
                 }
                 action("Consumption Man")
                 {
-                    Caption='AC Maintenace';
+                    ApplicationArea = All;
+                    Caption = 'AC Maintenace';
                     Image = "Report";
-                    
+
                     trigger OnAction();
                     begin
-                         IF Rec.ManLatest = 0D THEN BEGIN
-                           MESSAGE('Denne ejendom har ikke driftsregnskab.');
-                           EXIT;
-                           END;
-                         CLEAR(Occupant);
-                         Occupant.SETRANGE(PropertyNo,Rec.Property);
-                         IF Occupant.FindFirst() then begin
+                        IF Rec.ManLatest = 0D THEN BEGIN
+                            Error('Denne ejendom har ikke driftsregnskab.');
+                        END;
+                        CLEAR(Occupant);
+                        Occupant.SETRANGE(PropertyNo, Rec.Property);
+                        IF Occupant.FindFirst() then begin
                             CLEAR(ManReport);
                             ManReport.SETTABLEVIEW(Occupant);
                             ManReport.RUNMODAL;
-                            end;
-                    end;
-                }
-                action("Vacant tenancies")
-                {
-                    Caption='Vacant tenancies';
-                    ToolTip='Making report showing vacant tenancies in this company.';
-                    Image = "Report";
-                  
-                    trigger OnAction();
-                    begin
-                        CLEAR(TenancyRecords);
-                        TenancyRecords.SETRANGE(TenancyRecords.PropertyNo,Rec.Property);
-                        if TenancyRecords.FindFirst() then begin 
-                            CLEAR(VacantTenancies);
-                            VacantTenancies.SETTABLEVIEW(TenancyRecords);
-                            VacantTenancies.RUNMODAL;
-                            end;
+                        end;
                     end;
                 }
             }
-            group(Lejereguleringer)
+            group(Deposita)
             {
-                Caption='Regulations';
-                action(Regulations)
+                Caption = '';
+                action("Deposit")
                 {
-                    Caption='Rent regulations (indeks)';
-                    ToolTip='Making a list of rent regulations.';
-                    Image = Recalculate;
-                    RunObject = Page 60620;
-                    RunPageLink = PropertyNo=FIELD(Property);
+                    ApplicationArea = All;
+                    Caption = 'Deposit';
+                    ToolTip = 'A list of deposit per occupant.';
+                    Image = "Report";
+
+                    trigger OnAction();
+                    begin
+                        CLEAR(Occupant);
+                        Occupant.SETRANGE(PropertyNo, Rec.Property);
+                        IF Occupant.FindFirst() then begin
+                            CLEAR(DepositReport);
+                            DepositReport.SETTABLEVIEW(Occupant);
+                            DepositReport.RUNMODAL;
+                        end;
+
+                    end;
+                }
+                action("Prepaid rent")
+                {
+                    ApplicationArea = All;
+                    Caption = 'Prepaid rent';
+                    ToolTip = 'A list of prepaid rent per occupant.';
+                    Image = "Report";
+
+                    trigger OnAction();
+                    begin
+                        CLEAR(Occupant);
+                        Occupant.SETRANGE(PropertyNo, Rec.Property);
+                        IF Occupant.FindFirst() then begin
+                            CLEAR(PrepaidReport);
+                            PrepaidReport.SETTABLEVIEW(Occupant);
+                            PrepaidReport.RUNMODAL;
+                        end;
+
+                    end;
+                }
+            }
+            group(Oversigt)
+            {
+                Caption = 'Overview';
+                action("Vacant tenancies")
+                {
+                    ApplicationArea = All;
+                    Caption = 'Vacant tenancies';
+                    ToolTip = 'Making report showing vacant tenancies in this company.';
+                    Image = "Report";
+
+                    trigger OnAction();
+                    begin
+                        CLEAR(TenancyRecords);
+                        TenancyRecords.SETRANGE(TenancyRecords.PropertyNo, Rec.Property);
+                        if TenancyRecords.FindFirst() then begin
+                            CLEAR(VacantTenancies);
+                            VacantTenancies.SETTABLEVIEW(TenancyRecords);
+                            VacantTenancies.RUNMODAL;
+                        end;
+                    end;
+                }
+                Action(IncomeProperty)
+                {
+                    ApplicationArea = All;
+                    Caption = 'Income property';
+                    Image = Report2;
+                    ToolTip = 'Income for property and tenancies';
+                    trigger OnAction();
+                    begin
+                        CLEAR(TenancyRecords);
+                        TenancyRecords.SETRANGE(TenancyRecords.PropertyNo, Rec.Property);
+                        if TenancyRecords.FindFirst() then begin
+                            CLEAR(IncomeProperty);
+                            IncomeProperty.SETTABLEVIEW(TenancyRecords);
+                            IncomeProperty.RUNMODAL;
+                        end;
+                    end;
+                }
+            }
+        }
+        
+        area(Processing)
+        {
+            group(Files)
+            {
+              Caption = 'Write to file';
+                action("Heat file")
+                {
+                    ApplicationArea = All;
+                    Caption = 'Heat file';
+                    ToolTip = 'Making file for heat accounting in this company.';
+                    Image = "ExportFile";
+
+                    trigger OnAction();
+                    begin
+                        if Rec.HeatCompany = '' then
+                            Error('Denne ejendom har ikke varmeregnskab.');
+                        TempTable.Reset;
+                        TempTable.SetRange(Name, 'Varme ' + Property);
+                        if TempTable.FindSet then
+                            repeat
+                                Temptable.delete;
+                            until TempTable.Next = 0;
+
+                        if Rec.HeatingYearTo > Date2dmy(today, 2) then
+                            Year1 := Date2dmy(today, 3) - 1;
+                        if Rec.HeatingYearTo <= Date2dmy(today, 2) then
+                            Year1 := Date2dmy(today, 3);
+                        Month1 := Rec.HeatingYearTo;
+                        TmpDate := DMY2date(1, Month1, Year1);
+                        ToDate := CalcDate('<1M-1D>', TmpDate);
+                        FromDate := CalcDate('<-1y+1D>', ToDate);
+                        Position := StrPos(Rec.HeatCompany, 'Brunata');
+                        CLEAR(Occupant);
+                        Occupant.SETRANGE(PropertyNo, Rec.Property);
+                        IF Occupant.FindSet THEN
+                            repeat
+                                if Position = 0 then
+                                WriteToFileVarmekontrol();
+                            if Position > 0 then
+                                WritetoFileBrunata();
+                            until Occupant.Next = 0;
+                        MakeFile();
+                    end;
+                }
+            }
+        }
+        area(Navigation)
+        {
+            
+            group(Navigations)
+            {
+                Caption = 'Overview';
+                action(Tenancies)
+                {
+                    ApplicationArea = All;
+                    Caption = 'Tenancies';
+                    Image = AlternativeAddress;
+                    RunObject = Page "SVA Tenancy List";
+                    RunPageLink = PropertyNo = FIELD (Property);
+
+                }
+                action(Residens)
+                {
+                    ApplicationArea = all;
+                    Caption = 'Occupants';
+                    Image = Customer;
+                    RunObject = Page "SVA Occupant List";
+                    RunPageLink = PropertyNo = FIELD (Property);
+
+                }
+                action(Dimensioner)
+                {
+                    ApplicationArea = all;
+                    Caption = 'Dimensions';
+                    Image = Dimensions;
+                    RunObject = Page "Default Dimensions";
+                    RunPageLink = "Table ID" = CONST (50001),
+                                  "No." = FIELD (Property);
+                    ShortCutKey = 'Shift+Ctrl+D';
+                    ToolTip = 'View or edits dimensions, such as area, project, or department, that you can assign to sales and purchase documents to distribute costs and analyze transaction history.';
                 }
             }
         }
     }
 
-    trigger OnAfterGetCurrRecord();
-    begin
-        //CurrPage.UPDATE;
-    end;
 
     trigger OnOpenPage();
     begin
-          Email := '';
-          Occupant.RESET;
-          Occupant.SETRANGE(Occupant.PropertyNo,Property);
-          IF Occupant.FIND('-') THEN BEGIN
-            REPEAT
-            IF Occupant.Email1 <> '' THEN BEGIN
-              Email += Occupant.Email1+';';
-              END;
-            IF Occupant.Email2 <> '' THEN BEGIN
-              Email += Occupant.Email2+';';
-              END;
-          UNTIL Occupant.NEXT = 0;
-          END;
-          IF STRLEN(Email) >= 5 THEN
-            Email := DELSTR(Email,STRLEN(Email),1);
-          CurrPage.UPDATE;
+        Areas;
     end;
 
     var
-        PropertyRec : Record "SVA Property";
-        Heatreport : Report "SVA Consumption Heat";
-        Occupant : Record "SVA Occupant";
-        Waterreport : Report "SVA Consumption Water";
-        ElReport : Report "SVA Consumption Electricity";
-        ManReport : Report "SVA Consumption Man";
-        TenancyRecords : Record "SVA Tenancy";
-        VacantTenancies : Report "SVA Vacant Tenancies";
+
+        Heatreport: Report "SVA Consumption Heat";
+        Occupant: Record "SVA Occupant";
+        Waterreport: Report "SVA Consumption Water";
+        ElReport: Report "SVA Consumption Electricity";
+        ManReport: Report "SVA Consumption Man";
+        DepositReport: Report "SVA Deposit";
+        PrepaidReport: Report "SVA Prepaid rent";
+        TenancyRecords: Record "SVA Tenancy";
+        VacantTenancies: Report "SVA Vacant Tenancies";
+        IncomeProperty: Report "SVA Income Property";
+        TempTable: Record "SVA Export Temp";
+        OccupantTrans: Record "SVA Occupant Trans";
+        ToDate: Date;
+        FromDate: Date;
+        Date1: Integer;
+        Month1: Integer;
+        Year1: Integer;
+        TmpDate: Date;
+        OccupantAmount: Decimal;
+        OcAmountInt: Integer;
+        TempCount: Integer;
+        TempLine: Text[300];
+        OcAmountText: Text[10];
+        OcNumber: Text[10];
+        Position: Integer;
+        Tenancies: Record "SVA Tenancy";
+
+    local procedure Areas();
+    begin
+        Tenancies.RESET;
+        Tenancies.SETRANGE(PropertyNo, Property);
+        SquareMetersLiv := 0;
+        SquareMetersProf := 0;
+        SquareMetersTotal := 0;
+        IF Tenancies.FIND('-') THEN BEGIN
+            REPEAT
+                SquareMetersLiv += Tenancies.AreaLiv;
+            SquareMetersProf += Tenancies.AreaPro;
+            UNTIL Tenancies.NEXT = 0;
+        END;
+        SquareMetersTotal := SquareMetersLiv + SquareMetersProf;
+    end;
+
+    local procedure WritetoFileVarmekontrol()
+    begin
+        //find poster, der er har korrekt dato og korrekt art. 
+        //Dan en linje
+        OccupantAmount := 0;
+        OccupantTrans.Reset;
+        OccupantTrans.SetRange(Occupant, Occupant.Number);
+        OccupantTrans.SetRange(Date, FromDate, ToDate);
+        OccupantTrans.SetRange(Type, 2); //Varme
+        if OccupantTrans.FindSet then
+            repeat
+                OccupantAmount += OccupantTrans.Amount;
+            until OccupantTrans.Next = 0;
+        if STRPOS(Occupant.TenancyNo, '-') > 0 then
+            Occupant.TenancyNo := DELSTR(Occupant.TenancyNo, STRPOS(Occupant.TenancyNo, '-'), 1);
+        OcNumber := Occupant.Number;
+        if STRPOS(OcNumber, 'L') > 0 then
+            OcNumber := DELSTR(OcNumber, STRPOS(OcNumber, 'L'), 1);
+        Templine := '';
+        Templine := PADSTR(Templine, 40, '0');
+        TempLine := InsStr(TempLine, HeatcompanyNo, 10 - StrLen(HeatcompanyNo)); //1-10 heatcompanyaccountNo
+        TempLine := InsStr(TempLine, Property, 20 - StrLen(Property));//11-20 Property
+        TempLine := InsStr(TempLine, Occupant.TenancyNo, 40 - Strlen(Occupant.TenancyNo) + 1); //31-40 TenancyNo only numbers
+        Templine := InsStr(TempLine, OcNumber, 50 - StrLen(OcNumber) + 1); //41-50 OccupantNo
+        TempLine := InsStr(TempLine, '                                                                                         ', 51); //51-80 Name 1
+        TempLine := InsStr(TempLine, Occupant.Name1, 51); //51-80 Name 1
+        TempLine := InsStr(TempLine, Occupant.Name2, 81); //81-110 Name 2
+        TempLine := InsStr(TempLine, Occupant.Address, 111); //111-140 Address
+        TempLine := InsStr(TempLine, Occupant."Post Code", 141); //141-144 Post code
+        TempLine := InsStr(Templine, Occupant.City, 145); //145-164 City
+        TempLine := InsStr(TempLine, format(Occupant.StartDate, 0, '<Day,2><Month,2><Year4>'), 165); //165-172 Startdate
+        If Occupant.EndDate = 0D then
+            TempLine := InsStr(TempLine, '00000000', 173);
+        if Occupant.EndDate <> 0D then
+            TempLine := InsStr(TempLine, format(Occupant.StartDate, 0, '<Day,2><Month,2><Year4>'), 173); //173-180 enddate
+        //OccupantAmount := 1999; //testbeløb
+        OcAmountInt := OccupantAmount * 100;
+        OcAmountText := Format(OcAmountInt);
+        if OccupantAmount < 0 then
+            TempLine := InsStr(Templine, '-', 181); //181
+        if OccupantAmount >= 0 then
+            TempLine := InsStr(Templine, ' ', 181); //181
+        TempLine := DelStr(Templine, 185, 10);
+        TempLine := InsStr(Templine, '000000000', 182); //182-191 amount in øre
+        TempLine := InsStr(TempLine, OcAmountText, 192 - StrLen(OcAmountText));
+        TempLine := InsStr(TempLine, 'Varmekontrol', 192); //192-203
+        Templine := InsStr(TempLine, 'ISO8859', 204); //204-213
+        TempLine := DelStr(Templine, 214, 100);
+        Reporting(TempLine);
+    end;
+
+    local procedure WritetoFileBrunata()
+    begin
+        //find poster, der er har korrekt dato og korrekt art. 
+        //Dan en linje
+        OccupantAmount := 0;
+        OccupantTrans.Reset;
+        OccupantTrans.SetRange(Occupant, Occupant.Number);
+        OccupantTrans.SetRange(Date, FromDate, ToDate);
+        OccupantTrans.SetRange(Type, 2); //Varme
+        if OccupantTrans.FindSet then
+            repeat
+                OccupantAmount += OccupantTrans.Amount;
+            until OccupantTrans.Next = 0;
+        if STRPOS(Occupant.TenancyNo, '-') > 0 then
+            Occupant.TenancyNo := DELSTR(Occupant.TenancyNo, STRPOS(Occupant.TenancyNo, '-'), 1);
+        OcNumber := Occupant.Number;
+        if STRPOS(OcNumber, 'L') > 0 then
+            OcNumber := DELSTR(OcNumber, STRPOS(OcNumber, 'L'), 1);
+        Templine := '';
+        Templine := PADSTR(Templine, 40, '0');
+        TempLine := InsStr(TempLine, HeatcompanyNo, 10 - StrLen(HeatcompanyNo)); //1-10 heatcompanyaccountNo
+        TempLine := InsStr(TempLine, Property, 20 - StrLen(Property));//11-20 Property
+        TempLine := InsStr(TempLine, Occupant.TenancyNo, 40 - Strlen(Occupant.TenancyNo) + 1); //31-40 TenancyNo only numbers
+        Templine := InsStr(TempLine, OcNumber, 50 - StrLen(OcNumber) + 1); //41-50 OccupantNo
+        TempLine := InsStr(TempLine, '                                                                                         ', 51); //51-80 Name 1
+        TempLine := InsStr(TempLine, Occupant.Name1, 51); //51-80 Name 1
+        TempLine := InsStr(TempLine, Occupant.Name2, 81); //81-110 Name 2
+        TempLine := InsStr(TempLine, Occupant.Address, 111); //111-140 Address
+        TempLine := InsStr(TempLine, Occupant."Post Code", 141); //141-144 Post code
+        TempLine := InsStr(Templine, Occupant.City, 145); //145-164 City
+        TempLine := InsStr(TempLine, format(Occupant.StartDate, 0, '<Day,2><Month,2><Year4>'), 165); //165-172 Startdate
+        If Occupant.EndDate = 0D then
+            TempLine := InsStr(TempLine, '00000000', 173);
+        if Occupant.EndDate <> 0D then
+            TempLine := InsStr(TempLine, format(Occupant.StartDate, 0, '<Day,2><Month,2><Year4>'), 173); //173-180 enddate
+        OccupantAmount := 1999; //testbeløb
+        OcAmountInt := OccupantAmount * 100;
+        OcAmountText := Format(OcAmountInt);
+        if OccupantAmount < 0 then
+            TempLine := InsStr(Templine, '-', 181); //181
+        if OccupantAmount >= 0 then
+            TempLine := InsStr(Templine, ' ', 181); //181
+        TempLine := DelStr(Templine, 185, 10);
+        TempLine := InsStr(Templine, '000000000', 182); //182-191 amount in øre
+        TempLine := InsStr(TempLine, OcAmountText, 192 - StrLen(OcAmountText));
+        TempLine := InsStr(TempLine, 'Varmekontrol', 192); //192-203
+        Templine := InsStr(TempLine, 'ISO8859', 204); //204-213
+        TempLine := DelStr(Templine, 214, 100);
+        Reporting(TempLine);
+    end;
+
+    local procedure Reporting(Text250: Text[256]);
+    begin
+        TempCount += 1;
+        TempTable."Line No." := TempCount;
+        TempTable.Name := 'Varme ejd ' + Property;
+        TempTable."Output Line" := Text250;
+        TempTable.INSERT;
+    end;
+
+    Local procedure MakeFile();
+    begin
+        Xmlport.Run(xmlport::"SVA File for Consumption", false);
+    end;
 }
 

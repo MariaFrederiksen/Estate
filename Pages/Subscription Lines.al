@@ -1,9 +1,10 @@
-page 60542 "SVA Subscription Lines"
+page 50020 "SVA Subscription Lines"
 {
     Caption='Subscription Lines';
-    InsertAllowed = true;
     PageType = List;
     SourceTable = "SVA Subscription Lines";
+    UsageCategory = Lists;
+    ApplicationArea = All;
 
     layout
     {
@@ -13,9 +14,11 @@ page 60542 "SVA Subscription Lines"
             {
                 field(Tenancies;Tenancies)
                 {
+                    ApplicationArea = All;
                 }
                 field("Cost Types";"Cost Types")
-                {
+                {                    
+                    ApplicationArea = All;
                     ToolTip='Costtype.';
 
                     trigger OnValidate();
@@ -24,28 +27,39 @@ page 60542 "SVA Subscription Lines"
                     end;
                 }
                 field(Description;Description)
-                {
+                {                    
+                    ApplicationArea = All;
                     ToolTip='Description of costtype.';
                 }
                 field("Date From";"Date From")
-                {
+                {                    
+                    ApplicationArea = All;
                     ToolTip='This line was applicable from';
                 }
                 field("Date To";"Date To")
-                {
+                {                    
+                    ApplicationArea = All;
                     ToolTip='This line was applicable to.';
                 }
                 field("Amount Year";"Amount Year")
-                {
+                {                    
+                    ApplicationArea = All;
                     ToolTip='Amount per year';
                 }
                 field("Amount Period";"Amount Period")
-                {
+                {                    
+                    ApplicationArea = All;
                     ToolTip='Amount per period (month, quater, halfyear or year';
                 }
                 field(VatGroup;VatGroup)
-                {
+                {                    
+                    ApplicationArea = All;
                     ToolTip='Vatgroup to calculate VAT for this line.';
+                }
+                field(ProductPostingGroup;ProductPostingGroup)
+                {                    
+                    ApplicationArea = All;
+                    ToolTip='Gen. prod. group';
                 }
             }
         }

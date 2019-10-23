@@ -1,4 +1,4 @@
-report 50220 "SVA Moving out Journal"
+report 50005 "SVA Moving out Journal"
 {
     DefaultLayout = RDLC;
     RDLCLayout = './layouts/Moving out collections.rdlc';
@@ -47,7 +47,7 @@ report 50220 "SVA Moving out Journal"
             dataitem("Occupant Trans";"SVA Occupant Trans")
             {
                 DataItemLink = Occupant=FIELD(Number);
-                DataItemTableView = WHERE(Type=FILTER(>OccGroup));
+                DataItemTableView = WHERE(Type=FILTER(>9));
                 column(Date;Date)
                 {
                 }
@@ -81,10 +81,10 @@ report 50220 "SVA Moving out Journal"
                     Amount := Qty*Price;
                 end;
             }
-            dataitem(DataItem1000000014;"SVA Subscription Lines")
+            dataitem("SVA Subscription Lines";"SVA Subscription Lines")
             {
                 DataItemLink = Tenancies=FIELD(TenancyNo);
-                DataItemTableView = WHERE(Type=FILTER(11));
+                DataItemTableView = WHERE(Type=FILTER('Flytning'));
                 column(CostTypes_SubscriptionLines;"Cost Types")
                 {
                 }

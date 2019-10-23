@@ -1,6 +1,6 @@
-report 50620 "SVA DemandNoticeProf"
+report 50014 "SVA DemandNoticeProf"
 {
-    RDLCLayout = './Layouts/DemandNoticeResidence.rdlc';
+
     WordLayout = './Layouts/DemandNoticeProf.docx';
     Caption='Demand notice';
     DefaultLayout = Word;
@@ -167,7 +167,7 @@ report 50620 "SVA DemandNoticeProf"
     {
     }
 
-    trigger OnInitReport();
+    trigger OnPreReport();
     begin
         CompanyInfo.GET;
     end;

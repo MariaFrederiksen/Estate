@@ -1,9 +1,9 @@
-report 50610 "SVA Vacant Tenancies"
+report 50013 "SVA Vacant Tenancies"
 {
     DefaultLayout = RDLC;
     RDLCLayout = './Layouts/Vacant Tenancies.rdlc';
     Caption='Vacant tenancies';
-    UsageCategory=ReportsAndAnalysis;
+    UsageCategory=ReportsAndAnalysis; 
 
     dataset
     {
@@ -36,9 +36,25 @@ report 50610 "SVA Vacant Tenancies"
             column(Rooms_Tenancy;Rooms)
             {
             }
+            dataitem("SVA Subscription Lines";"SVA Subscription Lines")
+            {
+                DataItemLink = Tenancies = FIELD (Number);
+                DataItemTableView = SORTING (Tenancies, Order, "Cost Types", "Date From", "Date To", KeyNumber)
+                                    ORDER(Ascending)
+                                    WHERE (Type = const (Rent));
+                column(Amount_Period;"Amount Period")
+                {
+                }
+                trigger OnAfterGetRecord();
+                begin
+                    if ("Date To" < Today) and ("Date To" <> 0D) then   
+                        CurrReport.Skip;
+                end;
+            }
 
             trigger OnAfterGetRecord();
             begin
+
                 IF vacantDate = 0D THEN
                   CurrReport.SKIP
             end;

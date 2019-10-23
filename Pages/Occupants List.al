@@ -1,11 +1,12 @@
-page 60530 "SVA Occupant List"
+page 50012 "SVA Occupant List"
 //Tooltips created
 {
-    Caption='Occupants';
+    Caption = 'List of Occupants';
     CardPageID = "SVA Occupant Card";
     PageType = List;
-    SourceTable = "SVA Occupant";
     UsageCategory = Lists;
+    ApplicationArea = All;
+    SourceTable = "SVA Occupant";
 
     layout
     {
@@ -13,62 +14,78 @@ page 60530 "SVA Occupant List"
         {
             repeater(Group)
             {
-                field(Number;Number)
-                {
-                    Tooltip='Agreement number';
+                field(Number; Number)
+                {                    
+                    ApplicationArea = All;
+                    Tooltip = 'Agreement number';
                 }
-                field(TenancyNo;TenancyNo)
-                {
-                    Tooltip='Tenancy number';
+                field(TenancyNo; TenancyNo)
+                {                    
+                    ApplicationArea = All;
+                    Tooltip = 'Tenancy number';
                 }
-                field(Name1;Name1)
-                {
-                    Tooltip='Tenant name';
+                field(Name1; Name1)
+                {                    
+                    ApplicationArea = All;
+                    Tooltip = 'Tenant name';
                 }
-                field(Name2;Name2)
-                {
-                    Tooltip='Second tenant name';
+                field(Name2; Name2)
+                {                    
+                    ApplicationArea = All;
+                    Tooltip = 'Second tenant name';
                 }
-                field(Address;Address)
-                {
-                    Tooltip='Invoice address';
+                field(Address; Address)
+                {                    
+                    ApplicationArea = All;
+                    Tooltip = 'Invoice address';
                 }
-                field(City;City)
-                {
-                    Tooltip='Invoice city';
+                field(City; City)
+                {                    
+                    ApplicationArea = All;
+                    Tooltip = 'Invoice city';
                 }
-                field(Phone;Phone)
-                {
-                    Tooltip='Tenants primary phone number';
+                field(Phone; Phone)
+                {                    
+                    ApplicationArea = All;
+                    Tooltip = 'Tenants primary phone number';
                 }
-                field(Email1;Email1)
-                {
-                    Tooltip='Tenants primary email';
+                field(Email1; Email1)
+                {                    
+                    ApplicationArea = All;
+                    Tooltip = 'Tenants primary email';
                     ExtendedDatatype = EMail;
                 }
-                field(StartDate;StartDate)
-                {
-                    ToolTip='Contract startdate';
+                field(StartDate; StartDate)
+                {                    
+                    ApplicationArea = All;
+                    ToolTip = 'Contract startdate';
                 }
-                field(EndDate;EndDate)
-                {
-                    ToolTip='Contract end date.';
+                field(EndDate; EndDate)
+                {                    
+                    ApplicationArea = All;
+                    ToolTip = 'Contract end date.';
+                }
+                field(Type_1;Type_1)
+                {                    
+                    ApplicationArea = All;
+                    Tooltip = 'Beboertype 1';
+                }
+                field(Type_2;Type_2)
+                {                    
+                    ApplicationArea = All;
+                    Tooltip = 'Beboertype 2';
                 }
             }
         }
         area(factboxes)
         {
-            systempart(Notat;Notes)
+            systempart(Notat; Notes)
             {
             }
-            systempart(Links;Links)
+            systempart(Links; Links)
             {
             }
         }
-    }
-
-    actions
-    {
     }
 }
 

@@ -2,6 +2,9 @@ table 50010 "SVA MovingIn Status"
 //Caption checked
 {
     Caption = 'Moving in status';
+    DataClassification = CustomerContent;
+    Permissions = TableData 50010 = rimd;
+
     fields
     {
         field(10; Occupant; Code[10])

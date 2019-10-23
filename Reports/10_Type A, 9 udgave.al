@@ -1,7 +1,6 @@
-report 50500 "SVA ContractTypeA9"
+report 50010 "SVA ContractTypeA9"
 {
     // Udskrivning af lejekontrakt type A, 9. udgave.
-    RDLCLayout = './Layouts/ContractTypeA9.rdlc';
     WordLayout = './Layouts/ContractTypeA9.docx';
 
     Caption='Contract type A, 9. edition';
@@ -15,6 +14,9 @@ report 50500 "SVA ContractTypeA9"
             DataItemTableView = SORTING(Number);
             RequestFilterFields = Number;
             column(Number;Number)
+            {
+            }
+            column(TypeA9_1_TenancyNo;TypeA9_1_TenancyNo)
             {
             }
             column(Appartment;TextT9_1_Apartment)
@@ -60,6 +62,12 @@ report 50500 "SVA ContractTypeA9"
             {
             }
             column(Ocpr;TypeA9_1_TenantCPR)
+            {
+            }
+            column(TypeA9_1_Phone;TypeA9_1_Phone)
+            {
+            }
+            column(TypeA9_1_Mail;TypeA9_1_Mail)
             {
             }
             column("Area";TypeA9_1_AreaTotal)
@@ -189,13 +197,13 @@ report 50500 "SVA ContractTypeA9"
             column(PrepaideRent;TypeA9_4_PrepaidRent)
             {
             }
-            column(Rent;TypeA9_4_Rentetc)
-            {
-            }
             column(RentFrom;TextT9_4_RentFrom)
             {
             }
             column(RentTo;TextT9_4_RentTo)
+            {
+            }
+            column(Rentetc;TypeA9_4_Rentetc)
             {
             }
             column(Deposit;TypeA9_4_Depositum)

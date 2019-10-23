@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Report xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner" xmlns:cl="http://schemas.microsoft.com/sqlserver/reporting/2010/01/componentdefinition" xmlns="http://schemas.microsoft.com/sqlserver/reporting/2010/01/reportdefinition">
   <Author>Maria Frederiksen</Author>
   <AutoRefresh>0</AutoRefresh>
@@ -11,60 +11,6 @@
       <rd:DataSourceID>9f466647-1f22-4156-bc56-d2d94315525c</rd:DataSourceID>
     </DataSource>
   </DataSources>
-  <DataSets>
-    <DataSet Name="DataSet_Result">
-      <Query>
-        <DataSourceName>DataSource</DataSourceName>
-        <CommandText />
-      </Query>
-      <Fields>
-        <Field Name="OProperty">
-          <DataField>OProperty</DataField>
-        </Field>
-        <Field Name="ONo">
-          <DataField>ONo</DataField>
-        </Field>
-        <Field Name="OTenancy">
-          <DataField>OTenancy</DataField>
-        </Field>
-        <Field Name="OCustomer">
-          <DataField>OCustomer</DataField>
-        </Field>
-        <Field Name="OName">
-          <DataField>OName</DataField>
-        </Field>
-        <Field Name="OEndDate">
-          <DataField>OEndDate</DataField>
-        </Field>
-        <Field Name="OStartDate">
-          <DataField>OStartDate</DataField>
-        </Field>
-        <Field Name="OID">
-          <DataField>OID</DataField>
-        </Field>
-        <Field Name="OTransNo">
-          <DataField>OTransNo</DataField>
-        </Field>
-        <Field Name="Costtype">
-          <DataField>Costtype</DataField>
-        </Field>
-        <Field Name="Date">
-          <DataField>Date</DataField>
-        </Field>
-        <Field Name="Amount">
-          <DataField>Amount</DataField>
-        </Field>
-        <Field Name="AmountFormat">
-          <DataField>AmountFormat</DataField>
-        </Field>
-      </Fields>
-      <rd:DataSetInfo>
-        <rd:DataSetName>DataSet</rd:DataSetName>
-        <rd:SchemaPath>Report.xsd</rd:SchemaPath>
-        <rd:TableName>Result</rd:TableName>
-      </rd:DataSetInfo>
-    </DataSet>
-  </DataSets>
   <ReportSections>
     <ReportSection>
       <Body>
@@ -2089,4 +2035,53 @@ End Function
   <ConsumeContainerWhitespace>true</ConsumeContainerWhitespace>
   <rd:ReportUnitType>Cm</rd:ReportUnitType>
   <rd:ReportID>0eeb6585-38ae-40f1-885b-8d50088d51b4</rd:ReportID>
+  <DataSets>
+    <DataSet Name="DataSet_Result">
+      <Fields>
+        <Field Name="OProperty">
+          <DataField>OProperty</DataField>
+        </Field>
+        <Field Name="ONo">
+          <DataField>ONo</DataField>
+        </Field>
+        <Field Name="OTenancy">
+          <DataField>OTenancy</DataField>
+        </Field>
+        <Field Name="OCustomer">
+          <DataField>OCustomer</DataField>
+        </Field>
+        <Field Name="OName">
+          <DataField>OName</DataField>
+        </Field>
+        <Field Name="OEndDate">
+          <DataField>OEndDate</DataField>
+        </Field>
+        <Field Name="OStartDate">
+          <DataField>OStartDate</DataField>
+        </Field>
+        <Field Name="OID">
+          <DataField>OID</DataField>
+        </Field>
+        <Field Name="OTransNo">
+          <DataField>OTransNo</DataField>
+        </Field>
+        <Field Name="Costtype">
+          <DataField>Costtype</DataField>
+        </Field>
+        <Field Name="Date">
+          <DataField>Date</DataField>
+        </Field>
+        <Field Name="Amount">
+          <DataField>Amount</DataField>
+        </Field>
+        <Field Name="AmountFormat">
+          <DataField>AmountFormat</DataField>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>DataSource</DataSourceName>
+        <CommandText />
+      </Query>
+    </DataSet>
+  </DataSets>
 </Report>

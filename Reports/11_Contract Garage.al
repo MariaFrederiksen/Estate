@@ -1,4 +1,4 @@
-report 50510 "SVA Contract Garage"
+report 50011 "SVA Contract Garage"
 {
     // Garagekontrakten er baseret på samme kartotek som lejekontrakt TypeA 9. udgave. Der kan kun være en lejekontrakt pr. beboeraftale.
     WordLayout = './Layouts/Contract Garage.docx';

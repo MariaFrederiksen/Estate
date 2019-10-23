@@ -1,8 +1,8 @@
-page 60600 "SVA Subscription regulations"
+page 50022 "SVA Subscription regulations"
 {
     Caption='Subscription regulations';
     PageType = Card;
-    SourceTable = "SVA LeaseContract_A9";
+    SourceTable = "SVA Contract regulations";
     
     layout
     {
@@ -11,37 +11,64 @@ page 60600 "SVA Subscription regulations"
             group(General)
             {
                 field(Number;Number)
-                {
+                {                    
+                    ApplicationArea = All;
+                    ToolTip = 'Nummer på beboeraftalen';
                 }
-                field(TypeA9_4_DepMth;TypeA9_4_DepMth)
-                {
+                field(MonthDeposit;MonthDeposit)
+                {                    
+                    ApplicationArea = All;
+                    ToolTip = 'Måneders depositum.';
                 }
-                field(TypeA9_4_Depositum;TypeA9_4_Depositum)
-                {
+                field(DepositAmount;DepositAmount)
+                {                    
+                    ApplicationArea = All;
+                    ToolTip = 'Depotitum i kr.';
                 }
-                field(TypeA9_4_PrepaidRentMth;TypeA9_4_PrepaidRentMth)
-                {
+                field(MonthPrepaidRent;MonthPrepaidRent)
+                {                    
+                    ApplicationArea = All;
+                    ToolTip = 'Måneders forudbetalt leje';
                 }
-                field(TypeA9_4_PrepaidRent;TypeA9_4_PrepaidRent)
-                {
+                field(PrepaidRentAMount;PrepaidRentAMount)
+                {                    
+                    ApplicationArea = All;
+                    ToolTip = 'Forudbetalt leje i kr.';
                 }
-                field(I_Minregulation;I_Minregulation)
-                {
+                field(MinRegulation;MinRegulation)
+                {                    
+                    ApplicationArea = All;
+                    ToolTip = 'Mindste regulering i %';
                 }
-                field(I_MaxRegulation;I_MaxRegulation)
-                {
+                field(MaxRegulations;MaxRegulations)
+                {                    
+                    ApplicationArea = All;
+                    ToolTip = 'Max. regulering i %';
                 }
-                field(I_FixedRegulation;I_FixedRegulation)
-                {
+                field(Increase;Increase)
+                {                    
+                    ApplicationArea = All;
+                    ToolTip = 'Fast reguleringsprocent';
                 }
-                field(I_RegDate;I_RegDate)
-                {
+                field(RegDate;RegDate)
+                {                    
+                    ApplicationArea = All;
+                    ToolTip = 'Reguleringsdato';
                 }
-                field(I_RegIndeksDate;I_RegIndeksDate)
-                {
+                field(Indeks_Date;Indeks_Date)
+                {                    
+                    ApplicationArea = All;
+                    ToolTip = 'Hvis der skal indeksreguleres, skal indeks pr. denne dato benyttes.';
                 }
-                field(I_LastRegulation;I_LastRegulation)
-                {
+                field(Latest_regulation;Latest_regulation)
+                {                    
+                    ApplicationArea = All;
+                    ToolTip = 'Seneste regulering';
+                }
+                field(EndDate;EndDate)
+                {                    
+                    ApplicationArea = All;
+                    ToolTip = 'Slutdato';
                 }
             }
         }
@@ -51,7 +78,7 @@ page 60600 "SVA Subscription regulations"
     {
     }
 
-    trigger OnAfterGetRecord();
+    trigger OnAfterGetCurrRecord();
     begin
         CurrPage.UPDATE;
     end;

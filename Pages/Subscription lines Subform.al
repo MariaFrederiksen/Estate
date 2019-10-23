@@ -1,8 +1,8 @@
-page 60560 "SVA Subscription lines subform"
+page 50019 "SVA Subscription lines subform"
 //Tooltip created
 {
     AutoSplitKey = true;
-    Caption='Subscription lines';
+    Caption = 'Subscription lines';
     DelayedInsert = true;
     LinksAllowed = false;
     MultipleNewLines = true;
@@ -15,51 +15,58 @@ page 60560 "SVA Subscription lines subform"
         {
             repeater(Group)
             {
-                field("Cost Types";"Cost Types")
+                field("Cost Types"; "Cost Types")
                 {
                     NotBlank = true;
-                    ToolTip='Costtype.';
+                    ToolTip = 'Costtype.';
+                    ApplicationArea = All;
                 }
-                field(Description;Description)
-                {
-                    ToolTip='Description of costtype. Will apear on invoices.';
+                field(Description; Description)
+                {                    
+                    ToolTip = 'Description of costtype. Will apear on invoices.';
+                    ApplicationArea = All;
                 }
-                field("Date From";"Date From")
-                {
-                    NotBlank = true;
-                    ToolTip='This line is applicable from';
-                }
-                field("Date To";"Date To")
-                {
-                    ToolTip='This line is applicable to. Best practise is to leave it blank.';
-                }
-                field("Amount Year";"Amount Year")
-                {
-                    ToolTip='Amount per year';
-                }
-                field("Amount Period";"Amount Period")
-                {
-                    ToolTip='Amount per period (month, quater, halfyear or year';
-                }
-                field(VatGroup;VatGroup)
+                field("Date From"; "Date From")
                 {
                     NotBlank = true;
-                    ToolTip='Vatgroup to calculate VAT for this line.';
+                    ToolTip = 'This line is applicable from';
+                    ApplicationArea = All;
                 }
-                field(PriceIndeks;PriceIndeks)
+                field("Date To"; "Date To")
+                {                    
+                    ApplicationArea = All;
+                    ToolTip = 'This line is applicable to. Best practise is to leave it blank.';
+                }
+                field("Amount Year"; "Amount Year")
+                {                    
+                    ApplicationArea = All;
+                    ToolTip = 'Amount per year';
+                }
+                field("Amount Period"; "Amount Period")
+                {                    
+                    ApplicationArea = All;
+                    ToolTip = 'Amount per period (month, quater, halfyear or year';
+                }
+
+                field(ProductPostingGroup; ProductPostingGroup)
                 {
-                    ToolTip='This line is regulate by indeks.';
+                    NotBlank = true;
+                    ToolTip = 'Prod.posting group for this line.';
+                    ApplicationArea = All;
+                }
+                field(VatGroup; VatGroup)
+                {
+                    NotBlank = true;
+                    ToolTip = 'Vatgroup to calculate VAT for this line.';
+                    ApplicationArea = All;
+                }
+                field(PriceIndeks; PriceIndeks)
+                {                    
+                    ApplicationArea = All;
+                    ToolTip = 'This line is regulate by indeks.';
                 }
             }
         }
     }
-
-    actions
-    {
-    }
-
-    var
-        TenancyCard : Record "SVA Tenancy";
-        CosttypeEstate : Record "SVA Cost type";
 }
 

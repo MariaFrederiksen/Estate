@@ -1,14 +1,17 @@
-table 50002 "SVA Tenancy"
+﻿table 50002 "SVA Tenancy"
 {
     Caption = 'Tenancies';
-    DrillDownPageID = 60520;
-    LookupPageID = 60520;
+    DataClassification = CustomerContent;
+    Permissions = TableData 50002 = rimd;
+    DrillDownPageID = "SVA Tenancy List";
+    LookupPageID = "SVA Tenancy List";
+   
 
     fields
     {
         field(1; Number; Code[10])
         {
-            Caption = 'Number';
+            Caption = 'Tenancy number';
             NotBlank = true;
         }
         field(2; PropertyNo; Code[10])
@@ -68,6 +71,22 @@ table 50002 "SVA Tenancy"
         field(4; Address1; Text[50])
         {
             Caption = 'Address';
+            trigger OnValidate();
+            begin
+                Occupant.reset;
+                Occupant.SetRange(TenancyNo, Number);
+                Rec.Vacant := true;
+                Rec.vacantDate := DMY2Date(1, 1, 1960);
+                IF Occupant.FindLast() then begin
+                    IF Occupant.EndDate > 0D THEN begin
+                        vacantDate := calcdate('<1D>', Occupant.EndDate);
+                    end;
+                    IF Occupant.EndDate = 0D THEN begin
+                        VacantDate := 0D;
+                        Vacant := false;
+                    end;
+                end;
+            end;    
         }
         field(5; Address2; Text[50])
         {
@@ -108,12 +127,26 @@ table 50002 "SVA Tenancy"
             Caption = 'Vacant from';
             Description = 'DAN=Ledigt fra;ENU=Vacant from';
         }
+        field(16; "Global Dimension 1 Code"; Code[20])
+        {
+            CaptionClass = '1,1,1';
+            Caption = 'Global Dimension 1 Code';
+            TableRelation = "Dimension Value".Code WHERE ("Global Dimension No." = CONST (1));
+
+        }
+        field(17; "Global Dimension 2 Code"; Code[20])
+        {
+            CaptionClass = '1,1,2';
+            Caption = 'Global Dimension 2 Code';
+            TableRelation = "Dimension Value".Code WHERE ("Global Dimension No." = CONST (2));
+
+        }
         field(20; Type; Option)
         {
             Caption = 'Type';
             Description = 'Type of tenancy';
             OptionCaption = 'Living,Commercial Leases,Partial,Owner,House,Other';
-            OptionMembers = Bolig,Erhverv,Andel,Ejer,hus,andet;
+            OptionMembers = Bolig, Erhverv, Andel, Ejer, hus, andet;
         }
         field(21; Contract; Option)
         {
@@ -574,10 +607,18 @@ table 50002 "SVA Tenancy"
         field(913; TypeA9_9_Other1Text; Text[20])
         {
             Caption = 'Description';
+            trigger OnValidate();
+            begin
+                TypeA9_9_Other1 := True;        
+            end;
         }
         field(914; TypeA9_9_Other2; Boolean)
         {
             Caption = 'Other';
+            trigger OnValidate();
+            begin
+                TypeA9_9_Other2 := True;        
+            end;
         }
         field(915; TypeA9_9_Other2Text; Text[20])
         {
@@ -586,6 +627,10 @@ table 50002 "SVA Tenancy"
         field(916; TypeA9_9_Other3; Boolean)
         {
             Caption = 'Other';
+            trigger OnValidate();
+            begin
+                TypeA9_9_Other3 := True;        
+            end;
         }
         field(917; TypeA9_9_Other3Text; Text[20])
         {
@@ -605,138 +650,142 @@ table 50002 "SVA Tenancy"
         }
         field(2011; StoveYear; Text[10])
         {
-            Caption='Year';
+            Caption = 'Year';
             DataClassification = CustomerContent;
         }
         field(2012; StoveManufactor; Text[30])
         {
-            Caption='Manufactor';
+            Caption = 'Manufactor';
             DataClassification = CustomerContent;
         }
         field(2013; StoveModel; Text[30])
         {
-            Caption='Model';
+            Caption = 'Model';
             DataClassification = CustomerContent;
         }
         field(2014; CookYear; Text[10])
         {
-            Caption='Year';
+            Caption = 'Year';
             DataClassification = CustomerContent;
         }
         field(2015; CookManufactor; Text[30])
         {
-            Caption='Manufactor';
+            Caption = 'Manufactor';
             DataClassification = CustomerContent;
         }
         field(2016; CookModel; Text[30])
         {
-            Caption='Model';
+            Caption = 'Model';
             DataClassification = CustomerContent;
         }
         field(2017; OvenYear; Text[10])
         {
-            Caption='Year';
+            Caption = 'Year';
             DataClassification = CustomerContent;
         }
         field(2018; OvenManufactor; Text[30])
         {
-            Caption='Manufactor';
+            Caption = 'Manufactor';
             DataClassification = CustomerContent;
         }
         field(2019; OvenModel; Text[30])
         {
-            Caption='Model';
+            Caption = 'Model';
             DataClassification = CustomerContent;
         }
         field(2020; HoodYear; Text[10])
         {
-            Caption='Year';
+            Caption = 'Year';
             DataClassification = CustomerContent;
         }
         field(2021; HoodManufactor; Text[30])
         {
-            Caption='Manufactor';
+            Caption = 'Manufactor';
             DataClassification = CustomerContent;
         }
         field(2022; HoodStoveModel; Text[30])
         {
-            Caption='Model';
+            Caption = 'Model';
             DataClassification = CustomerContent;
         }
         field(2023; FridgeYear; Text[10])
         {
-            Caption='Year';
+            Caption = 'Year';
             DataClassification = CustomerContent;
         }
         field(2024; FridgeManufactor; Text[30])
         {
-            Caption='Manufactor';
+            Caption = 'Manufactor';
             DataClassification = CustomerContent;
         }
         field(2025; FridgeModel; Text[30])
         {
-            Caption='Model';
+            Caption = 'Model';
             DataClassification = CustomerContent;
         }
         field(2026; FreezerYear; Text[10])
         {
-            Caption='Year';
+            Caption = 'Year';
             DataClassification = CustomerContent;
         }
         field(2027; FreezerManufactor; Text[30])
         {
-            Caption='Manufactor';
+            Caption = 'Manufactor';
             DataClassification = CustomerContent;
         }
         field(2028; FreezerModel; Text[30])
         {
-            Caption='Model';
+            Caption = 'Model';
             DataClassification = CustomerContent;
         }
         field(2029; DishwasherYear; Text[10])
         {
-            Caption='Year';
+            Caption = 'Year';
             DataClassification = CustomerContent;
         }
         field(2030; DishwasherManufactor; Text[30])
         {
-            Caption='Manufactor';
+            Caption = 'Manufactor';
             DataClassification = CustomerContent;
         }
         field(2031; DishwasherModel; Text[30])
         {
-            Caption='Model';
+            Caption = 'Model';
             DataClassification = CustomerContent;
         }
         field(2032; WasherYear; Text[10])
         {
-            Caption='Year';
+            Caption = 'Year';
             DataClassification = CustomerContent;
         }
         field(2033; WasherManufactor; Text[30])
         {
-            Caption='Manufactor';
+            Caption = 'Manufactor';
             DataClassification = CustomerContent;
         }
         field(2034; WasherModel; Text[30])
         {
-            Caption='Model';
+            Caption = 'Model';
             DataClassification = CustomerContent;
         }
         field(2035; DryerYear; Text[10])
         {
-            Caption='Year';
+            Caption = 'Year';
             DataClassification = CustomerContent;
         }
         field(2036; DryerManufactor; Text[30])
         {
-            Caption='Manufactor';
+            Caption = 'Manufactor';
             DataClassification = CustomerContent;
         }
         field(2037; DryerModel; Text[30])
         {
-            Caption='Model';
+            Caption = 'Model';
             DataClassification = CustomerContent;
+        }
+        field(4800; "Dimension Set Id"; Integer)
+        {
+            Caption = 'Dimension set Id';
         }
     }
 
@@ -744,6 +793,10 @@ table 50002 "SVA Tenancy"
     {
         key(Key1; PropertyNo, Number)
         {
+        }
+        key(key2; Number)
+        {
+
         }
     }
 
@@ -755,22 +808,73 @@ table 50002 "SVA Tenancy"
     begin
         Vacant := TRUE;
         vacantDate := DMY2DATE(1, 1, 1960);
+        Parameters.Reset;
+        IF Parameters.Find('-') then begin
+            IF(Parameters.Dim1 = '') OR(Parameters.Dim2 = '') OR(Parameters.Dim3 = '') then begin
+                Error('Dimensioner mangler opsætning. Kørslen afbrydes');
+            end;
+        end;
+        //Dimension lejemål på lejemål og dimension ejendom på lejemål
+        Parameters.Reset;
+        if Parameters.Find('-') then begin
+            DefaultDim.SetRange("Table ID", 50002);
+            DefaultDim.SetRange("No.", Number);
+            if DefaultDim.FindFirst then begin
+                DefaultDim."Dimension Value Code" := Number;
+                DefaultDim."Dimension Code" := Parameters.Dim1;
+                DefaultDim.Modify(true);
+            end else begin 
+                DefaultDim."Table ID" := 50002;
+                DefaultDim."No." := Number;
+                DefaultDim."Dimension Code" := Parameters.Dim2;
+                DefaultDim."Dimension Value Code" := Number;
+                DefaultDim."Value Posting" := 1;
+                DefaultDim."Table Caption" := 'Lejemål';
+                DefaultDim.Insert(true);
+                //Dimension ejendom på lejemål
+                DefaultDim."Dimension Code" := Parameters.Dim1;
+                DefaultDim."Dimension Value Code" := PropertyNo;
+                DefaultDim.Insert(true);
+            end;
+        end;
+        //dimensionsværdi lejemål
+        DimensionValue.Reset;
+        DimensionValue.SetRange("Dimension Code", Parameters.Dim2);
+        DimensionValue.SetRange(Code, Number);
+        if DimensionValue.FindFirst then begin
+            DimensionValue.code := Number;
+            DimensionValue.Modify(true);
+        end else begin    
+            DimensionValue.Init;
+            DimensionValue."Dimension Code" := Parameters.Dim2;
+            DimensionValue.Code := Number;
+            DimensionValue.Name := 'Lejemål ' + Number;
+            DimensionValue."Dimension Value Type" := 0;
+            DimensionValue."Global Dimension No." := 2;
+            DimensionValue.Id := CreateGuid;
+            DimensionValue."Last Modified Date Time" := CurrentDateTime;
+            DimensionValue.Insert(true);
+        end;
     end;
 
     trigger OnModify();
     begin
         Areas;
-        //Check vacant
+    end;
+
+    trigger OnDelete();
+    begin
         Occupant.reset;
         Occupant.SetRange(TenancyNo, Number);
-        Rec.VacantDate := DMY2DATE(1, 1, 1960);
-        Rec.Vacant := true;
-        IF Occupant.Find('-') then begin
-            repeat
-                vacantDate := Occupant.EndDate;
-                IF vacantDate = 0D then
-                    Vacant := false;
-            until Next = 0;
+        Occupant.SetRange(PropertyNo,PropertyNo);
+        if Occupant.FindFirst then begin
+            Error('Der findes beboeraftale på lejemålet. Slet disse først');
+        end;
+
+        Subscription.Reset;
+        Subscription.SetRange(Tenancies, Number);
+        if Subscription.Find('-') then begin
+            Subscription.Delete;
         end;
     end;
 
@@ -780,6 +884,12 @@ table 50002 "SVA Tenancy"
         PropertyCard: Record "SVA Property";
         Tenancies: Record "SVA Tenancy";
         Occupant: Record "SVA Occupant";
+        DimensionValue: Record "Dimension Value";
+        DefaultDim: Record "Default Dimension";
+        Parameters: Record "SVA Parameters";
+        Subscription: Record "SVA Subscription Lines";
+
+
 
     local procedure Areas();
     begin
@@ -801,5 +911,6 @@ table 50002 "SVA Tenancy"
             PropertyCard.MODIFY();
         END;
     end;
+
 }
 

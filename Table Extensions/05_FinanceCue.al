@@ -33,6 +33,7 @@ tableextension 50005 "SVA Finance Cue" extends "Finance Cue"
         field(50005;"SVA Date Filter";Date)
         {
             Caption = 'Date filter';
+            DataClassification = CustomerContent;
         }
     }
    

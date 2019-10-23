@@ -1,6 +1,10 @@
 table 50006 "SVA Occupant Trans"
 {
     Caption = 'Occupant postings';
+    DataClassification = CustomerContent;
+    Permissions = TableData 50006 = rimd;
+    DrillDownPageID = "SVA Occupant Trans List";
+    LookupPageID = "SVA Occupant Trans List";
 
     fields
     {
@@ -18,7 +22,7 @@ table 50006 "SVA Occupant Trans"
             Caption = 'Costtype';
             TableRelation = "SVA Cost type".Costtype;
         }
-        field(4; Description; Text[30])
+        field(4; Description; Text[50])
         {
             Caption = 'Description';
         }
@@ -57,14 +61,6 @@ table 50006 "SVA Occupant Trans"
     {
     }
 
-    trigger OnInsert();
-    begin
-        CosttypeEstateRec.RESET;
-        CosttypeEstateRec.SETRANGE(Costtype, "Cost type Estate");
-        IF FINDFIRST() THEN BEGIN
-            Type := CosttypeEstateRec.Type;
-        END;
-    end;
 
     var
         CosttypeEstateRec: Record "SVA Cost type";

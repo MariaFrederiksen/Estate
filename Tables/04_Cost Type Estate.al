@@ -1,10 +1,12 @@
-table 50004 "SVA Cost type"
+﻿table 50004 "SVA Cost type"
 {
     // Tabel for opsætning af konteringer for NAV Ejendom.
 
     Caption='Costtype';
-    DrillDownPageID = 60540;
-    LookupPageID = 60540;
+    DataClassification = CustomerContent;
+    Permissions = TableData 50004 = rimd;
+    DrillDownPageID = "SVA Cost Type Estate List";
+    LookupPageID = "SVA Cost Type Estate List";
 
     fields
     {
@@ -37,21 +39,37 @@ table 50004 "SVA Cost type"
         }
         field(7;VatGroup;Code[10])
         {
-            Caption='VAT Bus. Posting Group';
+            Caption='VAT Prod. Posting Group';
             TableRelation = "VAT Product Posting Group".Code;
             NotBlank = true;
         }
+        field(8;ProductPostingGroup;Code[20])
+        {
+            Caption='Prod. Posting Group';
+            TableRelation = "Gen. Product Posting Group".Code;
+            NotBlank = true;
+            trigger OnValidate();
+            begin
+                ProdPostGrp.Reset;
+                ProdPostGrp.SetRange(code,ProductPostingGroup);
+                if ProdPostGrp.FindFirst then begin
+                    VatGroup := ProdPostGrp."Def. VAT Prod. Posting Group";
+                    end;
+            end;
+        }
     }
-
-    keys
+     keys
     {
         key(Key1;Costtype)
         {
         }
     }
-
-    fieldgroups
+    Fieldgroups
     {
     }
+     
+    var
+    ProdPostGrp : Record "Gen. Product Posting Group";
+   
 }
 

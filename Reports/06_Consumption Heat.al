@@ -1,8 +1,9 @@
-report 50410 "SVA Consumption Heat"
+report 50006 "SVA Consumption Heat"
 {
     DefaultLayout = RDLC;
     RDLCLayout = './Layouts/Consumption Heat.rdlc';
     Caption='AC heat';
+    UsageCategory=ReportsAndAnalysis;
 
     dataset
     {
@@ -52,8 +53,8 @@ report 50410 "SVA Consumption Heat"
 
                 trigger OnAfterGetRecord();
                 begin
-                   SETRANGE(Date,HeatFrom,HeatTo);
-                   SETRANGE(Type,2);
+                    if ("Occupant Trans".Date < HeatFrom) OR ("Occupant Trans".Date > HeatTo) then
+                        CurrReport.Skip;
                 end;
             }
 
@@ -63,12 +64,16 @@ report 50410 "SVA Consumption Heat"
                  PropertyRec.RESET;
                  PropertyRec.SETRANGE(PropertyRec.Property,PropNo);
                  IF PropertyRec.FINDFIRST() THEN BEGIN
-                  IF PropertyRec.HeatingYearFrom > 0 THEN BEGIN
-                    HeatFrom := DMY2DATE(1, PropertyRec.HeatingYearFrom, DATE2DMY(TODAY,3));
-                    HeatTo := CALCDATE('<1Y-1D>',HeatFrom);
-                    END;
+                     If HeatTo = 0D then begin
+                        if Date2dmy(Today,2) < PropertyRec.WaterYearTo then   
+                            HeatTo := DMY2DATE(1, PropertyRec.WaterYearFrom, DATE2DMY(TODAY,3))-1; 
+                        if Date2dmy(Today,2) > PropertyRec.WaterYearTo then 
+                            HeatTo := DMY2DATE(1, PropertyRec.WaterYearFrom, DATE2DMY(TODAY,3));
+                        HeatFrom := CalcDate('<-1Y>',HeatTo);
+                        HeatTo := CALCDATE('<1Y-1D>',HeatFrom);
+                     end;   
                   END;
-                 IF (EndDate < TODAY) AND (EndDate <> 0D) THEN
+                 IF (EndDate < HeatFrom) AND (EndDate <> 0D) THEN
                   CurrReport.SKIP;
                  IF StartDate > HeatTo THEN
                    CurrReport.SKIP;

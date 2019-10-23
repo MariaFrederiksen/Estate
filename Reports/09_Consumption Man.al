@@ -1,4 +1,4 @@
-report 50440 "SVA Consumption Man"
+report 50009 "SVA Consumption Man"
 {
     DefaultLayout = RDLC;
     RDLCLayout = './Layouts/Consumption Man.rdlc';
@@ -36,7 +36,7 @@ report 50440 "SVA Consumption Man"
             {
                 DataItemLink = Occupant=FIELD(Number);
                 DataItemTableView = SORTING(Occupant,Date,"Cost type Estate","Invoice No")
-                                    WHERE(Type=CONST(6));
+                                    WHERE(Type=CONST(ACOperating));
                 column(OTransNo;Occupant)
                 {
                 }
@@ -52,21 +52,27 @@ report 50440 "SVA Consumption Man"
 
                 trigger OnPreDataItem();
                 begin
-                    SETRANGE(Date,ManFrom,ManTo);
-                    SETRANGE(Type,5);
+                     if ("Occupant Trans".Date < ManFrom) OR ("Occupant Trans".Date > ManTo) then
+                        CurrReport.Skip;
                 end;
             }
 
             trigger OnAfterGetRecord();
             begin
-                 PropNo := PropertyNo;
+                PropNo := PropertyNo;
                  PropertyRec.RESET;
                  PropertyRec.SETRANGE(PropertyRec.Property,PropNo);
                  IF PropertyRec.FINDFIRST() THEN BEGIN
-                  ManFrom := DMY2DATE(1, PropertyRec.ManYearFrom, DATE2DMY(TODAY,3));
-                  ManTo := CALCDATE('<1Y-1D>',ManFrom);
+                     If ManTo = 0D then begin
+                        if Date2dmy(Today,2) < PropertyRec.WaterYearTo then   
+                            ManTo := DMY2DATE(1, PropertyRec.WaterYearFrom, DATE2DMY(TODAY,3))-1; 
+                        if Date2dmy(Today,2) > PropertyRec.WaterYearTo then 
+                            ManTo := DMY2DATE(1, PropertyRec.WaterYearFrom, DATE2DMY(TODAY,3));
+                        ManFrom := CalcDate('<-1Y>',ManTo);
+                        ManTo := CALCDATE('<1Y-1D>',ManFrom);
+                     end;   
                   END;
-                 IF (EndDate < TODAY) AND (EndDate <> 0D) THEN
+                 IF (EndDate < ManFrom) AND (EndDate <> 0D) THEN
                   CurrReport.SKIP;
                  IF StartDate > ManTo THEN
                    CurrReport.SKIP;

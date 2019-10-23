@@ -1,4 +1,4 @@
-page 60500 "SVA Setup Estate Card"
+page 50017 "SVA Setup Estate Card"
 //tooltip created
 {
     Caption = 'Setup Estate';
@@ -16,39 +16,48 @@ page 60500 "SVA Setup Estate Card"
                 Caption = 'General';
                 field(Name; Name)
                 {
-                    Tooltip='Company name';
+                    Tooltip = 'Company name';
+                    ApplicationArea = all;
                 }
                 field(Address; Address)
                 {
-                    Tooltip='Company address';
+                    Tooltip = 'Company address';
+                    ApplicationArea = all;
                 }
                 field("Post code"; "Post code")
                 {
-                    Tooltip='Company postcode';
+                    Tooltip = 'Company postcode';
+                    ApplicationArea = all;
                 }
                 field(City; City)
                 {
-                    Tooltip='Company city';
+                    Tooltip = 'Company city';
+                    ApplicationArea = all;
                 }
                 field("VAT Registration No."; "VAT Registration No.")
                 {
-                    Tooltip='Company branch number';
+                    Tooltip = 'Company branch number';
+                    ApplicationArea = all;
                 }
                 field("Bank Name"; "Bank Name")
                 {
-                    ToolTip='Bank name';
+                    ToolTip = 'Bank name';
+                    ApplicationArea = all;
                 }
                 field("Bank Branch No"; "Bank Branch No")
                 {
-                    Tooltip='Bank branch number.';
+                    Tooltip = 'Bank branch number.';
+                    ApplicationArea = all;
                 }
                 field("Bank Account No."; "Bank Account No.")
                 {
-                    Tooltip='Bank account number';
+                    Tooltip = 'Bank account number';
+                    ApplicationArea = all;
                 }
                 field(BS_Ledgeraccount; BS_Ledgeraccount)
                 {
-                    Tooltip='Ledgeraccount';
+                    Tooltip = 'Ledgeraccount';
+                    ApplicationArea = all;
                 }
             }
             group("Setup Estate")
@@ -56,32 +65,45 @@ page 60500 "SVA Setup Estate Card"
                 Caption = 'Setup NETS';
                 field(BS_AftaleNo; BS_AftaleNo)
                 {
-                    Tooltip='Agreement number';
+                    Tooltip = 'Agreement number';
+                    ApplicationArea = all;
                 }
                 field(BS_Dataprovider; BS_Dataprovider)
                 {
-                    Tooltip='Dataprovider. Not necessarily companys branch number';
+                    Tooltip = 'Dataprovider. Not necessarily companys branch number';
+                    ApplicationArea = all;
                 }
                 field(BS_Delsystem; BS_Delsystem)
                 {
-                    Tooltip='Partsystem for NETS agreement';
+                    Tooltip = 'Partsystem for NETS agreement';
+                    ApplicationArea = all;
                 }
                 field(BS_DebGrp; BS_DebGrp)
                 {
-                    Tooltip='NETS customer group';
+                    Tooltip = 'NETS customer group';
+                    ApplicationArea = all;
+                }
+                field(BS_WorkSheetType; BS_WorkSheetType)
+                {
+                    Lookup = true;
+                    ToolTip = 'Journaltype for incomming payments from NETS';
+                    ApplicationArea = all;
                 }
                 field(BS_WorkSheet; BS_WorkSheet)
                 {
                     Lookup = true;
-                    ToolTip='Journal for incomming payments from NETS';
+                    ToolTip = 'Journal for incomming payments from NETS';
+                    ApplicationArea = all;
                 }
                 field(BS_Advis; BS_Advis)
                 {
-                    Tooltip='Headline on customers collection';
+                    Tooltip = 'Headline on customers collection';
+                    ApplicationArea = all;
                 }
                 field(BS_ImportText; BS_ImportText)
                 {
-                    Tooltip='Text/description on journals/aacounts after accounting payments from NETS';
+                    Tooltip = 'Text/description on journals/aacounts after accounting payments from NETS';
+                    ApplicationArea = all;
                 }
             }
             group("Other setup")
@@ -89,25 +111,49 @@ page 60500 "SVA Setup Estate Card"
                 Caption = 'Other setup';
                 field(ReminderFeeRes; ReminderFeeRes)
                 {
-                    Tooltip='Reminderfee for residens. Must be changed every year wiht the new rate provided by law.';
+                    Tooltip = 'Reminderfee for residens. Must be changed every year wiht the new rate provided by law.';
+                    ApplicationArea = all;
                 }
                 field(ReminderFeeProf; ReminderFeeProf)
                 {
-                    Tooltip='Reminderfee for professions. Must be changed every year wiht the new rate provided by law.';
+                    Tooltip = 'Reminderfee for professions. Must be changed every year wiht the new rate provided by law.';
+                    ApplicationArea = all;
                 }
                 field(IntMaintenance; IntMaintenance)
                 {
-                    Tooltip='Fee for internal maintenance (§22). Must be changed every year wiht the new rate provided by law.';
+                    Tooltip = 'Fee for internal maintenance (§22). Must be changed every year wiht the new rate provided by law.';
+                    ApplicationArea = all;
                 }
-                field(Numberserie;Numberserie)
+                field(Numberserie; Numberserie)
                 {
-                    Tooltip='Numberserie for new leasecontracts.';
+                    Tooltip = 'Numberserie for new leasecontracts.';
+                    ApplicationArea = all;
+                }
+                Field(Splitcalc; Splitcalc)
+                {
+                    Tooltip = 'Contracts calculate days? Default is 0.5 month';
+                    ApplicationArea = all;
+                }
+                field(Dim1; Dim1)
+                {
+                    ToolTip = 'Dimension for property';
+                    ApplicationArea = all;
+                }
+                field(Dim2; Dim2)
+                {
+                    ToolTip = 'Dimension for tenancy';
+                    ApplicationArea = all;
+                }
+                field(Dim3; Dim3)
+                {
+                    ToolTip = 'Dimension for occupant';
+                    ApplicationArea = all;
                 }
             }
         }
         area(factboxes)
         {
-            
+
             systempart(Links; Links)
             {
             }
@@ -123,54 +169,71 @@ page 60500 "SVA Setup Estate Card"
         {
             action("SVA Import properties")
             {
-                Caption='Import properties';
-                ToolTip='Import properties according to instructions';   
+            
+                Caption = 'Import properties';
+                ToolTip = 'Import properties according to instructions';
+                Promoted = true;
                 Image = Apply;
-                RunObject = XMLport "SVA Import Properties";
+                trigger OnAction();
+                begin
+                    Xmlport.run(Xmlport::"SVA Import Properties",false,true)//"SVA Import Properties"
+                end;
             }
-             action("Import Tenancies")
+            action("Import Tenancies")
             {
-                Caption='Import Tenancies';    
-                ToolTip='Import tenancies according to instructions';
+                Caption = 'Import Tenancies';
+                ToolTip = 'Import tenancies according to instructions';
                 Image = Apply;
-                RunObject = XMLport "SVA Import Tenancies";
+                trigger OnAction();
+                begin
+                    Xmlport.run(xmlport::"SVA Import Tenancies",false,true)//"SVA Import Tenancies"
+                end;
+                
             }
-             action("Import Costtype")
+            action("Import Costtype")
             {
-                Caption='Import Costtype'; 
-                ToolTip='Import costtypes according to instructions';   
+                Caption = 'Import Costtype';
+                ToolTip = 'Import costtypes according to instructions';
                 Image = Apply;
-                RunObject = XMLport "SVA Import Estate Cost Type";
+                trigger OnAction();
+                begin
+                    Xmlport.run(Xmlport::"SVA Import Estate Cost Type",false,true)//"SVA Import Estate Cost Type";
+                end;
             }
             action("Import Occupants")
             {
-                Caption='Import Occupants';  
-                ToolTip='Import occupants according to instructions';  
+                Caption = 'Import Occupants';
+                ToolTip = 'Import occupants according to instructions';
                 Image = Apply;
-                RunObject = XMLport "SVA Import Occupants";
+                trigger OnAction();
+                begin
+                    Xmlport.run(Xmlport::"SVA Import Occupants",false,true)//"SVA Import Occupants"
+                end;
+               
             }
             action("Import Collections")
             {
-                Caption='Import Collections';    
-                ToolTip='Import collections according to instructions';
+                Caption = 'Import Collections';
+                ToolTip = 'Import collections according to instructions';
                 Image = Apply;
-                RunObject = XMLport "SVA Import Collections";
+                trigger OnAction();
+                begin
+                    Xmlport.run(xmlport::"SVA Import Collections",false,true)//"SVA Import Collecions"
+                end;
             }
-            action("Transactions")
+
+            action("Arch Transactions")
             {
-                Caption='Manual transactions';    
-                ToolTip='Enter manualy transactions from other systems. E.g. AC Heat, deposit, prepaid rent etc.';
+                Caption = 'Import transactions';
+                ToolTip = 'Import old transactions according to instructions';
                 Image = Apply;
-                RunObject = page "SVA Occupant trans";
+                trigger OnAction();
+                begin
+                    Xmlport.run(xmlport::"SVA Import Occupant Trans",false,true)//"SVA Import Occupant Trans"
+                end;
             }
-            // action("Maria")
-            // {
-            //     Image = Apply;
-            //     RunObject = page "SVA sub Lines";
-            // }
-
-
         }
+
     }
 }
 

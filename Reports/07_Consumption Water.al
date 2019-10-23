@@ -1,8 +1,9 @@
-report 50420 "SVA Consumption Water"
+report 50007 "SVA Consumption Water"
 {
     DefaultLayout = RDLC;
     RDLCLayout = './Layouts/Consumption Water.rdlc';
     Caption='AC water';
+    UsageCategory=ReportsAndAnalysis;
 
     dataset
     {
@@ -52,7 +53,8 @@ report 50420 "SVA Consumption Water"
 
                 trigger OnAfterGetRecord();
                 begin
-                    SETRANGE(Date,WaterFrom,WaterTo);
+                    if ("Occupant Trans".Date < WaterFrom) OR ("Occupant Trans".Date > WaterTo) then
+                        CurrReport.Skip;
                 end;
             }
 
@@ -62,10 +64,16 @@ report 50420 "SVA Consumption Water"
                  PropertyRec.RESET;
                  PropertyRec.SETRANGE(PropertyRec.Property,PropNo);
                  IF PropertyRec.FINDFIRST() THEN BEGIN
-                  WaterFrom := DMY2DATE(1, PropertyRec.WaterYearFrom, DATE2DMY(TODAY,3));
-                  WaterTo := CALCDATE('<1Y-1D>',WaterFrom);
+                     If WaterTo = 0D then begin
+                        if Date2dmy(Today,2) < PropertyRec.WaterYearTo then   
+                            WaterTo := DMY2DATE(1, PropertyRec.WaterYearFrom, DATE2DMY(TODAY,3))-1; 
+                        if Date2dmy(Today,2) > PropertyRec.WaterYearTo then 
+                            WaterTo := DMY2DATE(1, PropertyRec.WaterYearFrom, DATE2DMY(TODAY,3));
+                        WaterFrom := CalcDate('<-1Y>',WaterTo);
+                        WaterTo := CALCDATE('<1Y-1D>',WaterFrom);
+                     end;   
                   END;
-                 IF (EndDate < TODAY) AND (EndDate <> 0D) THEN
+                 IF (EndDate < WaterFrom) AND (EndDate <> 0D) THEN
                   CurrReport.SKIP;
                  IF StartDate > WaterTo THEN
                    CurrReport.SKIP;
@@ -94,5 +102,6 @@ report 50420 "SVA Consumption Water"
         WaterTo : Date;
         PropertyRec : Record "SVA Property";
         PropNo : Code[10];
+      
 }
 

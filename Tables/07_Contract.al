@@ -6,6 +6,8 @@ table 50007 "SVA LeaseContract_A9"
     // Feltnavne referer både til udgave og hvilken paragraf. Således er TypeA9_1_ type A, 9. udgave paragraf 1.
 
     Caption='Leasecontract Type A 9. edition';
+    DataClassification = CustomerContent;
+    Permissions = TableData 50007 = rimd;
 
     fields
     {
@@ -25,12 +27,20 @@ table 50007 "SVA LeaseContract_A9"
 
                   Occupant.RESET;
                   Occupant.SETRANGE(Occupant.Number,Number);
-                  IF Occupant.FINDFIRST() THEN BEGIN
+                  if Occupant.FINDFIRST() then begin
                     TypeA9_1_TenentName := Occupant.Name1 + ' ' + Occupant.Name2;
                     TypeA9_1_TenantCPR := Occupant.CPRno1 + ' ' + Occupant.CPRno2;
+                    TypeA9_1_Phone := Occupant.CellPhone1 + ' ' + Occupant.CellPhone2;
+                    TypeA9_1_Mail := Occupant.Email1 + ' ' + Occupant.Email2;
                     TypeA9_2_Startdate := Occupant.StartDate;
                     TypeA9_4_RentFirstTime := CALCDATE('<+1M>',Occupant.StartDate);
-                    END;
+                    if (DATE2DMY(TypeA9_2_Startdate,1) > 13) AND (DATE2DMY(TypeA9_2_Startdate,1) < 17)  then begin
+                        TypeA9_4_RentFirstTime := CALCDATE('<+1M>',Occupant.StartDate);
+                        Mnth := Date2DMY(TypeA9_4_RentFirstTime,2);
+                        Yr := Date2DMY(TypeA9_4_RentFirstTime,3);
+                        TypeA9_4_RentFirstTime := DMY2Date((Date2DMY(TypeA9_4_RentFirstTime,1) - Date2DMY(TypeA9_4_RentFirstTime,1)+1),Mnth,Yr);
+                        end;
+                    end;
 
                   Property.RESET;
                   Property.SETRANGE(Property,Occupant.PropertyNo);
@@ -50,12 +60,12 @@ table 50007 "SVA LeaseContract_A9"
                   IF Customer.FINDFIRST() THEN BEGIN
                     TypeA9_1_TenentAddress := Customer.Address + ', '+ Customer."Post Code"+' '+Customer.City;
                     END;
-                  IF TypeA9_1_TenentAddress = '' THEN BEGIN
+                  IF TypeA9_1_TenentAddress = '' then
                     TypeA9_1_TenentAddress := Occupant.Address + ', '+ Occupant."Post Code"+' '+Occupant.City;
-                    END;
 
                   IF TypeA9_4_DueDate = 0D THEN
                     TypeA9_4_DueDate := TODAY+8;
+
 
                   SubscriptionLines.RESET;
                   SubscriptionLines.SETRANGE(Tenancies,Occupant.TenancyNo);
@@ -65,10 +75,15 @@ table 50007 "SVA LeaseContract_A9"
                     if (SubscriptionLines."Date To" = 0D) or (SubscriptionLines."Date To">Occupant.StartDate) then begin
                         Costtype.RESET;
                         Costtype.SETRANGE(Costtype,SubscriptionLines."Cost Types");
-                        IF Costtype.FIND('-') THEN begin
+                        IF Costtype.FindSet THEN begin
+                            if Costtype.type = 0 then begin //andet, ex parking/garage
+                                TypeA9_3_OtherText1 := SubscriptionLines.Description;
+                                TypeA9_3_OtherAmount1 := SubscriptionLines."Amount Period";
+                            end;
                             IF Costtype.Type = 1 THEN BEGIN //Rent
                                 TypeA9_3_RentPerYear := SubscriptionLines."Amount Year";
                                 TypeA9_3_RentPerPeriode := SubscriptionLines."Amount Period";
+                                TypeA9_1_Vat := Costtype.VatGroup;
                                 END;
                             IF Costtype.Type = 2 THEN BEGIN //ACVarme
                                 TypeA9_3_ACHeat := SubscriptionLines."Amount Period";
@@ -99,6 +114,7 @@ table 50007 "SVA LeaseContract_A9"
                   Tenancy.RESET;
                   Tenancy.SETRANGE(Number,Occupant.TenancyNo);
                   IF Tenancy.FIND('-') THEN BEGIN
+                    TypeA9_1_TenancyNo := Tenancy.Number;  
                     TypeA9_1_Address := Tenancy.Address1;
                     TypeA9_1_City := Tenancy."Post Code" + ' '+ Tenancy.City;
                     TypeA9_3_DueDay := '1.';
@@ -143,7 +159,7 @@ table 50007 "SVA LeaseContract_A9"
                       TypeA9_4_DepAmount := TypeA9_3_RentPerYear/12*TypeA9_4_DepMth;
                       TypeA9_4_PrepaidRent := TypeA9_3_RentPerYear/12*TypeA9_4_PrepaidRentMth;
                       TypeA9_4_RentFrom := Occupant.StartDate;
-                      TypeA9_4_RentTo := CALCDATE('<+1M-1D>',Occupant.StartDate);
+                      TypeA9_4_RentTo := CalcDate('<-1D>',TypeA9_4_RentFirstTime);
                       IF TypeA9_4_DueDate = 0D THEN
                         TypeA9_4_DueDate := TODAY+8;
                       //5 - Varme
@@ -167,7 +183,7 @@ table 50007 "SVA LeaseContract_A9"
                       TypeA9_5_WaterMeter := Tenancy.TypeA9_5_WaterMeter;
                       //El
                       TypeA9_5_LandlordEl := Tenancy.TypeA9_5_LandlordEl;
-                      TypeA9_5_TenantEl := Tenancy.TypeA9_5_LNatgas;
+                      TypeA9_5_TenantEl := Tenancy.TypeA9_5_TEl;
                       //Køling
                       TypeA9_5_LandlordCooling := Tenancy.TypeA9_5_LandlordCooling;
                       TypeA9_5_CoolingMeter := Tenancy.TypeA9_5_CoolingMeter;
@@ -176,7 +192,7 @@ table 50007 "SVA LeaseContract_A9"
                       TypeA9_6_AntennaTenancies := Tenancy.TypeA9_6_AntennaTenancies;
                       TypeA9_6_Internet := Tenancy.TypeA9_6_Internet;
                       //7
-                      TypeA9_7_InspecionIn := TypeA9_7_InspecionIn;
+                      TypeA9_7_InspecionIn := Tenancy.TypeA9_7_InspecionIn;
                       //8
                       TypeA9_8_MaintainceInsideLandl := Tenancy.TypeA9_8_MaintainceInsideLandl;
                       TypeA9_8_MaintainceInsideTenan := Tenancy.TypeA9_8_MaintainceInsideTenan;
@@ -232,11 +248,27 @@ table 50007 "SVA LeaseContract_A9"
                     END; //erhvervslejemål - i praksis garager
 
                   END; //Lejemål
-                  INSERT;
+                  //INSERT;
                 END;
                 MoveInAmount;
                 PeriodAmount;
             end;
+        }
+        field(2;TypeA9_1_Mail;Text[100])
+        {
+            Caption = 'Email';
+        }
+        field(10;TypeA9_1_Phone;text[25])
+        {
+            Caption = 'Phone';
+        }
+        field(11;TypeA9_1_TenancyNo;text[10])
+        {
+            Caption='Tenancy No.';
+        }
+        field(12;TypeA9_1_Vat;text[10])
+        {
+            Caption='Vat';
         }
         field(101;TypeA9_1_Apartment;Boolean)
         {
@@ -440,6 +472,11 @@ table 50007 "SVA LeaseContract_A9"
         field(319;TypeA9_3_OtherAmount1;Decimal)
         {
             Caption='Amount';
+            trigger OnValidate();
+            begin
+                PeriodAmount;
+            end;
+            
         }
         field(320;TypeA9_3_OtherText2;Text[20])
         {
@@ -448,6 +485,10 @@ table 50007 "SVA LeaseContract_A9"
         field(321;TypeA9_3_OtherAmount2;Decimal)
         {
             Caption='Amount';
+            trigger OnValidate();
+            begin
+                PeriodAmount;
+            end;
         }
         field(322;TypeA9_3_TotalperPeriod;Decimal)
         {
@@ -879,6 +920,10 @@ table 50007 "SVA LeaseContract_A9"
         {
             Caption='Houserules';
         }
+        field(1099;Vatcode;Text[20])
+        {
+            Caption='Vatproductpostinggroup';
+        }
         field(1101;TextT9_1_Apartment;Text[2])
         {
             
@@ -1220,6 +1265,11 @@ table 50007 "SVA LeaseContract_A9"
         Periods : Integer;
         SubscriptionLines : Record "SVA Subscription Lines";
         Costtype : Record "SVA Cost type";
+        Mnth : Integer;
+        Yr : Integer;
+        SetupEstate : Record "SVA Parameters";
+        Days : Integer;
+
 
     local procedure SetBoolean();
     begin
@@ -1417,7 +1467,7 @@ table 50007 "SVA LeaseContract_A9"
 
          IF TypeA9_7_InspecionIn = TRUE THEN BEGIN
           TextT9_7_InspectionInYes := 'X';
-          TextT9_7_InspectionInYes := ' ';
+          TextT9_7_InspectionInNo := ' ';
           END
          ELSE BEGIN
           TextT9_7_InspectionInYes := ' ';
@@ -1561,6 +1611,17 @@ table 50007 "SVA LeaseContract_A9"
                                   +TypeA9_3_OtherAmount1
                                   +TypeA9_3_OtherAmount2;
         TypeA9_4_Rentetc := TypeA9_3_TotalperPeriod;
+        if (DATE2DMY(TypeA9_2_Startdate,1) > 1) AND (DATE2DMY(TypeA9_2_Startdate,1) < 32)  then begin
+            SetupEstate.Reset;
+            if SetupEstate.FindFirst then begin
+                if SetupEstate.Splitcalc = false then
+                    TypeA9_4_Rentetc := TypeA9_3_TotalperPeriod/2;
+                if SetupEstate.Splitcalc = true then begin
+                        Days := date2dmy(Calcdate('CM',DMY2Date(01,Date2DMY(TypeA9_2_Startdate,2),Date2DMY(TypeA9_2_Startdate,3))),1);
+                        TypeA9_4_Rentetc := TypeA9_3_TotalperPeriod/((Days-Date2DMY(TypeA9_2_Startdate,1)+1)/Days);
+                end;        
+            end;
+        end;
     end;
 
     local procedure SetHeat();

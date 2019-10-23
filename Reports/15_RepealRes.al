@@ -1,63 +1,74 @@
-report 50630 "SVA Repeal Res"
+report 50015 "SVA Repeal Res"
 {
-    
+
     WordLayout = './Layouts/RepealRes.docx';
     DefaultLayout = Word;
     Caption = 'Repeal Residense';
-  
-
-
 
     dataset
     {
-        dataitem(Occupant;"SVA Occupant")
+        dataitem(Occupant; "SVA Occupant")
         {
-            column(OTenancy;TenancyNo)
+            column(OTenancy; TenancyNo)
             {
             }
-            column(OCustomer;"Customer No")
+            column(OCustomer; "Customer No")
             {
             }
-            column(OName;Name1)
+            column(OName; Name1)
             {
             }
-            column(OStartdate;StartDate)
+            column(Oaddress; Address)
             {
             }
-            dataitem(Tenancy;"SVA Tenancy")
+            column(OAddress2; Address2)
             {
-                DataItemLink = PropertyNo=FIELD(PropertyNo),
-                               Number=FIELD(TenancyNo);
-                DataItemTableView = SORTING(PropertyNo,Number)
+            }
+            column(OPost_code; "Post Code")
+            {
+            }
+            column(OCity; City)
+            {
+            }
+            column(OStartdate; StartDate)
+            {
+            }
+            dataitem(Tenancy; "SVA Tenancy")
+            {
+                DataItemLink = PropertyNo = FIELD (PropertyNo),
+                               Number = FIELD (TenancyNo);
+                DataItemTableView = SORTING (PropertyNo, Number)
                                     ORDER(Ascending);
-                column(TAddress1;Address1)
+                column(TAddress1; Address1)
                 {
                 }
-                column(TAddress2;Address2)
+                column(TAddress2; Address2)
                 {
                 }
-                column(TPostCode;"Post Code")
+                column(TPostCode; "Post Code")
                 {
                 }
-                column(TCity;City)
-                {
-                }
-                column(CName;Name)
-                {
-                }
-                column(CAddress;Address1)
-                {
-                }
-                column(CPostCode;"Post Code")
-                {
-                }
-                column(CCity;City)
+                column(TCity; City)
                 {
                 }
             }
         }
-    }
-
+        dataitem("Company Information"; "Company Information")
+        {
+            column(CName; Name)
+            {
+            }
+            column(CAddress; Address)
+            {
+            }
+            column(CPostCode; "Post Code")
+            {
+            }
+            column(CCity; City)
+            {
+            }
+        }
+    }    
     requestpage
     {
 
@@ -74,12 +85,12 @@ report 50630 "SVA Repeal Res"
     {
     }
 
-    trigger OnInitReport();
+    trigger OnPreReport();
     begin
         CompanyInfo.GET;
     end;
 
     var
-        CompanyInfo : Record "Company Information";
+        CompanyInfo: Record "Company Information";
 }
 

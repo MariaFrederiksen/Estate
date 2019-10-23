@@ -1,4 +1,4 @@
-report 50430 "SVA Consumption Electricity"
+report 50008 "SVA Consumption Electricity"
 {
     DefaultLayout = RDLC;
     RDLCLayout = './Layouts/Consumption Electricity.rdlc';
@@ -52,22 +52,29 @@ report 50430 "SVA Consumption Electricity"
 
                 trigger OnPreDataItem();
                 begin
-                    SETRANGE(Date,ElFrom,ElTo);
+                     if ("Occupant Trans".Date < ElFrom) OR ("Occupant Trans".Date > ElTo) then
+                        CurrReport.Skip;
                 end;
             }
 
             trigger OnAfterGetRecord();
             begin
-                 PropNo := PropertyNo;
+                PropNo := PropertyNo;
                  PropertyRec.RESET;
                  PropertyRec.SETRANGE(PropertyRec.Property,PropNo);
                  IF PropertyRec.FINDFIRST() THEN BEGIN
-                  ElFrom := DMY2DATE(1, PropertyRec.ElectricYearFrom, DATE2DMY(TODAY,3));
-                  ElTo := CALCDATE('<1Y-1D>',ElFrom);
+                     If ElTo = 0D then begin
+                        if Date2dmy(Today,2) < PropertyRec.WaterYearTo then   
+                            ElTo := DMY2DATE(1, PropertyRec.WaterYearFrom, DATE2DMY(TODAY,3))-1; 
+                        if Date2dmy(Today,2) > PropertyRec.WaterYearTo then 
+                            ElTo := DMY2DATE(1, PropertyRec.WaterYearFrom, DATE2DMY(TODAY,3));
+                        ElFrom := CalcDate('<-1Y>',ElTo);
+                        ElTo := CALCDATE('<1Y-1D>',ElFrom);
+                     end;   
                   END;
-                 IF (EndDate < TODAY) AND (EndDate <> 0D) THEN
+                 IF (EndDate < ElFrom) AND (EndDate <> 0D) THEN
                   CurrReport.SKIP;
-                IF StartDate > ElTo THEN
+                 IF StartDate > ElTo THEN
                    CurrReport.SKIP;
             end;
         }

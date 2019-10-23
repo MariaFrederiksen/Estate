@@ -1,6 +1,8 @@
 table 50009 "SVA MovingOut Status"
 {
     Caption = 'Moving out status';
+    DataClassification = CustomerContent;
+    Permissions = TableData 50009 = rimd;
 
     fields
     {

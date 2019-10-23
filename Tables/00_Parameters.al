@@ -1,16 +1,18 @@
-table 50000 "SVA Parameters"
+﻿table 50000 "SVA Parameters"
 {
     // Opsætningstabel for NAV Ejendom
 
     Caption='Parameters';
-    DrillDownPageID = 60501;
-    LookupPageID = 60501;
+    DataClassification = CustomerContent;
+    Permissions = TableData 50000 = rimd;
+    DrillDownPageID = "SVA Setup Estate List";
+    LookupPageID = "SVA Setup Estate List";
 
     fields
     {
         field(10;Number;Code[10])
         {
-            Caption='Number';
+            Caption='Parameter number';
             Description = 'Rownumber';
         }
         field(20;Name;Text[50])
@@ -152,7 +154,7 @@ table 50000 "SVA Parameters"
         {
             Caption='Worksheet';
             Description = 'Finanskladde til bogføring af betalinger';
-            TableRelation = "Gen. Journal Batch".Name WHERE ("Journal Template Name"=CONST('KASSE'));
+            TableRelation = "Gen. Journal Batch".Name WHERE ("Journal Template Name"=field(BS_Worksheettype));
         }
         field(500;ReminderFeeRes;Decimal)
         {
@@ -169,11 +171,49 @@ table 50000 "SVA Parameters"
             Caption='Rate for §22 stk. 1.';
             Description = 'Sats for vedligeholdelse (§22)';
         }
-        field(560;Numberserie;Code[10])
+        field(560;Numberserie;Code[20])
         {
             Caption='Numberserie for contracts';
             Description='Nummerserie for beboeraftaler';
             TableRelation = "No. Series".Code;
+        }
+        field(565;Splitcalc;Boolean)
+        {
+            Caption='Contract calc. days?';
+        }
+        field(570; "Global Dimension 1 Code"; Code[20])
+        {
+            CaptionClass = '1,1,1';
+            Caption = 'Global Dimension 1 Code';
+            TableRelation = "Dimension Value".Code WHERE ("Global Dimension No."=CONST(1));
+        }
+        field(580; "Global Dimension 2 Code"; Code[20])
+        {
+            CaptionClass = '1,1,2';
+            Caption = 'Global Dimension 2 Code';
+            TableRelation = "Dimension Value".Code WHERE ("Global Dimension No."=CONST(2));
+        }
+        field(610; Dim1; Code[20])
+        {
+            Caption = 'Dimension for property';
+            TableRelation = Dimension.Code;
+        }
+        field(620; Dim2; Code[20])
+        {
+            Caption = 'Dimension for tenancy';
+            TableRelation = Dimension.Code;
+        }
+
+        field(630; Dim3; Code[20])
+        {
+           Caption = 'Dimension for occupants';
+           TableRelation = Dimension.Code;
+        }
+        field(640;BS_WorkSheetType;Code[10])
+        {
+            Caption='Worksheettype';
+            Description = 'Finanskladdetype til bogføring af betalinger';
+            TableRelation = "Gen. Journal Template".Name;
         }
     }
 
@@ -196,5 +236,14 @@ table 50000 "SVA Parameters"
         VATRegNoFormat : Record "VAT Registration No. Format";
         TEXT008 : Label 'There must be 8 digits';
         TEXT003 : Label 'There must be 3 sign';
+        Properties : Record "SVA Property";
+        trigger OnInsert();
+        begin
+            Properties.Reset;
+            if Properties.findset then begin
+                Properties.DataVendor := BS_Dataprovider;
+                Properties.Modify;
+            end;    
+        end;
     }
 

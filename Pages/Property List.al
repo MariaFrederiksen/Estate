@@ -1,45 +1,51 @@
-page 60510 "SVA Property List"
+page 50015 "SVA Property List"
 //Tooltip created
 {
-    Caption='Properties';
+    Caption = 'List of Properties';
     CardPageID = "SVA Property Card";
     PageType = List;
     SourceTable = "SVA Property";
     UsageCategory = Lists;
+    ApplicationArea = All;
     layout
     {
         area(content)
         {
             repeater(Group)
             {
-                field(Property;Property)
+                field(Property; Property)
                 {
-                    ToolTip='Property number';
+                    ApplicationArea = All;
+                    ToolTip = 'Property number';
                 }
-                field(Name;Name)
+                field(Name; Name)
                 {
-                    ToolTip='Possibly property name';
+                    ApplicationArea = All;
+                    ToolTip = 'Possibly property name';
                 }
-                field(Address1;Address1)
+                field(Address1; Address1)
                 {
-                    ToolTip='Property address';
+                    ApplicationArea = All;
+                    ToolTip = 'Property address';
                 }
-                field("Post Code";"Post Code")
+                field("Post Code"; "Post Code")
                 {
-                    ToolTip='Property post code';
+                    ApplicationArea = All;
+                    ToolTip = 'Property post code';
                 }
-                field(City;City)
+                field(City; City)
                 {
-                    ToolTip='Property city';
+                    ApplicationArea = All;
+                    ToolTip = 'Property city';
                 }
             }
         }
         area(factboxes)
         {
-            systempart(NOTES;Notes)
+            systempart(NOTES; Notes)
             {
             }
-            systempart(links;Links)
+            systempart(links; Links)
             {
             }
         }
@@ -49,71 +55,133 @@ page 60510 "SVA Property List"
     {
         area(navigation)
         {
-            group(Oversigter)
+            action(Tenancies)
             {
-                Caption='Overview';
-                action(Tenancies)
-                {
-                    Caption='Tenancies';
-                    Image = AlternativeAddress;
-                    RunObject = Page "SVA Tenancy List";
-                    RunPageLink = PropertyNo=FIELD(Property);
-                    
-                }
-                action(Residens)
-                {
-                    Caption='Occupants';
-                    Image = customer;
-                    RunObject = Page "SVA Occupant List";
-                    RunPageLink = PropertyNo=FIELD(Property);
-                    
-                }
+                ApplicationArea = All;
+                Caption = 'Tenancies';
+                Image = AlternativeAddress;
+                RunObject = Page "SVA Tenancy List";
+                RunPageLink = PropertyNo = FIELD (Property);
+
+            }
+            action(Residens)
+            {
+                ApplicationArea = All;
+                Caption = 'Occupants';
+                Image = Customer;
+                RunObject = Page "SVA Occupant List";
+                RunPageLink = PropertyNo = FIELD (Property);
+
             }
         }
         area(reporting)
         {
-            group(Rapporter)
+            action("Basic data report")
             {
-                Caption='Reports';
-                action("Vacant tenancies")
-                {
-                    Caption='Vacant tenancies';
-                    Image = Report2;
-                    RunObject = Report 50610;
-                }
-                action("Basic data report")
-                {
-                    Caption='Data sheet report';
-                    Image = Report2;
-                    RunObject = Report 50100;
-                }
+                ApplicationArea = All;
+                Caption = 'Data sheet report';
+                Image = Report2;
+                RunObject = Report "SVA Property Data sheet";
             }
+            action("Vacant tenancies")
+            {
+                ApplicationArea = All;
+                Caption = 'Vacant tenancies';
+                Image = Report2;
+                RunObject = Report "SVA Vacant Tenancies";
+            }
+            action("MoveInOut")
+            {
+                ApplicationArea = All;
+                Caption = 'Moving in and out';
+                Image = Report;
+                RunObject = Report "SVA MoveInOutList";
+            }
+            action("RegulationList")
+            {
+                ApplicationArea = All;
+                Caption = 'List of regulations';
+                Image = Report;
+                RunObject = Report "SVA Occupants regulations";
+            }
+            action(JournalShortReport)
+            {
+                ApplicationArea = All;
+                Caption = 'Collection journal (only balances)';
+                Image = Report2;
+                RunObject = Report "SVA Collection Journal Short";
+            }
+
         }
         area(processing)
         {
-            group(Periodisk)
+            action(Journal)
             {
-                Caption='Periodic';
-                action(Journal)
+                ApplicationArea = All;
+                Caption = 'Collection journal';
+                Image = Report2;
+                RunObject = Report "SVA Collection Journal";
+            }
+          
+            action(Invoicing)
+            {
+                ApplicationArea = All;
+                Caption = 'Subscription invoicing';
+                Image = PostBatch;
+                RunObject = Codeunit "SVA Create Invoice Estate";
+            }
+            action(InvoicingWithDialog)
+            {
+                ApplicationArea = All;
+                Caption = 'Subscription invoicing with dialog';
+                Image = PostBatch;
+                RunObject = Codeunit "SVA Create Invoice Estate CD";
+            }
+            action(Nets)
+            {
+                ApplicationArea = All;
+                Caption = 'File for NETS type 0601';
+                Image = SalesInvoice;
+                RunObject = Page "SVA Sales Invoice NETS";
+            }
+            action(NetsIn)
+            {
+                ApplicationArea = All;
+                Caption = 'File from NETS type 0602';
+                Image = Payment;
+                Trigger OnAction();
+                begin
+                    Xmlport.run(Xmlport::"SVA Import NETS", false, true)
+                end;
+
+            }
+            group(Lejereguleringer)
+            {
+                Caption = 'Regulations';
+                action(MakeRegulations)
                 {
-                    Caption='Collection journal';
-                    Image = Report2;
-                    RunObject = Report "SVA Collection Journal";
+                    ApplicationArea = all;
+                    Caption = 'Make rent regulations.';
+                    ToolTip = 'Making basic data for rent regulations.';
+                    Image = Recalculate;
+                    RunObject = Codeunit "SVA Create Regulations";
                 }
-                action(Invoicing)
+                action(Regulations)
                 {
-                    Caption='Subscription invoicing';
-                    Image = PostBatch;
-                    RunObject = Codeunit 60500;
-                }
-                action(Nets)
-                {
-                    Caption='File for NETS type 0601';
-                    Image = SalesInvoice;
-                    RunObject = Page 60630;
+                    ApplicationArea = all;
+                    Caption = 'Rent regulations (indeks)';
+                    ToolTip = 'List of rent regulations for futher processing.';
+                    Image = Report;
+                    RunObject = Page "SVA Regulations";
                 }
             }
+
         }
+
     }
+    trigger OnClosePage();
+    begin
+        Codeunit.Run(Codeunit::"SVA Send");
+    end;
 }
 

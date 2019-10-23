@@ -1,14 +1,15 @@
-page 60630 "SVA Sales Invoice NETS"
+page 50003 "SVA Sales Invoice NETS"
 //Tooltip created.
 {
-    Caption='Invoices for NETS';
+    Caption = 'List of invoices for NETS';
     DeleteAllowed = false;
     InsertAllowed = false;
     PageType = List;
-    SourceTable = "Sales Invoice Header";
-    SourceTableView = SORTING("No.") 
-                WHERE(Closed=CONST(false));
     UsageCategory = Tasks;
+    ApplicationArea = All;
+    SourceTable = "Sales Invoice Header";
+    SourceTableView = SORTING ("No.")
+                WHERE (Closed = CONST (false));
 
     layout
     {
@@ -16,62 +17,72 @@ page 60630 "SVA Sales Invoice NETS"
         {
             repeater(Group)
             {
-                field("No.";"No.")
+                field("No."; "No.")
                 {
                     Editable = false;
-                    ToolTip='Number. No change posible';
+                    ToolTip = 'Invoicenumber. No change posible';
+                    ApplicationArea = all;
                 }
-                field("Bill-to Customer No.";"Bill-to Customer No.")
+                field("Bill-to Customer No."; "Bill-to Customer No.")
                 {
                     Editable = false;
-                    ToolTip='Customer Number. No change posible';
+                    ToolTip = 'Customer Number. No change posible';
+                    ApplicationArea = all;
                 }
-                field("Bill-to Name";"Bill-to Name")
+                field("Bill-to Name"; "Bill-to Name")
                 {
                     Editable = false;
-                    ToolTip='Customer name. No change posible';
+                    ToolTip = 'Customer name. No change posible';
+                    ApplicationArea = all;
                 }
-                field("Posting Date";"Posting Date")
+                field("Posting Date"; "Posting Date")
                 {
                     Editable = false;
-                    ToolTip='Posting date. No change posible';
+                    ToolTip = 'Posting date. No change posible';
+                    ApplicationArea = all;
                 }
-                field("Due Date";"Due Date")
+                field("Due Date"; "Due Date")
                 {
                     Editable = false;
-                    ToolTip='Duedate. No change posible';
+                    ToolTip = 'Duedate. No change posible';
+                    ApplicationArea = all;
                 }
-                field("Amount Including VAT";"Amount Including VAT")
+                field("Amount Including VAT"; "Amount Including VAT")
                 {
                     Editable = false;
-                    ToolTip='Amount including VAT. No change posible';
+                    ToolTip = 'Amount including VAT. No change posible';
+                    ApplicationArea = all;
                 }
-                field("SVA Included";"SVA Included")
+                field("SVA Included"; "SVA Included")
                 {
-                    ToolTip='This invoice will be included in the file for NETS';
+                    ToolTip = 'This invoice will be included in the file for NETS';
+                    ApplicationArea = all;
                 }
-                field("SVA Send";"SVA Send")
+                field("SVA Send"; "SVA Send")
                 {
-                    ToolTip='This invoice has been added to the file for NETS';
+                    ToolTip = 'This invoice has been added to the file for NETS';
+                    ApplicationArea = all;
                 }
-                field("SVA Send date";"SVA Send date")
-                {
-                    Editable = false;
-                    ToolTip='This invoice has been added to the file for NETS at this date.';
-                }
-                field("SVA Occupant";"SVA Occupant")
+                field("SVA Send date"; "SVA Send date")
                 {
                     Editable = false;
-                    ToolTip='Occupant. No change posible';
+                    ToolTip = 'This invoice has been added to the file for NETS at this date.';
+                    ApplicationArea = all;
+                }
+                field("SVA Occupant"; "SVA Occupant")
+                {
+                    Editable = false;
+                    ToolTip = 'Occupant. No change posible';
+                    ApplicationArea = all;
                 }
             }
         }
         area(factboxes)
         {
-            systempart(Notes;Notes)
+            systempart(Notes; Notes)
             {
             }
-            systempart(Links;Links)
+            systempart(Links; Links)
             {
             }
         }
@@ -81,57 +92,65 @@ page 60630 "SVA Sales Invoice NETS"
     {
         area(processing)
         {
-            group(Handlinger)
+            action(Nets)
             {
-                Caption='Actions';
-                action(Nets)
-                {
-                    Caption='File for NETS';
-                    ToolTip='Make a file for NETS.';
-                    Image = PostDocument;
+                Caption = 'File for NETS';
+                ToolTip = 'Make a file for NETS.';
+                Image = PostDocument;
+                ApplicationArea = all;
 
-                    trigger OnAction();
-                    begin
-                        CODEUNIT.RUN(60520);
-                        COMMIT;
-                        XMLPORT.RUN(50000);
-                    end;
-                }
-                action(Reset)
-                {
-                    Caption='Reset';
-                    ToolTip='Reset. It will then be possible to create a new file for NETS';
-                    Image = PostDocument;
-                    trigger OnAction();
-                    begin
-                        Codeunit.run(60510);
-                    END;    
-                }
+                trigger OnAction();
+                begin
 
+                    CODEUNIT.RUN(Codeunit::"SVA NETS BS 0601");
+                    COMMIT;
+                    XMLPORT.RUN(xmlport::"SVA File for NETS");
+                end;
             }
+            action(Reset)
+            {
+                Caption = 'Reset';
+                ToolTip = 'Reset. It will then be possible to create a new file for NETS';
+                Image = PostDocument;
+                ApplicationArea = all;
+
+                trigger OnAction();
+                begin
+                    Codeunit.run(Codeunit::"SVA Reset NETS");
+                END;
+            }
+
+
         }
     }
 
     trigger OnInit();
     begin
-        IF DATE2DMY(TODAY,2) = 12 THEN BEGIN
-          FromDate := DMY2DATE(1, DATE2DMY(TODAY,2)-11, DATE2DMY(TODAY,3)+1); //01-01-Next year
-          END;
-        IF DATE2DMY(TODAY,2) < 12 THEN BEGIN
-          FromDate := DMY2DATE(1, DATE2DMY(TODAY,2)+1, DATE2DMY(TODAY,3)); //01-next month
-          end;
-        ToDate := CalcDate('<1M>-1D',FromDate);
+        IF DATE2DMY(TODAY, 2) = 12 THEN BEGIN
+            FromDate := DMY2DATE(1, DATE2DMY(TODAY, 2) - 11, DATE2DMY(TODAY, 3) + 1); //01-01-Next year
+        END;
+        IF DATE2DMY(TODAY, 2) < 12 THEN BEGIN
+            FromDate := DMY2DATE(1, DATE2DMY(TODAY, 2) + 1, DATE2DMY(TODAY, 3)); //01-next month
+        end;
+        ToDate := CalcDate('<1M>-1D', FromDate);
     end;
 
     trigger OnOpenPage();
     begin
-        SETRANGE("Due Date",FromDate,ToDate);
-        SetRange("Payment Method Code",'nets');
+        SETRANGE("Due Date", FromDate, ToDate);
+        SetRange("Payment Method Code", 'nets');
     end;
 
     var
-        FromDate : Date;
-        ToDate : Date;
-        SalesHeader : Record "Sales Invoice Header";
+        FromDate: Date;
+        ToDate: Date;
+        SalesHeader: Record "Sales Invoice Header";
+        Properties: record "SVA Property";
+        Parameters: Record "SVA Parameters";
+
+    procedure FileType()
+    begin
+
+    end;
 }
 

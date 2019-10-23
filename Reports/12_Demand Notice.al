@@ -1,6 +1,5 @@
-report 50600 "SVA DemandNoticeResidence"
+report 50012 "SVA DemandNoticeResidence"
 {
-    RDLCLayout = './Layouts/DemandNoticeResidence.rdlc';
     WordLayout = './Layouts/DemandNoticeResidence.docx';
     Caption='Demand notice';
     DefaultLayout = Word;
@@ -45,13 +44,13 @@ report 50600 "SVA DemandNoticeResidence"
             dataitem(Tenancy;"SVA Tenancy")
             {
                 DataItemLink = Number=FIELD(TenancyNo);
-                column(Address1_Tenancy;Address1)
+                column(Address1_Tenancy;Tenancy.Address1)
                 {
                 }
-                column(PostCode_Tenancy;"Post Code")
+                column(PostCode_Tenancy;Tenancy."Post Code")
                 {
                 }
-                column(City_Tenancy;City)
+                column(City_Tenancy;Tenancy.City)
                 {
                 }
             }
@@ -125,18 +124,18 @@ report 50600 "SVA DemandNoticeResidence"
                 end;
             }
         }
-        dataitem(Company;"Company Information")
+        dataitem("Company Information"; "Company Information")
         {
-            column(CName;CName)
+            column(CName; Name)
             {
             }
-            column(CAdress;CAddress)
+            column(CAdress; Address)
             {
             }
-            column(CPostcode;CPostCode)
+            column(CPostcode; "Post Code")
             {
             }
-            column(CCIty;CCity)
+            column(CCIty; City)
             {
             }
             column(InvoicesAmount;InvoiceAmountTotal)
@@ -167,14 +166,9 @@ report 50600 "SVA DemandNoticeResidence"
     {
     }
 
-    trigger OnInitReport();
+    trigger OnPreReport();
     begin
         CompanyInfo.GET;
-        CName := CompanyInfo.Name;
-        CAddress := CompanyInfo.Address;
-        CPostcode := CompanyInfo."Post Code";
-        CCity := CompanyInfo.City;
-        
     end;
 
     var
@@ -183,10 +177,5 @@ report 50600 "SVA DemandNoticeResidence"
         TotalAmount : Decimal;
         Costtype : Record "SVA Cost type";
         LiableAmountTotal : Decimal;
-        CName : Text [50];
-        CAddress : Text [50];
-        CPostcode : Text [4];
-        CCity : Text [50];
-
 }
 

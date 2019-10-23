@@ -1,4 +1,4 @@
-report 50020 "SVA Moving out status"
+report 50021 "SVA Moving out status"
 {
     DefaultLayout = RDLC;
     RDLCLayout = './Layouts/Moving out status.rdlc';

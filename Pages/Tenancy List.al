@@ -1,12 +1,13 @@
-page 60520 "SVA Tenancy List"
+page 50024 "SVA Tenancy List"
 //Tooltip created.
 {
-    Caption = 'Tenancies';
+    Caption = 'List of Tenancies';
     CardPageID = "SVA Tenancy Card";
     Editable = false;
     PageType = List;
     SourceTable = "SVA Tenancy";
     UsageCategory = Lists;
+    ApplicationArea = All;
 
     layout
     {
@@ -15,49 +16,60 @@ page 60520 "SVA Tenancy List"
             repeater(Group)
             {
                 field(PropertyNo; PropertyNo)
-                {
-                    ToolTip='Attached to property number';
+                {                    
+                    ApplicationArea = All;
+                    ToolTip = 'Attached to property number';
                 }
                 field(Number; Number)
-                {
-                    ToolTip='Tenancy number';
+                {                    
+                    ApplicationArea = All;
+                    ToolTip = 'Tenancy number';
                 }
                 field(Address1; Address1)
-                {
-                    ToolTip='Tenancy address';
+                {                    
+                    ApplicationArea = All;
+                    ToolTip = 'Tenancy address';
                 }
                 field(Address2; Address2)
-                {
-                    ToolTip='Tenancy address 2';
+                {                    
+                    ApplicationArea = All;
+                    ToolTip = 'Tenancy address 2';
 
                 }
                 field(City; City)
-                {
-                    ToolTip='Tenancy city';
+                {                    
+                    ApplicationArea = All;
+                    ToolTip = 'Tenancy city';
                 }
                 field(Type; Type)
-                {
-                    ToolTip='Tenancy type (Living,Commercial Leases,Partial,Owner,House,Other). ';
+                {                    
+                    ApplicationArea = All;
+                    ToolTip = 'Tenancy type (Living,Commercial Leases,Partial,Owner,House,Other). ';
                 }
                 field(PeriodYear; PeriodYear)
-                {
-                    ToolTip='Periods for invoiced collection';
+                {                    
+                    ApplicationArea = All;
+                    ToolTip = 'Periods for invoiced collection';
                 }
                 field(AreaTotal; AreaTotal)
-                {
-                    ToolTip='Total area of tenancy';
+                {                    
+                    ApplicationArea = All;
+                    ToolTip = 'Total area of tenancy';
                 }
                 field(Rooms; Rooms)
-                {
-                    ToolTip='Quantity of rooms';
+                {                    
+                    ApplicationArea = All;
+                    ToolTip = 'Quantity of rooms';
                 }
                 field(Vacant; Vacant)
-                {
-                    ToolTip='Is the tenancy vacant';
+                {                    
+                    ApplicationArea = All;
+                    ToolTip = 'Is the tenancy vacant';
                 }
                 field(vacantDate; vacantDate)
-                {
-                    ToolTip='When is the tenancy vacant from.';
+                {                    
+                    ApplicationArea = All;
+                    ToolTip = 'When is the tenancy vacant from.';
                 }
             }
         }
@@ -76,17 +88,14 @@ page 60520 "SVA Tenancy List"
     {
         area(navigation)
         {
-            group(Naviger)
+            action(Occupants)
             {
-                Caption = 'Navigation';
-                action(Occupants)
-                {
-                    Caption = 'Occupants';
-                    ToolTip='List of occupants in this tenancy.';
-                    Image = Customer;
-                    RunObject = Page "SVA Occupant List";
-                    RunPageLink = TenancyNo = FIELD (Number);
-                }
+                ApplicationArea = All;
+                Caption = 'Occupants';
+                ToolTip = 'List of occupants in this tenancy.';
+                Image = Customer;
+                RunObject = Page "SVA Occupant List";
+                RunPageLink = TenancyNo = FIELD (Number);
             }
         }
     }

@@ -1,16 +1,16 @@
+//Testmiljø
 {
     "version": "0.2.0",
     "configurations": [
-        
         {
             "type": "al",
             "request": "launch",
-            "name": "Your Own server",
-            "server": "http://nav02.navitech.dk/",
+            "name": "Your own server",
+            "server": "http://nav02.navitech.dk",
             "serverInstance": "nav144",
             "authentication": "UserPassword",
-            "port": 14449,
-            "schemaUpdateMode": "Synchronize"
+            "port": 14449
         }
-    ]
+    ] 
 }
+

@@ -1,678 +1,702 @@
-table 50001 "SVA Property"
+﻿table 50001 "SVA Property"
 {
     // Tabel til håndtering af stamdata pr. ejendom
 
-    Caption='Property';
-    DrillDownPageID = 60510;
-    LookupPageID = 60510;
+    Caption = 'Property';
+    DataClassification = CustomerContent;
+    Permissions = TableData 50001 = rimd;
+    DrillDownPageID = "SVA Property List";
+    LookupPageID = "SVA Property List";
 
     fields
     {
-        field(1;Property;Code[10])
+        field(1; Property; Code[10])
         {
-            Caption='Number';
-            NotBlank=true;
+            Caption = 'Property number';
+            NotBlank = true;
         }
-        field(2;Name;Text[50])
+        field(2; Name; Text[50])
         {
-            Caption='Property name';
+            Caption = 'Property name';
         }
-        field(3;Address1;Text[50])
+        field(3; Address1; Text[50])
         {
-            Caption='Address';
+            Caption = 'Address';
         }
-        field(4;Address2;Text[50])
+        field(4; Address2; Text[50])
         {
-            Caption='Address 2';
+            Caption = 'Address 2';
         }
-        field(5;"Post Code";Code[10])
+        field(5; "Post Code"; Code[10])
         {
-            Caption='Postcode';
-            TableRelation = IF ("Country/Region Code"=CONST()) "Post Code".Code
-                            ELSE IF ("Country/Region Code"=FILTER(<>'')) "Post Code".Code WHERE ("Country/Region Code" =FIELD("Country/Region Code"));
+            Caption = 'Postcode';
+            TableRelation = IF("Country/Region Code" = CONST ()) "Post Code".Code
+            ELSE IF("Country/Region Code" = FILTER (<> '')) "Post Code".Code WHERE ("Country/Region Code" = FIELD ("Country/Region Code"));
             //This property is currently not supported
             //TestTableRelation = false;
             ValidateTableRelation = false;
 
             trigger OnValidate();
             begin
-                Postcode.ValidatePostCode(City,"Post Code",Country,"Country/Region Code",(CurrFieldNo <> 0));
+                Postcode.ValidatePostCode(City, "Post Code", Country, "Country/Region Code", (CurrFieldNo <> 0));
             end;
         }
-        field(6;City;Text[50])
+        field(6; City; Text[50])
         {
-            Caption='City';
-            TableRelation = IF ("Country/Region Code"=CONST()) "Post Code".City
-                            ELSE IF ("Country/Region Code"=FILTER(<>'')) "Post Code".City WHERE ("Country/Region Code"=FIELD("Country/Region Code"));
+            Caption = 'City';
+            TableRelation = IF("Country/Region Code" = CONST ()) "Post Code".City
+            ELSE IF("Country/Region Code" = FILTER (<> '')) "Post Code".City WHERE ("Country/Region Code" = FIELD ("Country/Region Code"));
             //This property is currently not supported
             //TestTableRelation = false;
             ValidateTableRelation = false;
 
             trigger OnValidate();
             begin
-                Postcode.ValidateCity(City,"Post Code",Country,"Country/Region Code",(CurrFieldNo <> 0) AND GUIALLOWED);
+                Postcode.ValidateCity(City, "Post Code", Country, "Country/Region Code", (CurrFieldNo <> 0) AND GUIALLOWED);
             end;
         }
-        field(7;"Country/Region Code";Code[10])
+        field(7; "Country/Region Code"; Code[10])
         {
-            Caption='Country';
+            Caption = 'Country';
             TableRelation = "Country/Region".Name;
             //This property is currently not supported
             //TestTableRelation = false;
             ValidateTableRelation = false;
         }
-        field(8;CompanyRegNo;Text[30])
+        field(8; CompanyRegNo; Text[30])
         {
-            Caption='Company Reg. No.';
+            Caption = 'Company Reg. No.';
         }
-        field(9;CadastralNo;Text[50])
+        field(9; CadastralNo; Text[50])
         {
-            Caption='Cadastral no.';
+            Caption = 'Cadastral no.';
         }
-        field(10;Email;Text[250])
+        field(10; Email; Text[250])
         {
-            Caption='E-mail';
+            Caption = 'E-mail';
             ExtendedDatatype = EMail;
         }
-        field(20;Owner;Text[50])
+        field(16; "Global Dimension 1 Code"; Code[20])
         {
-            Caption='Owner';
+            CaptionClass = '1,1,1';
+            Caption = 'Global Dimension 1 Code';
+            TableRelation = "Dimension Value".Code WHERE ("Global Dimension No." = CONST (1));
         }
-        field(21;OwnerAddress1;Text[50])
+        field(17; "Global Dimension 2 Code"; Code[20])
         {
-            Caption='Address';
+            CaptionClass = '1,1,2';
+            Caption = 'Global Dimension 2 Code';
+            TableRelation = "Dimension Value".Code WHERE ("Global Dimension No." = CONST (2));
         }
-        field(22;OwnerAddress2;Text[50])
+        field(20; Owner; Text[50])
         {
-            Caption='Address 2';
+            Caption = 'Owner';
         }
-        field(23;OwnerPostCode;Code[10])
+        field(21; OwnerAddress1; Text[50])
         {
-            Caption='Postcode';
-            TableRelation = IF (OwnerCountry=CONST()) "Post Code".Code
-                            ELSE IF (OwnerCountry=FILTER(<>'')) "Post Code".Code WHERE ("Country/Region Code"=FIELD("Country/Region Code"));
-            //This property is currently not supported
-            //TestTableRelation = false;
+            Caption = 'Address';
+        }
+        field(22; OwnerAddress2; Text[50])
+        {
+            Caption = 'Address 2';
+        }
+        field(23; OwnerPostCode; Code[10])
+        {
+            Caption = 'Postcode';
+            TableRelation = IF(OwnerCountry = CONST ()) "Post Code".Code
+            ELSE IF(OwnerCountry = FILTER (<> '')) "Post Code".Code WHERE ("Country/Region Code" = FIELD ("Country/Region Code"));
             ValidateTableRelation = false;
 
             trigger OnValidate();
             begin
-                Postcode.ValidatePostCode(OwnerCity,OwnerPostCode,Country,OwnerCountry,(CurrFieldNo <> 0) AND GUIALLOWED);
+                Postcode.ValidatePostCode(OwnerCity, OwnerPostCode, Country, OwnerCountry, (CurrFieldNo <> 0) AND GUIALLOWED);
             end;
         }
-        field(24;OwnerCity;Text[50])
+        field(24; OwnerCity; Text[50])
         {
-            Caption='City';
-            TableRelation = IF ("Country/Region Code"=CONST()) "Post Code".City
-                            ELSE IF ("Country/Region Code"=FILTER(<>'')) "Post Code".City WHERE ("Country/Region Code"=FIELD("Country/Region Code"));
-            //This property is currently not supported
-            //TestTableRelation = false;
+            Caption = 'City';
+            TableRelation = IF("Country/Region Code" = CONST ()) "Post Code".City
+            ELSE IF("Country/Region Code" = FILTER (<> '')) "Post Code".City WHERE ("Country/Region Code" = FIELD ("Country/Region Code"));
             ValidateTableRelation = false;
 
             trigger OnValidate();
             begin
-                Postcode.ValidateCity(OwnerCity,"Post Code",Country,OwnerCountry,(CurrFieldNo <> 0) AND GUIALLOWED);
+                Postcode.ValidateCity(OwnerCity, "Post Code", Country, OwnerCountry, (CurrFieldNo <> 0) AND GUIALLOWED);
             end;
         }
-        field(25;OwnerCountry;Code[10])
+        field(25; OwnerCountry; Code[10])
         {
-            Caption='Country';
+            Caption = 'Country';
             TableRelation = "Country/Region".Name;
-            //This property is currently not supported
-            //TestTableRelation = false;
             ValidateTableRelation = false;
         }
-        field(26;OwnerPhone;Text[30])
+        field(26; OwnerPhone; Text[30])
         {
-            Caption='Phone';
+            Caption = 'Phone';
             ExtendedDatatype = PhoneNo;
         }
-        field(27;OwnerCell;Text[30])
+        field(27; OwnerCell; Text[30])
         {
-            Caption='Cellphone';
+            Caption = 'Cellphone';
             ExtendedDatatype = PhoneNo;
         }
-        field(28;OwnerEmail;Text[50])
+        field(28; OwnerEmail; Text[50])
         {
-            Caption='E-mail';
+            Caption = 'E-mail';
             ExtendedDatatype = EMail;
         }
-        field(40;SquareMetersTotal;Decimal)
+        field(40; SquareMetersTotal; Decimal)
         {
-            Caption='Area';
+            Caption = 'Area';
         }
-        field(41;SquareMetersProf;Decimal)
+        field(41; SquareMetersProf; Decimal)
         {
-            Caption='Area prof';
+            Caption = 'Area prof';
 
             trigger OnValidate();
             begin
-                SquareMetersTotal := SquareMetersLiv+SquareMetersProf
+                SquareMetersTotal := SquareMetersLiv + SquareMetersProf
             end;
         }
-        field(42;SquareMetersLiv;Decimal)
+        field(42; SquareMetersLiv; Decimal)
         {
-            Caption='Area residens';
+            Caption = 'Area residens';
 
             trigger OnValidate();
             begin
-                SquareMetersTotal := SquareMetersLiv+SquareMetersProf
+                SquareMetersTotal := SquareMetersLiv + SquareMetersProf
             end;
         }
-        field(50;Bankname;Text[50])
+        field(50; Bankname; Text[50])
         {
-            Caption='Bank name';
+            Caption = 'Bank name';
         }
-        field(51;BankRegNo;Text[10])
+        field(51; BankRegNo; Text[10])
         {
-            Caption='Bank branch no.';
+            Caption = 'Bank branch no.';
         }
-        field(52;Bankaccount;Text[30])
+        field(52; Bankaccount; Text[30])
         {
-            Caption='Bankaccount';
+            Caption = 'Bankaccount';
         }
-        field(53;CGPNumber;Text[30])
+        field(53; CGPNumber; Text[30])
         {
-            Caption='CPG no.';
+            Caption = 'CPG no.';
         }
-        field(60;ESRNumber;Text[30])
+        field(60; ESRNumber; Text[30])
         {
-            Caption='ESR number';
+            Caption = 'ESR number';
         }
-        field(61;ESRAgrType;Option)
+        field(61; ESRAgrType; Option)
         {
-            Caption='ESR agreement type';
-            OptionMembers = Basis,Total;
+            Caption = 'ESR agreement type';
+            OptionMembers = Basis, Total;
         }
-        field(62;DataVendor;Text[30])
+        field(62; DataVendor; Text[30])
         {
-            Caption='Data vendor';
+            Caption = 'Data vendor';
         }
-        field(63;ESRSystem;Text[10])
+        field(63; ESRSystem; Text[10])
         {
-            Caption='ESR system';
+            Caption = 'ESR system';
         }
-        field(80;Startdate;Date)
+        field(64;ESRCustgrp; Text[5])
         {
-            Caption='Start date';
+
         }
-        field(81;ArchiveDate;Date)
+        field(65;"ESR Advis"; Text[30])
         {
-            Caption='Archive date';
+
         }
-        field(110;FinancialYearFrom;Option)
+        field(80; Startdate; Date)
         {
-            Caption='Financial year start';
-            OptionCaption='None,Jan,Feb,Mar,April,May,Jun,Jul,Aug,Sep,Oct,Nov,Dec';
-            OptionMembers = None,Jan,Feb,Mar,April,Maj,Jun,Jul,Aug,Sep,Okt,Nov,Dec;
+            Caption = 'Start date';
+        }
+        field(81; ArchiveDate; Date)
+        {
+            Caption = 'Archive date';
+        }
+        field(110; FinancialYearFrom; Option)
+        {
+            Caption = 'Financial year start';
+            OptionCaption = 'None,Jan,Feb,Mar,April,May,Jun,Jul,Aug,Sep,Oct,Nov,Dec';
+            OptionMembers = None, Jan, Feb, Mar, April, Maj, Jun, Jul, Aug, Sep, Okt, Nov, Dec;
 
             trigger OnValidate();
             begin
                 IF FinancialYearTo > 0 then
-                  FinancialYearTo := FinancialYearFrom + 11;
+                    FinancialYearTo := FinancialYearFrom + 11;
                 IF FinancialYearTo > 11 THEN
-                  FinancialYearTo := FinancialYearTo - 12;
+                    FinancialYearTo := FinancialYearTo - 12;
                 IF FinancialYearFrom = 1 THEN
-                  FinancialYearTo := 12;
+                    FinancialYearTo := 12;
             end;
         }
-        field(111;FinancialYearTo;Option)
+        field(111; FinancialYearTo; Option)
         {
-            Caption='Financial year end';
-            OptionCaption='None,Jan,Feb,Mar,April,May,Jun,Jul,Aug,Sep,Oct,Nov,Dec';
-            OptionMembers = "-",Jan,Feb,Mar,April,Maj,Jun,Jul,Aug,Sep,Okt,Nov,Dec;
+            Caption = 'Financial year end';
+            OptionCaption = 'None,Jan,Feb,Mar,April,May,Jun,Jul,Aug,Sep,Oct,Nov,Dec';
+            OptionMembers = "-", Jan, Feb, Mar, April, Maj, Jun, Jul, Aug, Sep, Okt, Nov, Dec;
 
             trigger OnValidate();
             begin
                 FinancialYearFrom := FinancialYearTo - 11;
                 IF FinancialYearFrom < 0 THEN
-                  FinancialYearFrom := FinancialYearFrom + 12;
+                    FinancialYearFrom := FinancialYearFrom + 12;
                 IF FinancialYearTo = 12 THEN
-                  FinancialYearFrom := 1;
+                    FinancialYearFrom := 1;
             end;
         }
-        field(112;HeatingYearFrom;Option)
+        field(112; HeatingYearFrom; Option)
         {
-            Caption='Heating year start';
-            OptionCaption='None,Jan,Feb,Mar,April,May,Jun,Jul,Aug,Sep,Oct,Nov,Dec';
-            OptionMembers = "-",Jan,Feb,Mar,April,Maj,Jun,Jul,Aug,Sep,Okt,Nov,Dec;
+            Caption = 'Heating year start';
+            OptionCaption = 'None,Jan,Feb,Mar,April,May,Jun,Jul,Aug,Sep,Oct,Nov,Dec';
+            OptionMembers = "-", Jan, Feb, Mar, April, Maj, Jun, Jul, Aug, Sep, Okt, Nov, Dec;
 
             trigger OnValidate();
             begin
                 IF HeatingYearFrom > 0 THEN
-                  HeatingYearTo := HeatingYearFrom + 11;
+                    HeatingYearTo := HeatingYearFrom + 11;
                 IF HeatingYearTo > 11 THEN
-                  HeatingYearTo := HeatingYearTo - 12;
+                    HeatingYearTo := HeatingYearTo - 12;
                 IF HeatingYearFrom = 1 THEN
-                  HeatingYearTo := 12;
+                    HeatingYearTo := 12;
             end;
         }
-        field(113;HeatingYearTo;Option)
+        field(113; HeatingYearTo; Option)
         {
-            Caption='Heating year end';
-            OptionCaption='None,Jan,Feb,Mar,April,May,Jun,Jul,Aug,Sep,Oct,Nov,Dec';
-            OptionMembers = "-",Jan,Feb,Mar,April,Maj,Jun,Jul,Aug,Sep,Okt,Nov,Dec;
+            Caption = 'Heating year end';
+            OptionCaption = 'None,Jan,Feb,Mar,April,May,Jun,Jul,Aug,Sep,Oct,Nov,Dec';
+            OptionMembers = "-", Jan, Feb, Mar, April, Maj, Jun, Jul, Aug, Sep, Okt, Nov, Dec;
 
             trigger OnValidate();
             begin
                 HeatingYearFrom := HeatingYearTo - 11;
                 IF HeatingYearFrom < 0 THEN
-                  HeatingYearFrom := HeatingYearFrom + 12;
+                    HeatingYearFrom := HeatingYearFrom + 12;
                 IF HeatingYearTo = 12 THEN
-                  HeatingYearFrom := 1;
+                    HeatingYearFrom := 1;
             end;
         }
-        field(114;WaterYearFrom;Option)
+        field(114; WaterYearFrom; Option)
         {
-            Caption='Water year start';
-            OptionCaption='None,Jan,Feb,Mar,April,May,Jun,Jul,Aug,Sep,Oct,Nov,Dec';
-            OptionMembers = "-",Jan,Feb,Mar,April,Maj,Jun,Jul,Aug,Sep,Okt,Nov,Dec;
+            Caption = 'Water year start';
+            OptionCaption = 'None,Jan,Feb,Mar,April,May,Jun,Jul,Aug,Sep,Oct,Nov,Dec';
+            OptionMembers = "-", Jan, Feb, Mar, April, Maj, Jun, Jul, Aug, Sep, Okt, Nov, Dec;
 
             trigger OnValidate();
             begin
                 IF WaterYearFrom > 0 then
-                  WaterYearTo := WaterYearFrom + 11;
+                    WaterYearTo := WaterYearFrom + 11;
                 IF WaterYearTo > 11 THEN
-                  WaterYearTo := WaterYearTo - 12;
+                    WaterYearTo := WaterYearTo - 12;
                 IF WaterYearFrom = 1 THEN
-                  WaterYearTo := 12;
+                    WaterYearTo := 12;
             end;
         }
-        field(115;WaterYearTo;Option)
+        field(115; WaterYearTo; Option)
         {
-            Caption='Water year end';
-            OptionCaption='None,Jan,Feb,Mar,April,May,Jun,Jul,Aug,Sep,Oct,Nov,Dec';
-            OptionMembers = "-",Jan,Feb,Mar,April,Maj,Jun,Jul,Aug,Sep,Okt,Nov,Dec;
+            Caption = 'Water year end';
+            OptionCaption = 'None,Jan,Feb,Mar,April,May,Jun,Jul,Aug,Sep,Oct,Nov,Dec';
+            OptionMembers = "-", Jan, Feb, Mar, April, Maj, Jun, Jul, Aug, Sep, Okt, Nov, Dec;
 
             trigger OnValidate();
             begin
                 WaterYearFrom := WaterYearTo - 11;
                 IF WaterYearFrom < 0 THEN
-                  WaterYearFrom := WaterYearFrom + 12;
+                    WaterYearFrom := WaterYearFrom + 12;
                 IF WaterYearTo = 12 THEN
-                  WaterYearFrom := 1;
+                    WaterYearFrom := 1;
             end;
         }
-        field(116;ElectricYearFrom;Option)
+        field(116; ElectricYearFrom; Option)
         {
-            Caption='Electric year start';
-            OptionCaption='None,Jan,Feb,Mar,April,May,Jun,Jul,Aug,Sep,Oct,Nov,Dec';
-            OptionMembers = "-",Jan,Feb,Mar,April,Maj,Jun,Jul,Aug,Sep,Okt,Nov,Dec;
+            Caption = 'Electric year start';
+            OptionCaption = 'None,Jan,Feb,Mar,April,May,Jun,Jul,Aug,Sep,Oct,Nov,Dec';
+            OptionMembers = "-", Jan, Feb, Mar, April, Maj, Jun, Jul, Aug, Sep, Okt, Nov, Dec;
 
             trigger OnValidate();
             begin
                 IF ElectricYearFrom > 0 then
-                  ElectricYearTo := ElectricYearFrom + 11;
+                    ElectricYearTo := ElectricYearFrom + 11;
                 IF ElectricYearTo > 11 THEN
-                  ElectricYearTo := ElectricYearTo - 12;
+                    ElectricYearTo := ElectricYearTo - 12;
                 IF ElectricYearFrom = 1 THEN
-                  ElectricYearTo := 12;
+                    ElectricYearTo := 12;
             end;
         }
-        field(117;ElectricYearTo;Option)
+        field(117; ElectricYearTo; Option)
         {
-            Caption='Electric year end';
-            OptionCaption='None,Jan,Feb,Mar,April,May,Jun,Jul,Aug,Sep,Oct,Nov,Dec';
-            OptionMembers = "-",Jan,Feb,Mar,April,Maj,Jun,Jul,Aug,Sep,Okt,Nov,Dec;
+            Caption = 'Electric year end';
+            OptionCaption = 'None,Jan,Feb,Mar,April,May,Jun,Jul,Aug,Sep,Oct,Nov,Dec';
+            OptionMembers = "-", Jan, Feb, Mar, April, Maj, Jun, Jul, Aug, Sep, Okt, Nov, Dec;
 
             trigger OnValidate();
             begin
                 ElectricYearFrom := ElectricYearTo - 11;
                 IF ElectricYearFrom < 0 THEN
-                  ElectricYearFrom := ElectricYearFrom + 12;
+                    ElectricYearFrom := ElectricYearFrom + 12;
                 IF ElectricYearTo = 12 THEN
-                  ElectricYearFrom := 1;
+                    ElectricYearFrom := 1;
             end;
         }
-        field(118;ManYearFrom;Option)
+        field(118; ManYearFrom; Option)
         {
-            Caption='Mantainence year start';
-            OptionCaption='None,Jan,Feb,Mar,April,May,Jun,Jul,Aug,Sep,Oct,Nov,Dec';
-            OptionMembers = "-",Jan,Feb,Mar,April,Maj,Jun,Jul,Aug,Sep,Okt,Nov,Dec;
+            Caption = 'Mantainence year start';
+            OptionCaption = 'None,Jan,Feb,Mar,April,May,Jun,Jul,Aug,Sep,Oct,Nov,Dec';
+            OptionMembers = "-", Jan, Feb, Mar, April, Maj, Jun, Jul, Aug, Sep, Okt, Nov, Dec;
 
             trigger OnValidate();
             begin
                 IF ManYearFrom > 0 then
-                  ManYearTo := ManYearFrom + 11;
+                    ManYearTo := ManYearFrom + 11;
                 IF ManYearTo > 11 THEN
-                  ManYearTo := ManYearTo - 12;
+                    ManYearTo := ManYearTo - 12;
                 IF ManYearFrom = 1 THEN
-                  ManYearTo := 12;
+                    ManYearTo := 12;
             end;
         }
-        field(119;ManYearTo;Option)
+        field(119; ManYearTo; Option)
         {
-            Caption='Mantainence year end';
-            OptionCaption='None,Jan,Feb,Mar,April,May,Jun,Jul,Aug,Sep,Oct,Nov,Dec';
-            OptionMembers = "-",Jan,Feb,Mar,April,Maj,Jun,Jul,Aug,Sep,Okt,Nov,Dec;
+            Caption = 'Mantainence year end';
+            OptionCaption = 'None,Jan,Feb,Mar,April,May,Jun,Jul,Aug,Sep,Oct,Nov,Dec';
+            OptionMembers = "-", Jan, Feb, Mar, April, Maj, Jun, Jul, Aug, Sep, Okt, Nov, Dec;
 
             trigger OnValidate();
             begin
                 ManYearFrom := ManYearTo - 11;
                 IF ManYearFrom < 0 THEN
-                  ManYearFrom := ManYearFrom + 12;
+                    ManYearFrom := ManYearFrom + 12;
                 IF ManYearTo = 12 THEN
-                  ManYearFrom := 1;
+                    ManYearFrom := 1;
             end;
         }
-        field(150;FinCompany;Text[50])
+        field(150; FinCompany; Text[50])
         {
-            Caption='Accountant';
+            Caption = 'Accountant';
         }
-        field(151;FinCompanyNo;Text[50])
+        field(151; FinCompanyNo; Text[50])
         {
-            Caption='Case no.';
+            Caption = 'Case no.';
         }
-        field(152;FinEmail;Text[50])
+        field(152; FinEmail; Text[50])
         {
-            Caption='E-mail';
+            Caption = 'E-mail';
         }
-        field(153;FinLatest;Date)
+        field(153; FinLatest; Date)
         {
-            Caption='Latest report';
+            Caption = 'Latest report';
         }
-        field(160;HeatCompany;Text[50])
+        field(160; HeatCompany; Text[50])
         {
-            Caption='Heat company';
+            Caption = 'Heat company';
         }
-        field(161;HeatCompanyNo;Text[50])
+        field(161; HeatCompanyNo; Text[50])
         {
-            Caption='Plant no.';
+            Caption = 'Plant no.';
         }
-        field(162;HeatEmail;Text[50])
+        field(162; HeatEmail; Text[50])
         {
-            Caption='E-mail';
+            Caption = 'E-mail';
         }
-        field(163;HeatLatest;Date)
+        field(163; HeatLatest; Date)
         {
-            Caption='Latest report';
+            Caption = 'Latest report';
         }
-        field(170;WaterCompany;Text[50])
+        field(170; WaterCompany; Text[50])
         {
-            Caption='Water company';
+            Caption = 'Water company';
         }
-        field(171;WaterCompanyNo;Text[50])
+        field(171; WaterCompanyNo; Text[50])
         {
-            Caption='Plant no.';
+            Caption = 'Plant no.';
         }
-        field(172;WaterEmail;Text[50])
+        field(172; WaterEmail; Text[50])
         {
-            Caption='E-mail';
+            Caption = 'E-mail';
         }
-        field(173;WaterLatest;Date)
+        field(173; WaterLatest; Date)
         {
-            Caption='Latest report';
+            Caption = 'Latest report';
         }
-        field(180;ElCompany;Text[50])
+        field(180; ElCompany; Text[50])
         {
-            Caption='Electric company';
+            Caption = 'Electric company';
         }
-        field(181;ELCompanyNo;Text[50])
+        field(181; ELCompanyNo; Text[50])
         {
-            Caption='Plant no.';
+            Caption = 'Plant no.';
         }
-        field(182;ElEmail;Text[50])
+        field(182; ElEmail; Text[50])
         {
-            Caption='E-mail';
+            Caption = 'E-mail';
         }
-        field(183;ElLatest;Date)
+        field(183; ElLatest; Date)
         {
-            Caption='Latest report';
+            Caption = 'Latest report';
         }
-        field(190;ManLatest;Date)
+        field(190; ManLatest; Date)
         {
-            Caption='Latest report';
+            Caption = 'Latest report';
         }
-        field(500;TypeA9_1_Laundry;Boolean)
+        field(500; TypeA9_1_Laundry; Boolean)
         {
-            Caption='Laundry';
+            Caption = 'Laundry';
         }
-        field(501;TypeA9_1_Bicycle;Boolean)
+        field(501; TypeA9_1_Bicycle; Boolean)
         {
-            Caption='Bicycle';
+            Caption = 'Bicycle';
         }
-        field(502;TypeA9_1_Courtyard;Boolean)
+        field(502; TypeA9_1_Courtyard; Boolean)
         {
-            Caption='Courtyard';
+            Caption = 'Courtyard';
         }
-        field(503;TypeA9_3_Taxes;Date)
+        field(503; TypeA9_3_Taxes; Date)
         {
-            Caption='Taxes pr.';
+            Caption = 'Taxes pr.';
         }
-        field(504;TypeA9_4_DepMth;Integer)
+        field(504; TypeA9_4_DepMth; Integer)
         {
-            Caption='Deposit, month';
+            Caption = 'Deposit, month';
+            trigger OnValidate();
+            begin
+                Deposit;
+            end;
         }
-        field(505;TypeA9_4_PrePaidMth;Integer)
+        field(505; TypeA9_4_PrePaidMth; Integer)
         {
-            Caption='PrePaid rent, month';
+            Caption = 'PrePaid rent, month';
+            trigger OnValidate();
+            begin
+                Deposit;
+            end;
         }
-        field(510;TypeA9_5_LandlordHeat;Boolean)
+        field(510; TypeA9_5_LandlordHeat; Boolean)
         {
-            Caption='Landlord heat';
+            Caption = 'Landlord heat';
 
             trigger OnValidate();
             begin
                 IF TypeA9_5_LandlordHeat THEN BEGIN
-                  TypeA9_5_TenantHeat := FALSE;
-                  TypeA9_5_Tgas := FALSE;
-                  TypeA9_5_TNatgas := FALSE;
-                  TypeA9_5_TOil := FALSE;
-                  TypeA9_5_TOTher :=FALSE;
-                  TypeA9_5_TOtherText := '';
-                  END;
+                    TypeA9_5_TenantHeat := FALSE;
+                    TypeA9_5_Tgas := FALSE;
+                    TypeA9_5_TNatgas := FALSE;
+                    TypeA9_5_TOil := FALSE;
+                    TypeA9_5_TOTher := FALSE;
+                    TypeA9_5_TOtherText := '';
+                END;
             end;
         }
-        field(511;TypeA9_5_LNatgas;Boolean)
+        field(511; TypeA9_5_LNatgas; Boolean)
         {
-            Caption='Natural Gas';
+            Caption = 'Natural Gas';
 
             trigger OnValidate();
             begin
                 IF TypeA9_5_LNatgas THEN BEGIN
-                  TypeA9_5_lOil := FALSE;
-                  TypeA9_5_LEl := FALSE;
-                  TypeA9_5_LandlordHeat := TRUE;
-                  END;
+                    TypeA9_5_lOil := FALSE;
+                    TypeA9_5_LEl := FALSE;
+                    TypeA9_5_LandlordHeat := TRUE;
+                END;
             end;
         }
-        field(512;TypeA9_5_lOil;Boolean)
+        field(512; TypeA9_5_lOil; Boolean)
         {
-            Caption='Central heating wtih oil';
+            Caption = 'Central heating wtih oil';
 
             trigger OnValidate();
             begin
                 IF TypeA9_5_lOil THEN BEGIN
-                 TypeA9_5_LNatgas := FALSE;
-                 TypeA9_5_LEl := FALSE;
-                 TypeA9_5_LandlordHeat := TRUE;
-                 END;
+                    TypeA9_5_LNatgas := FALSE;
+                    TypeA9_5_LEl := FALSE;
+                    TypeA9_5_LandlordHeat := TRUE;
+                END;
             end;
         }
-        field(513;TypeA9_5_LEl;Boolean)
+        field(513; TypeA9_5_LEl; Boolean)
         {
-            Caption='Electricity for heating';
+            Caption = 'Electricity for heating';
 
             trigger OnValidate();
             begin
                 IF TypeA9_5_LEl THEN BEGIN
-                  TypeA9_5_lOil := FALSE;
-                  TypeA9_5_LNatgas := FALSE;
-                  TypeA9_5_LandlordHeat := TRUE;
-                  END;
+                    TypeA9_5_lOil := FALSE;
+                    TypeA9_5_LNatgas := FALSE;
+                    TypeA9_5_LandlordHeat := TRUE;
+                END;
             end;
         }
-        field(514;TypeA9_5_LOther;Boolean)
+        field(514; TypeA9_5_LOther; Boolean)
         {
-            Caption='Other';
+            Caption = 'Other';
 
             trigger OnValidate();
             begin
                 IF TypeA9_5_LOther THEN BEGIN
-                  TypeA9_5_LandlordHeat := TRUE;
+                    TypeA9_5_LandlordHeat := TRUE;
                 END;
             end;
         }
-        field(515;TypeA9_5_LOtherText;Text[30])
+        field(515; TypeA9_5_LOtherText; Text[30])
         {
-            Caption='Description';
+            Caption = 'Description';
         }
-        field(520;TypeA9_5_TenantHeat;Boolean)
+        field(520; TypeA9_5_TenantHeat; Boolean)
         {
-            Caption='Tenant heating';
+            Caption = 'Tenant heating';
 
             trigger OnValidate();
             begin
                 IF TypeA9_5_TenantHeat THEN BEGIN
-                  TypeA9_5_LandlordHeat := FALSE;
-                 TypeA9_5_LEl := FALSE;
-                 TypeA9_5_LNatgas := FALSE;
-                 TypeA9_5_lOil := FALSE;
-                 TypeA9_5_LOther := FALSE;
-                 TypeA9_5_LOtherText := '';
-                 END;
+                    TypeA9_5_LandlordHeat := FALSE;
+                    TypeA9_5_LEl := FALSE;
+                    TypeA9_5_LNatgas := FALSE;
+                    TypeA9_5_lOil := FALSE;
+                    TypeA9_5_LOther := FALSE;
+                    TypeA9_5_LOtherText := '';
+                END;
             end;
         }
-        field(521;TypeA9_5_TEl;Boolean)
+        field(521; TypeA9_5_TEl; Boolean)
         {
-            Caption='Electricity';
+            Caption = 'Electricity';
 
             trigger OnValidate();
             begin
                 IF TypeA9_5_TEl THEN BEGIN
-                  TypeA9_5_Tgas := FALSE;
-                  TypeA9_5_TNatgas := FALSE;
-                  TypeA9_5_TOil := FALSE;
-                  TypeA9_5_TenantHeat := TRUE;
-                  END;
+                    TypeA9_5_Tgas := FALSE;
+                    TypeA9_5_TNatgas := FALSE;
+                    TypeA9_5_TOil := FALSE;
+                    TypeA9_5_TenantHeat := TRUE;
+                END;
             end;
         }
-        field(522;TypeA9_5_Tgas;Boolean)
+        field(522; TypeA9_5_Tgas; Boolean)
         {
-            Caption='Gas';
+            Caption = 'Gas';
 
             trigger OnValidate();
             begin
                 IF TypeA9_5_Tgas THEN BEGIN
-                  TypeA9_5_TEl := FALSE;
-                  TypeA9_5_TNatgas := FALSE;
-                  TypeA9_5_TOil := FALSE;
-                  TypeA9_5_TenantHeat := TRUE;
-                  END;
+                    TypeA9_5_TEl := FALSE;
+                    TypeA9_5_TNatgas := FALSE;
+                    TypeA9_5_TOil := FALSE;
+                    TypeA9_5_TenantHeat := TRUE;
+                END;
             end;
         }
-        field(523;TypeA9_5_TOil;Boolean)
+        field(523; TypeA9_5_TOil; Boolean)
         {
-            Caption='Oil';
+            Caption = 'Oil';
 
             trigger OnValidate();
             begin
                 IF TypeA9_5_TOil THEN BEGIN
-                  TypeA9_5_Tgas := FALSE;
-                  TypeA9_5_TNatgas := FALSE;
-                  TypeA9_5_TEl := FALSE;
-                  TypeA9_5_TenantHeat := TRUE;
-                  END;
+                    TypeA9_5_Tgas := FALSE;
+                    TypeA9_5_TNatgas := FALSE;
+                    TypeA9_5_TEl := FALSE;
+                    TypeA9_5_TenantHeat := TRUE;
+                END;
             end;
         }
-        field(524;TypeA9_5_TNatgas;Boolean)
+        field(524; TypeA9_5_TNatgas; Boolean)
         {
-            Caption='Natural gas';
+            Caption = 'Natural gas';
 
             trigger OnValidate();
             begin
                 IF TypeA9_5_TNatgas THEN BEGIN
-                  TypeA9_5_Tgas := FALSE;
-                  TypeA9_5_TOil := FALSE;
-                  TypeA9_5_TEl := FALSE;
-                  TypeA9_5_TenantHeat := TRUE;
-                  END;
+                    TypeA9_5_Tgas := FALSE;
+                    TypeA9_5_TOil := FALSE;
+                    TypeA9_5_TEl := FALSE;
+                    TypeA9_5_TenantHeat := TRUE;
+                END;
             end;
         }
-        field(525;TypeA9_5_TOTher;Boolean)
+        field(525; TypeA9_5_TOTher; Boolean)
         {
-            Caption='Other';
+            Caption = 'Other';
 
             trigger OnValidate();
             begin
                 IF TypeA9_5_TOTher THEN BEGIN
-                  TypeA9_5_TenantHeat := TRUE;
-                  END;
+                    TypeA9_5_TenantHeat := TRUE;
+                END;
             end;
         }
-        field(526;TypeA9_5_TOtherText;Text[30])
+        field(526; TypeA9_5_TOtherText; Text[30])
         {
-            Caption='Description';
+            Caption = 'Description';
         }
-        field(530;TypeA9_5_Water;Boolean)
+        field(530; TypeA9_5_Water; Boolean)
         {
-            Caption='Landlord deliver water';
+            Caption = 'Landlord deliver water';
         }
-        field(531;TypeA9_5_WM;Boolean)
+        field(531; TypeA9_5_WM; Boolean)
         {
-            Caption='Watermeter';
+            Caption = 'Watermeter';
         }
-        field(532;TypeA9_5_Wperiod;Date)
+        field(532; TypeA9_5_Wperiod; Date)
         {
-            Caption='Water accounting';
+            Caption = 'Water accounting';
         }
-        field(540;TypeA9_5_El;Boolean)
+        field(540; TypeA9_5_El; Boolean)
         {
-            Caption='Landlord deliver electricity';
+            Caption = 'Landlord deliver electricity';
         }
-        field(541;TypeA9_5_ElPeriod;Date)
+        field(541; TypeA9_5_ElPeriod; Date)
         {
-            Caption='El accounting';
+            Caption = 'El accounting';
         }
-        field(550;TypeA9_5_Cooling;Boolean)
+        field(550; TypeA9_5_Cooling; Boolean)
         {
-            Caption='Landlord deliver cooling';
+            Caption = 'Landlord deliver cooling';
         }
-        field(551;TypeA9_5_CM;Boolean)
+        field(551; TypeA9_5_CM; Boolean)
         {
-            Caption='Coolingmeter';
+            Caption = 'Coolingmeter';
         }
-        field(552;TypeA9_5_CPeriod;Date)
+        field(552; TypeA9_5_CPeriod; Date)
         {
-            Caption='Cooling accounting';
+            Caption = 'Cooling accounting';
         }
-        field(560;TypeA9_6_LAntenna;Boolean)
+        field(560; TypeA9_6_LAntenna; Boolean)
         {
-            Caption='United antenna';
+            Caption = 'United antenna';
         }
-        field(561;TypeA9_6_TAntenna;Boolean)
+        field(561; TypeA9_6_TAntenna; Boolean)
         {
-            Caption='Tenant antenna';
+            Caption = 'Tenant antenna';
         }
-        field(562;TypeA9_6_Internet;Boolean)
+        field(562; TypeA9_6_Internet; Boolean)
         {
-            Caption='Internet';
+            Caption = 'Internet';
         }
-        field(570;TypeA9_7_MoveIn;Boolean)
+        field(570; TypeA9_7_MoveIn; Boolean)
         {
-            Caption='Inspection';
+            Caption = 'Inspection';
         }
-        field(580;TypeA9_8_MainLandlord;Boolean)
+        field(580; TypeA9_8_MainLandlord; Boolean)
         {
-            Caption='Inside maintenance by landlord';
+            Caption = 'Inside maintenance by landlord';
         }
-        field(590;TypeA9_10_Occgroup;Boolean)
+        field(590; TypeA9_10_Occgroup; Boolean)
         {
-            Caption='Occupant group';
+            Caption = 'Occupant group';
         }
-        field(591;TypeA9_10_HouseStock;Boolean)
+        field(591; TypeA9_10_HouseStock; Boolean)
         {
-            Caption='Housestock allowed';
+            Caption = 'Housestock allowed';
         }
-        field(592;TypeA9_10_Houserules;Boolean)
+        field(592; TypeA9_10_Houserules; Boolean)
         {
-            Caption='Houserules';
+            Caption = 'Houserules';
         }
     }
 
     keys
     {
-        key(Key1;Property)
+        key(Key1; Property)
         {
         }
     }
@@ -681,31 +705,142 @@ table 50001 "SVA Property"
     {
     }
 
-    trigger OnModify();
+    trigger OnInsert();
     begin
-        Areas
+        Parameters.Reset;
+        IF Parameters.FindFirst then begin
+            if Bankname = '' then
+                Bankname := Parameters."Bank Name";
+            if BankRegNo = '' then    
+                BankRegNo := Parameters."Bank Branch No";
+            if Bankaccount = '' then    
+                Bankaccount := Parameters."Bank Account No.";
+            IF(Parameters.Dim1 = '') OR(Parameters.Dim2 = '') OR(Parameters.Dim3 = '') then
+                Error('Dimensioner mangler opsætning. Kørslen afbrydes');
+        end;
+
+        Parameters.Reset;
+        IF Parameters.FindFirst then begin
+            DefaultDim.SetRange("Table ID", 50001);
+            DefaultDim.SetRange("No.", Property);
+            IF DefaultDim.FindFirst then begin
+                DefaultDim."Dimension Value Code" := Property;
+                DefaultDim.Modify(true);
+            end else begin
+                DefaultDim."Table ID" := 50001;
+                DefaultDim."No." := Property;
+                DefaultDim."Dimension Code" := Parameters.Dim1;
+                DefaultDim."Dimension Value Code" := Property;
+                DefaultDim."Value Posting" := 1;
+                DefaultDim.Insert;
+            end;
+        end;
+
+        Parameters.Reset;
+        IF Parameters.FindFirst then begin
+            DimensionValue.SetRange("Dimension Code", Parameters.Dim1);
+            DimensionValue.SetRange(Code, Property);
+            IF DimensionValue.FindFirst then begin
+                DimensionValue.Code := Property;
+                DimensionValue.Modify(true);
+            end else begin
+                DimensionValue.Init;
+                DimensionValue."Dimension Code" := Parameters.Dim1;
+                DimensionValue.Code := Property;
+                DimensionValue.Name := 'Ejendom ' + Property;
+                DimensionValue."Dimension Value Type" := 0;
+                DimensionValue."Global Dimension No." := 1;
+                DimensionValue.Id := CreateGuid;
+                DimensionValue."Last Modified Date Time" := CurrentDateTime;
+                DimensionValue.Insert;
+            end;
+        end;
     end;
 
+
     var
-        Postcode : Record "Post Code";
-        Country : Text;
-        Occupant : Record "SVA Occupant";
-        Tenancies : Record "SVA Tenancy";
+        Postcode: Record "Post Code";
+        Country: Text;
+        Tenancies: Record "SVA Tenancy";
+        DimensionValue: Record "Dimension Value";
+        DefaultDim: Record "Default Dimension";
+        Parameters: record "SVA Parameters";
 
     local procedure Areas();
     begin
         Tenancies.RESET;
-        Tenancies.SETRANGE(PropertyNo,Property);
-          SquareMetersLiv := 0;
-          SquareMetersProf := 0;
-          SquareMetersTotal := 0;
-        IF Tenancies.FIND('-') THEN BEGIN
-          REPEAT
+        Tenancies.SETRANGE(PropertyNo, Property);
+        SquareMetersLiv := 0;
+        SquareMetersProf := 0;
+        SquareMetersTotal := 0;
+        IF Tenancies.FindSet THEN BEGIN
+            REPEAT
             SquareMetersLiv += Tenancies.AreaLiv;
             SquareMetersProf += Tenancies.AreaPro;
             UNTIL Tenancies.NEXT = 0;
-            END;
-        SquareMetersTotal := SquareMetersLiv+SquareMetersProf;
+        END;
+        SquareMetersTotal := SquareMetersLiv + SquareMetersProf;
     end;
+    local procedure Deposit();
+    begin
+        Tenancies.RESET;
+        Tenancies.SETRANGE(PropertyNo, Property);
+        IF Tenancies.FindSet THEN BEGIN
+            REPEAT
+                Tenancies.Deposit := TypeA9_4_DepMth;
+                Tenancies.PrepaidRent := TypeA9_4_PrePaidMth;
+                Tenancies.Modify();
+            UNTIL Tenancies.NEXT = 0;
+        END;
+    end;
+
+    trigger OnModify();
+    begin
+        Areas;
+        //Update tenancies when changes in Type A9 on property
+        Tenancies.Reset;
+        Tenancies.SetRange(PropertyNo,Property);
+        if Tenancies.FindSet then
+            repeat
+                Tenancies.TypeA9_1_Laundy := TypeA9_1_Laundry;
+                Tenancies.TypeA9_1_BicycleStorage := TypeA9_1_Bicycle;
+                Tenancies.TypeA9_1_Courtyard := TypeA9_1_Courtyard;
+                Tenancies.Deposit := TypeA9_4_DepMth;
+                Tenancies.PrepaidRent := TypeA9_4_PrePaidMth;
+                Tenancies.TypeA9_5_LandlordHeat := TypeA9_5_LandlordHeat;
+                Tenancies.TypeA9_5_LNatgas := TypeA9_5_LNatgas;
+                Tenancies.TypeA9_5_lOil := TypeA9_5_lOil;
+                Tenancies.TypeA9_5_LElHeat := TypeA9_5_LEl;
+                Tenancies.TypeA9_5_LOther := TypeA9_5_LOther;
+                Tenancies.TypeA9_5_LandlordWater := TypeA9_5_Water;
+                Tenancies.TypeA9_5_WaterMeter := TypeA9_5_WM;
+                Tenancies.TypeA9_5_LandlordEl := TypeA9_5_El;
+                Tenancies.TypeA9_5_LandlordCooling := TypeA9_5_Cooling;
+                Tenancies.TypeA9_5_CoolingMeter := TypeA9_5_CM;
+                Tenancies.TypeA9_6_AntennaLandlord := TypeA9_6_LAntenna;
+                Tenancies.TypeA9_6_AntennaTenancies := TypeA9_6_TAntenna;
+                Tenancies.TypeA9_6_Internet := TypeA9_6_Internet;
+                Tenancies.TypeA9_7_InspecionIn := TypeA9_7_MoveIn;
+                Tenancies.TypeA9_8_MaintainceInsideLandl := TypeA9_8_MainLandlord;
+                if Tenancies.TypeA9_8_MaintainceInsideLandl = TRUE then
+                    Tenancies.TypeA9_8_MaintainceInsideTenan := FALSE;
+                IF Tenancies.TypeA9_8_MaintainceInsideLandl = FALSE then
+                    Tenancies.TypeA9_8_MaintainceInsideTenan := TRUE;
+                    
+                Tenancies.TypeA9_10_HouseRules := TypeA9_10_Houserules;
+                Tenancies.TypeA9_10_LiveStock := TypeA9_10_HouseStock;
+                Tenancies.TypeA9_10_TenRep := TypeA9_10_Occgroup;
+                Tenancies.Modify(true);
+            until Tenancies.Next = 0;
+    end;
+    trigger OnDelete();
+    begin
+        Tenancies.Reset;
+        Tenancies.SetRange(PropertyNo,Property);
+        if Tenancies.FindFirst then begin
+            Error('Der findes lejemål på ejendommen. Slet disse først');
+        end;
+    end;  
+    
 }
 
