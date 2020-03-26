@@ -67,9 +67,11 @@ page 50020 "SVA Subscription Lines"
         {
             systempart(Links;Links)
             {
+                ApplicationArea = All;
             }
             systempart(Notes;Notes)
             {
+                ApplicationArea = All;
             }
         }
     }

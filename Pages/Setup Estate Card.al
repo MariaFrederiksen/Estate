@@ -124,14 +124,30 @@ page 50017 "SVA Setup Estate Card"
                     Tooltip = 'Fee for internal maintenance (§22). Must be changed every year wiht the new rate provided by law.';
                     ApplicationArea = all;
                 }
+
+                Field(Splitcalc; Splitcalc)
+                {
+                    Tooltip = 'Contracts calculate days? Default is 0.5 month';
+                    ApplicationArea = all;
+                }
+                field(CustomerArrears; CustomerArrears)
+                {
+                    ToolTip = 'Skal restancer på debitor medtages på opkrævningerne til NETS?';
+                    ApplicationArea = all;
+                }
                 field(Numberserie; Numberserie)
                 {
                     Tooltip = 'Numberserie for new leasecontracts.';
                     ApplicationArea = all;
                 }
-                Field(Splitcalc; Splitcalc)
+                field(PaymentMethodForNets;PaymentMethodForNets)
                 {
-                    Tooltip = 'Contracts calculate days? Default is 0.5 month';
+                    ToolTip = 'Betalingsmetode bør være NETS. Anvendes til filtrering af faktura til NETS';
+                    ApplicationArea = all;
+                }
+                field(PaymentTerms;PaymentTerms)
+                {
+                    ToolTip = 'Betalingsbetingelse for periodiske faktura.';
                     ApplicationArea = all;
                 }
                 field(Dim1; Dim1)
@@ -156,9 +172,11 @@ page 50017 "SVA Setup Estate Card"
 
             systempart(Links; Links)
             {
+                ApplicationArea = All;
             }
             systempart(Notes; Notes)
             {
+                ApplicationArea = All;
             }
         }
     }
@@ -169,14 +187,14 @@ page 50017 "SVA Setup Estate Card"
         {
             action("SVA Import properties")
             {
-            
+
                 Caption = 'Import properties';
                 ToolTip = 'Import properties according to instructions';
-                Promoted = true;
                 Image = Apply;
+                ApplicationArea = All;
                 trigger OnAction();
                 begin
-                    Xmlport.run(Xmlport::"SVA Import Properties",false,true)//"SVA Import Properties"
+                    Xmlport.run(Xmlport::"SVA Import Properties", false, true)//"SVA Import Properties"
                 end;
             }
             action("Import Tenancies")
@@ -184,20 +202,22 @@ page 50017 "SVA Setup Estate Card"
                 Caption = 'Import Tenancies';
                 ToolTip = 'Import tenancies according to instructions';
                 Image = Apply;
+                ApplicationArea = All;
                 trigger OnAction();
                 begin
-                    Xmlport.run(xmlport::"SVA Import Tenancies",false,true)//"SVA Import Tenancies"
+                    Xmlport.run(xmlport::"SVA Import Tenancies", false, true)//"SVA Import Tenancies"
                 end;
-                
+
             }
             action("Import Costtype")
             {
                 Caption = 'Import Costtype';
                 ToolTip = 'Import costtypes according to instructions';
                 Image = Apply;
+                ApplicationArea = All;
                 trigger OnAction();
                 begin
-                    Xmlport.run(Xmlport::"SVA Import Estate Cost Type",false,true)//"SVA Import Estate Cost Type";
+                    Xmlport.run(Xmlport::"SVA Import Estate Cost Type", false, true)//"SVA Import Estate Cost Type";
                 end;
             }
             action("Import Occupants")
@@ -205,20 +225,22 @@ page 50017 "SVA Setup Estate Card"
                 Caption = 'Import Occupants';
                 ToolTip = 'Import occupants according to instructions';
                 Image = Apply;
+                ApplicationArea = All;
                 trigger OnAction();
                 begin
-                    Xmlport.run(Xmlport::"SVA Import Occupants",false,true)//"SVA Import Occupants"
+                    Xmlport.run(Xmlport::"SVA Import Occupants", false, true)//"SVA Import Occupants"
                 end;
-               
+
             }
             action("Import Collections")
             {
                 Caption = 'Import Collections';
                 ToolTip = 'Import collections according to instructions';
                 Image = Apply;
+                ApplicationArea = All;
                 trigger OnAction();
                 begin
-                    Xmlport.run(xmlport::"SVA Import Collections",false,true)//"SVA Import Collecions"
+                    Xmlport.run(xmlport::"SVA Import Collections", false, true)//"SVA Import Collecions"
                 end;
             }
 
@@ -227,13 +249,38 @@ page 50017 "SVA Setup Estate Card"
                 Caption = 'Import transactions';
                 ToolTip = 'Import old transactions according to instructions';
                 Image = Apply;
+                ApplicationArea = All;
                 trigger OnAction();
                 begin
-                    Xmlport.run(xmlport::"SVA Import Occupant Trans",false,true)//"SVA Import Occupant Trans"
+                    Xmlport.run(xmlport::"SVA Import Occupant Trans", false, true)//"SVA Import Occupant Trans"
+                end;
+            }
+            action("Check transactions costtype")
+            {
+                Caption = 'Check transaktions costtype';
+                ToolTip = 'Set all costtype to the right type on occupant trans. Used after import and adjusting of costtypes.';
+                Image = Apply;
+                ApplicationArea = All;
+                trigger OnAction();
+                begin
+                    CosttypeTable.Reset();
+                    if CosttypeTable.FindSet() then
+                        repeat
+                            OccTrans.Reset();
+                            OccTrans.SetRange("Cost type Estate", CosttypeTable.Costtype);
+                            if OccTrans.FindSet() then
+                                repeat
+                                    OccTrans.Type := CosttypeTable.Type;
+                                    OccTrans.Modify();
+                                until OccTrans.next = 0;
+                        until CosttypeTable.next = 0;
                 end;
             }
         }
-
     }
+    var
+        OccTrans: Record "SVA Occupant Trans";
+        CosttypeTable: Record "SVA Cost type";
+        Customer: Record "Customer";
 }
 

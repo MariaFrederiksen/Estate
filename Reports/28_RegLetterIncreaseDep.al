@@ -1,4 +1,4 @@
-report 50030 "SVA Regul. Increase Deposit"
+report 50028 "SVA Regul. Increase Deposit"
 {
     DefaultLayout = Word;
     WordLayout = './layouts/SVA Regulation IncreaseDep.docx';

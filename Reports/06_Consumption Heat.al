@@ -2,85 +2,87 @@ report 50006 "SVA Consumption Heat"
 {
     DefaultLayout = RDLC;
     RDLCLayout = './Layouts/Consumption Heat.rdlc';
-    Caption='AC heat';
-    UsageCategory=ReportsAndAnalysis;
+    Caption = 'AC heat';
+    UsageCategory = ReportsAndAnalysis;
 
     dataset
     {
-        dataitem(Occupant;"SVA Occupant")
+        dataitem(Occupant; "SVA Occupant")
         {
-            column(OProperty;PropertyNo)
+            column(CompanyName;COMPANYPROPERTY.DISPLAYNAME)
             {
             }
-            column(ONo;Number)
+            column(OProperty; PropertyNo)
             {
             }
-            column(OTenancy;TenancyNo)
+            column(ONo; Number)
             {
             }
-            column(OCustomer;"Customer No")
+            column(OTenancy; TenancyNo)
             {
             }
-            column(OName;Name1)
+            column(OCustomer; "Customer No")
             {
             }
-            column(OEndDate;EndDate)
+            column(OName; Name1)
             {
             }
-            column(OStartDate;StartDate)
+            column(OEndDate; EndDate)
             {
             }
-            column(OID;ConsumptionAccountNo)
+            column(OStartDate; StartDate)
             {
             }
-            dataitem("Occupant Trans";"SVA Occupant Trans")
+            column(OID; ConsumptionAccountNo)
             {
-                DataItemLink = Occupant=FIELD(Number);
-                DataItemTableView = SORTING(Occupant,Date,"Cost type Estate","Invoice No")
-                                    WHERE(Type=CONST(ACheat));
-                column(OTransNo;Occupant)
+            }
+            dataitem("Occupant Trans"; "SVA Occupant Trans")
+            {
+                DataItemLink = Occupant = FIELD(Number);
+                DataItemTableView = SORTING(Occupant, Date, "Cost type Estate", "Invoice No")
+                                    WHERE(Type = CONST(ACheat));
+                column(OTransNo; Occupant)
                 {
                 }
-                column(Costtype;"Cost type Estate")
+                column(Costtype; "Cost type Estate")
                 {
                 }
-                column(Date;Date)
+                column(Date; Date)
                 {
                 }
-                column(Amount;Amount)
+                column(Amount; Amount)
                 {
                 }
 
                 trigger OnAfterGetRecord();
                 begin
-                    if ("Occupant Trans".Date < HeatFrom) OR ("Occupant Trans".Date > HeatTo) then
+                    if ("Occupant Trans".Date < ConsumptionFrom) OR ("Occupant Trans".Date > ConsumptionTo) then
                         CurrReport.Skip;
                 end;
             }
 
             trigger OnAfterGetRecord();
             begin
-                 PropNo := PropertyNo;
-                 PropertyRec.RESET;
-                 PropertyRec.SETRANGE(PropertyRec.Property,PropNo);
-                 IF PropertyRec.FINDFIRST() THEN BEGIN
-                     If HeatTo = 0D then begin
-                        if Date2dmy(Today,2) < PropertyRec.WaterYearTo then   
-                            HeatTo := DMY2DATE(1, PropertyRec.WaterYearFrom, DATE2DMY(TODAY,3))-1; 
-                        if Date2dmy(Today,2) > PropertyRec.WaterYearTo then 
-                            HeatTo := DMY2DATE(1, PropertyRec.WaterYearFrom, DATE2DMY(TODAY,3));
-                        HeatFrom := CalcDate('<-1Y>',HeatTo);
-                        HeatTo := CALCDATE('<1Y-1D>',HeatFrom);
-                     end;   
-                  END;
-                 IF (EndDate < HeatFrom) AND (EndDate <> 0D) THEN
-                  CurrReport.SKIP;
-                 IF StartDate > HeatTo THEN
-                   CurrReport.SKIP;
+                PropNo := PropertyNo;
+                PropertyRec.RESET;
+                PropertyRec.SETRANGE(PropertyRec.Property, PropNo);
+                IF PropertyRec.FINDFIRST() THEN begin
+                    If ConsumptionTo = 0D then begin
+                        ConsumptionFrom := DMY2DATE(1, PropertyRec.HeatingYearFrom, DATE2DMY(TODAY, 3));
+                        ConsumptionTo := CALCDATE('<1Y-1D>', ConsumptionFrom);
+                        while Today < ConsumptionTo do begin
+                            ConsumptionFrom := CalcDate('<-1Y>', ConsumptionFrom);
+                            ConsumptionTo := CalcDate('<-1Y>', ConsumptionTo);
+                        end;
+                    end;
+                END;
+                IF (EndDate < ConsumptionFrom) AND (EndDate <> 0D) THEN
+                    CurrReport.SKIP;
+                IF StartDate > ConsumptionTo THEN
+                    CurrReport.SKIP;
             end;
         }
     }
-
     requestpage
     {
 
@@ -98,9 +100,11 @@ report 50006 "SVA Consumption Heat"
     }
 
     var
-        HeatFrom : Date;
-        HeatTo : Date;
-        PropertyRec : Record "SVA Property";
-        PropNo : Code[10];
+        ConsumptionFrom: Date;
+        ConsumptionTo: Date;
+        PropertyRec: Record "SVA Property";
+        PropNo: Code[10];
+
 }
+
 

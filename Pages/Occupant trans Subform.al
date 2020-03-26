@@ -12,8 +12,6 @@ page 50011 "SVA Occupant Trans Subform"
     MultipleNewLines = true;
     PageType = ListPart;
     SourceTable = "SVA Occupant Trans";
-    UsageCategory = Lists;
-    ApplicationArea = all;
 
     layout
     {

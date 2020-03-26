@@ -14,9 +14,11 @@ page 50050 "SVA Estate Role Center"
             {
                 part("Activities"; "SVA Bookkeeper Activities")
                 {
+                    ApplicationArea = All;
                 }
                 part("My Customer"; "My Customers")
                 {
+                    ApplicationArea = All;
                 }
             }
             group(Notes)
@@ -24,14 +26,17 @@ page 50050 "SVA Estate Role Center"
                 part("My job queue"; "My Job Queue")
                 {
                     Visible = false;
+                    ApplicationArea = All;
                 }
                 part("My vendors"; "My Vendors")
                 {
                     ToolTip = 'Vendors (crafts)';
+                    ApplicationArea = All;
                 }
-                
+
                 systempart(MyNotes; MyNotes)
                 {
+                    ApplicationArea = All;
                 }
             }
         }
@@ -46,6 +51,7 @@ page 50050 "SVA Estate Role Center"
                 Caption = 'A&ccount Schedule';
                 Image = "Report";
                 RunObject = Report "Account Schedule";
+                ApplicationArea = All;
             }
             group("&Balance")
             {
@@ -56,18 +62,21 @@ page 50050 "SVA Estate Role Center"
                     Caption = 'Bank &Detail Trial Balance';
                     Image = "Report";
                     RunObject = Report "Bank Acc. - Detail Trial Bal.";
+                    ApplicationArea = All;
                 }
                 action("Råbalance efter &periode")
                 {
                     Caption = 'Trial Balance by &Period';
                     Image = "Report";
                     RunObject = Report "Trial Balance by Period";
+                    ApplicationArea = All;
                 }
                 action("Årsr&egnskab")
                 {
                     Caption = 'Closing Tria&l Balance';
                     Image = "Report";
                     RunObject = Report "Closing Trial Balance";
+                    ApplicationArea = All;
                 }
             }
             action("Saldo for regnskabs&år")
@@ -75,12 +84,14 @@ page 50050 "SVA Estate Role Center"
                 Caption = '&Fiscal Year Balance';
                 Image = "Report";
                 RunObject = Report "Fiscal Year Balance";
+                ApplicationArea = All;
             }
             action("Saldosammenlign. - &Forr. år")
             {
                 Caption = 'Balance C&omp. . Prev. Year';
                 Image = "Report";
                 RunObject = Report "Balance Comp. - Prev. Year";
+                ApplicationArea = All;
             }
             separator("Seperator")
             {
@@ -90,18 +101,21 @@ page 50050 "SVA Estate Role Center"
                 Caption = '&Aged Accounts Receivable';
                 Image = "Report";
                 RunObject = Report "Aged Accounts Receivable";
+                ApplicationArea = All;
             }
             action("Aldersfor&delt gæld")
             {
                 Caption = 'Aged Accou&nts Payable';
                 Image = "Report";
                 RunObject = Report "Aged Accounts Payable";
+                ApplicationArea = All;
             }
             action("Afste&m deb.- og kred.konti")
             {
                 Caption = 'Reconcile Cust. and &Vend. Accs';
                 Image = "Report";
                 RunObject = Report "Reconcile Cust. and Vend. Accs";
+                ApplicationArea = All;
             }
             separator("Separator 2")
             {
@@ -111,36 +125,42 @@ page 50050 "SVA Estate Role Center"
                 Caption = 'VAT Reg&istration No. Check';
                 Image = "Report";
                 RunObject = Report "VAT Registration No. Check";
+                ApplicationArea = All;
             }
             action("Momsu&ndtagelser")
             {
                 Caption = 'VAT E&xceptions';
                 Image = "Report";
                 RunObject = Report "VAT Exceptions";
+                ApplicationArea = All;
             }
             action("Momsan&givelse")
             {
                 Caption = 'VAT State&ment';
                 Image = "Report";
                 RunObject = Report "VAT Statement";
+                ApplicationArea = All;
             }
             action("Moms - list&eangivelse TS")
             {
                 Caption = 'VAT - VI&ES Declaration Tax Auth';
                 Image = "Report";
                 RunObject = Report "VAT- VIES Declaration Tax Auth";
+                ApplicationArea = All;
             }
             action("M&oms - listeangivelse disk")
             {
                 Caption = 'VAT - VIES Declaration Dis&k';
                 Image = "Report";
                 RunObject = Report "VAT- VIES Declaration Disk";
+                ApplicationArea = All;
             }
             action("Oversigt over E&U-salg")
             {
                 Caption = 'EC &Sales List';
                 Image = "Report";
                 RunObject = Report "EC Sales List";
+                ApplicationArea = All;
             }
         }
         area(embedding)
@@ -149,54 +169,63 @@ page 50050 "SVA Estate Role Center"
             {
                 Caption = 'Chart of Accounts';
                 RunObject = Page "Chart of Accounts";
+                ApplicationArea = All;
             }
             action(Bankkonti)
             {
                 Caption = 'Bank Accounts';
                 Image = BankAccount;
                 RunObject = Page "Bank Account List";
+                ApplicationArea = All;
             }
             action(Customers)
             {
                 Caption = 'Customers';
                 Image = Customer;
                 RunObject = Page "Customer List";
+                ApplicationArea = All;
             }
             action(CustomersBalance)
             {
                 Caption = 'Balance';
                 Image = Balance;
                 RunObject = Page "Customer List";
-                RunPageView = WHERE ("Balance (LCY)" = FILTER (<> 0));
+                RunPageView = WHERE("Balance (LCY)" = FILTER(<> 0));
+                ApplicationArea = All;
             }
             action(Vendors)
             {
                 Caption = 'Vendors';
                 Image = Vendor;
                 RunObject = Page "Vendor List";
+                ApplicationArea = All;
             }
             action(VendorsBalance)
             {
                 Caption = 'Balance';
                 Image = Balance;
                 RunObject = Page "Vendor List";
-                RunPageView = WHERE ("Balance (LCY)" = FILTER (<> 0));
+                RunPageView = WHERE("Balance (LCY)" = FILTER(<> 0));
+                ApplicationArea = All;
             }
             action(Momsangivelse)
             {
                 Caption = 'VAT Statements';
                 RunObject = Page "VAT Statement Names";
+                ApplicationArea = All;
             }
             action("Købsfakturaer")
             {
                 Caption = 'Purchase Invoices';
                 RunObject = Page "Purchase Invoices";
+                ApplicationArea = All;
             }
             action(Salgsfakturaer)
             {
                 Caption = 'Sales Invoices';
                 Image = Invoice;
                 RunObject = Page "Sales Invoice List";
+                ApplicationArea = All;
             }
 
             action(Godkendelser)
@@ -204,37 +233,42 @@ page 50050 "SVA Estate Role Center"
                 Caption = 'Approvals';
                 Image = Approvals;
                 RunObject = Page "Requests to Approve";
+                ApplicationArea = All;
             }
             action(CashReceiptJournals)
             {
                 Caption = 'Cash Receipt Journals';
                 Image = Journals;
                 RunObject = Page "General Journal Batches";
-                RunPageView = WHERE ("Template Type" = CONST ("Cash Receipts"),
-                                    Recurring = CONST (false));
+                RunPageView = WHERE("Template Type" = CONST("Cash Receipts"),
+                                    Recurring = CONST(false));
+                ApplicationArea = All;
             }
             action(PaymentJournals)
             {
                 Caption = 'Payment Journals';
                 Image = Journals;
                 RunObject = Page "General Journal Batches";
-                RunPageView = WHERE ("Template Type" = CONST (Payments),
-                                    Recurring = CONST (False));
+                RunPageView = WHERE("Template Type" = CONST(Payments),
+                                    Recurring = CONST(False));
+                ApplicationArea = All;
             }
             action(GeneralJournals)
             {
                 Caption = 'General Journals';
                 Image = Journal;
                 RunObject = Page "General Journal Batches";
-                RunPageView = WHERE ("Template Type" = CONST (General),
-                                    Recurring = CONST (false));
+                RunPageView = WHERE("Template Type" = CONST(General),
+                                    Recurring = CONST(false));
+                ApplicationArea = All;
             }
             action(RecurringGeneralJournals)
             {
                 Caption = 'Recurring General Journals';
                 RunObject = Page "General Journal Batches";
-                RunPageView = WHERE ("Template Type" = CONST (General),
-                                    Recurring = CONST (TRUE));
+                RunPageView = WHERE("Template Type" = CONST(General),
+                                    Recurring = CONST(TRUE));
+                ApplicationArea = All;
             }
 
         }
@@ -250,28 +284,26 @@ page 50050 "SVA Estate Role Center"
                     Caption = 'Posted Sales Invoices';
                     Image = PostedOrder;
                     RunObject = Page "Posted Sales Invoices";
-                }
-                action("Bogf. salgskr.notaer")
-                {
-                    Caption = 'Posted Sales Credit Memos';
-                    Image = PostedOrder;
-                    RunObject = Page "Posted Sales Credit Memo";
+                    ApplicationArea = All;
                 }
                 action("Bogf. købsfakturaer")
                 {
                     Caption = 'Posted Purchase Invoices';
                     RunObject = Page "Posted Purchase Invoices";
+                    ApplicationArea = All;
                 }
                 action("Bogførte købskreditnotaer")
                 {
                     Caption = 'Posted Purchase Credit Memos';
                     RunObject = Page "Posted Purchase Credit Memos";
+                    ApplicationArea = All;
                 }
                 action(Finansjournaler)
                 {
                     Caption = 'G/L Registers';
                     Image = GLRegisters;
                     RunObject = Page "G/L Registers";
+                    ApplicationArea = All;
                 }
 
             }
@@ -283,15 +315,17 @@ page 50050 "SVA Estate Role Center"
                     Caption = 'Requests Sent for Approval';
                     Image = Approvals;
                     RunObject = Page "Approval Entries";
-                    RunPageView = SORTING ("Record ID to Approve", "Workflow Step Instance ID", "Sequence No.")
+                    RunPageView = SORTING("Record ID to Approve", "Workflow Step Instance ID", "Sequence No.")
                                   ORDER(Ascending)
-                                  WHERE (Status = FILTER (Open));
+                                  WHERE(Status = FILTER(Open));
+                    ApplicationArea = All;
                 }
                 action(RequestsToApprove)
                 {
                     Caption = 'Requests to Approve';
                     Image = Approvals;
                     RunObject = Page "Requests to Approve";
+                    ApplicationArea = All;
                 }
             }
             group("Administration")
@@ -303,29 +337,34 @@ page 50050 "SVA Estate Role Center"
                     Caption = 'Currencies';
                     Image = Currency;
                     RunObject = Page Currencies;
+                    ApplicationArea = All;
                 }
                 action(Regnskabsperioder)
                 {
                     Caption = 'Accounting Periods';
                     Image = AccountingPeriods;
                     RunObject = Page "Accounting Periods";
+                    ApplicationArea = All;
                 }
                 action(Nummerserie)
                 {
                     Caption = 'Number Series';
                     RunObject = Page "No. Series";
+                    ApplicationArea = All;
                 }
                 action(Konteringsarter)
                 {
                     Caption = 'CosttypeEstate';
-                    ToolTip='Setup costtype for Estate';
+                    ToolTip = 'Setup costtype for Estate';
                     RunObject = page "SVA Cost Type Estate List";
+                    ApplicationArea = All;
                 }
                 action(Estate)
                 {
                     Caption = 'Estate';
-                    ToolTip='Setup for NETS etc.';
+                    ToolTip = 'Setup for NETS etc.';
                     RunObject = page "SVA Setup Estate List";
+                    ApplicationArea = All;
                 }
             }
         }
@@ -340,6 +379,7 @@ page 50050 "SVA Estate Role Center"
                 //PromotedCategory = Process;
                 RunObject = Page "Customer Card";
                 RunPageMode = Create;
+                ApplicationArea = All;
             }
             action("Salgs&faktura")
             {
@@ -350,6 +390,7 @@ page 50050 "SVA Estate Role Center"
                 //PromotedCategory = Process;
                 RunObject = Page "Sales Invoice";
                 RunPageMode = Create;
+                ApplicationArea = All;
             }
             action("&Salgskreditnota")
             {
@@ -360,6 +401,7 @@ page 50050 "SVA Estate Role Center"
                 //PromotedCategory = Process;
                 RunObject = Page "Sales Credit Memo";
                 RunPageMode = Create;
+                ApplicationArea = All;
             }
             separator("Seperator 4")
             {
@@ -373,6 +415,7 @@ page 50050 "SVA Estate Role Center"
                 //PromotedCategory = Process;
                 RunObject = Page "Vendor Card";
                 RunPageMode = Create;
+                ApplicationArea = All;
             }
             action("&Købsfaktura")
             {
@@ -383,6 +426,7 @@ page 50050 "SVA Estate Role Center"
                 //PromotedCategory = Process;
                 RunObject = Page "Purchase Invoice";
                 RunPageMode = Create;
+                ApplicationArea = All;
             }
         }
         area(processing)
@@ -397,18 +441,21 @@ page 50050 "SVA Estate Role Center"
                 Caption = 'Cash Re&ceipt Journal';
                 Image = CashReceiptJournal;
                 RunObject = Page "Cash Receipt Journal";
+                ApplicationArea = All;
             }
             action("&Udbetalingskladde")
             {
                 Caption = 'Payment &Journal';
                 Image = PaymentJournal;
                 RunObject = Page "Payment Journal";
+                ApplicationArea = All;
             }
             action(Betalingsregistrering)
             {
                 Caption = 'Payment Registration';
                 Image = Payment;
                 RunObject = Page "Payment Registration";
+                ApplicationArea = All;
             }
             separator("Seperator 3")
             {
@@ -421,12 +468,14 @@ page 50050 "SVA Estate Role Center"
                 PromotedIsBig = true;
                 RunObject = Page "Pmt. Reconciliation Journals";
                 RunPageMode = View;
+                ApplicationArea = All;
             }
             action("Bankkontoafs&temning")
             {
                 Caption = 'B&ank Account Reconciliations';
                 Image = BankAccountRec;
                 RunObject = Page "Bank Acc. Reconciliation";
+                ApplicationArea = All;
             }
             action("Afregn &moms")
             {
@@ -434,6 +483,7 @@ page 50050 "SVA Estate Role Center"
                 Ellipsis = true;
                 Image = SettleOpenTransactions;
                 RunObject = Report "Calc. and Post VAT Settlement";
+                ApplicationArea = All;
             }
             separator("Opsætning")
             {
@@ -445,6 +495,7 @@ page 50050 "SVA Estate Role Center"
                 Caption = 'Sa&les && Receivables Setup';
                 Image = Setup;
                 RunObject = Page "Sales & Receivables Setup";
+                ApplicationArea = All;
             }
             separator(Oversigt)
             {

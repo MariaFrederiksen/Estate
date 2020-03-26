@@ -30,8 +30,9 @@
         field(5; "Post Code"; Code[10])
         {
             Caption = 'Postcode';
-            TableRelation = IF("Country/Region Code" = CONST ()) "Post Code".Code
-            ELSE IF("Country/Region Code" = FILTER (<> '')) "Post Code".Code WHERE ("Country/Region Code" = FIELD ("Country/Region Code"));
+            TableRelation = IF ("Country/Region Code" = CONST()) "Post Code".Code
+            ELSE
+            IF ("Country/Region Code" = FILTER(<> '')) "Post Code".Code WHERE("Country/Region Code" = FIELD("Country/Region Code"));
             //This property is currently not supported
             //TestTableRelation = false;
             ValidateTableRelation = false;
@@ -44,11 +45,9 @@
         field(6; City; Text[50])
         {
             Caption = 'City';
-            TableRelation = IF("Country/Region Code" = CONST ()) "Post Code".City
-            ELSE IF("Country/Region Code" = FILTER (<> '')) "Post Code".City WHERE ("Country/Region Code" = FIELD ("Country/Region Code"));
-            //This property is currently not supported
-            //TestTableRelation = false;
-            ValidateTableRelation = false;
+            TableRelation = IF ("Country/Region Code" = CONST()) "Post Code".City
+            ELSE
+            IF ("Country/Region Code" = FILTER(<> '')) "Post Code".City WHERE("Country/Region Code" = FIELD("Country/Region Code"));
 
             trigger OnValidate();
             begin
@@ -59,9 +58,6 @@
         {
             Caption = 'Country';
             TableRelation = "Country/Region".Name;
-            //This property is currently not supported
-            //TestTableRelation = false;
-            ValidateTableRelation = false;
         }
         field(8; CompanyRegNo; Text[30])
         {
@@ -80,13 +76,13 @@
         {
             CaptionClass = '1,1,1';
             Caption = 'Global Dimension 1 Code';
-            TableRelation = "Dimension Value".Code WHERE ("Global Dimension No." = CONST (1));
+            TableRelation = "Dimension Value".Code WHERE("Global Dimension No." = CONST(1));
         }
         field(17; "Global Dimension 2 Code"; Code[20])
         {
             CaptionClass = '1,1,2';
             Caption = 'Global Dimension 2 Code';
-            TableRelation = "Dimension Value".Code WHERE ("Global Dimension No." = CONST (2));
+            TableRelation = "Dimension Value".Code WHERE("Global Dimension No." = CONST(2));
         }
         field(20; Owner; Text[50])
         {
@@ -103,8 +99,9 @@
         field(23; OwnerPostCode; Code[10])
         {
             Caption = 'Postcode';
-            TableRelation = IF(OwnerCountry = CONST ()) "Post Code".Code
-            ELSE IF(OwnerCountry = FILTER (<> '')) "Post Code".Code WHERE ("Country/Region Code" = FIELD ("Country/Region Code"));
+            TableRelation = IF (OwnerCountry = CONST()) "Post Code".Code
+            ELSE
+            IF (OwnerCountry = FILTER(<> '')) "Post Code".Code WHERE("Country/Region Code" = FIELD("Country/Region Code"));
             ValidateTableRelation = false;
 
             trigger OnValidate();
@@ -115,8 +112,9 @@
         field(24; OwnerCity; Text[50])
         {
             Caption = 'City';
-            TableRelation = IF("Country/Region Code" = CONST ()) "Post Code".City
-            ELSE IF("Country/Region Code" = FILTER (<> '')) "Post Code".City WHERE ("Country/Region Code" = FIELD ("Country/Region Code"));
+            TableRelation = IF ("Country/Region Code" = CONST()) "Post Code".City
+            ELSE
+            IF ("Country/Region Code" = FILTER(<> '')) "Post Code".City WHERE("Country/Region Code" = FIELD("Country/Region Code"));
             ValidateTableRelation = false;
 
             trigger OnValidate();
@@ -190,7 +188,7 @@
         field(61; ESRAgrType; Option)
         {
             Caption = 'ESR agreement type';
-            OptionMembers = Basis, Total;
+            OptionMembers = Basis,Total;
         }
         field(62; DataVendor; Text[30])
         {
@@ -200,11 +198,11 @@
         {
             Caption = 'ESR system';
         }
-        field(64;ESRCustgrp; Text[5])
+        field(64; ESRCustgrp; Text[5])
         {
 
         }
-        field(65;"ESR Advis"; Text[30])
+        field(65; "ESR Advis"; Text[30])
         {
 
         }
@@ -220,7 +218,7 @@
         {
             Caption = 'Financial year start';
             OptionCaption = 'None,Jan,Feb,Mar,April,May,Jun,Jul,Aug,Sep,Oct,Nov,Dec';
-            OptionMembers = None, Jan, Feb, Mar, April, Maj, Jun, Jul, Aug, Sep, Okt, Nov, Dec;
+            OptionMembers = None,Jan,Feb,Mar,April,Maj,Jun,Jul,Aug,Sep,Okt,Nov,Dec;
 
             trigger OnValidate();
             begin
@@ -236,7 +234,7 @@
         {
             Caption = 'Financial year end';
             OptionCaption = 'None,Jan,Feb,Mar,April,May,Jun,Jul,Aug,Sep,Oct,Nov,Dec';
-            OptionMembers = "-", Jan, Feb, Mar, April, Maj, Jun, Jul, Aug, Sep, Okt, Nov, Dec;
+            OptionMembers = "-",Jan,Feb,Mar,April,Maj,Jun,Jul,Aug,Sep,Okt,Nov,Dec;
 
             trigger OnValidate();
             begin
@@ -251,7 +249,7 @@
         {
             Caption = 'Heating year start';
             OptionCaption = 'None,Jan,Feb,Mar,April,May,Jun,Jul,Aug,Sep,Oct,Nov,Dec';
-            OptionMembers = "-", Jan, Feb, Mar, April, Maj, Jun, Jul, Aug, Sep, Okt, Nov, Dec;
+            OptionMembers = "-",Jan,Feb,Mar,April,Maj,Jun,Jul,Aug,Sep,Okt,Nov,Dec;
 
             trigger OnValidate();
             begin
@@ -267,7 +265,7 @@
         {
             Caption = 'Heating year end';
             OptionCaption = 'None,Jan,Feb,Mar,April,May,Jun,Jul,Aug,Sep,Oct,Nov,Dec';
-            OptionMembers = "-", Jan, Feb, Mar, April, Maj, Jun, Jul, Aug, Sep, Okt, Nov, Dec;
+            OptionMembers = "-",Jan,Feb,Mar,April,Maj,Jun,Jul,Aug,Sep,Okt,Nov,Dec;
 
             trigger OnValidate();
             begin
@@ -282,7 +280,7 @@
         {
             Caption = 'Water year start';
             OptionCaption = 'None,Jan,Feb,Mar,April,May,Jun,Jul,Aug,Sep,Oct,Nov,Dec';
-            OptionMembers = "-", Jan, Feb, Mar, April, Maj, Jun, Jul, Aug, Sep, Okt, Nov, Dec;
+            OptionMembers = "-",Jan,Feb,Mar,April,Maj,Jun,Jul,Aug,Sep,Okt,Nov,Dec;
 
             trigger OnValidate();
             begin
@@ -298,7 +296,7 @@
         {
             Caption = 'Water year end';
             OptionCaption = 'None,Jan,Feb,Mar,April,May,Jun,Jul,Aug,Sep,Oct,Nov,Dec';
-            OptionMembers = "-", Jan, Feb, Mar, April, Maj, Jun, Jul, Aug, Sep, Okt, Nov, Dec;
+            OptionMembers = "-",Jan,Feb,Mar,April,Maj,Jun,Jul,Aug,Sep,Okt,Nov,Dec;
 
             trigger OnValidate();
             begin
@@ -313,7 +311,7 @@
         {
             Caption = 'Electric year start';
             OptionCaption = 'None,Jan,Feb,Mar,April,May,Jun,Jul,Aug,Sep,Oct,Nov,Dec';
-            OptionMembers = "-", Jan, Feb, Mar, April, Maj, Jun, Jul, Aug, Sep, Okt, Nov, Dec;
+            OptionMembers = "-",Jan,Feb,Mar,April,Maj,Jun,Jul,Aug,Sep,Okt,Nov,Dec;
 
             trigger OnValidate();
             begin
@@ -329,7 +327,7 @@
         {
             Caption = 'Electric year end';
             OptionCaption = 'None,Jan,Feb,Mar,April,May,Jun,Jul,Aug,Sep,Oct,Nov,Dec';
-            OptionMembers = "-", Jan, Feb, Mar, April, Maj, Jun, Jul, Aug, Sep, Okt, Nov, Dec;
+            OptionMembers = "-",Jan,Feb,Mar,April,Maj,Jun,Jul,Aug,Sep,Okt,Nov,Dec;
 
             trigger OnValidate();
             begin
@@ -344,7 +342,7 @@
         {
             Caption = 'Mantainence year start';
             OptionCaption = 'None,Jan,Feb,Mar,April,May,Jun,Jul,Aug,Sep,Oct,Nov,Dec';
-            OptionMembers = "-", Jan, Feb, Mar, April, Maj, Jun, Jul, Aug, Sep, Okt, Nov, Dec;
+            OptionMembers = "-",Jan,Feb,Mar,April,Maj,Jun,Jul,Aug,Sep,Okt,Nov,Dec;
 
             trigger OnValidate();
             begin
@@ -360,7 +358,7 @@
         {
             Caption = 'Mantainence year end';
             OptionCaption = 'None,Jan,Feb,Mar,April,May,Jun,Jul,Aug,Sep,Oct,Nov,Dec';
-            OptionMembers = "-", Jan, Feb, Mar, April, Maj, Jun, Jul, Aug, Sep, Okt, Nov, Dec;
+            OptionMembers = "-",Jan,Feb,Mar,April,Maj,Jun,Jul,Aug,Sep,Okt,Nov,Dec;
 
             trigger OnValidate();
             begin
@@ -477,14 +475,21 @@
 
             trigger OnValidate();
             begin
-                IF TypeA9_5_LandlordHeat THEN BEGIN
-                    TypeA9_5_TenantHeat := FALSE;
-                    TypeA9_5_Tgas := FALSE;
-                    TypeA9_5_TNatgas := FALSE;
-                    TypeA9_5_TOil := FALSE;
-                    TypeA9_5_TOTher := FALSE;
+                if TypeA9_5_LandlordHeat = true then begin
+                    TypeA9_5_TenantHeat := false;
+                    TypeA9_5_Tgas := false;
+                    TypeA9_5_TNatgas := false;
+                    TypeA9_5_TOil := false;
+                    TypeA9_5_TOTher := false;
                     TypeA9_5_TOtherText := '';
-                END;
+                end;
+                if TypeA9_5_LandlordHeat = false then begin
+                    TypeA9_5_LNatgas := FALSE;
+                    TypeA9_5_lOil := FALSE;
+                    TypeA9_5_LEl := FALSE;
+                    TypeA9_5_TOTher := false;
+                    TypeA9_5_TOtherText := '';
+                end;
             end;
         }
         field(511; TypeA9_5_LNatgas; Boolean)
@@ -493,11 +498,14 @@
 
             trigger OnValidate();
             begin
-                IF TypeA9_5_LNatgas THEN BEGIN
+                IF TypeA9_5_LNatgas = true THEN BEGIN
                     TypeA9_5_lOil := FALSE;
                     TypeA9_5_LEl := FALSE;
                     TypeA9_5_LandlordHeat := TRUE;
                 END;
+                IF TypeA9_5_LNatgas = false THEN
+                    TypeA9_5_LandlordHeat := false;
+                Validate(TypeA9_5_LandlordHeat);
             end;
         }
         field(512; TypeA9_5_lOil; Boolean)
@@ -506,11 +514,13 @@
 
             trigger OnValidate();
             begin
-                IF TypeA9_5_lOil THEN BEGIN
+                IF TypeA9_5_lOil = true THEN BEGIN
                     TypeA9_5_LNatgas := FALSE;
                     TypeA9_5_LEl := FALSE;
                     TypeA9_5_LandlordHeat := TRUE;
                 END;
+                IF TypeA9_5_lOil = false THEN
+                    TypeA9_5_LandlordHeat := false;
             end;
         }
         field(513; TypeA9_5_LEl; Boolean)
@@ -519,11 +529,14 @@
 
             trigger OnValidate();
             begin
-                IF TypeA9_5_LEl THEN BEGIN
+                IF TypeA9_5_LEl = true THEN BEGIN
                     TypeA9_5_lOil := FALSE;
                     TypeA9_5_LNatgas := FALSE;
                     TypeA9_5_LandlordHeat := TRUE;
                 END;
+                IF TypeA9_5_LEl = false THEN
+                    TypeA9_5_LandlordHeat := false;
+
             end;
         }
         field(514; TypeA9_5_LOther; Boolean)
@@ -532,9 +545,12 @@
 
             trigger OnValidate();
             begin
-                IF TypeA9_5_LOther THEN BEGIN
+                IF TypeA9_5_LOther = true then
                     TypeA9_5_LandlordHeat := TRUE;
-                END;
+                IF TypeA9_5_LOther = false THEN begin
+                    TypeA9_5_LandlordHeat := false;
+                    TypeA9_5_LOtherText := '';
+                end;
             end;
         }
         field(515; TypeA9_5_LOtherText; Text[30])
@@ -547,7 +563,7 @@
 
             trigger OnValidate();
             begin
-                IF TypeA9_5_TenantHeat THEN BEGIN
+                IF TypeA9_5_TenantHeat = true THEN BEGIN
                     TypeA9_5_LandlordHeat := FALSE;
                     TypeA9_5_LEl := FALSE;
                     TypeA9_5_LNatgas := FALSE;
@@ -555,6 +571,14 @@
                     TypeA9_5_LOther := FALSE;
                     TypeA9_5_LOtherText := '';
                 END;
+                if TypeA9_5_TenantHeat = false then begin
+                    TypeA9_5_TenantHeat := false;
+                    TypeA9_5_Tgas := false;
+                    TypeA9_5_TNatgas := false;
+                    TypeA9_5_TOil := false;
+                    TypeA9_5_TOTher := false;
+                    TypeA9_5_TOtherText := '';
+                end;
             end;
         }
         field(521; TypeA9_5_TEl; Boolean)
@@ -563,12 +587,14 @@
 
             trigger OnValidate();
             begin
-                IF TypeA9_5_TEl THEN BEGIN
+                IF TypeA9_5_TEl = true THEN BEGIN
                     TypeA9_5_Tgas := FALSE;
                     TypeA9_5_TNatgas := FALSE;
                     TypeA9_5_TOil := FALSE;
                     TypeA9_5_TenantHeat := TRUE;
                 END;
+                IF TypeA9_5_TEl = false THEN
+                    TypeA9_5_TenantHeat := false;
             end;
         }
         field(522; TypeA9_5_Tgas; Boolean)
@@ -577,12 +603,15 @@
 
             trigger OnValidate();
             begin
-                IF TypeA9_5_Tgas THEN BEGIN
+                IF TypeA9_5_Tgas = true THEN BEGIN
                     TypeA9_5_TEl := FALSE;
                     TypeA9_5_TNatgas := FALSE;
                     TypeA9_5_TOil := FALSE;
                     TypeA9_5_TenantHeat := TRUE;
                 END;
+                if TypeA9_5_Tgas = false THEN
+                    TypeA9_5_TenantHeat := false;
+
             end;
         }
         field(523; TypeA9_5_TOil; Boolean)
@@ -591,12 +620,14 @@
 
             trigger OnValidate();
             begin
-                IF TypeA9_5_TOil THEN BEGIN
+                IF TypeA9_5_TOil = true THEN BEGIN
                     TypeA9_5_Tgas := FALSE;
                     TypeA9_5_TNatgas := FALSE;
                     TypeA9_5_TEl := FALSE;
                     TypeA9_5_TenantHeat := TRUE;
                 END;
+                IF TypeA9_5_TOil = false THEN
+                    TypeA9_5_TenantHeat := false;
             end;
         }
         field(524; TypeA9_5_TNatgas; Boolean)
@@ -605,12 +636,14 @@
 
             trigger OnValidate();
             begin
-                IF TypeA9_5_TNatgas THEN BEGIN
+                IF TypeA9_5_TNatgas = true THEN BEGIN
                     TypeA9_5_Tgas := FALSE;
                     TypeA9_5_TOil := FALSE;
                     TypeA9_5_TEl := FALSE;
                     TypeA9_5_TenantHeat := TRUE;
                 END;
+                IF TypeA9_5_TNatgas = false THEN
+                    TypeA9_5_TenantHeat := false;
             end;
         }
         field(525; TypeA9_5_TOTher; Boolean)
@@ -619,9 +652,13 @@
 
             trigger OnValidate();
             begin
-                IF TypeA9_5_TOTher THEN BEGIN
+                IF TypeA9_5_TOTher = true THEN
                     TypeA9_5_TenantHeat := TRUE;
-                END;
+                IF TypeA9_5_TOTher = false THEN begin
+                    TypeA9_5_TenantHeat := false;
+                    TypeA9_5_TOtherText := '';
+                end;
+
             end;
         }
         field(526; TypeA9_5_TOtherText; Text[30])
@@ -708,14 +745,18 @@
     trigger OnInsert();
     begin
         Parameters.Reset;
+        IF NOT Parameters.FindFirst then
+            Error('Dimensioner mangler opsætning. Kørslen afbrydes');
+
+        Parameters.Reset;
         IF Parameters.FindFirst then begin
             if Bankname = '' then
                 Bankname := Parameters."Bank Name";
-            if BankRegNo = '' then    
+            if BankRegNo = '' then
                 BankRegNo := Parameters."Bank Branch No";
-            if Bankaccount = '' then    
+            if Bankaccount = '' then
                 Bankaccount := Parameters."Bank Account No.";
-            IF(Parameters.Dim1 = '') OR(Parameters.Dim2 = '') OR(Parameters.Dim3 = '') then
+            IF (Parameters.Dim1 = '') OR (Parameters.Dim2 = '') OR (Parameters.Dim3 = '') then
                 Error('Dimensioner mangler opsætning. Kørslen afbrydes');
         end;
 
@@ -775,12 +816,18 @@
         SquareMetersTotal := 0;
         IF Tenancies.FindSet THEN BEGIN
             REPEAT
-            SquareMetersLiv += Tenancies.AreaLiv;
-            SquareMetersProf += Tenancies.AreaPro;
+                SquareMetersLiv += Tenancies.AreaLiv;
+                SquareMetersProf += Tenancies.AreaPro;
             UNTIL Tenancies.NEXT = 0;
         END;
         SquareMetersTotal := SquareMetersLiv + SquareMetersProf;
     end;
+
+    local procedure HeatParagraph5()
+    begin
+
+    end;
+
     local procedure Deposit();
     begin
         Tenancies.RESET;
@@ -796,10 +843,9 @@
 
     trigger OnModify();
     begin
-        Areas;
         //Update tenancies when changes in Type A9 on property
         Tenancies.Reset;
-        Tenancies.SetRange(PropertyNo,Property);
+        Tenancies.SetRange(PropertyNo, Property);
         if Tenancies.FindSet then
             repeat
                 Tenancies.TypeA9_1_Laundy := TypeA9_1_Laundry;
@@ -812,6 +858,15 @@
                 Tenancies.TypeA9_5_lOil := TypeA9_5_lOil;
                 Tenancies.TypeA9_5_LElHeat := TypeA9_5_LEl;
                 Tenancies.TypeA9_5_LOther := TypeA9_5_LOther;
+
+                Tenancies.TypeA9_5_TenantHeat := TypeA9_5_TenantHeat;
+                Tenancies.TypeA9_5_TEl := TypeA9_5_TEl;
+                Tenancies.TypeA9_5_Tgas := TypeA9_5_Tgas;
+                Tenancies.TypeA9_5_TOil := TypeA9_5_TOil;
+                Tenancies.TypeA9_5_TNatgas := TypeA9_5_TNatgas;
+                Tenancies.TypeA9_5_TOTher := TypeA9_5_TOTher;
+                Tenancies.TypeA9_5_TOtherText := TypeA9_5_TOtherText;
+                
                 Tenancies.TypeA9_5_LandlordWater := TypeA9_5_Water;
                 Tenancies.TypeA9_5_WaterMeter := TypeA9_5_WM;
                 Tenancies.TypeA9_5_LandlordEl := TypeA9_5_El;
@@ -826,21 +881,22 @@
                     Tenancies.TypeA9_8_MaintainceInsideTenan := FALSE;
                 IF Tenancies.TypeA9_8_MaintainceInsideLandl = FALSE then
                     Tenancies.TypeA9_8_MaintainceInsideTenan := TRUE;
-                    
+
                 Tenancies.TypeA9_10_HouseRules := TypeA9_10_Houserules;
                 Tenancies.TypeA9_10_LiveStock := TypeA9_10_HouseStock;
                 Tenancies.TypeA9_10_TenRep := TypeA9_10_Occgroup;
                 Tenancies.Modify(true);
             until Tenancies.Next = 0;
     end;
+
     trigger OnDelete();
     begin
         Tenancies.Reset;
-        Tenancies.SetRange(PropertyNo,Property);
+        Tenancies.SetRange(PropertyNo, Property);
         if Tenancies.FindFirst then begin
             Error('Der findes lejemål på ejendommen. Slet disse først');
         end;
-    end;  
-    
+    end;
+
 }
 

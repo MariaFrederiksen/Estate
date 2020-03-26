@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2016/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
-  <Author>Claus Lundstr¹m</Author>
+  <Author>Maria Frederiksen</Author>
   <AutoRefresh>0</AutoRefresh>
   <DataSources>
     <DataSource Name="DataSource">
@@ -11,67 +11,6 @@
       <rd:DataSourceID>9f466647-1f22-4156-bc56-d2d94315525c</rd:DataSourceID>
     </DataSource>
   </DataSources>
-  <DataSets>
-    <DataSet Name="DataSet_Result">
-      <Query>
-        <DataSourceName>DataSource</DataSourceName>
-        <CommandText />
-      </Query>
-      <Fields>
-        <Field Name="TNumber">
-          <DataField>TNumber</DataField>
-        </Field>
-        <Field Name="ONo">
-          <DataField>ONo</DataField>
-        </Field>
-        <Field Name="OCustomer">
-          <DataField>OCustomer</DataField>
-        </Field>
-        <Field Name="OName">
-          <DataField>OName</DataField>
-        </Field>
-        <Field Name="OEndDate">
-          <DataField>OEndDate</DataField>
-        </Field>
-        <Field Name="STenancy">
-          <DataField>STenancy</DataField>
-        </Field>
-        <Field Name="SCosttype">
-          <DataField>SCosttype</DataField>
-        </Field>
-        <Field Name="SDateFrom">
-          <DataField>SDateFrom</DataField>
-        </Field>
-        <Field Name="SDateTo">
-          <DataField>SDateTo</DataField>
-        </Field>
-        <Field Name="SAmountPer">
-          <DataField>SAmountPer</DataField>
-        </Field>
-        <Field Name="SAmountPerFormat">
-          <DataField>SAmountPerFormat</DataField>
-        </Field>
-        <Field Name="SVatGroup">
-          <DataField>SVatGroup</DataField>
-        </Field>
-        <Field Name="PrDate">
-          <DataField>PrDate</DataField>
-        </Field>
-        <Field Name="Vatrate">
-          <DataField>Vatrate</DataField>
-        </Field>
-        <Field Name="VatrateFormat">
-          <DataField>VatrateFormat</DataField>
-        </Field>
-        <Field Name="AmountInclVat">
-          <DataField>AmountInclVat</DataField>
-        </Field>
-        <Field Name="AmountInclVatFormat">
-          <DataField>AmountInclVatFormat</DataField>
-        </Field>
-      </Fields>
-    </DataSet>
-  </DataSets>
   <ReportSections>
     <ReportSection>
       <Body>
@@ -80,7 +19,7 @@
             <TablixBody>
               <TablixColumns>
                 <TablixColumn>
-                  <Width>3.35191cm</Width>
+                  <Width>1.68503cm</Width>
                 </TablixColumn>
                 <TablixColumn>
                   <Width>1.99093cm</Width>
@@ -105,7 +44,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Beskrivelse</Value>
+                                  <Value />
                                   <Style>
                                     <FontFamily>Segoe UI</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -316,14 +255,14 @@
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="SCosttype">
+                        <Textbox Name="Textbox6">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!SCosttype.Value</Value>
+                                  <Value />
                                   <Style>
                                     <FontFamily>Segoe UI</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -333,10 +272,7 @@
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>SCosttype</rd:DefaultName>
-                          <Visibility>
-                            <Hidden>true</Hidden>
-                          </Visibility>
+                          <rd:DefaultName>Textbox6</rd:DefaultName>
                           <Style>
                             <Border>
                               <Style>None</Style>
@@ -345,7 +281,6 @@
                             <PaddingRight>2pt</PaddingRight>
                           </Style>
                         </Textbox>
-                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell>
@@ -455,21 +390,14 @@
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="ONo">
+                        <Textbox Name="Textbox2">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>I alt </Value>
-                                  <Style>
-                                    <FontFamily>Segoe UI</FontFamily>
-                                    <FontSize>8pt</FontSize>
-                                  </Style>
-                                </TextRun>
-                                <TextRun>
-                                  <Value>=Fields!ONo.Value</Value>
+                                  <Value />
                                   <Style>
                                     <FontFamily>Segoe UI</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -481,7 +409,7 @@
                               </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>ONo</rd:DefaultName>
+                          <rd:DefaultName>Textbox2</rd:DefaultName>
                           <Style>
                             <Border>
                               <Style>None</Style>
@@ -1554,9 +1482,9 @@
             </TablixRowHierarchy>
             <DataSetName>DataSet_Result</DataSetName>
             <Top>1.2cm</Top>
-            <Left>0.00506cm</Left>
+            <Left>0.03142cm</Left>
             <Height>2.64231cm</Height>
-            <Width>17.98501cm</Width>
+            <Width>16.31813cm</Width>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -1565,47 +1493,14 @@
               <FontSize>8pt</FontSize>
             </Style>
           </Tablix>
-          <Textbox Name="Textbox2">
-            <CanGrow>true</CanGrow>
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value />
-                    <Style>
-                      <FontFamily>Segoe UI</FontFamily>
-                      <FontSize>12pt</FontSize>
-                      <FontWeight>Bold</FontWeight>
-                      <Color>White</Color>
-                    </Style>
-                  </TextRun>
-                </TextRuns>
-                <Style>
-                  <TextAlign>Center</TextAlign>
-                </Style>
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>Textbox2</rd:DefaultName>
-            <Left>0.00506cm</Left>
-            <Height>0.6cm</Height>
-            <Width>17.99007cm</Width>
-            <ZIndex>1</ZIndex>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-              <BackgroundColor>CornflowerBlue</BackgroundColor>
-            </Style>
-          </Textbox>
         </ReportItems>
         <Height>12.51541cm</Height>
         <Style />
       </Body>
-      <Width>18.17177cm</Width>
+      <Width>17.1398cm</Width>
       <Page>
         <PageHeader>
-          <Height>1.79917cm</Height>
+          <Height>1.89618cm</Height>
           <PrintOnFirstPage>true</PrintOnFirstPage>
           <PrintOnLastPage>true</PrintOnLastPage>
           <ReportItems>
@@ -1617,7 +1512,7 @@
                     <Paragraph>
                       <TextRuns>
                         <TextRun>
-                          <Value />
+                          <Value>=Fields!CompanyName.Value</Value>
                           <Style>
                             <FontFamily>Segoe UI</FontFamily>
                             <FontSize>8pt</FontSize>
@@ -1627,7 +1522,7 @@
                       <Style />
                     </Paragraph>
                   </Paragraphs>
-                  <Top>0.70556cm</Top>
+                  <Top>0.77611cm</Top>
                   <Left>0.0143cm</Left>
                   <Height>11pt</Height>
                   <Width>7.5cm</Width>
@@ -1643,7 +1538,7 @@
                     <Paragraph>
                       <TextRuns>
                         <TextRun>
-                          <Value>Opkrævningsjournal</Value>
+                          <Value>Opkrævningsjournal, kun saldi</Value>
                           <Style>
                             <FontFamily>Segoe UI</FontFamily>
                             <FontSize>14pt</FontSize>
@@ -1654,6 +1549,7 @@
                       <Style />
                     </Paragraph>
                   </Paragraphs>
+                  <Top>0.07055cm</Top>
                   <Left>0.0143cm</Left>
                   <Height>20pt</Height>
                   <Width>7.5cm</Width>
@@ -1692,7 +1588,7 @@
                       </Style>
                     </Paragraph>
                   </Paragraphs>
-                  <Top>1.05834cm</Top>
+                  <Top>1.12889cm</Top>
                   <Left>0.0143cm</Left>
                   <Height>20pt</Height>
                   <Width>7.5cm</Width>
@@ -1722,10 +1618,10 @@
                       </Style>
                     </Paragraph>
                   </Paragraphs>
-                  <Top>0.77611cm</Top>
-                  <Left>10.02456cm</Left>
+                  <Top>0.9525cm</Top>
+                  <Left>8.91331cm</Left>
                   <Height>11pt</Height>
-                  <Width>7.96541cm</Width>
+                  <Width>7.40979cm</Width>
                   <ZIndex>3</ZIndex>
                   <Style>
                     <VerticalAlign>Middle</VerticalAlign>
@@ -1752,9 +1648,9 @@
                       </Style>
                     </Paragraph>
                   </Paragraphs>
-                  <Left>10.02456cm</Left>
+                  <Left>9.13773cm</Left>
                   <Height>11pt</Height>
-                  <Width>7.96541cm</Width>
+                  <Width>7.18536cm</Width>
                   <ZIndex>4</ZIndex>
                   <Style>
                     <Border />
@@ -1809,10 +1705,10 @@
                       </Style>
                     </Paragraph>
                   </Paragraphs>
-                  <Top>0.38806cm</Top>
-                  <Left>10.02456cm</Left>
+                  <Top>0.56444cm</Top>
+                  <Left>8.93977cm</Left>
                   <Height>11pt</Height>
-                  <Width>7.96541cm</Width>
+                  <Width>7.38333cm</Width>
                   <ZIndex>5</ZIndex>
                   <Style>
                     <Border />
@@ -1823,9 +1719,8 @@
                 </Textbox>
               </ReportItems>
               <KeepTogether>true</KeepTogether>
-              <Left>0.0001cm</Left>
-              <Height>0.70833in</Height>
-              <Width>18cm</Width>
+              <Height>0.73611in</Height>
+              <Width>16.70354cm</Width>
               <Style>
                 <Border>
                   <Style>None</Style>
@@ -1850,12 +1745,6 @@
       </Page>
     </ReportSection>
   </ReportSections>
-  <ReportParametersLayout>
-    <GridLayoutDefinition>
-      <NumberOfColumns>4</NumberOfColumns>
-      <NumberOfRows>2</NumberOfRows>
-    </GridLayoutDefinition>
-  </ReportParametersLayout>
   <Code>'****DivideValues START****'
 Public Function DivideValues(Value1 as decimal, Value2 as decimal)
   If Value2 = 0 then
@@ -1916,4 +1805,68 @@ End Function
   <ConsumeContainerWhitespace>true</ConsumeContainerWhitespace>
   <rd:ReportUnitType>Cm</rd:ReportUnitType>
   <rd:ReportID>0eeb6585-38ae-40f1-885b-8d50088d51b4</rd:ReportID>
+  <DataSets>
+    <DataSet Name="DataSet_Result">
+      <Fields>
+        <Field Name="CompanyName">
+          <DataField>CompanyName</DataField>
+        </Field>
+        <Field Name="TNumber">
+          <DataField>TNumber</DataField>
+        </Field>
+        <Field Name="ONo">
+          <DataField>ONo</DataField>
+        </Field>
+        <Field Name="OCustomer">
+          <DataField>OCustomer</DataField>
+        </Field>
+        <Field Name="OName">
+          <DataField>OName</DataField>
+        </Field>
+        <Field Name="OEndDate">
+          <DataField>OEndDate</DataField>
+        </Field>
+        <Field Name="STenancy">
+          <DataField>STenancy</DataField>
+        </Field>
+        <Field Name="SCosttype">
+          <DataField>SCosttype</DataField>
+        </Field>
+        <Field Name="SDateFrom">
+          <DataField>SDateFrom</DataField>
+        </Field>
+        <Field Name="SDateTo">
+          <DataField>SDateTo</DataField>
+        </Field>
+        <Field Name="SAmountPer">
+          <DataField>SAmountPer</DataField>
+        </Field>
+        <Field Name="SAmountPerFormat">
+          <DataField>SAmountPerFormat</DataField>
+        </Field>
+        <Field Name="SVatGroup">
+          <DataField>SVatGroup</DataField>
+        </Field>
+        <Field Name="PrDate">
+          <DataField>PrDate</DataField>
+        </Field>
+        <Field Name="Vatrate">
+          <DataField>Vatrate</DataField>
+        </Field>
+        <Field Name="VatrateFormat">
+          <DataField>VatrateFormat</DataField>
+        </Field>
+        <Field Name="AmountInclVat">
+          <DataField>AmountInclVat</DataField>
+        </Field>
+        <Field Name="AmountInclVatFormat">
+          <DataField>AmountInclVatFormat</DataField>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>DataSource</DataSourceName>
+        <CommandText />
+      </Query>
+    </DataSet>
+  </DataSets>
 </Report>

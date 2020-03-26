@@ -1,7 +1,7 @@
-report 50027 "SVA Regulation Indeks"
+report 50030 "SVA Regulation Indeks Deposit"
 {
     DefaultLayout = Word;
-    WordLayout = './layouts/SVA Regulation Indeks.docx';
+    WordLayout = './layouts/SVA Regulation IndeksDep.docx';
     Caption = 'Regulation letters';
 
     dataset

@@ -8,6 +8,9 @@ report 50004 "SVA Moving in Journal"
     {
         dataitem("SVA LeaseContract_A9"; "SVA LeaseContract_A9")
         {
+            column(CompanyName;COMPANYPROPERTY.DISPLAYNAME)
+            {
+            }
             column(TypeA93RentPrperiod_LeaseContractA9;TypeA9_3_RentPerPeriode)
             {
             }

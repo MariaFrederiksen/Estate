@@ -652,75 +652,75 @@
         }
         area(factboxes)
         {
-            systempart(Notes; Notes)
-            {
-            }
             systempart(Links; Links)
             {
+                ApplicationArea = All;
             }
+            systempart(Notes; Notes)
+            {
+                ApplicationArea = All;
+            }
+
         }
     }
 
     actions
     {
-        area(creation)
+
+        area(processing)
         {
-            group(Handlinger)
+            action(LeaseContract)
             {
-                Caption = 'Actions';
+                ApplicationArea = all;
+                Caption = 'Print leasecontract';
+                ToolTip = 'Print out leasecontract type A, 9. edition';
+                Image = "Report";
 
-                action(LeaseContract)
-                {
-                    ApplicationArea = all;
-                    Caption = 'Print leasecontract';
-                    ToolTip = 'Print out leasecontract type A, 9. edition';
-                    Image = "Report";
+                trigger OnAction();
+                begin
+                    CLEAR(Contract);
+                    Contract.SETRANGE(Number, Rec.Number);
+                    IF Contract.FindFirst() THEN begin
+                        CLEAR(TypeA9);
+                        TypeA9.SETTABLEVIEW(Contract);
+                        TypeA9.RunModal;
+                    END;
+                end;
+            }
+            action(MoveInJournal)
+            {
+                ApplicationArea = all;
+                Caption = 'Move in journal';
+                ToolTip = 'Making a journal for moving in costs';
+                Image = Report;
 
-                    trigger OnAction();
-                    begin
-                        CLEAR(Contract);
-                        Contract.SETRANGE(Number, Rec.Number);
-                        IF Contract.FindFirst() THEN begin
-                            CLEAR(TypeA9);
-                            TypeA9.SETTABLEVIEW(Contract);
-                            TypeA9.RunModal;
-                        END;
-                    end;
-                }
-                action(MoveInJournal)
-                {
-                    ApplicationArea = all;
-                    Caption = 'Move in journal';
-                    ToolTip = 'Making a journal for moving in costs';
-                    Image = Report;
+                trigger Onaction();
+                begin
+                    CLEAR(MoveInContract);
+                    MoveInContract.SETRANGE(Number, Rec.Number);
+                    IF MoveInContract.FindFirst() THEN begin
+                        CLEAR(MoveInJournal);
+                        MoveInJournal.SETTABLEVIEW(MoveInContract);
+                        MoveInJournal.RunModal;
+                    END;
+                end;
+            }
 
-                    trigger Onaction();
-                    begin
-                        CLEAR(MoveInContract);
-                        MoveInContract.SETRANGE(Number, Rec.Number);
-                        IF MoveInContract.FindFirst() THEN begin
-                            CLEAR(MoveInJournal);
-                            MoveInJournal.SETTABLEVIEW(MoveInContract);
-                            MoveInJournal.RunModal;
-                        END;
-                    end;
-                }
+            action(MoveInInvoice)
+            {
+                ApplicationArea = all;
+                Caption = 'Make Invoice moving in';
+                ToolTip = 'Make invoice to customer for moving in costs';
+                Image = Report;
 
-                action(MoveInInvoice)
-                {
-                    ApplicationArea = all;
-                    Caption = 'Make Invoice moving in';
-                    ToolTip = 'Make invoice to customer for moving in costs';
-                    Image = Report;
+                trigger OnAction();
+                begin
+                    CLEAR(Contract);
+                    Contract.SETRANGE(Number, Rec.Number);
+                    IF Contract.FindFirst() then
+                        Codeunit.run(Codeunit::"SVA Move In Invoice", Contract);
+                end;
 
-                    trigger OnAction();
-                    begin
-                        CLEAR(Contract);
-                        Contract.SETRANGE(Number, Rec.Number);
-                        IF Contract.FindFirst() then
-                            Codeunit.run(Codeunit::"SVA Move In Invoice", Contract);
-                    end;
-                }
             }
         }
     }

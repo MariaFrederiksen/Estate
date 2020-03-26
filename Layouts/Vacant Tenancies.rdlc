@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2016/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
   <AutoRefresh>0</AutoRefresh>
   <DataSources>
@@ -7,56 +7,9 @@
         <DataProvider>SQL</DataProvider>
         <ConnectString />
       </ConnectionProperties>
-      <rd:SecurityType>None</rd:SecurityType>
       <rd:DataSourceID>10ffc8dc-9aea-4c16-a9a7-e7905cc595e9</rd:DataSourceID>
     </DataSource>
   </DataSources>
-  <DataSets>
-    <DataSet Name="DataSet_Result">
-      <Fields>
-        <Field Name="Number_Tenancy">
-          <DataField>Number_Tenancy</DataField>
-        </Field>
-        <Field Name="PropertyNo_Tenancy">
-          <DataField>PropertyNo_Tenancy</DataField>
-        </Field>
-        <Field Name="Address1_Tenancy">
-          <DataField>Address1_Tenancy</DataField>
-        </Field>
-        <Field Name="PostCode_Tenancy">
-          <DataField>PostCode_Tenancy</DataField>
-        </Field>
-        <Field Name="City_Tenancy">
-          <DataField>City_Tenancy</DataField>
-        </Field>
-        <Field Name="vacantDate_Tenancy">
-          <DataField>vacantDate_Tenancy</DataField>
-        </Field>
-        <Field Name="Type_Tenancy">
-          <DataField>Type_Tenancy</DataField>
-        </Field>
-        <Field Name="AreaLiv_Tenancy">
-          <DataField>AreaLiv_Tenancy</DataField>
-        </Field>
-        <Field Name="AreaLiv_TenancyFormat">
-          <DataField>AreaLiv_TenancyFormat</DataField>
-        </Field>
-        <Field Name="Rooms_Tenancy">
-          <DataField>Rooms_Tenancy</DataField>
-        </Field>
-        <Field Name="Amount_Period">
-          <DataField>Amount_Period</DataField>
-        </Field>
-        <Field Name="Amount_PeriodFormat">
-          <DataField>Amount_PeriodFormat</DataField>
-        </Field>
-      </Fields>
-      <Query>
-        <DataSourceName>DataSource</DataSourceName>
-        <CommandText />
-      </Query>
-    </DataSet>
-  </DataSets>
   <ReportSections>
     <ReportSection>
       <Body>
@@ -65,10 +18,10 @@
             <TablixBody>
               <TablixColumns>
                 <TablixColumn>
-                  <Width>1in</Width>
+                  <Width>0.86458in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>1in</Width>
+                  <Width>0.79167in</Width>
                 </TablixColumn>
                 <TablixColumn>
                   <Width>1.83333in</Width>
@@ -77,22 +30,19 @@
                   <Width>0.88542in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>1in</Width>
+                  <Width>0.79167in</Width>
                 </TablixColumn>
                 <TablixColumn>
                   <Width>1in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>1in</Width>
+                  <Width>0.46875in</Width>
                 </TablixColumn>
                 <TablixColumn>
                   <Width>1in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>1in</Width>
-                </TablixColumn>
-                <TablixColumn>
-                  <Width>1.3125in</Width>
+                  <Width>1.08333in</Width>
                 </TablixColumn>
               </TablixColumns>
               <TablixRows>
@@ -110,6 +60,7 @@
                                 <TextRun>
                                   <Value>Ejendom</Value>
                                   <Style>
+                                    <FontFamily>Segoe UI</FontFamily>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -142,6 +93,7 @@
                                 <TextRun>
                                   <Value>Nummer</Value>
                                   <Style>
+                                    <FontFamily>Segoe UI</FontFamily>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -174,6 +126,7 @@
                                 <TextRun>
                                   <Value>Adresse</Value>
                                   <Style>
+                                    <FontFamily>Segoe UI</FontFamily>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -206,6 +159,7 @@
                                 <TextRun>
                                   <Value>Postnr</Value>
                                   <Style>
+                                    <FontFamily>Segoe UI</FontFamily>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -214,38 +168,6 @@
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox10</rd:DefaultName>
-                          <Style>
-                            <Border>
-                              <Color>LightGrey</Color>
-                              <Style>Solid</Style>
-                            </Border>
-                            <PaddingLeft>2pt</PaddingLeft>
-                            <PaddingRight>2pt</PaddingRight>
-                            <PaddingTop>2pt</PaddingTop>
-                            <PaddingBottom>2pt</PaddingBottom>
-                          </Style>
-                        </Textbox>
-                      </CellContents>
-                    </TablixCell>
-                    <TablixCell>
-                      <CellContents>
-                        <Textbox Name="Textbox2">
-                          <CanGrow>true</CanGrow>
-                          <KeepTogether>true</KeepTogether>
-                          <Paragraphs>
-                            <Paragraph>
-                              <TextRuns>
-                                <TextRun>
-                                  <Value>By</Value>
-                                  <Style>
-                                    <FontWeight>Bold</FontWeight>
-                                  </Style>
-                                </TextRun>
-                              </TextRuns>
-                              <Style />
-                            </Paragraph>
-                          </Paragraphs>
-                          <rd:DefaultName>Textbox2</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -270,6 +192,7 @@
                                 <TextRun>
                                   <Value>Type</Value>
                                   <Style>
+                                    <FontFamily>Segoe UI</FontFamily>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -302,6 +225,7 @@
                                 <TextRun>
                                   <Value>Areal</Value>
                                   <Style>
+                                    <FontFamily>Segoe UI</FontFamily>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -334,6 +258,7 @@
                                 <TextRun>
                                   <Value>Rum</Value>
                                   <Style>
+                                    <FontFamily>Segoe UI</FontFamily>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -366,6 +291,7 @@
                                 <TextRun>
                                   <Value>Leje</Value>
                                   <Style>
+                                    <FontFamily>Segoe UI</FontFamily>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -398,6 +324,7 @@
                                 <TextRun>
                                   <Value>Ledig pr.</Value>
                                   <Style>
+                                    <FontFamily>Segoe UI</FontFamily>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -434,7 +361,9 @@
                               <TextRuns>
                                 <TextRun>
                                   <Value>=Fields!PropertyNo_Tenancy.Value</Value>
-                                  <Style />
+                                  <Style>
+                                    <FontFamily>Segoe UI</FontFamily>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style />
@@ -464,7 +393,9 @@
                               <TextRuns>
                                 <TextRun>
                                   <Value>=Fields!Number_Tenancy.Value</Value>
-                                  <Style />
+                                  <Style>
+                                    <FontFamily>Segoe UI</FontFamily>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style />
@@ -494,7 +425,9 @@
                               <TextRuns>
                                 <TextRun>
                                   <Value>=Fields!Address1_Tenancy.Value</Value>
-                                  <Style />
+                                  <Style>
+                                    <FontFamily>Segoe UI</FontFamily>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style />
@@ -524,12 +457,16 @@
                               <TextRuns>
                                 <TextRun>
                                   <Value>=Fields!PostCode_Tenancy.Value</Value>
-                                  <Style />
+                                  <Style>
+                                    <FontFamily>Segoe UI</FontFamily>
+                                  </Style>
                                 </TextRun>
                                 <TextRun>
                                   <Value xml:space="preserve">
 </Value>
-                                  <Style />
+                                  <Style>
+                                    <FontFamily>Segoe UI</FontFamily>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style />
@@ -538,43 +475,15 @@
                               <TextRuns>
                                 <TextRun>
                                   <Value />
-                                  <Style />
+                                  <Style>
+                                    <FontFamily>Segoe UI</FontFamily>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style />
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>PostCode_Tenancy</rd:DefaultName>
-                          <Style>
-                            <Border>
-                              <Color>LightGrey</Color>
-                              <Style>Solid</Style>
-                            </Border>
-                            <PaddingLeft>2pt</PaddingLeft>
-                            <PaddingRight>2pt</PaddingRight>
-                            <PaddingTop>2pt</PaddingTop>
-                            <PaddingBottom>2pt</PaddingBottom>
-                          </Style>
-                        </Textbox>
-                      </CellContents>
-                    </TablixCell>
-                    <TablixCell>
-                      <CellContents>
-                        <Textbox Name="City_Tenancy">
-                          <CanGrow>true</CanGrow>
-                          <KeepTogether>true</KeepTogether>
-                          <Paragraphs>
-                            <Paragraph>
-                              <TextRuns>
-                                <TextRun>
-                                  <Value>=Fields!City_Tenancy.Value</Value>
-                                  <Style />
-                                </TextRun>
-                              </TextRuns>
-                              <Style />
-                            </Paragraph>
-                          </Paragraphs>
-                          <rd:DefaultName>City_Tenancy</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -598,7 +507,9 @@
                               <TextRuns>
                                 <TextRun>
                                   <Value>=Fields!Type_Tenancy.Value</Value>
-                                  <Style />
+                                  <Style>
+                                    <FontFamily>Segoe UI</FontFamily>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style />
@@ -629,6 +540,7 @@
                                 <TextRun>
                                   <Value>=Fields!AreaLiv_Tenancy.Value</Value>
                                   <Style>
+                                    <FontFamily>Segoe UI</FontFamily>
                                     <Format>f2</Format>
                                   </Style>
                                 </TextRun>
@@ -661,6 +573,7 @@
                                 <TextRun>
                                   <Value>=Fields!Rooms_Tenancy.Value</Value>
                                   <Style>
+                                    <FontFamily>Segoe UI</FontFamily>
                                     <Format>f0</Format>
                                   </Style>
                                 </TextRun>
@@ -692,7 +605,9 @@
                               <TextRuns>
                                 <TextRun>
                                   <Value>=Fields!Amount_Period.Value</Value>
-                                  <Style />
+                                  <Style>
+                                    <FontFamily>Segoe UI</FontFamily>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style />
@@ -710,7 +625,6 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
-                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell>
@@ -724,7 +638,8 @@
                                 <TextRun>
                                   <Value>=Fields!vacantDate_Tenancy.Value</Value>
                                   <Style>
-                                    <Format>D</Format>
+                                    <FontFamily>Segoe UI</FontFamily>
+                                    <Format>dd-MM-yy</Format>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -760,7 +675,6 @@
                 <TablixMember />
                 <TablixMember />
                 <TablixMember />
-                <TablixMember />
               </TablixMembers>
             </TablixColumnHierarchy>
             <TablixRowHierarchy>
@@ -773,10 +687,11 @@
                 </TablixMember>
               </TablixMembers>
             </TablixRowHierarchy>
+            <RepeatRowHeaders>true</RepeatRowHeaders>
             <DataSetName>DataSet_Result</DataSetName>
-            <Top>0.74875in</Top>
+            <Top>1.53in</Top>
             <Height>0.5in</Height>
-            <Width>11.03125in</Width>
+            <Width>8.71875in</Width>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -790,8 +705,17 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>Ledige lejemål</Value>
+                    <Value>Ledige lejemål i </Value>
                     <Style>
+                      <FontFamily>Segoe UI</FontFamily>
+                      <FontSize>20pt</FontSize>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
+                  </TextRun>
+                  <TextRun>
+                    <Value>=Fields!CompanyName.Value</Value>
+                    <Style>
+                      <FontFamily>Segoe UI</FontFamily>
                       <FontSize>20pt</FontSize>
                       <FontWeight>Bold</FontWeight>
                     </Style>
@@ -802,9 +726,135 @@
             </Paragraphs>
             <rd:DefaultName>Textbox7</rd:DefaultName>
             <Top>0.2175in</Top>
-            <Height>0.38542in</Height>
+            <Height>0.88542in</Height>
             <Width>5.875in</Width>
             <ZIndex>1</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox4">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>==Globals!ExecutionTime</Value>
+                    <Style>
+                      <FontFamily>Segoe UI</FontFamily>
+                      <FontSize>9pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Right</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox4</rd:DefaultName>
+            <Top>0.21542in</Top>
+            <Left>6.36333in</Left>
+            <Height>0.19792in</Height>
+            <Width>2.35542in</Width>
+            <ZIndex>2</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox6">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Side </Value>
+                    <Style>
+                      <FontFamily>Segoe UI</FontFamily>
+                      <FontSize>9pt</FontSize>
+                    </Style>
+                  </TextRun>
+                  <TextRun>
+                    <Value>=Globals!PageNumber</Value>
+                    <Style>
+                      <FontFamily>Segoe UI</FontFamily>
+                      <FontSize>9pt</FontSize>
+                    </Style>
+                  </TextRun>
+                  <TextRun>
+                    <Value>/</Value>
+                    <Style>
+                      <FontFamily>Segoe UI</FontFamily>
+                      <FontSize>9pt</FontSize>
+                    </Style>
+                  </TextRun>
+                  <TextRun>
+                    <Value>=Globals!TotalPages</Value>
+                    <Style>
+                      <FontFamily>Segoe UI</FontFamily>
+                      <FontSize>9pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Right</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox6</rd:DefaultName>
+            <Top>0.52236in</Top>
+            <Left>6.36333in</Left>
+            <Height>0.21181in</Height>
+            <Width>2.35542in</Width>
+            <ZIndex>3</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox11">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=User!UserID</Value>
+                    <Style>
+                      <FontFamily>Segoe UI</FontFamily>
+                      <FontSize>9pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Right</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox11</rd:DefaultName>
+            <Top>0.85708in</Top>
+            <Left>6.36333in</Left>
+            <Height>0.28125in</Height>
+            <Width>2.35542in</Width>
+            <ZIndex>4</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -819,8 +869,10 @@
         <Height>210mm</Height>
         <Style />
       </Body>
-      <Width>297mm</Width>
+      <Width>223.71042mm</Width>
       <Page>
+        <PageHeight>210mm</PageHeight>
+        <PageWidth>297mm</PageWidth>
         <Style />
       </Page>
     </ReportSection>
@@ -864,4 +916,53 @@ End Function
   <ConsumeContainerWhitespace>true</ConsumeContainerWhitespace>
   <rd:ReportUnitType>Inch</rd:ReportUnitType>
   <rd:ReportID>0eeb6585-38ae-40f1-885b-8d50088d51b4</rd:ReportID>
+  <DataSets>
+    <DataSet Name="DataSet_Result">
+      <Fields>
+        <Field Name="CompanyName">
+          <DataField>CompanyName</DataField>
+        </Field>
+        <Field Name="Number_Tenancy">
+          <DataField>Number_Tenancy</DataField>
+        </Field>
+        <Field Name="PropertyNo_Tenancy">
+          <DataField>PropertyNo_Tenancy</DataField>
+        </Field>
+        <Field Name="Address1_Tenancy">
+          <DataField>Address1_Tenancy</DataField>
+        </Field>
+        <Field Name="PostCode_Tenancy">
+          <DataField>PostCode_Tenancy</DataField>
+        </Field>
+        <Field Name="City_Tenancy">
+          <DataField>City_Tenancy</DataField>
+        </Field>
+        <Field Name="vacantDate_Tenancy">
+          <DataField>vacantDate_Tenancy</DataField>
+        </Field>
+        <Field Name="Type_Tenancy">
+          <DataField>Type_Tenancy</DataField>
+        </Field>
+        <Field Name="AreaLiv_Tenancy">
+          <DataField>AreaLiv_Tenancy</DataField>
+        </Field>
+        <Field Name="AreaLiv_TenancyFormat">
+          <DataField>AreaLiv_TenancyFormat</DataField>
+        </Field>
+        <Field Name="Rooms_Tenancy">
+          <DataField>Rooms_Tenancy</DataField>
+        </Field>
+        <Field Name="Amount_Period">
+          <DataField>Amount_Period</DataField>
+        </Field>
+        <Field Name="Amount_PeriodFormat">
+          <DataField>Amount_PeriodFormat</DataField>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>DataSource</DataSourceName>
+        <CommandText />
+      </Query>
+    </DataSet>
+  </DataSets>
 </Report>

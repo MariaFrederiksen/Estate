@@ -42,11 +42,14 @@ page 50015 "SVA Property List"
         }
         area(factboxes)
         {
-            systempart(NOTES; Notes)
-            {
-            }
+
             systempart(links; Links)
             {
+                ApplicationArea = All;
+            }
+            systempart(Notes; Notes)
+            {
+                ApplicationArea = All;
             }
         }
     }
@@ -61,7 +64,7 @@ page 50015 "SVA Property List"
                 Caption = 'Tenancies';
                 Image = AlternativeAddress;
                 RunObject = Page "SVA Tenancy List";
-                RunPageLink = PropertyNo = FIELD (Property);
+                RunPageLink = PropertyNo = FIELD(Property);
 
             }
             action(Residens)
@@ -70,7 +73,7 @@ page 50015 "SVA Property List"
                 Caption = 'Occupants';
                 Image = Customer;
                 RunObject = Page "SVA Occupant List";
-                RunPageLink = PropertyNo = FIELD (Property);
+                RunPageLink = PropertyNo = FIELD(Property);
 
             }
         }
@@ -122,7 +125,7 @@ page 50015 "SVA Property List"
                 Image = Report2;
                 RunObject = Report "SVA Collection Journal";
             }
-          
+
             action(Invoicing)
             {
                 ApplicationArea = All;
@@ -179,6 +182,30 @@ page 50015 "SVA Property List"
         }
 
     }
+    trigger OnOpenPage()
+    var
+        Properties: Record "SVA Property";
+        Tenancies: Record "SVA Tenancy";
+    begin
+        Properties.Reset;
+        if Properties.FindSet() then
+            repeat
+                Properties.SquareMetersLiv := 0;
+                Properties.SquareMetersProf := 0;
+                Properties.SquareMetersTotal := 0;
+                Tenancies.RESET;
+                Tenancies.SETRANGE(PropertyNo, Properties.Property);
+                if Tenancies.FindSet() then
+                    repeat
+                        Properties.SquareMetersLiv += Tenancies.AreaLiv;
+                        Properties.SquareMetersProf += Tenancies.AreaPro;
+                        Properties.SquareMetersTotal := Properties.SquareMetersLiv + Properties.SquareMetersProf;
+                    until Tenancies.NEXT = 0;
+
+                Properties.Modify();
+            until Properties.Next = 0;
+    end;
+
     trigger OnClosePage();
     begin
         Codeunit.Run(Codeunit::"SVA Send");

@@ -2,7 +2,7 @@ report 50014 "SVA DemandNoticeProf"
 {
 
     WordLayout = './Layouts/DemandNoticeProf.docx';
-    Caption='Demand notice';
+    Caption='Demand notice Prof';
     DefaultLayout = Word;
 
     dataset
@@ -137,6 +137,27 @@ report 50014 "SVA DemandNoticeProf"
             {
             }
             column(CCIty;City)
+            {
+            }
+            column(CompanyVAT_Registration_No_;"VAT Registration No.")
+            {
+            }
+            column(CompanyGetVATRegistrationNumberLbl;GetVATRegistrationNumberLbl)
+            {
+            }
+            column(CompanyPhone_No_;"Phone No.")
+            {
+            }
+            column(COmpanyPicture;Picture)
+            {
+            }
+            column(CompanyBankBranchNo;Companyinfo."Bank Branch No.")
+            {
+            }
+            column(CompanyBanAccountNo;Companyinfo."Bank Branch No.")
+            {
+            }
+            column(CompanyBankName;Companyinfo."Bank Name")
             {
             }
             column(InvoicesAmount;InvoiceAmountTotal)

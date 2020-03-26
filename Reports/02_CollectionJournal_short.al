@@ -12,6 +12,9 @@ report 50002 "SVA Collection Journal Short"
     {
         dataitem("Tenancy"; "SVA Tenancy")
         {
+            column(CompanyName;COMPANYPROPERTY.DISPLAYNAME)
+            {
+            }
             column(TNumber; Tenancy.Number)
             {
 

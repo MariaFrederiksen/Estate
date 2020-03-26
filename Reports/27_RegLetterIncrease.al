@@ -1,4 +1,4 @@
-report 50029 "SVA Regulation Increase"
+report 50027 "SVA Regulation Increase"
 {
     DefaultLayout = Word;
     WordLayout = './layouts/SVA Regulation Increase.docx';
@@ -8,6 +8,7 @@ report 50029 "SVA Regulation Increase"
     {
         dataitem("SVA Regulations";"SVA Regulations")
         {
+        
             column(Onumber;"SVA Regulations".Onumber)
             {
             }

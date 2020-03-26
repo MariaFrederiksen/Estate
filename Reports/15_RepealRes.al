@@ -67,6 +67,27 @@ report 50015 "SVA Repeal Res"
             column(CCity; City)
             {
             }
+            column(CompanyVAT_Registration_No_;"VAT Registration No.")
+            {
+            }
+            column(CompanyGetVATRegistrationNumberLbl;GetVATRegistrationNumberLbl)
+            {
+            }
+            column(CompanyPhone_No_;"Phone No.")
+            {
+            }
+            column(COmpanyPicture;Picture)
+            {
+            }
+            column(CompanyBankBranchNo;Companyinfo."Bank Branch No.")
+            {
+            }
+            column(CompanyBanAccountNo;Companyinfo."Bank Branch No.")
+            {
+            }
+            column(CompanyBankName;Companyinfo."Bank Name")
+            {
+            }
         }
     }    
     requestpage

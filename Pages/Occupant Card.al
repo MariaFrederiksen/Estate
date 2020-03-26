@@ -174,8 +174,8 @@ page 50009 "SVA Occupant Card"
                 Caption = 'Subscription lines';
                 Tooltip = 'Subscription lines for this contract.';
                 ApplicationArea = All;
-                SubPageLink = Tenancies = FIELD (TenancyNo);
-                SubPageView = SORTING (Tenancies, "Date To")
+                SubPageLink = Tenancies = FIELD(TenancyNo);
+                SubPageView = SORTING(Tenancies, "Date To")
                               ORDER(Ascending);
             }
             part("Occupant transactions"; "SVA Occupant Trans Subform")
@@ -183,17 +183,20 @@ page 50009 "SVA Occupant Card"
                 Caption = 'Occupant Trans';
                 Tooltip = 'Occupant trans for this contract.';
                 ApplicationArea = All;
-                SubPageLink = Occupant = FIELD (Number);
-                SubPageView = SORTING (Occupant, Date, "Cost type Estate", "Invoice No");
+                SubPageLink = Occupant = FIELD(Number);
+                SubPageView = SORTING(Occupant, Date, "Cost type Estate", "Invoice No");
             }
         }
         area(factboxes)
         {
-            systempart(Notes; Notes)
-            {
-            }
+
             systempart(Links; Links)
             {
+                ApplicationArea = All;
+            }
+            systempart(Notes; Notes)
+            {
+                ApplicationArea = All;
             }
         }
     }
@@ -212,7 +215,7 @@ page 50009 "SVA Occupant Card"
                     Tooltip = 'Go to leasecontract type A, 9. edition for filling';
                     Image = MakeAgreement;
                     RunObject = Page "SVA Leasecontract_A9";
-                    RunPageLink = Number = FIELD (Number);
+                    RunPageLink = Number = FIELD(Number);
                     RunPageMode = Edit;
                     RunPageOnRec = false;
                 }
@@ -223,7 +226,7 @@ page 50009 "SVA Occupant Card"
                     Tooltip = 'Go to leasecontract for garage for filling';
                     Image = MakeAgreement;
                     RunObject = Page "SVA Leasecontract_Garage";
-                    RunPageLink = Number = FIELD (Number);
+                    RunPageLink = Number = FIELD(Number);
                     RunPageMode = Edit;
                 }
                 action(LeaseBusiness)
@@ -233,7 +236,7 @@ page 50009 "SVA Occupant Card"
                     Tooltip = 'Go to lease business for invoicing of moving in costs';
                     Image = MakeAgreement;
                     RunObject = Page "SVA Lease Business";
-                    RunPageLink = Number = FIELD (Number);
+                    RunPageLink = Number = FIELD(Number);
                     RunPageMode = Edit;
                 }
             }
@@ -243,11 +246,11 @@ page 50009 "SVA Occupant Card"
                 action(Regulations)
                 {
                     ApplicationArea = All;
-                    Caption = 'Agreed regulation of rent';
-                    Tooltip = 'Contract conditions for regulations';
+                    Caption = 'Agreed regulation of rent and repayments';
+                    Tooltip = 'Contract conditions for regulations and agreed repayments';
                     Image = MakeAgreement;
                     RunObject = Page "SVA Subscription regulations";
-                    RunPageLink = Number = FIELD (Number);
+                    RunPageLink = Number = FIELD(Number);
                     RunPageMode = Edit;
                     RunPageOnRec = false;
                 }
@@ -264,7 +267,7 @@ page 50009 "SVA Occupant Card"
                     Promoted = true;
                     PromotedCategory = Process;
                     RunObject = Page "SVA MoveIn";
-                    RunPageLink = Occupant = FIELD (Number);
+                    RunPageLink = Occupant = FIELD(Number);
                     RunPageMode = Edit;
                 }
                 action(MovingOut)
@@ -276,103 +279,108 @@ page 50009 "SVA Occupant Card"
                     Promoted = true;
                     PromotedCategory = Process;
                     RunObject = Page "SVA MoveOut";
-                    RunPageLink = Occupant = FIELD (Number);
+                    RunPageLink = Occupant = FIELD(Number);
                     RunPageMode = Edit;
                 }
-                 action(MovingOutJournal)
-            {
-                ApplicationArea = All;
-                Caption = 'Journal for moving out invoice';
-                ToolTip = 'Journal for moving out invoice. Use before making an invoice.';
-                Image = Report;
+                action(MovingOutJournal)
+                {
+                    ApplicationArea = All;
+                    Caption = 'Journal for moving out invoice';
+                    ToolTip = 'Journal for moving out invoice. Use before making an invoice.';
+                    Image = Report;
 
-                trigger OnAction();
-                begin
-                    CLEAR(Occupant);
-                    Occupant.SETRANGE(Number, Rec.Number);
-                    CLEAR(MoveOutJournal);
-                    MoveOutJournal.SETTABLEVIEW(Occupant);
-                    MoveOutJournal.RUNMODAL;
-                end;
-            }
-            action(MovingOutInvoice)
-            {
-                ApplicationArea = All;
-                Caption = 'Invoice Moving out';
-                Tooltip = 'Make a moving out invoice based on transactions and subscription lines.';
-                Image = Report;
+                    trigger OnAction();
+                    begin
+                        CLEAR(Occupant);
+                        Occupant.SETRANGE(Number, Rec.Number);
+                        CLEAR(MoveOutJournal);
+                        MoveOutJournal.SETTABLEVIEW(Occupant);
+                        MoveOutJournal.RUNMODAL;
+                    end;
+                }
+                action(MovingOutInvoice)
+                {
+                    ApplicationArea = All;
+                    Caption = 'Invoice Moving out';
+                    Tooltip = 'Make a moving out invoice based on transactions and subscription lines.';
+                    Image = Report;
 
-                trigger OnAction();
-                begin
-                    OccNo := Rec.Number;
-                    CalcInvoiceCredit;
-                    If InvoiceCreditmemo = false then
-                        MakeCreditmemo;
-                    If InvoiceCreditmemo = true then
-                        MakeInvoice;
-                    Posting;
-                end;
-            }
+                    trigger OnAction();
+                    begin
+                        OccNo := Rec.Number;
+                        CalcInvoiceCredit;
+                        If InvoiceCreditmemo = false then
+                            MakeCreditmemo;
+                        If InvoiceCreditmemo = true then
+                            MakeInvoice;
+                        Posting;
+                    end;
+                }
             }
             Group(Letters)
             {
                 Caption = 'Letters';
-            action(DemandNotice)
-            {
-                ApplicationArea = All;
-                Caption = 'Demand Notice';
-                Tooltip = 'The formal demand notice';
-                Image = Reminder;
+                action(DemandNotice)
+                {
+                    ApplicationArea = All;
+                    Caption = 'Demand Notice';
+                    Tooltip = 'The formal demand notice';
+                    Image = Reminder;
 
-                trigger OnAction();
-                begin
-                    Clear(TenancyCard);
-                    TenancyCard.SetRange(number, Rec.TenancyNo);
-                    IF TenancyCard.Type = 0 then begin //bolig
-                        CLEAR(Occupant);
-                        Occupant.SETRANGE(Number, Rec.Number);
-                        CLEAR(DemandNoticeResidens);
-                        DemandNoticeResidens.SETTABLEVIEW(Occupant);
-                        DemandNoticeResidens.RUNMODAL;
-                    END;
-                    IF TenancyCard.Type = 1 then begin //erhverv
-                        CLEAR(Occupant);
-                        Occupant.SETRANGE(Number, Rec.Number);
-                        CLEAR(DemandNoticeProf);
-                        DemandNoticeProf.SETTABLEVIEW(Occupant);
-                        DemandNoticeProf.RUNMODAL;
-                    END;
-                end;
-            }
-            action(Repeal)
-            {
-                ApplicationArea = All;
-                Caption = 'Repeal';
-                Tooltip = 'Letter for repeal the tenant';
-                Image = Report;
+                    trigger OnAction();
+                    begin
+                        Clear(TenancyCard);
+                        TenancyCard.SetRange(number, Rec.TenancyNo);
+                        IF TenancyCard.FindFirst() then begin
+                            IF TenancyCard.Type = 0 then begin //bolig
+                                CLEAR(Occupant);
+                                Occupant.SETRANGE(Number, Rec.Number);
+                                CLEAR(DemandNoticeResidens);
+                                DemandNoticeResidens.SETTABLEVIEW(Occupant);
+                                DemandNoticeResidens.RUNMODAL;
+                            END;
+                            IF TenancyCard.Type = 1 then begin //erhverv
+                                CLEAR(Occupant);
+                                Occupant.SETRANGE(Number, Rec.Number);
+                                CLEAR(DemandNoticeProf);
+                                DemandNoticeProf.SETTABLEVIEW(Occupant);
+                                DemandNoticeProf.RUNMODAL;
+                            END;
+                        end;
+                    end;
+                }
+                action(Repeal)
+                {
+                    ApplicationArea = All;
+                    Caption = 'Repeal';
+                    Tooltip = 'Letter for repeal the tenant';
+                    Image = Report;
 
-                trigger OnAction();
-                begin
-                    Clear(TenancyCard);
-                    TenancyCard.SetRange(number, Rec.TenancyNo);
-                    IF TenancyCard.Type = 0 then begin //bolig
-                        CLEAR(Occupant);
-                        Occupant.SETRANGE(Number, Rec.Number);
-                        CLEAR(RepealR);
-                        RepealR.SETTABLEVIEW(Occupant);
-                        RepealR.RUNMODAL;
-                    END;
-                    IF TenancyCard.Type = 1 then begin //erhverv
-                        CLEAR(Occupant);
-                        Occupant.SETRANGE(Number, Rec.Number);
-                        CLEAR(RepealP);
-                        RepealP.SETTABLEVIEW(Occupant);
-                        RepealP.RUNMODAL;
-                    END;
-                end;
+                    trigger OnAction();
+                    begin
+                        Clear(TenancyCard);
+                        TenancyCard.SetRange(number, Rec.TenancyNo);
+                        if TenancyCard.FindFirst() then begin
+                            IF TenancyCard.Type = 0 then begin //bolig
+                                CLEAR(Occupant);
+                                Occupant.SETRANGE(Number, Rec.Number);
+                                CLEAR(RepealR);
+                                RepealR.SETTABLEVIEW(Occupant);
+                                RepealR.RUNMODAL;
+                            END;
+                            IF TenancyCard.Type = 1 then begin //erhverv
+                                CLEAR(Occupant);
+                                Occupant.SETRANGE(Number, Rec.Number);
+                                CLEAR(RepealP);
+                                RepealP.SETTABLEVIEW(Occupant);
+                                RepealP.RUNMODAL;
+                            END;
+                        end;
+                    end;
+
+                }
             }
-            }
-           
+
 
         }
         area(Navigation)
@@ -383,8 +391,8 @@ page 50009 "SVA Occupant Card"
                 Caption = 'Dimensions';
                 Image = Dimensions;
                 RunObject = Page "Default Dimensions";
-                RunPageLink = "Table ID" = CONST (50003),
-                                  "No." = FIELD (Number);
+                RunPageLink = "Table ID" = CONST(50003),
+                                  "No." = FIELD(Number);
                 ShortCutKey = 'Shift+Ctrl+D';
                 ToolTip = 'View or edits dimensions, such as area, project, or department, that you can assign to sales and purchase documents to distribute costs and analyze transaction history.';
             }
@@ -464,12 +472,12 @@ page 50009 "SVA Occupant Card"
             OcTrans.SETRANGE(Type, 10);
             IF FINDSET THEN BEGIN
                 REPEAT
-                IF OcTrans.Occupant = OccupantInvoice.Number THEN BEGIN
-                    SalesLine.Quantity := OcTrans.Qty * -1;
-                    SalesLine."Unit Price" := OcTrans.Price;
-                    SalesLine.Amount := SalesLine.Quantity * SalesLine."Unit Price";
-                    InvAmount += SalesLine.Amount;
-                END;
+                    IF OcTrans.Occupant = OccupantInvoice.Number THEN BEGIN
+                        SalesLine.Quantity := OcTrans.Qty * -1;
+                        SalesLine."Unit Price" := OcTrans.Price;
+                        SalesLine.Amount := SalesLine.Quantity * SalesLine."Unit Price";
+                        InvAmount += SalesLine.Amount;
+                    END;
                 UNTIL OcTrans.NEXT = 0
             END;//Deposita
 
@@ -480,12 +488,12 @@ page 50009 "SVA Occupant Card"
             OcTrans.SETRANGE(Type, 11);
             IF FINDSET THEN BEGIN
                 REPEAT
-                IF OcTrans.Occupant = OccupantInvoice.Number THEN BEGIN
-                    SalesLine.Quantity := OcTrans.Qty * -1;
-                    SalesLine."Unit Price" := OcTrans.Price;
-                    SalesLine.Amount := SalesLine.Quantity * SalesLine."Unit Price";
-                    InvAmount += SalesLine.Amount;
-                END;
+                    IF OcTrans.Occupant = OccupantInvoice.Number THEN BEGIN
+                        SalesLine.Quantity := OcTrans.Qty * -1;
+                        SalesLine."Unit Price" := OcTrans.Price;
+                        SalesLine.Amount := SalesLine.Quantity * SalesLine."Unit Price";
+                        InvAmount += SalesLine.Amount;
+                    END;
                 UNTIL OcTrans.NEXT = 0
             END; //Forudbetalt leje
 
@@ -500,10 +508,10 @@ page 50009 "SVA Occupant Card"
                 SubLines.SETRANGE("Cost Types", CostTypeEstate.Costtype);
                 IF FINDSET THEN BEGIN
                     REPEAT
-                    SalesLine.Quantity := 1;
-                    SalesLine."Unit Price" := SubLines."Amount Period";
-                    SalesLine.Amount := SalesLine.Quantity * SalesLine."Unit Price";
-                    InvAmount += SalesLine.Amount;
+                        SalesLine.Quantity := 1;
+                        SalesLine."Unit Price" := SubLines."Amount Period";
+                        SalesLine.Amount := SalesLine.Quantity * SalesLine."Unit Price";
+                        InvAmount += SalesLine.Amount;
                     UNTIL SubLines.NEXT = 0
                 END;
             END; //Flytteomkostninger
@@ -568,10 +576,10 @@ page 50009 "SVA Occupant Card"
                     OcTrans.SETRANGE(Type, 10);
                     IF FINDSET THEN BEGIN
                         REPEAT
-                        IF OcTrans.Occupant = SalesHeader."SVA Occupant" THEN begin
-                            SaleslineInitTransCrMemo(10);
-                            SalesLine.INSERT(TRUE);
-                        end;
+                            IF OcTrans.Occupant = SalesHeader."SVA Occupant" THEN begin
+                                SaleslineInitTransCrMemo(10);
+                                SalesLine.INSERT(TRUE);
+                            end;
                         UNTIL OcTrans.NEXT = 0
                     END;//Deposita
 
@@ -582,10 +590,10 @@ page 50009 "SVA Occupant Card"
                     OcTrans.SETRANGE(Type, 11);
                     IF FINDSET THEN BEGIN
                         REPEAT
-                        IF OcTrans.Occupant = SalesHeader."SVA Occupant" THEN BEGIN
-                            SaleslineInitTransCrMemo(11);
-                            SalesLine.INSERT(TRUE);
-                        END;
+                            IF OcTrans.Occupant = SalesHeader."SVA Occupant" THEN BEGIN
+                                SaleslineInitTransCrMemo(11);
+                                SalesLine.INSERT(TRUE);
+                            END;
                         UNTIL OcTrans.NEXT = 0
                     END; //Forudbetalt leje
 
@@ -604,33 +612,33 @@ page 50009 "SVA Occupant Card"
                         SubLines.SETRANGE("Cost Types", CostTypeEstate.Costtype);
                         IF FINDSET THEN BEGIN
                             REPEAT
-                            SalesLine.INIT;
-                            SalesLine.VALIDATE(SalesLine."Document Type", Salesheader."Document Type"::"Credit Memo");
-                            SalesLine."Line No." := LineNo;
-                            LineNo := LineNo + 1;
-                            SalesLine.Type := 1;
-                            SalesLine."Document No." := Salesheader."No.";
-                            SalesLine.Quantity := -1;
-                            SalesLine."Quantity (Base)" := SalesLine.Quantity; // felt 5415
-                            SalesLine."Qty. to Invoice (Base)" := SalesLine.Quantity; //5417
-                            SalesLine."Qty. to Invoice" := SalesLine.Quantity; //felt 17
-                            SalesLine."Return Qty. to Receive" := SalesLine.Quantity; // felt 5803
-                            Salesline."Return Qty. to Receive (Base)" := SalesLine.Quantity; //felt 5804 
-                            SalesLine."Unit Price" := SubLines."Amount Period";
-                            SalesLine."Line Amount" := SalesLine.Quantity * SalesLine."Unit Price" * -1;
-                            SalesLine.Amount := SalesLine.Quantity * SalesLine."Unit Price";
-                            SalesLine."Dimension Set ID" := SalesHeader."Dimension Set ID";
-                            Salesline.Validate("Dimension Set ID");
-                            SalesLine."Gen. Bus. Posting Group" := SalesHeader."Gen. Bus. Posting Group";
-                            Salesline.Validate(SalesLine."Gen. Bus. Posting Group");
-                            SalesLine."VAT Bus. Posting Group" := SalesHeader."VAT Bus. Posting Group";
-                            SalesLine."No." := CostTypeEstate.Account;
-                            SalesLine.Description := SubLines.Description;
-                            SalesLine."VAT Prod. Posting Group" := CostTypeEstate.VatGroup;
-                            SalesLine."Gen. Prod. Posting Group" := CostTypeEstate.ProductPostingGroup;
-                            SalesLine."SVA CostType" := CostTypeEstate.Costtype;
-                            if salesline.Amount <> 0 then
-                                SalesLine.INSERT(TRUE);
+                                SalesLine.INIT;
+                                SalesLine.VALIDATE(SalesLine."Document Type", Salesheader."Document Type"::"Credit Memo");
+                                SalesLine."Line No." := LineNo;
+                                LineNo := LineNo + 1;
+                                SalesLine.Type := 1;
+                                SalesLine."Document No." := Salesheader."No.";
+                                SalesLine.Quantity := -1;
+                                SalesLine."Quantity (Base)" := SalesLine.Quantity; // felt 5415
+                                SalesLine."Qty. to Invoice (Base)" := SalesLine.Quantity; //5417
+                                SalesLine."Qty. to Invoice" := SalesLine.Quantity; //felt 17
+                                SalesLine."Return Qty. to Receive" := SalesLine.Quantity; // felt 5803
+                                Salesline."Return Qty. to Receive (Base)" := SalesLine.Quantity; //felt 5804 
+                                SalesLine."Unit Price" := SubLines."Amount Period";
+                                SalesLine."Line Amount" := SalesLine.Quantity * SalesLine."Unit Price" * -1;
+                                SalesLine.Amount := SalesLine.Quantity * SalesLine."Unit Price";
+                                SalesLine."Dimension Set ID" := SalesHeader."Dimension Set ID";
+                                Salesline.Validate("Dimension Set ID");
+                                SalesLine."Gen. Bus. Posting Group" := SalesHeader."Gen. Bus. Posting Group";
+                                Salesline.Validate(SalesLine."Gen. Bus. Posting Group");
+                                SalesLine."VAT Bus. Posting Group" := SalesHeader."VAT Bus. Posting Group";
+                                SalesLine."No." := CostTypeEstate.Account;
+                                SalesLine.Description := SubLines.Description;
+                                SalesLine."VAT Prod. Posting Group" := CostTypeEstate.VatGroup;
+                                SalesLine."Gen. Prod. Posting Group" := CostTypeEstate.ProductPostingGroup;
+                                SalesLine."SVA CostType" := CostTypeEstate.Costtype;
+                                if salesline.Amount <> 0 then
+                                    SalesLine.INSERT(TRUE);
                             UNTIL SubLines.NEXT = 0
                         END;
                     END; //Flytteomkostninger
@@ -694,10 +702,10 @@ page 50009 "SVA Occupant Card"
                     OcTrans.SETRANGE(Type, 10);
                     IF FINDSET THEN BEGIN
                         REPEAT
-                        IF OcTrans.Occupant = SalesHeader."SVA Occupant" THEN BEGIN
-                            SaleslineInitTransInvoice(10);
-                            SalesLine.INSERT(TRUE);
-                        END;
+                            IF OcTrans.Occupant = SalesHeader."SVA Occupant" THEN BEGIN
+                                SaleslineInitTransInvoice(10);
+                                SalesLine.INSERT(TRUE);
+                            END;
                         UNTIL OcTrans.NEXT = 0
                     END;//Deposit
 
@@ -708,10 +716,10 @@ page 50009 "SVA Occupant Card"
                     OcTrans.SETRANGE(Type, 11);
                     IF FINDSET THEN BEGIN
                         REPEAT
-                        IF OcTrans.Occupant = SalesHeader."SVA Occupant" THEN BEGIN
-                            SaleslineInitTransInvoice(11);
-                            SalesLine.INSERT(TRUE);
-                        end;
+                            IF OcTrans.Occupant = SalesHeader."SVA Occupant" THEN BEGIN
+                                SaleslineInitTransInvoice(11);
+                                SalesLine.INSERT(TRUE);
+                            end;
                         UNTIL OcTrans.NEXT = 0
                     END; //Prepaid rent
 
@@ -726,31 +734,31 @@ page 50009 "SVA Occupant Card"
                         SubLines.SETRANGE("Cost Types", CostTypeEstate.Costtype);
                         IF FINDSET THEN BEGIN
                             REPEAT
-                            SalesLine.INIT;
-                            SalesLine.VALIDATE(SalesLine."Document Type", Salesheader."Document Type"::Invoice);
-                            SalesLine."Line No." := LineNo;
-                            LineNo := LineNo + 1;
-                            SalesLine.Type := 1;
-                            SalesLine."Document No." := Salesheader."No.";
-                            SalesLine.Quantity := 1;
-                            SalesLine."Qty. to Ship" := SalesLine.Quantity;
-                            SalesLine."Qty. to Invoice" := SalesLine.Quantity;
-                            SalesLine."Unit Price" := SubLines."Amount Period";
-                            SalesLine."Line Amount" := SalesLine.Quantity * SalesLine."Unit Price";
-                            SalesLine.Amount := SalesLine.Quantity * SalesLine."Unit Price";
-                            SalesLine."No." := CostTypeEstate.Account;
-                            SalesLine.Description := SubLines.Description;
-                            SalesLine."VAT Prod. Posting Group" := CostTypeEstate.VatGroup;
-                            SalesLine."Gen. Prod. Posting Group" := CostTypeEstate.ProductPostingGroup;
-                            SalesLine.Validate(SalesLine."Gen. Bus. Posting Group");
-                            SalesLine."Dimension Set ID" := SalesHeader."Dimension Set ID";
-                            Salesline.Validate("Dimension Set ID");
-                            SalesLine."Gen. Bus. Posting Group" := SalesHeader."Gen. Bus. Posting Group";
-                            SalesLine."VAT Bus. Posting Group" := SalesHeader."VAT Bus. Posting Group";
-                            SalesLine."SVA Costtype" := CostTypeEstate.Costtype;
-                            Salesline.Validate(SalesLine."Gen. Bus. Posting Group");
-                            IF SalesLine.Amount <> 0 THEN
-                                SalesLine.INSERT(TRUE);
+                                SalesLine.INIT;
+                                SalesLine.VALIDATE(SalesLine."Document Type", Salesheader."Document Type"::Invoice);
+                                SalesLine."Line No." := LineNo;
+                                LineNo := LineNo + 1;
+                                SalesLine.Type := 1;
+                                SalesLine."Document No." := Salesheader."No.";
+                                SalesLine.Quantity := 1;
+                                SalesLine."Qty. to Ship" := SalesLine.Quantity;
+                                SalesLine."Qty. to Invoice" := SalesLine.Quantity;
+                                SalesLine."Unit Price" := SubLines."Amount Period";
+                                SalesLine."Line Amount" := SalesLine.Quantity * SalesLine."Unit Price";
+                                SalesLine.Amount := SalesLine.Quantity * SalesLine."Unit Price";
+                                SalesLine."No." := CostTypeEstate.Account;
+                                SalesLine.Description := SubLines.Description;
+                                SalesLine."VAT Prod. Posting Group" := CostTypeEstate.VatGroup;
+                                SalesLine."Gen. Prod. Posting Group" := CostTypeEstate.ProductPostingGroup;
+                                SalesLine.Validate(SalesLine."Gen. Bus. Posting Group");
+                                SalesLine."Dimension Set ID" := SalesHeader."Dimension Set ID";
+                                Salesline.Validate("Dimension Set ID");
+                                SalesLine."Gen. Bus. Posting Group" := SalesHeader."Gen. Bus. Posting Group";
+                                SalesLine."VAT Bus. Posting Group" := SalesHeader."VAT Bus. Posting Group";
+                                SalesLine."SVA Costtype" := CostTypeEstate.Costtype;
+                                Salesline.Validate(SalesLine."Gen. Bus. Posting Group");
+                                IF SalesLine.Amount <> 0 THEN
+                                    SalesLine.INSERT(TRUE);
                             UNTIL SubLines.NEXT = 0
                         END;
                     END; //Moving out costs

@@ -1,4 +1,4 @@
-﻿codeunit 50008 "SVA Move In Invoice"
+codeunit 50008 "SVA Move In Invoice"
 {
     TableNo = "SVA LeaseContract_A9";
 
@@ -12,7 +12,7 @@
         IF Occupant.FINDFIRST() THEN BEGIN
             Factor := 1;
             //Split moving in
-            if(DATE2DMY(Occupant.StartDate, 1) > 1) AND(DATE2DMY(Occupant.StartDate, 1) < 32) then begin
+            if (DATE2DMY(Occupant.StartDate, 1) > 1) AND (DATE2DMY(Occupant.StartDate, 1) < 32) then begin
                 SetupEstate.Reset;
                 if SetupEstate.FindFirst then begin
                     if SetupEstate.Splitcalc = false then
@@ -39,9 +39,9 @@
             Salesheader.INIT;
             Salesheader.VALIDATE("Document Type", Salesheader."Document Type"::Invoice);
             Salesheader."No." := '';
-            Salesheader."Bill-to Customer No." := Occupant."Customer No";
-            Salesheader."Bill-to Name" := Occupant.Name1;
-            
+            Salesheader."Sell-to Customer No." := Occupant."Customer No";
+            Salesheader.Validate("Sell-to Customer No.");
+
             Salesheader."Posting Date" := TODAY;
             Salesheader."SVA Included" := false;
             Salesheader."SVA Occupant" := Occupant.Number;
@@ -53,37 +53,7 @@
                 Salesheader."Due Date" := TypeA9_4_DueDate;
             END;
 
-            cust.RESET;
-            cust.SETRANGE("Bill-to Customer No.", Occupant."Customer No");
-            IF cust.FINDFIRST() THEN BEGIN
-                Salesheader."Bill-to Address" := cust.Address;
-                Salesheader."Bill-to Address 2" := cust."Address 2";
-                Salesheader."Bill-to City" := cust.City;
-                Salesheader."Bill-to Post Code" := cust."Post Code";
-                Salesheader."Bill-to Country/Region Code" := cust."Country/Region Code";
-                Salesheader."Sell-to Customer No." := cust."No.";
-                Salesheader."Sell-to Address" := cust.Address;
-                Salesheader."Sell-to Address 2" := cust."Address 2";
-                Salesheader."Sell-to Post Code" := cust."Post Code";
-                Salesheader."Sell-to City" := cust.City;
-                Salesheader."Sell-to Country/Region Code" := Occupant."Country/Region Code";
-                Salesheader."Payment Terms Code" := cust."Payment Terms Code";
-                Salesheader."Currency Code" := cust."Currency Code";
-                Salesheader."Customer Posting Group" := cust."Customer Posting Group";
-                Salesheader."Gen. Bus. Posting Group" := cust."Gen. Bus. Posting Group";
-                Salesheader."VAT Bus. Posting Group" := cust."VAT Bus. Posting Group"
-            END;
-            if Salesheader."Gen. Bus. Posting Group" = '' then begin
-                cust.RESET;
-                cust.SETRANGE("No.", Occupant."Customer No");
-                IF cust.FINDFIRST() THEN BEGIN
-                    Salesheader."Payment Terms Code" := cust."Payment Terms Code";
-                    Salesheader."Currency Code" := cust."Currency Code";
-                    Salesheader."Customer Posting Group" := cust."Customer Posting Group";
-                    Salesheader."Gen. Bus. Posting Group" := cust."Gen. Bus. Posting Group";
-                    Salesheader."VAT Bus. Posting Group" := cust."VAT Bus. Posting Group"
-                END;
-            end;
+            //If no adress, then use from Occupant
             if Salesheader."Sell-to Address" = '' then begin
                 Salesheader."Bill-to Address" := Occupant.Address;
                 Salesheader."Bill-to Address 2" := Occupant.Address2;
@@ -97,7 +67,18 @@
                 Salesheader."Sell-to Post Code" := Occupant."Post Code";
                 Salesheader."Sell-to City" := Occupant.City;
                 Salesheader."Sell-to Country/Region Code" := Occupant."Country/Region Code";
-            end;    
+            end;
+            if Salesheader."Gen. Bus. Posting Group" = '' then begin
+                cust.RESET;
+                cust.SETRANGE("No.", Occupant."Customer No");
+                IF cust.FINDFIRST() THEN BEGIN
+                    Salesheader."Payment Terms Code" := cust."Payment Terms Code";
+                    Salesheader."Currency Code" := cust."Currency Code";
+                    Salesheader."Customer Posting Group" := cust."Customer Posting Group";
+                    Salesheader."Gen. Bus. Posting Group" := cust."Gen. Bus. Posting Group";
+                    Salesheader."VAT Bus. Posting Group" := cust."VAT Bus. Posting Group"
+                END;
+            end;
             Salesheader.INSERT(TRUE);
             Occupant.FirstNets := CalcDate('<1M>', Occupant.StartDate);
             Occupant.Modify;
@@ -130,7 +111,7 @@
                 EndSalesLine();
             END;
             //Første måneds leje
-            IF Contract.TypeA9_3_RentPerPeriode > 0 THEN BEGIN
+            IF (Contract.TypeA9_3_RentPerPeriode > 0) and (Contract.TypeA9_4_Rentetc <> 0) THEN BEGIN
                 MakeSalesLine;
                 SalesLine.Quantity := 1 * Factor;
                 SalesLine."Unit Price" := Contract.TypeA9_3_RentPerPeriode;
@@ -155,7 +136,7 @@
                 EndSalesLine();
             END;
             //ACVarme
-            IF Contract.TypeA9_3_ACHeat > 0 THEN BEGIN
+            IF (Contract.TypeA9_3_ACHeat > 0) and (Contract.TypeA9_4_Rentetc <> 0) THEN BEGIN
                 MakeSalesLine;
                 SalesLine.Quantity := 1 * Factor;
                 SalesLine."Unit Price" := Contract.TypeA9_3_ACHeat;
@@ -165,7 +146,7 @@
                 EndSalesLine;
             END;
             //ACVand
-            IF Contract.TypeA9_3_ACWater > 0 THEN BEGIN
+            IF (Contract.TypeA9_3_ACWater > 0) and (Contract.TypeA9_4_Rentetc <> 0) THEN BEGIN
                 MakeSalesLine;
                 SalesLine.Quantity := 1 * Factor;
                 SalesLine."Unit Price" := Contract.TypeA9_3_ACWater;
@@ -175,7 +156,7 @@
                 EndSalesLine();
             END;
             //ACEl
-            IF Contract.TypeA9_3_ACElectricity > 0 THEN BEGIN
+            IF (Contract.TypeA9_3_ACElectricity > 0) and (Contract.TypeA9_4_Rentetc <> 0) THEN BEGIN
                 MakeSalesLine;
                 SalesLine.Quantity := 1 * factor;
                 SalesLine."Unit Price" := Contract.TypeA9_3_ACElectricity;
@@ -185,7 +166,7 @@
                 EndSalesLine();
             END;
             //ACkøling
-            IF Contract.TypeA9_3_ACCooling > 0 THEN BEGIN
+            IF (Contract.TypeA9_3_ACCooling > 0) and (Contract.TypeA9_4_Rentetc <> 0) THEN BEGIN
                 MakeSalesLine;
                 SalesLine.Quantity := 1 * factor;
                 SalesLine."Unit Price" := Contract.TypeA9_3_ACCooling;
@@ -195,7 +176,7 @@
                 EndSalesLine();
             END;
             //Antenne
-            IF Contract.TypeA9_3_Antenna > 0 THEN BEGIN
+            IF (Contract.TypeA9_3_Antenna > 0) and (Contract.TypeA9_4_Rentetc <> 0) THEN BEGIN
                 MakeSalesLine;
                 SalesLine.Quantity := 1 * factor;
                 SalesLine."Unit Price" := Contract.TypeA9_3_Antenna;
@@ -205,7 +186,7 @@
                 endSalesLine();
             END;
             //Internet
-            IF Contract.TypeA9_3_Internet > 0 THEN BEGIN
+            IF (Contract.TypeA9_3_Internet > 0) and (Contract.TypeA9_4_Rentetc <> 0) THEN BEGIN
                 MakeSalesLine;
                 SalesLine.Quantity := 1 * factor;
                 SalesLine."Unit Price" := Contract.TypeA9_3_Internet;
@@ -215,7 +196,7 @@
                 EndSalesLine();
             END;
             //Beboerrepræsentation
-            IF Contract.TypeA9_3_TenantGroup > 0 THEN BEGIN
+            IF (Contract.TypeA9_3_TenantGroup > 0) and (Contract.TypeA9_4_Rentetc <> 0) THEN BEGIN
                 MakeSalesLine;
                 SalesLine.Quantity := 1 * factor;
                 SalesLine."Unit Price" := Contract.TypeA9_3_TenantGroup;
@@ -335,7 +316,7 @@
                 SalesLine.Validate(SalesLine."Unit Price");
                 EndSalesLine();
             END;
-            
+
         END;
 
         //to be Posted
@@ -357,8 +338,8 @@
         OcTrans: Record "SVA Occupant Trans";
         VatType: Code[10];
         Factor: Decimal;
-        SetupEstate:Record "SVA Parameters";
-        Days :Integer;
+        SetupEstate: Record "SVA Parameters";
+        Days: Integer;
 
     local procedure MakeSalesLine()
     begin
@@ -371,7 +352,7 @@
         SalesLine."Gen. Bus. Posting Group" := Salesheader."Gen. Bus. Posting Group";
         SalesLine."VAT Bus. Posting Group" := Salesheader."VAT Bus. Posting Group";
         SalesLine."Dimension Set ID" := Salesheader."Dimension Set ID";
-	SalesLine.Validate("Dimension Set ID");
+        SalesLine.Validate("Dimension Set ID");
     end;
 
     local procedure EndSalesLine()

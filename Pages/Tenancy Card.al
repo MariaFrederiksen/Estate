@@ -87,15 +87,15 @@ page 50023 "SVA Tenancy Card"
                     Caption = 'Cook';
                     field(CookManufactor; CookManufactor)
                     {
-ApplicationArea = All;
+                        ApplicationArea = All;
                     }
                     field(CookModel; CookModel)
                     {
- ApplicationArea = All;
+                        ApplicationArea = All;
                     }
                     field(CookYear; CookYear)
                     {
- ApplicationArea = All;
+                        ApplicationArea = All;
                     }
                 }
                 group(Oven)
@@ -322,6 +322,30 @@ ApplicationArea = All;
                     {
                         ApplicationArea = All;
                     }
+                    field(TypeA9_5_TenantHeat; TypeA9_5_TenantHeat)
+                    {
+                        ApplicationArea = All;
+                    }
+                    field(TypeA9_5_Tgas; TypeA9_5_Tgas)
+                    {
+                        ApplicationArea = All;
+                    }
+                    field(TypeA9_5_TNatgas; TypeA9_5_TNatgas)
+                    {
+                        ApplicationArea = All;
+                    }
+                    field(TypeA9_5_TOil; TypeA9_5_TOil)
+                    {
+                        ApplicationArea = All;
+                    }
+                    field(TypeA9_5_TOTher; TypeA9_5_TOTher)
+                    {
+                        ApplicationArea = All;
+                    }
+                    field(TypeA9_5_TOtherText; TypeA9_5_TOtherText)
+                    {
+                        ApplicationArea = All;
+                    }
                     field(TypeA9_5_LandlordWater; TypeA9_5_LandlordWater)
                     {
                         ApplicationArea = All;
@@ -471,19 +495,23 @@ ApplicationArea = All;
             part("Opkrævningslinjer"; "SVA Subscription lines subform")
             {
                 Caption = 'Subscription Lines';
-                SubPageLink = Tenancies = FIELD (Number);
-                SubPageView = SORTING (Tenancies, "Cost Types", "Date From", "Date To", KeyNumber)
+                SubPageLink = Tenancies = FIELD(Number);
+                SubPageView = SORTING(Tenancies, "Cost Types", "Date From", "Date To", KeyNumber)
                               ORDER(Ascending);
+                ApplicationArea = All;
             }
         }
         area(factboxes)
         {
-            systempart(Notes; Notes)
-            {
-            }
             systempart(Links; Links)
             {
+                ApplicationArea = All;
             }
+            systempart(Notes; Notes)
+            {
+                ApplicationArea = All;
+            }
+
         }
     }
 
@@ -498,7 +526,7 @@ ApplicationArea = All;
                 ToolTip = 'List of occupants in this tenancy.';
                 Image = Customer;
                 RunObject = Page "SVA Occupant List";
-                RunPageLink = TenancyNo = FIELD (Number);
+                RunPageLink = TenancyNo = FIELD(Number);
             }
             action(Dimensioner)
             {
@@ -506,8 +534,8 @@ ApplicationArea = All;
                 Caption = 'Dimensions';
                 Image = Dimensions;
                 RunObject = Page 540;
-                RunPageLink = "Table ID" = CONST (50002),
-                                  "No." = FIELD (Number);
+                RunPageLink = "Table ID" = CONST(50002),
+                                  "No." = FIELD(Number);
                 ShortCutKey = 'Shift+Ctrl+D';
                 ToolTip = 'View or edits dimensions, such as area, project, or department, that you can assign to sales and purchase documents to distribute costs and analyze transaction history.';
             }

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2016/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
   <Author>Maria Frederiksen</Author>
   <AutoRefresh>0</AutoRefresh>
@@ -8,62 +8,9 @@
         <DataProvider>SQL</DataProvider>
         <ConnectString />
       </ConnectionProperties>
-      <rd:SecurityType>None</rd:SecurityType>
       <rd:DataSourceID>9f466647-1f22-4156-bc56-d2d94315525c</rd:DataSourceID>
     </DataSource>
   </DataSources>
-  <DataSets>
-    <DataSet Name="DataSet_Result">
-      <Fields>
-        <Field Name="PropertyNo">
-          <DataField>PropertyNo</DataField>
-        </Field>
-        <Field Name="Number">
-          <DataField>Number</DataField>
-        </Field>
-        <Field Name="OProperty">
-          <DataField>OProperty</DataField>
-        </Field>
-        <Field Name="ONo">
-          <DataField>ONo</DataField>
-        </Field>
-        <Field Name="OCustomer">
-          <DataField>OCustomer</DataField>
-        </Field>
-        <Field Name="OName">
-          <DataField>OName</DataField>
-        </Field>
-        <Field Name="OEndDate">
-          <DataField>OEndDate</DataField>
-        </Field>
-        <Field Name="OStartDate">
-          <DataField>OStartDate</DataField>
-        </Field>
-        <Field Name="OID">
-          <DataField>OID</DataField>
-        </Field>
-        <Field Name="OTransNo">
-          <DataField>OTransNo</DataField>
-        </Field>
-        <Field Name="Costtype">
-          <DataField>Costtype</DataField>
-        </Field>
-        <Field Name="Date">
-          <DataField>Date</DataField>
-        </Field>
-        <Field Name="Amount">
-          <DataField>Amount</DataField>
-        </Field>
-        <Field Name="AmountFormat">
-          <DataField>AmountFormat</DataField>
-        </Field>
-      </Fields>
-      <Query>
-        <DataSourceName>DataSource</DataSourceName>
-        <CommandText />
-      </Query>
-    </DataSet>
-  </DataSets>
   <ReportSections>
     <ReportSection>
       <Body>
@@ -562,7 +509,6 @@
                             <PaddingRight>2pt</PaddingRight>
                           </Style>
                         </Textbox>
-                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                   </TablixCells>
@@ -1819,7 +1765,7 @@
                     <Paragraph>
                       <TextRuns>
                         <TextRun>
-                          <Value />
+                          <Value>=Fields!CompanyName.Value</Value>
                           <Style>
                             <FontFamily>Segoe UI</FontFamily>
                             <FontSize>8pt</FontSize>
@@ -2072,4 +2018,59 @@ End Function
   <ConsumeContainerWhitespace>true</ConsumeContainerWhitespace>
   <rd:ReportUnitType>Cm</rd:ReportUnitType>
   <rd:ReportID>0eeb6585-38ae-40f1-885b-8d50088d51b4</rd:ReportID>
+  <DataSets>
+    <DataSet Name="DataSet_Result">
+      <Fields>
+        <Field Name="CompanyName">
+          <DataField>CompanyName</DataField>
+        </Field>
+        <Field Name="PropertyNo">
+          <DataField>PropertyNo</DataField>
+        </Field>
+        <Field Name="Number">
+          <DataField>Number</DataField>
+        </Field>
+        <Field Name="OProperty">
+          <DataField>OProperty</DataField>
+        </Field>
+        <Field Name="ONo">
+          <DataField>ONo</DataField>
+        </Field>
+        <Field Name="OCustomer">
+          <DataField>OCustomer</DataField>
+        </Field>
+        <Field Name="OName">
+          <DataField>OName</DataField>
+        </Field>
+        <Field Name="OEndDate">
+          <DataField>OEndDate</DataField>
+        </Field>
+        <Field Name="OStartDate">
+          <DataField>OStartDate</DataField>
+        </Field>
+        <Field Name="OID">
+          <DataField>OID</DataField>
+        </Field>
+        <Field Name="OTransNo">
+          <DataField>OTransNo</DataField>
+        </Field>
+        <Field Name="Costtype">
+          <DataField>Costtype</DataField>
+        </Field>
+        <Field Name="Date">
+          <DataField>Date</DataField>
+        </Field>
+        <Field Name="Amount">
+          <DataField>Amount</DataField>
+        </Field>
+        <Field Name="AmountFormat">
+          <DataField>AmountFormat</DataField>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>DataSource</DataSourceName>
+        <CommandText />
+      </Query>
+    </DataSet>
+  </DataSets>
 </Report>

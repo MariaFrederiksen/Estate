@@ -1,14 +1,14 @@
-tableextension 50002 "SVA Sales Line" extends "Sales Line"
+tableextension 50032 "SVA Sales Line" extends "Sales Line"
 // SVA 1.00 - 17/9-2018 - Maria Frederiksen
 {
     fields
     {
-        field(50001;"SVA CostType";Text[10])
+        field(50041;"SVA CostType";Text[10])
         {
             Caption = 'Costtype';
             TableRelation = "SVA Cost type".Costtype;
             DataClassification = CustomerContent;
-            AccessByPermission = TableData 50002 = rimd;
+            Editable = true;
         }
     }
         

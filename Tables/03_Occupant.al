@@ -26,11 +26,15 @@
         {
             Caption = 'Tenancy';
             TableRelation = "SVA Tenancy".Number;
-            //NotBlank = true;
-
 
             trigger OnValidate();
             begin
+                IF (TenancyNo <> xRec.TenancyNo) AND (xRec.TenancyNo <> '') then begin
+                    OccupantTrans.Reset();
+                    OccupantTrans.SetRange(Occupant,Number);
+                    if OccupantTrans.FindFirst() then
+                        error('Der er posteringer på aftalen. Der kan ikke skiftes lejemål.');
+                end;
                 //Get tennacy info
                 Tenancy.RESET;
                 Tenancy.SETRANGE(Tenancy.Number, TenancyNo);
@@ -52,11 +56,11 @@
                     OccupantList.SETRANGE(ConsumptionAccountNo, ConsumptionAccountNo);
                     IF OccupantList.FIND('-') THEN BEGIN
                         REPEAT
-                        Lbno += 2;
-                        ConsumptionAccountNo := TenancyNo + '0' + FORMAT(Lbno);
-                        if STRPOS(ConsumptionAccountNo, '-') > 0 then begin
-                            ConsumptionAccountNo := DELSTR(ConsumptionAccountNo, STRPOS(ConsumptionAccountNo, '-'), 1);
-                        end;
+                            Lbno += 2;
+                            ConsumptionAccountNo := TenancyNo + '0' + FORMAT(Lbno);
+                            if STRPOS(ConsumptionAccountNo, '-') > 0 then begin
+                                ConsumptionAccountNo := DELSTR(ConsumptionAccountNo, STRPOS(ConsumptionAccountNo, '-'), 1);
+                            end;
                         UNTIL OccupantList.NEXT = 0
                     END;
                 end;
@@ -113,7 +117,13 @@
             TableRelation = Customer."No.";
 
             trigger OnValidate();
-            begin
+            begin                
+                IF ("Customer No" <> xRec."Customer No") AND (xRec."Customer No" <> '') then begin
+                    OccupantTrans.Reset();
+                    OccupantTrans.SetRange(Occupant,Number);
+                    if OccupantTrans.FindFirst() then
+                        error('Der er posteringer på aftalen. Der kan ikke skiftes debitor.');
+                end;
                 Custcard.RESET;
                 Custcard.SETRANGE(Custcard."No.", "Customer No");
                 IF Custcard.FINDFIRST() THEN BEGIN
@@ -153,8 +163,9 @@
         field(13; City; Text[50])
         {
             Caption = 'City';
-            TableRelation = IF("Country/Region Code" = CONST ()) "Post Code".City
-            ELSE IF("Country/Region Code" = FILTER (<> '')) "Post Code".City WHERE ("Country/Region Code" = FIELD ("Country/Region Code"));
+            TableRelation = IF ("Country/Region Code" = CONST()) "Post Code".City
+            ELSE
+            IF ("Country/Region Code" = FILTER(<> '')) "Post Code".City WHERE("Country/Region Code" = FIELD("Country/Region Code"));
 
             trigger OnValidate();
             begin
@@ -203,20 +214,20 @@
         {
             CaptionClass = '1,1,1';
             Caption = 'Global Dimension 1 Code';
-            TableRelation = "Dimension Value".Code WHERE ("Global Dimension No." = CONST (1));
+            TableRelation = "Dimension Value".Code WHERE("Global Dimension No." = CONST(1));
         }
         field(27; "Global Dimension 2 Code"; Code[20])
         {
             CaptionClass = '1,1,2';
             Caption = 'Global Dimension 2 Code';
-            TableRelation = "Dimension Value".Code WHERE ("Global Dimension No." = CONST (2));
+            TableRelation = "Dimension Value".Code WHERE("Global Dimension No." = CONST(2));
         }
         field(28; "Shortcut Dimension 1 Code"; Code[20])
         {
             CaptionClass = '1,2,1';
             Caption = 'Shortcut Dimension 1 Code';
-            TableRelation = "Dimension Value".Code WHERE ("Global Dimension No." = CONST (1),
-                                                          Blocked = CONST (false));
+            TableRelation = "Dimension Value".Code WHERE("Global Dimension No." = CONST(1),
+                                                          Blocked = CONST(false));
 
             trigger OnValidate();
             begin
@@ -227,8 +238,8 @@
         {
             CaptionClass = '1,2,2';
             Caption = 'Shortcut Dimension 2 Code';
-            TableRelation = "Dimension Value".Code WHERE ("Global Dimension No." = CONST (2),
-                                                          Blocked = CONST (false));
+            TableRelation = "Dimension Value".Code WHERE("Global Dimension No." = CONST(2),
+                                                          Blocked = CONST(false));
 
             trigger OnValidate();
             begin
@@ -256,19 +267,19 @@
                 TenancyLocal.reset;
                 if TenancyLocal.FindSet then
                     repeat
-                    OccupantLocal.reset;
-                    OccupantLocal.SetRange(TenancyNo, TenancyLocal.Number);
-                    TenancyLocal.Vacant := true;
-                    TenancyLocal.vacantDate := DMY2Date(1, 1, 1960);
-                    IF OccupantLocal.FindLast() then begin
-                        IF OccupantLocal.EndDate > 0D then
-                            TenancyLocal.vacantDate := calcdate('<1D>', OccupantLocal.EndDate);
-                        IF OccupantLocal.EndDate = 0D THEN begin
-                            TenancyLocal.VacantDate := 0D;
-                            TenancyLocal.Vacant := false;
+                        OccupantLocal.reset;
+                        OccupantLocal.SetRange(TenancyNo, TenancyLocal.Number);
+                        TenancyLocal.Vacant := true;
+                        TenancyLocal.vacantDate := DMY2Date(1, 1, 1960);
+                        IF OccupantLocal.FindLast() then begin
+                            IF OccupantLocal.EndDate > 0D then
+                                TenancyLocal.vacantDate := calcdate('<1D>', OccupantLocal.EndDate);
+                            IF OccupantLocal.EndDate = 0D THEN begin
+                                TenancyLocal.VacantDate := 0D;
+                                TenancyLocal.Vacant := false;
+                            end;
                         end;
-                    end;
-                    TenancyLocal.Modify(true);
+                        TenancyLocal.Modify(true);
                     Until TenancyLocal.Next = 0;
                 //Check for om lejemålet er ledigt i den givne periode
                 ok := false;
@@ -279,15 +290,15 @@
                     OccupantLocal.SetRange(TenancyNo, TenancyCard.Number);
                     if OccupantLocal.FindSet then
                         repeat
-                        if OccupantLocal.Number <> Number then begin
-                            if(OccupantLocal.EndDate < Start) and(OccupantLocal.EndDate <> 0D) then
-                                ok := true; //den fundne kontrakt er udløbet.
-                            if(OccupantLocal.StartDate > Stop) and(Stop > 0D) then
-                                ok := true; //den fundne kontrakt starter efter.
-                            QtyOcc += 1
-                        end;
+                            if OccupantLocal.Number <> Number then begin
+                                if (OccupantLocal.EndDate < Start) and (OccupantLocal.EndDate <> 0D) then
+                                    ok := true; //den fundne kontrakt er udløbet.
+                                if (OccupantLocal.StartDate > Stop) and (Stop > 0D) then
+                                    ok := true; //den fundne kontrakt starter efter.
+                                QtyOcc += 1
+                            end;
                         until OccupantLocal.Next = 0;
-                    if(ok = true) or(qtyocc = 0) then begin
+                    if (ok = true) or (qtyocc = 0) then begin
                         TenancyCard.Vacant := FALSE;
                         TenancyCard.vacantDate := 0D;
                         TenancyCard.MODIFY(TRUE);
@@ -301,7 +312,7 @@
                     IF TenancyCard.FINDFIRST() THEN BEGIN
                         //Ingen opsagt dato på lejemålet
                         IF TenancyCard.vacantDate <= StartDate THEN
-                            IF(TenancyCard.vacantDate = 0D) AND(TenancyCard.Vacant = FALSE) THEN BEGIN
+                            IF (TenancyCard.vacantDate = 0D) AND (TenancyCard.Vacant = FALSE) THEN BEGIN
                                 MESSAGE('lejemålet er ikke ledigt.');
                                 Startdate := 0D;
                             END;
@@ -384,7 +395,7 @@
         {
             Caption = 'Collection Month';
             OptionCaption = 'Jan,Feb,Mar,Apr,May,Jun,Jul,Aug,Sep,Oct,Nov,Dec';
-            OptionMembers = jan, feb, mar, apr, may, jun, jul, aug, sep, oct, nov, dec;
+            OptionMembers = jan,feb,mar,apr,may,jun,jul,aug,sep,oct,nov,dec;
         }
         field(40; ChairmanOfTheBoard; Boolean)
         {
@@ -437,9 +448,9 @@
         key(key2; TenancyNo)
         {
         }
-        key(key3; PropertyNo,TenancyNo)
+        key(key3; PropertyNo, TenancyNo)
         {
-            
+
         }
     }
 
@@ -463,6 +474,8 @@
         Dimmgt: Codeunit "DimensionManagement";
         OccupantTrans: Record "SVA Occupant Trans";
         ConReg: record "SVA Contract regulations";
+        PaymentMethod: Text[20];
+        PaymentTerms: Text[20];
 
     trigger OnDelete();
     begin
@@ -500,34 +513,41 @@
 
     trigger OnModify();
     begin
+        Parameters.Reset;
+        if Parameters.FindFirst() then begin
+            PaymentMethod := Parameters.PaymentMethodForNets;
+            PaymentTerms := Parameters.PaymentTerms;
+        end;
+
         //Paymentcode on customer
         Custcard.Reset;
         Custcard.SetRange("No.", Occupant."Customer No");
         if Custcard.FindFirst then begin
-            Custcard."Payment Method Code" := 'NETS';
-            Custcard."Payment Terms Code" := 'Netto';
+            Custcard."Payment Method Code" := PaymentMethod;
+            Custcard."Payment Terms Code" := PaymentTerms;
             Custcard.Modify;
         end;
     end;
 
     trigger OnInsert();
     begin
-
+        Parameters.Reset;
+        IF Parameters.FindFirst() then begin
+            PaymentMethod := Parameters.PaymentMethodForNets;
+            PaymentTerms := Parameters.PaymentTerms;
+            IF (Parameters.Dim1 = '') OR (Parameters.Dim2 = '') OR (Parameters.Dim3 = '') then begin
+                Error('Dimensioner mangler opsætning. Kørslen afbrydes');
+            end;
+        end;
         //Paymentcode on customer
         Custcard.Reset;
         Custcard.SetRange("No.", Occupant."Customer No");
         if Custcard.FindFirst then begin
-            Custcard."Payment Method Code" := 'NETS';
-            Custcard."Payment Terms Code" := 'Netto';
+            Custcard."Payment Method Code" := PaymentMethod;
+            Custcard."Payment Terms Code" := PaymentTerms;
             Custcard.Modify;
         end;
-        Parameters.Reset;
-        IF Parameters.Findset then begin
-            IF(Parameters.Dim1 = '') OR(Parameters.Dim2 = '') OR(Parameters.Dim3 = '') then begin
-                Error('Dimensioner mangler opsætning. Kørslen afbrydes');
-            end;
-        end;
-        
+
         //Dimension beboer på beboer
         Parameters.Reset;
         IF Parameters.FindFirst then begin

@@ -1111,11 +1111,14 @@ page 50008 "SVA MoveOut"
         }
         area(factboxes)
         {
-            systempart(Notes; Notes)
-            {
-            }
+
             systempart(Links; Links)
             {
+                ApplicationArea = All;
+            }
+            systempart(Notes; Notes)
+            {
+                ApplicationArea = All;
             }
 
         }

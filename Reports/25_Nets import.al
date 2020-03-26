@@ -8,6 +8,9 @@ report 50025 "SVA Import NETS"
     {
         dataitem("CSV Buffer"; "CSV Buffer")
         {
+            column(CompanyName;COMPANYPROPERTY.DISPLAYNAME)
+            {
+            }
             column(Account; Account)
             {
             }

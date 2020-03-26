@@ -2,52 +2,55 @@ report 50013 "SVA Vacant Tenancies"
 {
     DefaultLayout = RDLC;
     RDLCLayout = './Layouts/Vacant Tenancies.rdlc';
-    Caption='Vacant tenancies';
-    UsageCategory=ReportsAndAnalysis; 
+    Caption = 'Vacant tenancies';
+    UsageCategory = ReportsAndAnalysis;
 
     dataset
     {
-        dataitem(Tenancy;"SVA Tenancy")
+        dataitem(Tenancy; "SVA Tenancy")
         {
-            column(Number_Tenancy;Number)
+            column(CompanyName; COMPANYPROPERTY.DISPLAYNAME)
             {
             }
-            column(PropertyNo_Tenancy;PropertyNo)
+            column(Number_Tenancy; Number)
             {
             }
-            column(Address1_Tenancy;Address1)
+            column(PropertyNo_Tenancy; PropertyNo)
             {
             }
-            column(PostCode_Tenancy;"Post Code")
+            column(Address1_Tenancy; Address1)
             {
             }
-            column(City_Tenancy;City)
+            column(PostCode_Tenancy; "Post Code")
             {
             }
-            column(vacantDate_Tenancy;vacantDate)
+            column(City_Tenancy; City)
             {
             }
-            column(Type_Tenancy;Type)
+            column(vacantDate_Tenancy; vacantDate)
             {
             }
-            column(AreaLiv_Tenancy;AreaLiv)
+            column(Type_Tenancy; Type)
             {
             }
-            column(Rooms_Tenancy;Rooms)
+            column(AreaLiv_Tenancy; AreaLiv)
             {
             }
-            dataitem("SVA Subscription Lines";"SVA Subscription Lines")
+            column(Rooms_Tenancy; Rooms)
             {
-                DataItemLink = Tenancies = FIELD (Number);
-                DataItemTableView = SORTING (Tenancies, Order, "Cost Types", "Date From", "Date To", KeyNumber)
+            }
+            dataitem("SVA Subscription Lines"; "SVA Subscription Lines")
+            {
+                DataItemLink = Tenancies = FIELD(Number);
+                DataItemTableView = SORTING(Tenancies, Order, "Cost Types", "Date From", "Date To", KeyNumber)
                                     ORDER(Ascending)
-                                    WHERE (Type = const (Rent));
-                column(Amount_Period;"Amount Period")
+                                    WHERE(Type = const(Rent));
+                column(Amount_Period; "Amount Period")
                 {
                 }
                 trigger OnAfterGetRecord();
                 begin
-                    if ("Date To" < Today) and ("Date To" <> 0D) then   
+                    if ("Date To" < Today) and ("Date To" <> 0D) then
                         CurrReport.Skip;
                 end;
             }
@@ -56,7 +59,7 @@ report 50013 "SVA Vacant Tenancies"
             begin
 
                 IF vacantDate = 0D THEN
-                  CurrReport.SKIP
+                    CurrReport.SKIP
             end;
         }
     }
@@ -76,5 +79,12 @@ report 50013 "SVA Vacant Tenancies"
     labels
     {
     }
+    trigger OnPreReport();
+    begin
+        CompanyInfo.get;
+    end;
+
+    var
+        CompanyInfo: Record "Company Information";
 }
 

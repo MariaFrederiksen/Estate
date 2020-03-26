@@ -10,8 +10,11 @@ report 50022 "SVA Occupants regulations"
     {
         dataitem("SVA Occupant"; "SVA Occupant")
         {
-            DataItemTableView = SORTING (PropertyNo, TenancyNo)
+            DataItemTableView = SORTING(PropertyNo, TenancyNo)
                                     ORDER(Ascending);
+            column(CompanyName; COMPANYPROPERTY.DISPLAYNAME)
+            {
+            }
 
             column(PropertyNo; PropertyNo)
             {
@@ -33,7 +36,7 @@ report 50022 "SVA Occupants regulations"
 
             dataitem("SVA Contract regulations"; "SVA Contract regulations")
             {
-                DataItemLink = Number = field (Number);
+                DataItemLink = Number = field(Number);
 
                 column(RegDate; format(RegDate))
                 {
@@ -84,20 +87,21 @@ report 50022 "SVA Occupants regulations"
                         if PriceIndeksRecord.FindFirst then
                             IndeksOld := PriceIndeksRecord.Indeksrate;
                     end;
-                    if IndeksNew = 0 then   
+                    if IndeksNew = 0 then
                         Indeks2 := '';
-                    if IndeksOld = 0 then   
+                    if IndeksOld = 0 then
                         Indeks1 := '';
-                    if IndeksNew <> 0 then   
+                    if IndeksNew <> 0 then
                         Indeks2 := Format(IndeksNew);
-                    if IndeksOld <> 0 then   
-                        Indeks1 := Format(IndeksOld);;            
+                    if IndeksOld <> 0 then
+                        Indeks1 := Format(IndeksOld);
+                    ;
                 end;
             }
 
             trigger OnAfterGetRecord();
             begin
-                IF(EndDate < Today) AND(Enddate <> 0D) THEN
+                IF (EndDate < Today) AND (Enddate <> 0D) THEN
                     CurrReport.SKIP
             end;
         }
@@ -122,8 +126,8 @@ report 50022 "SVA Occupants regulations"
         IndeksdateOld: Date;
         IndeksOld: Decimal;
         IndeksNew: Decimal;
-        Indeks1 : Text[5];
-        Indeks2 : Text[5];
+        Indeks1: Text[5];
+        Indeks2: Text[5];
         PriceIndeksRecord: Record "SVA PriceIndeks";
 
 }

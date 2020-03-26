@@ -2,165 +2,168 @@ report 50001 "SVA Property Data sheet"
 {
     DefaultLayout = RDLC;
     RDLCLayout = './Layouts/Property Data sheet.rdlc';
-    Caption='Property datasheet';
-    UsageCategory=ReportsAndAnalysis;
+    Caption = 'Property datasheet';
+    UsageCategory = ReportsAndAnalysis;
     ApplicationArea = all;
-    
+
     dataset
     {
-        dataitem(Property;"SVA Property")
+        dataitem(Property; "SVA Property")
         {
-            column(Number;Property)
+            column(CompanyName; COMPANYPROPERTY.DISPLAYNAME)
             {
             }
-            column(Name;Name)
+            column(Number; Property)
             {
             }
-            column(Address1;Address1)
+            column(Name; Name)
             {
             }
-            column(Address2;Address2)
+            column(Address1; Address1)
             {
             }
-            column(PostCode;"Post Code")
+            column(Address2; Address2)
             {
             }
-            column(City;City)
+            column(PostCode; "Post Code")
             {
             }
-            column(Country;"Country/Region Code")
+            column(City; City)
             {
             }
-            column(RegNo;CompanyRegNo)
+            column(Country; "Country/Region Code")
             {
             }
-            column(CadastralNo;CadastralNo)
+            column(RegNo; CompanyRegNo)
             {
             }
-            column(OwnerName;Owner)
+            column(CadastralNo; CadastralNo)
             {
             }
-            column(OwnerAdress;OwnerAddress1)
+            column(OwnerName; Owner)
             {
             }
-            column(OwnerAddress2;OwnerAddress2)
+            column(OwnerAdress; OwnerAddress1)
             {
             }
-            column(OwnerPostCode;OwnerPostCode)
+            column(OwnerAddress2; OwnerAddress2)
             {
             }
-            column(OwnerCity;OwnerCity)
+            column(OwnerPostCode; OwnerPostCode)
             {
             }
-            column(OwnerCountry;OwnerCountry)
+            column(OwnerCity; OwnerCity)
             {
             }
-            column(OwnerPhone;OwnerPhone)
+            column(OwnerCountry; OwnerCountry)
             {
             }
-            column(OwnerCell;OwnerCell)
+            column(OwnerPhone; OwnerPhone)
             {
             }
-            column(OwnerEmail;OwnerEmail)
+            column(OwnerCell; OwnerCell)
             {
             }
-            column(Bankname;Bankname)
+            column(OwnerEmail; OwnerEmail)
             {
             }
-            column(BankRegNo;BankRegNo)
+            column(Bankname; Bankname)
             {
             }
-            column(BankAccount;Bankaccount)
+            column(BankRegNo; BankRegNo)
             {
             }
-            column(CPGNumber;CGPNumber)
+            column(BankAccount; Bankaccount)
             {
             }
-            column(Startdate;Startdate)
+            column(CPGNumber; CGPNumber)
             {
             }
-            column(ArchiveDate;ArchiveDate)
+            column(Startdate; Startdate)
             {
             }
-            column(FinYearFrom;FinancialYearFrom)
+            column(ArchiveDate; ArchiveDate)
             {
             }
-            column(FinYearTo;FinancialYearTo)
+            column(FinYearFrom; FinancialYearFrom)
             {
             }
-            column(HeatingFrom;HeatingYearFrom)
+            column(FinYearTo; FinancialYearTo)
             {
             }
-            column(HeatingTo;HeatingYearTo)
+            column(HeatingFrom; HeatingYearFrom)
             {
             }
-            column(WaterFrom;WaterYearFrom)
+            column(HeatingTo; HeatingYearTo)
             {
             }
-            column(WaterTo;WaterYearTo)
+            column(WaterFrom; WaterYearFrom)
             {
             }
-            column(ElFrom;ElectricYearFrom)
+            column(WaterTo; WaterYearTo)
             {
             }
-            column(ElTo;ElectricYearTo)
+            column(ElFrom; ElectricYearFrom)
             {
             }
-            column(ManFrom;ManYearFrom)
+            column(ElTo; ElectricYearTo)
             {
             }
-            column(ManTo;ManYearTo)
+            column(ManFrom; ManYearFrom)
             {
             }
-            column(FinCompany;FinCompany)
+            column(ManTo; ManYearTo)
             {
             }
-            column(FinNo;FinCompanyNo)
+            column(FinCompany; FinCompany)
             {
             }
-            column(FinEmail;FinEmail)
+            column(FinNo; FinCompanyNo)
             {
             }
-            column(FinLatest;FinLatest)
+            column(FinEmail; FinEmail)
             {
             }
-            column(HeatCompany;HeatCompany)
+            column(FinLatest; FinLatest)
             {
             }
-            column(HeatCompNo;HeatCompanyNo)
+            column(HeatCompany; HeatCompany)
             {
             }
-            column(HeatEmail;HeatEmail)
+            column(HeatCompNo; HeatCompanyNo)
             {
             }
-            column(HeatLatest;HeatLatest)
+            column(HeatEmail; HeatEmail)
             {
             }
-            column(WaterCompany;WaterCompany)
+            column(HeatLatest; HeatLatest)
             {
             }
-            column(WaterCompNo;WaterCompanyNo)
+            column(WaterCompany; WaterCompany)
             {
             }
-            column(WaterEmail;WaterEmail)
+            column(WaterCompNo; WaterCompanyNo)
             {
             }
-            column(WaterLatest;WaterLatest)
+            column(WaterEmail; WaterEmail)
             {
             }
-            column(ElCompany;ElCompany)
+            column(WaterLatest; WaterLatest)
             {
             }
-            column(ElCompanyNo;ELCompanyNo)
+            column(ElCompany; ElCompany)
             {
             }
-            column(ElEmail;ElEmail)
+            column(ElCompanyNo; ELCompanyNo)
             {
             }
-            column(ElLatest;ElLatest)
+            column(ElEmail; ElEmail)
             {
             }
-            column(ManLatest;ManLatest)
+            column(ElLatest; ElLatest)
+            {
+            }
+            column(ManLatest; ManLatest)
             {
             }
         }
@@ -181,5 +184,6 @@ report 50001 "SVA Property Data sheet"
     labels
     {
     }
+
 }
 

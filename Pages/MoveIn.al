@@ -1369,12 +1369,15 @@ page 50007 "SVA MoveIn"
         }
         area(factboxes)
         {
-            systempart(Notes; Notes)
-            {
-            }
             systempart(Links; Links)
             {
+                ApplicationArea = All;
             }
+            systempart(Notes; Notes)
+            {
+                ApplicationArea = All;
+            }
+
 
         }
     }

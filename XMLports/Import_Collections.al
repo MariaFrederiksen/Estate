@@ -35,6 +35,12 @@ xmlport 50060 "SVA Import Collections"
                 fieldattribute(Counter;"Sva subscription lines".keynumber)
                 {
                 }
+                fieldattribute(Prod;"SVA Subscription Lines".ProductPostingGroup)
+                {
+                }
+                fieldattribute(Vat;"SVA Subscription Lines".VatGroup)
+                {
+                }
             }
         }
     }

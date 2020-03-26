@@ -5,7 +5,7 @@ page 50010 "SVA Occupant Trans List"
     UsageCategory = Lists;
     ApplicationArea = all;
     SourceTable = "SVA Occupant Trans";
- 
+
     layout
     {
         area(content)
@@ -71,14 +71,31 @@ page 50010 "SVA Occupant Trans List"
         }
         area(factboxes)
         {
-            systempart(NOTES; Notes)
-            {
-            }
+
             systempart(links; Links)
             {
+                ApplicationArea = All;
+            }
+            systempart(Notes; Notes)
+            {
+                ApplicationArea = All;
             }
         }
     }
+    actions
+    {
+        area(reporting)
+        {
+            action("Report")
+            {
+                ApplicationArea = All;
+                Caption = 'Translist report';
+                Image = Report2;
+                RunObject = Report "SVA Occupant Trans";
+            }
+        }
+    }
+
 
     Var
         CosttypeEstateRec: Record "SVA Cost type";
@@ -95,8 +112,8 @@ page 50010 "SVA Occupant Trans List"
 
     trigger OnDeleteRecord(): Boolean;
     begin
-        Error('Du kan ikke slette poster. Kontakt evt. din forhandler');
-        //Delete;
+        //Error('Du kan ikke slette poster. Kontakt evt. din forhandler');
+        Delete;
     end;
 
 

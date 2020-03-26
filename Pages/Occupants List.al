@@ -79,12 +79,15 @@ page 50012 "SVA Occupant List"
         }
         area(factboxes)
         {
-            systempart(Notat; Notes)
-            {
-            }
             systempart(Links; Links)
             {
+                ApplicationArea = All;
             }
+            systempart(Notat; Notes)
+            {
+                ApplicationArea = All;
+            }
+            
         }
     }
 }

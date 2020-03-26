@@ -8,7 +8,6 @@
         <DataProvider>SQL</DataProvider>
         <ConnectString />
       </ConnectionProperties>
-      <rd:SecurityType>None</rd:SecurityType>
       <rd:DataSourceID>9f466647-1f22-4156-bc56-d2d94315525c</rd:DataSourceID>
     </DataSource>
   </DataSources>
@@ -5401,7 +5400,7 @@
                     <Paragraph>
                       <TextRuns>
                         <TextRun>
-                          <Value />
+                          <Value>=Fields!CompanyName.Value</Value>
                           <Style>
                             <FontFamily>Segoe UI</FontFamily>
                             <FontSize>8pt</FontSize>
@@ -5412,7 +5411,6 @@
                     </Paragraph>
                   </Paragraphs>
                   <Top>0.84667cm</Top>
-                  <Left>0.01433cm</Left>
                   <Height>11pt</Height>
                   <Width>7.5cm</Width>
                   <Style>
@@ -5438,7 +5436,7 @@
                     </Paragraph>
                   </Paragraphs>
                   <Top>1.19944cm</Top>
-                  <Left>0.01433cm</Left>
+                  <Left>0.0358cm</Left>
                   <Height>20pt</Height>
                   <Width>7.5cm</Width>
                   <ZIndex>1</ZIndex>
@@ -5468,7 +5466,7 @@
                     </Paragraph>
                   </Paragraphs>
                   <Top>0.88194cm</Top>
-                  <Left>9.36313cm</Left>
+                  <Left>9.3846cm</Left>
                   <Height>11pt</Height>
                   <Width>7.96541cm</Width>
                   <ZIndex>2</ZIndex>
@@ -5498,7 +5496,7 @@
                     </Paragraph>
                   </Paragraphs>
                   <Top>0.10583cm</Top>
-                  <Left>9.36313cm</Left>
+                  <Left>9.3846cm</Left>
                   <Height>11pt</Height>
                   <Width>7.96541cm</Width>
                   <ZIndex>3</ZIndex>
@@ -5556,7 +5554,7 @@
                     </Paragraph>
                   </Paragraphs>
                   <Top>0.52917cm</Top>
-                  <Left>9.36313cm</Left>
+                  <Left>9.3846cm</Left>
                   <Height>11pt</Height>
                   <Width>7.96541cm</Width>
                   <ZIndex>4</ZIndex>
@@ -5584,6 +5582,7 @@
                       <Style />
                     </Paragraph>
                   </Paragraphs>
+                  <Left>0.02147cm</Left>
                   <Height>20pt</Height>
                   <Width>7.5cm</Width>
                   <ZIndex>5</ZIndex>
@@ -5596,9 +5595,9 @@
                 </Textbox>
               </ReportItems>
               <KeepTogether>true</KeepTogether>
-              <Left>0.34146cm</Left>
+              <Left>0.31999cm</Left>
               <Height>0.75in</Height>
-              <Width>17.32854cm</Width>
+              <Width>17.35001cm</Width>
               <Style>
                 <Border>
                   <Style>None</Style>
@@ -5686,6 +5685,9 @@ End Function
   <DataSets>
     <DataSet Name="DataSet_Result">
       <Fields>
+        <Field Name="CompanyName">
+          <DataField>CompanyName</DataField>
+        </Field>
         <Field Name="Number">
           <DataField>Number</DataField>
         </Field>

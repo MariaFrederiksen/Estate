@@ -8,6 +8,9 @@ report 50005 "SVA Moving out Journal"
     {
         dataitem(Occupant;"SVA Occupant")
         {
+            column(CompanyName;COMPANYPROPERTY.DISPLAYNAME)
+            {
+            }
             column(Number_Occupant;Number)
             {
             }

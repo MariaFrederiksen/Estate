@@ -532,12 +532,15 @@ page 50014 "SVA Property Card"
         }
         area(factboxes)
         {
-            systempart(Notat; Notes)
-            {
-            }
             systempart(Links; Links)
             {
+                ApplicationArea = All;
             }
+            systempart(Notes; Notes)
+            {
+                ApplicationArea = All;
+            }
+
         }
     }
 
@@ -547,7 +550,7 @@ page 50014 "SVA Property Card"
         {
             group(Reports)
             {
-                Caption = 'AC opgørelser';
+                Caption = 'AC statement';
                 action("Consumption Heat")
                 {
                     ApplicationArea = All;
@@ -634,7 +637,7 @@ page 50014 "SVA Property Card"
             }
             group(Deposita)
             {
-                Caption = '';
+                Caption = 'Depositum mv';
                 action("Deposit")
                 {
                     ApplicationArea = All;
@@ -714,12 +717,12 @@ page 50014 "SVA Property Card"
                 }
             }
         }
-        
+
         area(Processing)
         {
             group(Files)
             {
-              Caption = 'Write to file';
+                Caption = 'Write AC heat to file';
                 action("Heat file")
                 {
                     ApplicationArea = All;
@@ -737,24 +740,16 @@ page 50014 "SVA Property Card"
                             repeat
                                 Temptable.delete;
                             until TempTable.Next = 0;
-
-                        if Rec.HeatingYearTo > Date2dmy(today, 2) then
-                            Year1 := Date2dmy(today, 3) - 1;
-                        if Rec.HeatingYearTo <= Date2dmy(today, 2) then
-                            Year1 := Date2dmy(today, 3);
-                        Month1 := Rec.HeatingYearTo;
-                        TmpDate := DMY2date(1, Month1, Year1);
-                        ToDate := CalcDate('<1M-1D>', TmpDate);
-                        FromDate := CalcDate('<-1y+1D>', ToDate);
+                        FindDates();
                         Position := StrPos(Rec.HeatCompany, 'Brunata');
                         CLEAR(Occupant);
                         Occupant.SETRANGE(PropertyNo, Rec.Property);
                         IF Occupant.FindSet THEN
                             repeat
                                 if Position = 0 then
-                                WriteToFileVarmekontrol();
-                            if Position > 0 then
-                                WritetoFileBrunata();
+                                    WriteToFileVarmekontrol();
+                                if Position > 0 then
+                                    WritetoFileBrunata();
                             until Occupant.Next = 0;
                         MakeFile();
                     end;
@@ -763,48 +758,37 @@ page 50014 "SVA Property Card"
         }
         area(Navigation)
         {
-            
-            group(Navigations)
+            action(Tenancies)
             {
-                Caption = 'Overview';
-                action(Tenancies)
-                {
-                    ApplicationArea = All;
-                    Caption = 'Tenancies';
-                    Image = AlternativeAddress;
-                    RunObject = Page "SVA Tenancy List";
-                    RunPageLink = PropertyNo = FIELD (Property);
+                ApplicationArea = All;
+                Caption = 'Tenancies';
+                Image = AlternativeAddress;
+                RunObject = Page "SVA Tenancy List";
+                RunPageLink = PropertyNo = FIELD(Property);
 
-                }
-                action(Residens)
-                {
-                    ApplicationArea = all;
-                    Caption = 'Occupants';
-                    Image = Customer;
-                    RunObject = Page "SVA Occupant List";
-                    RunPageLink = PropertyNo = FIELD (Property);
+            }
+            action(Residens)
+            {
+                ApplicationArea = all;
+                Caption = 'Occupants';
+                Image = Customer;
+                RunObject = Page "SVA Occupant List";
+                RunPageLink = PropertyNo = FIELD(Property);
 
-                }
-                action(Dimensioner)
-                {
-                    ApplicationArea = all;
-                    Caption = 'Dimensions';
-                    Image = Dimensions;
-                    RunObject = Page "Default Dimensions";
-                    RunPageLink = "Table ID" = CONST (50001),
-                                  "No." = FIELD (Property);
-                    ShortCutKey = 'Shift+Ctrl+D';
-                    ToolTip = 'View or edits dimensions, such as area, project, or department, that you can assign to sales and purchase documents to distribute costs and analyze transaction history.';
-                }
+            }
+            action(Dimensioner)
+            {
+                ApplicationArea = all;
+                Caption = 'Dimensions';
+                Image = Dimensions;
+                RunObject = Page "Default Dimensions";
+                RunPageLink = "Table ID" = CONST(50001),
+                                  "No." = FIELD(Property);
+                ShortCutKey = 'Shift+Ctrl+D';
+                ToolTip = 'View or edits dimensions, such as area, project, or department, that you can assign to sales and purchase documents to distribute costs and analyze transaction history.';
             }
         }
     }
-
-
-    trigger OnOpenPage();
-    begin
-        Areas;
-    end;
 
     var
 
@@ -820,9 +804,9 @@ page 50014 "SVA Property Card"
         IncomeProperty: Report "SVA Income Property";
         TempTable: Record "SVA Export Temp";
         OccupantTrans: Record "SVA Occupant Trans";
-        ToDate: Date;
-        FromDate: Date;
-        Date1: Integer;
+        PropertyCard: Record "SVA Property";
+        ConsumptionTo: Date;
+        ConsumptionFrom: Date;
         Month1: Integer;
         Year1: Integer;
         TmpDate: Date;
@@ -835,21 +819,10 @@ page 50014 "SVA Property Card"
         Position: Integer;
         Tenancies: Record "SVA Tenancy";
 
-    local procedure Areas();
-    begin
-        Tenancies.RESET;
-        Tenancies.SETRANGE(PropertyNo, Property);
-        SquareMetersLiv := 0;
-        SquareMetersProf := 0;
-        SquareMetersTotal := 0;
-        IF Tenancies.FIND('-') THEN BEGIN
-            REPEAT
-                SquareMetersLiv += Tenancies.AreaLiv;
-            SquareMetersProf += Tenancies.AreaPro;
-            UNTIL Tenancies.NEXT = 0;
-        END;
-        SquareMetersTotal := SquareMetersLiv + SquareMetersProf;
-    end;
+
+
+
+
 
     local procedure WritetoFileVarmekontrol()
     begin
@@ -858,7 +831,7 @@ page 50014 "SVA Property Card"
         OccupantAmount := 0;
         OccupantTrans.Reset;
         OccupantTrans.SetRange(Occupant, Occupant.Number);
-        OccupantTrans.SetRange(Date, FromDate, ToDate);
+        OccupantTrans.SetRange(Date, ConsumptionFrom, ConsumptionTo);
         OccupantTrans.SetRange(Type, 2); //Varme
         if OccupantTrans.FindSet then
             repeat
@@ -909,7 +882,7 @@ page 50014 "SVA Property Card"
         OccupantAmount := 0;
         OccupantTrans.Reset;
         OccupantTrans.SetRange(Occupant, Occupant.Number);
-        OccupantTrans.SetRange(Date, FromDate, ToDate);
+        OccupantTrans.SetRange(Date, ConsumptionFrom, ConsumptionTo);
         OccupantTrans.SetRange(Type, 2); //Varme
         if OccupantTrans.FindSet then
             repeat
@@ -965,6 +938,18 @@ page 50014 "SVA Property Card"
     Local procedure MakeFile();
     begin
         Xmlport.Run(xmlport::"SVA File for Consumption", false);
+    end;
+
+    local procedure FindDates();
+    begin
+        If ConsumptionTo = 0D then begin
+            ConsumptionFrom := DMY2DATE(1, HeatingYearFrom, DATE2DMY(TODAY, 3));
+            ConsumptionTo := CALCDATE('<1Y-1D>', ConsumptionFrom);
+            while Today < ConsumptionTo do begin
+                ConsumptionFrom := CalcDate('<-1Y>', ConsumptionFrom);
+                ConsumptionTo := CalcDate('<-1Y>', ConsumptionTo);
+            end;
+        end;
     end;
 }
 

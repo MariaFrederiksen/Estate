@@ -39,7 +39,6 @@ table 50005 "SVA Subscription Lines"
         field(5; Type; Option)
         {
             Caption = 'Type';
-            DataClassification = ToBeClassified;
             OptionCaption = 'Other,Rent,ACheat,ACwater,ACElectric,ACCooling,ACOperating,Antenna,Internet,OccGroup,Deposit,Prepaid rent,Settlement,MovingCost';
             OptionMembers = Other, Rent, ACheat, ACwater, ACElectric, ACCooling, ACOperating, Antenna, Internet, OccGroup, Deposit, "Prepaid rent", Settlement, Movingcost;
         }
@@ -52,6 +51,11 @@ table 50005 "SVA Subscription Lines"
         {
             Caption = 'From date';
             NotBlank = true;
+            trigger OnValidate();
+            begin
+                if (DATE2DMY("Date From",1) > 1) then   
+                    "Date from" := DMY2Date(1,DATE2DMY("Date From",2),DATE2DMY("Date From",3))
+            end;    
             
         }
         field(12; "Date To"; Date)

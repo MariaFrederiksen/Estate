@@ -1,32 +1,35 @@
-tableextension 50006 "SVA Sales Cr.memo Ext" extends "Sales Cr.Memo Header"
+tableextension 50036 "SVA Sales Cr.memo Ext" extends "Sales Cr.Memo Header"
 // SVA 1.00 - 17/9-2018 - Maria Frederiksen
 {
     fields
     {
-        field(50001; "SVA Included"; Boolean)
+        field(50041; "SVA Included"; Boolean)
         {
             Caption = 'Included';
             DataClassification = CustomerContent;
-            AccessByPermission = TableData 50006 = rimd;
+            Editable = true;
+            
         }
-        field(50002; "SVA Send"; Boolean)
+        field(50042; "SVA Send"; Boolean)
         {
             Caption = 'Send';
             DataClassification = CustomerContent;
-            AccessByPermission = TableData 50006 = rimd;
+            Editable = true;
+            
         }
-        field(50003; "SVA Send Date"; Date)
+        field(50043; "SVA Send Date"; Date)
         {
             Caption = 'Send date';
             DataClassification = CustomerContent;
-            AccessByPermission = TableData 50006 = rimd;
+            Editable = true;
+            
         }
-        field(50004; "SVA Occupant"; Code[10])
+        field(50044; "SVA Occupant"; Code[10])
         {
             Caption = 'Occupant';
             TableRelation = "SVA Occupant".Number;
             DataClassification = CustomerContent;
-            AccessByPermission = TableData 50006 = rimd;
+            
         }
     }
     trigger OnBeforeInsert();
@@ -42,5 +45,4 @@ tableextension 50006 "SVA Sales Cr.memo Ext" extends "Sales Cr.Memo Header"
                 until OccupantRec.Next = 0;
         end;
     end;
-
 }

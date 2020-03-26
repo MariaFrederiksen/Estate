@@ -1,4 +1,3 @@
-//Testmiljø
 {
     "version": "0.2.0",
     "configurations": [
@@ -6,11 +5,11 @@
             "type": "al",
             "request": "launch",
             "name": "Your own server",
-            "server": "http://nav02.navitech.dk",
-            "serverInstance": "nav144",
-            "authentication": "UserPassword",
-            "port": 14449
+            "server": "http://localhost",
+            "serverInstance": "BC140",
+            "authentication": "Windows",
+            "breakOnError": true,
+            "launchBrowser": true
         }
-    ] 
+    ]
 }
-

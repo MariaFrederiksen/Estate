@@ -59,9 +59,11 @@ page 50002 "SVA Cost Type Estate List"
         {
             systempart(Links;Links)
             {
+                ApplicationArea = All;
             }
             systempart(Notes;Notes)
             {
+                ApplicationArea = All;
             }
         }
     }

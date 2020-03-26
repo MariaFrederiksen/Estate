@@ -5,7 +5,7 @@
     Permissions = TableData 50002 = rimd;
     DrillDownPageID = "SVA Tenancy List";
     LookupPageID = "SVA Tenancy List";
-   
+
 
     fields
     {
@@ -86,7 +86,7 @@
                         Vacant := false;
                     end;
                 end;
-            end;    
+            end;
         }
         field(5; Address2; Text[50])
         {
@@ -105,8 +105,9 @@
         field(7; City; Text[50])
         {
             Caption = 'City';
-            TableRelation = IF("Country/Region Code" = CONST ()) "Post Code".City
-            ELSE IF("Country/Region Code" = FILTER (<> '')) "Post Code".City WHERE ("Country/Region Code" = FIELD ("Country/Region Code"));
+            TableRelation = IF ("Country/Region Code" = CONST()) "Post Code".City
+            ELSE
+            IF ("Country/Region Code" = FILTER(<> '')) "Post Code".City WHERE("Country/Region Code" = FIELD("Country/Region Code"));
 
             trigger OnValidate();
             begin
@@ -131,14 +132,14 @@
         {
             CaptionClass = '1,1,1';
             Caption = 'Global Dimension 1 Code';
-            TableRelation = "Dimension Value".Code WHERE ("Global Dimension No." = CONST (1));
+            TableRelation = "Dimension Value".Code WHERE("Global Dimension No." = CONST(1));
 
         }
         field(17; "Global Dimension 2 Code"; Code[20])
         {
             CaptionClass = '1,1,2';
             Caption = 'Global Dimension 2 Code';
-            TableRelation = "Dimension Value".Code WHERE ("Global Dimension No." = CONST (2));
+            TableRelation = "Dimension Value".Code WHERE("Global Dimension No." = CONST(2));
 
         }
         field(20; Type; Option)
@@ -146,7 +147,7 @@
             Caption = 'Type';
             Description = 'Type of tenancy';
             OptionCaption = 'Living,Commercial Leases,Partial,Owner,House,Other';
-            OptionMembers = Bolig, Erhverv, Andel, Ejer, hus, andet;
+            OptionMembers = Bolig,Erhverv,Andel,Ejer,hus,andet;
         }
         field(21; Contract; Option)
         {
@@ -154,13 +155,13 @@
             Caption = 'Contract type';
             Description = 'Contrakt type';
             OptionCaption = 'Living,Commercial Lease';
-            OptionMembers = Bolig, Erhverv;
+            OptionMembers = Bolig,Erhverv;
         }
         field(22; PeriodYear; Option)
         {
             Caption = 'Charge per';
             OptionCaption = 'Mth,Qtr,Half year,Year';
-            OptionMembers = "Måned", Kvartal, "Halvår", "År";
+            OptionMembers = "Måned",Kvartal,"Halvår","År";
         }
         field(30; Deposit; Integer)
         {
@@ -609,7 +610,7 @@
             Caption = 'Description';
             trigger OnValidate();
             begin
-                TypeA9_9_Other1 := True;        
+                TypeA9_9_Other1 := True;
             end;
         }
         field(914; TypeA9_9_Other2; Boolean)
@@ -617,7 +618,7 @@
             Caption = 'Other';
             trigger OnValidate();
             begin
-                TypeA9_9_Other2 := True;        
+                TypeA9_9_Other2 := True;
             end;
         }
         field(915; TypeA9_9_Other2Text; Text[20])
@@ -629,7 +630,7 @@
             Caption = 'Other';
             trigger OnValidate();
             begin
-                TypeA9_9_Other3 := True;        
+                TypeA9_9_Other3 := True;
             end;
         }
         field(917; TypeA9_9_Other3Text; Text[20])
@@ -809,21 +810,21 @@
         Vacant := TRUE;
         vacantDate := DMY2DATE(1, 1, 1960);
         Parameters.Reset;
-        IF Parameters.Find('-') then begin
-            IF(Parameters.Dim1 = '') OR(Parameters.Dim2 = '') OR(Parameters.Dim3 = '') then begin
+        IF Parameters.FindSet() then begin
+            IF (Parameters.Dim1 = '') OR (Parameters.Dim2 = '') OR (Parameters.Dim3 = '') then begin
                 Error('Dimensioner mangler opsætning. Kørslen afbrydes');
             end;
         end;
         //Dimension lejemål på lejemål og dimension ejendom på lejemål
         Parameters.Reset;
-        if Parameters.Find('-') then begin
+        if Parameters.FindSet() then begin
             DefaultDim.SetRange("Table ID", 50002);
             DefaultDim.SetRange("No.", Number);
             if DefaultDim.FindFirst then begin
                 DefaultDim."Dimension Value Code" := Number;
                 DefaultDim."Dimension Code" := Parameters.Dim1;
                 DefaultDim.Modify(true);
-            end else begin 
+            end else begin
                 DefaultDim."Table ID" := 50002;
                 DefaultDim."No." := Number;
                 DefaultDim."Dimension Code" := Parameters.Dim2;
@@ -844,7 +845,7 @@
         if DimensionValue.FindFirst then begin
             DimensionValue.code := Number;
             DimensionValue.Modify(true);
-        end else begin    
+        end else begin
             DimensionValue.Init;
             DimensionValue."Dimension Code" := Parameters.Dim2;
             DimensionValue.Code := Number;
@@ -857,25 +858,53 @@
         end;
     end;
 
-    trigger OnModify();
+    trigger OnRename()
     begin
-        Areas;
+        TenNoOld := xrec.Number;
+        DimMgt.RenameDefaultDim(Database::"SVA Tenancy", xrec.Number, Number);
+        //Dimension lejemål på lejemål og dimension ejendom på lejemål
+        Parameters.Reset;
+        if Parameters.FindSet() then begin
+            DefaultDim.SetRange("Table ID", 50002);
+            DefaultDim.SetRange("No.", Number);
+            if DefaultDim.FindFirst then begin
+                DefaultDim."Dimension Value Code" := Number;
+                DefaultDim."Dimension Code" := Parameters.Dim1;
+                DefaultDim.Modify(true);
+                //Message('Modify Dim1');
+            end else begin
+                DefaultDim."Table ID" := 50002;
+                DefaultDim."No." := Number;
+                DefaultDim."Dimension Code" := Parameters.Dim2;
+                DefaultDim."Dimension Value Code" := Number;
+                DefaultDim."Value Posting" := 1;
+                DefaultDim."Table Caption" := 'Lejemål';
+                DefaultDim.Insert(true);
+                //Dimension ejendom på lejemål
+                DefaultDim."Dimension Code" := Parameters.Dim1;
+                DefaultDim."Dimension Value Code" := PropertyNo;
+                //Message('Insert dim1');
+                DefaultDim.Insert(true);
+            end;
+        end;
+
     end;
 
     trigger OnDelete();
     begin
         Occupant.reset;
         Occupant.SetRange(TenancyNo, Number);
-        Occupant.SetRange(PropertyNo,PropertyNo);
+        Occupant.SetRange(PropertyNo, PropertyNo);
         if Occupant.FindFirst then begin
             Error('Der findes beboeraftale på lejemålet. Slet disse først');
         end;
 
         Subscription.Reset;
         Subscription.SetRange(Tenancies, Number);
-        if Subscription.Find('-') then begin
+        if Subscription.Findset then begin
             Subscription.Delete;
         end;
+        DimMgt.DeleteDefaultDim(DATABASE::"SVA Tenancy", Number);
     end;
 
     var
@@ -888,29 +917,8 @@
         DefaultDim: Record "Default Dimension";
         Parameters: Record "SVA Parameters";
         Subscription: Record "SVA Subscription Lines";
-
-
-
-    local procedure Areas();
-    begin
-        PropertyCard.RESET;
-        PropertyCard.SETRANGE(PropertyCard.Property, PropertyNo);
-        IF PropertyCard.FINDFIRST() THEN BEGIN
-            Tenancies.RESET;
-            Tenancies.SETRANGE(Tenancies.PropertyNo, PropertyCard.Property);
-            PropertyCard.SquareMetersLiv := 0;
-            PropertyCard.SquareMetersProf := 0;
-            PropertyCard.SquareMetersTotal := 0;
-            IF Tenancies.FIND('-') THEN BEGIN
-                REPEAT
-                PropertyCard.SquareMetersLiv += Tenancies.AreaLiv;
-                PropertyCard.SquareMetersProf += Tenancies.AreaPro;
-                UNTIL Tenancies.NEXT = 0;
-            END;
-            PropertyCard.SquareMetersTotal := PropertyCard.SquareMetersLiv + PropertyCard.SquareMetersProf;
-            PropertyCard.MODIFY();
-        END;
-    end;
+        DimMgt: Codeunit DimensionManagement;
+        TenNoOld: Text[20];
 
 }
 

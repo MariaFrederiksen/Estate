@@ -2,57 +2,60 @@ report 50008 "SVA Consumption Electricity"
 {
     DefaultLayout = RDLC;
     RDLCLayout = './Layouts/Consumption Electricity.rdlc';
-    Caption='AC Electricity';
+    Caption = 'AC Electricity';
 
     dataset
     {
-        dataitem(Occupant;"SVA Occupant")
+        dataitem(Occupant; "SVA Occupant")
         {
-            column(OProperty;PropertyNo)
+            column(CompanyName;COMPANYPROPERTY.DISPLAYNAME)
             {
             }
-            column(ONo;Number)
+            column(OProperty; PropertyNo)
             {
             }
-            column(OTenancy;TenancyNo)
+            column(ONo; Number)
             {
             }
-            column(OCustomer;"Customer No")
+            column(OTenancy; TenancyNo)
             {
             }
-            column(OName;Name1)
+            column(OCustomer; "Customer No")
             {
             }
-            column(OEndDate;EndDate)
+            column(OName; Name1)
             {
             }
-            column(OStartDate;StartDate)
+            column(OEndDate; EndDate)
             {
             }
-            column(OID;ConsumptionAccountNo)
+            column(OStartDate; StartDate)
             {
             }
-            dataitem("Occupant Trans";"SVA Occupant Trans")
+            column(OID; ConsumptionAccountNo)
             {
-                DataItemLink = Occupant=FIELD(Number);
-                DataItemTableView = SORTING(Occupant,Date,"Cost type Estate","Invoice No")
-                                    WHERE(Type=CONST(ACElectric));
-                column(OTransNo;Occupant)
+            }
+            dataitem("Occupant Trans"; "SVA Occupant Trans")
+            {
+                DataItemLink = Occupant = FIELD(Number);
+                DataItemTableView = SORTING(Occupant, Date, "Cost type Estate", "Invoice No")
+                                    WHERE(Type = CONST(ACElectric));
+                column(OTransNo; Occupant)
                 {
                 }
-                column(Costtype;"Cost type Estate")
+                column(Costtype; "Cost type Estate")
                 {
                 }
-                column(Date;Date)
+                column(Date; Date)
                 {
                 }
-                column(Amount;Amount)
+                column(Amount; Amount)
                 {
                 }
 
                 trigger OnPreDataItem();
                 begin
-                     if ("Occupant Trans".Date < ElFrom) OR ("Occupant Trans".Date > ElTo) then
+                    if ("Occupant Trans".Date < ConsumptionFrom) OR ("Occupant Trans".Date > ConsumptionTo) then
                         CurrReport.Skip;
                 end;
             }
@@ -60,22 +63,22 @@ report 50008 "SVA Consumption Electricity"
             trigger OnAfterGetRecord();
             begin
                 PropNo := PropertyNo;
-                 PropertyRec.RESET;
-                 PropertyRec.SETRANGE(PropertyRec.Property,PropNo);
-                 IF PropertyRec.FINDFIRST() THEN BEGIN
-                     If ElTo = 0D then begin
-                        if Date2dmy(Today,2) < PropertyRec.WaterYearTo then   
-                            ElTo := DMY2DATE(1, PropertyRec.WaterYearFrom, DATE2DMY(TODAY,3))-1; 
-                        if Date2dmy(Today,2) > PropertyRec.WaterYearTo then 
-                            ElTo := DMY2DATE(1, PropertyRec.WaterYearFrom, DATE2DMY(TODAY,3));
-                        ElFrom := CalcDate('<-1Y>',ElTo);
-                        ElTo := CALCDATE('<1Y-1D>',ElFrom);
-                     end;   
-                  END;
-                 IF (EndDate < ElFrom) AND (EndDate <> 0D) THEN
-                  CurrReport.SKIP;
-                 IF StartDate > ElTo THEN
-                   CurrReport.SKIP;
+                PropertyRec.RESET;
+                PropertyRec.SETRANGE(PropertyRec.Property, PropNo);
+                IF PropertyRec.FINDFIRST() THEN begin
+                    If ConsumptionTo = 0D then begin
+                        ConsumptionFrom := DMY2DATE(1, PropertyRec.ElectricYearFrom, DATE2DMY(TODAY, 3));
+                        ConsumptionTo := CALCDATE('<1Y-1D>', ConsumptionFrom);
+                        while Today < ConsumptionTo do begin
+                            ConsumptionFrom := CalcDate('<-1Y>', ConsumptionFrom);
+                            ConsumptionTo := CalcDate('<-1Y>', ConsumptionTo);
+                        end;
+                    end;
+                END;
+                IF (EndDate < ConsumptionFrom) AND (EndDate <> 0D) THEN
+                    CurrReport.SKIP;
+                IF StartDate > ConsumptionTo THEN
+                    CurrReport.SKIP;
             end;
         }
     }
@@ -97,9 +100,9 @@ report 50008 "SVA Consumption Electricity"
     }
 
     var
-        ElFrom : Date;
-        ElTo : Date;
-        PropertyRec : Record "SVA Property";
-        PropNo : Code[10];
+        ConsumptionFrom: Date;
+        ConsumptionTo: Date;
+        PropertyRec: Record "SVA Property";
+        PropNo: Code[10];
 }
 

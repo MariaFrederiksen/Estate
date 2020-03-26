@@ -9,6 +9,9 @@ report 50023 "SVA Income Property"
     {
         dataitem(Tenancy;"SVA Tenancy")
         {
+            column(CompanyName;COMPANYPROPERTY.DISPLAYNAME)
+            {
+            }
             column(Number_Tenancy;Number)
             {
             }

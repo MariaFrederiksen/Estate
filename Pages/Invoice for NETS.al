@@ -2,14 +2,15 @@ page 50003 "SVA Sales Invoice NETS"
 //Tooltip created.
 {
     Caption = 'List of invoices for NETS';
+    //Permissions = tabledata 112 = rm;
     DeleteAllowed = false;
     InsertAllowed = false;
     PageType = List;
     UsageCategory = Tasks;
     ApplicationArea = All;
     SourceTable = "Sales Invoice Header";
-    SourceTableView = SORTING ("No.")
-                WHERE (Closed = CONST (false));
+    SourceTableView = SORTING("No.")
+                WHERE(Closed = CONST(false));
 
     layout
     {
@@ -81,9 +82,11 @@ page 50003 "SVA Sales Invoice NETS"
         {
             systempart(Notes; Notes)
             {
+                ApplicationArea = All;
             }
             systempart(Links; Links)
             {
+                ApplicationArea = All;
             }
         }
     }
@@ -104,7 +107,7 @@ page 50003 "SVA Sales Invoice NETS"
 
                     CODEUNIT.RUN(Codeunit::"SVA NETS BS 0601");
                     COMMIT;
-                    XMLPORT.RUN(xmlport::"SVA File for NETS");
+                    XMLPORT.RUN(xmlport::"SVA File for NETS", false);
                 end;
             }
             action(Reset)
@@ -137,20 +140,20 @@ page 50003 "SVA Sales Invoice NETS"
 
     trigger OnOpenPage();
     begin
+        Parameters.Reset();
+        if Parameters.FindFirst() then
+            PaymentMethodForNets := Parameters.PaymentMethodForNets;
+        
         SETRANGE("Due Date", FromDate, ToDate);
-        SetRange("Payment Method Code", 'nets');
+        SetRange("Payment Method Code", PaymentMethodForNets);
     end;
 
     var
         FromDate: Date;
         ToDate: Date;
-        SalesHeader: Record "Sales Invoice Header";
-        Properties: record "SVA Property";
         Parameters: Record "SVA Parameters";
+        PaymentMethodForNets :Text[20];
 
-    procedure FileType()
-    begin
-
-    end;
+    
 }
 

@@ -56,9 +56,11 @@ page 50018 "SVA Setup Estate List"
         {
             systempart(Links;Links)
             {
+                ApplicationArea = All;
             }   
             systempart(Notes;Notes)
             {
+                ApplicationArea = All;
             }
             
         }

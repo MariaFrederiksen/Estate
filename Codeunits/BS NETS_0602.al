@@ -106,7 +106,7 @@ codeunit 50005 "SVA BS NETS 0602"
         Sektion: text[3];
         Ledaccount: Text[10];
         DocNo: Text[20];
-        PostingText: Text[30];
+        PostingText: Text[50];
         Pos: Integer;
         Journal : Record "Gen. Journal Line";
 
@@ -145,7 +145,7 @@ codeunit 50005 "SVA BS NETS 0602"
                 GeneralLedgerLine.Validate("Account No.");
                 if PostingText <> '' then
                     GeneralLedgerLine.Description := PostingText;
-                AmountStr := CopyStr(Importtable.Value, 60, 13);
+                AmountStr := CopyStr(Importtable.Value, 116, 13);
                 Evaluate(AmountVar, AmountStr);
                 GeneralLedgerLine.Amount := -AmountVar / 100;
                 GeneralLedgerLine."Amount (LCY)" := -AmountVar;
@@ -215,7 +215,7 @@ codeunit 50005 "SVA BS NETS 0602"
             GeneralLedgerLine.Validate("Account No.");
             if PostingText <> '' then
                     GeneralLedgerLine.Description := PostingText;
-            GeneralLedgerLine."Applies-to Doc. Type" := 0; //empty
+            GeneralLedgerLine."Applies-to Doc. Type" := 3; //bankkonto
             GeneralLedgerLine."Applies-to Doc. No." := '';
             GeneralLedgerLine.Insert(true);
         end;

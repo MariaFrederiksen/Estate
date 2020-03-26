@@ -8,6 +8,7 @@ page 50001 "SVA Bookkeeper Activities"
     RefreshOnActivate = true;
     SourceTable = "Finance Cue";
 
+
     layout
     {
         area(content)
@@ -15,6 +16,7 @@ page 50001 "SVA Bookkeeper Activities"
             cuegroup(Stamdata)
             {
                 Caption = 'Basic data';
+                
 
                 field("Occpupants"; "SVA Occupant")
                 {
@@ -42,7 +44,7 @@ page 50001 "SVA Bookkeeper Activities"
                 }
                 field("Vacant tenancies"; "SVA Empty Tenancy")
                 {
-                    ApplicationArea = Basic, suite;
+                    ApplicationArea = all;
                     Caption = 'Vacant tenancies';
                     ToolTip = 'Liste over ledige lejemål for alle ejendomme';
                     DrillDownPageID = "SVA Tenancy List";
@@ -55,22 +57,11 @@ page 50001 "SVA Bookkeeper Activities"
                 Caption = 'Receivables';
                 field("Overdue Sales Documents"; "Overdue Sales Documents")
                 {
-                    ApplicationArea = Basic, Suite;
+                    ApplicationArea = all;
                     Caption = 'Overdue Sales Documents';
                     ToolTip = 'Liste over forfaldne opkrævninger';
                     DrillDownPageID = "Customer Ledger Entries";
                     Image = Document;
-                }
-
-                actions
-                {
-                    action("Rediger indbetalingskladde")
-                    {
-                        ApplicationArea = Basic, Suite;
-                        Caption = 'Edit Cash Receipt Journal';
-                        RunObject = Page "Cash Receipt Journal";
-                        ToolTip = 'Register received payments in a cash receipt journal that may already contain journal lines.';
-                    }
                 }
             }
         }

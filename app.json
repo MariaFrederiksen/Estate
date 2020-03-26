@@ -1,22 +1,27 @@
 {
   "id": "592fb3f9-a41b-421a-9a4f-713faab79c09",
-  "name": "Estate BC",
+  "name": "Estate",
   "publisher": "Svane IT",
-  "brief": "d365 Ejendom",
+  "brief": "Nav Ejendom",
   "description": "Ejendomsadministrationsløsning til Microsoft Dynamics Business Central",
-  "version": "14.4.35602.10",
+  "version": "15.4.41023.1",
   "privacyStatement": "",
   "EULA": "",
   "help": "",
-  "url": "https://navejendom.dk/",
+  "url": "",
   "logo": "logo.gif",
-  "capabilities": [],
   "dependencies": [],
   "screenshots": [],
-  "platform": "11.0.0.0",
-  "application": "11.0.0.0",
-  "idRange": {
-    "from": 50000,
-    "to": 50100},
-  "showMyCode": false
-   } 
+  "platform": "14.0.0.0",
+  "application": "14.0.0.0",
+  "features": ["TranslationFile"],
+  "idRanges": [
+    {
+      "from": 50000,
+      "to": 50100
+    }
+  ],
+  "contextSensitiveHelpUrl": "https://Estate.dk/help/",
+  "showMyCode": false,
+  "runtime": "3.0"
+}

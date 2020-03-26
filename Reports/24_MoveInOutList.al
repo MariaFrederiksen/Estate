@@ -8,6 +8,9 @@ report 50024 "SVA MoveInOutList"
     {
         dataitem(Occupant;"SVA Occupant")
         {
+            column(CompanyName;COMPANYPROPERTY.DISPLAYNAME)
+            {
+            }
             column(PropertyNo_Occupant;PropertyNo)
             {
             }

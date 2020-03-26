@@ -37,10 +37,11 @@ page 50013 "SVA Priceindeks"
         {
             systempart(Links; Links)
             {
+                ApplicationArea = All;
             }
             systempart(Notes; Notes)
             {
-
+                ApplicationArea = All;
             }
         }
     }
@@ -182,6 +183,22 @@ page 50013 "SVA Priceindeks"
                     Insert;
                     IndeksDate := DMY2DATE(1, 7, 2019);
                     Indeksrate := 104.1;
+                    IndeksNo := 'NETTO';
+                    Insert;
+                    IndeksDate := DMY2DATE(1, 8, 2019);
+                    Indeksrate := 103.7;
+                    IndeksNo := 'NETTO';
+                    Insert;
+                    IndeksDate := DMY2DATE(1, 9, 2019);
+                    Indeksrate := 103.4;
+                    IndeksNo := 'NETTO';
+                    Insert;
+                    IndeksDate := DMY2DATE(1, 10, 2019);
+                    Indeksrate := 103.8;
+                    IndeksNo := 'NETTO';
+                    Insert;
+                    IndeksDate := DMY2DATE(1, 11, 2019);
+                    Indeksrate := 103.6;
                     IndeksNo := 'NETTO';
                     Insert;
                 end;

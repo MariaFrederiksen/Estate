@@ -1,14 +1,14 @@
-tableextension 50004 "SVA Sales Invoice Line" extends "Sales Invoice Line"
+tableextension 50034 "SVA Sales Invoice Line" extends "Sales Invoice Line"
 // SVA 1.00 - 17/9-2018 - Maria Frederiksen
 //From standard posting Invoice, transferred lines to SVA Occupant Trans
 {
     fields
     {
-        field(50001; "SVA CostType"; Text[10])
+        field(50041; "SVA CostType"; Text[10])
         {
             Caption = 'Costtype';
             DataClassification = CustomerContent;
-            AccessByPermission = TableData 50004 = rimd;
+            Editable = true;
         }
     }
     trigger OnAfterInsert();

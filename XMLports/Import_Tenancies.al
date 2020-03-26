@@ -42,7 +42,7 @@ xmlport 50069 "SVA Import Tenancies"
                 fieldattribute(Type;"SVA Tenancy".Type)
                 {
                 }
-                fieldattribute(PeriodYear;"SVA Tenancy".PeriodYear)
+                fieldattribute(PeriodYear;"SVA Tenancy".PeriodYear) //k
                 {
                 }
                 fieldattribute(Apartment; "SVA Tenancy".TypeA9_1_Apartment)
@@ -73,7 +73,7 @@ xmlport 50069 "SVA Import Tenancies"
                 {
 
                 }
-                fieldattribute(Loft;"SVA Tenancy".TypeA9_1_Attic)
+                fieldattribute(Loft;"SVA Tenancy".TypeA9_1_Attic) //s
                 {
 
                 }
@@ -81,7 +81,7 @@ xmlport 50069 "SVA Import Tenancies"
                 {
 
                 }
-                fieldattribute(Vedl;"SVA Tenancy".TypeA9_8_MaintainceInsideTenan)
+                fieldattribute(Vedl;"SVA Tenancy".TypeA9_8_maintainceInsideTenan)
                 {
 
                 }

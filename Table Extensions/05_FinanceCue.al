@@ -1,5 +1,4 @@
-tableextension 50005 "SVA Finance Cue" extends "Finance Cue"
-// SVA 1.00 - 17/9-2018 - Maria Frederiksen
+tableextension 50035 "SVA Finance Cue Ext" extends "Finance Cue"
 {
     fields
     {

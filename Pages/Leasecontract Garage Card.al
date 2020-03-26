@@ -150,12 +150,15 @@ page 50006 "SVA Leasecontract_Garage"
         }
         area(factboxes)
         {
-            systempart(Notes; Notes)
-            {
-            }
             systempart(Links; Links)
             {
+                ApplicationArea = All;
             }
+            systempart(Notes; Notes)
+            {
+                ApplicationArea = All;
+            }
+
         }
     }
 
@@ -163,63 +166,60 @@ page 50006 "SVA Leasecontract_Garage"
     {
         area(Creation)
         {
-            group(Handlinger)
+
+            action(LeaseContract)
             {
-                Caption = 'action';
+                ApplicationArea = all;
+                Caption = 'Leasecontract';
+                ToolTip = 'Print leasecontract for garage';
+                Image = Report;
 
-                action(LeaseContract)
-                {
-                    ApplicationArea = all;
-                    Caption = 'Leasecontract';
-                    ToolTip = 'Print leasecontract for garage';
-                    Image = Report;
-
-                    trigger OnAction();
-                    begin
-                        CLEAR(Contract);
-                        Contract.SETRANGE(Number, Rec.Number);
-                        IF Contract.FindFirst() THEN begin
-                            CLEAR(Garage);
-                            Garage.SETTABLEVIEW(Contract);
-                            Garage.RUNMODAL;
-                        END;
-                    end;
-                }
-                action(MoveInJournal)
-                {
-                    ApplicationArea = all;
-                    Caption = 'Move in journal';
-                    ToolTip = 'Making a journal for moving in costs';
-                    Image = Report;
-
-                    trigger Onaction();
-                    begin
-                        CLEAR(Contract);
-                        Contract.SETRANGE(Number, Rec.Number);
-                        IF Contract.FindFirst() THEN begin
-                            CLEAR(MoveInJournal);
-                            MoveInJournal.SETTABLEVIEW(Contract);
-                            MoveInJournal.RunModal;
-                        END;
-                    end;
-                }
-                action(MoveInInvoice)
-                {
-                    ApplicationArea = all;
-                    Caption = 'Make Invoice moving in';
-                    ToolTip = 'Make invoice to customer for moving in costs';
-                    Image = Report;
-
-                    trigger OnAction();
-                    begin
-                        CLEAR(Contract);
-                        Contract.SETRANGE(Number, Rec.Number);
-                        IF Contract.FindFirst() then
-                            Codeunit.run(Codeunit::"SVA Move In Invoice", Contract);
-                    end;
-
-                }
+                trigger OnAction();
+                begin
+                    CLEAR(Contract);
+                    Contract.SETRANGE(Number, Rec.Number);
+                    IF Contract.FindFirst() THEN begin
+                        CLEAR(Garage);
+                        Garage.SETTABLEVIEW(Contract);
+                        Garage.RUNMODAL;
+                    END;
+                end;
             }
+            action(MoveInJournal)
+            {
+                ApplicationArea = all;
+                Caption = 'Move in journal';
+                ToolTip = 'Making a journal for moving in costs';
+                Image = Report;
+
+                trigger Onaction();
+                begin
+                    CLEAR(Contract);
+                    Contract.SETRANGE(Number, Rec.Number);
+                    IF Contract.FindFirst() THEN begin
+                        CLEAR(MoveInJournal);
+                        MoveInJournal.SETTABLEVIEW(Contract);
+                        MoveInJournal.RunModal;
+                    END;
+                end;
+            }
+            action(MoveInInvoice)
+            {
+                ApplicationArea = all;
+                Caption = 'Make Invoice moving in';
+                ToolTip = 'Make invoice to customer for moving in costs';
+                Image = Report;
+
+                trigger OnAction();
+                begin
+                    CLEAR(Contract);
+                    Contract.SETRANGE(Number, Rec.Number);
+                    IF Contract.FindFirst() then
+                        Codeunit.run(Codeunit::"SVA Move In Invoice", Contract);
+                end;
+
+            }
+
 
         }
     }

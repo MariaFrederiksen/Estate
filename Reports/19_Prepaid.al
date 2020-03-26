@@ -1,14 +1,17 @@
-report 50018 "SVA Deposit"
+report 50019 "SVA Prepaid rent"
 {
     DefaultLayout = RDLC;
-    RDLCLayout = './Layouts/Deposit.rdlc';
-    Caption = 'Deposit';
+    RDLCLayout = './Layouts/PrepaidRent.rdlc';
+    Caption = 'Prepaid rent';
     UsageCategory = ReportsAndAnalysis;
 
     dataset
     {
         dataitem(Tenancy; "SVA Tenancy")
         {
+            column(CompanyName;COMPANYPROPERTY.DISPLAYNAME)
+            {
+            }
             column(PropertyNo; PropertyNo)
             {
 
@@ -27,9 +30,6 @@ report 50018 "SVA Deposit"
                 {
                 }
                 column(ONo; Number)
-                {
-                }
-                column(OTenancy; TenancyNo)
                 {
                 }
                 column(OCustomer; "Customer No")
@@ -51,7 +51,7 @@ report 50018 "SVA Deposit"
                 {
                     DataItemLink = Occupant = FIELD (Number);
                     DataItemTableView = SORTING (Occupant, Date, "Cost type Estate", "Invoice No")
-                                    WHERE (Type = CONST (Deposit));
+                                    WHERE (Type = CONST ("Prepaid Rent"));
                     column(OTransNo; Occupant)
                     {
                     }
@@ -64,6 +64,10 @@ report 50018 "SVA Deposit"
                     column(Amount; Amount)
                     {
                     }
+                    trigger OnAfterGetRecord();
+                    begin
+                        SETRANGE(Type, 11);
+                    end;
 
                 }
                 trigger OnAfterGetRecord();
@@ -71,14 +75,14 @@ report 50018 "SVA Deposit"
                     AmountVar := 0;
                     OccupantOK := false;
                     OccupantTrans.reset;
-                    OccupantTrans.Setrange(Type, 10);
-                    OccupantTrans.SetRange(Occupant, Occupant.number);
+                    OccupantTrans.Setrange(Type,11);
+                    OccupantTrans.SetRange(Occupant,Occupant.number);
                     if OccupantTrans.FindSet then
                         repeat
-                            AmountVar := AmountVar + OccupantTrans.Amount;
+                            AmountVar :=  AmountVar+OccupantTrans.Amount;
                         until OccupantTrans.Next = 0;
                     if AmountVar <> 0 then
-                        OccupantOK := true;
+                        OccupantOK := true;    
                     if OccupantOK = false then
                         CurrReport.Skip;
                 end;
@@ -93,16 +97,16 @@ report 50018 "SVA Deposit"
                 if Occupanttable.findset then
                     repeat
                         OccupantTrans.reset;
-                    OccupantTrans.SetRange(Occupant, OccupantTable.Number);
-                    OccupantTrans.Setrange(Type, 10);
-                    if OccupantTrans.findset then
-                        repeat
-                                AmountVar := AmountVar + OccupantTrans.Amount;
-                        until OccupantTrans.Next = 0;
-                    if AmountVar <> 0 then
-                        TenancyOK := true;
+                        OccupantTrans.SetRange(Occupant,OccupantTable.Number);
+                        OccupantTrans.Setrange(Type,11);
+                        if OccupantTrans.findset then
+                            repeat
+                                AmountVar :=  AmountVar+OccupantTrans.Amount;
+                            until OccupantTrans.Next = 0;
+                            if AmountVar <> 0 then
+                                TenancyOK := true;
                     until OccupantTable.Next = 0;
-                if TenancyOK = false then
+                if TenancyOK = false then   
                     CurrReport.skip;
 
             end;
@@ -128,8 +132,8 @@ report 50018 "SVA Deposit"
     var
         AmountVar: Decimal;
         OccupantTable: Record "SVA Occupant";
-        OccupantTrans: record "SVA Occupant Trans";
-        TenancyOK: Boolean;
-        OccupantOK: Boolean;
+        OccupantTrans : record "SVA Occupant Trans";
+        TenancyOK : Boolean;
+        OccupantOK : Boolean;
 }
 

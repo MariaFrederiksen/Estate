@@ -1,7 +1,7 @@
 report 50012 "SVA DemandNoticeResidence"
 {
     WordLayout = './Layouts/DemandNoticeResidence.docx';
-    Caption='Demand notice';
+    Caption='Demand notice residence';
     DefaultLayout = Word;
 
     dataset
@@ -136,6 +136,27 @@ report 50012 "SVA DemandNoticeResidence"
             {
             }
             column(CCIty; City)
+            {
+            }
+            column(CompanyVAT_Registration_No_;"VAT Registration No.")
+            {
+            }
+            column(CompanyGetVATRegistrationNumberLbl;GetVATRegistrationNumberLbl)
+            {
+            }
+            column(CompanyPhone_No_;"Phone No.")
+            {
+            }
+            column(COmpanyPicture;Picture)
+            {
+            }
+            column(CompanyBankBranchNo;Companyinfo."Bank Branch No.")
+            {
+            }
+            column(CompanyBanAccountNo;Companyinfo."Bank Branch No.")
+            {
+            }
+            column(CompanyBankName;Companyinfo."Bank Name")
             {
             }
             column(InvoicesAmount;InvoiceAmountTotal)

@@ -10,6 +10,9 @@ report 50020 "SVA Moving in status"
         {
             DataItemTableView = SORTING (Occupant);
             RequestFilterFields = Occupant;
+            column(CompanyName;COMPANYPROPERTY.DISPLAYNAME)
+            {
+            }
 
             column(Occupant_MovingOutStatus; Occupant)
             {

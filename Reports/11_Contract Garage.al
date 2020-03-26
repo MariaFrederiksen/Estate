@@ -95,6 +95,42 @@ report 50011 "SVA Contract Garage"
             {
             }
         }
+        dataitem("Company Information"; "Company Information")
+        {
+            column(CName; Name)
+            {
+            }
+            column(CAddress; Address)
+            {
+            }
+            column(CPostCode; "Post Code")
+            {
+            }
+            column(CCity; City)
+            {
+            }
+            column(CompanyVAT_Registration_No_;"VAT Registration No.")
+            {
+            }
+            column(CompanyGetVATRegistrationNumberLbl;GetVATRegistrationNumberLbl)
+            {
+            }
+            column(CompanyPhone_No_;"Phone No.")
+            {
+            }
+            column(COmpanyPicture;Picture)
+            {
+            }
+            column(CompanyBankBranchNo;"Bank Branch No.")
+            {
+            }
+            column(CompanyBanAccountNo;"Bank Branch No.")
+            {
+            }
+            column(CompanyBankName;"Bank Name")
+            {
+            }
+        }
     }
 
     requestpage
