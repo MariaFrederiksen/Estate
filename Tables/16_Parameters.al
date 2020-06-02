@@ -1,4 +1,4 @@
-﻿table 50000 "SVA Parameters"
+﻿table 50016 "SVA Setup"
 {
     // Opsætningstabel for NAV Ejendom
 
@@ -187,19 +187,13 @@
         {
             Caption = 'Worksheet';
             Description = 'Finanskladde til bogføring af §22';
-            TableRelation = "Gen. Journal Batch".Name WHERE("Journal Template Name" = field(IM_Worksheettype));
+            TableRelation = "Gen. Journal Batch".Name WHERE("Journal Template Name" = field(BS_Worksheettype));
         }
         field(454; IM_Account; Code[10])
         {
-            Caption = 'Obsolite';
-            Description = '';
-
-        }
-        field(455; IM_Costtype; Code[10])
-        {
-            Caption = 'Costtype';
-            Description = 'Costtype for posting §22';
-            TableRelation = "SVA Cost type";
+            Caption = 'Accounting';
+            Description = 'Finanskonto til bogføring af §22';
+            TableRelation = "G/L Account";
         }
         field(560; Numberserie; Code[20])
         {

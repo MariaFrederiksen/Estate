@@ -18,7 +18,7 @@ codeunit 50008 "SVA Move In Invoice"
                     if SetupEstate.Splitcalc = false then
                         Factor := 0.5;
                     if SetupEstate.Splitcalc = true then begin
-                        Days := date2dmy(Calcdate('CM', DMY2Date(01, Date2DMY(Occupant.StartDate, 2), Date2DMY(Occupant.StartDate, 3))), 1);
+                        Days := CalcDate('<1M-1D>', Occupant.Startdate) - Occupant.Startdate + 1;//qty of days in month Sartdate
                         Factor := ((Days - Date2DMY(Occupant.StartDate, 1) + 1) / Days);
                     end;
                 end;
@@ -34,6 +34,18 @@ codeunit 50008 "SVA Move In Invoice"
                 IF CostTypeEstate.FindFirst() then
                     VatType := CostTypeEstate.VatGroup;
             end;
+            //if subscriptionline don't have a line of type Rent
+            if VatType = '' then begin
+                Subscription.RESET;
+                Subscription.Setrange(Tenancies, Occupant.TenancyNo);
+                if Subscription.findfirst then begin
+                    CostTypeEstate.RESET;
+                    CostTypeEstate.SETRANGE(Costtype, Subscription."Cost Types");
+                    IF CostTypeEstate.FindFirst() then
+                        VatType := CostTypeEstate.VatGroup;
+                end;
+            end;
+
 
             //Make salesheader
             Salesheader.INIT;
@@ -374,8 +386,8 @@ codeunit 50008 "SVA Move In Invoice"
             SalesLine."Gen. Prod. Posting Group" := CostTypeEstate.ProductPostingGroup;
             SalesLine."VAT Prod. Posting Group" := VatType;
             SalesLine.Validate(SalesLine."VAT Prod. Posting Group");
-            SalesLine."SVA Costtype" := CostTypeEstate.Costtype;
             SalesLine.Validate(SalesLine."Unit Price");
+            SalesLine."SVA Costtype" := CostTypeEstate.Costtype;
         END;
     end;
 }

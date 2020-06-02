@@ -7,6 +7,7 @@ page 50015 "SVA Property List"
     SourceTable = "SVA Property";
     UsageCategory = Lists;
     ApplicationArea = All;
+
     layout
     {
         area(content)
@@ -130,15 +131,14 @@ page 50015 "SVA Property List"
             {
                 ApplicationArea = All;
                 Caption = 'Subscription invoicing';
-                Image = PostBatch;
-                RunObject = Codeunit "SVA Create Invoice Estate";
-            }
-            action(InvoicingWithDialog)
-            {
-                ApplicationArea = All;
-                Caption = 'Subscription invoicing with dialog';
-                Image = PostBatch;
-                RunObject = Codeunit "SVA Create Invoice Estate CD";
+                Image = SalesInvoice;
+                trigger OnAction()
+                begin
+                    // Message('Før kald');
+                    Codeunit.Run(Codeunit::"SVA Create Invoice Estate");
+                    // Message('Efter kald');
+                end;
+
             }
             action(Nets)
             {

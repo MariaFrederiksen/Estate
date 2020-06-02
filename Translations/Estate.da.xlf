@@ -113,7 +113,7 @@
         </trans-unit>
         <trans-unit id="Table 803675570 - Field 111019428 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Worksheet</source>
-          <target>Finanskladde</target>
+          <target>Kladde</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table SVA Parameters - Field BS_WorkSheet - Property Caption</note>
         </trans-unit>
@@ -131,9 +131,39 @@
         </trans-unit>
         <trans-unit id="Table 803675570 - Field 130490898 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Rate for §22 stk. 1.</source>
-          <target>Rate for §22 stk. 1.</target>
+          <target>Sats §22 stk. 1.</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table SVA Parameters - Field IntMaintenance - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 803675570 - Field 727503184 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Posting §22</source>
+          <target>Autobogføring af §22</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table SVA Parameters - Field IM_Autoposting - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 803675570 - Field 1716745863 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Worksheettype</source>
+          <target>Finanskladdetype</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table SVA Parameters - Field IM_WorkSheetType - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 803675570 - Field 3452767999 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Worksheet</source>
+          <target>Kladde</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table SVA Parameters - Field IM_WorkSheet - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 803675570 - Field 118308574 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Obsolite</source>
+          <target>Finanskonto</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table SVA Parameters - Field IM_Account - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 803675570 - Field 3987323484 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Costtype</source>
+          <target>Konteringsart</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table SVA Parameters - Field IM_Costtype - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 803675570 - Field 2751286261 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Numberserie for contracts</source>
@@ -9327,6 +9357,252 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table SVA Export Temp - Field Output Line 128 - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Table 3632234853 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Parameters</source>
+          <target>Parametre</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table SVA Setup - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3632234853 - Field 2272340397 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Parameter number</source>
+          <target>Parameter nummer</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table SVA Setup - Field Number - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3632234853 - Field 2961552353 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Name</source>
+          <target>Navn</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table SVA Setup - Field Name - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3632234853 - Field 3168444338 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Address</source>
+          <target>Adresse</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table SVA Setup - Field Address - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3632234853 - Field 4257560815 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Zipcode</source>
+          <target>Postnummer</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table SVA Setup - Field Post code - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3632234853 - Field 284764054 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Country/Region Code</source>
+          <target>Land</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table SVA Setup - Field Country/Region Code - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3632234853 - Field 714791889 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>City</source>
+          <target>By</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table SVA Setup - Field City - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3632234853 - Field 617267791 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>VAT Registration No.</source>
+          <target>Momsregistreringsnummer</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table SVA Setup - Field VAT Registration No. - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3632234853 - Field 2685439803 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Bank Name</source>
+          <target>Bank navn</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table SVA Setup - Field Bank Name - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3632234853 - Field 90115101 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Bank Branch No</source>
+          <target>Bank reg. nr.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table SVA Setup - Field Bank Branch No - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3632234853 - Field 4248640148 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Bank Account No.</source>
+          <target>Bankkonto</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table SVA Setup - Field Bank Account No. - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3632234853 - Field 1212956345 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Data provider</source>
+          <target>Dataleverandør</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table SVA Setup - Field BS_Dataprovider - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3632234853 - Field 3548011018 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>BS Partcode</source>
+          <target>Delsystem</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table SVA Setup - Field BS_Delsystem - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3632234853 - Field 1946839132 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>BS Custgroup</source>
+          <target>NETS debitorgruppe</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table SVA Setup - Field BS_DebGrp - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3632234853 - Field 3221588312 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>AppointmentNo</source>
+          <target>Aftalenr</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table SVA Setup - Field BS_AftaleNo - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3632234853 - Field 1893861081 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Advis</source>
+          <target>Advis</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table SVA Setup - Field BS_Advis - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3632234853 - Field 3923218590 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>LedgerAccount</source>
+          <target>Finanskonto</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table SVA Setup - Field BS_Ledgeraccount - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3632234853 - Field 3179732978 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Trans Text</source>
+          <target>Bogføringstekst</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table SVA Setup - Field BS_ImportText - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3632234853 - Field 111019428 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Worksheet</source>
+          <target>Kladde</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table SVA Setup - Field BS_WorkSheet - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3632234853 - Field 3691229992 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Fee for residens</source>
+          <target>Sats for boliglejemål</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table SVA Setup - Field ReminderFeeRes - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3632234853 - Field 477809413 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Fee for prof. rent</source>
+          <target>Sats for erhvervslejemål</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table SVA Setup - Field ReminderFeeProf - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3632234853 - Field 130490898 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Rate for §22 stk. 1.</source>
+          <target>Rate for §22 stk. 1.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table SVA Setup - Field IntMaintenance - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3632234853 - Field 727503184 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Posting §22</source>
+          <target>Autobogføring af §22</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table SVA Setup - Field IM_Autoposting - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3632234853 - Field 1716745863 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Worksheettype</source>
+          <target>Finanskladdetype</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table SVA Setup - Field IM_WorkSheetType - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3632234853 - Field 3452767999 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Worksheet</source>
+          <target>Kladde</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table SVA Setup - Field IM_WorkSheet - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3632234853 - Field 118308574 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Accounting</source>
+          <target>Finanskonto</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table SVA Setup - Field IM_Account - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3632234853 - Field 2751286261 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Numberserie for contracts</source>
+          <target>Nummerserie for kontrakter</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table SVA Setup - Field Numberserie - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3632234853 - Field 744973449 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Contract calc. days?</source>
+          <target>Beregn dage?</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table SVA Setup - Field Splitcalc - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3632234853 - Field 1303377601 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Global Dimension 1 Code</source>
+          <target>Global Dimension 1 kode</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table SVA Setup - Field Global Dimension 1 Code - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3632234853 - Field 1337243520 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Global Dimension 2 Code</source>
+          <target>Global Dimension 2 kode</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table SVA Setup - Field Global Dimension 2 Code - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3632234853 - Field 2870928291 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Dimension for property</source>
+          <target>Dimension for ejendomme</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table SVA Setup - Field Dim1 - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3632234853 - Field 489050846 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Dimension for tenancy</source>
+          <target>Dimension for lejemål</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table SVA Setup - Field Dim2 - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3632234853 - Field 4146321525 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Dimension for occupants</source>
+          <target>Dimension for beboeraftaler</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table SVA Setup - Field Dim3 - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3632234853 - Field 583591612 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Worksheettype</source>
+          <target>Finanskladdetype</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table SVA Setup - Field BS_WorkSheetType - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3632234853 - Field 204853332 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Arrears withdraw in files to NETS</source>
+          <target>Restancer medtages i filen til NETS</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table SVA Setup - Field CustomerArrears - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3632234853 - Field 2710392166 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Payment method for NETS</source>
+          <target>Betalingsmetode for NETS</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table SVA Setup - Field PaymentMethodForNets - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3632234853 - Field 4257751337 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Payment terms for NETS</source>
+          <target>Betalingsbetingelser for NETS</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table SVA Setup - Field PaymentTerms - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3632234853 - NamedType 2290359564" size-unit="char" translate="yes" xml:space="preserve">
+          <source>There must be 5 digits</source>
+          <target>Der skal være 5 tegn</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table SVA Setup - NamedType TEXT005</note>
+        </trans-unit>
+        <trans-unit id="Table 3632234853 - NamedType 3806477151" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Path must have a valid value</source>
+          <target>Sti skal have en gyldig værdi</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table SVA Setup - NamedType PathError</note>
+        </trans-unit>
+        <trans-unit id="Table 3632234853 - NamedType 4203449415" size-unit="char" translate="yes" xml:space="preserve">
+          <source>There must be 8 digits</source>
+          <target>Der skal være 8 tegn</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table SVA Setup - NamedType TEXT008</note>
+        </trans-unit>
+        <trans-unit id="Table 3632234853 - NamedType 1014966330" size-unit="char" translate="yes" xml:space="preserve">
+          <source>There must be 3 sign</source>
+          <target>Der skal være 3 tegn</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table SVA Setup - NamedType TEXT003</note>
+        </trans-unit>
         <trans-unit id="Page 97540494 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Activities</source>
           <target>Akiviteter</target>
@@ -10721,7 +10997,7 @@
         </trans-unit>
         <trans-unit id="Page 2954838532 - Action 3863430001 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Move in journal</source>
-          <target>Indflytningsfaktura</target>
+          <target>Indflytningsjournal</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page SVA Leasecontract_Garage - Action MoveInJournal - Property Caption</note>
         </trans-unit>
@@ -12592,8 +12868,8 @@
           <note from="Xliff Generator" annotates="general" priority="3">Page SVA Occupant Card - Control Collection Month - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 3815994723 - Control 229152810 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
-          <source>First time to NETS. Can be left blank</source>
-          <target>Første gang til NETS. Kan udelades, og så vil faktura gå til nets ved første periodeopkrævning</target>
+          <source>First time to NETS or first time to be invoiced after moving in invoice.</source>
+          <target>Første gang til NETS eller første gang til fakturering efter indflydningsfaktura.</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page SVA Occupant Card - Control FirstNets - Property ToolTip</note>
         </trans-unit>
@@ -12776,6 +13052,12 @@
           <target>Beboerposteringer for denne beboeraftale</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page SVA Occupant Card - Control Occupant transactions - Property Tooltip</note>
+        </trans-unit>
+        <trans-unit id="Page 3815994723 - Control 1658766258 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Attachments</source>
+          <target>Vedhæftede filer</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page SVA Occupant Card - Control Attached Documents - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 3815994723 - Action 2070583263 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Contracts</source>
@@ -13082,6 +13364,24 @@
           <target>Beboertype 2</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page SVA Occupant List - Control Type_2 - Property Tooltip</note>
+        </trans-unit>
+        <trans-unit id="Page 3707276689 - Action 866431290 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Occupant phonelist</source>
+          <target>Telefonliste</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page SVA Occupant List - Action Phonelist - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 3707276689 - Action 866431290 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Phone list for all active occupants</source>
+          <target>Telefonliste over aktive aftaler</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page SVA Occupant List - Action Phonelist - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Report 3707276689 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>List of occupants</source>
+          <target>Telefonliste</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report SVA Occupant List - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 3025894297 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Priceindeks</source>
@@ -13755,6 +14055,12 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page SVA Property Card - Control TypeA9_10_Occgroup - Property Tooltip</note>
         </trans-unit>
+        <trans-unit id="Page 3085464545 - Control 1658766258 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Attachments</source>
+          <target>Vedhæftede filer</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page SVA Property Card - Control Attached Documents - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Page 3085464545 - Action 2176459415 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>AC statement</source>
           <target>AC opgørelser</target>
@@ -13994,12 +14300,6 @@
           <target>Månedsfakturering</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page SVA Property List - Action Invoicing - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="Page 2613068915 - Action 651297386 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Subscription invoicing with dialog</source>
-          <target>Månedsfakturering pr. dato</target>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page SVA Property List - Action InvoicingWithDialog - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 2613068915 - Action 2029777256 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>File for NETS type 0601</source>
@@ -14495,7 +14795,7 @@
         </trans-unit>
         <trans-unit id="Page 2842537119 - Control 985597927 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Setup NETS</source>
-          <target>Opsætning af ejendom</target>
+          <target>Opsætning af NETS</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page SVA Setup Estate Card - Control Setup Estate - Property Caption</note>
         </trans-unit>
@@ -14547,6 +14847,42 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page SVA Setup Estate Card - Control BS_ImportText - Property Tooltip</note>
         </trans-unit>
+        <trans-unit id="Page 2842537119 - Control 1201172148 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Inside maintenance</source>
+          <target>Indvendig vedligeholdelse</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page SVA Setup Estate Card - Control Setup IM postings - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 2842537119 - Control 130490898 - Property 2001309823" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Fee for internal maintenance (§22). Must be changed every year wiht the new rate provided by law.</source>
+          <target>Sats for indvendig vedligeholdelse (§22). Ændres årligt i henhold til lejeloven.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page SVA Setup Estate Card - Control IntMaintenance - Property Tooltip</note>
+        </trans-unit>
+        <trans-unit id="Page 2842537119 - Control 727503184 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Do you want the postings in the journal to be posted automatic? Else you have to do it manually</source>
+          <target>Skal der automatisk dannes kladdeposter og bogføres indvendig vedligeholdelse (§22) ?</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page SVA Setup Estate Card - Control IM_Autoposting - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 2842537119 - Control 1716745863 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Journaltype for posting §22 transactions</source>
+          <target>Kladdetype for bogføring af §22</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page SVA Setup Estate Card - Control IM_WorkSheetType - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 2842537119 - Control 3452767999 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Journal for posting §22 transactions</source>
+          <target>Journal for posting §22 transactions</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page SVA Setup Estate Card - Control IM_WorkSheet - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 2842537119 - Control 118308574 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Wich costtype for posting §22?</source>
+          <target>Hvilken konteringsart til §22 posteringerne?</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page SVA Setup Estate Card - Control IM_Account - Property ToolTip</note>
+        </trans-unit>
         <trans-unit id="Page 2842537119 - Control 1467654877 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Other setup</source>
           <target>Øvrig opsætning</target>
@@ -14564,12 +14900,6 @@
           <target>Påkravsgebyr for erhverv. Skal ændres årligt</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page SVA Setup Estate Card - Control ReminderFeeProf - Property Tooltip</note>
-        </trans-unit>
-        <trans-unit id="Page 2842537119 - Control 130490898 - Property 2001309823" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Fee for internal maintenance (§22). Must be changed every year wiht the new rate provided by law.</source>
-          <target>Fee for internal maintenance (§22). Must be changed every year wiht the new rate provided by law.</target>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page SVA Setup Estate Card - Control IntMaintenance - Property Tooltip</note>
         </trans-unit>
         <trans-unit id="Page 2842537119 - Control 744973449 - Property 2001309823" size-unit="char" translate="yes" xml:space="preserve">
           <source>Contracts calculate days? Default is 0.5 month</source>
@@ -14589,6 +14919,18 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page SVA Setup Estate Card - Control Numberserie - Property Tooltip</note>
         </trans-unit>
+        <trans-unit id="Page 2842537119 - Control 2710392166 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Betalingsmetode bør være NETS. Anvendes til filtrering af faktura til NETS</source>
+          <target>Betalingsmetode bør være NETS. Anvendes til filtrering af faktura til NETS</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page SVA Setup Estate Card - Control PaymentMethodForNets - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 2842537119 - Control 4257751337 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Betalingsbetingelse for periodiske faktura.</source>
+          <target>Betalingbetingelse for periodiske faktura</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page SVA Setup Estate Card - Control PaymentTerms - Property ToolTip</note>
+        </trans-unit>
         <trans-unit id="Page 2842537119 - Control 2870928291 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Dimension for property</source>
           <target>Dimension ejendom</target>
@@ -14606,6 +14948,12 @@
           <target>Dimension beboeraftaler</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page SVA Setup Estate Card - Control Dim3 - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 2842537119 - Control 1658766258 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Attachments</source>
+          <target>Vedhæftede filer</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page SVA Setup Estate Card - Control Attached Documents - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 2842537119 - Action 3817631692 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Import properties</source>
@@ -15111,6 +15459,12 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page SVA Tenancy Card - Control Opkrævningslinjer - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Page 2940606862 - Control 1658766258 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Attachments</source>
+          <target>Vedhæftede filer</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page SVA Tenancy Card - Control Attached Documents - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Page 2940606862 - Action 3628640662 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Occupants</source>
           <target>Beboeraftaler</target>
@@ -15471,66 +15825,6 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">PageExtension SVA Posted CrMemo Line Ext. - Control Costtype - Property Caption</note>
         </trans-unit>
-        <trans-unit id="PageExtension 2295635713 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 3377672696">
-          <source>Activities</source>
-          <target>Aktiviteter</target>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">PageExtension SVA Business Mangager Act Ext. - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="PageExtension 2295635713 - Control 3907882117 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 3377672696">
-          <source>Basic data</source>
-          <target>Generelt</target>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">PageExtension SVA Business Mangager Act Ext. - Control Stamdata - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="PageExtension 2295635713 - Control 2842863030 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 3377672696">
-          <source>Occupants</source>
-          <target>Beboere</target>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">PageExtension SVA Business Mangager Act Ext. - Control Occpupants - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="PageExtension 2295635713 - Control 2842863030 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 3377672696">
-          <source>Liste over beboeraftaler for alle ejendomme</source>
-          <target>Liste over beboeraftale for alle lejemål</target>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">PageExtension SVA Business Mangager Act Ext. - Control Occpupants - Property ToolTip</note>
-        </trans-unit>
-        <trans-unit id="PageExtension 2295635713 - Control 2714808800 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 3377672696">
-          <source>Tenancies</source>
-          <target>Lejemål</target>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">PageExtension SVA Business Mangager Act Ext. - Control Tenancies - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="PageExtension 2295635713 - Control 2714808800 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 3377672696">
-          <source>Liste over alle lejemål</source>
-          <target>Liste over alle lejemål</target>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">PageExtension SVA Business Mangager Act Ext. - Control Tenancies - Property ToolTip</note>
-        </trans-unit>
-        <trans-unit id="PageExtension 2295635713 - Control 1324152883 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 3377672696">
-          <source>Properties</source>
-          <target>Ejendomme</target>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">PageExtension SVA Business Mangager Act Ext. - Control Properties - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="PageExtension 2295635713 - Control 1324152883 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 3377672696">
-          <source>Liste over ejendomme i virksomheden</source>
-          <target>Liste over ejendomme i virksomheden</target>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">PageExtension SVA Business Mangager Act Ext. - Control Properties - Property ToolTip</note>
-        </trans-unit>
-        <trans-unit id="PageExtension 2295635713 - Control 3453762597 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 3377672696">
-          <source>Vacant tenancies</source>
-          <target>Ledige lejemål</target>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">PageExtension SVA Business Mangager Act Ext. - Control Vacant tenancies - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="PageExtension 2295635713 - Control 3453762597 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 3377672696">
-          <source>Liste over ledige lejemål for alle ejendomme</source>
-          <target>Liste over ledige lejemål for alle ejendomme</target>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">PageExtension SVA Business Mangager Act Ext. - Control Vacant tenancies - Property ToolTip</note>
-        </trans-unit>
         <trans-unit id="PageExtension 445795196 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 1447586018">
           <source>Activities</source>
           <target>Aktiviteter</target>
@@ -15590,6 +15884,66 @@
           <target>Liste over ledige lejemål for alle ejendomme</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">PageExtension SVA Team Member Act Ext. - Control Vacant tenancies - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 2295635713 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 3377672696">
+          <source>Activities</source>
+          <target>Aktiviteter</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension SVA Business Mangager Act Ext. - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 2295635713 - Control 3907882117 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 3377672696">
+          <source>Basic data</source>
+          <target>Generelt</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension SVA Business Mangager Act Ext. - Control Stamdata - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 2295635713 - Control 2842863030 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 3377672696">
+          <source>Occupants</source>
+          <target>Beboere</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension SVA Business Mangager Act Ext. - Control Occpupants - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 2295635713 - Control 2842863030 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 3377672696">
+          <source>Liste over beboeraftaler for alle ejendomme</source>
+          <target>Liste over beboeraftale for alle lejemål</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension SVA Business Mangager Act Ext. - Control Occpupants - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 2295635713 - Control 2714808800 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 3377672696">
+          <source>Tenancies</source>
+          <target>Lejemål</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension SVA Business Mangager Act Ext. - Control Tenancies - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 2295635713 - Control 2714808800 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 3377672696">
+          <source>Liste over alle lejemål</source>
+          <target>Liste over alle lejemål</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension SVA Business Mangager Act Ext. - Control Tenancies - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 2295635713 - Control 1324152883 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 3377672696">
+          <source>Properties</source>
+          <target>Ejendomme</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension SVA Business Mangager Act Ext. - Control Properties - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 2295635713 - Control 1324152883 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 3377672696">
+          <source>Liste over ejendomme i virksomheden</source>
+          <target>Liste over ejendomme i virksomheden</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension SVA Business Mangager Act Ext. - Control Properties - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 2295635713 - Control 3453762597 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 3377672696">
+          <source>Vacant tenancies</source>
+          <target>Ledige lejemål</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension SVA Business Mangager Act Ext. - Control Vacant tenancies - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 2295635713 - Control 3453762597 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 3377672696">
+          <source>Liste over ledige lejemål for alle ejendomme</source>
+          <target>Liste over ledige lejemål for alle ejendomme</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension SVA Business Mangager Act Ext. - Control Vacant tenancies - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="TableExtension 3014437974 - Field 238970296 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 1192395785">
           <source>Included</source>
@@ -15800,6 +16154,12 @@
           <target>Dato filter</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">TableExtension SVA TeamMember Cue Ext - Field SVA Date Filter - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="TableExtension 2319921339 - Field 3026221127 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 1806786327">
+          <source>Occupant</source>
+          <target>Beboer</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">TableExtension SVA Gen. Journal Line - Field SVA Occupant - Property Caption</note>
         </trans-unit>
       </group>
     </body>

@@ -2,7 +2,7 @@ page 50003 "SVA Sales Invoice NETS"
 //Tooltip created.
 {
     Caption = 'List of invoices for NETS';
-    //Permissions = tabledata 112 = rm;
+    Permissions = tabledata 112 = rm;
     DeleteAllowed = false;
     InsertAllowed = false;
     PageType = List;
@@ -129,11 +129,11 @@ page 50003 "SVA Sales Invoice NETS"
 
     trigger OnInit();
     begin
-        IF DATE2DMY(TODAY, 2) = 12 THEN BEGIN
-            FromDate := DMY2DATE(1, DATE2DMY(TODAY, 2) - 11, DATE2DMY(TODAY, 3) + 1); //01-01-Next year
+        IF DATE2DMY(WorkDate, 2) = 12 THEN BEGIN
+            FromDate := DMY2DATE(1, DATE2DMY(WorkDate, 2) - 11, DATE2DMY(WorkDate, 3) + 1); //01-01-Next year
         END;
-        IF DATE2DMY(TODAY, 2) < 12 THEN BEGIN
-            FromDate := DMY2DATE(1, DATE2DMY(TODAY, 2) + 1, DATE2DMY(TODAY, 3)); //01-next month
+        IF DATE2DMY(WorkDate, 2) < 12 THEN BEGIN
+            FromDate := DMY2DATE(1, DATE2DMY(WorkDate, 2) + 1, DATE2DMY(WorkDate, 3)); //01-next month
         end;
         ToDate := CalcDate('<1M>-1D', FromDate);
     end;
@@ -143,7 +143,7 @@ page 50003 "SVA Sales Invoice NETS"
         Parameters.Reset();
         if Parameters.FindFirst() then
             PaymentMethodForNets := Parameters.PaymentMethodForNets;
-        
+
         SETRANGE("Due Date", FromDate, ToDate);
         SetRange("Payment Method Code", PaymentMethodForNets);
     end;
@@ -152,8 +152,8 @@ page 50003 "SVA Sales Invoice NETS"
         FromDate: Date;
         ToDate: Date;
         Parameters: Record "SVA Parameters";
-        PaymentMethodForNets :Text[20];
+        PaymentMethodForNets: Text[20];
 
-    
+
 }
 

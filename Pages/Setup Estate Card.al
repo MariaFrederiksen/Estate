@@ -106,6 +106,37 @@ page 50017 "SVA Setup Estate Card"
                     ApplicationArea = all;
                 }
             }
+            group("Setup IM postings") //Inside Maintance postings
+            {
+                Caption = 'Inside maintenance';
+                field(IntMaintenance; IntMaintenance)
+                {
+                    Tooltip = 'Fee for internal maintenance (§22). Must be changed every year wiht the new rate provided by law.';
+                    ApplicationArea = all;
+                }
+                field(IM_Autoposting; IM_Autoposting)
+                {
+                    ToolTip = 'Do you want the postings in the journal to be posted automatic? Else you have to do it manually';
+                    ApplicationArea = all;
+                }
+                field(IM_WorkSheetType; IM_WorkSheetType)
+                {
+                    ToolTip = 'Journaltype for posting §22 transactions';
+                    ApplicationArea = all;
+                }
+                field(IM_WorkSheet; IM_WorkSheet)
+                {
+                    ToolTip = 'Journal for posting §22 transactions';
+                    ApplicationArea = all;
+                }
+                field(IM_Account; IM_Costtype)
+                {
+                    ToolTip = 'Wich costtype for posting §22?';
+                    ApplicationArea = all;
+                }
+
+            }
+
             group("Other setup")
             {
                 Caption = 'Other setup';
@@ -119,12 +150,6 @@ page 50017 "SVA Setup Estate Card"
                     Tooltip = 'Reminderfee for professions. Must be changed every year wiht the new rate provided by law.';
                     ApplicationArea = all;
                 }
-                field(IntMaintenance; IntMaintenance)
-                {
-                    Tooltip = 'Fee for internal maintenance (§22). Must be changed every year wiht the new rate provided by law.';
-                    ApplicationArea = all;
-                }
-
                 Field(Splitcalc; Splitcalc)
                 {
                     Tooltip = 'Contracts calculate days? Default is 0.5 month';
@@ -140,12 +165,12 @@ page 50017 "SVA Setup Estate Card"
                     Tooltip = 'Numberserie for new leasecontracts.';
                     ApplicationArea = all;
                 }
-                field(PaymentMethodForNets;PaymentMethodForNets)
+                field(PaymentMethodForNets; PaymentMethodForNets)
                 {
                     ToolTip = 'Betalingsmetode bør være NETS. Anvendes til filtrering af faktura til NETS';
                     ApplicationArea = all;
                 }
-                field(PaymentTerms;PaymentTerms)
+                field(PaymentTerms; PaymentTerms)
                 {
                     ToolTip = 'Betalingsbetingelse for periodiske faktura.';
                     ApplicationArea = all;
@@ -169,6 +194,14 @@ page 50017 "SVA Setup Estate Card"
         }
         area(factboxes)
         {
+            part("Attached Documents"; 1174)
+            {
+                ApplicationArea = All;
+                Caption = 'Attachments';
+                SubPageLink = "Table ID" = CONST(50003),
+                              "No." = FIELD(Number);
+                Visible = NOT IsOfficeAddin;
+            }
 
             systempart(Links; Links)
             {
@@ -278,9 +311,17 @@ page 50017 "SVA Setup Estate Card"
             }
         }
     }
+    trigger OnOpenPage()
+    var
+        Officemanagement: Codeunit 1630;
+    begin
+        IsOfficeAddin := Officemanagement.IsAvailable()
+    end;
+
     var
         OccTrans: Record "SVA Occupant Trans";
         CosttypeTable: Record "SVA Cost type";
         Customer: Record "Customer";
+        IsOfficeAddin: Boolean;
 }
 

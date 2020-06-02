@@ -9,16 +9,16 @@ xmlport 50065 "SVA Import NETS"
     Format = FixedText;
     FormatEvaluate = Legacy;
     TextEncoding = WINDOWS;
-    
+    PreserveWhiteSpace = true;
 
     schema
     {
         textelement(Root)
         {
-            tableelement("CSV Buffer";"CSV Buffer")
+            tableelement("CSV Buffer"; "CSV Buffer")
             {
                 XmlName = 'SVA_NETS_BUFFER';
-                fieldelement(Line;"CSV Buffer".Value)
+                fieldelement(Line; "CSV Buffer".Value)
                 {
                     Width = 128;
                 }
@@ -26,7 +26,7 @@ xmlport 50065 "SVA Import NETS"
                 trigger OnBeforeInsertRecord();
                 begin
                     I += 1;
-                    "CSV Buffer"."Line No."  := I;
+                    "CSV Buffer"."Line No." := I;
                     "CSV Buffer"."Field No." := I;
                 end;
             }
@@ -51,6 +51,7 @@ xmlport 50065 "SVA Import NETS"
         "CSV Buffer".DeleteAll;
         Commit;
     end;
+
     trigger OnPostXmlPort();
     begin
         Commit;
@@ -60,6 +61,6 @@ xmlport 50065 "SVA Import NETS"
     end;
 
     var
-        I : Integer;
+        I: Integer;
 }
 

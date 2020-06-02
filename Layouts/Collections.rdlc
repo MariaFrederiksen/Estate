@@ -324,7 +324,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=iif(Fields!ONo.Value&lt;&gt;"","I alt for "&amp;Fields!ONo.Value,"Opkræves ikke")</Value>
+                                  <Value>=iif(Fields!ONo.Value&lt;&gt;"","I alt for "&amp;Fields!ONo.Value,"")</Value>
                                   <Style>
                                     <FontFamily>Segoe UI</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -1325,6 +1325,7 @@
                     </Paragraph>
                   </Paragraphs>
                   <Top>1.69333cm</Top>
+                  <Left>0.0144cm</Left>
                   <Height>14pt</Height>
                   <Width>7.5cm</Width>
                   <ZIndex>2</ZIndex>

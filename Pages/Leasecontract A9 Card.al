@@ -730,6 +730,11 @@
         CurrPage.UPDATE;
     end;
 
+    trigger OnAfterGetRecord()
+    begin
+        Validate(Number);
+    end;
+
     var
         Contract: Record "SVA LeaseContract_A9";
         MoveInContract: Record "SVA LeaseContract_A9";

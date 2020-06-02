@@ -164,7 +164,7 @@ page 50005 "SVA Lease Business"
 
     actions
     {
-        area(Creation)
+        area(Processing)
         {
 
             action(MoveInJournal)

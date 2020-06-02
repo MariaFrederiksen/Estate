@@ -9,7 +9,12 @@
             "serverInstance": "BC140",
             "authentication": "Windows",
             "breakOnError": true,
-            "launchBrowser": true
+            "launchBrowser": true,
+            "enableSqlInformationDebugger": true,
+            "enableLongRunningSqlStatements":true,
+            "longRunningSqlStatementsThreshold": 500,
+            "numberOfSqlStatements": 10
+            
         }
     ]
 }

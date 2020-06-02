@@ -1,1 +1,1 @@
-﻿{"Added":[],"Modified":[],"Removed":[]}
+﻿{"Added":[],"Modified":[{"Id":50001,"Kind":11,"Name":"SVA Create Invoice Estate","PackagePath":"/src/Codeunits/Create%20Invoices.al"},{"Id":50002,"Kind":11,"Name":"SVA Retrieve","PackagePath":"/src/Codeunits/Licens%20Retrieve.al"},{"Id":50015,"Kind":12,"Name":"SVA Property List","PackagePath":"/src/Pages/Property%20List.al"},{"Id":50003,"Kind":12,"Name":"SVA Sales Invoice NETS","PackagePath":"/src/Pages/Invoice%20for%20NETS.al"}],"Removed":[]}

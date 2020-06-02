@@ -374,6 +374,7 @@
         field(32; FirstNets; Date)
         {
             Caption = 'First time for NETS';
+            
         }
         field(33; Blocked; Date)
         {

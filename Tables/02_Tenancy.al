@@ -176,8 +176,17 @@
             Caption = 'Total Area';
 
             trigger OnValidate();
+            Var
+                Contract: Record "SVA LeaseContract_A9";
             begin
                 AreaLiv := AreaTotal;
+                Contract.Reset();
+                Contract.SetRange(TypeA9_1_TenancyNo, Number);
+                if Contract.FindSet() then begin
+                    Contract.TypeA9_1_AreaTotal := AreaTotal;
+                    Contract.Modify();
+                end;
+
             end;
         }
         field(33; AreaLiv; Decimal)
@@ -185,6 +194,7 @@
             Caption = 'Living area';
 
             trigger OnValidate();
+
             begin
                 AreaTotal := AreaLiv + AreaPro;
             end;
@@ -194,8 +204,16 @@
             Caption = 'Prof. area';
 
             trigger OnValidate();
+            var
+                Contract: Record "SVA LeaseContract_A9";
             begin
                 AreaTotal := AreaLiv + AreaPro;
+                Contract.Reset();
+                Contract.SetRange(TypeA9_1_TenancyNo, Number);
+                if Contract.FindSet() then begin
+                    Contract.TypeA9_1_AreaProf := AreaPro;
+                    Contract.Modify();
+                end;
             end;
         }
         field(35; Rooms; Integer)

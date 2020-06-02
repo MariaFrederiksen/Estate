@@ -50,5 +50,5 @@ codeunit 50009 "SVA Reset NETS"
         Customer: Record Customer;
         Parameters: Record "SVA Parameters";
         PaymentMethodForNets: Text[20];
-        SalesHeader2: Record "Sales Invoice Header";
+        SalesHeader2: Record "Sales Header";
 }

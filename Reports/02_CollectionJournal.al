@@ -242,6 +242,7 @@ report 50003 "SVA Collection Journal"
                                     CurrReport.Skip;
                             end;
                         end; //kvartal
+
                         if TenancyCard.PeriodYear = 2 then begin //halvår
                             if (DATE2DMY(PrDate, 2) = 1) OR (DATE2DMY(PrDate, 2) = 7) then begin
                                 if ("Collection Month" = 1) OR ("Collection Month" = 2) OR
@@ -293,7 +294,7 @@ report 50003 "SVA Collection Journal"
                             end;
                         end; //halvår
                         if TenancyCard.PeriodYear = 3 then begin //year
-                            if (DATE2DMY(PrDate, 2)) + 1 <> "Collection Month" then
+                            if (DATE2DMY(PrDate, 2)) - 1 <> "Collection Month" then
                                 CurrReport.Skip;
                         end; //Year        
                     end; //Tenancy with collectionperiod <> mth

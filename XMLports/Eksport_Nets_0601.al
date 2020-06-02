@@ -45,7 +45,6 @@ xmlport 50063 "SVA File for NETS"
 
     var
         CompanyInfo: Record "Company Information";
-
         VatNo: Text[8];
 
 }

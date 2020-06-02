@@ -40,6 +40,7 @@ table 50007 "SVA LeaseContract_A9"
                             Yr := Date2DMY(TypeA9_4_RentFirstTime, 3);
                             TypeA9_4_RentFirstTime := DMY2Date((Date2DMY(TypeA9_4_RentFirstTime, 1) - Date2DMY(TypeA9_4_RentFirstTime, 1) + 1), Mnth, Yr);
                         end;
+                        SetAmounts(Number);
                     end;
 
                     Property.RESET;
@@ -67,7 +68,7 @@ table 50007 "SVA LeaseContract_A9"
                         TypeA9_4_DueDate := TODAY + 8;
 
 
-                    SubscriptionLines.RESET;
+                    /* SubscriptionLines.RESET;
                     SubscriptionLines.SETRANGE(Tenancies, Occupant.TenancyNo);
                     SubscriptionLines.SetRange("Date From", Today - 20000, Occupant.StartDate);
                     IF SubscriptionLines.FIND('-') THEN begin
@@ -109,11 +110,11 @@ table 50007 "SVA LeaseContract_A9"
                                 end; //costtype find    
                             end;//range for Date to    
                         UNTIL SubscriptionLines.NEXT = 0;
-                    end; //subscriptionlines
+                    end; //subscriptionlines */
 
                     Tenancy.RESET;
                     Tenancy.SETRANGE(Number, Occupant.TenancyNo);
-                    IF Tenancy.FIND('-') THEN BEGIN
+                    IF Tenancy.FindSet() THEN BEGIN
                         TypeA9_1_TenancyNo := Tenancy.Number;
                         TypeA9_1_Address := Tenancy.Address1;
                         TypeA9_1_City := Tenancy."Post Code" + ' ' + Tenancy.City;
@@ -153,7 +154,7 @@ table 50007 "SVA LeaseContract_A9"
                                 TypeA9_3_Quater := TRUE;
                             END;
 
-                            //4
+                            //§4
                             TypeA9_4_DepMth := Tenancy.Deposit;
                             TypeA9_4_PrepaidRentMth := Tenancy.PrepaidRent;
                             TypeA9_4_DepAmount := TypeA9_3_RentPerYear / 12 * TypeA9_4_DepMth;
@@ -245,6 +246,10 @@ table 50007 "SVA LeaseContract_A9"
                             TypeA9_4_PrepaidRentMth := Tenancy.PrepaidRent;
                             TypeA9_4_DepAmount := TypeA9_3_RentPerYear / 12 * TypeA9_4_DepMth;
                             TypeA9_4_PrepaidRent := TypeA9_3_RentPerYear / 12 * TypeA9_4_PrepaidRentMth;
+                            TypeA9_4_RentFrom := Occupant.StartDate;
+                            TypeA9_4_RentTo := CalcDate('<-1D>', TypeA9_4_RentFirstTime);
+                            IF TypeA9_4_DueDate = 0D THEN
+                                TypeA9_4_DueDate := TODAY + 8;
                         END; //erhvervslejemål - i praksis garager
 
                     END; //Lejemål
@@ -834,9 +839,13 @@ table 50007 "SVA LeaseContract_A9"
 
             trigger OnValidate();
             begin
-                IF TypeA9_8_MaintainceInsideLandl = TRUE THEN
-                    TypeA9_8_MaintainceInsideTenan := FALSE
-                  else  TypeA9_8_MaintainceInsideTenan := true;
+                IF TypeA9_8_MaintainceInsideLandl = TRUE then begin
+                    TypeA9_8_MaintainceInsideTenan := FALSE;
+                    if (TypeA9_1_AreaTotal - TypeA9_1_AreaProf <= 0) then
+                        Error('Lejemålet har ikke angivet beboelsesareal');
+                end;
+                IF TypeA9_8_MaintainceInsideLandl = false then
+                    TypeA9_8_MaintainceInsideTenan := true;
             end;
         }
         field(802; TypeA9_8_Date; Date)
@@ -1254,9 +1263,11 @@ table 50007 "SVA LeaseContract_A9"
 
     trigger OnModify();
     begin
-
+        IF TypeA9_4_DueDate = 0D THEN
+            TypeA9_4_DueDate := TODAY;
         SetBoolean;
         SetDate;
+        SetAmounts(Number);
         if TypeA9_4_Rentetc <> 0 THEN
             PeriodAmount;
         MoveInAmount;
@@ -1655,6 +1666,7 @@ table 50007 "SVA LeaseContract_A9"
                                   + TypeA9_3_TenantGroup
                                   + TypeA9_3_OtherAmount1
                                   + TypeA9_3_OtherAmount2;
+
         TypeA9_4_Rentetc := TypeA9_3_TotalperPeriod;
         if (DATE2DMY(TypeA9_2_Startdate, 1) > 1) AND (DATE2DMY(TypeA9_2_Startdate, 1) < 32) then begin
             SetupEstate.Reset;
@@ -1662,8 +1674,8 @@ table 50007 "SVA LeaseContract_A9"
                 if SetupEstate.Splitcalc = false then
                     TypeA9_4_Rentetc := TypeA9_3_TotalperPeriod / 2;
                 if SetupEstate.Splitcalc = true then begin
-                    Days := date2dmy(Calcdate('CM', DMY2Date(01, Date2DMY(TypeA9_2_Startdate, 2), Date2DMY(TypeA9_2_Startdate, 3))), 1);
-                    TypeA9_4_Rentetc := TypeA9_3_TotalperPeriod / ((Days - Date2DMY(TypeA9_2_Startdate, 1) + 1) / Days);
+                    Days := CalcDate('<1M-1D>', TypeA9_2_Startdate) - TypeA9_2_Startdate + 1;//qty of days in monht TYpeA9_"_Startdate
+                    TypeA9_4_Rentetc := TypeA9_3_TotalperPeriod * ((Days - Date2DMY(TypeA9_2_Startdate, 1) + 1) / Days);
                 end;
             end;
         end;
@@ -1759,6 +1771,60 @@ table 50007 "SVA LeaseContract_A9"
         END;
 
 
+    end;
+
+    local procedure SetAmounts(OcNumber: Code[10])
+    var
+        LocalOccupant: Record "SVA Occupant";
+    begin
+        LocalOccupant.Reset();
+        LocalOccupant.SetRange(Number, OcNumber);
+        if LocalOccupant.FindFirst() then begin
+
+            SubscriptionLines.RESET;
+            SubscriptionLines.SETRANGE(Tenancies, LocalOccupant.TenancyNo);
+            SubscriptionLines.SetRange("Date From", Today - 20000, LocalOccupant.StartDate);
+            IF SubscriptionLines.FindSet() THEN begin
+                REPEAT
+                    if (SubscriptionLines."Date To" = 0D) or (SubscriptionLines."Date To" > LocalOccupant.StartDate) then begin
+                        Costtype.RESET;
+                        Costtype.SETRANGE(Costtype, SubscriptionLines."Cost Types");
+                        IF Costtype.FindSet THEN begin
+                            if Costtype.type = 0 then begin //andet, ex parking/garage
+                                TypeA9_3_OtherText1 := SubscriptionLines.Description;
+                                TypeA9_3_OtherAmount1 := SubscriptionLines."Amount Period";
+                            end;
+                            IF Costtype.Type = 1 THEN BEGIN //Rent
+                                TypeA9_3_RentPerYear := SubscriptionLines."Amount Year";
+                                TypeA9_3_RentPerPeriode := SubscriptionLines."Amount Period";
+                                TypeA9_1_Vat := Costtype.VatGroup;
+                            END;
+                            IF Costtype.Type = 2 THEN BEGIN //ACVarme
+                                TypeA9_3_ACHeat := SubscriptionLines."Amount Period";
+                            END;
+                            IF Costtype.Type = 3 THEN BEGIN //ACVand
+                                TypeA9_3_ACWater := SubscriptionLines."Amount Period";
+                            END;
+                            IF Costtype.Type = 4 THEN BEGIN //ACEl
+                                TypeA9_3_ACElectricity := SubscriptionLines."Amount Period";
+                            END;
+                            IF Costtype.Type = 5 THEN BEGIN //ACCooling
+                                TypeA9_3_ACCooling := SubscriptionLines."Amount Period";
+                            END;
+                            IF Costtype.Type = 7 THEN BEGIN //Antenna
+                                TypeA9_3_Antenna := SubscriptionLines."Amount Period";
+                            END;
+                            IF Costtype.Type = 8 THEN BEGIN //Internet
+                                TypeA9_3_Internet := SubscriptionLines."Amount Period";
+                            END;
+                            IF Costtype.Type = 9 THEN BEGIN //Tenantgroup
+                                TypeA9_3_TenantGroup := SubscriptionLines."Amount Period";
+                            END;
+                        end; //costtype find    
+                    end;//range for Date to    
+                UNTIL SubscriptionLines.NEXT = 0;
+            end; //subscriptionlines
+        end;
     end;
 }
 

@@ -7,9 +7,18 @@ report 50006 "SVA Consumption Heat"
 
     dataset
     {
+        dataitem("SVA Property"; "SVA Property")
+        {
+            column(HeatingYearFrom; HeatingYearFrom)
+            {
+            }
+            column(HeatingYearTo; HeatingYearTo)
+            {
+            }
+        }
         dataitem(Occupant; "SVA Occupant")
         {
-            column(CompanyName;COMPANYPROPERTY.DISPLAYNAME)
+            column(CompanyName; COMPANYPROPERTY.DISPLAYNAME)
             {
             }
             column(OProperty; PropertyNo)

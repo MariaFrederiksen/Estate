@@ -35,7 +35,7 @@ page 50009 "SVA Occupant Card"
                 field(FirstNets; FirstNets)
                 {
                     ApplicationArea = All;
-                    ToolTip = 'First time to NETS. Can be left blank';
+                    ToolTip = 'First time to NETS or first time to be invoiced after moving in invoice.';
                 }
                 field(Name1; Name1)
                 {
@@ -189,6 +189,14 @@ page 50009 "SVA Occupant Card"
         }
         area(factboxes)
         {
+            part("Attached Documents";1174)
+            {
+                ApplicationArea = All;
+                Caption='Attachments';
+                SubPageLink = "Table ID"=CONST(50003),
+                              "No."=FIELD(Number);
+                Visible = NOT IsOfficeAddin;
+            }
 
             systempart(Links; Links)
             {
@@ -399,6 +407,13 @@ page 50009 "SVA Occupant Card"
         }
 
     }
+    trigger OnOpenPage()
+    var
+        Officemanagement : Codeunit 1630;
+    begin
+        IsOfficeAddin := Officemanagement.IsAvailable()
+    end;    
+    
     trigger OnNewRecord(BelowxRec: Boolean);
     begin
         Occupant.Init;
@@ -456,6 +471,7 @@ page 50009 "SVA Occupant Card"
         RepealP: report "SVA Repeal Prof";
         RepealR: report "SVA Repeal Res";
         Custaccount: Text[10];
+        IsOfficeAddin:Boolean;
 
 
     local procedure CalcInvoiceCredit();
@@ -845,5 +861,6 @@ page 50009 "SVA Occupant Card"
         if InvoiceCreditmemo = false then
             Page.Run(page::"Sales Credit Memos");
     end;
+    
 }
 

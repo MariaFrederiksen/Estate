@@ -9,7 +9,7 @@ report 50018 "SVA Deposit"
     {
         dataitem(Tenancy; "SVA Tenancy")
         {
-            column(CompanyName;COMPANYPROPERTY.DISPLAYNAME)
+            column(CompanyName; COMPANYPROPERTY.DISPLAYNAME)
             {
             }
             column(PropertyNo; PropertyNo)
@@ -23,8 +23,8 @@ report 50018 "SVA Deposit"
 
             dataitem(Occupant; "SVA Occupant")
             {
-                DataItemLink = TenancyNo = FIELD (Number);
-                DataItemTableView = SORTING (TenancyNo, Number);
+                DataItemLink = TenancyNo = FIELD(Number);
+                DataItemTableView = SORTING(TenancyNo, Number);
 
                 column(OProperty; PropertyNo)
                 {
@@ -52,9 +52,9 @@ report 50018 "SVA Deposit"
                 }
                 dataitem("Occupant Trans"; "SVA Occupant Trans")
                 {
-                    DataItemLink = Occupant = FIELD (Number);
-                    DataItemTableView = SORTING (Occupant, Date, "Cost type Estate", "Invoice No")
-                                    WHERE (Type = CONST (Deposit));
+                    DataItemLink = Occupant = FIELD(Number);
+                    DataItemTableView = SORTING(Occupant, Date, "Cost type Estate", "Invoice No")
+                                    WHERE(Type = CONST(Deposit));
                     column(OTransNo; Occupant)
                     {
                     }
@@ -70,6 +70,12 @@ report 50018 "SVA Deposit"
 
                 }
                 trigger OnAfterGetRecord();
+                var
+                    AmountVar: Decimal;
+                    OccupantTable: Record "SVA Occupant";
+                    OccupantTrans: record "SVA Occupant Trans";
+                    TenancyOK: Boolean;
+                    OccupantOK: Boolean;
                 begin
                     AmountVar := 0;
                     OccupantOK := false;
@@ -88,6 +94,13 @@ report 50018 "SVA Deposit"
             }
 
             trigger OnAfterGetRecord();
+            var
+                AmountVar: Decimal;
+                OccupantTable: Record "SVA Occupant";
+                OccupantTrans: record "SVA Occupant Trans";
+                TenancyOK: Boolean;
+                OccupantOK: Boolean;
+
             begin
                 TenancyOK := false;
                 AmountVar := 0;
@@ -96,14 +109,14 @@ report 50018 "SVA Deposit"
                 if Occupanttable.findset then
                     repeat
                         OccupantTrans.reset;
-                    OccupantTrans.SetRange(Occupant, OccupantTable.Number);
-                    OccupantTrans.Setrange(Type, 10);
-                    if OccupantTrans.findset then
-                        repeat
+                        OccupantTrans.SetRange(Occupant, OccupantTable.Number);
+                        OccupantTrans.Setrange(Type, 10);
+                        if OccupantTrans.findset then
+                            repeat
                                 AmountVar := AmountVar + OccupantTrans.Amount;
-                        until OccupantTrans.Next = 0;
-                    if AmountVar <> 0 then
-                        TenancyOK := true;
+                            until OccupantTrans.Next = 0;
+                        if AmountVar <> 0 then
+                            TenancyOK := true;
                     until OccupantTable.Next = 0;
                 if TenancyOK = false then
                     CurrReport.skip;
@@ -111,28 +124,10 @@ report 50018 "SVA Deposit"
             end;
         }
     }
-
-    requestpage
-    {
-
-        layout
-        {
-        }
-
-        actions
-        {
-        }
-    }
-
-    labels
-    {
-    }
-
+    trigger OnpreReport()
     var
-        AmountVar: Decimal;
-        OccupantTable: Record "SVA Occupant";
-        OccupantTrans: record "SVA Occupant Trans";
-        TenancyOK: Boolean;
-        OccupantOK: Boolean;
-}
+        myInt: Integer;
+    begin
 
+    end;
+}

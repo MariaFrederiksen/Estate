@@ -416,9 +416,11 @@ codeunit 50007 "SVA NETS BS 0601"
         TMP := INSSTR(TMP, '20', 5);
         STR042 := INSSTR(STR042, TMP, 52);
         IF Amount42 > 0 THEN
-            TMP := '1'
-        ELSE
+            TMP := '1';
+        If Amount42 < 0 then
             TMP := '2';
+        if Amount42 = 0 then
+            TMP := '0';
         STR042 := INSSTR(STR042, TMP, 60);
         STR042 := DelStr(STR042, 61, 10);
         TMP := '0000000000000';

@@ -164,9 +164,8 @@ page 50006 "SVA Leasecontract_Garage"
 
     actions
     {
-        area(Creation)
+        area(Processing)
         {
-
             action(LeaseContract)
             {
                 ApplicationArea = all;

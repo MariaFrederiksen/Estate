@@ -1,25 +1,31 @@
-codeunit 50010 "SVA Create Invoice Estate"
+codeunit 50001 "SVA Create Invoice Estate"
 {
     // Opsamling af opkrævningslinjer til ordre og automatisk fakturering.
     // Hver lejeaftale opkræves med hver sin faktura.
-    // Der må kun være en NETS-aftale pr. regnskab.
-    // Nul-faktura ikke tilladt.
+    // Tilføjet §22
+
     trigger OnRun();
     begin
         Codeunit.Run(Codeunit::"SVA Retrieve");
 
-        IF DATE2DMY(TODAY, 2) = 12 THEN
-            InvoiceDate := DMY2DATE(1, 1, DATE2DMY(TODAY, 3) + 1)
+        IF DATE2DMY(WorkDate(), 2) = 12 THEN
+            InvoiceDate := DMY2DATE(1, 1, DATE2DMY(WorkDate, 3) + 1)
         ELSE
-            InvoiceDate := DMY2DATE(1, DATE2DMY(TODAY, 2) + 1, DATE2DMY(TODAY, 3));
-        MESSAGE('Der dannes faktura pr. ' + FORMAT(InvoiceDate));
+            InvoiceDate := DMY2DATE(1, DATE2DMY(WorkDate, 2) + 1, DATE2DMY(WorkDate, 3));
+
+       //Message(Format(InvoiceDate));
+
+        /* if Answer = Dialog.Confirm('Der dannes faktura pr. ' + FORMAT(InvoiceDate)) = true then
+            Error('Kørslen afbrydes'); */
+
+        //Message(Format(InvoiceDate));
 
         //Test. Is there active subscriptionlines for contracts without enddate
         Ready := 0;
         Occupants.RESET;
         Occupants.SETRANGE(Occupants.StartDate, InvoiceDate - 20000, InvoiceDate); //startdate before or at invoicedate
         Occupants.SETRANGE(Occupants.EndDate, 0D); //No enddate
-        Occupants.SETRANGE(Occupants.FirstNets, InvoiceDate - 20000, InvoiceDate); //FirstNets before or at invoicedate
+        Occupants.SETRANGE(Occupants.FirstNets, 0D, InvoiceDate); //FirstNets before or at invoicedate
         IF Occupants.FindSet then begin
             REPEAT
                 Subscription.RESET;
@@ -43,7 +49,7 @@ codeunit 50010 "SVA Create Invoice Estate"
         Occupants.RESET;
         Occupants.SETRANGE(Occupants.StartDate, InvoiceDate - 20000, InvoiceDate); //startdate before today
         Occupants.SETRANGE(Occupants.EndDate, InvoiceDate + 1, InvoiceDate + 10000);
-        Occupants.SETRANGE(Occupants.FirstNets, InvoiceDate - 20000, InvoiceDate); //FirstNets before or at invoicedate        
+        Occupants.SETRANGE(Occupants.FirstNets, 0D, InvoiceDate); //FirstNets before or at invoicedate        
         IF Occupants.FindSet THEN BEGIN
             REPEAT
                 Subscription.RESET;
@@ -76,7 +82,6 @@ codeunit 50010 "SVA Create Invoice Estate"
                 end;
             until Subscription.Next = 0;
         end;
-
         //Test of subscriptionlines end
         //Test that setup has a paymentmethod
         SetupEstate.Reset();
@@ -86,15 +91,20 @@ codeunit 50010 "SVA Create Invoice Estate"
             if SetupEstate.PaymentTerms = '' then
                 Error(('Der mangler opsætning af betalingsbetingelser på Opsætning af ejendom.'));
         end;
-
-
-
         //Actual invoicing
         MonthCollection();
         QtYrCollection();
         HalfYrCollection();
         YrCollection();
-        MESSAGE('Faktureringen er afsluttet.');
+        //Message('Før journal posting.');
+        //Journal posting
+        Journal.Reset;
+        Journal.SetRange(Journal."Journal Template Name", JournalType);
+        Journal.SetRange(Journal."Journal Batch Name", JournalName);
+        if Journal.findfirst and Paragraf22 = true then begin
+            CODEUNIT.RUN(CODEUNIT::"Gen. Jnl.-Post Batch", Journal);
+        end;
+
     end;
 
     var
@@ -110,30 +120,58 @@ codeunit 50010 "SVA Create Invoice Estate"
         Cust: Record "Customer";
         Ready: Integer;
         OcNumber: Text[10];
-        Company: Text[50];
         DoInvoice: Boolean;
         TextPeriod: Text[22];
-        Factor: Decimal;
         SetupEstate: Record "SVA Parameters";
         Days: Integer;
+        Answer: Boolean;
+        AccountFrom: Code[10];
+        Journal: Record "Gen. Journal Line";
+        JournalName: Code[10];
+        JournalType: Code[10];
+        Paragraf22: Boolean;
 
-
-
-    local procedure MakeInvoice(Factor: Decimal);
+    local procedure TestForInvoice(Factor: Decimal);
+    //Invoice or CrMemo
+    var
+        InvoiceAmount: Decimal;
+        Qty: Decimal;
     begin
-        //Kontrol om der er faktureret på denne dato for denne kontrakt.
+        Subscription.RESET;
+        Subscription.SETRANGE(Subscription.Tenancies, Occupants.TenancyNo);
+        Subscription.SetRange("Date From", InvoiceDate - 20000, InvoiceDate);
+        IF Subscription.FindSet THEN BEGIN
+            repeat
+                IF (Subscription."Date To" = 0D) OR (Subscription."Date To" > InvoiceDate) then begin
+                    Qty := 1 * Factor;
+                    InvoiceAmount := InvoiceAmount + (Subscription."Amount Period" * Qty);
+                end;
+            until Subscription.next = 0;
+            IF InvoiceAmount >= 0 THEN
+                MakeInvoice(Factor, true);
+            IF InvoiceAmount < 0 then
+                MakeInvoice(Factor, false);
+        end;
+    end;
+
+
+    local procedure MakeInvoice(Factor: Decimal; Choise: Boolean);
+    begin
+        //Test for invoiced on same date
         DoInvoice := true;
         Invoice.RESET;
         Invoice.SETRANGE(Invoice."Posting Date", InvoiceDate);
         Invoice.SETRANGE(Invoice."SVA Occupant", OcNumber);
         IF Invoice.FINDFIRST THEN
             DoInvoice := false;
-        //Kontrol slut
-
+        //End test
         IF DoInvoice = true then begin
             //Dan ordrehoved
             SalesHeader.INIT;
-            SalesHeader.VALIDATE("Document Type", SalesHeader."Document Type"::Invoice);
+            if Choise = true then
+                SalesHeader.VALIDATE("Document Type", SalesHeader."Document Type"::Invoice);
+            if Choise = false then
+                SalesHeader.VALIDATE("Document Type", SalesHeader."Document Type"::"Credit Memo");
             SalesHeader."No." := '';
             SalesHeader."Bill-to Customer No." := Occupants."Customer No";
             SalesHeader."Bill-to Name" := Occupants.Name1;
@@ -154,6 +192,7 @@ codeunit 50010 "SVA Create Invoice Estate"
             SalesHeader."SVA Included" := TRUE;
             SalesHeader."SVA Occupant" := Occupants.Number;
             SalesHeader."Dimension Set ID" := Occupants."Dimension Set Id";
+            SalesHeader.Invoice := Choise;
 
             Cust.RESET;
             Cust.SETRANGE(cust."No.", Occupants."Customer No");
@@ -179,16 +218,49 @@ codeunit 50010 "SVA Create Invoice Estate"
                 repeat
                     IF (Subscription."Date To" = 0D) OR (Subscription."Date To" > InvoiceDate) then begin
                         SalesLine.INIT;
-                        SalesLine.VALIDATE(SalesLine."Document Type", SalesHeader."Document Type"::Invoice);
+                        if Choise = true then
+                            SalesLine.VALIDATE(SalesLine."Document Type", SalesHeader."Document Type"::Invoice);
+                        if Choise = false then
+                            SalesLine.VALIDATE(SalesLine."Document Type", SalesHeader."Document Type"::"Credit Memo");
                         SalesLine."Line No." := LineNo + 1;
                         LineNo := LineNo + 1;
                         SalesLine.Type := 1;
                         SalesLine."Document No." := SalesHeader."No.";
-                        SalesLine.Quantity := 1 * Factor;
+                        //Amount and qty at invoices
+                        if Choise = true then begin
+                            if Subscription."Amount Period" > 0 then begin
+                                SalesLine."Unit Price" := Subscription."Amount Period";
+                                Salesline.Quantity := 1 * Factor;
+                                SalesLine."Qty. to Invoice" := SalesLine.Quantity;
+                                SalesLine."Qty. to Ship" := SalesLine.Quantity;
+                                Salesline."Qty. Shipped (Base)" := SalesLine.Quantity;
+                            end;
+                            if Subscription."Amount Period" < 0 then begin
+                                SalesLine."Unit Price" := Subscription."Amount Period" * -1;
+                                SalesLine.Quantity := -1 * Factor;
+                                SalesLine."Qty. to Invoice" := SalesLine.Quantity;
+                                SalesLine."Qty. to Ship" := SalesLine.Quantity;
+                                Salesline."Qty. Shipped (Base)" := SalesLine.Quantity;
+                            end;
+                        end;
+                        //Amount and qty at credit memo
+                        if Choise = false then begin
+                            if Subscription."Amount Period" > 0 then begin
+                                SalesLine."Unit Price" := Subscription."Amount Period";
+                                Salesline.Quantity := -1 * Factor;
+                                SalesLine."Qty. to Invoice" := SalesLine.Quantity;
+                                SalesLine."Qty. to Ship" := 0;
+                                Salesline."Qty. Shipped (Base)" := 0;
+                            end;
+                            if Subscription."Amount Period" < 0 then begin
+                                SalesLine."Unit Price" := Subscription."Amount Period" * -1;
+                                SalesLine.Quantity := 1 * Factor;
+                                SalesLine."Qty. to Invoice" := SalesLine.Quantity;
+                                SalesLine."Qty. to Ship" := 0;
+                                Salesline."Qty. Shipped (Base)" := 0;
+                            end;
+                        end;
                         SalesLine.Validate(Quantity);
-                        SalesLine."Qty. to Ship" := SalesLine.Quantity;
-                        SalesLine."Qty. to Invoice" := SalesLine.Quantity;
-                        SalesLine."Unit Price" := Subscription."Amount Period";
                         SalesLine.Amount := Subscription."Amount Period" * SalesLine.Quantity;
                         SalesLine."VAT Base Amount" := Salesline.Amount;
                         SalesLine."Line Amount" := SalesLine.Amount;
@@ -212,6 +284,8 @@ codeunit 50010 "SVA Create Invoice Estate"
                             SalesLine."No." := CostTypeAccounts.Account;
                             IF SalesLine.Description = '' THEN
                                 SalesLine.Description := CostTypeAccounts.Description;
+                            if CostTypeAccounts.Type = 1 then
+                                AccountFrom := CosttypeAccounts.Account;
                         end;
 
                         IF SalesLine.Amount <> 0 THEN
@@ -222,7 +296,102 @@ codeunit 50010 "SVA Create Invoice Estate"
 
             //Posting without send. 
             CODEUNIT.RUN(CODEUNIT::"Sales-Post", SalesHeader);
+            //Posting §22, internal maintance
+            InternalMaintancePosting(Occupants.Number, AccountFrom);
         end; //DoInvoice
+    end;
+
+
+    Local procedure InternalMaintancePosting(Contract: Text; AccountFrom22: text);
+    var
+        ContractCard: Record "SVA LeaseContract_A9";
+        Parameters: Record "SVA Parameters";
+        CosttypeCard: Record "SVA Cost type";
+
+        AccountTo22: Code[10];
+        GeneralLedgerLine: Record "Gen. Journal Line";
+        GeneralLedgerName: Record "Gen. Journal Batch";
+        NoSeriesMgt: Codeunit NoSeriesManagement;
+        SourceCodeSetup: Record "Source Code Setup";
+        Sektion: text[3];
+        Ledaccount: Text[10];
+        DocNo: Text[20];
+        DoPosting: Boolean;
+        Rate: Decimal;
+        Costtype22: Code[10];
+
+
+    begin
+
+        Parameters.Reset;
+        if Parameters.FindFirst then begin
+            JournalType := Parameters.IM_WorkSheetType;
+            JournalName := Parameters.IM_WorkSheet;
+            Costtype22 := Parameters.IM_Costtype;
+            DoPosting := Parameters.IM_Autoposting;
+            Rate := Parameters.IntMaintenance;
+            if Rate = 0 then
+                Error('Rate is missing.');
+        end;
+        CosttypeCard.reset;
+        CosttypeCard.SetRange(Costtype, Costtype22);
+        if CosttypeCard.FindFirst() then
+            AccountTo22 := CosttypeCard.Account;
+        //Test
+        if (AccountTo22 = '') and (DoPosting = true) then
+            Error('Account to Internal maintance is missing');
+
+        if DoPosting = true then begin
+            ContractCard.Reset();
+            ContractCard.SetRange(Number, Contract);
+            if ContractCard.FindFirst() then begin
+                if ContractCard.TypeA9_8_MaintainceInsideLandl = true then begin
+                    //For each contract with IM, make postingline
+                    SourceCodeSetup.Get;
+                    GeneralLedgerName.Reset;
+                    GeneralLedgerName.SetRange(Name, JournalName);
+                    GeneralLedgerName.SetRange("Journal Template Name", JournalType);
+                    if not GeneralLedgerName.FindFirst then
+                        Message('Der er ikke opsat finanskladde til bogføring af §22. Der vil ikke blive dannet bogføringslinjer.');
+                    if GeneralLedgerName.FindFirst then begin
+                        if DocNo = '' then begin
+                            IF GeneralLedgerName."No. Series" <> '' then begin
+                                Clear(NoSeriesMgt);
+                                DocNo := NoSeriesMgt.GetNextNo(GeneralLedgerName."No. Series", GeneralLedgerLine."Posting Date", false);
+                            end;
+                        end;
+                        GeneralLedgerLine.Reset;
+                        GeneralledgerLine."Journal Template Name" := JournalType;
+                        GeneralLedgerLine."Journal Batch Name" := JournalName;
+                        GeneralLedgerLine.Validate("Journal Batch Name");
+                        GeneralLedgerLine.Validate("Line No.", GeneralLedgerLine.GetNewLineNo(Journaltype, JournalName));
+                        GeneralLedgerLine."Posting No. Series" := GeneralLedgerName."Posting No. Series";
+                        GeneralLedgerLine."Source Code" := SourceCodeSetup."General Journal";
+                        GeneralLedgerLine."Document Date" := InvoiceDate;
+                        GeneralLedgerLine."Posting Date" := InvoiceDate;
+                        GeneralLedgerLine.Validate("Posting Date");
+                        GeneralLedgerLine."Document No." := DocNo;
+                        GeneralLedgerLine."Document Type" := 0;
+                        GeneralLedgerLine.Validate("Document Type");
+                        GeneralLedgerLine."Account Type" := 0;
+                        GeneralLedgerLine.Validate("Account Type");
+                        GeneralLedgerLine."Account No." := AccountFrom22;
+                        GeneralLedgerLine.Validate("Account No.");
+                        GeneralLedgerLine.Description := Occupants.Number + ' ' + '§22';
+                        GeneralLedgerLine.Amount := Rate / 12 * (ContractCard.TypeA9_1_AreaTotal - ContractCard.TypeA9_1_AreaProf);
+                        GeneralLedgerLine."Amount (LCY)" := Generalledgerline.Amount;
+                        GeneralLedgerLine.Validate(Amount);
+                        GeneralLedgerLine."Bal. Account No." := AccountTo22;
+                        GeneralLedgerLine."SVA Occupant" := Occupants.Number;
+                        if GeneralLedgerLine.Amount <> 0 then begin
+                            GeneralLedgerLine.Insert(true);
+                            Paragraf22 := true;
+                        end;
+                    end;
+
+                end;
+            end;
+        end;
     end;
 
     local procedure MonthCollection();
@@ -237,7 +406,7 @@ codeunit 50010 "SVA Create Invoice Estate"
                 Occupants.RESET;
                 Occupants.SETRANGE(Occupants.TenancyNo, Tenancy.Number);
                 Occupants.SETRANGE(Occupants.StartDate, InvoiceDate - 20000, InvoiceDate);
-                Occupants.SETRANGE(Occupants.FirstNets, InvoiceDate - 20000, InvoiceDate); //FirstNets before or at invoicedate                    
+                Occupants.SETRANGE(Occupants.FirstNets, 0D, InvoiceDate); //FirstNets before or at invoicedate                    
                 Occupants.SETRANGE(Blocked, 0D);
                 IF Occupants.FindSet THEN begin
                     REPEAT
@@ -245,12 +414,12 @@ codeunit 50010 "SVA Create Invoice Estate"
                         //no end date
                         IF Occupants.EndDate = 0D THEN begin //empty enddate
                             OcNumber := Occupants.Number;
-                            MakeInvoice(1);
+                            TestForInvoice(1);
                         end;
                         //Enddate after the invoice month
                         IF Occupants.EndDate >= Calcdate('<1M-1D>', InvoiceDate) then begin
                             OcNumber := Occupants.Number;
-                            MakeInvoice(1);
+                            TestForInvoice(1);
                         end;
                         //Enddate in the middle of invoice period
                         if (Occupants.EndDate > InvoiceDate) and (Occupants.EndDate < Calcdate('<1M-1D>', InvoiceDate)) then begin
@@ -259,11 +428,11 @@ codeunit 50010 "SVA Create Invoice Estate"
                             if SetupEstate.findfirst then begin
                                 if SetupEstate.Splitcalc = false then begin
                                     OcNumber := Occupants.Number;
-                                    MakeInvoice(0.5);
+                                    TestForInvoice(0.5);
                                 end;
                                 if SetupEstate.Splitcalc = true then begin
                                     OcNumber := Occupants.Number;
-                                    MakeInvoice(Date2DMY(Occupants.EndDate, 1) / Days);
+                                    TestForInvoice(Date2DMY(Occupants.EndDate, 1) / Days);
                                 end;
                             end;
                         end;
@@ -287,7 +456,7 @@ codeunit 50010 "SVA Create Invoice Estate"
                 Occupants.SETRANGE(Occupants.TenancyNo, Tenancy.Number);
                 Occupants.SETRANGE(Occupants.StartDate, InvoiceDate - 20000, InvoiceDate);
                 Occupants.SETRANGE(Occupants."Collection Month", DATE2DMY(InvoiceDate, 2) - 1);//collecion mth = invoice mth.
-                Occupants.SETRANGE(Occupants.FirstNets, InvoiceDate - 20000, InvoiceDate); //FirstNets before or at invoicedate                                
+                Occupants.SETRANGE(Occupants.FirstNets, 0D, InvoiceDate); //FirstNets before or at invoicedate                                
                 Occupants.SETRANGE(Blocked, 0D);
                 IF Occupants.FindSet THEN begin
                     TextPeriod := ' ' + Format(InvoiceDate) + ' til ' + Format(CalcDate('<3M-1D>', InvoiceDate));
@@ -300,7 +469,7 @@ codeunit 50010 "SVA Create Invoice Estate"
                 Occupants.SETRANGE(Occupants.TenancyNo, Tenancy.Number);
                 Occupants.SETRANGE(Occupants.StartDate, InvoiceDate - 20000, InvoiceDate);
                 Occupants.SETRANGE(Occupants."Collection Month", DATE2DMY(InvoiceDate, 2) - 4);//collecion mth = invoice mth - 3.
-                Occupants.SETRANGE(Occupants.FirstNets, InvoiceDate - 20000, InvoiceDate); //FirstNets before or at invoicedate                                            
+                Occupants.SETRANGE(Occupants.FirstNets, 0D, InvoiceDate); //FirstNets before or at invoicedate                                            
                 IF Occupants.FindSet THEN begin
                     TextPeriod := ' ' + Format(InvoiceDate) + ' til ' + Format(CalcDate('<3M-1D>', InvoiceDate));
                     REPEAT
@@ -312,7 +481,7 @@ codeunit 50010 "SVA Create Invoice Estate"
                 Occupants.SETRANGE(Occupants.TenancyNo, Tenancy.Number);
                 Occupants.SETRANGE(Occupants.StartDate, InvoiceDate - 20000, InvoiceDate);
                 Occupants.SETRANGE(Occupants."Collection Month", DATE2DMY(InvoiceDate, 2) - 7);//collecion mth = invoice mth - 6.
-                Occupants.SETRANGE(Occupants.FirstNets, InvoiceDate - 20000, InvoiceDate); //FirstNets before or at invoicedate
+                Occupants.SETRANGE(Occupants.FirstNets, 0D, InvoiceDate); //FirstNets before or at invoicedate
                 IF Occupants.FindSet THEN begin
                     TextPeriod := ' ' + Format(InvoiceDate) + ' til ' + Format(CalcDate('<3M-1D>', InvoiceDate));
                     REPEAT
@@ -324,7 +493,7 @@ codeunit 50010 "SVA Create Invoice Estate"
                 Occupants.SETRANGE(Occupants.TenancyNo, Tenancy.Number);
                 Occupants.SETRANGE(Occupants.StartDate, InvoiceDate - 20000, InvoiceDate);
                 Occupants.SETRANGE(Occupants."Collection Month", DATE2DMY(InvoiceDate, 2) - 10);//collecion mth = invoice mth - 9.
-                Occupants.SETRANGE(Occupants.FirstNets, InvoiceDate - 20000, InvoiceDate); //FirstNets before or at invoicedate
+                Occupants.SETRANGE(Occupants.FirstNets, 0D, InvoiceDate); //FirstNets before or at invoicedate
                 IF Occupants.FindSet THEN begin
                     TextPeriod := ' ' + Format(InvoiceDate) + ' til ' + Format(CalcDate('<3M-1D>', InvoiceDate));
                     REPEAT
@@ -336,7 +505,7 @@ codeunit 50010 "SVA Create Invoice Estate"
                 Occupants.SETRANGE(Occupants.TenancyNo, Tenancy.Number);
                 Occupants.SETRANGE(Occupants.StartDate, InvoiceDate - 20000, InvoiceDate);
                 Occupants.SETRANGE(Occupants."Collection Month", DATE2DMY(InvoiceDate, 2) + 2);//collecion mth = invoice mth + 3.
-                Occupants.SETRANGE(Occupants.FirstNets, InvoiceDate - 20000, InvoiceDate); //FirstNets before or at invoicedate
+                Occupants.SETRANGE(Occupants.FirstNets, 0D, InvoiceDate); //FirstNets before or at invoicedate
                 IF Occupants.FindSet THEN begin
                     TextPeriod := ' ' + Format(InvoiceDate) + ' til ' + Format(CalcDate('<3M-1D>', InvoiceDate));
                     REPEAT
@@ -348,7 +517,7 @@ codeunit 50010 "SVA Create Invoice Estate"
                 Occupants.SETRANGE(Occupants.TenancyNo, Tenancy.Number);
                 Occupants.SETRANGE(Occupants.StartDate, InvoiceDate - 20000, InvoiceDate);
                 Occupants.SETRANGE(Occupants."Collection Month", DATE2DMY(InvoiceDate, 2) + 5);//collecion mth = invoice mth + 6.
-                Occupants.SETRANGE(Occupants.FirstNets, InvoiceDate - 20000, InvoiceDate); //FirstNets before or at invoicedate
+                Occupants.SETRANGE(Occupants.FirstNets, 0D, InvoiceDate); //FirstNets before or at invoicedate
                 IF Occupants.FindSet THEN begin
                     TextPeriod := ' ' + Format(InvoiceDate) + ' til ' + Format(CalcDate('<3M-1D>', InvoiceDate));
                     REPEAT
@@ -359,8 +528,8 @@ codeunit 50010 "SVA Create Invoice Estate"
                 Occupants.RESET;
                 Occupants.SETRANGE(Occupants.TenancyNo, Tenancy.Number);
                 Occupants.SETRANGE(Occupants.StartDate, InvoiceDate - 20000, InvoiceDate);
-                Occupants.SETRANGE(Occupants."Collection Month", DATE2DMY(InvoiceDate, 2) + 8);//collecion mth = invoice mth + 6.
-                Occupants.SETRANGE(Occupants.FirstNets, InvoiceDate - 20000, InvoiceDate); //FirstNets before or at invoicedate
+                Occupants.SETRANGE(Occupants."Collection Month", DATE2DMY(InvoiceDate, 2) + 8);//collecion mth = invoice mth + 9.
+                Occupants.SETRANGE(Occupants.FirstNets, 0D, InvoiceDate); //FirstNets before or at invoicedate
                 IF Occupants.FindSet THEN begin
                     TextPeriod := ' ' + Format(InvoiceDate) + ' til ' + Format(CalcDate('<3M-1D>', InvoiceDate));
                     REPEAT
@@ -383,8 +552,8 @@ codeunit 50010 "SVA Create Invoice Estate"
                 Occupants.RESET;
                 Occupants.SETRANGE(Occupants.TenancyNo, Tenancy.Number);
                 Occupants.SETRANGE(Occupants.StartDate, InvoiceDate - 20000, InvoiceDate);
-                Occupants.SETRANGE(Occupants."Collection Month", DATE2DMY(InvoiceDate, 2));//collection mth = invoice mth.
-                Occupants.SETRANGE(Occupants.FirstNets, InvoiceDate - 20000, InvoiceDate); //FirstNets before or at invoicedate
+                Occupants.SETRANGE(Occupants."Collection Month", DATE2DMY(InvoiceDate, 2) - 1);//collection mth = invoice mth.
+                Occupants.SETRANGE(Occupants.FirstNets, 0D, InvoiceDate); //FirstNets before or at invoicedate
                 Occupants.SETRANGE(Blocked, 0D);
                 IF Occupants.FindSet THEN begin
                     REPEAT
@@ -395,8 +564,8 @@ codeunit 50010 "SVA Create Invoice Estate"
                 Occupants.RESET;
                 Occupants.SETRANGE(Occupants.TenancyNo, Tenancy.Number);
                 Occupants.SETRANGE(Occupants.StartDate, InvoiceDate - 20000, InvoiceDate);
-                Occupants.SETRANGE(Occupants."Collection Month", DATE2DMY(InvoiceDate, 2) - 6);//collecion mth = invoice mth - 6.
-                Occupants.SETRANGE(Occupants.FirstNets, InvoiceDate - 20000, InvoiceDate); //FirstNets before or at invoicedate
+                Occupants.SETRANGE(Occupants."Collection Month", DATE2DMY(InvoiceDate, 2) - 7);//collecion mth = invoice mth - 6.
+                Occupants.SETRANGE(Occupants.FirstNets, 0D, InvoiceDate); //FirstNets before or at invoicedate
                 IF Occupants.FindSet THEN begin
                     REPEAT
                         MakeInvoiceHY;
@@ -406,8 +575,8 @@ codeunit 50010 "SVA Create Invoice Estate"
                 Occupants.RESET;
                 Occupants.SETRANGE(Occupants.TenancyNo, Tenancy.Number);
                 Occupants.SETRANGE(Occupants.StartDate, InvoiceDate - 20000, InvoiceDate);
-                Occupants.SETRANGE(Occupants."Collection Month", DATE2DMY(InvoiceDate, 2) + 6);//collecion mth = invoice mth + 6.
-                Occupants.SETRANGE(Occupants.FirstNets, InvoiceDate - 20000, InvoiceDate); //FirstNets before or at invoicedate
+                Occupants.SETRANGE(Occupants."Collection Month", DATE2DMY(InvoiceDate, 2) + 5);//collecion mth = invoice mth + 6.
+                Occupants.SETRANGE(Occupants.FirstNets, 0D, InvoiceDate); //FirstNets before or at invoicedate
                 IF Occupants.FindSet THEN begin
                     REPEAT
                         MakeInvoiceHY;
@@ -429,20 +598,20 @@ codeunit 50010 "SVA Create Invoice Estate"
                 Occupants.RESET;
                 Occupants.SETRANGE(Occupants.TenancyNo, Tenancy.Number);
                 Occupants.SETRANGE(Occupants.StartDate, InvoiceDate - 20000, InvoiceDate);
-                Occupants.SETRANGE(Occupants."Collection Month", DATE2DMY(InvoiceDate, 2));//collecion mth = invoice mth.
-                Occupants.SETRANGE(Occupants.FirstNets, InvoiceDate - 20000, InvoiceDate); //FirstNets before or at invoicedate
+                Occupants.SETRANGE(Occupants."Collection Month", DATE2DMY(InvoiceDate, 2) - 1);//collecion mth = invoice mth.
+                Occupants.SETRANGE(Occupants.FirstNets, 0D, InvoiceDate); //FirstNets before or at invoicedate
                 Occupants.SETRANGE(Blocked, 0D);
                 IF Occupants.FindSet THEN begin
                     REPEAT
                         //No enddate
                         IF Occupants.EndDate = 0D THEN begin //empty enddate
                             OcNumber := Occupants.Number;
-                            MakeInvoice(1);
+                            TestForInvoice(1);
                         end;
                         //Enddate after invoice period
                         IF Occupants.EndDate >= Calcdate('<12M-1D>', InvoiceDate) then begin
                             OcNumber := Occupants.Number;
-                            MakeInvoice(1);
+                            TestForInvoice(1);
                         end;
                         //Enddate in invoice period
                         if (Occupants.EndDate > InvoiceDate) and (Occupants.EndDate < Calcdate('<12M-1D>', InvoiceDate)) then begin
@@ -454,34 +623,34 @@ codeunit 50010 "SVA Create Invoice Estate"
                                     Days := ((InvoiceDate - Occupants.EndDate + 1)); //qty days paying for rent
                                                                                      //Only full months
                                     if (Days > 1) and (Days < 45) then
-                                        MakeInvoice(1 / 12);
+                                        TestForInvoice(1 / 12);
                                     if (Days > 44) and (Days < 75) then
-                                        MakeInvoice(1 / 6);
+                                        TestForInvoice(1 / 6);
                                     if (Days > 74) and (Days < 105) then
-                                        MakeInvoice(1 / 4);
+                                        TestForInvoice(1 / 4);
                                     if (Days > 104) and (Days < 135) then
-                                        MakeInvoice(1 / 3);
+                                        TestForInvoice(1 / 3);
                                     if (Days > 134) and (Days < 165) then
-                                        MakeInvoice(5 / 12);
+                                        TestForInvoice(5 / 12);
                                     if (Days > 164) and (Days < 190) then
-                                        MakeInvoice(1 / 2);
+                                        TestForInvoice(1 / 2);
                                     if (Days > 189) and (Days < 220) then
-                                        MakeInvoice(7 / 12);
+                                        TestForInvoice(7 / 12);
                                     if (Days > 219) and (Days < 250) then
-                                        MakeInvoice(2 / 3);
+                                        TestForInvoice(2 / 3);
                                     if (Days > 249) and (Days < 280) then
-                                        MakeInvoice(3 / 4);
+                                        TestForInvoice(3 / 4);
                                     if (Days > 279) and (Days < 310) then
-                                        MakeInvoice(5 / 6);
+                                        TestForInvoice(5 / 6);
                                     if (Days > 309) and (Days < 340) then
-                                        MakeInvoice(11 / 12);
+                                        TestForInvoice(11 / 12);
                                     if (Days > 339) and (Days < 367) then
-                                        MakeInvoice(1);
+                                        TestForInvoice(1);
                                 end;
                                 if SetupEstate.Splitcalc = true then begin
                                     OcNumber := Occupants.Number;
                                     Days := CalcDate('<12M-1D>', Invoicedate) - InvoiceDate + 1;
-                                    MakeInvoice((InvoiceDate - Occupants.EndDate + 1) / Days);
+                                    TestForInvoice((InvoiceDate - Occupants.EndDate + 1) / Days);
                                 end;
                             end;
                         end;
@@ -497,12 +666,12 @@ codeunit 50010 "SVA Create Invoice Estate"
         //no end date
         IF Occupants.EndDate = 0D THEN begin
             OcNumber := Occupants.Number;
-            MakeInvoice(1);
+            TestForInvoice(1);
         end;
         //Enddate after the invoice period
         IF Occupants.EndDate > Calcdate('<3M-1D>', InvoiceDate) THEN begin
             OcNumber := Occupants.Number;
-            MakeInvoice(1);
+            TestForInvoice(1);
         end;
         //Enddate in invoice period
         if (Occupants.EndDate > InvoiceDate) and (Occupants.EndDate < Calcdate('<3M-1D>', InvoiceDate)) then begin
@@ -513,24 +682,24 @@ codeunit 50010 "SVA Create Invoice Estate"
                     OcNumber := Occupants.Number;
                     Days := ((InvoiceDate - Occupants.EndDate + 1)); //qty days paying for rent
                     if (Days > 1) and (Days < 18) then
-                        MakeInvoice(1 / 6);
+                        TestForInvoice(1 / 6);
                     if (Days > 17) and (Days < 32) then
-                        MakeInvoice(1 / 3);
+                        TestForInvoice(1 / 3);
                     if (Days > 31) and (Days < 50) then
-                        MakeInvoice(0.5);
+                        TestForInvoice(0.5);
                     if (Days > 49) and (Days < 65) then
-                        MakeInvoice(2 / 3);
+                        TestForInvoice(2 / 3);
                     if (Days > 64) and (Days < 80) then
-                        MakeInvoice(5 / 6);
+                        TestForInvoice(5 / 6);
                     if (Days > 79) then
-                        MakeInvoice(1);
+                        TestForInvoice(1);
                 end;
                 if SetupEstate.Splitcalc = true then begin
                     TextPeriod := ' ' + Format(InvoiceDate) + ' til ' + Format(Occupants.EndDate);
                     OcNumber := Occupants.Number;
                     //qty days in period 
                     Days := CalcDate('<3M-1D>', Invoicedate) - InvoiceDate + 1;
-                    MakeInvoice((InvoiceDate - Occupants.EndDate + 1) / Days);
+                    TestForInvoice((InvoiceDate - Occupants.EndDate + 1) / Days);
                 end;
             end;
         end;
@@ -542,12 +711,12 @@ codeunit 50010 "SVA Create Invoice Estate"
         //no end date
         IF Occupants.EndDate = 0D THEN begin
             OcNumber := Occupants.Number;
-            MakeInvoice(1);
+            TestForInvoice(1);
         end;
         //Enddate after the invoice period
         IF Occupants.EndDate > Calcdate('<6M-1D>', InvoiceDate) THEN begin
             OcNumber := Occupants.Number;
-            MakeInvoice(1);
+            TestForInvoice(1);
         end;
         //Enddate in invoice period
         if (Occupants.EndDate > InvoiceDate) and (Occupants.EndDate < Calcdate('<6M-1D>', InvoiceDate)) then begin
@@ -559,25 +728,35 @@ codeunit 50010 "SVA Create Invoice Estate"
                     Days := ((InvoiceDate - Occupants.EndDate + 1)); //qty days paying for rent
                     //Only full months
                     if (Days > 1) and (Days < 45) then
-                        MakeInvoice(1 / 6);
+                        TestForInvoice(1 / 6);
                     if (Days > 44) and (Days < 75) then
-                        MakeInvoice(1 / 3);
+                        TestForInvoice(1 / 3);
                     if (Days > 74) and (Days < 105) then
-                        MakeInvoice(1 / 2);
+                        TestForInvoice(1 / 2);
                     if (Days > 104) and (Days < 135) then
-                        MakeInvoice(2 / 3);
+                        TestForInvoice(2 / 3);
                     if (Days > 134) and (Days < 165) then
-                        MakeInvoice(5 / 6);
+                        TestForInvoice(5 / 6);
                     if (Days > 164) and (Days < 190) then
-                        MakeInvoice(1);
+                        TestForInvoice(1);
                 end;
                 if SetupEstate.Splitcalc = true then begin
                     OcNumber := Occupants.Number;
                     Days := CalcDate('<6M-1D>', Invoicedate) - InvoiceDate + 1;
-                    MakeInvoice((InvoiceDate - Occupants.EndDate + 1) / Days);
+                    TestForInvoice((InvoiceDate - Occupants.EndDate + 1) / Days);
                 end;
             end;
         end;
     end;
+
+    [EventSubscriber(ObjectType::Codeunit, 231, 'OnBeforeCode', '', false, false)]
+    local procedure HideDialog_LP()
+    var
+        Journal1: Codeunit "Gen. Jnl.-Post";
+        HideDialog: Boolean;
+    begin
+
+    end;
+
 }
 

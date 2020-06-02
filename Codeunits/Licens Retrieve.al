@@ -13,24 +13,25 @@ codeunit 50002 "SVA Retrieve"
         Users.SETRANGE(State, 0);
         IF Users.FIND('-') THEN begin
             REPEAT
-            URL := 'https://licsvane01.itoperators.dk/v3/?companyname=' + COMPANYNAME + '&license=' + RegNo+' '+FORMAT(Users."License Type") + '&user=' + Users."User Name";
-            TempCount += 1;
-            LicensTable.Key1 := TempCount;
-            LicensTable.Url := URL;
-            LicensTable.INSERT(true);
+                URL := 'https://licsvane01.itoperators.dk/v3/?companyname=' + COMPANYNAME + '&license=' + RegNo + ' ' + FORMAT(Users."License Type") + '&user=' + Users."User Name";
+                TempCount += 1;
+                LicensTable.Key1 := TempCount;
+                LicensTable.Url := URL;
+                LicensTable.INSERT(true);
             UNTIL Users.NEXT = 0;
         end;
         LicensTable.Reset;
         if LicensTable.Find('-') then begin
-                RequestMessage.SetRequestUri(LicensTable.Url);
-                RequestMessage.Method('POST');
-                Content.GetHeaders(Headers);
-                Content.WriteFrom(LicensTable.Url);
-                RequestMessage.Content := Content;
-                MyHTTPClient.send(RequestMessage, ResponseMessage);
-                LicensTable.Delete;
+            RequestMessage.SetRequestUri(LicensTable.Url);
+            RequestMessage.Method('POST');
+            Content.GetHeaders(Headers);
+            Content.WriteFrom(LicensTable.Url);
+            RequestMessage.Content := Content;
+            MyHTTPClient.send(RequestMessage, ResponseMessage);
+            LicensTable.Delete;
         end;
     end;
+
     var
         URL: Text[250];
         Users: Record User;

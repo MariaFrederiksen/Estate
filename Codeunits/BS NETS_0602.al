@@ -1,8 +1,5 @@
 codeunit 50005 "SVA BS NETS 0602"
-//Indlæser BS filer til table SVA Import BUFFER
-//tester for korrekt regnskab
-//Indlæser poster i finanskladde som opsat på NETS Parametre.
-//Der kontrolleres for hver linje omkring PBS aftalenr. for at forhindre at der ved mange brugere sker en sammmenblaning af indlæsninger.
+//Read and insert to ledgerline each post from NETS for this company
 {
     trigger OnRun();
     begin
@@ -17,73 +14,65 @@ codeunit 50005 "SVA BS NETS 0602"
         Importtable.reset;
         if Importtable.FindSet then
             repeat
-            if CopyStr(Importtable.Value, 3, 3) = '002' then
-                ;
-            if(CopyStr(Importtable.Value, 3, 3) = '012') then begin
-                IF(CopyStr(Importtable.Value, 6, 8) <> Aftaleno) then
-                    Error('Filen tilhører ikke dette regnskab.');
-                Sektion := (CopyStr(Importtable.Value, 15, 3));
-            end;
-            IF Sektion = '211' then begin
-                //NETS betalingsinfo for automatiske opkrævninger
-                //0236, completed automated payment
-                //0237, rejected automated payment
-                //0238, cancelled automated payment
-                //0239, charged back payment
-                if(CopyStr(Importtable.Value, 3, 3) = '042') then begin
-                    Pos := StrPos(Importtable.Value,' ');
-                    Evaluate(DueDate, CopyStr(Importtable.Value,50,6)); //exp. payment date
-                    if CopyStr(importtable.Value, 15, 3) = '236' then begin
-                        Evaluate(PaymentDate, CopyStr(Importtable.Value, Pos+1, 6)); //act. payment date
-                        Payment;
-                    end; //036    
-                    if CopyStr(importtable.Value, 15, 3) = '237' then begin
-                        AmountStr := CopyStr(Importtable.Value, 57, 13);
-                        while CopyStr(AmountStr, 1, 1) = '0' do
-                            AmountStr := CopyStr(AmountStr, 2, 15);
-                        if StrLen(AmountStr) > 0 then begin
-                            Evaluate(AmountVar, AmountStr);
-                            AmountVar := AmountVar / 100;
-                            AmountOut := AmountOut + AmountVar;
-                        end;
-                    if CopyStr(importtable.Value, 15, 3) = '238' then
-                        ;
-
-                    if CopyStr(importtable.Value, 15, 3) = '239' then
-                        ;
-                    ReturnPayment;
-                    end;//237, 238, 239
-                end; //042
-                if CopyStr(Importtable.Value, 3, 3) = '092' then
-                    InsOffsetAccount;
-
-            end; //sektion 211
-
-            //NETS betalingsinfo for indbetalinger via girokort
-            IF Sektion = '215' then begin
-                //NETS betalingsinfo
-                if(CopyStr(Importtable.Value, 3, 3) = '042') then begin
-                    Pos := StrPos(Importtable.Value,' ');
-                    Evaluate(PaymentDate, CopyStr(Importtable.Value, Pos+29, 6)); //act. payment date
-                    Evaluate(DueDate, CopyStr(Importtable.Value,53,6)); //exp. payment date
-                    if(CopyStr(importtable.Value, 15, 3) = '297') then
-                        Payment;
-                    if(CopyStr(importtable.Value, 15, 3) = '299') then
-                        ReturnPayment;
+                if CopyStr(Importtable.Value, 3, 3) = '002' then
+                    ;
+                if (CopyStr(Importtable.Value, 3, 3) = '012') then begin
+                    IF (CopyStr(Importtable.Value, 6, 8) <> Aftaleno) then
+                        Error('Filen tilhører ikke dette regnskab.');
+                    Sektion := (CopyStr(Importtable.Value, 15, 3));
                 end;
-                if CopyStr(Importtable.Value, 3, 3) = '092' then
-                    InsOffsetAccount;
-            end; //sektion 215            
-            if CopyStr(Importtable.Value, 3, 3) = '099' then
-                Message('Filen er indlæst');
+                IF Sektion = '211' then begin
+                    //NETS payment info Data Delivery 0602, automatic payments 
+                    //0236, completed automated payment
+                    //0237, rejected automated payment
+                    //0238, cancelled automated payment
+                    //0239, charged back payment
+                    if (CopyStr(Importtable.Value, 3, 3) = '042') then begin
+                        Evaluate(DueDate, CopyStr(Importtable.Value, 50, 6)); //exp. payment date
+                        if CopyStr(Importtable.Value, 104, 6) <> '000000' then
+                            Evaluate(PaymentDate, CopyStr(Importtable.Value, 104, 6)); //act. payment date
+                        if CopyStr(importtable.Value, 15, 3) = '236' then begin
+                            Payment;
+                        end;
+                        if CopyStr(importtable.Value, 15, 3) = '237' then begin
+                            ReturnPayment();
+                        end;
+                        if CopyStr(importtable.Value, 15, 3) = '238' then begin
+                            ReturnPayment;
+                        end;
+                        if CopyStr(importtable.Value, 15, 3) = '239' then begin
+                            ReturnPayment;
+                        end;
+                    end; //042
+                    if CopyStr(Importtable.Value, 3, 3) = '092' then
+                        InsOffsetAccount;
+
+                end; //sektion 211
+
+                //NETS paymentinfo for payments via giro
+                IF Sektion = '215' then begin
+                    //NETS betalingsinfo
+                    if (CopyStr(Importtable.Value, 3, 3) = '042') then begin
+                        Evaluate(PaymentDate, CopyStr(Importtable.Value, 104, 6)); //act. payment date
+                        Evaluate(DueDate, CopyStr(Importtable.Value, 53, 6)); //exp. payment date
+                        if (CopyStr(importtable.Value, 15, 3) = '297') then
+                            Payment;
+                        if (CopyStr(importtable.Value, 15, 3) = '299') then
+                            ReturnPayment;
+                    end;
+                    if CopyStr(Importtable.Value, 3, 3) = '092' then
+                        InsOffsetAccount;
+                end; //sektion 215            
+                if CopyStr(Importtable.Value, 3, 3) = '099' then
+                    Message('Filen er indlæst');
             until Importtable.Next = 0;
 
         Importtable.DeleteAll;
         Journal.Reset;
-        Journal.SetRange(Journal."Journal Template Name",JournalType);
-        Journal.SetRange(Journal."Journal Batch Name",JournalName);
+        Journal.SetRange(Journal."Journal Template Name", JournalType);
+        Journal.SetRange(Journal."Journal Batch Name", JournalName);
         if Journal.findfirst then
-            Page.Run(page::"Cash Receipt Journal",Journal);
+            Page.Run(page::"Cash Receipt Journal", Journal);
     end;
 
     var
@@ -92,7 +81,6 @@ codeunit 50005 "SVA BS NETS 0602"
         Aftaleno: Text[8];
         GeneralLedgerLine: Record "Gen. Journal Line";
         GeneralLedgerName: Record "Gen. Journal Batch";
-        Datarecordtype: Text[3];
         JournalName: Code[10];
         JournalType: Code[10];
         AmountVar: Decimal;
@@ -100,15 +88,14 @@ codeunit 50005 "SVA BS NETS 0602"
         AmountStr: Text[13];
         AmountStr15: Text[15];
         PaymentDate: Date;
-        DueDate : Date;
+        DueDate: Date;
         NoSeriesMgt: Codeunit NoSeriesManagement;
         SourceCodeSetup: Record "Source Code Setup";
         Sektion: text[3];
         Ledaccount: Text[10];
         DocNo: Text[20];
         PostingText: Text[50];
-        Pos: Integer;
-        Journal : Record "Gen. Journal Line";
+        Journal: Record "Gen. Journal Line";
 
     local procedure Payment()
     begin
@@ -150,6 +137,7 @@ codeunit 50005 "SVA BS NETS 0602"
                 GeneralLedgerLine.Amount := -AmountVar / 100;
                 GeneralLedgerLine."Amount (LCY)" := -AmountVar;
                 GeneralLedgerLine.Validate(Amount);
+                GeneralLedgerLine."Bal. Account Type" := 3; //bankkonto
                 GeneralLedgerLine.Validate("Line No.", GeneralLedgerLine.GetNewLineNo(Journaltype, JournalName));
                 if PaymentDate >= DueDate then begin
                     GeneralLedgerLine."Applies-to Doc. Type" := 2; //Invoice
@@ -173,9 +161,10 @@ codeunit 50005 "SVA BS NETS 0602"
                 GeneralLedgerLine."Account No." := CopyStr(Importtable.Value, 26, 15);
                 RemoveZero(GeneralLedgerLine."Account No.");
                 GeneralLedgerLine.Validate("Account No.");
+                GeneralLedgerLine."Bal. Account Type" := 3; //bankkonto
                 if PostingText <> '' then
                     GeneralLedgerLine.Description := PostingText;
-                AmountStr := CopyStr(Importtable.Value, 57, 13);
+                AmountStr := CopyStr(Importtable.Value, 116, 13);
                 Evaluate(AmountVar, AmountStr);
                 GeneralLedgerLine.Amount := -AmountVar / 100;
                 GeneralLedgerLine."Amount (LCY)" := -AmountVar;
@@ -186,9 +175,9 @@ codeunit 50005 "SVA BS NETS 0602"
                     GeneralLedgerLine."Applies-to Doc. No." := CopyStr(Importtable.Value, 70, 7); //Invoice No
                     GeneralLedgerLine."Applies-to Doc. No." := DelChr(GeneralLedgerLine."Applies-to Doc. No.", '=', ' ');
                     GeneralLedgerLine.Validate("Applies-to Doc. No.");
-                end;    
+                end;
                 if PaymentDate < DueDate then
-                    PostingText := PostingText + ' F: '+CopyStr(Importtable.Value, 70, 7);
+                    PostingText := PostingText + ' F: ' + CopyStr(Importtable.Value, 70, 7);
                 GeneralLedgerLine.Insert(true);
             end;
         end;
@@ -205,21 +194,33 @@ codeunit 50005 "SVA BS NETS 0602"
             GeneralLedgerLine.Validate("Document Type");
             GeneralLedgerLine."Account Type" := 0;
             GeneralLedgerLine.Validate("Account Type");
-            AmountStr15 := CopyStr(Importtable.Value, 38, 15);
+            AmountStr15 := CopyStr(Importtable.Value, 43, 15);
             Evaluate(AmountVar, AmountStr15);
             GeneralLedgerLine.Amount := (AmountVar / 100) - AmountOut;
             GeneralLedgerLine."Amount (LCY)" := (AmountVar / 100) - AmountOut;
             GeneralLedgerLine.Validate(Amount);
             GeneralLedgerLine.Validate("Line No.", GeneralLedgerLine.GetNewLineNo(Journaltype, JournalName));
-            GeneralLedgerLine."Account No." := Ledaccount;
+
             GeneralLedgerLine.Validate("Account No.");
             if PostingText <> '' then
-                    GeneralLedgerLine.Description := PostingText;
-            GeneralLedgerLine."Applies-to Doc. Type" := 3; //bankkonto
+                GeneralLedgerLine.Description := PostingText;
+            //GeneralLedgerLine."Bal. Account Type" := 3; //bankkonto
+            GeneralLedgerLine."Bal. Account Type" := GeneralLedgerName."Bal. Account Type";
+            GeneralLedgerLine."Account No." := GeneralLedgerName."Bal. Account No.";
+            if GeneralLedgerLine."Account No." = '' then
+                GeneralLedgerLine."Account No." := Ledaccount;
             GeneralLedgerLine."Applies-to Doc. No." := '';
-            GeneralLedgerLine.Insert(true);
+            GeneralLedgerLine."Applies-to Doc. Type" := 0;
+            if GeneralLedgerLine.Amount > 0 then
+                GeneralLedgerLine.Insert(true);
+            if GeneralLedgerLine.Amount <= 0 then begin
+                GeneralLedgerLine.Amount := -AmountOut;
+                GeneralLedgerLine."Amount (LCY)" := -AmountOut;
+                GeneralLedgerLine.Validate(Amount);
+                GeneralLedgerLine.Insert(true);
+            end;
+            AmountOut := 0;
         end;
-
     end;
 
     local procedure ReturnPayment()
@@ -243,22 +244,37 @@ codeunit 50005 "SVA BS NETS 0602"
             GeneralLedgerLine.Validate("Journal Batch Name");
             GeneralLedgerLine."Posting No. Series" := GeneralLedgerName."Posting No. Series";
             GeneralLedgerLine."Source Code" := SourceCodeSetup."General Journal";
-            if CopyStr(Importtable.Value, 15, 3) = '299' then begin
-                GeneralLedgerLine."Document Date" := DueDate;
-                GeneralLedgerLine."Posting Date" := DueDate;
+            if (CopyStr(Importtable.Value, 15, 3) = '299') or
+                (CopyStr(Importtable.Value, 15, 3) = '237') or
+                (CopyStr(Importtable.Value, 15, 3) = '239') then begin
+
+                GeneralLedgerLine."Document Date" := PaymentDate;
+                GeneralLedgerLine."Posting Date" := PaymentDate;
                 GeneralLedgerLine.Validate("Posting Date");
                 GeneralLedgerLine."Document No." := DocNo;
-                GeneralLedgerLine."Document Type" := 1;
+                GeneralLedgerLine."Document Type" := 0;
                 GeneralLedgerLine.Validate("Document Type");
                 GeneralLedgerLine."Account Type" := 1;
                 GeneralLedgerLine.Validate("Account Type");
-                GeneralLedgerLine."Account No." := CopyStr(Importtable.Value, 30, 15);
+                GeneralLedgerLine."Bal. Account Type" := 3; //bankkonto
+                if (CopyStr(Importtable.Value, 15, 3) = '299') then
+                    GeneralLedgerLine."Account No." := CopyStr(Importtable.Value, 30, 15);
+                if (CopyStr(Importtable.Value, 15, 3) = '237') then
+                    GeneralLedgerLine."Account No." := CopyStr(Importtable.Value, 26, 15);
+                if (CopyStr(Importtable.Value, 15, 3) = '239') then
+                    GeneralLedgerLine."Account No." := CopyStr(Importtable.Value, 26, 15);
                 RemoveZero(GeneralLedgerLine."Account No.");
                 GeneralLedgerLine.Validate("Account No.");
                 GeneralLedgerLine.Description := 'NETS betaling retur';
                 AmountStr := CopyStr(Importtable.Value, 116, 13);
                 Evaluate(AmountVar, AmountStr);
                 GeneralLedgerLine.Amount := AmountVar / 100;
+                if (CopyStr(Importtable.Value, 15, 3) = '299') then
+                    AmountOut += AmountVar / 100;
+                if (CopyStr(Importtable.Value, 15, 3) = '237') then
+                    AmountOut += AmountVar / 100;
+                if (CopyStr(Importtable.Value, 15, 3) = '239') then
+                    AmountOut += AmountVar / 100;
                 GeneralLedgerLine."Amount (LCY)" := AmountVar;
                 GeneralLedgerLine.Validate(Amount);
                 GeneralLedgerLine.Validate("Line No.", GeneralLedgerLine.GetNewLineNo(Journaltype, JournalName));

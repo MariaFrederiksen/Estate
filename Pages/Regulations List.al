@@ -120,7 +120,7 @@ page 50016 "SVA Regulations"
                     Regulations.reset;
                     if Regulations.FindSet() then
                         repeat
-                            Message(Regulations.ONumber);
+
                             RegLetter.reset;
                             RegLetter.SetRange(RegLetter.ONumber, Regulations.ONumber);
                             if RegLetter.FindFirst then begin

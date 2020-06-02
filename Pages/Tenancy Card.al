@@ -503,6 +503,14 @@ page 50023 "SVA Tenancy Card"
         }
         area(factboxes)
         {
+            part("Attached Documents"; 1174)
+            {
+                ApplicationArea = All;
+                Caption = 'Attachments';
+                SubPageLink = "Table ID" = CONST(50002),
+                              "No." = FIELD(Number);
+                Visible = NOT IsOfficeAddin;
+            }
             systempart(Links; Links)
             {
                 ApplicationArea = All;
@@ -541,5 +549,14 @@ page 50023 "SVA Tenancy Card"
             }
         }
     }
+    trigger OnOpenPage()
+    var
+        Officemanagement: Codeunit 1630;
+    begin
+        IsOfficeAddin := Officemanagement.IsAvailable()
+    end;
+
+    var
+        IsOfficeAddin: Boolean;
 }
 

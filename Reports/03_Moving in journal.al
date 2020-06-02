@@ -8,10 +8,10 @@ report 50004 "SVA Moving in Journal"
     {
         dataitem("SVA LeaseContract_A9"; "SVA LeaseContract_A9")
         {
-            column(CompanyName;COMPANYPROPERTY.DISPLAYNAME)
+            column(CompanyName; COMPANYPROPERTY.DISPLAYNAME)
             {
             }
-            column(TypeA93RentPrperiod_LeaseContractA9;TypeA9_3_RentPerPeriode)
+            column(TypeA93RentPrperiod_LeaseContractA9; TypeA9_3_RentPerPeriode)
             {
             }
             column(TypeA93ACHeat_LeaseContractA9; TypeA9_3_ACHeat)
@@ -95,10 +95,10 @@ report 50004 "SVA Moving in Journal"
             column(TypeA94TotalAmount_LeaseContractA9; TypeA9_4_TotalAmount)
             {
             }
-            column(Vatcode;Vatcode)
+            column(Vatcode; Vatcode)
             {
             }
-                       
+
             dataitem("SVA Occupant"; "SVA Occupant")
             {
                 DataItemLink = number = field (Number);
@@ -122,52 +122,65 @@ report 50004 "SVA Moving in Journal"
                 column(StartDate_Occupant; StartDate)
                 {
                 }
-                column(CAddress;Address)
+                column(CAddress; Address)
                 {
                 }
-                column(CPostcode;"Post code")
+                column(CPostcode; "Post code")
                 {
                 }
-                column(CCIty;City)
+                column(CCIty; City)
                 {
                 }
-                
-                dataitem("SVA Tenancy";"SVA Tenancy")
+
+                dataitem("SVA Tenancy"; "SVA Tenancy")
                 {
                     DataItemLink = Number = field (TenancyNo);
                     DataItemLinkReference = "Sva Occupant";
-                                                               
-                    column(TAddress;Address1)
+
+                    column(TAddress; Address1)
                     {
                     }
-                    column(TPostCode;"SVA Tenancy"."Post Code")
+                    column(TPostCode; "SVA Tenancy"."Post Code")
                     {
                     }
-                    column(TCity;"SVA Tenancy".City)
+                    column(TCity; "SVA Tenancy".City)
                     {
                     }
                 }
             }
             trigger OnAfterGetRecord();
             begin
-                if (DATE2DMY("SVA LeaseContract_A9".TypeA9_2_Startdate,1) > 13) AND (DATE2DMY("SVA LeaseContract_A9".TypeA9_2_Startdate,1) < 17)  then begin
-                "SVA LeaseContract_A9".TypeA9_3_RentPerPeriode := "SVA LeaseContract_A9".TypeA9_3_RentPerPeriode/2;
-                "SVA LeaseContract_A9".TypeA9_3_ACHeat := "SVA LeaseContract_A9".TypeA9_3_ACHeat/2;
-                "SVA LeaseContract_A9".TypeA9_3_ACWater := "SVA LeaseContract_A9".TypeA9_3_ACWater/2;
-                "SVA LeaseContract_A9".TypeA9_3_ACElectricity := "SVA LeaseContract_A9".TypeA9_3_ACElectricity/2;
-                "SVA LeaseContract_A9".TypeA9_3_ACCooling := "SVA LeaseContract_A9".TypeA9_3_ACCooling/2;
-                "SVA LeaseContract_A9".TypeA9_3_Antenna := "SVA LeaseContract_A9".TypeA9_3_Antenna/2;
-                "SVA LeaseContract_A9".TypeA9_3_Internet := "SVA LeaseContract_A9".TypeA9_3_Internet/2;
-                "SVA LeaseContract_A9".TypeA9_3_TenantGroup := "SVA LeaseContract_A9".TypeA9_3_TenantGroup/2;
-                "SVA LeaseContract_A9".TypeA9_3_OtherAmount1 := "SVA LeaseContract_A9".TypeA9_3_OtherAmount1/2;
-                "SVA LeaseContract_A9".TypeA9_3_OtherAmount2 := "SVA LeaseContract_A9".TypeA9_3_OtherAmount2/2;
+                if DATE2DMY(TypeA9_2_Startdate, 1) = 1 then
+                    factor := 1;
+                if (DATE2DMY(TypeA9_2_Startdate, 1) > 1) AND (DATE2DMY(TypeA9_2_Startdate, 1) < 32) then begin
+                    SetupEstate.Reset;
+                    if SetupEstate.FindFirst then begin
+                        if SetupEstate.Splitcalc = false then
+                            Factor := 0.5; //Split in half
+                        if SetupEstate.Splitcalc = true then begin
+                            Days := CalcDate('<1M-1D>', TypeA9_2_Startdate) - TypeA9_2_Startdate + 1;//qty of days in monht TypeA9_3_Startdate
+                            Factor := ((Days - Date2DMY(TypeA9_2_Startdate, 1) + 1) / Days);
+                        end;
+                    end;
                 end;
 
+                "SVA LeaseContract_A9".TypeA9_3_RentPerPeriode := "SVA LeaseContract_A9".TypeA9_3_RentPerPeriode * Factor;
+                "SVA LeaseContract_A9".TypeA9_3_ACHeat := "SVA LeaseContract_A9".TypeA9_3_ACHeat * Factor;
+                "SVA LeaseContract_A9".TypeA9_3_ACWater := "SVA LeaseContract_A9".TypeA9_3_ACWater * Factor;
+                "SVA LeaseContract_A9".TypeA9_3_ACElectricity := "SVA LeaseContract_A9".TypeA9_3_ACElectricity * Factor;
+                "SVA LeaseContract_A9".TypeA9_3_ACCooling := "SVA LeaseContract_A9".TypeA9_3_ACCooling * Factor;
+                "SVA LeaseContract_A9".TypeA9_3_Antenna := "SVA LeaseContract_A9".TypeA9_3_Antenna * Factor;
+                "SVA LeaseContract_A9".TypeA9_3_Internet := "SVA LeaseContract_A9".TypeA9_3_Internet * Factor;
+                "SVA LeaseContract_A9".TypeA9_3_TenantGroup := "SVA LeaseContract_A9".TypeA9_3_TenantGroup * Factor;
+                "SVA LeaseContract_A9".TypeA9_3_OtherAmount1 := "SVA LeaseContract_A9".TypeA9_3_OtherAmount1 * Factor;
+                "SVA LeaseContract_A9".TypeA9_3_OtherAmount2 := "SVA LeaseContract_A9".TypeA9_3_OtherAmount2 * Factor;
+
+
                 TypeA9.Reset;
-                TypeA9.SetRange(Number,"SVA LeaseContract_A9".Number);
+                TypeA9.SetRange(Number, "SVA LeaseContract_A9".Number);
                 if TypeA9.FindFirst then begin
                     Occupant.RESET;
-                    Occupant.SETRANGE(Occupant.Number,TypeA9.Number);
+                    Occupant.SETRANGE(Occupant.Number, TypeA9.Number);
                     if Occupant.FindFirst() then begin
                         Customer.Reset;
                         Customer.SetRange("No.", Occupant."Customer No");
@@ -182,10 +195,10 @@ report 50004 "SVA Moving in Journal"
                             AmountInclVat := "SVA LeaseContract_A9".TypeA9_4_TotalAmount;
                         end;
                     end;
-                end;        
+                end;
             end;
-            }
         }
+    }
 
     requestpage
     {
@@ -203,12 +216,15 @@ report 50004 "SVA Moving in Journal"
     {
     }
     var
-    TypeA9 : Record "SVA LeaseContract_A9";
-    Customer : Record Customer;
-    Vatpostinggroup : Record "VAT Posting Setup";
-    Occupant : Record "SVA Occupant";
-    Vatrate : Decimal;
-    AmountInclVat : Decimal;
+        TypeA9: Record "SVA LeaseContract_A9";
+        Customer: Record Customer;
+        Vatpostinggroup: Record "VAT Posting Setup";
+        Occupant: Record "SVA Occupant";
+        Vatrate: Decimal;
+        AmountInclVat: Decimal;
+        SetupEstate: Record "SVA Parameters";
+        Days: Integer;
+        Factor: Decimal;
 
 }
 

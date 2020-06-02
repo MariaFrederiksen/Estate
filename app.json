@@ -4,10 +4,10 @@
   "publisher": "Svane IT",
   "brief": "Nav Ejendom",
   "description": "Ejendomsadministrationsløsning til Microsoft Dynamics Business Central",
-  "version": "15.4.41023.1",
-  "privacyStatement": "",
-  "EULA": "",
-  "help": "",
+  "version": "16.0.11240.20",
+  "privacyStatement": "https://Estate.dk/PrivacyStatement",
+  "EULA": "https://d365ejendom.dk/EULA",
+  "help": "https://d365ejendom.dk/",
   "url": "",
   "logo": "logo.gif",
   "dependencies": [],
@@ -15,13 +15,8 @@
   "platform": "14.0.0.0",
   "application": "14.0.0.0",
   "features": ["TranslationFile"],
-  "idRanges": [
-    {
-      "from": 50000,
-      "to": 50100
-    }
-  ],
-  "contextSensitiveHelpUrl": "https://Estate.dk/help/",
-  "showMyCode": false,
+  "idRanges": [{"from": 50000,"to": 50099},{"from": 6199081,"to": 6200080}],
+  "contextSensitiveHelpUrl": "https://d365ejendom.dk/",
+  "showMyCode": true,
   "runtime": "3.0"
 }

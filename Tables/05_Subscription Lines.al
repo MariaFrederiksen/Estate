@@ -160,7 +160,7 @@ table 50005 "SVA Subscription Lines"
         if VatGroup = '' then
             Error('Der mangler momsproduktbogføringsgrupppe');    
     end;
-
+    
     local procedure SetPeriods();
     begin
         Tenancy.RESET;

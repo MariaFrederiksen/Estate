@@ -532,6 +532,14 @@ page 50014 "SVA Property Card"
         }
         area(factboxes)
         {
+            part("Attached Documents";1174)
+            {
+                ApplicationArea = All;
+                Caption='Attachments';
+                SubPageLink = "Table ID"=CONST(50001),
+                              "No."=FIELD(Property);
+                Visible = NOT IsOfficeAddin;
+            }
             systempart(Links; Links)
             {
                 ApplicationArea = All;
@@ -789,6 +797,12 @@ page 50014 "SVA Property Card"
             }
         }
     }
+    trigger OnOpenPage()
+    var
+        Officemanagement: Codeunit 1630;
+    begin
+        IsOfficeAddin := Officemanagement.IsAvailable()
+    end;
 
     var
 
@@ -804,12 +818,8 @@ page 50014 "SVA Property Card"
         IncomeProperty: Report "SVA Income Property";
         TempTable: Record "SVA Export Temp";
         OccupantTrans: Record "SVA Occupant Trans";
-        PropertyCard: Record "SVA Property";
         ConsumptionTo: Date;
         ConsumptionFrom: Date;
-        Month1: Integer;
-        Year1: Integer;
-        TmpDate: Date;
         OccupantAmount: Decimal;
         OcAmountInt: Integer;
         TempCount: Integer;
@@ -817,7 +827,7 @@ page 50014 "SVA Property Card"
         OcAmountText: Text[10];
         OcNumber: Text[10];
         Position: Integer;
-        Tenancies: Record "SVA Tenancy";
+        IsOfficeAddin: Boolean;
 
 
 

@@ -14,55 +14,55 @@ page 50018 "SVA Setup Estate List"
         {
             repeater(General)
             {
-                Caption='General';
-                field(Name;Name)
-                {                    
+                Caption = 'General';
+                field(Name; Name)
+                {
                     ApplicationArea = All;
-                    Tooltip='Company name';
+                    Tooltip = 'Company name';
                 }
-                field("VAT Registration No.";"VAT Registration No.")
-                {                    
+                field("VAT Registration No."; "VAT Registration No.")
+                {
                     ApplicationArea = All;
-                    Tooltip='Company branch number';
+                    Tooltip = 'Company branch number';
                 }
-                field("Bank Name";"Bank Name")
-                {                    
+                field("Bank Name"; "Bank Name")
+                {
                     ApplicationArea = All;
-                    ToolTip='Bank name';
+                    ToolTip = 'Bank name';
                 }
-                field(BS_AftaleNo;BS_AftaleNo)
-                {                    
+                field(BS_AftaleNo; BS_AftaleNo)
+                {
                     ApplicationArea = All;
-                    Tooltip='Agreement number';
+                    Tooltip = 'Agreement number';
                 }
-                field(BS_Dataprovider;BS_Dataprovider)
-                {                    
+                field(BS_Dataprovider; BS_Dataprovider)
+                {
                     ApplicationArea = All;
-                    Tooltip='Dataprovider. Not necessarily companys branch number';
+                    Tooltip = 'Dataprovider. Not necessarily companys branch number';
                 }
-                field(BS_Delsystem;BS_Delsystem)
-                {                    
+                field(BS_Delsystem; BS_Delsystem)
+                {
                     ApplicationArea = All;
-                    Tooltip='Partsystem for NETS agreement';
+                    Tooltip = 'Partsystem for NETS agreement';
                 }
-                field(BS_DebGrp;BS_DebGrp)
-                {                    
+                field(BS_DebGrp; BS_DebGrp)
+                {
                     ApplicationArea = All;
-                    Tooltip='NETS customer group';
+                    Tooltip = 'NETS customer group';
                 }
             }
         }
         area(factboxes)
         {
-            systempart(Links;Links)
-            {
-                ApplicationArea = All;
-            }   
-            systempart(Notes;Notes)
+            systempart(Links; Links)
             {
                 ApplicationArea = All;
             }
-            
+            systempart(Notes; Notes)
+            {
+                ApplicationArea = All;
+            }
+
         }
     }
 

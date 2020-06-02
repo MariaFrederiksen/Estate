@@ -7,9 +7,9 @@ report 50026 "SVA Occupant Trans"
 
     dataset
     {
-
         dataitem(Occupant; "SVA Occupant")
         {
+            
             column(CompanyName; COMPANYPROPERTY.DISPLAYNAME)
             {
             }
