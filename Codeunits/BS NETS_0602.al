@@ -192,8 +192,14 @@ codeunit 50005 "SVA BS NETS 0602"
             GeneralLedgerLine."Document No." := DocNo;
             GeneralLedgerLine."Document Type" := 1;
             GeneralLedgerLine.Validate("Document Type");
-            GeneralLedgerLine."Account Type" := 0;
+            GeneralLedgerLine."Bal. Account Type" := GeneralLedgerName."Bal. Account Type";
+            GeneralLedgerLine."Account Type" := GeneralLedgerName."Bal. Account Type";
             GeneralLedgerLine.Validate("Account Type");
+            GeneralLedgerLine."Account No." := GeneralLedgerName."Bal. Account No.";
+            if GeneralLedgerLine."Account No." = '' then
+                GeneralLedgerLine."Account No." := Ledaccount;
+            GeneralLedgerLine.Validate("Account No.");    
+            
             AmountStr15 := CopyStr(Importtable.Value, 43, 15);
             Evaluate(AmountVar, AmountStr15);
             GeneralLedgerLine.Amount := (AmountVar / 100) - AmountOut;
@@ -201,14 +207,11 @@ codeunit 50005 "SVA BS NETS 0602"
             GeneralLedgerLine.Validate(Amount);
             GeneralLedgerLine.Validate("Line No.", GeneralLedgerLine.GetNewLineNo(Journaltype, JournalName));
 
-            GeneralLedgerLine.Validate("Account No.");
+            
             if PostingText <> '' then
                 GeneralLedgerLine.Description := PostingText;
-            //GeneralLedgerLine."Bal. Account Type" := 3; //bankkonto
-            GeneralLedgerLine."Bal. Account Type" := GeneralLedgerName."Bal. Account Type";
-            GeneralLedgerLine."Account No." := GeneralLedgerName."Bal. Account No.";
-            if GeneralLedgerLine."Account No." = '' then
-                GeneralLedgerLine."Account No." := Ledaccount;
+
+
             GeneralLedgerLine."Applies-to Doc. No." := '';
             GeneralLedgerLine."Applies-to Doc. Type" := 0;
             if GeneralLedgerLine.Amount > 0 then

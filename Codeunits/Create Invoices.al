@@ -13,12 +13,10 @@ codeunit 50001 "SVA Create Invoice Estate"
         ELSE
             InvoiceDate := DMY2DATE(1, DATE2DMY(WorkDate, 2) + 1, DATE2DMY(WorkDate, 3));
 
-       //Message(Format(InvoiceDate));
 
-        /* if Answer = Dialog.Confirm('Der dannes faktura pr. ' + FORMAT(InvoiceDate)) = true then
-            Error('Kørslen afbrydes'); */
 
-        //Message(Format(InvoiceDate));
+        if Answer = Dialog.Confirm('Der dannes faktura pr. ' + FORMAT(InvoiceDate)) = true then
+            Error('Kørslen afbrydes');
 
         //Test. Is there active subscriptionlines for contracts without enddate
         Ready := 0;
@@ -33,7 +31,7 @@ codeunit 50001 "SVA Create Invoice Estate"
                 IF Subscription.FindSet THEN
                     Ready := 0;
                 repeat
-                    IF (Subscription."Date To" = 0D) OR (Subscription."Date To" > InvoiceDate) then
+                    IF ((Subscription."Date To" = 0D) OR (Subscription."Date To" > InvoiceDate)) and (Subscription."Date From" <= InvoiceDate) then
                         Ready := 1;
                 until Subscription.Next = 0;
 
@@ -57,7 +55,7 @@ codeunit 50001 "SVA Create Invoice Estate"
                 IF Subscription.FindSet THEN BEGIN
                     ready := 0;
                     repeat
-                        IF (Subscription."Date To" = 0D) OR (Subscription."Date To" > InvoiceDate) then
+                        IF ((Subscription."Date To" = 0D) OR (Subscription."Date To" > InvoiceDate)) and (Subscription."Date From" <= InvoiceDate) then
                             Ready := 1
                     until Subscription.Next = 0;
                     IF Ready = 0 THEN BEGIN
@@ -96,7 +94,7 @@ codeunit 50001 "SVA Create Invoice Estate"
         QtYrCollection();
         HalfYrCollection();
         YrCollection();
-        //Message('Før journal posting.');
+
         //Journal posting
         Journal.Reset;
         Journal.SetRange(Journal."Journal Template Name", JournalType);
@@ -165,6 +163,7 @@ codeunit 50001 "SVA Create Invoice Estate"
         IF Invoice.FINDFIRST THEN
             DoInvoice := false;
         //End test
+
         IF DoInvoice = true then begin
             //Dan ordrehoved
             SalesHeader.INIT;
@@ -193,7 +192,6 @@ codeunit 50001 "SVA Create Invoice Estate"
             SalesHeader."SVA Occupant" := Occupants.Number;
             SalesHeader."Dimension Set ID" := Occupants."Dimension Set Id";
             SalesHeader.Invoice := Choise;
-
             Cust.RESET;
             Cust.SETRANGE(cust."No.", Occupants."Customer No");
             IF Cust.FINDFIRST() THEN BEGIN
@@ -316,7 +314,7 @@ codeunit 50001 "SVA Create Invoice Estate"
         Sektion: text[3];
         Ledaccount: Text[10];
         DocNo: Text[20];
-        DoPosting: Boolean;
+        DoPosting_IM: Boolean;
         Rate: Decimal;
         Costtype22: Code[10];
 
@@ -328,7 +326,7 @@ codeunit 50001 "SVA Create Invoice Estate"
             JournalType := Parameters.IM_WorkSheetType;
             JournalName := Parameters.IM_WorkSheet;
             Costtype22 := Parameters.IM_Costtype;
-            DoPosting := Parameters.IM_Autoposting;
+            DoPosting_IM := Parameters.IM_Autoposting;
             Rate := Parameters.IntMaintenance;
             if Rate = 0 then
                 Error('Rate is missing.');
@@ -338,10 +336,10 @@ codeunit 50001 "SVA Create Invoice Estate"
         if CosttypeCard.FindFirst() then
             AccountTo22 := CosttypeCard.Account;
         //Test
-        if (AccountTo22 = '') and (DoPosting = true) then
+        if (AccountTo22 = '') and (DoPosting_IM = true) then
             Error('Account to Internal maintance is missing');
 
-        if DoPosting = true then begin
+        if DoPosting_IM = true then begin
             ContractCard.Reset();
             ContractCard.SetRange(Number, Contract);
             if ContractCard.FindFirst() then begin
@@ -749,14 +747,7 @@ codeunit 50001 "SVA Create Invoice Estate"
         end;
     end;
 
-    [EventSubscriber(ObjectType::Codeunit, 231, 'OnBeforeCode', '', false, false)]
-    local procedure HideDialog_LP()
-    var
-        Journal1: Codeunit "Gen. Jnl.-Post";
-        HideDialog: Boolean;
-    begin
 
-    end;
 
 }
 

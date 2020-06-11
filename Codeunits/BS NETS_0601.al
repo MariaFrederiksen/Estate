@@ -38,6 +38,7 @@ codeunit 50007 "SVA NETS BS 0601"
                 Subsystem := Property.ESRSystem;
                 CreditorPBSno := Property.ESRNumber;
                 DebtorGroupNo := Property.ESRCustgrp;
+                PaymentMethod := Parameters.PaymentMethodForNets;
                 Advis := Parameters.BS_Advis;
                 If Subsystem = '' then
                     Subsystem := Parameters.BS_Delsystem;
@@ -49,6 +50,7 @@ codeunit 50007 "SVA NETS BS 0601"
                     Advis := Parameters.BS_Advis;
 
                 Customer.reset;
+                Customer.SetRange("Payment Method Code", PaymentMethod);
                 if Customer.FindSet() then
                     repeat
                         SalesInvoiceHeader.RESET;
@@ -295,6 +297,8 @@ codeunit 50007 "SVA NETS BS 0601"
         Arrears: Boolean;
         DueAmount: Decimal;
         Repayments: Record "SVA Contract regulations";
+        PaymentMethod: Text[10];
+
 
     local procedure F002();
     begin

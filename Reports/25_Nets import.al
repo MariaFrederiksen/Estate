@@ -61,7 +61,7 @@ report 50025 "SVA Import NETS"
                             Evaluate(Amount, AmountStr);
                             Amount := Amount / 100;
                         end;
-                        if CopyStr(Value, 14, 3) <> '0236' then
+                        if CopyStr(Value, 14, 4) <> '0236' then
                             AmountOut := AmountOut + Amount;
 
                         Account := CopyStr(Value, 26, 15);
