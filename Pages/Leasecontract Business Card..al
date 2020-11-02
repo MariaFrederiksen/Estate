@@ -158,7 +158,7 @@ page 50005 "SVA Lease Business"
             {
                 ApplicationArea = All;
             }
-            
+
         }
     }
 
@@ -176,12 +176,12 @@ page 50005 "SVA Lease Business"
 
                 trigger Onaction();
                 begin
-                    CLEAR(Contract);
-                    Contract.SETRANGE(Number, Rec.Number);
-                    IF Contract.FindFirst() THEN begin
-                        CLEAR(MoveInJournal);
-                        MoveInJournal.SETTABLEVIEW(Contract);
-                        MoveInJournal.RunModal;
+                    CLEAR(SVALeaseContractA9);
+                    SVALeaseContractA9.SETRANGE(Number, Rec.Number);
+                    IF SVALeaseContractA9.FindFirst() THEN begin
+                        CLEAR(SVAMovingInJournal);
+                        SVAMovingInJournal.SETTABLEVIEW(SVALeaseContractA9);
+                        SVAMovingInJournal.RunModal();
                     END;
                 end;
             }
@@ -194,10 +194,10 @@ page 50005 "SVA Lease Business"
 
                 trigger OnAction();
                 begin
-                    CLEAR(Contract);
-                    Contract.SETRANGE(Number, Rec.Number);
-                    IF Contract.FindFirst() then
-                        Codeunit.run(Codeunit::"SVA Move In Invoice", Contract);
+                    CLEAR(SVALeaseContractA9);
+                    SVALeaseContractA9.SETRANGE(Number, Rec.Number);
+                    IF SVALeaseContractA9.FindFirst() then
+                        Codeunit.run(Codeunit::"SVA Move In Invoice", SVALeaseContractA9);
                 end;
             }
 
@@ -206,12 +206,12 @@ page 50005 "SVA Lease Business"
 
     trigger OnAfterGetCurrRecord();
     begin
-        CurrPage.UPDATE;
+        CurrPage.UPDATE();
     end;
 
     var
-        Contract: Record "SVA LeaseContract_A9";
-        MoveInJournal: Report "SVA Moving in Journal";
+        SVALeaseContractA9: Record "SVA LeaseContract_A9";
+        SVAMovinginJournal: Report "SVA Moving in Journal";
 }
 
 

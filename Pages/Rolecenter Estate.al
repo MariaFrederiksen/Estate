@@ -359,13 +359,6 @@ page 50050 "SVA Estate Role Center"
                     RunObject = page "SVA Cost Type Estate List";
                     ApplicationArea = All;
                 }
-                action(Estate)
-                {
-                    Caption = 'Estate';
-                    ToolTip = 'Setup for NETS etc.';
-                    RunObject = page "SVA Setup Estate List";
-                    ApplicationArea = All;
-                }
             }
         }
         area(creation)

@@ -1,4 +1,4 @@
-xmlport 50066 "SVA Import Occupants"
+xmlport 50006 "SVA Import Occupants"
 {
     FieldSeparator = ';';
     Format = VariableText;
@@ -80,7 +80,7 @@ xmlport 50066 "SVA Import Occupants"
         {
         }
     }
-    
+
     trigger OnPostXmlPort();
     begin
         Message('Beboeraftaler er indlæst');

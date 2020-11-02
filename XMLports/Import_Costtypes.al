@@ -1,4 +1,4 @@
-xmlport 50061 "SVA Import Estate Cost Type"
+xmlport 50001 "SVA Import Estate Cost Type"
 {
     FieldSeparator = ';';
     Format = VariableText;

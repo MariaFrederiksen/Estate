@@ -1,4 +1,4 @@
-xmlport 50060 "SVA Import Collections"
+xmlport 50000 "SVA Import Collections"
 {
     FieldSeparator = ';';
     Format = VariableText;
@@ -8,37 +8,37 @@ xmlport 50060 "SVA Import Collections"
     {
         textelement(Root)
         {
-            tableelement("SVA Subscription Lines";"SVA Subscription Lines")
+            tableelement("SVA Subscription Lines"; "SVA Subscription Lines")
             {
                 XmlName = 'Subscriptionlines';
-                fieldattribute(Tenancies;"SVA Subscription Lines".Tenancies)
+                fieldattribute(Tenancies; "SVA Subscription Lines".Tenancies)
                 {
                 }
-                fieldattribute(Costtype;"SVA Subscription Lines"."Cost Types")
+                fieldattribute(Costtype; "SVA Subscription Lines"."Cost Types")
                 {
                 }
-                fieldattribute(Description;"SVA Subscription Lines".Description)
+                fieldattribute(Description; "SVA Subscription Lines".Description)
                 {
                 }
-                fieldattribute(FromDate;"SVA Subscription Lines"."Date From")
+                fieldattribute(FromDate; "SVA Subscription Lines"."Date From")
                 {
                 }
-                fieldattribute(Todate;"SVA Subscription Lines"."Date To")
+                fieldattribute(Todate; "SVA Subscription Lines"."Date To")
                 {
                 }
-                fieldattribute(AmountYear;"SVA Subscription Lines"."Amount Year")
+                fieldattribute(AmountYear; "SVA Subscription Lines"."Amount Year")
                 {
                 }
-                fieldattribute(AmountPer;"SVA Subscription Lines"."Amount Period")
+                fieldattribute(AmountPer; "SVA Subscription Lines"."Amount Period")
                 {
                 }
-                fieldattribute(Counter;"Sva subscription lines".keynumber)
+                fieldattribute(Counter; "Sva subscription lines".keynumber)
                 {
                 }
-                fieldattribute(Prod;"SVA Subscription Lines".ProductPostingGroup)
+                fieldattribute(Prod; "SVA Subscription Lines".ProductPostingGroup)
                 {
                 }
-                fieldattribute(Vat;"SVA Subscription Lines".VatGroup)
+                fieldattribute(Vat; "SVA Subscription Lines".VatGroup)
                 {
                 }
             }
@@ -59,12 +59,13 @@ xmlport 50060 "SVA Import Collections"
     trigger OnPreXmlPort();
     begin
         //Only on start of a new client.
-        //"SVA Subscription Lines".DeleteAll;
+        //"SVA Subscription Lines".DeleteAll();
     end;
+
     trigger OnPostXmlPort();
     begin
         Message('Opkrævningslinjer er indlæst');
     end;
-    
+
 }
 

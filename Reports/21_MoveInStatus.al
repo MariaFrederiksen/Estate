@@ -6,11 +6,11 @@ report 50020 "SVA Moving in status"
 
     dataset
     {
-        dataitem(DataItem1000000000; "SVA MovingIn Status")
+        dataitem("SVA MovingIn Status"; "SVA MovingIn Status")
         {
-            DataItemTableView = SORTING (Occupant);
+            DataItemTableView = SORTING(Occupant);
             RequestFilterFields = Occupant;
-            column(CompanyName;COMPANYPROPERTY.DISPLAYNAME)
+            column(CompanyName; COMPANYPROPERTY.DISPLAYNAME())
             {
             }
 

@@ -1,0 +1,30 @@
+{
+    "name": "Estate ruleset",
+    "description": "Estate Custom Code Analysis Ruleset",
+    "rules": [
+      {
+        "id": "AA0215",
+        "action": "None",
+        "justification": "File name"
+      }
+      ,
+      {
+        "id": "AA0139",
+        "action": "None",
+        "justification": "Possible overflow assigning"
+      }
+      ,
+      {
+        "id": "AA0001",
+        "action": "None",
+        "justification": "Excactly one space"
+      }
+      ,
+      {
+        "id": "AA0072",
+        "action": "None",
+        "justification": "Der mangler SVA - og der skal mangle i Codeunit SVAGenJournalLine"
+      }
+
+    ]
+}

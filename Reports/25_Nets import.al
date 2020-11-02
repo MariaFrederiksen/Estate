@@ -8,7 +8,7 @@ report 50025 "SVA Import NETS"
     {
         dataitem("CSV Buffer"; "CSV Buffer")
         {
-            column(CompanyName; COMPANYPROPERTY.DISPLAYNAME)
+            column(CompanyName; COMPANYPROPERTY.DISPLAYNAME())
             {
             }
             column(Account; Account)
@@ -68,9 +68,9 @@ report 50025 "SVA Import NETS"
                         while CopyStr(Account, 1, 1) = '0' do
                             Account := CopyStr(Account, 2, 15);
 
-                        Customer.Reset;
+                        Customer.Reset();
                         Customer.SetRange("No.", Account);
-                        if Customer.FindFirst then
+                        if Customer.FindFirst() then
                             Name := Customer.Name;
 
                         Invoice := CopyStr(Value, 70, 10); //kun til blank
@@ -95,9 +95,9 @@ report 50025 "SVA Import NETS"
                         while CopyStr(Account, 1, 1) = '0' do
                             Account := CopyStr(Account, 2, 15);
 
-                        Customer.Reset;
+                        Customer.Reset();
                         Customer.SetRange("No.", Account);
-                        if Customer.FindFirst then
+                        if Customer.FindFirst() then
                             Name := Customer.Name;
 
                         Invoice := CopyStr(Value, 73, 9);
@@ -122,11 +122,11 @@ report 50025 "SVA Import NETS"
                     end;
                 end;
                 if copystr(Value, 1, 5) = 'BS002' then
-                    CurrReport.Skip;
+                    CurrReport.Skip();
                 if copystr(Value, 1, 5) = 'BS012' then
-                    CurrReport.Skip;
+                    CurrReport.Skip();
                 if copystr(Value, 1, 5) = 'BS092' then
-                    CurrReport.Skip;
+                    CurrReport.Skip();
             end;
         }
 

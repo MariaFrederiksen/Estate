@@ -175,16 +175,16 @@ page 50006 "SVA Leasecontract_Garage"
 
                 trigger OnAction();
                 begin
-                    CLEAR(Contract);
-                    Contract.SETRANGE(Number, Rec.Number);
-                    IF Contract.FindFirst() THEN begin
-                        CLEAR(Garage);
-                        Garage.SETTABLEVIEW(Contract);
-                        Garage.RUNMODAL;
+                    CLEAR(SVALeaseContractA9);
+                    SVALeaseContractA9.SETRANGE(Number, Rec.Number);
+                    IF SVALeaseContractA9.FindFirst() THEN begin
+                        CLEAR(SVAContractGarage);
+                        SVAContractGarage.SETTABLEVIEW(SVALeaseContractA9);
+                        SVAContractGarage.RunModal();
                     END;
                 end;
             }
-            action(MoveInJournal)
+            action(SVAMovinginJ)
             {
                 ApplicationArea = all;
                 Caption = 'Move in journal';
@@ -193,12 +193,12 @@ page 50006 "SVA Leasecontract_Garage"
 
                 trigger Onaction();
                 begin
-                    CLEAR(Contract);
-                    Contract.SETRANGE(Number, Rec.Number);
-                    IF Contract.FindFirst() THEN begin
-                        CLEAR(MoveInJournal);
-                        MoveInJournal.SETTABLEVIEW(Contract);
-                        MoveInJournal.RunModal;
+                    CLEAR(SVALeaseContractA9);
+                    SVALeaseContractA9.SETRANGE(Number, Rec.Number);
+                    IF SVALeaseContractA9.FindFirst() THEN begin
+                        CLEAR(SVAMovinginJournal);
+                        SVAMovinginJournal.SETTABLEVIEW(SVALeaseContractA9);
+                        SVAMovinginJournal.RunModal();
                     END;
                 end;
             }
@@ -211,10 +211,10 @@ page 50006 "SVA Leasecontract_Garage"
 
                 trigger OnAction();
                 begin
-                    CLEAR(Contract);
-                    Contract.SETRANGE(Number, Rec.Number);
-                    IF Contract.FindFirst() then
-                        Codeunit.run(Codeunit::"SVA Move In Invoice", Contract);
+                    CLEAR(SVALeaseContractA9);
+                    SVALeaseContractA9.SETRANGE(Number, Rec.Number);
+                    IF SVALeaseContractA9.FindFirst() then
+                        Codeunit.run(Codeunit::"SVA Move In Invoice", SVALeaseContractA9);
                 end;
 
             }
@@ -225,13 +225,13 @@ page 50006 "SVA Leasecontract_Garage"
 
     trigger OnAfterGetCurrRecord();
     begin
-        CurrPage.UPDATE;
+        CurrPage.UPDATE();
     end;
 
     var
-        Contract: Record "SVA LeaseContract_A9";
-        Garage: report "SVA Contract Garage";
-        MoveInJournal: Report "SVA Moving in Journal";
+        SVALeaseContractA9: Record "SVA LeaseContract_A9";
+        SVAContractGarage: report "SVA Contract Garage";
+        SVAMovinginJournal: Report "SVA Moving in Journal";
 }
 
 

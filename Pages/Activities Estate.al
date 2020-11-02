@@ -1,7 +1,5 @@
 page 50001 "SVA Bookkeeper Activities"
 {
-    // version NAVW110.00,NAVDK10.00
-    //Tooltip created.
 
     Caption = 'Activities';
     PageType = CardPart;
@@ -16,7 +14,7 @@ page 50001 "SVA Bookkeeper Activities"
             cuegroup(Stamdata)
             {
                 Caption = 'Basic data';
-                
+
 
                 field("Occpupants"; "SVA Occupant")
                 {
@@ -73,19 +71,18 @@ page 50001 "SVA Bookkeeper Activities"
 
     trigger OnOpenPage();
     begin
-        RESET;
-        IF NOT GET THEN BEGIN
-            INIT;
-            INSERT;
+        Reset();
+        IF NOT Get() THEN BEGIN
+            Init();
+            Insert();
         END;
 
-        SETFILTER("Due Date Filter", '<=%1', WORKDATE);
-        SETFILTER("Overdue Date Filter", '<%1', WORKDATE);
+        SETFILTER("Due Date Filter", '<=%1', WORKDATE());
+        SETFILTER("Overdue Date Filter", '<%1', WORKDATE());
         SETFILTER("User ID Filter", USERID);
         SETFILTER("SVA Date Filter", '');
     end;
 
     var
-        EmptyDate: Date;
 }
 

@@ -2,7 +2,6 @@ table 50006 "SVA Occupant Trans"
 {
     Caption = 'Occupant postings';
     DataClassification = CustomerContent;
-    Permissions = TableData 50006 = rimd;
     DrillDownPageID = "SVA Occupant Trans List";
     LookupPageID = "SVA Occupant Trans List";
 
@@ -63,6 +62,6 @@ table 50006 "SVA Occupant Trans"
 
 
     var
-        CosttypeEstateRec: Record "SVA Cost type";
+       
 }
 

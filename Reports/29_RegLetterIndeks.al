@@ -151,10 +151,10 @@ report 50029 "SVA Regulation Indeks"
     }
     trigger OnPreReport();
     begin
-        CompanyInfo.GET;
+        CompanyInformation.GET();
     end;
 
     var
-        CompanyInfo: Record "Company Information";
+        CompanyInformation: Record "Company Information";
 }
 

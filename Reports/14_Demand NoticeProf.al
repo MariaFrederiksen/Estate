@@ -2,119 +2,117 @@ report 50014 "SVA DemandNoticeProf"
 {
 
     WordLayout = './Layouts/DemandNoticeProf.docx';
-    Caption='Demand notice Prof';
+    Caption = 'Demand notice Prof';
     DefaultLayout = Word;
 
     dataset
     {
-        dataitem(Occupant;"SVA Occupant")
+        dataitem(Occupant; "SVA Occupant")
         {
-            column(Number_Occupant;Number)
+            column(Number_Occupant; Number)
             {
             }
-            column(PropertyNo_Occupant;PropertyNo)
+            column(PropertyNo_Occupant; PropertyNo)
             {
             }
-            column(TenancyNo_Occupant;TenancyNo)
+            column(TenancyNo_Occupant; TenancyNo)
             {
             }
-            column(CustomerNo_Occupant;"Customer No")
+            column(CustomerNo_Occupant; "Customer No")
             {
             }
-            column(Name1_Occupant;Name1)
+            column(Name1_Occupant; Name1)
             {
             }
-            column(Name2_Occupant;Name2)
+            column(Name2_Occupant; Name2)
             {
             }
-            column(Address_Occupant;Address)
+            column(Address_Occupant; Address)
             {
             }
-            column(Address2_Occupant;Address2)
+            column(Address2_Occupant; Address2)
             {
             }
-            column(PostCode_Occupant;"Post Code")
+            column(PostCode_Occupant; "Post Code")
             {
             }
-            column(City_Occupant;City)
+            column(City_Occupant; City)
             {
             }
-            column(CountryRegionCode_Occupant;"Country/Region Code")
+            column(CountryRegionCode_Occupant; "Country/Region Code")
             {
             }
-            dataitem(Tenancy;"SVA Tenancy")
+            dataitem(Tenancy; "SVA Tenancy")
             {
-                DataItemLink = Number=FIELD(TenancyNo);
-                column(Address1_Tenancy;Address1)
+                DataItemLink = Number = FIELD(TenancyNo);
+                column(Address1_Tenancy; Address1)
                 {
                 }
-                column(PostCode_Tenancy;"Post Code")
+                column(PostCode_Tenancy; "Post Code")
                 {
                 }
-                column(City_Tenancy;City)
+                column(City_Tenancy; City)
                 {
                 }
             }
-            dataitem("Sales Invoice Header";"Sales Invoice Header")
+            dataitem("Sales Invoice Header"; "Sales Invoice Header")
             {
-                DataItemLink = "SVA Occupant"=FIELD(Number);
-                column(No_SalesInvoiceHeader;"No.")
+                DataItemLink = "SVA Occupant" = FIELD(Number);
+                column(No_SalesInvoiceHeader; "No.")
                 {
                 }
-                column(PostingDate_SalesInvoiceHeader;FORMAT("Posting Date"))
+                column(PostingDate_SalesInvoiceHeader; FORMAT("Posting Date"))
                 {
                 }
-                column(DueDate_SalesInvoiceHeader;FORMAT("Due Date"))
+                column(DueDate_SalesInvoiceHeader; FORMAT("Due Date"))
                 {
                 }
-                column(AmountIncludingVAT_SalesInvoiceHeader;"Amount Including VAT")
+                column(AmountIncludingVAT_SalesInvoiceHeader; "Amount Including VAT")
                 {
                 }
-                column(RemainingAmount_SalesInvoiceHeader;"Remaining Amount")
+                column(RemainingAmount_SalesInvoiceHeader; "Remaining Amount")
                 {
                 }
-                column(PostingDescr;"Posting Description")
+                column(PostingDescr; "Posting Description")
                 {
                 }
-                dataitem("Sales Invoice Line";"Sales Invoice Line")
+                dataitem("Sales Invoice Line"; "Sales Invoice Line")
                 {
-                    DataItemLink = "Document No."=FIELD("No.");
-                    column(DocumentNo_SalesInvoiceLine;"Document No.")
+                    DataItemLink = "Document No." = FIELD("No.");
+                    column(DocumentNo_SalesInvoiceLine; "Document No.")
                     {
                     }
-                    column(Description_SalesInvoiceLine;Description)
+                    column(Description_SalesInvoiceLine; Description)
                     {
                     }
-                    column(AmountIncludingVAT_SalesInvoiceLine;"Amount Including VAT")
+                    column(AmountIncludingVAT_SalesInvoiceLine; "Amount Including VAT")
                     {
                     }
 
                     trigger OnAfterGetRecord();
                     begin
-                        Costtype.RESET;
-                        Costtype.SETRANGE(Costtype,"SVA CostType");
-                        IF Costtype.FINDFIRST() THEN BEGIN
-                          IF Costtype.Type = 8 THEN BEGIN
-                            LiableAmountTotal -= "Amount Including VAT";
-                            END;
-                          END;
+                        SVACosttype.Reset();
+                        SVACosttype.SETRANGE(Costtype, "SVA Costtype");
+                        IF SVACosttype.FINDFIRST() THEN
+                            IF SVACosttype.Type = 8 THEN
+                                LiableAmountTotal -= "Amount Including VAT";
                     end;
                 }
 
                 trigger OnAfterGetRecord();
                 begin
                     IF "Due Date" > TODAY THEN
-                      CurrReport.SKIP;
+                        CurrReport.Skip();
                     InvoiceAmountTotal += "Amount Including VAT";
                     LiableAmountTotal += "Amount Including VAT";
                 end;
             }
-            dataitem(Parameters;"SVA Parameters")
+            dataitem(Parameters; "SVA Parameters")
             {
-                column(ReminderFeeRes;ReminderFeeRes)
+                column(ReminderFeeRes; ReminderFeeRes)
                 {
                 }
-                column(ReminderFeeProf;ReminderFeeProf)
+                column(ReminderFeeProf; ReminderFeeProf)
                 {
                 }
 
@@ -125,48 +123,48 @@ report 50014 "SVA DemandNoticeProf"
                 end;
             }
         }
-        dataitem("Company information";"Company Information")
+        dataitem("Company information"; "Company Information")
         {
-            column(CName;Companyinfo.Name)
+            column(CName; CompanyInformation.Name)
             {
             }
-            column(CAdress;Companyinfo.Address)
+            column(CAdress; CompanyInformation.Address)
             {
             }
-            column(CPostcode;Companyinfo."Post Code")
+            column(CPostcode; CompanyInformation."Post Code")
             {
             }
-            column(CCIty;City)
+            column(CCIty; City)
             {
             }
-            column(CompanyVAT_Registration_No_;"VAT Registration No.")
+            column(CompanyVAT_Registration_No_; "VAT Registration No.")
             {
             }
-            column(CompanyGetVATRegistrationNumberLbl;GetVATRegistrationNumberLbl)
+            column(CompanyGetVATRegistrationNumberLbl; GetVATRegistrationNumberLbl())
             {
             }
-            column(CompanyPhone_No_;"Phone No.")
+            column(CompanyPhone_No_; "Phone No.")
             {
             }
-            column(COmpanyPicture;Picture)
+            column(COmpanyPicture; Picture)
             {
             }
-            column(CompanyBankBranchNo;Companyinfo."Bank Branch No.")
+            column(CompanyBankBranchNo; CompanyInformation."Bank Branch No.")
             {
             }
-            column(CompanyBanAccountNo;Companyinfo."Bank Branch No.")
+            column(CompanyBanAccountNo; CompanyInformation."Bank Branch No.")
             {
             }
-            column(CompanyBankName;Companyinfo."Bank Name")
+            column(CompanyBankName; CompanyInformation."Bank Name")
             {
             }
-            column(InvoicesAmount;InvoiceAmountTotal)
+            column(InvoicesAmount; InvoiceAmountTotal)
             {
             }
-            column(TotalAmount;TotalAmount)
+            column(TotalAmount; TotalAmount)
             {
             }
-            column(LiableAmount;LiableAmountTotal)
+            column(LiableAmount; LiableAmountTotal)
             {
             }
         }
@@ -190,14 +188,15 @@ report 50014 "SVA DemandNoticeProf"
 
     trigger OnPreReport();
     begin
-        CompanyInfo.GET;
+        CompanyInformation.GET();
     end;
 
     var
-        CompanyInfo : Record "Company Information";
-        InvoiceAmountTotal : Decimal;
-        TotalAmount : Decimal;
-        Costtype : Record "SVA Cost type";
-        LiableAmountTotal : Decimal;
+        CompanyInformation: Record "Company Information";
+        SVACosttype: Record "SVA Cost type";
+        InvoiceAmountTotal: Decimal;
+        TotalAmount: Decimal;
+
+        LiableAmountTotal: Decimal;
 }
 

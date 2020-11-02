@@ -3,7 +3,7 @@ table 50011 "SVA License"
     // Licens for NAV Ejendom
     // Not visible for anyone
     DataClassification = CustomerContent;
-    Permissions = TableData 50011 = rimd;
+
        
 
     fields

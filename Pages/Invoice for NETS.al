@@ -2,7 +2,6 @@ page 50003 "SVA Sales Invoice NETS"
 //Tooltip created.
 {
     Caption = 'List of invoices for NETS';
-    Permissions = tabledata 112 = rm;
     DeleteAllowed = false;
     InsertAllowed = false;
     PageType = List;
@@ -106,7 +105,22 @@ page 50003 "SVA Sales Invoice NETS"
                 begin
 
                     CODEUNIT.RUN(Codeunit::"SVA NETS BS 0601");
-                    COMMIT;
+                    COMMIT();
+                    XMLPORT.RUN(xmlport::"SVA File for NETS", false);
+                end;
+            }
+            action(ArrearsforNets)
+            {
+                Caption = 'File with arrears for NETS';
+                ToolTip = 'Make a file with arrears and repayments for NETS for former occupants.';
+                Image = PostDocument;
+                ApplicationArea = all;
+
+                trigger OnAction();
+                begin
+
+                    CODEUNIT.RUN(Codeunit::"SVA NETS BS 0601 Arrears");
+                    COMMIT();
                     XMLPORT.RUN(xmlport::"SVA File for NETS", false);
                 end;
             }
@@ -129,29 +143,29 @@ page 50003 "SVA Sales Invoice NETS"
 
     trigger OnInit();
     begin
-        IF DATE2DMY(WorkDate, 2) = 12 THEN BEGIN
-            FromDate := DMY2DATE(1, DATE2DMY(WorkDate, 2) - 11, DATE2DMY(WorkDate, 3) + 1); //01-01-Next year
-        END;
-        IF DATE2DMY(WorkDate, 2) < 12 THEN BEGIN
-            FromDate := DMY2DATE(1, DATE2DMY(WorkDate, 2) + 1, DATE2DMY(WorkDate, 3)); //01-next month
-        end;
-        ToDate := CalcDate('<1M>-1D', FromDate);
+        IF DATE2DMY(WorkDate(), 2) = 12 THEN 
+            FromDate := DMY2DATE(1, DATE2DMY(WorkDate(), 2) - 11, DATE2DMY(WorkDate(), 3) + 1); //01-01-Next year
+        
+        IF DATE2DMY(WorkDate(), 2) < 12 THEN 
+            FromDate := DMY2DATE(1, DATE2DMY(WorkDate(), 2) + 1, DATE2DMY(WorkDate(), 3)); //01-next month
+        
+        ToDate := CalcDate('<1M-1D>', FromDate);
     end;
 
     trigger OnOpenPage();
     begin
-        Parameters.Reset();
-        if Parameters.FindFirst() then
-            PaymentMethodForNets := Parameters.PaymentMethodForNets;
+        SVAParameters.Reset();
+        if SVAParameters.FindFirst() then
+            PaymentMethodForNets := SVAParameters.PaymentMethodForNets;
 
         SETRANGE("Due Date", FromDate, ToDate);
         SetRange("Payment Method Code", PaymentMethodForNets);
     end;
 
     var
+        SVAParameters: Record "SVA Parameters";
         FromDate: Date;
         ToDate: Date;
-        Parameters: Record "SVA Parameters";
         PaymentMethodForNets: Text[20];
 
 

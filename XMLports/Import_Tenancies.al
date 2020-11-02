@@ -1,4 +1,4 @@
-xmlport 50069 "SVA Import Tenancies"
+xmlport 50009 "SVA Import Tenancies"
 {
     FieldSeparator = ';';
     Format = VariableText;
@@ -8,41 +8,41 @@ xmlport 50069 "SVA Import Tenancies"
     {
         textelement(Root)
         {
-            tableelement("SVA Tenancy";"SVA Tenancy")
+            tableelement("SVA Tenancy"; "SVA Tenancy")
             {
                 XmlName = 'Tenancies';
-                
-                fieldattribute(Number;"SVA Tenancy".Number)
+
+                fieldattribute(Number; "SVA Tenancy".Number)
                 {
                 }
-                fieldattribute(Property;"SVA Tenancy".PropertyNo)
+                fieldattribute(Property; "SVA Tenancy".PropertyNo)
                 {
                 }
-                fieldattribute(Name;"SVA Tenancy".Name)
+                fieldattribute(Name; "SVA Tenancy".Name)
                 {
                 }
-                fieldattribute(Address1;"SVA Tenancy".Address1)
+                fieldattribute(Address1; "SVA Tenancy".Address1)
                 {
                 }
-                fieldattribute(Address2;"SVA Tenancy".Address2)
+                fieldattribute(Address2; "SVA Tenancy".Address2)
                 {
                 }
-                fieldattribute(Postcode;"SVA Tenancy"."Post Code")
+                fieldattribute(Postcode; "SVA Tenancy"."Post Code")
                 {
                 }
-                fieldattribute(City;"SVA Tenancy".City)
+                fieldattribute(City; "SVA Tenancy".City)
                 {
                 }
-                fieldattribute("AreaTotal";"SVA Tenancy".AreaTotal)
+                fieldattribute("AreaTotal"; "SVA Tenancy".AreaTotal)
                 {
                 }
-                fieldattribute(Rooms;"SVA Tenancy".Rooms)
+                fieldattribute(Rooms; "SVA Tenancy".Rooms)
                 {
                 }
-                fieldattribute(Type;"SVA Tenancy".Type)
+                fieldattribute(Type; "SVA Tenancy".Type)
                 {
                 }
-                fieldattribute(PeriodYear;"SVA Tenancy".PeriodYear) //k
+                fieldattribute(PeriodYear; "SVA Tenancy".PeriodYear) //k
                 {
                 }
                 fieldattribute(Apartment; "SVA Tenancy".TypeA9_1_Apartment)
@@ -69,72 +69,72 @@ xmlport 50069 "SVA Import Tenancies"
                 {
 
                 }
-                fieldattribute(Garage;"SVA Tenancy".TypeA9_1_Garage)
+                fieldattribute(Garage; "SVA Tenancy".TypeA9_1_Garage)
                 {
 
                 }
-                fieldattribute(Loft;"SVA Tenancy".TypeA9_1_Attic) //s
+                fieldattribute(Loft; "SVA Tenancy".TypeA9_1_Attic) //s
                 {
 
                 }
-                fieldattribute(Indflytningssyn;"SVA Tenancy".TypeA9_7_InspecionIn)
+                fieldattribute(Indflytningssyn; "SVA Tenancy".TypeA9_7_InspecionIn)
                 {
 
                 }
-                fieldattribute(Vedl;"SVA Tenancy".TypeA9_8_maintainceInsideTenan)
+                fieldattribute(Vedl; "SVA Tenancy".TypeA9_8_maintainceInsideTenan)
                 {
 
                 }
-                fieldattribute(Komfur;"SVA Tenancy".TypeA9_9_Stove)
+                fieldattribute(Komfur; "SVA Tenancy".TypeA9_9_Stove)
                 {
 
                 }
-                fieldattribute(Køleskab;"SVA Tenancy".TypeA9_9_Fridge)
+                fieldattribute(Køleskab; "SVA Tenancy".TypeA9_9_Fridge)
                 {
 
                 }
-                fieldattribute(emhætte;"SVA Tenancy".TypeA9_9_Hood)
+                fieldattribute(emhætte; "SVA Tenancy".TypeA9_9_Hood)
                 {
 
                 }
-                fieldattribute(Opvaskemaskine;"SVA Tenancy".TypeA9_9_dishwasher)
+                fieldattribute(Opvaskemaskine; "SVA Tenancy".TypeA9_9_dishwasher)
                 {
 
                 }
-                fieldattribute(Vaskemaskine;"SVA Tenancy".TypeA9_9_Washer)
+                fieldattribute(Vaskemaskine; "SVA Tenancy".TypeA9_9_Washer)
                 {
 
                 }
-                fieldattribute(tøretumbler;"SVA Tenancy".TypeA9_9_Dryer)
+                fieldattribute(tøretumbler; "SVA Tenancy".TypeA9_9_Dryer)
                 {
 
                 }
-                fieldattribute(elpaneler;"SVA Tenancy".TypeA9_9_ElectricPanels)
+                fieldattribute(elpaneler; "SVA Tenancy".TypeA9_9_ElectricPanels)
                 {
 
                 }
-                fieldattribute(elqty;"SVA Tenancy".TypeA9_9_El_qty)
+                fieldattribute(elqty; "SVA Tenancy".TypeA9_9_El_qty)
                 {
 
                 }
-                fieldattribute(Vandvarme;"SVA Tenancy".TypeA9_9_WaterHeater)
+                fieldattribute(Vandvarme; "SVA Tenancy".TypeA9_9_WaterHeater)
                 {
 
                 }
-                fieldattribute(Waterheaterqty;"SVA Tenancy".TypeA9_9_WaterHeater_qty)
+                fieldattribute(Waterheaterqty; "SVA Tenancy".TypeA9_9_WaterHeater_qty)
                 {
                 }
-                fieldattribute(Tom1;"SVA Tenancy".TypeA9_9_Other1Text)
+                fieldattribute(Tom1; "SVA Tenancy".TypeA9_9_Other1Text)
                 {
 
                 }
-                fieldattribute(Tom2;"SVA Tenancy".TypeA9_9_Other2Text)
+                fieldattribute(Tom2; "SVA Tenancy".TypeA9_9_Other2Text)
                 {
-                    
+
                 }
-                fieldattribute(Tom3;"SVA Tenancy".TypeA9_9_Other3Text)
+                fieldattribute(Tom3; "SVA Tenancy".TypeA9_9_Other3Text)
                 {
-                    
+
                 }
 
             }

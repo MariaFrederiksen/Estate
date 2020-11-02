@@ -1,7 +1,6 @@
 table 50014 "SVA Import Buffer"
 {
     DataClassification = CustomerContent;
-    Permissions = TableData 50014 = rimd;
 
     fields
     {

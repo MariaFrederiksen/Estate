@@ -1,8 +1,8 @@
 report 50022 "SVA Occupants regulations"
 {
     Caption = 'List of Occupants regulations';
-    DefaultLayout = Word;
-    WordLayout = './Layouts/SVA List regulations.docx';
+    DefaultLayout = rdlc;
+    RDLCLayout = './Layouts/RegulationList.rdlc';
     UsageCategory = ReportsAndAnalysis;
 
 
@@ -12,7 +12,12 @@ report 50022 "SVA Occupants regulations"
         {
             DataItemTableView = SORTING(PropertyNo, TenancyNo)
                                     ORDER(Ascending);
-            column(CompanyName; COMPANYPROPERTY.DISPLAYNAME)
+
+            column(Headline; Headline)
+            {
+
+            }
+            column(CompanyName; COMPANYPROPERTY.DISPLAYNAME())
             {
             }
 
@@ -76,16 +81,16 @@ report 50022 "SVA Occupants regulations"
                     IndeksNew := 0;
                     IndeksOld := 0;
                     if "SVA Contract regulations".Latest_regulation <> 0D then begin
-                        PriceIndeksRecord.Reset;
-                        PriceIndeksRecord.setrange(IndeksNo, 'Netto');
-                        PriceIndeksRecord.SetRange(IndeksDate, CalcDate('<-1Y>', "SVA Contract regulations".Indeks_Date));
-                        if PriceIndeksRecord.FindFirst then
-                            IndeksNew := PriceIndeksRecord.Indeksrate;
-                        PriceIndeksRecord.Reset;
-                        PriceIndeksRecord.setrange(IndeksNo, 'Netto');
-                        PriceIndeksRecord.SetRange(IndeksDate, CalcDate('<-2Y>', "SVA Contract regulations".Indeks_Date));
-                        if PriceIndeksRecord.FindFirst then
-                            IndeksOld := PriceIndeksRecord.Indeksrate;
+                        SVAPriceIndeks.Reset();
+                        SVAPriceIndeks.setrange(IndeksNo, 'Netto');
+                        SVAPriceIndeks.SetRange(IndeksDate, CalcDate('<-1Y>', "SVA Contract regulations".Indeks_Date));
+                        if SVAPriceIndeks.FindFirst() then
+                            IndeksNew := SVAPriceIndeks.Indeksrate;
+                        SVAPriceIndeks.Reset();
+                        SVAPriceIndeks.setrange(IndeksNo, 'Netto');
+                        SVAPriceIndeks.SetRange(IndeksDate, CalcDate('<-2Y>', "SVA Contract regulations".Indeks_Date));
+                        if SVAPriceIndeks.FindFirst() then
+                            IndeksOld := SVAPriceIndeks.Indeksrate;
                     end;
                     if IndeksNew = 0 then
                         Indeks2 := '';
@@ -102,7 +107,8 @@ report 50022 "SVA Occupants regulations"
             trigger OnAfterGetRecord();
             begin
                 IF (EndDate < Today) AND (Enddate <> 0D) THEN
-                    CurrReport.SKIP
+                    CurrReport.Skip();
+                Headline := HeadlineLbl;
             end;
         }
     }
@@ -123,11 +129,12 @@ report 50022 "SVA Occupants regulations"
     {
     }
     var
-        IndeksdateOld: Date;
+        SVAPriceIndeks: Record "SVA PriceIndeks";
+        Headline: Text[30];
         IndeksOld: Decimal;
         IndeksNew: Decimal;
         Indeks1: Text[5];
         Indeks2: Text[5];
-        PriceIndeksRecord: Record "SVA PriceIndeks";
+        HeadlineLbl: Label 'Planned regulations';
 
 }

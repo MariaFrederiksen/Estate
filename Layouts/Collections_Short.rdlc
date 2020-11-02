@@ -702,6 +702,11 @@
                             <Border>
                               <Style>None</Style>
                             </Border>
+                            <BottomBorder>
+                              <Color>Black</Color>
+                              <Style>Solid</Style>
+                              <Width>1pt</Width>
+                            </BottomBorder>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                           </Style>
@@ -735,6 +740,11 @@
                             <Border>
                               <Style>None</Style>
                             </Border>
+                            <BottomBorder>
+                              <Color>Black</Color>
+                              <Style>Solid</Style>
+                              <Width>1pt</Width>
+                            </BottomBorder>
                             <BackgroundColor>White</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
@@ -768,6 +778,11 @@
                             <Border>
                               <Style>None</Style>
                             </Border>
+                            <BottomBorder>
+                              <Color>Black</Color>
+                              <Style>Solid</Style>
+                              <Width>1pt</Width>
+                            </BottomBorder>
                             <BackgroundColor>White</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
@@ -1497,10 +1512,10 @@
         <Height>12.51541cm</Height>
         <Style />
       </Body>
-      <Width>17.1398cm</Width>
+      <Width>17.5cm</Width>
       <Page>
         <PageHeader>
-          <Height>1.89618cm</Height>
+          <Height>2cm</Height>
           <PrintOnFirstPage>true</PrintOnFirstPage>
           <PrintOnLastPage>true</PrintOnLastPage>
           <ReportItems>
@@ -1522,10 +1537,9 @@
                       <Style />
                     </Paragraph>
                   </Paragraphs>
-                  <Top>0.77611cm</Top>
-                  <Left>0.0143cm</Left>
+                  <Top>0.9cm</Top>
                   <Height>11pt</Height>
-                  <Width>7.5cm</Width>
+                  <Width>9cm</Width>
                   <Style>
                     <VerticalAlign>Middle</VerticalAlign>
                     <PaddingLeft>2pt</PaddingLeft>
@@ -1538,7 +1552,7 @@
                     <Paragraph>
                       <TextRuns>
                         <TextRun>
-                          <Value>Opkrævningsjournal, kun saldi</Value>
+                          <Value>=First(Fields!Headline.Value, "DataSet_Result")</Value>
                           <Style>
                             <FontFamily>Segoe UI</FontFamily>
                             <FontSize>14pt</FontSize>
@@ -1549,10 +1563,8 @@
                       <Style />
                     </Paragraph>
                   </Paragraphs>
-                  <Top>0.07055cm</Top>
-                  <Left>0.0143cm</Left>
                   <Height>20pt</Height>
-                  <Width>7.5cm</Width>
+                  <Width>9cm</Width>
                   <ZIndex>1</ZIndex>
                   <Style>
                     <Border />
@@ -1588,10 +1600,9 @@
                       </Style>
                     </Paragraph>
                   </Paragraphs>
-                  <Top>1.12889cm</Top>
-                  <Left>0.0143cm</Left>
-                  <Height>20pt</Height>
-                  <Width>7.5cm</Width>
+                  <Top>1.4cm</Top>
+                  <Height>11pt</Height>
+                  <Width>9cm</Width>
                   <ZIndex>2</ZIndex>
                   <Style>
                     <Border />
@@ -1618,10 +1629,10 @@
                       </Style>
                     </Paragraph>
                   </Paragraphs>
-                  <Top>0.9525cm</Top>
-                  <Left>8.91331cm</Left>
+                  <Top>1.2cm</Top>
+                  <Left>10cm</Left>
                   <Height>11pt</Height>
-                  <Width>7.40979cm</Width>
+                  <Width>6cm</Width>
                   <ZIndex>3</ZIndex>
                   <Style>
                     <VerticalAlign>Middle</VerticalAlign>
@@ -1648,9 +1659,9 @@
                       </Style>
                     </Paragraph>
                   </Paragraphs>
-                  <Left>9.13773cm</Left>
+                  <Left>10cm</Left>
                   <Height>11pt</Height>
-                  <Width>7.18536cm</Width>
+                  <Width>6cm</Width>
                   <ZIndex>4</ZIndex>
                   <Style>
                     <Border />
@@ -1665,28 +1676,21 @@
                     <Paragraph>
                       <TextRuns>
                         <TextRun>
-                          <Value>Side </Value>
+                          <Value>=Fields!PageCaption.Value</Value>
                           <Style>
                             <FontFamily>Segoe UI</FontFamily>
                             <FontSize>8pt</FontSize>
                           </Style>
                         </TextRun>
                         <TextRun>
-                          <Value>=Globals!PageNumber</Value>
+                          <Value xml:space="preserve">  </Value>
                           <Style>
                             <FontFamily>Segoe UI</FontFamily>
                             <FontSize>8pt</FontSize>
                           </Style>
                         </TextRun>
                         <TextRun>
-                          <Value>/</Value>
-                          <Style>
-                            <FontFamily>Segoe UI</FontFamily>
-                            <FontSize>8pt</FontSize>
-                          </Style>
-                        </TextRun>
-                        <TextRun>
-                          <Value>=Globals!TotalPages</Value>
+                          <Value>=Globals!PageNumber &amp; " / " &amp; Globals!TotalPages</Value>
                           <Style>
                             <FontFamily>Segoe UI</FontFamily>
                             <FontSize>8pt</FontSize>
@@ -1705,10 +1709,10 @@
                       </Style>
                     </Paragraph>
                   </Paragraphs>
-                  <Top>0.56444cm</Top>
-                  <Left>8.93977cm</Left>
+                  <Top>0.6cm</Top>
+                  <Left>10cm</Left>
                   <Height>11pt</Height>
-                  <Width>7.38333cm</Width>
+                  <Width>6cm</Width>
                   <ZIndex>5</ZIndex>
                   <Style>
                     <Border />
@@ -1720,7 +1724,7 @@
               </ReportItems>
               <KeepTogether>true</KeepTogether>
               <Height>0.73611in</Height>
-              <Width>16.70354cm</Width>
+              <Width>16.3cm</Width>
               <Style>
                 <Border>
                   <Style>None</Style>
@@ -1808,8 +1812,14 @@ End Function
   <DataSets>
     <DataSet Name="DataSet_Result">
       <Fields>
+        <Field Name="Headline">
+          <DataField>Headline</DataField>
+        </Field>
         <Field Name="CompanyName">
           <DataField>CompanyName</DataField>
+        </Field>
+        <Field Name="PageCaption">
+          <DataField>PageCaption</DataField>
         </Field>
         <Field Name="TNumber">
           <DataField>TNumber</DataField>

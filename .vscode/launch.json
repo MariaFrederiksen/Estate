@@ -14,7 +14,6 @@
             "enableLongRunningSqlStatements":true,
             "longRunningSqlStatementsThreshold": 500,
             "numberOfSqlStatements": 10
-            
         }
     ]
 }

@@ -551,7 +551,7 @@ page 50023 "SVA Tenancy Card"
     }
     trigger OnOpenPage()
     var
-        Officemanagement: Codeunit 1630;
+        OfficeManagement: Codeunit "Office Management";
     begin
         IsOfficeAddin := Officemanagement.IsAvailable()
     end;

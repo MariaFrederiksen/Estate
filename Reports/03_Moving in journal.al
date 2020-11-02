@@ -8,7 +8,7 @@ report 50004 "SVA Moving in Journal"
     {
         dataitem("SVA LeaseContract_A9"; "SVA LeaseContract_A9")
         {
-            column(CompanyName; COMPANYPROPERTY.DISPLAYNAME)
+            column(CompanyName; COMPANYPROPERTY.DISPLAYNAME())
             {
             }
             column(TypeA93RentPrperiod_LeaseContractA9; TypeA9_3_RentPerPeriode)
@@ -101,7 +101,7 @@ report 50004 "SVA Moving in Journal"
 
             dataitem("SVA Occupant"; "SVA Occupant")
             {
-                DataItemLink = number = field (Number);
+                DataItemLink = number = field(Number);
                 DataItemLinkReference = "SVA LeaseContract_A9";
 
                 column(Number_Occupant; Number)
@@ -134,7 +134,7 @@ report 50004 "SVA Moving in Journal"
 
                 dataitem("SVA Tenancy"; "SVA Tenancy")
                 {
-                    DataItemLink = Number = field (TenancyNo);
+                    DataItemLink = Number = field(TenancyNo);
                     DataItemLinkReference = "Sva Occupant";
 
                     column(TAddress; Address1)
@@ -153,11 +153,11 @@ report 50004 "SVA Moving in Journal"
                 if DATE2DMY(TypeA9_2_Startdate, 1) = 1 then
                     factor := 1;
                 if (DATE2DMY(TypeA9_2_Startdate, 1) > 1) AND (DATE2DMY(TypeA9_2_Startdate, 1) < 32) then begin
-                    SetupEstate.Reset;
-                    if SetupEstate.FindFirst then begin
-                        if SetupEstate.Splitcalc = false then
+                    SVAParameters.Reset();
+                    if SVAParameters.FindFirst() then begin
+                        if SVAParameters.Splitcalc = false then
                             Factor := 0.5; //Split in half
-                        if SetupEstate.Splitcalc = true then begin
+                        if SVAParameters.Splitcalc = true then begin
                             Days := CalcDate('<1M-1D>', TypeA9_2_Startdate) - TypeA9_2_Startdate + 1;//qty of days in monht TypeA9_3_Startdate
                             Factor := ((Days - Date2DMY(TypeA9_2_Startdate, 1) + 1) / Days);
                         end;
@@ -176,23 +176,22 @@ report 50004 "SVA Moving in Journal"
                 "SVA LeaseContract_A9".TypeA9_3_OtherAmount2 := "SVA LeaseContract_A9".TypeA9_3_OtherAmount2 * Factor;
 
 
-                TypeA9.Reset;
-                TypeA9.SetRange(Number, "SVA LeaseContract_A9".Number);
-                if TypeA9.FindFirst then begin
-                    Occupant.RESET;
-                    Occupant.SETRANGE(Occupant.Number, TypeA9.Number);
-                    if Occupant.FindFirst() then begin
-                        Customer.Reset;
-                        Customer.SetRange("No.", Occupant."Customer No");
-                        if Customer.FindFirst then begin
-                            Vatpostinggroup.Reset;
-                            Vatpostinggroup.SetRange("Vat Prod. Posting Group", Vatcode);
-                            Vatpostinggroup.SetRange("VAT Bus. Posting Group", Customer."VAT Bus. Posting Group");
-                            IF Vatpostinggroup.FindFirst() then
-                                Vatrate := 1 + (Vatpostinggroup."VAT %" / 100);
+                SVALeaseContractA9.Reset();
+                SVALeaseContractA9.SetRange(Number, "SVA LeaseContract_A9".Number);
+                if SVALeaseContractA9.FindFirst() then begin
+                    SVAOccupant.Reset();
+                    SVAOccupant.SETRANGE(SVAOccupant.Number, SVALeaseContractA9.Number);
+                    if SVAOccupant.FindFirst() then begin
+                        Customer.Reset();
+                        Customer.SetRange("No.", SVAOccupant."Customer No");
+                        if Customer.FindFirst() then begin
+                            VATPostingSetup.Reset();
+                            VATPostingSetup.SetRange("Vat Prod. Posting Group", Vatcode);
+                            VATPostingSetup.SetRange("VAT Bus. Posting Group", Customer."VAT Bus. Posting Group");
+                            IF VATPostingSetup.FindFirst() then
+                                Vatrate := 1 + (VATPostingSetup."VAT %" / 100);
                             IF Vatrate = 0 then
                                 Vatrate := 1;
-                            AmountInclVat := "SVA LeaseContract_A9".TypeA9_4_TotalAmount;
                         end;
                     end;
                 end;
@@ -216,13 +215,12 @@ report 50004 "SVA Moving in Journal"
     {
     }
     var
-        TypeA9: Record "SVA LeaseContract_A9";
+        SVALeaseContractA9: Record "SVA LeaseContract_A9";
         Customer: Record Customer;
-        Vatpostinggroup: Record "VAT Posting Setup";
-        Occupant: Record "SVA Occupant";
+        VATPostingSetup: Record "VAT Posting Setup";
+        SVAOccupant: Record "SVA Occupant";
+        SVAParameters: Record "SVA Parameters";
         Vatrate: Decimal;
-        AmountInclVat: Decimal;
-        SetupEstate: Record "SVA Parameters";
         Days: Integer;
         Factor: Decimal;
 

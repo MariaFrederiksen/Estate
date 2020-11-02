@@ -9,6 +9,7 @@ pageextension 50007 "SVA Posted Invoice Ext." extends "Posted Sales Invoice"
             {
                 Caption = 'Occupant';
                 ApplicationArea = All;
+                ToolTip = 'Occupant no. Related to occupant entries.';
             }
         }
     }

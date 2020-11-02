@@ -1139,11 +1139,11 @@ page 50008 "SVA MoveOut"
                     PromotedCategory = Report;
                     trigger OnAction();
                     begin
-                        CLEAR(OccupantCard);
-                        OccupantCard.SETRANGE(Occupant, Rec.Occupant);
-                        CLEAR(MoveOut);
-                        MoveOut.SETTABLEVIEW(OccupantCard);
-                        MoveOut.RUNMODAL;
+                        CLEAR(TableSVAMovingOutStatus);
+                        TableSVAMovingOutStatus.SETRANGE(Occupant, Rec.Occupant);
+                        CLEAR(SVAMovingoutstatus);
+                        SVAMovingoutstatus.SETTABLEVIEW(TableSVAMovingOutStatus);
+                        SVAMovingoutstatus.RunModal();
                     end;
                 }
 
@@ -1154,12 +1154,12 @@ page 50008 "SVA MoveOut"
 
     trigger OnAfterGetCurrRecord();
     begin
-        CurrPage.UPDATE;
-        CurrPage.UPDATE;
+        CurrPage.UPDATE();
+        CurrPage.UPDATE();
     end;
 
     var
-        OccupantCard: Record "SVA MovingOut Status";
-        MoveOut: Report "SVA Moving out status";
+        TableSVAMovingOutStatus: Record "SVA MovingOut Status";
+        SVAMovingoutstatus: Report "SVA Moving out status";
 }
 

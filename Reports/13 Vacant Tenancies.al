@@ -9,7 +9,10 @@ report 50013 "SVA Vacant Tenancies"
     {
         dataitem(Tenancy; "SVA Tenancy")
         {
-            column(CompanyName; COMPANYPROPERTY.DISPLAYNAME)
+            column(Headline; Headline)
+            {
+            }
+            column(CompanyName; COMPANYPROPERTY.DISPLAYNAME())
             {
             }
             column(Number_Tenancy; Number)
@@ -51,15 +54,16 @@ report 50013 "SVA Vacant Tenancies"
                 trigger OnAfterGetRecord();
                 begin
                     if ("Date To" < Today) and ("Date To" <> 0D) then
-                        CurrReport.Skip;
+                        CurrReport.Skip();
                 end;
             }
 
             trigger OnAfterGetRecord();
             begin
+                Headline := HeadlineLbl;
 
                 IF vacantDate = 0D THEN
-                    CurrReport.SKIP
+                    CurrReport.SKIP();
             end;
         }
     }
@@ -81,10 +85,12 @@ report 50013 "SVA Vacant Tenancies"
     }
     trigger OnPreReport();
     begin
-        CompanyInfo.get;
+        CompanyInformation.GET();
     end;
 
     var
-        CompanyInfo: Record "Company Information";
+        CompanyInformation: Record "Company Information";
+        Headline: Text[30];
+        HeadlineLbl: Label 'Vacant tenancies';
 }
 

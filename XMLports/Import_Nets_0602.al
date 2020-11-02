@@ -1,4 +1,4 @@
-xmlport 50065 "SVA Import NETS"
+xmlport 50005 "SVA Import NETS"
 {
     // version NAVW110.00
     //Import of file from NETS with a list of payments
@@ -48,15 +48,15 @@ xmlport 50065 "SVA Import NETS"
     trigger OnInitXmlPort();
     begin
         I := 0;
-        "CSV Buffer".DeleteAll;
-        Commit;
+        "CSV Buffer".DeleteAll();
+        Commit();
     end;
 
     trigger OnPostXmlPort();
     begin
-        Commit;
+        Commit();
         Report.Run(Report::"SVA Import NETS");
-        Commit;
+        Commit();
         Codeunit.Run(Codeunit::"SVA BS NETS 0602");
     end;
 

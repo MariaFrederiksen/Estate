@@ -8,9 +8,9 @@ report 50021 "SVA Moving out status"
     {
         dataitem("Movingout Status"; "SVA MovingOut Status")
         {
-            DataItemTableView = SORTING (Occupant);
+            DataItemTableView = SORTING(Occupant);
             RequestFilterFields = Occupant;
-            column(CompanyName;COMPANYPROPERTY.DISPLAYNAME)
+            column(CompanyName; COMPANYPROPERTY.DISPLAYNAME())
             {
             }
 

@@ -10,7 +10,11 @@ report 50001 "SVA Property Data sheet"
     {
         dataitem(Property; "SVA Property")
         {
-            column(CompanyName; COMPANYPROPERTY.DISPLAYNAME)
+            column(Headline; Headline)
+            {
+
+            }
+            column(CompanyName; COMPANYPROPERTY.DISPLAYNAME())
             {
             }
             column(Number; Property)
@@ -166,6 +170,11 @@ report 50001 "SVA Property Data sheet"
             column(ManLatest; ManLatest)
             {
             }
+
+            trigger OnAfterGetRecord();
+            begin
+                Headline := HeadlineLbl;
+            end;
         }
     }
 
@@ -184,6 +193,10 @@ report 50001 "SVA Property Data sheet"
     labels
     {
     }
+
+    Var
+        Headline: Text[50];
+        HeadlineLbl: Label 'Property Data Sheet';
 
 }
 

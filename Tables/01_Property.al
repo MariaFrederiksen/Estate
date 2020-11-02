@@ -4,7 +4,6 @@
 
     Caption = 'Property';
     DataClassification = CustomerContent;
-    Permissions = TableData 50001 = rimd;
     DrillDownPageID = "SVA Property List";
     LookupPageID = "SVA Property List";
 
@@ -71,6 +70,14 @@
         {
             Caption = 'E-mail';
             ExtendedDatatype = EMail;
+        }
+        field(11; Emails; Text[2000])
+        {
+            Caption = 'E-mails';
+        }
+        field(12; EmailAll; Blob)
+        {
+            Caption = 'E-mails';
         }
         field(16; "Global Dimension 1 Code"; Code[20])
         {
@@ -458,7 +465,7 @@
             Caption = 'Deposit, month';
             trigger OnValidate();
             begin
-                Deposit;
+                Deposit();
             end;
         }
         field(505; TypeA9_4_PrePaidMth; Integer)
@@ -466,7 +473,7 @@
             Caption = 'PrePaid rent, month';
             trigger OnValidate();
             begin
-                Deposit;
+                Deposit();
             end;
         }
         field(510; TypeA9_5_LandlordHeat; Boolean)
@@ -744,158 +751,140 @@
 
     trigger OnInsert();
     begin
-        Parameters.Reset;
-        IF NOT Parameters.FindFirst then
+        SVAParameters.Reset();
+        IF NOT SVAParameters.FindFirst() then
             Error('Dimensioner mangler opsætning. Kørslen afbrydes');
 
-        Parameters.Reset;
-        IF Parameters.FindFirst then begin
+        SVAParameters.Reset();
+        IF SVAParameters.FindFirst() then begin
             if Bankname = '' then
-                Bankname := Parameters."Bank Name";
+                Bankname := SVAParameters."Bank Name";
             if BankRegNo = '' then
-                BankRegNo := Parameters."Bank Branch No";
+                BankRegNo := SVAParameters."Bank Branch No";
             if Bankaccount = '' then
-                Bankaccount := Parameters."Bank Account No.";
-            IF (Parameters.Dim1 = '') OR (Parameters.Dim2 = '') OR (Parameters.Dim3 = '') then
+                Bankaccount := SVAParameters."Bank Account No.";
+            IF (SVAParameters.Dim1 = '') OR (SVAParameters.Dim2 = '') OR (SVAParameters.Dim3 = '') then
                 Error('Dimensioner mangler opsætning. Kørslen afbrydes');
         end;
 
-        Parameters.Reset;
-        IF Parameters.FindFirst then begin
-            DefaultDim.SetRange("Table ID", 50001);
-            DefaultDim.SetRange("No.", Property);
-            IF DefaultDim.FindFirst then begin
-                DefaultDim."Dimension Value Code" := Property;
-                DefaultDim.Modify(true);
+        SVAParameters.Reset();
+        IF SVAParameters.FindFirst() then begin
+            DefaultDimension.SetRange("Table ID", 50001);
+            DefaultDimension.SetRange("No.", Property);
+            IF DefaultDimension.FindFirst() then begin
+                DefaultDimension."Dimension Value Code" := Property;
+                DefaultDimension.Modify(true);
             end else begin
-                DefaultDim."Table ID" := 50001;
-                DefaultDim."No." := Property;
-                DefaultDim."Dimension Code" := Parameters.Dim1;
-                DefaultDim."Dimension Value Code" := Property;
-                DefaultDim."Value Posting" := 1;
-                DefaultDim.Insert;
+                DefaultDimension.Init();
+                DefaultDimension."Table ID" := 50001;
+                DefaultDimension."No." := Property;
+                DefaultDimension."Dimension Code" := SVAParameters.Dim1;
+                DefaultDimension."Dimension Value Code" := Property;
+                DefaultDimension."Value Posting" := 1;
+                DefaultDimension.Insert();
             end;
         end;
 
-        Parameters.Reset;
-        IF Parameters.FindFirst then begin
-            DimensionValue.SetRange("Dimension Code", Parameters.Dim1);
+        SVAParameters.Reset();
+        IF SVAParameters.FindFirst() then begin
+            DimensionValue.SetRange("Dimension Code", SVAParameters.Dim1);
             DimensionValue.SetRange(Code, Property);
-            IF DimensionValue.FindFirst then begin
+            IF DimensionValue.FindFirst() then begin
                 DimensionValue.Code := Property;
                 DimensionValue.Modify(true);
             end else begin
-                DimensionValue.Init;
-                DimensionValue."Dimension Code" := Parameters.Dim1;
+                DimensionValue.Init();
+                DimensionValue."Dimension Code" := SVAParameters.Dim1;
                 DimensionValue.Code := Property;
                 DimensionValue.Name := 'Ejendom ' + Property;
                 DimensionValue."Dimension Value Type" := 0;
                 DimensionValue."Global Dimension No." := 1;
-                DimensionValue.Id := CreateGuid;
+                DimensionValue.Id := CreateGuid();
                 DimensionValue."Last Modified Date Time" := CurrentDateTime;
-                DimensionValue.Insert;
+                DimensionValue.Insert();
             end;
         end;
     end;
 
 
     var
-        Postcode: Record "Post Code";
-        Country: Text;
-        Tenancies: Record "SVA Tenancy";
+        PostCode: Record "Post Code";
+        SVATenancy: Record "SVA Tenancy";
         DimensionValue: Record "Dimension Value";
-        DefaultDim: Record "Default Dimension";
-        Parameters: record "SVA Parameters";
+        DefaultDimension: Record "Default Dimension";
+        SVAParameters: Record "SVA Parameters";
+        Country: Text;
 
-    local procedure Areas();
-    begin
-        Tenancies.RESET;
-        Tenancies.SETRANGE(PropertyNo, Property);
-        SquareMetersLiv := 0;
-        SquareMetersProf := 0;
-        SquareMetersTotal := 0;
-        IF Tenancies.FindSet THEN BEGIN
-            REPEAT
-                SquareMetersLiv += Tenancies.AreaLiv;
-                SquareMetersProf += Tenancies.AreaPro;
-            UNTIL Tenancies.NEXT = 0;
-        END;
-        SquareMetersTotal := SquareMetersLiv + SquareMetersProf;
-    end;
 
-    local procedure HeatParagraph5()
-    begin
-
-    end;
 
     local procedure Deposit();
     begin
-        Tenancies.RESET;
-        Tenancies.SETRANGE(PropertyNo, Property);
-        IF Tenancies.FindSet THEN BEGIN
+        SVATenancy.Reset();
+        SVATenancy.SETRANGE(PropertyNo, Property);
+        IF SVATenancy.FindSet() THEN
             REPEAT
-                Tenancies.Deposit := TypeA9_4_DepMth;
-                Tenancies.PrepaidRent := TypeA9_4_PrePaidMth;
-                Tenancies.Modify();
-            UNTIL Tenancies.NEXT = 0;
-        END;
+                SVATenancy.Deposit := TypeA9_4_DepMth;
+                SVATenancy.PrepaidRent := TypeA9_4_PrePaidMth;
+                SVATenancy.Modify();
+            UNTIL SVATenancy.NEXT() = 0;
+
     end;
 
     trigger OnModify();
     begin
-        //Update tenancies when changes in Type A9 on property
-        Tenancies.Reset;
-        Tenancies.SetRange(PropertyNo, Property);
-        if Tenancies.FindSet then
+        //Update SVATenancy when changes in Type A9 on property
+        SVATenancy.Reset();
+        SVATenancy.SetRange(PropertyNo, Property);
+        if SVATenancy.FindSet() then
             repeat
-                Tenancies.TypeA9_1_Laundy := TypeA9_1_Laundry;
-                Tenancies.TypeA9_1_BicycleStorage := TypeA9_1_Bicycle;
-                Tenancies.TypeA9_1_Courtyard := TypeA9_1_Courtyard;
-                Tenancies.Deposit := TypeA9_4_DepMth;
-                Tenancies.PrepaidRent := TypeA9_4_PrePaidMth;
-                Tenancies.TypeA9_5_LandlordHeat := TypeA9_5_LandlordHeat;
-                Tenancies.TypeA9_5_LNatgas := TypeA9_5_LNatgas;
-                Tenancies.TypeA9_5_lOil := TypeA9_5_lOil;
-                Tenancies.TypeA9_5_LElHeat := TypeA9_5_LEl;
-                Tenancies.TypeA9_5_LOther := TypeA9_5_LOther;
+                SVATenancy.TypeA9_1_Laundy := TypeA9_1_Laundry;
+                SVATenancy.TypeA9_1_BicycleStorage := TypeA9_1_Bicycle;
+                SVATenancy.TypeA9_1_Courtyard := TypeA9_1_Courtyard;
+                SVATenancy.Deposit := TypeA9_4_DepMth;
+                SVATenancy.PrepaidRent := TypeA9_4_PrePaidMth;
+                SVATenancy.TypeA9_5_LandlordHeat := TypeA9_5_LandlordHeat;
+                SVATenancy.TypeA9_5_LNatgas := TypeA9_5_LNatgas;
+                SVATenancy.TypeA9_5_lOil := TypeA9_5_lOil;
+                SVATenancy.TypeA9_5_LElHeat := TypeA9_5_LEl;
+                SVATenancy.TypeA9_5_LOther := TypeA9_5_LOther;
 
-                Tenancies.TypeA9_5_TenantHeat := TypeA9_5_TenantHeat;
-                Tenancies.TypeA9_5_TEl := TypeA9_5_TEl;
-                Tenancies.TypeA9_5_Tgas := TypeA9_5_Tgas;
-                Tenancies.TypeA9_5_TOil := TypeA9_5_TOil;
-                Tenancies.TypeA9_5_TNatgas := TypeA9_5_TNatgas;
-                Tenancies.TypeA9_5_TOTher := TypeA9_5_TOTher;
-                Tenancies.TypeA9_5_TOtherText := TypeA9_5_TOtherText;
-                
-                Tenancies.TypeA9_5_LandlordWater := TypeA9_5_Water;
-                Tenancies.TypeA9_5_WaterMeter := TypeA9_5_WM;
-                Tenancies.TypeA9_5_LandlordEl := TypeA9_5_El;
-                Tenancies.TypeA9_5_LandlordCooling := TypeA9_5_Cooling;
-                Tenancies.TypeA9_5_CoolingMeter := TypeA9_5_CM;
-                Tenancies.TypeA9_6_AntennaLandlord := TypeA9_6_LAntenna;
-                Tenancies.TypeA9_6_AntennaTenancies := TypeA9_6_TAntenna;
-                Tenancies.TypeA9_6_Internet := TypeA9_6_Internet;
-                Tenancies.TypeA9_7_InspecionIn := TypeA9_7_MoveIn;
-                Tenancies.TypeA9_8_MaintainceInsideLandl := TypeA9_8_MainLandlord;
-                if Tenancies.TypeA9_8_MaintainceInsideLandl = TRUE then
-                    Tenancies.TypeA9_8_MaintainceInsideTenan := FALSE;
-                IF Tenancies.TypeA9_8_MaintainceInsideLandl = FALSE then
-                    Tenancies.TypeA9_8_MaintainceInsideTenan := TRUE;
+                SVATenancy.TypeA9_5_TenantHeat := TypeA9_5_TenantHeat;
+                SVATenancy.TypeA9_5_TEl := TypeA9_5_TEl;
+                SVATenancy.TypeA9_5_Tgas := TypeA9_5_Tgas;
+                SVATenancy.TypeA9_5_TOil := TypeA9_5_TOil;
+                SVATenancy.TypeA9_5_TNatgas := TypeA9_5_TNatgas;
+                SVATenancy.TypeA9_5_TOTher := TypeA9_5_TOTher;
+                SVATenancy.TypeA9_5_TOtherText := TypeA9_5_TOtherText;
 
-                Tenancies.TypeA9_10_HouseRules := TypeA9_10_Houserules;
-                Tenancies.TypeA9_10_LiveStock := TypeA9_10_HouseStock;
-                Tenancies.TypeA9_10_TenRep := TypeA9_10_Occgroup;
-                Tenancies.Modify(true);
-            until Tenancies.Next = 0;
+                SVATenancy.TypeA9_5_LandlordWater := TypeA9_5_Water;
+                SVATenancy.TypeA9_5_WaterMeter := TypeA9_5_WM;
+                SVATenancy.TypeA9_5_LandlordEl := TypeA9_5_El;
+                SVATenancy.TypeA9_5_LandlordCooling := TypeA9_5_Cooling;
+                SVATenancy.TypeA9_5_CoolingMeter := TypeA9_5_CM;
+                SVATenancy.TypeA9_6_AntennaLandlord := TypeA9_6_LAntenna;
+                SVATenancy.TypeA9_6_AntennaTenancies := TypeA9_6_TAntenna;
+                SVATenancy.TypeA9_6_Internet := TypeA9_6_Internet;
+                SVATenancy.TypeA9_7_InspecionIn := TypeA9_7_MoveIn;
+                SVATenancy.TypeA9_8_MaintainceInsideLandl := TypeA9_8_MainLandlord;
+                if SVATenancy.TypeA9_8_MaintainceInsideLandl = TRUE then
+                    SVATenancy.TypeA9_8_MaintainceInsideTenan := FALSE;
+                IF SVATenancy.TypeA9_8_MaintainceInsideLandl = FALSE then
+                    SVATenancy.TypeA9_8_MaintainceInsideTenan := TRUE;
+
+                SVATenancy.TypeA9_10_HouseRules := TypeA9_10_Houserules;
+                SVATenancy.TypeA9_10_LiveStock := TypeA9_10_HouseStock;
+                SVATenancy.TypeA9_10_TenRep := TypeA9_10_Occgroup;
+                SVATenancy.Modify(true);
+            until SVATenancy.NEXT() = 0;
     end;
 
     trigger OnDelete();
     begin
-        Tenancies.Reset;
-        Tenancies.SetRange(PropertyNo, Property);
-        if Tenancies.FindFirst then begin
+        SVATenancy.Reset();
+        SVATenancy.SetRange(PropertyNo, Property);
+        if SVATenancy.FindFirst() then
             Error('Der findes lejemål på ejendommen. Slet disse først');
-        end;
+
     end;
 
 }

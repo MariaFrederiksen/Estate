@@ -1,11 +1,7 @@
 ﻿table 50003 "SVA Occupant"
 {
-    // Tabel 50003, Occupants
-    // Tabel til håndtering af stamdata pr. beboeraftale.
-
     Caption = 'Occupant';
     DataClassification = CustomerContent;
-    Permissions = TableData 50003 = rimd;
     DrillDownPageID = "SVA Occupant List";
     LookupPageID = "SVA Occupant List";
 
@@ -30,78 +26,78 @@
             trigger OnValidate();
             begin
                 IF (TenancyNo <> xRec.TenancyNo) AND (xRec.TenancyNo <> '') then begin
-                    OccupantTrans.Reset();
-                    OccupantTrans.SetRange(Occupant,Number);
-                    if OccupantTrans.FindFirst() then
+                    SVAOccupantTrans.Reset();
+                    SVAOccupantTrans.SetRange(Occupant, Number);
+                    if SVAOccupantTrans.FindFirst() then
                         error('Der er posteringer på aftalen. Der kan ikke skiftes lejemål.');
                 end;
                 //Get tennacy info
-                Tenancy.RESET;
-                Tenancy.SETRANGE(Tenancy.Number, TenancyNo);
-                IF Tenancy.FINDFIRST() THEN BEGIN
-                    Address := Tenancy.Address1;
-                    Address2 := Tenancy.Address2;
-                    "Post Code" := Tenancy."Post Code";
-                    City := Tenancy.City;
-                    "Country/Region Code" := Tenancy."Country/Region Code";
-                    PropertyNo := Tenancy.PropertyNo;
+                SVATenancy.Reset();
+                SVATenancy.SETRANGE(SVATenancy.Number, TenancyNo);
+                IF SVATenancy.FINDFIRST() THEN BEGIN
+                    Address := SVATenancy.Address1;
+                    Address2 := SVATenancy.Address2;
+                    "Post Code" := SVATenancy."Post Code";
+                    City := SVATenancy.City;
+                    "Country/Region Code" := SVATenancy."Country/Region Code";
+                    PropertyNo := SVATenancy.PropertyNo;
                     //Sæt forbrugskontonummer.
                     Lbno := 2;
                     ConsumptionAccountNo := TenancyNo + '0' + FORMAT(Lbno);
-                    if STRPOS(ConsumptionAccountNo, '-') > 0 then begin
+                    if STRPOS(ConsumptionAccountNo, '-') > 0 then
                         ConsumptionAccountNo := DELSTR(ConsumptionAccountNo, STRPOS(ConsumptionAccountNo, '-'), 1);
-                    end;
+
                     //Check for om nummeret eksisterer.
-                    OccupantList.RESET;
-                    OccupantList.SETRANGE(ConsumptionAccountNo, ConsumptionAccountNo);
-                    IF OccupantList.FIND('-') THEN BEGIN
+                    ListSVAOccupant.Reset();
+                    ListSVAOccupant.SETRANGE(ConsumptionAccountNo, ConsumptionAccountNo);
+                    IF ListSVAOccupant.Findset() THEN
                         REPEAT
                             Lbno += 2;
                             ConsumptionAccountNo := TenancyNo + '0' + FORMAT(Lbno);
-                            if STRPOS(ConsumptionAccountNo, '-') > 0 then begin
+                            if STRPOS(ConsumptionAccountNo, '-') > 0 then
                                 ConsumptionAccountNo := DELSTR(ConsumptionAccountNo, STRPOS(ConsumptionAccountNo, '-'), 1);
-                            end;
-                        UNTIL OccupantList.NEXT = 0
-                    END;
+                        UNTIL ListSVAOccupant.NEXT() = 0
+
                 end;
                 //dimensionen lejemål på beboer. Skal ligge her, da den har kørt Insert-triggeren.
-                Parameters.Reset;
-                IF Parameters.Find('-') then begin
-                    DefaultDim.Reset;
-                    DefaultDim.SetRange("Table ID", 50003);
-                    DefaultDim.SetRange("No.", Number);
-                    DefaultDim.SetRange("Dimension Code", Parameters.Dim2);
-                    IF DefaultDim.FindFirst then begin
-                        DefaultDim."Dimension Value Code" := TenancyNo;
-                        DefaultDim.Modify(true);
+                SVAParameters.Reset();
+                IF SVAParameters.Findset() then begin
+                    DefaultDimension.Reset();
+                    DefaultDimension.SetRange("Table ID", 50003);
+                    DefaultDimension.SetRange("No.", Number);
+                    DefaultDimension.SetRange("Dimension Code", SVAParameters.Dim2);
+                    IF DefaultDimension.FindFirst() then begin
+                        DefaultDimension."Dimension Value Code" := TenancyNo;
+                        DefaultDimension.Modify(true);
                     end else begin
-                        DefaultDim."Table ID" := 50003;
-                        DefaultDim."No." := Number;
-                        DefaultDim."Dimension Code" := Parameters.Dim2;
-                        DefaultDim."Dimension Value Code" := TenancyNo;
-                        DefaultDim."Value Posting" := 1;
-                        DefaultDim."Table Caption" := 'Lejemål på beboer';
-                        DefaultDim.Insert(true);
+                        DefaultDimension.Init();
+                        DefaultDimension."Table ID" := 50003;
+                        DefaultDimension."No." := Number;
+                        DefaultDimension."Dimension Code" := SVAParameters.Dim2;
+                        DefaultDimension."Dimension Value Code" := TenancyNo;
+                        DefaultDimension."Value Posting" := 1;
+                        DefaultDimension."Table Caption" := 'Lejemål på beboer';
+                        DefaultDimension.Insert(true);
                     end;
                 end;
                 //dimension Ejendom på beboer.Skal ligge her, da den har kørt Insert-triggeren.
-                Parameters.Reset;
-                IF Parameters.Find('-') then begin
-                    DefaultDim.Reset;
-                    DefaultDim.SetRange("Table ID", 50003);
-                    DefaultDim.SetRange("No.", Number);
-                    DefaultDim.SetRange("Dimension Code", Parameters.Dim1);
-                    IF DefaultDim.FindFirst then begin
-                        DefaultDim."Dimension Value Code" := PropertyNo;
-                        DefaultDim.Modify(true);
+                SVAParameters.Reset();
+                IF SVAParameters.Findset() then begin
+                    DefaultDimension.Reset();
+                    DefaultDimension.SetRange("Table ID", 50003);
+                    DefaultDimension.SetRange("No.", Number);
+                    DefaultDimension.SetRange("Dimension Code", SVAParameters.Dim1);
+                    IF DefaultDimension.FindFirst() then begin
+                        DefaultDimension."Dimension Value Code" := PropertyNo;
+                        DefaultDimension.Modify(true);
                     end else begin
-                        DefaultDim."Table ID" := 50003;
-                        DefaultDim."No." := Number;
-                        DefaultDim."Dimension Code" := Parameters.Dim1;
-                        DefaultDim."Dimension Value Code" := PropertyNo;
-                        DefaultDim."Value Posting" := 1;
-                        DefaultDim."Table Caption" := 'Ejendom på beboer';
-                        DefaultDim.Insert(true);
+                        DefaultDimension."Table ID" := 50003;
+                        DefaultDimension."No." := Number;
+                        DefaultDimension."Dimension Code" := SVAParameters.Dim1;
+                        DefaultDimension."Dimension Value Code" := PropertyNo;
+                        DefaultDimension."Value Posting" := 1;
+                        DefaultDimension."Table Caption" := 'Ejendom på beboer';
+                        DefaultDimension.Insert(true);
                     end;
                 end;
                 //Insert har kørt før vi har ejendom og lejemål, så den skal ligge her.
@@ -117,20 +113,20 @@
             TableRelation = Customer."No.";
 
             trigger OnValidate();
-            begin                
+            begin
                 IF ("Customer No" <> xRec."Customer No") AND (xRec."Customer No" <> '') then begin
-                    OccupantTrans.Reset();
-                    OccupantTrans.SetRange(Occupant,Number);
-                    if OccupantTrans.FindFirst() then
+                    SVAOccupantTrans.Reset();
+                    SVAOccupantTrans.SetRange(Occupant, Number);
+                    if SVAOccupantTrans.FindFirst() then
                         error('Der er posteringer på aftalen. Der kan ikke skiftes debitor.');
                 end;
-                Custcard.RESET;
-                Custcard.SETRANGE(Custcard."No.", "Customer No");
-                IF Custcard.FINDFIRST() THEN BEGIN
-                    Name1 := Custcard.Name;
-                    Name2 := Custcard."Name 2";
-                    Email1 := Custcard."E-Mail";
-                    Phone := Custcard."Phone No.";
+                Customer.Reset();
+                Customer.SETRANGE(Customer."No.", "Customer No");
+                IF Customer.FINDFIRST() THEN BEGIN
+                    Name1 := Customer.Name;
+                    Name2 := Customer."Name 2";
+                    Email1 := Customer."E-Mail";
+                    Phone := Customer."Phone No.";
                 END;
             end;
         }
@@ -264,10 +260,10 @@
                 Start := Startdate;
                 Stop := EndDate;
                 //Check for korrekt ledig dato på alle lejemål. Kan være for langsom ved mange poster
-                TenancyLocal.reset;
-                if TenancyLocal.FindSet then
+                TenancyLocal.Reset();
+                if TenancyLocal.FindSet() then
                     repeat
-                        OccupantLocal.reset;
+                        OccupantLocal.Reset();
                         OccupantLocal.SetRange(TenancyNo, TenancyLocal.Number);
                         TenancyLocal.Vacant := true;
                         TenancyLocal.vacantDate := DMY2Date(1, 1, 1960);
@@ -280,15 +276,15 @@
                             end;
                         end;
                         TenancyLocal.Modify(true);
-                    Until TenancyLocal.Next = 0;
+                    Until TenancyLocal.NEXT() = 0;
                 //Check for om lejemålet er ledigt i den givne periode
                 ok := false;
-                TenancyCard.RESET;
-                TenancyCard.SETRANGE(TenancyCard.Number, TenancyNo);
-                if TenancyCard.FINDFIRST() then begin
-                    OccupantLocal.reset;
-                    OccupantLocal.SetRange(TenancyNo, TenancyCard.Number);
-                    if OccupantLocal.FindSet then
+                SVATenancy.Reset();
+                SVATenancy.SETRANGE(SVATenancy.Number, TenancyNo);
+                if SVATenancy.FINDFIRST() then begin
+                    OccupantLocal.Reset();
+                    OccupantLocal.SetRange(TenancyNo, SVATenancy.Number);
+                    if OccupantLocal.FindSet() then
                         repeat
                             if OccupantLocal.Number <> Number then begin
                                 if (OccupantLocal.EndDate < Start) and (OccupantLocal.EndDate <> 0D) then
@@ -297,39 +293,38 @@
                                     ok := true; //den fundne kontrakt starter efter.
                                 QtyOcc += 1
                             end;
-                        until OccupantLocal.Next = 0;
+                        until OccupantLocal.NEXT() = 0;
                     if (ok = true) or (qtyocc = 0) then begin
-                        TenancyCard.Vacant := FALSE;
-                        TenancyCard.vacantDate := 0D;
-                        TenancyCard.MODIFY(TRUE);
+                        SVATenancy.Vacant := FALSE;
+                        SVATenancy.vacantDate := 0D;
+                        SVATenancy.MODIFY(TRUE);
                         ok := true;
                     end;
                 end;
 
                 if ok = false then begin
-                    TenancyCard.RESET;
-                    TenancyCard.SETRANGE(TenancyCard.Number, TenancyNo);
-                    IF TenancyCard.FINDFIRST() THEN BEGIN
+                    SVATenancy.Reset();
+                    SVATenancy.SETRANGE(SVATenancy.Number, TenancyNo);
+                    IF SVATenancy.FINDFIRST() THEN BEGIN
                         //Ingen opsagt dato på lejemålet
-                        IF TenancyCard.vacantDate <= StartDate THEN
-                            IF (TenancyCard.vacantDate = 0D) AND (TenancyCard.Vacant = FALSE) THEN BEGIN
+                        IF SVATenancy.vacantDate <= StartDate THEN
+                            IF (SVATenancy.vacantDate = 0D) AND (SVATenancy.Vacant = FALSE) THEN BEGIN
                                 MESSAGE('lejemålet er ikke ledigt.');
                                 Startdate := 0D;
                             END;
                         //Opsagt dato efter nye startdato
-                        IF TenancyCard.vacantDate > StartDate THEN BEGIN
-                            MESSAGE('Lejemålet er ikke ledigt før ' + FORMAT(TenancyCard.vacantDate));
+                        IF SVATenancy.vacantDate > StartDate THEN BEGIN
+                            MESSAGE('Lejemålet er ikke ledigt før ' + FORMAT(SVATenancy.vacantDate));
                             StartDate := 0D;
                         END;
                         //Lejemålet er ledigt
-                        IF TenancyCard.vacantDate <= StartDate THEN BEGIN //Ledigt lejemål
-                            IF TenancyCard.vacantDate <> 0D THEN BEGIN
-                                TenancyCard.Vacant := FALSE;
-                                TenancyCard.vacantDate := 0D;
-                                TenancyCard.MODIFY(TRUE);
+                        IF SVATenancy.vacantDate <= StartDate THEN  //Ledigt lejemål
+                            IF SVATenancy.vacantDate <> 0D THEN BEGIN
+                                SVATenancy.Vacant := FALSE;
+                                SVATenancy.vacantDate := 0D;
+                                SVATenancy.MODIFY(TRUE);
                                 //MESSAGE('lejemål opdateret');
                             END;
-                        END;
                     END;
                 END;
                 if StartDate < Today then
@@ -343,28 +338,28 @@
             trigger OnValidate();
             begin
                 IF EndDate > 0D THEN BEGIN
-                    TenancyCard.RESET;
-                    TenancyCard.SETRANGE(TenancyCard.Number, TenancyNo);
-                    IF TenancyCard.FINDFIRST() THEN BEGIN
-                        TenancyCard.Vacant := TRUE;
-                        TenancyCard.vacantDate := EndDate + 1;
-                        TenancyCard.MODIFY;
+                    SVATenancy.Reset();
+                    SVATenancy.SETRANGE(SVATenancy.Number, TenancyNo);
+                    IF SVATenancy.FINDFIRST() THEN BEGIN
+                        SVATenancy.Vacant := TRUE;
+                        SVATenancy.vacantDate := EndDate + 1;
+                        SVATenancy.Modify();
                     END;
                 END;
                 IF EndDate = 0D THEN BEGIN //Empty Date => Not vacant
-                    TenancyCard.RESET;
-                    TenancyCard.SETRANGE(TenancyCard.Number, TenancyNo);
-                    IF TenancyCard.FINDFIRST THEN BEGIN
-                        TenancyCard.Vacant := FALSE;
-                        TenancyCard.vacantDate := 0D;
-                        TenancyCard.MODIFY;
+                    SVATenancy.Reset();
+                    SVATenancy.SETRANGE(SVATenancy.Number, TenancyNo);
+                    IF SVATenancy.FindFirst() THEN BEGIN
+                        SVATenancy.Vacant := FALSE;
+                        SVATenancy.vacantDate := 0D;
+                        SVATenancy.Modify();
                     END;
                 END;
-                ConReg.Reset;
-                Conreg.SetRange(Number, Number);
-                if ConReg.FindFirst then begin
-                    ConReg.EndDate := EndDate;
-                    ConReg.Modify;
+                SVACOntractregulations.Reset();
+                SVACOntractregulations.SetRange(Number, Number);
+                if SVACOntractregulations.FindFirst() then begin
+                    SVACOntractregulations.EndDate := EndDate;
+                    SVACOntractregulations.Modify();
                 end;
 
 
@@ -374,7 +369,7 @@
         field(32; FirstNets; Date)
         {
             Caption = 'First time for NETS';
-            
+
         }
         field(33; Blocked; Date)
         {
@@ -460,133 +455,131 @@
     }
 
     var
-        Postcode: Record "Post Code";
-        COUNTRY: Text;
-        TenancyCard: Record "SVA Tenancy";
-        Tenancy: Record "SVA Tenancy";
-        Custcard: Record "Customer";
-        OccupantList: Record "SVA Occupant";
-        Lbno: Integer;
-        Occupant: Record "SVA Occupant";
-        TypeA9: Record "SVA LeaseContract_A9";
+        PostCode: Record "Post Code";
+        SVATenancy: Record "SVA Tenancy";
+        Customer: Record "Customer";
+        ListSVAOccupant: Record "SVA Occupant";
+        SVAOccupant: Record "SVA Occupant";
+        SVALeaseContractA9: Record "SVA LeaseContract_A9";
         DimensionValue: Record "Dimension Value";
-        DefaultDim: Record "Default Dimension";
-        Parameters: Record "SVA Parameters";
-        Dimmgt: Codeunit "DimensionManagement";
-        OccupantTrans: Record "SVA Occupant Trans";
-        ConReg: record "SVA Contract regulations";
+        DefaultDimension: Record "Default Dimension";
+        SVAParameters: Record "SVA Parameters";
+        SVAOccupantTrans: Record "SVA Occupant Trans";
+        SVAContractregulations: record "SVA Contract regulations";
+        DimensionManagement: Codeunit "DimensionManagement";
         PaymentMethod: Text[20];
         PaymentTerms: Text[20];
+        COUNTRY: Text;
+        Lbno: Integer;
 
     trigger OnDelete();
     begin
-        OccupantTrans.Reset;
-        OccupantTrans.SetRange(Occupant, Number);
-        if OccupantTrans.FindFirst then begin
-            Error('Der findes posteringer på beboeraftalen.')
-        end;
+        SVAOccupantTrans.Reset();
+        SVAOccupantTrans.SetRange(Occupant, Number);
+        if SVAOccupantTrans.FindFirst() then
+            Error('Der findes posteringer på beboeraftalen.');
+
 
         //Tenancy is vacant
-        TenancyCard.Reset;
-        TenancyCard.SetRange(Number, Occupant.TenancyNo);
-        if TenancyCard.FindFirst then begin
-            TenancyCard.Vacant := true;
+        SVATenancy.Reset();
+        SVATenancy.SetRange(Number, SVAOccupant.TenancyNo);
+        if SVATenancy.FindFirst() then begin
+            SVATenancy.Vacant := true;
 
-            Occupant.Reset;
-            Occupant.SetRange(TenancyNo, Rec.TenancyNo);
-            IF Occupant.Find('-') then begin
+            SVAOccupant.Reset();
+            SVAOccupant.SetRange(TenancyNo, Rec.TenancyNo);
+            IF SVAOccupant.Findset() then
                 repeat
-                    TenancyCard.vacantDate := Occupant.EndDate;
-                until Occupant.Next = 0;
-            end;
-            IF TenancyCard.vacantDate = 0D then begin
-                TenancyCard.vacant := false;
-            end;
-            TenancyCard.Modify(true);
-        end; //Search tenancycard
+                    SVATenancy.vacantDate := SVAOccupant.EndDate;
+                until SVAOccupant.NEXT() = 0;
+
+            IF SVATenancy.vacantDate = 0D then
+                SVATenancy.vacant := false;
+
+            SVATenancy.Modify(true);
+        end; //Search SVATenancy
         //Delete Contracts
-        TypeA9.Reset;
-        TypeA9.SetRange(TypeA9.Number, Occupant.Number);
-        IF TypeA9.FindFirst() then begin
-            TypeA9.Delete;
-        end;
+        SVALeaseContractA9.Reset();
+        SVALeaseContractA9.SetRange(SVALeaseContractA9.Number, SVAOccupant.Number);
+        IF SVALeaseContractA9.FindFirst() then
+            SVALeaseContractA9.Delete();
+
     end;
 
     trigger OnModify();
     begin
-        Parameters.Reset;
-        if Parameters.FindFirst() then begin
-            PaymentMethod := Parameters.PaymentMethodForNets;
-            PaymentTerms := Parameters.PaymentTerms;
+        SVAParameters.Reset();
+        if SVAParameters.FindFirst() then begin
+            PaymentMethod := SVAParameters.PaymentMethodForNets;
+            PaymentTerms := SVAParameters.PaymentTerms;
         end;
 
         //Paymentcode on customer
-        Custcard.Reset;
-        Custcard.SetRange("No.", Occupant."Customer No");
-        if Custcard.FindFirst then begin
-            Custcard."Payment Method Code" := PaymentMethod;
-            Custcard."Payment Terms Code" := PaymentTerms;
-            Custcard.Modify;
+        Customer.Reset();
+        Customer.SetRange("No.", SVAOccupant."Customer No");
+        if Customer.FindFirst() then begin
+            Customer."Payment Method Code" := PaymentMethod;
+            Customer."Payment Terms Code" := PaymentTerms;
+            Customer.Modify();
         end;
     end;
 
     trigger OnInsert();
     begin
-        Parameters.Reset;
-        IF Parameters.FindFirst() then begin
-            PaymentMethod := Parameters.PaymentMethodForNets;
-            PaymentTerms := Parameters.PaymentTerms;
-            IF (Parameters.Dim1 = '') OR (Parameters.Dim2 = '') OR (Parameters.Dim3 = '') then begin
+        SVAParameters.Reset();
+        IF SVAParameters.FindFirst() then begin
+            PaymentMethod := SVAParameters.PaymentMethodForNets;
+            PaymentTerms := SVAParameters.PaymentTerms;
+            IF (SVAParameters.Dim1 = '') OR (SVAParameters.Dim2 = '') OR (SVAParameters.Dim3 = '') then
                 Error('Dimensioner mangler opsætning. Kørslen afbrydes');
-            end;
+
         end;
         //Paymentcode on customer
-        Custcard.Reset;
-        Custcard.SetRange("No.", Occupant."Customer No");
-        if Custcard.FindFirst then begin
-            Custcard."Payment Method Code" := PaymentMethod;
-            Custcard."Payment Terms Code" := PaymentTerms;
-            Custcard.Modify;
+        Customer.Reset();
+        Customer.SetRange("No.", SVAOccupant."Customer No");
+        if Customer.FindFirst() then begin
+            Customer."Payment Method Code" := PaymentMethod;
+            Customer."Payment Terms Code" := PaymentTerms;
+            Customer.Modify();
         end;
 
         //Dimension beboer på beboer
-        Parameters.Reset;
-        IF Parameters.FindFirst then begin
-            DefaultDim.SetRange("Table ID", 50003);
-            DefaultDim.SetRange("Dimension Code", Parameters.Dim3);
-            DefaultDim.SetRange("No.", Number);
-            IF DefaultDim.FindFirst then begin
-                DefaultDim."Dimension Code" := Parameters.Dim3;
-                DefaultDim."Dimension Value Code" := Number;
-                DefaultDim.Modify(true);
+        SVAParameters.Reset();
+        IF SVAParameters.FindFirst() then begin
+            DefaultDimension.SetRange("Table ID", 50003);
+            DefaultDimension.SetRange("Dimension Code", SVAParameters.Dim3);
+            DefaultDimension.SetRange("No.", Number);
+            IF DefaultDimension.FindFirst() then begin
+                DefaultDimension."Dimension Code" := SVAParameters.Dim3;
+                DefaultDimension."Dimension Value Code" := Number;
+                DefaultDimension.Modify(true);
             end else begin
-                DefaultDim."Table ID" := 50003;
-                DefaultDim."No." := Number;
-                DefaultDim."Dimension Code" := Parameters.Dim3;
-                DefaultDim."Dimension Value Code" := Number;
-                DefaultDim."Value Posting" := 1;
-                DefaultDim."Table Caption" := 'Beboeraftale på beboer';
-                DefaultDim.Insert(true);
+                DefaultDimension."Table ID" := 50003;
+                DefaultDimension."No." := Number;
+                DefaultDimension."Dimension Code" := SVAParameters.Dim3;
+                DefaultDimension."Dimension Value Code" := Number;
+                DefaultDimension."Value Posting" := 1;
+                DefaultDimension."Table Caption" := 'Beboeraftale på beboer';
+                DefaultDimension.Insert(true);
             end;
         end;
         //Dimensionsæværdi beboer
-        DimensionValue.Reset;
-        DimensionValue.SetRange("Dimension Code", Parameters.Dim3);
+        DimensionValue.Reset();
+        DimensionValue.SetRange("Dimension Code", SVAParameters.Dim3);
         DimensionValue.SetRange(Code, Number);
-        if DimensionValue.FindFirst then begin
+        if DimensionValue.FindFirst() then begin
             DimensionValue.Code := Number;
             DimensionValue.Modify(true);
         end else begin
-            DimensionValue.Init;
-            DimensionValue."Dimension Code" := Parameters.Dim3;
+            DimensionValue.Init();
+            DimensionValue."Dimension Code" := SVAParameters.Dim3;
             DimensionValue.Code := Number;
             DimensionValue.Name := 'Beboer ' + Name1;
             DimensionValue."Dimension Value Type" := 0;
-            DimensionValue.Id := CreateGuid;
+            DimensionValue.Id := CreateGuid();
             DimensionValue."Last Modified Date Time" := CurrentDateTime;
             DimensionValue.Insert(true);
         end;
-
     end;
 
     procedure CreateDim(Type1: Integer; No1: Code[20]; Type2: Integer; No2: Code[20]; Type3: Integer; No3: Code[20]);
@@ -594,9 +587,8 @@
         SourceCodeSetup: Record "Source Code Setup";
         TableID: array[10] of Integer;
         No: array[10] of Code[20];
-        OldDimSetID: Integer;
     begin
-        SourceCodeSetup.GET;
+        SourceCodeSetup.GET();
         TableID[1] := Type1;
         No[1] := No1;
         TableID[2] := Type2;
@@ -607,22 +599,21 @@
 
         "Shortcut Dimension 1 Code" := '';
         "Shortcut Dimension 2 Code" := '';
-        OldDimSetID := "Dimension Set ID";
-        "Dimension Set ID" := DimMgt.GetRecDefaultDimID(Rec, CurrFieldNo, TableID, No, SourceCodeSetup.Sales, "Shortcut Dimension 1 Code", "Shortcut Dimension 2 Code", 0, 0);
+        "Dimension Set ID" := DimensionManagement.GetRecDefaultDimID(Rec, CurrFieldNo, TableID, No, SourceCodeSetup.Sales, "Shortcut Dimension 1 Code", "Shortcut Dimension 2 Code", 0, 0);
     end;
 
     procedure ValidateShortcutDimCode(FieldNumber: Integer; var ShortcutDimCode: Code[20]);
     var
         OldDimSetID: Integer;
     begin
-        OldDimSetID := "Dimension Set ID";
-        DimMgt.ValidateShortcutDimValues(FieldNumber, ShortcutDimCode, "Dimension Set ID");
+        OldDimSetID := 0;
+        DimensionManagement.ValidateShortcutDimValues(FieldNumber, ShortcutDimCode, "Dimension Set ID");
         IF Number <> '' THEN
-            MODIFY;
+            Modify();
 
-        IF OldDimSetID <> "Dimension Set ID" THEN BEGIN
-            MODIFY;
-        END;
+        IF OldDimSetID <> "Dimension Set ID" THEN
+            Modify();
+
     end;
 
 }

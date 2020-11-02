@@ -1,6 +1,5 @@
 tableextension 50034 "SVA Sales Invoice Line" extends "Sales Invoice Line"
-// SVA 1.00 - 17/9-2018 - Maria Frederiksen
-//From standard posting Invoice, transferred lines to SVA Occupant Trans
+//From standard posting Invoice, transfer saleslines to SVA Occupant Trans
 {
     fields
     {
@@ -13,31 +12,31 @@ tableextension 50034 "SVA Sales Invoice Line" extends "Sales Invoice Line"
     }
     trigger OnAfterInsert();
     var
-        SalesinvHeader: Record "Sales Invoice Header";
-        OccupantTrans: Record "SVA Occupant Trans";
-        CostTypeAccounts: Record "SVA Cost type";
+        SalesInvoiceHeader: Record "Sales Invoice Header";
+        SVAOccupantTrans: Record "SVA Occupant Trans";
+        SVACosttype: Record "SVA Cost type";
         Occupant: Text[10];
 
     begin
 
-        SalesinvHeader.Reset;
-        SalesinvHeader.SetRange("No.", Rec."Document No.");
-        if SalesinvHeader.findfirst then
-            Occupant := SalesinvHeader."SVA Occupant";
+        SalesInvoiceHeader.Reset();
+        SalesInvoiceHeader.SetRange("No.", Rec."Document No.");
+        if SalesInvoiceHeader.FindFirst() then
+            Occupant := SalesInvoiceHeader."SVA Occupant";
         if Occupant <> '' then begin
-            OccupantTrans.Occupant := Occupant;
-            OccupantTrans.Date := Rec."Posting Date";
-            OccupantTrans.Description := Rec.Description;
-            OccupantTrans."Invoice No" := Rec."Document No." + '_' + Format(Rec."Line No.");
-            OccupantTrans.Price := Rec."Unit Price";
-            OccupantTrans.Qty := Rec.Quantity;
-            OccupantTrans.Amount := OccupantTrans.Price*OccupantTrans.Qty;           
-            OccupantTrans."Cost type Estate" := Rec."SVA CostType";
-            CostTypeAccounts.RESET;
-            CostTypeAccounts.SETRANGE(Costtype, OccupantTrans."Cost type Estate");
-            IF CostTypeAccounts.FINDFIRST() THEN
-                OccupantTrans.Type := CostTypeAccounts.Type;
-            OccupantTrans.Insert();
+            SVAOccupantTrans.Occupant := Occupant;
+            SVAOccupantTrans.Date := Rec."Posting Date";
+            SVAOccupantTrans.Description := Rec.Description;
+            SVAOccupantTrans."Invoice No" := Rec."Document No." + '_' + Format(Rec."Line No.");
+            SVAOccupantTrans.Price := Rec."Unit Price";
+            SVAOccupantTrans.Qty := Rec.Quantity;
+            SVAOccupantTrans.Amount := SVAOccupantTrans.Price * SVAOccupantTrans.Qty;
+            SVAOccupantTrans."Cost type Estate" := Rec."SVA CostType";
+            SVACosttype.Reset();
+            SVACosttype.SETRANGE(Costtype, SVAOccupantTrans."Cost type Estate");
+            IF SVACosttype.FINDFIRST() THEN
+                SVAOccupantTrans.Type := SVACosttype.Type;
+            SVAOccupantTrans.Insert();
         end;
     end;
 

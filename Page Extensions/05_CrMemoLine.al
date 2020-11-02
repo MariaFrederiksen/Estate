@@ -8,6 +8,7 @@ pageextension 50004 "SVA CrMemo Line Ext." extends "Sales Cr. Memo Subform"
             {
                 Caption = 'Costtype';
                 ApplicationArea = all;
+                ToolTip = 'Costtype. Related to G/L Account';
             }
         }
     }

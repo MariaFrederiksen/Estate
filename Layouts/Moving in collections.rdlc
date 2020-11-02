@@ -15,38 +15,6 @@
     <ReportSection>
       <Body>
         <ReportItems>
-          <Textbox Name="Textbox2">
-            <CanGrow>true</CanGrow>
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value />
-                    <Style>
-                      <FontFamily>Segoe UI</FontFamily>
-                      <FontSize>12pt</FontSize>
-                      <FontWeight>Bold</FontWeight>
-                      <Color>White</Color>
-                    </Style>
-                  </TextRun>
-                </TextRuns>
-                <Style>
-                  <TextAlign>Center</TextAlign>
-                </Style>
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>Textbox2</rd:DefaultName>
-            <Left>0.02949cm</Left>
-            <Height>0.6cm</Height>
-            <Width>17.99007cm</Width>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-              <BackgroundColor>CornflowerBlue</BackgroundColor>
-            </Style>
-          </Textbox>
           <Tablix Name="Tablix3">
             <TablixBody>
               <TablixColumns>
@@ -1497,7 +1465,6 @@
             <Left>0.03883cm</Left>
             <Height>12cm</Height>
             <Width>16.60941cm</Width>
-            <ZIndex>1</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -1508,13 +1475,13 @@
             <TablixBody>
               <TablixColumns>
                 <TablixColumn>
-                  <Width>3.33352cm</Width>
+                  <Width>2.98956cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>4.52266cm</Width>
+                  <Width>4.1787cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>10.12883cm</Width>
+                  <Width>9.78487cm</Width>
                 </TablixColumn>
               </TablixColumns>
               <TablixRows>
@@ -2100,8 +2067,8 @@
             <DataSetName>DataSet_Result</DataSetName>
             <Top>1.00224cm</Top>
             <Height>3cm</Height>
-            <Width>17.98501cm</Width>
-            <ZIndex>2</ZIndex>
+            <Width>16.95314cm</Width>
+            <ZIndex>1</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -2116,10 +2083,10 @@
           </Border>
         </Style>
       </Body>
-      <Width>18.02453cm</Width>
+      <Width>16.99266cm</Width>
       <Page>
         <PageHeader>
-          <Height>1.79917cm</Height>
+          <Height>1.905cm</Height>
           <PrintOnFirstPage>true</PrintOnFirstPage>
           <PrintOnLastPage>true</PrintOnLastPage>
           <ReportItems>
@@ -2226,7 +2193,7 @@
                     </Paragraph>
                   </Paragraphs>
                   <Top>0.77611cm</Top>
-                  <Left>10.02456cm</Left>
+                  <Left>8.9632cm</Left>
                   <Height>11pt</Height>
                   <Width>7.96541cm</Width>
                   <ZIndex>3</ZIndex>
@@ -2255,7 +2222,7 @@
                       </Style>
                     </Paragraph>
                   </Paragraphs>
-                  <Left>10.02456cm</Left>
+                  <Left>8.9632cm</Left>
                   <Height>11pt</Height>
                   <Width>7.96541cm</Width>
                   <ZIndex>4</ZIndex>
@@ -2312,8 +2279,8 @@
                       </Style>
                     </Paragraph>
                   </Paragraphs>
-                  <Top>0.35278cm</Top>
-                  <Left>10.03459cm</Left>
+                  <Top>0.38806cm</Top>
+                  <Left>8.9632cm</Left>
                   <Height>11pt</Height>
                   <Width>7.96541cm</Width>
                   <ZIndex>5</ZIndex>
@@ -2328,7 +2295,7 @@
               <KeepTogether>true</KeepTogether>
               <Left>0.02453cm</Left>
               <Height>0.70833in</Height>
-              <Width>18cm</Width>
+              <Width>16.9286cm</Width>
               <Style>
                 <Border>
                   <Style>None</Style>

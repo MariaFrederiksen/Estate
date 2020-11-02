@@ -333,6 +333,11 @@ page 50014 "SVA Property Card"
                         ApplicationArea = All;
                         ToolTip = 'Year to';
                     }
+                    field(ManLatest; ManLatest)
+                    {
+                        ApplicationArea = All;
+                        ToolTip = 'Latest accounting';
+                    }
                 }
             }
             group("Type A9")
@@ -532,12 +537,12 @@ page 50014 "SVA Property Card"
         }
         area(factboxes)
         {
-            part("Attached Documents";1174)
+            part("Attached Documents"; 1174)
             {
                 ApplicationArea = All;
-                Caption='Attachments';
-                SubPageLink = "Table ID"=CONST(50001),
-                              "No."=FIELD(Property);
+                Caption = 'Attachments';
+                SubPageLink = "Table ID" = CONST(50001),
+                              "No." = FIELD(Property);
                 Visible = NOT IsOfficeAddin;
             }
             systempart(Links; Links)
@@ -568,15 +573,15 @@ page 50014 "SVA Property Card"
 
                     trigger OnAction();
                     begin
-                        IF Rec.HeatCompany = '' THEN BEGIN
+                        IF Rec.HeatCompany = '' THEN
                             Error('Denne ejendom har ikke varmeregnskab.');
-                        END;
-                        CLEAR(Occupant);
-                        Occupant.SETRANGE(PropertyNo, Rec.Property);
-                        IF Occupant.FindFirst() THEN begin
-                            CLEAR(Heatreport);
-                            Heatreport.SETTABLEVIEW(Occupant);
-                            Heatreport.RUNMODAL;
+
+                        CLEAR(SVAOccupant);
+                        SVAOccupant.SETRANGE(PropertyNo, Rec.Property);
+                        IF SVAOccupant.FindFirst() THEN begin
+                            CLEAR(SVAConsumptionHeat);
+                            SVAConsumptionHeat.SETTABLEVIEW(SVAOccupant);
+                            SVAConsumptionHeat.RunModal();
                         end;
                     end;
                 }
@@ -589,15 +594,15 @@ page 50014 "SVA Property Card"
 
                     trigger OnAction();
                     begin
-                        IF Rec.WaterCompany = '' THEN BEGIN
+                        IF Rec.WaterCompany = '' THEN
                             Error('Denne ejendom har ikke vandregnskab.');
-                        END;
-                        CLEAR(Occupant);
-                        Occupant.SETRANGE(PropertyNo, Rec.Property);
-                        IF Occupant.FindFirst() then begin
-                            CLEAR(Waterreport);
-                            Waterreport.SETTABLEVIEW(Occupant);
-                            Waterreport.RUNMODAL;
+
+                        CLEAR(SVAOccupant);
+                        SVAOccupant.SETRANGE(PropertyNo, Rec.Property);
+                        IF SVAOccupant.FindFirst() then begin
+                            CLEAR(SVAConsumptionWater);
+                            SVAConsumptionWater.SETTABLEVIEW(SVAOccupant);
+                            SVAConsumptionWater.RunModal();
                         END;
                     end;
                 }
@@ -610,15 +615,15 @@ page 50014 "SVA Property Card"
 
                     trigger OnAction();
                     begin
-                        IF Rec.ElCompany = '' THEN BEGIN
+                        IF Rec.ElCompany = '' THEN
                             Error('Denne ejendom har ikke el-regnskab.');
-                        END;
-                        CLEAR(Occupant);
-                        Occupant.SETRANGE(PropertyNo, Rec.Property);
-                        IF Occupant.FindFirst() then begin
-                            CLEAR(ElReport);
-                            ElReport.SETTABLEVIEW(Occupant);
-                            ElReport.RUNMODAL;
+
+                        CLEAR(SVAOccupant);
+                        SVAOccupant.SETRANGE(PropertyNo, Rec.Property);
+                        IF SVAOccupant.FindFirst() then begin
+                            CLEAR(SVAConsumptionElectricity);
+                            SVAConsumptionElectricity.SETTABLEVIEW(SVAOccupant);
+                            SVAConsumptionElectricity.RunModal();
                         END;
                     end;
                 }
@@ -630,15 +635,15 @@ page 50014 "SVA Property Card"
 
                     trigger OnAction();
                     begin
-                        IF Rec.ManLatest = 0D THEN BEGIN
+                        IF Rec.ManYearFrom = 0 THEN
                             Error('Denne ejendom har ikke driftsregnskab.');
-                        END;
-                        CLEAR(Occupant);
-                        Occupant.SETRANGE(PropertyNo, Rec.Property);
-                        IF Occupant.FindFirst() then begin
-                            CLEAR(ManReport);
-                            ManReport.SETTABLEVIEW(Occupant);
-                            ManReport.RUNMODAL;
+
+                        CLEAR(SVAOccupant);
+                        SVAOccupant.SETRANGE(PropertyNo, Rec.Property);
+                        IF SVAOccupant.FindFirst() then begin
+                            CLEAR(SVAConsumptionMan);
+                            SVAConsumptionMan.SETTABLEVIEW(SVAOccupant);
+                            SVAConsumptionMan.RunModal();
                         end;
                     end;
                 }
@@ -650,36 +655,35 @@ page 50014 "SVA Property Card"
                 {
                     ApplicationArea = All;
                     Caption = 'Deposit';
-                    ToolTip = 'A list of deposit per occupant.';
+                    ToolTip = 'A list of deposit per SVAOccupant.';
                     Image = "Report";
 
                     trigger OnAction();
                     begin
-                        CLEAR(Occupant);
-                        Occupant.SETRANGE(PropertyNo, Rec.Property);
-                        IF Occupant.FindFirst() then begin
-                            CLEAR(DepositReport);
-                            DepositReport.SETTABLEVIEW(Occupant);
-                            DepositReport.RUNMODAL;
+                        CLEAR(SVAOccupant);
+                        SVAOccupant.SETRANGE(PropertyNo, Rec.Property);
+                        IF SVAOccupant.FindFirst() then begin
+                            CLEAR(SVADeposit);
+                            SVADeposit.SETTABLEVIEW(SVAOccupant);
+                            SVADeposit.RunModal();
                         end;
-
                     end;
                 }
                 action("Prepaid rent")
                 {
                     ApplicationArea = All;
                     Caption = 'Prepaid rent';
-                    ToolTip = 'A list of prepaid rent per occupant.';
+                    ToolTip = 'A list of prepaid rent per SVAOccupant.';
                     Image = "Report";
 
                     trigger OnAction();
                     begin
-                        CLEAR(Occupant);
-                        Occupant.SETRANGE(PropertyNo, Rec.Property);
-                        IF Occupant.FindFirst() then begin
-                            CLEAR(PrepaidReport);
-                            PrepaidReport.SETTABLEVIEW(Occupant);
-                            PrepaidReport.RUNMODAL;
+                        CLEAR(SVAOccupant);
+                        SVAOccupant.SETRANGE(PropertyNo, Rec.Property);
+                        IF SVAOccupant.FindFirst() then begin
+                            CLEAR(SVAPrepaidrent);
+                            SVAPrepaidrent.SETTABLEVIEW(SVAOccupant);
+                            SVAPrepaidrent.RunModal();
                         end;
 
                     end;
@@ -697,12 +701,12 @@ page 50014 "SVA Property Card"
 
                     trigger OnAction();
                     begin
-                        CLEAR(TenancyRecords);
-                        TenancyRecords.SETRANGE(TenancyRecords.PropertyNo, Rec.Property);
-                        if TenancyRecords.FindFirst() then begin
-                            CLEAR(VacantTenancies);
-                            VacantTenancies.SETTABLEVIEW(TenancyRecords);
-                            VacantTenancies.RUNMODAL;
+                        CLEAR(SVATenancy);
+                        SVATenancy.SETRANGE(SVATenancy.PropertyNo, Rec.Property);
+                        if SVATenancy.FindFirst() then begin
+                            CLEAR(SVAVacantTenancies);
+                            SVAVacantTenancies.SETTABLEVIEW(SVATenancy);
+                            SVAVacantTenancies.RunModal();
                         end;
                     end;
                 }
@@ -714,15 +718,34 @@ page 50014 "SVA Property Card"
                     ToolTip = 'Income for property and tenancies';
                     trigger OnAction();
                     begin
-                        CLEAR(TenancyRecords);
-                        TenancyRecords.SETRANGE(TenancyRecords.PropertyNo, Rec.Property);
-                        if TenancyRecords.FindFirst() then begin
-                            CLEAR(IncomeProperty);
-                            IncomeProperty.SETTABLEVIEW(TenancyRecords);
-                            IncomeProperty.RUNMODAL;
+                        CLEAR(SVATenancy);
+                        SVATenancy.SETRANGE(SVATenancy.PropertyNo, Rec.Property);
+                        if SVATenancy.FindFirst() then begin
+                            CLEAR(SVAIncomeProperty);
+                            SVAIncomeProperty.SETTABLEVIEW(SVATenancy);
+                            SVAIncomeProperty.RunModal();
                         end;
                     end;
                 }
+
+                action(Phonelist)
+                {
+                    Caption = 'Occupant mail and phonelist';
+                    ToolTip = 'Phone/mail list for all active occupants at this property';
+                    ApplicationArea = All;
+                    Image = MakeAgreement;
+                    trigger OnAction();
+                    begin
+                        CLEAR(SVAProperty);
+                        SVAProperty.SETRANGE(Property, Rec.Property);
+                        IF SVAProperty.FindFirst() then begin
+                            CLEAR(SVAOccupantList);
+                            SVAOccupantList.SETTABLEVIEW(SVAProperty);
+                            SVAOccupantList.RunModal();
+                        end;
+                    end;
+                }
+
             }
         }
 
@@ -742,23 +765,23 @@ page 50014 "SVA Property Card"
                     begin
                         if Rec.HeatCompany = '' then
                             Error('Denne ejendom har ikke varmeregnskab.');
-                        TempTable.Reset;
-                        TempTable.SetRange(Name, 'Varme ' + Property);
-                        if TempTable.FindSet then
+                        SVAExportTemp.Reset();
+                        SVAExportTemp.SetRange(Name, 'Varme ' + Property);
+                        if SVAExportTemp.FindSet() then
                             repeat
-                                Temptable.delete;
-                            until TempTable.Next = 0;
+                                SVAExportTemp.Delete();
+                            until SVAExportTemp.NEXT() = 0;
                         FindDates();
                         Position := StrPos(Rec.HeatCompany, 'Brunata');
-                        CLEAR(Occupant);
-                        Occupant.SETRANGE(PropertyNo, Rec.Property);
-                        IF Occupant.FindSet THEN
+                        CLEAR(SVAOccupant);
+                        SVAOccupant.SETRANGE(PropertyNo, Rec.Property);
+                        IF SVAOccupant.FindSet() THEN
                             repeat
                                 if Position = 0 then
                                     WriteToFileVarmekontrol();
                                 if Position > 0 then
                                     WritetoFileBrunata();
-                            until Occupant.Next = 0;
+                            until SVAOccupant.NEXT() = 0;
                         MakeFile();
                     end;
                 }
@@ -799,25 +822,28 @@ page 50014 "SVA Property Card"
     }
     trigger OnOpenPage()
     var
-        Officemanagement: Codeunit 1630;
+        OfficeManagement: Codeunit "Office Management";
     begin
-        IsOfficeAddin := Officemanagement.IsAvailable()
+        IsOfficeAddin := Officemanagement.IsAvailable();
     end;
 
     var
 
-        Heatreport: Report "SVA Consumption Heat";
-        Occupant: Record "SVA Occupant";
-        Waterreport: Report "SVA Consumption Water";
-        ElReport: Report "SVA Consumption Electricity";
-        ManReport: Report "SVA Consumption Man";
-        DepositReport: Report "SVA Deposit";
-        PrepaidReport: Report "SVA Prepaid rent";
-        TenancyRecords: Record "SVA Tenancy";
-        VacantTenancies: Report "SVA Vacant Tenancies";
-        IncomeProperty: Report "SVA Income Property";
-        TempTable: Record "SVA Export Temp";
-        OccupantTrans: Record "SVA Occupant Trans";
+
+        SVAOccupant: Record "SVA Occupant";
+        SVAExportTemp: Record "SVA Export Temp";
+        SVAOccupantTrans: Record "SVA Occupant Trans";
+        SVAProperty: Record "SVA Property";
+        SVATenancy: Record "SVA Tenancy";
+        SVAOccupantList: report "SVA Occupant List";
+        SVAConsumptionWater: Report "SVA Consumption Water";
+        SVAConsumptionHeat: Report "SVA Consumption Heat";
+        SVAConsumptionElectricity: Report "SVA Consumption Electricity";
+        SVAConsumptionMan: Report "SVA Consumption Man";
+        SVADeposit: Report "SVA Deposit";
+        SVAPrepaidRent: Report "SVA Prepaid Rent";
+        SVAVacantTenancies: Report "SVA Vacant Tenancies";
+        SVAIncomeProperty: Report "SVA Income Property";
         ConsumptionTo: Date;
         ConsumptionFrom: Date;
         OccupantAmount: Decimal;
@@ -829,46 +855,41 @@ page 50014 "SVA Property Card"
         Position: Integer;
         IsOfficeAddin: Boolean;
 
-
-
-
-
-
     local procedure WritetoFileVarmekontrol()
     begin
         //find poster, der er har korrekt dato og korrekt art. 
         //Dan en linje
         OccupantAmount := 0;
-        OccupantTrans.Reset;
-        OccupantTrans.SetRange(Occupant, Occupant.Number);
-        OccupantTrans.SetRange(Date, ConsumptionFrom, ConsumptionTo);
-        OccupantTrans.SetRange(Type, 2); //Varme
-        if OccupantTrans.FindSet then
+        SVAOccupantTrans.Reset();
+        SVAOccupantTrans.SetRange(Occupant, SVAOccupant.Number);
+        SVAOccupantTrans.SetRange(Date, ConsumptionFrom, ConsumptionTo);
+        SVAOccupantTrans.SetRange(Type, 2); //Varme
+        if SVAOccupantTrans.FindSet() then
             repeat
-                OccupantAmount += OccupantTrans.Amount;
-            until OccupantTrans.Next = 0;
-        if STRPOS(Occupant.TenancyNo, '-') > 0 then
-            Occupant.TenancyNo := DELSTR(Occupant.TenancyNo, STRPOS(Occupant.TenancyNo, '-'), 1);
-        OcNumber := Occupant.Number;
+                OccupantAmount += SVAOccupantTrans.Amount;
+            until SVAOccupantTrans.NEXT() = 0;
+        if STRPOS(SVAOccupant.TenancyNo, '-') > 0 then
+            SVAOccupant.TenancyNo := DELSTR(SVAOccupant.TenancyNo, STRPOS(SVAOccupant.TenancyNo, '-'), 1);
+        OcNumber := SVAOccupant.Number;
         if STRPOS(OcNumber, 'L') > 0 then
             OcNumber := DELSTR(OcNumber, STRPOS(OcNumber, 'L'), 1);
         Templine := '';
         Templine := PADSTR(Templine, 40, '0');
         TempLine := InsStr(TempLine, HeatcompanyNo, 10 - StrLen(HeatcompanyNo)); //1-10 heatcompanyaccountNo
         TempLine := InsStr(TempLine, Property, 20 - StrLen(Property));//11-20 Property
-        TempLine := InsStr(TempLine, Occupant.TenancyNo, 40 - Strlen(Occupant.TenancyNo) + 1); //31-40 TenancyNo only numbers
+        TempLine := InsStr(TempLine, SVAOccupant.TenancyNo, 40 - Strlen(SVAOccupant.TenancyNo) + 1); //31-40 TenancyNo only numbers
         Templine := InsStr(TempLine, OcNumber, 50 - StrLen(OcNumber) + 1); //41-50 OccupantNo
         TempLine := InsStr(TempLine, '                                                                                         ', 51); //51-80 Name 1
-        TempLine := InsStr(TempLine, Occupant.Name1, 51); //51-80 Name 1
-        TempLine := InsStr(TempLine, Occupant.Name2, 81); //81-110 Name 2
-        TempLine := InsStr(TempLine, Occupant.Address, 111); //111-140 Address
-        TempLine := InsStr(TempLine, Occupant."Post Code", 141); //141-144 Post code
-        TempLine := InsStr(Templine, Occupant.City, 145); //145-164 City
-        TempLine := InsStr(TempLine, format(Occupant.StartDate, 0, '<Day,2><Month,2><Year4>'), 165); //165-172 Startdate
-        If Occupant.EndDate = 0D then
+        TempLine := InsStr(TempLine, SVAOccupant.Name1, 51); //51-80 Name 1
+        TempLine := InsStr(TempLine, SVAOccupant.Name2, 81); //81-110 Name 2
+        TempLine := InsStr(TempLine, SVAOccupant.Address, 111); //111-140 Address
+        TempLine := InsStr(TempLine, SVAOccupant."Post Code", 141); //141-144 Post code
+        TempLine := InsStr(Templine, SVAOccupant.City, 145); //145-164 City
+        TempLine := InsStr(TempLine, format(SVAOccupant.StartDate, 0, '<Day,2><Month,2><Year4>'), 165); //165-172 Startdate
+        If SVAOccupant.EndDate = 0D then
             TempLine := InsStr(TempLine, '00000000', 173);
-        if Occupant.EndDate <> 0D then
-            TempLine := InsStr(TempLine, format(Occupant.StartDate, 0, '<Day,2><Month,2><Year4>'), 173); //173-180 enddate
+        if SVAOccupant.EndDate <> 0D then
+            TempLine := InsStr(TempLine, format(SVAOccupant.StartDate, 0, '<Day,2><Month,2><Year4>'), 173); //173-180 enddate
         //OccupantAmount := 1999; //testbeløb
         OcAmountInt := OccupantAmount * 100;
         OcAmountText := Format(OcAmountInt);
@@ -890,36 +911,36 @@ page 50014 "SVA Property Card"
         //find poster, der er har korrekt dato og korrekt art. 
         //Dan en linje
         OccupantAmount := 0;
-        OccupantTrans.Reset;
-        OccupantTrans.SetRange(Occupant, Occupant.Number);
-        OccupantTrans.SetRange(Date, ConsumptionFrom, ConsumptionTo);
-        OccupantTrans.SetRange(Type, 2); //Varme
-        if OccupantTrans.FindSet then
+        SVAOccupantTrans.Reset();
+        SVAOccupantTrans.SetRange(Occupant, SVAOccupant.Number);
+        SVAOccupantTrans.SetRange(Date, ConsumptionFrom, ConsumptionTo);
+        SVAOccupantTrans.SetRange(Type, 2); //Varme
+        if SVAOccupantTrans.FindSet() then
             repeat
-                OccupantAmount += OccupantTrans.Amount;
-            until OccupantTrans.Next = 0;
-        if STRPOS(Occupant.TenancyNo, '-') > 0 then
-            Occupant.TenancyNo := DELSTR(Occupant.TenancyNo, STRPOS(Occupant.TenancyNo, '-'), 1);
-        OcNumber := Occupant.Number;
+                OccupantAmount += SVAOccupantTrans.Amount;
+            until SVAOccupantTrans.NEXT() = 0;
+        if STRPOS(SVAOccupant.TenancyNo, '-') > 0 then
+            SVAOccupant.TenancyNo := DELSTR(SVAOccupant.TenancyNo, STRPOS(SVAOccupant.TenancyNo, '-'), 1);
+        OcNumber := SVAOccupant.Number;
         if STRPOS(OcNumber, 'L') > 0 then
             OcNumber := DELSTR(OcNumber, STRPOS(OcNumber, 'L'), 1);
         Templine := '';
         Templine := PADSTR(Templine, 40, '0');
         TempLine := InsStr(TempLine, HeatcompanyNo, 10 - StrLen(HeatcompanyNo)); //1-10 heatcompanyaccountNo
         TempLine := InsStr(TempLine, Property, 20 - StrLen(Property));//11-20 Property
-        TempLine := InsStr(TempLine, Occupant.TenancyNo, 40 - Strlen(Occupant.TenancyNo) + 1); //31-40 TenancyNo only numbers
+        TempLine := InsStr(TempLine, SVAOccupant.TenancyNo, 40 - Strlen(SVAOccupant.TenancyNo) + 1); //31-40 TenancyNo only numbers
         Templine := InsStr(TempLine, OcNumber, 50 - StrLen(OcNumber) + 1); //41-50 OccupantNo
         TempLine := InsStr(TempLine, '                                                                                         ', 51); //51-80 Name 1
-        TempLine := InsStr(TempLine, Occupant.Name1, 51); //51-80 Name 1
-        TempLine := InsStr(TempLine, Occupant.Name2, 81); //81-110 Name 2
-        TempLine := InsStr(TempLine, Occupant.Address, 111); //111-140 Address
-        TempLine := InsStr(TempLine, Occupant."Post Code", 141); //141-144 Post code
-        TempLine := InsStr(Templine, Occupant.City, 145); //145-164 City
-        TempLine := InsStr(TempLine, format(Occupant.StartDate, 0, '<Day,2><Month,2><Year4>'), 165); //165-172 Startdate
-        If Occupant.EndDate = 0D then
+        TempLine := InsStr(TempLine, SVAOccupant.Name1, 51); //51-80 Name 1
+        TempLine := InsStr(TempLine, SVAOccupant.Name2, 81); //81-110 Name 2
+        TempLine := InsStr(TempLine, SVAOccupant.Address, 111); //111-140 Address
+        TempLine := InsStr(TempLine, SVAOccupant."Post Code", 141); //141-144 Post code
+        TempLine := InsStr(Templine, SVAOccupant.City, 145); //145-164 City
+        TempLine := InsStr(TempLine, format(SVAOccupant.StartDate, 0, '<Day,2><Month,2><Year4>'), 165); //165-172 Startdate
+        If SVAOccupant.EndDate = 0D then
             TempLine := InsStr(TempLine, '00000000', 173);
-        if Occupant.EndDate <> 0D then
-            TempLine := InsStr(TempLine, format(Occupant.StartDate, 0, '<Day,2><Month,2><Year4>'), 173); //173-180 enddate
+        if SVAOccupant.EndDate <> 0D then
+            TempLine := InsStr(TempLine, format(SVAOccupant.StartDate, 0, '<Day,2><Month,2><Year4>'), 173); //173-180 enddate
         OccupantAmount := 1999; //testbeløb
         OcAmountInt := OccupantAmount * 100;
         OcAmountText := Format(OcAmountInt);
@@ -938,11 +959,12 @@ page 50014 "SVA Property Card"
 
     local procedure Reporting(Text250: Text[256]);
     begin
+        SVAExportTemp.Init();
         TempCount += 1;
-        TempTable."Line No." := TempCount;
-        TempTable.Name := 'Varme ejd ' + Property;
-        TempTable."Output Line" := Text250;
-        TempTable.INSERT;
+        SVAExportTemp."Line No." := TempCount;
+        SVAExportTemp.Name := 'Varme ejd ' + Property;
+        SVAExportTemp."Output Line" := Text250;
+        SVAExportTemp.Insert();
     end;
 
     Local procedure MakeFile();

@@ -1,12 +1,11 @@
 ﻿table 50016 "SVA Setup"
 {
-    // Opsætningstabel for NAV Ejendom
+    // Setup table for d365Ejendom
 
     Caption = 'Parameters';
     DataClassification = CustomerContent;
-    Permissions = TableData 50000 = rimd;
-    DrillDownPageID = "SVA Setup Estate List";
-    LookupPageID = "SVA Setup Estate List";
+    DrillDownPageID = "SVA Setup Estate Card";
+    LookupPageID = "SVA Setup Estate Card";
 
     fields
     {
@@ -98,7 +97,7 @@
             trigger OnValidate();
             begin
                 IF STRLEN(BS_Dataprovider) <> 8 THEN
-                    ERROR(TEXT008);
+                    ERROR(TEXT008Lbl);
             end;
         }
         field(170; BS_Delsystem; Text[5])
@@ -109,7 +108,7 @@
             trigger OnValidate();
             begin
                 IF STRLEN(BS_Delsystem) <> 3 THEN
-                    ERROR(TEXT003);
+                    ERROR(TEXT003Lbl);
             end;
         }
         field(180; BS_DebGrp; Text[5])
@@ -120,7 +119,7 @@
             trigger OnValidate();
             begin
                 IF STRLEN(BS_DebGrp) <> 5 THEN
-                    ERROR(TEXT005);
+                    ERROR(TEXT005Lbl);
             end;
         }
         field(200; BS_AftaleNo; Text[10])
@@ -131,7 +130,7 @@
             trigger OnValidate();
             begin
                 IF STRLEN(BS_AftaleNo) <> 8 THEN
-                    ERROR(TEXT008);
+                    ERROR(TEXT008Lbl);
             end;
         }
         field(220; BS_Advis; Text[60])
@@ -271,21 +270,20 @@
     }
 
     var
+        SVAProperty: Record "SVA Property";
         PostCode: Record "Post Code";
         Country: Text;
-        TEXT005: Label 'There must be 5 digits';
-        PathError: Label 'Path must have a valid value';
-        VATRegNoFormat: Record "VAT Registration No. Format";
-        TEXT008: Label 'There must be 8 digits';
-        TEXT003: Label 'There must be 3 sign';
-        Properties: Record "SVA Property";
+        TEXT005Lbl: Label 'There must be 5 digits';
+        TEXT008Lbl: Label 'There must be 8 digits';
+        TEXT003Lbl: Label 'There must be 3 sign';
+
 
     trigger OnInsert();
     begin
-        Properties.Reset;
-        if Properties.findset then begin
-            Properties.DataVendor := BS_Dataprovider;
-            Properties.Modify;
+        SVAProperty.Reset();
+        if SVAProperty.FindSet() then begin
+            SVAProperty.DataVendor := BS_Dataprovider;
+            SVAProperty.Modify();
         end;
     end;
 }

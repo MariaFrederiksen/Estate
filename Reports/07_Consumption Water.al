@@ -9,39 +9,46 @@ report 50007 "SVA Consumption Water"
     {
         dataitem(Occupant; "SVA Occupant")
         {
-            column(CompanyName;COMPANYPROPERTY.DISPLAYNAME)
+            column(Headline; Headline)
             {
             }
-            column(OProperty; PropertyNo)
+            column(CompanyName; COMPANYPROPERTY.DISPLAYNAME())
             {
             }
-            column(ONo; Number)
+            column(ConsumptionFrom; ConsumptionFrom)
             {
             }
-            column(OTenancy; TenancyNo)
+            column(ConsumptionTo; ConsumptionTo)
             {
             }
-            column(OCustomer; "Customer No")
+            column(PropertyNo; PropertyNo)
             {
             }
-            column(OName; Name1)
+            column(Number; Number)
             {
             }
-            column(OEndDate; EndDate)
+            column(TenancyNo; TenancyNo)
             {
             }
-            column(OStartDate; StartDate)
+            column(Customer; "Customer No")
             {
             }
-            column(OID; ConsumptionAccountNo)
+            column(Name1; Name1)
             {
             }
+            column(EndDate; EndDate)
+            {
+            }
+            column(StartDate; StartDate)
+            {
+            }
+
             dataitem("Occupant Trans"; "SVA Occupant Trans")
             {
                 DataItemLink = Occupant = FIELD(Number);
                 DataItemTableView = SORTING(Occupant, Date, "Cost type Estate", "Invoice No")
                                     WHERE(Type = CONST(ACwater));
-                column(OTransNo; Occupant)
+                column(OccupantNo; Occupant)
                 {
                 }
                 column(Costtype; "Cost type Estate")
@@ -57,33 +64,34 @@ report 50007 "SVA Consumption Water"
                 trigger OnAfterGetRecord();
                 begin
                     if ("Occupant Trans".Date < ConsumptionFrom) OR ("Occupant Trans".Date > ConsumptionTo) then
-                        CurrReport.Skip;
+                        CurrReport.Skip();
                 end;
             }
 
             trigger OnAfterGetRecord();
             begin
+                Headline := HeadlineLbl;
                 PropNo := PropertyNo;
-                PropertyRec.RESET;
-                PropertyRec.SETRANGE(PropertyRec.Property, PropNo);
-                IF PropertyRec.FINDFIRST() THEN begin
+                SVAProperty.Reset();
+                SVAProperty.SETRANGE(SVAProperty.Property, PropNo);
+                IF SVAProperty.FINDFIRST() THEN
                     If ConsumptionTo = 0D then begin
-                        ConsumptionFrom := DMY2DATE(1, PropertyRec.WaterYearFrom, DATE2DMY(TODAY, 3));
+                        ConsumptionFrom := DMY2DATE(1, SVAProperty.WaterYearFrom, DATE2DMY(TODAY, 3));
                         ConsumptionTo := CALCDATE('<1Y-1D>', ConsumptionFrom);
                         while Today < ConsumptionTo do begin
                             ConsumptionFrom := CalcDate('<-1Y>', ConsumptionFrom);
                             ConsumptionTo := CalcDate('<-1Y>', ConsumptionTo);
                         end;
-                    end;
-                END;
+
+                    END;
                 IF (EndDate < ConsumptionFrom) AND (EndDate <> 0D) THEN
-                    CurrReport.SKIP;
+                    CurrReport.Skip();
                 IF StartDate > ConsumptionTo THEN
-                    CurrReport.SKIP;
+                    CurrReport.Skip();
             end;
+
         }
     }
-
     requestpage
     {
 
@@ -101,10 +109,13 @@ report 50007 "SVA Consumption Water"
     }
 
     var
-        ConsumptionFrom: Date;
+        SVAProperty: Record "SVA Property";
+        Headline: Text[20];
         ConsumptionTo: Date;
-        PropertyRec: Record "SVA Property";
+        ConsumptionFrom: Date;
         PropNo: Code[10];
+        HeadlineLbl: label 'A conto water';
 
 }
+
 

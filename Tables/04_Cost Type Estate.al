@@ -2,74 +2,73 @@
 {
     // Tabel for opsætning af konteringer for NAV Ejendom.
 
-    Caption='Costtype';
+    Caption = 'Costtype';
     DataClassification = CustomerContent;
-    Permissions = TableData 50004 = rimd;
     DrillDownPageID = "SVA Cost Type Estate List";
     LookupPageID = "SVA Cost Type Estate List";
 
     fields
     {
-        field(1;Costtype;Code[10])
+        field(1; Costtype; Code[10])
         {
-            Caption='Costtype';
+            Caption = 'Costtype';
         }
-        field(2;Description;Text[30])
+        field(2; Description; Text[30])
         {
-            Caption='Description';
+            Caption = 'Description';
         }
-        field(3;Account;Code[10])
+        field(3; Account; Code[10])
         {
-            Caption='Account';
+            Caption = 'Account';
             TableRelation = "G/L Account"."No.";
         }
-        field(4;Type;Option)
+        field(4; Type; Option)
         {
-            Caption='Type';
-            OptionCaption='Other,Rent,ACheat,ACwater,ACElectric,ACCooling,ACOperating,Antenna,Internet,OccGroup,Deposit,Prepaid rent,Settlement,MovingCost';
+            Caption = 'Type';
+            OptionCaption = 'Other,Rent,ACheat,ACwater,ACElectric,ACCooling,ACOperating,Antenna,Internet,OccGroup,Deposit,Prepaid rent,Settlement,MovingCost';
             OptionMembers = Other,Rent,ACheat,ACwater,ACElectric,ACCooling,ACOperating,Antenna,Internet,OccGroup,Deposit,"Prepaid rent",Settlement,Movingcost;
         }
-        field(5;Reminder;Boolean)
+        field(5; Reminder; Boolean)
         {
-            Caption='Reminder';
+            Caption = 'Reminder';
         }
-        field(6;"Order";Integer)
+        field(6; "Order"; Integer)
         {
-            Caption='Order';
+            Caption = 'Order';
         }
-        field(7;VatGroup;Code[10])
+        field(7; VatGroup; Code[10])
         {
-            Caption='VAT Prod. Posting Group';
+            Caption = 'VAT Prod. Posting Group';
             TableRelation = "VAT Product Posting Group".Code;
             NotBlank = true;
         }
-        field(8;ProductPostingGroup;Code[20])
+        field(8; ProductPostingGroup; Code[20])
         {
-            Caption='Prod. Posting Group';
+            Caption = 'Prod. Posting Group';
             TableRelation = "Gen. Product Posting Group".Code;
             NotBlank = true;
             trigger OnValidate();
             begin
-                ProdPostGrp.Reset;
-                ProdPostGrp.SetRange(code,ProductPostingGroup);
-                if ProdPostGrp.FindFirst then begin
-                    VatGroup := ProdPostGrp."Def. VAT Prod. Posting Group";
-                    end;
+                GenProductPostingGroup.Reset();
+                GenProductPostingGroup.SetRange(code, ProductPostingGroup);
+                if GenProductPostingGroup.FindFirst() then
+                    VatGroup := GenProductPostingGroup."Def. VAT Prod. Posting Group";
+
             end;
         }
     }
-     keys
+    keys
     {
-        key(Key1;Costtype)
+        key(Key1; Costtype)
         {
         }
     }
     Fieldgroups
     {
     }
-     
+
     var
-    ProdPostGrp : Record "Gen. Product Posting Group";
-   
+        GenProductPostingGroup: Record "Gen. Product Posting Group";
+
 }
 

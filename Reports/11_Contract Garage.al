@@ -3,95 +3,95 @@ report 50011 "SVA Contract Garage"
     // Garagekontrakten er baseret på samme kartotek som lejekontrakt TypeA 9. udgave. Der kan kun være en lejekontrakt pr. beboeraftale.
     WordLayout = './Layouts/Contract Garage.docx';
 
-    Caption='Leasecontract for garage';
+    Caption = 'Leasecontract for garage';
     DefaultLayout = Word;
 
     dataset
     {
-        dataitem("LeaseContract_A9";"SVA LeaseContract_A9")
+        dataitem("LeaseContract_A9"; "SVA LeaseContract_A9")
         {
-            column(Number;Number)
+            column(Number; Number)
             {
             }
-            column(TAddress;TypeA9_1_Address)
+            column(TAddress; TypeA9_1_Address)
             {
             }
-            column(TCity;TypeA9_1_City)
+            column(TCity; TypeA9_1_City)
             {
             }
-            column(Landlord;TypeA9_1_Landlord)
+            column(Landlord; TypeA9_1_Landlord)
             {
             }
-            column(LandlordCVR;TypeA9_1_LandlordCVR)
+            column(LandlordCVR; TypeA9_1_LandlordCVR)
             {
             }
-            column(LandlordAddress;TypeA9_1_LandlordAddress)
+            column(LandlordAddress; TypeA9_1_LandlordAddress)
             {
             }
-            column(OName;TypeA9_1_TenentName)
+            column(OName; TypeA9_1_TenentName)
             {
             }
-            column(OAddress;TypeA9_1_TenentAddress)
+            column(OAddress; TypeA9_1_TenentAddress)
             {
             }
-            column(Ocpr;TypeA9_1_TenantCPR)
+            column(Ocpr; TypeA9_1_TenantCPR)
             {
             }
-            column("Area";TypeA9_1_AreaTotal)
+            column("Area"; TypeA9_1_AreaTotal)
             {
             }
-            column(GarageNo;TypeA9_1_GarageNo)
+            column(GarageNo; TypeA9_1_GarageNo)
             {
             }
-            column(StartDate;TextT9_2_Date)
+            column(StartDate; TextT9_2_Date)
             {
             }
-            column(RentPrYr;TypeA9_3_RentPerYear)
+            column(RentPrYr; TypeA9_3_RentPerYear)
             {
             }
-            column(RentPPeriod;TypeA9_3_RentPerPeriode)
+            column(RentPPeriod; TypeA9_3_RentPerPeriode)
             {
             }
-            column(TotalPerPeriod;TypeA9_3_TotalperPeriod)
+            column(TotalPerPeriod; TypeA9_3_TotalperPeriod)
             {
             }
-            column(BankRegNo;TypeA9_3_BankRegNo)
+            column(BankRegNo; TypeA9_3_BankRegNo)
             {
             }
-            column(BankAccount;TypeA9_3_BankAccount)
+            column(BankAccount; TypeA9_3_BankAccount)
             {
             }
-            column(Bankname;TypeA9_3_Bankname)
+            column(Bankname; TypeA9_3_Bankname)
             {
             }
-            column(DepAmount;TypeA9_4_DepAmount)
+            column(DepAmount; TypeA9_4_DepAmount)
             {
             }
-            column(DepMth;TypeA9_4_DepMth)
+            column(DepMth; TypeA9_4_DepMth)
             {
             }
-            column(DueDate;TypeA9_4_DueDate)
+            column(DueDate; TypeA9_4_DueDate)
             {
             }
-            column(PrepaidRent;TypeA9_4_PrepaidRent)
+            column(PrepaidRent; TypeA9_4_PrepaidRent)
             {
             }
-            column(Rent;TypeA9_4_Rentetc)
+            column(Rent; TypeA9_4_Rentetc)
             {
             }
-            column(RentFrom;TextT9_4_RentFrom)
+            column(RentFrom; TextT9_4_RentFrom)
             {
             }
-            column(RentTo;TextT9_4_RentTo)
+            column(RentTo; TextT9_4_RentTo)
             {
             }
-            column(Deposit;TypeA9_4_Depositum)
+            column(Deposit; TypeA9_4_Depositum)
             {
             }
-            column(TotalAmount;TypeA9_4_TotalAmount)
+            column(TotalAmount; TypeA9_4_TotalAmount)
             {
             }
-            column(RentFirstTime;TextT9_4_RentFirstTime)
+            column(RentFirstTime; TextT9_4_RentFirstTime)
             {
             }
         }
@@ -109,25 +109,25 @@ report 50011 "SVA Contract Garage"
             column(CCity; City)
             {
             }
-            column(CompanyVAT_Registration_No_;"VAT Registration No.")
+            column(CompanyVAT_Registration_No_; "VAT Registration No.")
             {
             }
-            column(CompanyGetVATRegistrationNumberLbl;GetVATRegistrationNumberLbl)
+            column(CompanyGetVATRegistrationNumberLbl; GetVATRegistrationNumberLbl())
             {
             }
-            column(CompanyPhone_No_;"Phone No.")
+            column(CompanyPhone_No_; "Phone No.")
             {
             }
-            column(COmpanyPicture;Picture)
+            column(COmpanyPicture; Picture)
             {
             }
-            column(CompanyBankBranchNo;"Bank Branch No.")
+            column(CompanyBankBranchNo; "Bank Branch No.")
             {
             }
-            column(CompanyBanAccountNo;"Bank Branch No.")
+            column(CompanyBanAccountNo; "Bank Branch No.")
             {
             }
-            column(CompanyBankName;"Bank Name")
+            column(CompanyBankName; "Bank Name")
             {
             }
         }
@@ -150,8 +150,5 @@ report 50011 "SVA Contract Garage"
     }
 
     var
-        TemplateName : Text[150];
-        Txt001 : Label '" "';
-        Txt002 : Label 'X';
 }
 

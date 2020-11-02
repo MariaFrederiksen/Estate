@@ -3,426 +3,425 @@ report 50010 "SVA ContractTypeA9"
     // Udskrivning af lejekontrakt type A, 9. udgave.
     WordLayout = './Layouts/ContractTypeA9.docx';
 
-    Caption='Contract type A, 9. edition';
+    Caption = 'Contract type A, 9. edition';
     DefaultLayout = Word;
 
     dataset
     {
-        dataitem("LeaseContract_A9";"SVA LeaseContract_A9")
-        
+        dataitem("LeaseContract_A9"; "SVA LeaseContract_A9")
+
         {
             DataItemTableView = SORTING(Number);
             RequestFilterFields = Number;
-            column(Number;Number)
+            column(Number; Number)
             {
             }
-            column(TypeA9_1_TenancyNo;TypeA9_1_TenancyNo)
+            column(TypeA9_1_TenancyNo; TypeA9_1_TenancyNo)
             {
             }
-            column(Appartment;TextT9_1_Apartment)
+            column(Appartment; TextT9_1_Apartment)
             {
             }
-            column(Room;TextT9_1_Room)
+            column(Room; TextT9_1_Room)
             {
             }
-            column(Condemnium;TextT9_1_Condominium)
+            column(Condemnium; TextT9_1_Condominium)
             {
             }
-            column(HousingGroup;TextT9_1_HousingCoop)
+            column(HousingGroup; TextT9_1_HousingCoop)
             {
             }
-            column(Othertype;TextT9_1_OtherT)
+            column(Othertype; TextT9_1_OtherT)
             {
             }
-            column(OthertypeText;TypeA9_1_OtherTTxt)
+            column(OthertypeText; TypeA9_1_OtherTTxt)
             {
             }
-            column(Sublease;TextT9_1_Sublease)
+            column(Sublease; TextT9_1_Sublease)
             {
             }
-            column(TAddress;TypeA9_1_Address)
+            column(TAddress; TypeA9_1_Address)
             {
             }
-            column(TCity;TypeA9_1_City)
+            column(TCity; TypeA9_1_City)
             {
             }
-            column(Landlord;TypeA9_1_Landlord)
+            column(Landlord; TypeA9_1_Landlord)
             {
             }
-            column(LandlordCVR;TypeA9_1_LandlordCVR)
+            column(LandlordCVR; TypeA9_1_LandlordCVR)
             {
             }
-            column(LandlordAddress;TypeA9_1_LandlordAddress)
+            column(LandlordAddress; TypeA9_1_LandlordAddress)
             {
             }
-            column(OName;TypeA9_1_TenentName)
+            column(OName; TypeA9_1_TenentName)
             {
             }
-            column(OAddress;TypeA9_1_TenentAddress)
+            column(OAddress; TypeA9_1_TenentAddress)
             {
             }
-            column(Ocpr;TypeA9_1_TenantCPR)
+            column(Ocpr; TypeA9_1_TenantCPR)
             {
             }
-            column(TypeA9_1_Phone;TypeA9_1_Phone)
+            column(TypeA9_1_Phone; TypeA9_1_Phone)
             {
             }
-            column(TypeA9_1_Mail;TypeA9_1_Mail)
+            column(TypeA9_1_Mail; TypeA9_1_Mail)
             {
             }
-            column("Area";TypeA9_1_AreaTotal)
+            column("Area"; TypeA9_1_AreaTotal)
             {
             }
-            column(Rooms;TypeA9_1_Rooms)
+            column(Rooms; TypeA9_1_Rooms)
             {
             }
-            column(AreaP;TypeA9_1_AreaProf)
+            column(AreaP; TypeA9_1_AreaProf)
             {
             }
-            column(Laundry;TextT9_1_Laundy)
+            column(Laundry; TextT9_1_Laundy)
             {
             }
-            column(Courtyard;TextT9_1_Courtyard)
+            column(Courtyard; TextT9_1_Courtyard)
             {
             }
-            column(BicycleStorage;TextT9_1_BicycleStorage)
+            column(BicycleStorage; TextT9_1_BicycleStorage)
             {
             }
-            column(Garage;TextT9_1_Garage)
+            column(Garage; TextT9_1_Garage)
             {
             }
-            column(GarageNo;TypeA9_1_GarageNo)
+            column(GarageNo; TypeA9_1_GarageNo)
             {
             }
-            column(Attic;TextT9_1_Attic)
+            column(Attic; TextT9_1_Attic)
             {
-                AutoFormatExpression = Txt002;
             }
-            column(AtticNo;TypeA9_1_AtticNo)
+            column(AtticNo; TypeA9_1_AtticNo)
             {
             }
-            column(OtherUse;TextT9_1_Other)
+            column(OtherUse; TextT9_1_Other)
             {
             }
-            column(OtheruseText;TypeA9_1_OtherTxt)
+            column(OtheruseText; TypeA9_1_OtherTxt)
             {
             }
-            column(Use;TypeA9_1_Use)
+            column(Use; TypeA9_1_Use)
             {
             }
-            column(StartDate;TextT9_2_Date)
+            column(StartDate; TextT9_2_Date)
             {
             }
-            column(RentPrYr;TypeA9_3_RentPerYear)
+            column(RentPrYr; TypeA9_3_RentPerYear)
             {
             }
-            column(Monthley;TextT9_3_Monthly)
+            column(Monthley; TextT9_3_Monthly)
             {
             }
-            column(Quater;TextT9_3_Quater)
+            column(Quater; TextT9_3_Quater)
             {
             }
-            column(Taxes;TextT9_3_Taxes)
+            column(Taxes; TextT9_3_Taxes)
             {
             }
-            column(RentPPeriod;TypeA9_3_RentPerPeriode)
+            column(RentPPeriod; TypeA9_3_RentPerPeriode)
             {
             }
-            column(ACHeat;TypeA9_3_ACHeat)
+            column(ACHeat; TypeA9_3_ACHeat)
             {
             }
-            column(ACWater;TypeA9_3_ACWater)
+            column(ACWater; TypeA9_3_ACWater)
             {
             }
-            column(ACEl;TypeA9_3_ACElectricity)
+            column(ACEl; TypeA9_3_ACElectricity)
             {
             }
-            column(ACColling;TypeA9_3_ACCooling)
+            column(ACColling; TypeA9_3_ACCooling)
             {
             }
-            column(Antenna;TypeA9_3_Antenna)
+            column(Antenna; TypeA9_3_Antenna)
             {
             }
-            column(Internet;TypeA9_3_Internet)
+            column(Internet; TypeA9_3_Internet)
             {
             }
-            column(TenantGroup;TypeA9_3_TenantGroup)
+            column(TenantGroup; TypeA9_3_TenantGroup)
             {
             }
-            column(OtherText1;TypeA9_3_OtherText1)
+            column(OtherText1; TypeA9_3_OtherText1)
             {
             }
-            column(OtherAmount1;TypeA9_3_OtherAmount1)
+            column(OtherAmount1; TypeA9_3_OtherAmount1)
             {
             }
-            column(OtherText2;TypeA9_3_OtherText2)
+            column(OtherText2; TypeA9_3_OtherText2)
             {
             }
-            column(OtherAmount2;TypeA9_3_OtherAmount2)
+            column(OtherAmount2; TypeA9_3_OtherAmount2)
             {
             }
-            column(TotalPerPeriod;TypeA9_3_TotalperPeriod)
+            column(TotalPerPeriod; TypeA9_3_TotalperPeriod)
             {
             }
-            column(TaxesPer;TypeA9_3_TaxesPer)
+            column(TaxesPer; TypeA9_3_TaxesPer)
             {
             }
-            column(BankRegNo;TypeA9_3_BankRegNo)
+            column(BankRegNo; TypeA9_3_BankRegNo)
             {
             }
-            column(BankAccount;TypeA9_3_BankAccount)
+            column(BankAccount; TypeA9_3_BankAccount)
             {
             }
-            column(Bankname;TypeA9_3_Bankname)
+            column(Bankname; TypeA9_3_Bankname)
             {
             }
-            column(DateDep;TypeA9_4_DateDep)
+            column(DateDep; TypeA9_4_DateDep)
             {
             }
-            column(DepAmount;TypeA9_4_DepAmount)
+            column(DepAmount; TypeA9_4_DepAmount)
             {
             }
-            column(DepMth;TypeA9_4_DepMth)
+            column(DepMth; TypeA9_4_DepMth)
             {
             }
-            column(PrepaidRentDate;TypeA9_4_PrepaidRentDate)
+            column(PrepaidRentDate; TypeA9_4_PrepaidRentDate)
             {
             }
-            column(PrePayRentMth;TypeA9_4_PrepaidRentMth)
+            column(PrePayRentMth; TypeA9_4_PrepaidRentMth)
             {
             }
-            column(DueDate;TextT9_4_DueDate)
+            column(DueDate; TextT9_4_DueDate)
             {
             }
-            column(PrepaideRent;TypeA9_4_PrepaidRent)
+            column(PrepaideRent; TypeA9_4_PrepaidRent)
             {
             }
-            column(RentFrom;TextT9_4_RentFrom)
+            column(RentFrom; TextT9_4_RentFrom)
             {
             }
-            column(RentTo;TextT9_4_RentTo)
+            column(RentTo; TextT9_4_RentTo)
             {
             }
-            column(Rentetc;TypeA9_4_Rentetc)
+            column(Rentetc; TypeA9_4_Rentetc)
             {
             }
-            column(Deposit;TypeA9_4_Depositum)
+            column(Deposit; TypeA9_4_Depositum)
             {
             }
-            column(Text1;TypeA9_4_Text1)
+            column(Text1; TypeA9_4_Text1)
             {
             }
-            column(Amount1;TypeA9_4_Amount1)
+            column(Amount1; TypeA9_4_Amount1)
             {
             }
-            column(Text2;TypeA9_4_Text2)
+            column(Text2; TypeA9_4_Text2)
             {
             }
-            column(Amount2;TypeA9_4_Amount2)
+            column(Amount2; TypeA9_4_Amount2)
             {
             }
-            column(Text3;TypeA9_4_Text3)
+            column(Text3; TypeA9_4_Text3)
             {
             }
-            column(Amount3;TypeA9_4_Amount3)
+            column(Amount3; TypeA9_4_Amount3)
             {
             }
-            column(TotalAmount;TypeA9_4_TotalAmount)
+            column(TotalAmount; TypeA9_4_TotalAmount)
             {
             }
-            column(RetFirstTime;TextT9_4_RentFirstTime)
+            column(RetFirstTime; TextT9_4_RentFirstTime)
             {
             }
-            column(LandlordHeatYes;TextT9_5_LandlordHeatYes)
+            column(LandlordHeatYes; TextT9_5_LandlordHeatYes)
             {
             }
-            column(LandlordHeatNo;TextT9_5_LandlordHeatNo)
+            column(LandlordHeatNo; TextT9_5_LandlordHeatNo)
             {
             }
-            column(L_natGas;TextT9_5_NatGasLandlord)
+            column(L_natGas; TextT9_5_NatGasLandlord)
             {
             }
-            column(L_oil;TextT9_5_LandlordOil)
+            column(L_oil; TextT9_5_LandlordOil)
             {
             }
-            column(L_Elheating;TextT9_5_LandlordElHeating)
+            column(L_Elheating; TextT9_5_LandlordElHeating)
             {
             }
-            column(L_Other;TextT9_5_Other)
+            column(L_Other; TextT9_5_Other)
             {
             }
-            column(L_text;TypeA9_5_LandlordText)
+            column(L_text; TypeA9_5_LandlordText)
             {
             }
-            column(HAcc;TypeA9_5_HeatAccounting)
+            column(HAcc; TypeA9_5_HeatAccounting)
             {
             }
-            column(T_Heatyes;TextT9_5_TenantHeatYes)
+            column(T_Heatyes; TextT9_5_TenantHeatYes)
             {
             }
-            column(T_heatNo;TextT9_5_TenantHeatNo)
+            column(T_heatNo; TextT9_5_TenantHeatNo)
             {
             }
-            column(T_El;TextT9_5_El)
+            column(T_El; TextT9_5_El)
             {
             }
-            column(T_Gas;TextT9_5_Gas)
+            column(T_Gas; TextT9_5_Gas)
             {
             }
-            column(T_Oil;TextT9_5_Oil)
+            column(T_Oil; TextT9_5_Oil)
             {
             }
-            column(T_Natgas;TextT9_5_NatGas)
+            column(T_Natgas; TextT9_5_NatGas)
             {
             }
-            column(T_OtherH;TextT9_5_OtherHeat)
+            column(T_OtherH; TextT9_5_OtherHeat)
             {
             }
-            column(T_OtherHTxt;TypeA9_5_TenOtherText)
+            column(T_OtherHTxt; TypeA9_5_TenOtherText)
             {
             }
-            column(L_waterYes;TextT9_5_LandlordWaterYes)
+            column(L_waterYes; TextT9_5_LandlordWaterYes)
             {
             }
-            column(L_waterNo;TextT9_5_LandlordWaterNo)
+            column(L_waterNo; TextT9_5_LandlordWaterNo)
             {
             }
-            column(WMyes;TextT9_5_WaterMeterYes)
+            column(WMyes; TextT9_5_WaterMeterYes)
             {
             }
-            column(WmNo;TextT9_5_WaterMeterNo)
+            column(WmNo; TextT9_5_WaterMeterNo)
             {
             }
-            column(WA;TypeA9_5_WaterAccounting)
+            column(WA; TypeA9_5_WaterAccounting)
             {
             }
-            column(L_ElNo;TextT9_5_LandlordElNo)
+            column(L_ElNo; TextT9_5_LandlordElNo)
             {
             }
-            column(L_ElYes;TextT9_5_LandlordElYes)
+            column(L_ElYes; TextT9_5_LandlordElYes)
             {
             }
-            column(EA;TypeA9_5_ElAccounting)
+            column(EA; TypeA9_5_ElAccounting)
             {
             }
-            column(L_CoolYes;TextT9_5_LandlordCoolingYes)
+            column(L_CoolYes; TextT9_5_LandlordCoolingYes)
             {
             }
-            column(L_CoolNo;TextT9_5_LandlordCoolingNo)
+            column(L_CoolNo; TextT9_5_LandlordCoolingNo)
             {
             }
-            column(CMyes;TextT9_5_CoolingMeterYes)
+            column(CMyes; TextT9_5_CoolingMeterYes)
             {
             }
-            column(CMNo;TextT9_5_CoolingMeterNo)
+            column(CMNo; TextT9_5_CoolingMeterNo)
             {
             }
-            column(CA;TypeA9_5_CooligAccounting)
+            column(CA; TypeA9_5_CooligAccounting)
             {
             }
-            column(L_AnteannaYes;TextT9_6_AntennaLandlordYes)
+            column(L_AnteannaYes; TextT9_6_AntennaLandlordYes)
             {
             }
-            column(L_AnteannaNo;TextT9_6_AntennaLandlordNo)
+            column(L_AnteannaNo; TextT9_6_AntennaLandlordNo)
             {
             }
-            column(T_Antennayes;TextT9_6_AntennaTenanciesYes)
+            column(T_Antennayes; TextT9_6_AntennaTenanciesYes)
             {
             }
-            column(T_AntennaNo;TextT9_6_AntennaTenanciesNo)
+            column(T_AntennaNo; TextT9_6_AntennaTenanciesNo)
             {
             }
-            column(L_InternetYes;TextT9_6_InternetYes)
+            column(L_InternetYes; TextT9_6_InternetYes)
             {
             }
-            column(L_InternetNo;TextT9_6_InternetNo)
+            column(L_InternetNo; TextT9_6_InternetNo)
             {
             }
-            column(Insp_InYes;TextT9_7_InspectionInYes)
+            column(Insp_InYes; TextT9_7_InspectionInYes)
             {
             }
-            column(Insp_inNo;TextT9_7_InspectionInNo)
+            column(Insp_inNo; TextT9_7_InspectionInNo)
             {
             }
-            column(T_Main;TextT9_8_MaintainceInsideTenan)
+            column(T_Main; TextT9_8_MaintainceInsideTenan)
             {
             }
-            column(L_Main;TextT9_8_MaintainceInsideLandl)
+            column(L_Main; TextT9_8_MaintainceInsideLandl)
             {
             }
-            column(Date;TextT9_8_Date)
+            column(Date; TextT9_8_Date)
             {
             }
-            column(Amount;TypeA9_8_Amount)
+            column(Amount; TypeA9_8_Amount)
             {
             }
-            column(Stove;TextT9_9_Stove)
+            column(Stove; TextT9_9_Stove)
             {
             }
-            column(Fridge;TextT9_9_Fridge)
+            column(Fridge; TextT9_9_Fridge)
             {
             }
-            column(Freezer;TextT9_9_Freezer)
+            column(Freezer; TextT9_9_Freezer)
             {
             }
-            column(Dishw;TextT9_9_dishwasher)
+            column(Dishw; TextT9_9_dishwasher)
             {
             }
-            column(Washer;TextT9_9_Washer)
+            column(Washer; TextT9_9_Washer)
             {
             }
-            column(Dryer;TextT9_9_Dryer)
+            column(Dryer; TextT9_9_Dryer)
             {
             }
-            column(Hood;TextT9_9_Hood)
+            column(Hood; TextT9_9_Hood)
             {
             }
-            column(EL_Pan;TextT9_9_ElectricPanels)
+            column(EL_Pan; TextT9_9_ElectricPanels)
             {
             }
-            column(EP_Qty;TypeA9_9_ElectricPanels_qty)
+            column(EP_Qty; TypeA9_9_ElectricPanels_qty)
             {
             }
-            column(WH;TextT9_9_WaterHeater)
+            column(WH; TextT9_9_WaterHeater)
             {
             }
-            column(WH_qty;TypeA9_9_WaterHeater_qty)
+            column(WH_qty; TypeA9_9_WaterHeater_qty)
             {
             }
-            column(Other1;TextT9_9_Other1)
+            column(Other1; TextT9_9_Other1)
             {
             }
-            column(OTxt1;TypeA9_9_Other1Text)
+            column(OTxt1; TypeA9_9_Other1Text)
             {
             }
-            column(Other2;TextT9_9_Other2)
+            column(Other2; TextT9_9_Other2)
             {
             }
-            column(Otxt2;TypeA9_9_Other2Text)
+            column(Otxt2; TypeA9_9_Other2Text)
             {
             }
-            column(Other3;TextT9_9_Other3)
+            column(Other3; TextT9_9_Other3)
             {
             }
-            column(Otxt3;TypeA9_9_Other3Text)
+            column(Otxt3; TypeA9_9_Other3Text)
             {
             }
-            column(TenRepYes;TextT9_10_TenRepYes)
+            column(TenRepYes; TextT9_10_TenRepYes)
             {
             }
-            column(TenRepNo;TextT9_10_TenRepNo)
+            column(TenRepNo; TextT9_10_TenRepNo)
             {
             }
-            column(LiveStockNo;TextT9_10_LiveStockNo)
+            column(LiveStockNo; TextT9_10_LiveStockNo)
             {
             }
-            column(LiveStockYes;TextT9_10_LiveStockYes)
+            column(LiveStockYes; TextT9_10_LiveStockYes)
             {
             }
-            column(HouseRulesYes;TextT9_10_HouseRulesYes)
+            column(HouseRulesYes; TextT9_10_HouseRulesYes)
             {
             }
-            column(HouseRulesNo;TextT9_10_HouseRulesNo)
+            column(HouseRulesNo; TextT9_10_HouseRulesNo)
             {
             }
         }
@@ -445,9 +444,5 @@ report 50010 "SVA ContractTypeA9"
     }
 
     var
-        Txt001 : Label '" "';
-        Txt002 : Label 'X';
-
- 
 }
 

@@ -2,38 +2,38 @@ tableextension 50035 "SVA Finance Cue Ext" extends "Finance Cue"
 {
     fields
     {
-        
-        field(50001;"SVA Empty Tenancy";Integer)
+
+        field(50001; "SVA Empty Tenancy"; Integer)
         {
             Caption = 'Vacant Tenancies';
             FieldClass = FlowField;
-            CalcFormula = count("SVA Tenancy" where (Vacant=const(true)));
+            CalcFormula = count ("SVA Tenancy" where(Vacant = const(true)));
         }
-        field(50002;"SVA Property";Integer)
+        field(50002; "SVA Property"; Integer)
         {
             Caption = 'Properties';
             FieldClass = FlowField;
-            CalcFormula = count("SVA Property");
+            CalcFormula = count ("SVA Property");
         }
-        field(50003;"SVA Tenancy";Integer)
+        field(50003; "SVA Tenancy"; Integer)
         {
             Caption = 'Tenancy';
             FieldClass = FlowField;
-            CalcFormula = count("SVA Tenancy");
-            
+            CalcFormula = count ("SVA Tenancy");
+
         }
-        field(50004;"SVA Occupant";Integer)
+        field(50004; "SVA Occupant"; Integer)
         {
             Caption = 'Occupants';
             FieldClass = FlowField;
-            CalcFormula  = count("SVA Occupant" where (Blocked=field("SVA Date Filter")));
-    
+            CalcFormula = count ("SVA Occupant" where(Blocked = field("SVA Date Filter")));
+
         }
-        field(50005;"SVA Date Filter";Date)
+        field(50005; "SVA Date Filter"; Date)
         {
             Caption = 'Date filter';
             DataClassification = CustomerContent;
         }
     }
-   
+
 }

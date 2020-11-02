@@ -2,7 +2,7 @@ table 50009 "SVA MovingOut Status"
 {
     Caption = 'Moving out status';
     DataClassification = CustomerContent;
-    Permissions = TableData 50009 = rimd;
+
 
     fields
     {
@@ -15,65 +15,64 @@ table 50009 "SVA MovingOut Status"
             trigger OnValidate();
             begin
                 IF Name = '' THEN BEGIN  //Empty record
-                    CompanyInfo.GET;
-                    LandlordName := CompanyInfo.Name;
-                    landlordAddress := CompanyInfo.Address;
-                    LandlordPostCode := CompanyInfo."Post Code";
-                    Landlordcity := CompanyInfo.City;
-                    OccupantCard.RESET;
-                    OccupantCard.SETRANGE(OccupantCard.Number, Rec.Occupant);
-                    IF OccupantCard.FINDFIRST() THEN BEGIN
-                        Name := OccupantCard.Name1;
-                        Name2 := OccupantCard.Name2;
-                        StartDate := OccupantCard.StartDate;
-                        EndDate := OccupantCard.EndDate;
-                        Email1 := OccupantCard.Email1;
-                        Phone := OccupantCard.CellPhone1;
+                    CompanyInformation.GET();
+                    LandlordName := CompanyInformation.Name;
+                    landlordAddress := CompanyInformation.Address;
+                    LandlordPostCode := CompanyInformation."Post Code";
+                    Landlordcity := CompanyInformation.City;
+                    SVAOccupant.Reset();
+                    SVAOccupant.SETRANGE(SVAOccupant.Number, Rec.Occupant);
+                    IF SVAOccupant.FINDFIRST() THEN BEGIN
+                        Name := SVAOccupant.Name1;
+                        Name2 := SVAOccupant.Name2;
+                        StartDate := SVAOccupant.StartDate;
+                        EndDate := SVAOccupant.EndDate;
+                        Email1 := SVAOccupant.Email1;
+                        Phone := SVAOccupant.CellPhone1;
                     END;
 
-                    Tenancy.RESET;
-                    Tenancy.SETRANGE(Number, OccupantCard.TenancyNo);
-                    IF Tenancy.FIND('-') THEN BEGIN
-                        TenancyNo := OccupantCard.TenancyNo;
-                        TenancyAddress := Tenancy.Address1;
-                        TenancyPostCode := Tenancy."Post Code";
-                        TenancyCity := Tenancy.City;
+                    SVATenancy.Reset();
+                    SVATenancy.SETRANGE(Number, SVAOccupant.TenancyNo);
+                    IF SVATenancy.Findset() THEN BEGIN
+                        TenancyNo := SVAOccupant.TenancyNo;
+                        TenancyAddress := SVATenancy.Address1;
+                        TenancyPostCode := SVATenancy."Post Code";
+                        TenancyCity := SVATenancy.City;
                         //appliances
-                        StoveManufactor := Tenancy.StoveManufactor;
-                        StoveModel := Tenancy.StoveModel;
-                        StoveYear := Tenancy.StoveYear;
-                        CookManufactor := Tenancy.CookManufactor;
-                        CookModel := Tenancy.CookModel;
-                        CookYear := Tenancy.CookYear;
-                        OvenManufactor := Tenancy.OvenManufactor;
-                        OvenModel := Tenancy.OvenModel;
-                        OvenYear := Tenancy.OvenYear;
-                        HoodManufactor := Tenancy.HoodManufactor;
-                        HoodStoveModel := Tenancy.HoodStoveModel;
-                        HoodYear := Tenancy.HoodYear;
-                        FridgeManufactor := Tenancy.FridgeManufactor;
-                        FridgeModel := Tenancy.FridgeModel;
-                        FridgeYear := Tenancy.FridgeYear;
-                        FreezerManufactor := Tenancy.FreezerManufactor;
-                        FreezerModel := Tenancy.FreezerModel;
-                        FreezerYear := Tenancy.FreezerYear;
-                        DishwasherManufactor := Tenancy.DishwasherManufactor;
-                        DishwasherModel := Tenancy.DishwasherModel;
-                        DishwasherYear := Tenancy.DishwasherYear;
-                        WasherManufactor := Tenancy.WasherManufactor;
-                        WasherModel := Tenancy.WasherModel;
-                        WasherYear := Tenancy.WasherYear;
-                        DryerManufactor := Tenancy.DryerManufactor;
-                        DryerModel := Tenancy.DryerModel;
-                        DryerYear := Tenancy.DryerYear;
+                        StoveManufactor := SVATenancy.StoveManufactor;
+                        StoveModel := SVATenancy.StoveModel;
+                        StoveYear := SVATenancy.StoveYear;
+                        CookManufactor := SVATenancy.CookManufactor;
+                        CookModel := SVATenancy.CookModel;
+                        CookYear := SVATenancy.CookYear;
+                        OvenManufactor := SVATenancy.OvenManufactor;
+                        OvenModel := SVATenancy.OvenModel;
+                        OvenYear := SVATenancy.OvenYear;
+                        HoodManufactor := SVATenancy.HoodManufactor;
+                        HoodStoveModel := SVATenancy.HoodStoveModel;
+                        HoodYear := SVATenancy.HoodYear;
+                        FridgeManufactor := SVATenancy.FridgeManufactor;
+                        FridgeModel := SVATenancy.FridgeModel;
+                        FridgeYear := SVATenancy.FridgeYear;
+                        FreezerManufactor := SVATenancy.FreezerManufactor;
+                        FreezerModel := SVATenancy.FreezerModel;
+                        FreezerYear := SVATenancy.FreezerYear;
+                        DishwasherManufactor := SVATenancy.DishwasherManufactor;
+                        DishwasherModel := SVATenancy.DishwasherModel;
+                        DishwasherYear := SVATenancy.DishwasherYear;
+                        WasherManufactor := SVATenancy.WasherManufactor;
+                        WasherModel := SVATenancy.WasherModel;
+                        WasherYear := SVATenancy.WasherYear;
+                        DryerManufactor := SVATenancy.DryerManufactor;
+                        DryerModel := SVATenancy.DryerModel;
+                        DryerYear := SVATenancy.DryerYear;
                     END;
                 END;
 
-                Property.Reset;
-                Property.SetRange(Property, OccupantCard.PropertyNo);
-                IF Property.FindFirst() then begin
-                    BebrepProperty := Property.TypeA9_10_Occgroup;
-                end;
+                SVAProperty.Reset();
+                SVAProperty.SetRange(Property, SVAOccupant.PropertyNo);
+                IF SVAProperty.FindFirst() then
+                    BebrepProperty := SVAProperty.TypeA9_10_Occgroup;
             end;
         }
         field(11; Name; Text[50])
@@ -187,7 +186,7 @@ table 50009 "SVA MovingOut Status"
             Caption = 'Ceiling condition';
             DataClassification = CustomerContent;
             OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
-            OptionMembers = "Not existing", Refurnished, "Good condition", "Bad condition", Worn;
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
 
         }
         field(102; Rum1CeilingRepairs; Option)
@@ -195,119 +194,119 @@ table 50009 "SVA MovingOut Status"
             Caption = 'Ceiling repairs';
             DataClassification = CustomerContent;
             OptionCaption = 'No,Landlord,"Sanded/planed",lacquer,Painted,Repairs,Papering,Replaced,Cleaned';
-            OptionMembers = No, Landlord, "Sanded/planed", lacquer, Painted, Repairs, Papering, Replaced, Cleaned;
+            OptionMembers = No,Landlord,"Sanded/planed",Lacquer,Painted,Repairs,Papering,Replaced,Cleaned;
         }
         field(103; Rum1WallsCondition; Option)
         {
             Caption = 'Walls condition';
             DataClassification = CustomerContent;
             OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
-            OptionMembers = "Not existing", Refurnished, "Good condition", "Bad condition", Worn;
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(104; Rum1WallsRepairs; Option)
         {
             Caption = 'Wall repairs';
             DataClassification = CustomerContent;
             OptionCaption = 'No,Landlord,"Sanded/planed",lacquer,Painted,Repairs,Papering,Replaced,Cleaned';
-            OptionMembers = No, Landlord, "Sanded/planed", lacquer, Painted, Repairs, Papering, Replaced, Cleaned;
+            OptionMembers = No,Landlord,"Sanded/planed",Lacquer,Painted,Repairs,Papering,Replaced,Cleaned;
         }
         field(105; Rum1FloorsCondition; Option)
         {
             Caption = 'Floor condition';
             DataClassification = CustomerContent;
             OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
-            OptionMembers = "Not existing", Refurnished, "Good condition", "Bad condition", Worn;
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(106; Rum1FloorsRepairs; Option)
         {
             Caption = 'Floor repairs';
             DataClassification = CustomerContent;
             OptionCaption = 'No,Landlord,"Sanded/planed",lacquer,Painted,Repairs,Papering,Replaced,Cleaned';
-            OptionMembers = No, Landlord, "Sanded/planed", lacquer, Painted, Repairs, Papering, Replaced, Cleaned;
+            OptionMembers = No,Landlord,"Sanded/planed",Lacquer,Painted,Repairs,Papering,Replaced,Cleaned;
         }
         field(107; Rum1CarpetsCondition; Option)
         {
             Caption = 'Carpets condition';
             DataClassification = CustomerContent;
             OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
-            OptionMembers = "Not existing", Refurnished, "Good condition", "Bad condition", Worn;
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(108; Rum1CarpetsRepairs; Option)
         {
             Caption = 'Carpets repairs';
             DataClassification = CustomerContent;
             OptionCaption = 'No,Landlord,"Sanded/planed",lacquer,Painted,Repairs,Papering,Replaced,Cleaned';
-            OptionMembers = No, Landlord, "Sanded/planed", lacquer, Painted, Repairs, Papering, Replaced, Cleaned;
+            OptionMembers = No,Landlord,"Sanded/planed",Lacquer,Painted,Repairs,Papering,Replaced,Cleaned;
         }
         field(109; Rum1WoodworksCondition; Option)
         {
             Caption = 'Woodwork condition';
             DataClassification = CustomerContent;
             OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
-            OptionMembers = "Not existing", Refurnished, "Good condition", "Bad condition", Worn;
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(110; Rum1WoodworksRepairs; Option)
         {
             Caption = 'Woodworks repairs';
             DataClassification = CustomerContent;
             OptionCaption = 'No,Landlord,"Sanded/planed",lacquer,Painted,Repairs,Papering,Replaced,Cleaned';
-            OptionMembers = No, Landlord, "Sanded/planed", lacquer, Painted, Repairs, Papering, Replaced, Cleaned;
+            OptionMembers = No,Landlord,"Sanded/planed",Lacquer,Painted,Repairs,Papering,Replaced,Cleaned;
         }
         field(111; Rum1WindowsmvCondition; Option)
         {
             Caption = 'Windows etc condition';
             DataClassification = CustomerContent;
             OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
-            OptionMembers = "Not existing", Refurnished, "Good condition", "Bad condition", Worn;
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(112; Rum1WindowsRepairs; Option)
         {
             Caption = 'Windows etc. repairs';
             DataClassification = CustomerContent;
             OptionCaption = 'No,Landlord,"Sanded/planed",lacquer,Painted,Repairs,Papering,Replaced,Cleaned';
-            OptionMembers = No, Landlord, "Sanded/planed", lacquer, Painted, Repairs, Papering, Replaced, Cleaned;
+            OptionMembers = No,Landlord,"Sanded/planed",Lacquer,Painted,Repairs,Papering,Replaced,Cleaned;
         }
         field(113; Rum1RadiatorCondition; Option)
         {
             Caption = 'Radiators condition';
             DataClassification = CustomerContent;
             OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
-            OptionMembers = "Not existing", Refurnished, "Good condition", "Bad condition", Worn;
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(114; Rum1RadiatorRepairs; Option)
         {
             Caption = 'Radiators repairs';
             DataClassification = CustomerContent;
             OptionCaption = 'No,Landlord,"Sanded/planed",lacquer,Painted,Repairs,Papering,Replaced,Cleaned';
-            OptionMembers = No, Landlord, "Sanded/planed", lacquer, Painted, Repairs, Papering, Replaced, Cleaned;
+            OptionMembers = No,Landlord,"Sanded/planed",Lacquer,Painted,Repairs,Papering,Replaced,Cleaned;
         }
         field(115; Rum1ElCondition; Option)
         {
             Caption = 'Electricity condition';
             DataClassification = CustomerContent;
             OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
-            OptionMembers = "Not existing", Refurnished, "Good condition", "Bad condition", Worn;
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(116; Rum1ElRepairs; Option)
         {
             Caption = 'Electric parts repairs';
             DataClassification = CustomerContent;
             OptionCaption = 'No,Landlord,"Sanded/planed",lacquer,Painted,Repairs,Papering,Replaced,Cleaned';
-            OptionMembers = No, Landlord, "Sanded/planed", lacquer, Painted, Repairs, Papering, Replaced, Cleaned;
+            OptionMembers = No,Landlord,"Sanded/planed",Lacquer,Painted,Repairs,Papering,Replaced,Cleaned;
         }
         field(117; Rum1DoorsCondition; Option)
         {
             Caption = 'Doors condition';
             DataClassification = CustomerContent;
             OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
-            OptionMembers = "Not existing", Refurnished, "Good condition", "Bad condition", Worn;
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(118; Rum1DoorsRepairs; Option)
         {
             Caption = 'Doors repairs';
             DataClassification = CustomerContent;
             OptionCaption = 'No,Landlord,"Sanded/planed",lacquer,Painted,Repairs,Papering,Replaced,Cleaned';
-            OptionMembers = No, Landlord, "Sanded/planed", lacquer, Painted, Repairs, Papering, Replaced, Cleaned;
+            OptionMembers = No,Landlord,"Sanded/planed",Lacquer,Painted,Repairs,Papering,Replaced,Cleaned;
         }
         field(200; Room2Description; Text[30])
         {
@@ -319,126 +318,126 @@ table 50009 "SVA MovingOut Status"
             Caption = 'Ceiling condition';
             DataClassification = CustomerContent;
             OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
-            OptionMembers = "Not existing", Refurnished, "Good condition", "Bad condition", Worn;
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(202; Rum2CeilingRepairs; Option)
         {
             Caption = 'Ceiling repairs';
             DataClassification = CustomerContent;
             OptionCaption = 'No,Landlord,"Sanded/planed",lacquer,Painted,Repairs,Papering,Replaced,Cleaned';
-            OptionMembers = No, Landlord, "Sanded/planed", lacquer, Painted, Repairs, Papering, Replaced, Cleaned;
+            OptionMembers = No,Landlord,"Sanded/planed",Lacquer,Painted,Repairs,Papering,Replaced,Cleaned;
         }
         field(203; Rum2WallsCondition; Option)
         {
             Caption = 'Walls condition';
             DataClassification = CustomerContent;
             OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
-            OptionMembers = "Not existing", Refurnished, "Good condition", "Bad condition", Worn;
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(204; Rum2WallsRepairs; Option)
         {
             Caption = 'Wall repairs';
             DataClassification = CustomerContent;
             OptionCaption = 'No,Landlord,"Sanded/planed",lacquer,Painted,Repairs,Papering,Replaced,Cleaned';
-            OptionMembers = No, Landlord, "Sanded/planed", lacquer, Painted, Repairs, Papering, Replaced, Cleaned;
+            OptionMembers = No,Landlord,"Sanded/planed",Lacquer,Painted,Repairs,Papering,Replaced,Cleaned;
         }
         field(205; Rum2FloorsCondition; Option)
         {
             Caption = 'Floor condition';
             DataClassification = CustomerContent;
             OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
-            OptionMembers = "Not existing", Refurnished, "Good condition", "Bad condition", Worn;
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(206; Rum2FloorsRepairs; Option)
         {
             Caption = 'Floor repairs';
             DataClassification = CustomerContent;
             OptionCaption = 'No,Landlord,"Sanded/planed",lacquer,Painted,Repairs,Papering,Replaced,Cleaned';
-            OptionMembers = No, Landlord, "Sanded/planed", lacquer, Painted, Repairs, Papering, Replaced, Cleaned;
+            OptionMembers = No,Landlord,"Sanded/planed",Lacquer,Painted,Repairs,Papering,Replaced,Cleaned;
         }
         field(207; Rum2CarpetsCondition; Option)
         {
             Caption = 'Carpets condition';
             DataClassification = CustomerContent;
             OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
-            OptionMembers = "Not existing", Refurnished, "Good condition", "Bad condition", Worn;
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(208; Rum2CarpetsRepairs; Option)
         {
             Caption = 'Carpets repairs';
             DataClassification = CustomerContent;
             OptionCaption = 'No,Landlord,"Sanded/planed",lacquer,Painted,Repairs,Papering,Replaced,Cleaned';
-            OptionMembers = No, Landlord, "Sanded/planed", lacquer, Painted, Repairs, Papering, Replaced, Cleaned;
+            OptionMembers = No,Landlord,"Sanded/planed",Lacquer,Painted,Repairs,Papering,Replaced,Cleaned;
         }
         field(209; Rum2WoodworksCondition; Option)
         {
             Caption = 'Woodwork condition';
             DataClassification = CustomerContent;
             OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
-            OptionMembers = "Not existing", Refurnished, "Good condition", "Bad condition", Worn;
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(210; Rum2WoodworksRepairs; Option)
         {
             Caption = 'Woodworks repairs';
             DataClassification = CustomerContent;
             OptionCaption = 'No,Landlord,"Sanded/planed",lacquer,Painted,Repairs,Papering,Replaced,Cleaned';
-            OptionMembers = No, Landlord, "Sanded/planed", lacquer, Painted, Repairs, Papering, Replaced, Cleaned;
+            OptionMembers = No,Landlord,"Sanded/planed",Lacquer,Painted,Repairs,Papering,Replaced,Cleaned;
         }
         field(211; Rum2WindowsmvCondition; Option)
         {
             Caption = 'Windows etc condition';
             DataClassification = CustomerContent;
             OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
-            OptionMembers = "Not existing", Refurnished, "Good condition", "Bad condition", Worn;
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(212; Rum2WindowsRepairs; Option)
         {
             Caption = 'Windows etc. repairs';
             DataClassification = CustomerContent;
             OptionCaption = 'No,Landlord,"Sanded/planed",lacquer,Painted,Repairs,Papering,Replaced,Cleaned';
-            OptionMembers = No, Landlord, "Sanded/planed", lacquer, Painted, Repairs, Papering, Replaced, Cleaned;
+            OptionMembers = No,Landlord,"Sanded/planed",Lacquer,Painted,Repairs,Papering,Replaced,Cleaned;
         }
         field(213; Rum2RadiatorCondition; Option)
         {
             Caption = 'Radiators condition';
             DataClassification = CustomerContent;
             OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
-            OptionMembers = "Not existing", Refurnished, "Good condition", "Bad condition", Worn;
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(214; Rum2RadiatorRepairs; Option)
         {
             Caption = 'Radiators repairs';
             DataClassification = CustomerContent;
             OptionCaption = 'No,Landlord,"Sanded/planed",lacquer,Painted,Repairs,Papering,Replaced,Cleaned';
-            OptionMembers = No, Landlord, "Sanded/planed", lacquer, Painted, Repairs, Papering, Replaced, Cleaned;
+            OptionMembers = No,Landlord,"Sanded/planed",Lacquer,Painted,Repairs,Papering,Replaced,Cleaned;
         }
         field(215; Rum2ElCondition; Option)
         {
             Caption = 'Electricity condition';
             DataClassification = CustomerContent;
             OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
-            OptionMembers = "Not existing", Refurnished, "Good condition", "Bad condition", Worn;
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(216; Rum2ElRepairs; Option)
         {
             Caption = 'Electric parts repairs';
             DataClassification = CustomerContent;
             OptionCaption = 'No,Landlord,"Sanded/planed",lacquer,Painted,Repairs,Papering,Replaced,Cleaned';
-            OptionMembers = No, Landlord, "Sanded/planed", lacquer, Painted, Repairs, Papering, Replaced, Cleaned;
+            OptionMembers = No,Landlord,"Sanded/planed",Lacquer,Painted,Repairs,Papering,Replaced,Cleaned;
         }
         field(217; Rum2DoorsCondition; Option)
         {
             Caption = 'Doors condition';
             DataClassification = CustomerContent;
             OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
-            OptionMembers = "Not existing", Refurnished, "Good condition", "Bad condition", Worn;
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(218; Rum2DoorsRepairs; Option)
         {
             Caption = 'Doors repairs';
             DataClassification = CustomerContent;
             OptionCaption = 'No,Landlord,"Sanded/planed",lacquer,Painted,Repairs,Papering,Replaced,Cleaned';
-            OptionMembers = No, Landlord, "Sanded/planed", lacquer, Painted, Repairs, Papering, Replaced, Cleaned;
+            OptionMembers = No,Landlord,"Sanded/planed",Lacquer,Painted,Repairs,Papering,Replaced,Cleaned;
         }
         field(300; Room3Description; Text[30])
         {
@@ -450,126 +449,126 @@ table 50009 "SVA MovingOut Status"
             Caption = 'Ceiling condition';
             DataClassification = CustomerContent;
             OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
-            OptionMembers = "Not existing", Refurnished, "Good condition", "Bad condition", Worn;
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(302; Rum3CeilingRepairs; Option)
         {
             Caption = 'Ceiling repairs';
             DataClassification = CustomerContent;
             OptionCaption = 'No,Landlord,"Sanded/planed",lacquer,Painted,Repairs,Papering,Replaced,Cleaned';
-            OptionMembers = No, Landlord, "Sanded/planed", lacquer, Painted, Repairs, Papering, Replaced, Cleaned;
+            OptionMembers = No,Landlord,"Sanded/planed",Lacquer,Painted,Repairs,Papering,Replaced,Cleaned;
         }
         field(303; Rum3WallsCondition; Option)
         {
             Caption = 'Walls condition';
             DataClassification = CustomerContent;
             OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
-            OptionMembers = "Not existing", Refurnished, "Good condition", "Bad condition", Worn;
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(304; Rum3WallsRepairs; Option)
         {
             Caption = 'Wall repairs';
             DataClassification = CustomerContent;
             OptionCaption = 'No,Landlord,"Sanded/planed",lacquer,Painted,Repairs,Papering,Replaced,Cleaned';
-            OptionMembers = No, Landlord, "Sanded/planed", lacquer, Painted, Repairs, Papering, Replaced, Cleaned;
+            OptionMembers = No,Landlord,"Sanded/planed",Lacquer,Painted,Repairs,Papering,Replaced,Cleaned;
         }
         field(305; Rum3FloorsCondition; Option)
         {
             Caption = 'Floor condition';
             DataClassification = CustomerContent;
             OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
-            OptionMembers = "Not existing", Refurnished, "Good condition", "Bad condition", Worn;
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(306; Rum3FloorsRepairs; Option)
         {
             Caption = 'Floor repairs';
             DataClassification = CustomerContent;
             OptionCaption = 'No,Landlord,"Sanded/planed",lacquer,Painted,Repairs,Papering,Replaced,Cleaned';
-            OptionMembers = No, Landlord, "Sanded/planed", lacquer, Painted, Repairs, Papering, Replaced, Cleaned;
+            OptionMembers = No,Landlord,"Sanded/planed",Lacquer,Painted,Repairs,Papering,Replaced,Cleaned;
         }
         field(307; Rum3CarpetsCondition; Option)
         {
             Caption = 'Carpets condition';
             DataClassification = CustomerContent;
             OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
-            OptionMembers = "Not existing", Refurnished, "Good condition", "Bad condition", Worn;
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(308; Rum3CarpetsRepairs; Option)
         {
             Caption = 'Carpets repairs';
             DataClassification = CustomerContent;
             OptionCaption = 'No,Landlord,"Sanded/planed",lacquer,Painted,Repairs,Papering,Replaced,Cleaned';
-            OptionMembers = No, Landlord, "Sanded/planed", lacquer, Painted, Repairs, Papering, Replaced, Cleaned;
+            OptionMembers = No,Landlord,"Sanded/planed",Lacquer,Painted,Repairs,Papering,Replaced,Cleaned;
         }
         field(309; Rum3WoodworksCondition; Option)
         {
             Caption = 'Woodwork condition';
             DataClassification = CustomerContent;
             OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
-            OptionMembers = "Not existing", Refurnished, "Good condition", "Bad condition", Worn;
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(310; Rum3WoodworksRepairs; Option)
         {
             Caption = 'Woodworks repairs';
             DataClassification = CustomerContent;
             OptionCaption = 'No,Landlord,"Sanded/planed",lacquer,Painted,Repairs,Papering,Replaced,Cleaned';
-            OptionMembers = No, Landlord, "Sanded/planed", lacquer, Painted, Repairs, Papering, Replaced, Cleaned;
+            OptionMembers = No,Landlord,"Sanded/planed",Lacquer,Painted,Repairs,Papering,Replaced,Cleaned;
         }
         field(311; Rum3WindowsmvCondition; Option)
         {
             Caption = 'Windows etc condition';
             DataClassification = CustomerContent;
             OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
-            OptionMembers = "Not existing", Refurnished, "Good condition", "Bad condition", Worn;
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(312; Rum3WindowsRepairs; Option)
         {
             Caption = 'Windows etc. repairs';
             DataClassification = CustomerContent;
             OptionCaption = 'No,Landlord,"Sanded/planed",lacquer,Painted,Repairs,Papering,Replaced,Cleaned';
-            OptionMembers = No, Landlord, "Sanded/planed", lacquer, Painted, Repairs, Papering, Replaced, Cleaned;
+            OptionMembers = No,Landlord,"Sanded/planed",Lacquer,Painted,Repairs,Papering,Replaced,Cleaned;
         }
         field(313; Rum3RadiatorCondition; Option)
         {
             Caption = 'Radiators condition';
             DataClassification = CustomerContent;
             OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
-            OptionMembers = "Not existing", Refurnished, "Good condition", "Bad condition", Worn;
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(314; Rum3RadiatorRepairs; Option)
         {
             Caption = 'Radiators repairs';
             DataClassification = CustomerContent;
             OptionCaption = 'No,Landlord,"Sanded/planed",lacquer,Painted,Repairs,Papering,Replaced,Cleaned';
-            OptionMembers = No, Landlord, "Sanded/planed", lacquer, Painted, Repairs, Papering, Replaced, Cleaned;
+            OptionMembers = No,Landlord,"Sanded/planed",Lacquer,Painted,Repairs,Papering,Replaced,Cleaned;
         }
         field(315; Rum3ElCondition; Option)
         {
             Caption = 'Electricity condition';
             DataClassification = CustomerContent;
             OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
-            OptionMembers = "Not existing", Refurnished, "Good condition", "Bad condition", Worn;
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(316; Rum3ElRepairs; Option)
         {
             Caption = 'Electric parts repairs';
             DataClassification = CustomerContent;
             OptionCaption = 'No,Landlord,"Sanded/planed",lacquer,Painted,Repairs,Papering,Replaced,Cleaned';
-            OptionMembers = No, Landlord, "Sanded/planed", lacquer, Painted, Repairs, Papering, Replaced, Cleaned;
+            OptionMembers = No,Landlord,"Sanded/planed",Lacquer,Painted,Repairs,Papering,Replaced,Cleaned;
         }
         field(317; Rum3DoorsCondition; Option)
         {
             Caption = 'Doors condition';
             DataClassification = CustomerContent;
             OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
-            OptionMembers = "Not existing", Refurnished, "Good condition", "Bad condition", Worn;
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(318; Rum3DoorsRepairs; Option)
         {
             Caption = 'Doors repairs';
             DataClassification = CustomerContent;
             OptionCaption = 'No,Landlord,"Sanded/planed",lacquer,Painted,Repairs,Papering,Replaced,Cleaned';
-            OptionMembers = No, Landlord, "Sanded/planed", lacquer, Painted, Repairs, Papering, Replaced, Cleaned;
+            OptionMembers = No,Landlord,"Sanded/planed",Lacquer,Painted,Repairs,Papering,Replaced,Cleaned;
         }
         field(400; Room4Description; Text[30])
         {
@@ -581,105 +580,105 @@ table 50009 "SVA MovingOut Status"
             Caption = 'Ceiling condition';
             DataClassification = CustomerContent;
             OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
-            OptionMembers = "Not existing", Refurnished, "Good condition", "Bad condition", Worn;
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(402; Rum4CeilingRepairs; Option)
         {
             Caption = 'Ceiling repairs';
             DataClassification = CustomerContent;
             OptionCaption = 'No,Landlord,"Sanded/planed",lacquer,Painted,Repairs,Papering,Replaced,Cleaned';
-            OptionMembers = No, Landlord, "Sanded/planed", lacquer, Painted, Repairs, Papering, Replaced, Cleaned;
+            OptionMembers = No,Landlord,"Sanded/planed",Lacquer,Painted,Repairs,Papering,Replaced,Cleaned;
         }
         field(403; Rum4WallsCondition; Option)
         {
             Caption = 'Walls condition';
             DataClassification = CustomerContent;
             OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
-            OptionMembers = "Not existing", Refurnished, "Good condition", "Bad condition", Worn;
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(404; Rum4WallsRepairs; Option)
         {
             Caption = 'Wall repairs';
             DataClassification = CustomerContent;
             OptionCaption = 'No,Landlord,"Sanded/planed",lacquer,Painted,Repairs,Papering,Replaced,Cleaned';
-            OptionMembers = No, Landlord, "Sanded/planed", lacquer, Painted, Repairs, Papering, Replaced, Cleaned;
+            OptionMembers = No,Landlord,"Sanded/planed",Lacquer,Painted,Repairs,Papering,Replaced,Cleaned;
         }
         field(405; Rum4FloorsCondition; Option)
         {
             Caption = 'Floor condition';
             DataClassification = CustomerContent;
             OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
-            OptionMembers = "Not existing", Refurnished, "Good condition", "Bad condition", Worn;
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(406; Rum4FloorsRepairs; Option)
         {
             Caption = 'Floor repairs';
             DataClassification = CustomerContent;
             OptionCaption = 'No,Landlord,"Sanded/planed",lacquer,Painted,Repairs,Papering,Replaced,Cleaned';
-            OptionMembers = No, Landlord, "Sanded/planed", lacquer, Painted, Repairs, Papering, Replaced, Cleaned;
+            OptionMembers = No,Landlord,"Sanded/planed",Lacquer,Painted,Repairs,Papering,Replaced,Cleaned;
         }
         field(407; Rum4CarpetsCondition; Option)
         {
             Caption = 'Carpets condition';
             DataClassification = CustomerContent;
             OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
-            OptionMembers = "Not existing", Refurnished, "Good condition", "Bad condition", Worn;
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(408; Rum4CarpetsRepairs; Option)
         {
             Caption = 'Carpets repairs';
             DataClassification = CustomerContent;
             OptionCaption = 'No,Landlord,"Sanded/planed",lacquer,Painted,Repairs,Papering,Replaced,Cleaned';
-            OptionMembers = No, Landlord, "Sanded/planed", lacquer, Painted, Repairs, Papering, Replaced, Cleaned;
+            OptionMembers = No,Landlord,"Sanded/planed",Lacquer,Painted,Repairs,Papering,Replaced,Cleaned;
         }
         field(409; Rum4WoodworksCondition; Option)
         {
             Caption = 'Woodwork condition';
             DataClassification = CustomerContent;
             OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
-            OptionMembers = "Not existing", Refurnished, "Good condition", "Bad condition", Worn;
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(410; Rum4WoodworksRepairs; Option)
         {
             Caption = 'Woodworks repairs';
             DataClassification = CustomerContent;
             OptionCaption = 'No,Landlord,"Sanded/planed",lacquer,Painted,Repairs,Papering,Replaced,Cleaned';
-            OptionMembers = No, Landlord, "Sanded/planed", lacquer, Painted, Repairs, Papering, Replaced, Cleaned;
+            OptionMembers = No,Landlord,"Sanded/planed",Lacquer,Painted,Repairs,Papering,Replaced,Cleaned;
         }
         field(411; Rum4WindowsmvCondition; Option)
         {
             Caption = 'Windows etc condition';
             DataClassification = CustomerContent;
             OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
-            OptionMembers = "Not existing", Refurnished, "Good condition", "Bad condition", Worn;
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(412; Rum4WindowsRepairs; Option)
         {
             Caption = 'Windows etc. repairs';
             DataClassification = CustomerContent;
             OptionCaption = 'No,Landlord,"Sanded/planed",lacquer,Painted,Repairs,Papering,Replaced,Cleaned';
-            OptionMembers = No, Landlord, "Sanded/planed", lacquer, Painted, Repairs, Papering, Replaced, Cleaned;
+            OptionMembers = No,Landlord,"Sanded/planed",Lacquer,Painted,Repairs,Papering,Replaced,Cleaned;
         }
         field(413; Rum4RadiatorCondition; Option)
         {
             Caption = 'Radiators condition';
             DataClassification = CustomerContent;
             OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
-            OptionMembers = "Not existing", Refurnished, "Good condition", "Bad condition", Worn;
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(414; Rum4RadiatorRepairs; Option)
         {
             Caption = 'Radiators repairs';
             DataClassification = CustomerContent;
             OptionCaption = 'No,Landlord,"Sanded/planed",lacquer,Painted,Repairs,Papering,Replaced,Cleaned';
-            OptionMembers = No, Landlord, "Sanded/planed", lacquer, Painted, Repairs, Papering, Replaced, Cleaned;
+            OptionMembers = No,Landlord,"Sanded/planed",Lacquer,Painted,Repairs,Papering,Replaced,Cleaned;
         }
         field(415; Rum4ElCondition; Option)
         {
             Caption = 'Electricity condition';
             DataClassification = CustomerContent;
             OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
-            OptionMembers = "Not existing", Refurnished, "Good condition", "Bad condition", Worn;
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(416; Rum4ElRepairs; Option)
         {
@@ -687,735 +686,735 @@ table 50009 "SVA MovingOut Status"
 
             DataClassification = CustomerContent;
             OptionCaption = 'No,Landlord,"Sanded/planed",lacquer,Painted,Repairs,Papering,Replaced,Cleaned';
-            OptionMembers = No, Landlord, "Sanded/planed", lacquer, Painted, Repairs, Papering, Replaced, Cleaned;
+            OptionMembers = No,Landlord,"Sanded/planed",Lacquer,Painted,Repairs,Papering,Replaced,Cleaned;
         }
         field(417; Rum4DoorsCondition; Option)
         {
             Caption = 'Doors condition';
             DataClassification = CustomerContent;
             OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
-            OptionMembers = "Not existing", Refurnished, "Good condition", "Bad condition", Worn;
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(418; Rum4DoorsRepairs; Option)
         {
             Caption = 'Doors repairs';
             DataClassification = CustomerContent;
             OptionCaption = 'No,Landlord,"Sanded/planed",lacquer,Painted,Repairs,Papering,Replaced,Cleaned';
-            OptionMembers = No, Landlord, "Sanded/planed", lacquer, Painted, Repairs, Papering, Replaced, Cleaned;
+            OptionMembers = No,Landlord,"Sanded/planed",Lacquer,Painted,Repairs,Papering,Replaced,Cleaned;
         }
         field(501; EntreCeilingCondition; Option)
         {
             Caption = 'Ceiling condition';
             DataClassification = CustomerContent;
             OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
-            OptionMembers = "Not existing", Refurnished, "Good condition", "Bad condition", Worn;
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(502; EntreCeilingRepairs; Option)
         {
             Caption = 'Ceiling repairs';
             DataClassification = CustomerContent;
             OptionCaption = 'No,Landlord,"Sanded/planed",lacquer,Painted,Repairs,Papering,Replaced,Cleaned';
-            OptionMembers = No, Landlord, "Sanded/planed", lacquer, Painted, Repairs, Papering, Replaced, Cleaned;
+            OptionMembers = No,Landlord,"Sanded/planed",Lacquer,Painted,Repairs,Papering,Replaced,Cleaned;
         }
         field(503; EntreWallsCondition; Option)
         {
             Caption = 'Walls condition';
             DataClassification = CustomerContent;
             OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
-            OptionMembers = "Not existing", Refurnished, "Good condition", "Bad condition", Worn;
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(504; EntreWallsRepairs; Option)
         {
             Caption = 'Wall repairs';
             DataClassification = CustomerContent;
             OptionCaption = 'No,Landlord,"Sanded/planed",lacquer,Painted,Repairs,Papering,Replaced,Cleaned';
-            OptionMembers = No, Landlord, "Sanded/planed", lacquer, Painted, Repairs, Papering, Replaced, Cleaned;
+            OptionMembers = No,Landlord,"Sanded/planed",Lacquer,Painted,Repairs,Papering,Replaced,Cleaned;
         }
         field(505; EntreFloorsCondition; Option)
         {
             Caption = 'Floor condition';
             DataClassification = CustomerContent;
             OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
-            OptionMembers = "Not existing", Refurnished, "Good condition", "Bad condition", Worn;
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(506; EntreFloorsRepairs; Option)
         {
             Caption = 'Floor repairs';
             DataClassification = CustomerContent;
             OptionCaption = 'No,Landlord,"Sanded/planed",lacquer,Painted,Repairs,Papering,Replaced,Cleaned';
-            OptionMembers = No, Landlord, "Sanded/planed", lacquer, Painted, Repairs, Papering, Replaced, Cleaned;
+            OptionMembers = No,Landlord,"Sanded/planed",Lacquer,Painted,Repairs,Papering,Replaced,Cleaned;
         }
         field(507; EntreCarpetsCondition; Option)
         {
             Caption = 'Carpets condition';
             DataClassification = CustomerContent;
             OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
-            OptionMembers = "Not existing", Refurnished, "Good condition", "Bad condition", Worn;
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(508; EntreCarpetsRepairs; Option)
         {
             Caption = 'Carpets repairs';
             DataClassification = CustomerContent;
             OptionCaption = 'No,Landlord,"Sanded/planed",lacquer,Painted,Repairs,Papering,Replaced,Cleaned';
-            OptionMembers = No, Landlord, "Sanded/planed", lacquer, Painted, Repairs, Papering, Replaced, Cleaned;
+            OptionMembers = No,Landlord,"Sanded/planed",Lacquer,Painted,Repairs,Papering,Replaced,Cleaned;
         }
         field(509; EntreWoodworksCondition; Option)
         {
             Caption = 'Woodwork condition';
             DataClassification = CustomerContent;
             OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
-            OptionMembers = "Not existing", Refurnished, "Good condition", "Bad condition", Worn;
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(510; EntreWoodworksRepairs; Option)
         {
             Caption = 'Woodworks repairs';
             DataClassification = CustomerContent;
             OptionCaption = 'No,Landlord,"Sanded/planed",lacquer,Painted,Repairs,Papering,Replaced,Cleaned';
-            OptionMembers = No, Landlord, "Sanded/planed", lacquer, Painted, Repairs, Papering, Replaced, Cleaned;
+            OptionMembers = No,Landlord,"Sanded/planed",Lacquer,Painted,Repairs,Papering,Replaced,Cleaned;
         }
         field(511; EntreWindowsmvCondition; Option)
         {
             Caption = 'Windows etc condition';
             DataClassification = CustomerContent;
             OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
-            OptionMembers = "Not existing", Refurnished, "Good condition", "Bad condition", Worn;
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(512; EntreWindowsRepairs; Option)
         {
             Caption = 'Windows etc. repairs';
             DataClassification = CustomerContent;
             OptionCaption = 'No,Landlord,"Sanded/planed",lacquer,Painted,Repairs,Papering,Replaced,Cleaned';
-            OptionMembers = No, Landlord, "Sanded/planed", lacquer, Painted, Repairs, Papering, Replaced, Cleaned;
+            OptionMembers = No,Landlord,"Sanded/planed",Lacquer,Painted,Repairs,Papering,Replaced,Cleaned;
         }
         field(513; EntreRadiatorCondition; Option)
         {
             Caption = 'Radiators condition';
             DataClassification = CustomerContent;
             OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
-            OptionMembers = "Not existing", Refurnished, "Good condition", "Bad condition", Worn;
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(514; EntreRadiatorRepairs; Option)
         {
             Caption = 'Radiators repairs';
             DataClassification = CustomerContent;
             OptionCaption = 'No,Landlord,"Sanded/planed",lacquer,Painted,Repairs,Papering,Replaced,Cleaned';
-            OptionMembers = No, Landlord, "Sanded/planed", lacquer, Painted, Repairs, Papering, Replaced, Cleaned;
+            OptionMembers = No,Landlord,"Sanded/planed",Lacquer,Painted,Repairs,Papering,Replaced,Cleaned;
         }
         field(515; EntreElCondition; Option)
         {
             Caption = 'Electricity condition';
             DataClassification = CustomerContent;
             OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
-            OptionMembers = "Not existing", Refurnished, "Good condition", "Bad condition", Worn;
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(516; EntreElRepairs; Option)
         {
             Caption = 'Electric parts repairs';
             DataClassification = CustomerContent;
             OptionCaption = 'No,Landlord,"Sanded/planed",lacquer,Painted,Repairs,Papering,Replaced,Cleaned';
-            OptionMembers = No, Landlord, "Sanded/planed", lacquer, Painted, Repairs, Papering, Replaced, Cleaned;
+            OptionMembers = No,Landlord,"Sanded/planed",Lacquer,Painted,Repairs,Papering,Replaced,Cleaned;
         }
         field(517; EntreDoorsCondition; Option)
         {
             Caption = 'Doors condition';
             DataClassification = CustomerContent;
             OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
-            OptionMembers = "Not existing", Refurnished, "Good condition", "Bad condition", Worn;
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(518; EntreDoorsRepairs; Option)
         {
             Caption = 'Doors repairs';
             DataClassification = CustomerContent;
             OptionCaption = 'No,Landlord,"Sanded/planed",lacquer,Painted,Repairs,Papering,Replaced,Cleaned';
-            OptionMembers = No, Landlord, "Sanded/planed", lacquer, Painted, Repairs, Papering, Replaced, Cleaned;
+            OptionMembers = No,Landlord,"Sanded/planed",Lacquer,Painted,Repairs,Papering,Replaced,Cleaned;
         }
         field(601; KitchenCeilingCondition; Option)
         {
             Caption = 'Ceiling condition';
             DataClassification = CustomerContent;
             OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
-            OptionMembers = "Not existing", Refurnished, "Good condition", "Bad condition", Worn;
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(602; KitchenCeilingRepairs; Option)
         {
             Caption = 'Ceiling repairs';
             DataClassification = CustomerContent;
             OptionCaption = 'No,Landlord,"Sanded/planed",lacquer,Painted,Repairs,Papering,Replaced,Cleaned';
-            OptionMembers = No, Landlord, "Sanded/planed", lacquer, Painted, Repairs, Papering, Replaced, Cleaned;
+            OptionMembers = No,Landlord,"Sanded/planed",Lacquer,Painted,Repairs,Papering,Replaced,Cleaned;
         }
         field(603; KitchenWallsCondition; Option)
         {
             Caption = 'Walls condition';
             DataClassification = CustomerContent;
             OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
-            OptionMembers = "Not existing", Refurnished, "Good condition", "Bad condition", Worn;
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(604; KitchenWallsRepairs; Option)
         {
             Caption = 'Wall repairs';
             DataClassification = CustomerContent;
             OptionCaption = 'No,Landlord,"Sanded/planed",lacquer,Painted,Repairs,Papering,Replaced,Cleaned';
-            OptionMembers = No, Landlord, "Sanded/planed", lacquer, Painted, Repairs, Papering, Replaced, Cleaned;
+            OptionMembers = No,Landlord,"Sanded/planed",Lacquer,Painted,Repairs,Papering,Replaced,Cleaned;
         }
         field(605; KitchenFloorsCondition; Option)
         {
             Caption = 'Floor condition';
             DataClassification = CustomerContent;
             OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
-            OptionMembers = "Not existing", Refurnished, "Good condition", "Bad condition", Worn;
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(606; KitchenFloorsRepairs; Option)
         {
             Caption = 'Floor repairs';
             DataClassification = CustomerContent;
             OptionCaption = 'No,Landlord,"Sanded/planed",lacquer,Painted,Repairs,Papering,Replaced,Cleaned';
-            OptionMembers = No, Landlord, "Sanded/planed", lacquer, Painted, Repairs, Papering, Replaced, Cleaned;
+            OptionMembers = No,Landlord,"Sanded/planed",Lacquer,Painted,Repairs,Papering,Replaced,Cleaned;
         }
         field(607; KitchenCarpetsCondition; Option)
         {
             Caption = 'Carpets condition';
             DataClassification = CustomerContent;
             OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
-            OptionMembers = "Not existing", Refurnished, "Good condition", "Bad condition", Worn;
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(608; KitchenCarpetsRepairs; Option)
         {
             Caption = 'Carpets repairs';
             DataClassification = CustomerContent;
             OptionCaption = 'No,Landlord,"Sanded/planed",lacquer,Painted,Repairs,Papering,Replaced,Cleaned';
-            OptionMembers = No, Landlord, "Sanded/planed", lacquer, Painted, Repairs, Papering, Replaced, Cleaned;
+            OptionMembers = No,Landlord,"Sanded/planed",Lacquer,Painted,Repairs,Papering,Replaced,Cleaned;
         }
         field(609; KitchenWoodworksCondition; Option)
         {
             Caption = 'Woodwork condition';
             DataClassification = CustomerContent;
             OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
-            OptionMembers = "Not existing", Refurnished, "Good condition", "Bad condition", Worn;
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(610; KitchenWoodworksRepairs; Option)
         {
             Caption = 'Woodworks repairs';
             DataClassification = CustomerContent;
             OptionCaption = 'No,Landlord,"Sanded/planed",lacquer,Painted,Repairs,Papering,Replaced,Cleaned';
-            OptionMembers = No, Landlord, "Sanded/planed", lacquer, Painted, Repairs, Papering, Replaced, Cleaned;
+            OptionMembers = No,Landlord,"Sanded/planed",Lacquer,Painted,Repairs,Papering,Replaced,Cleaned;
         }
         field(611; KitchenWindowsmvCondition; Option)
         {
             Caption = 'Windows etc condition';
             DataClassification = CustomerContent;
             OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
-            OptionMembers = "Not existing", Refurnished, "Good condition", "Bad condition", Worn;
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(612; KitchenWindowsRepairs; Option)
         {
             Caption = 'Windows etc. repairs';
             DataClassification = CustomerContent;
             OptionCaption = 'No,Landlord,"Sanded/planed",lacquer,Painted,Repairs,Papering,Replaced,Cleaned';
-            OptionMembers = No, Landlord, "Sanded/planed", lacquer, Painted, Repairs, Papering, Replaced, Cleaned;
+            OptionMembers = No,Landlord,"Sanded/planed",Lacquer,Painted,Repairs,Papering,Replaced,Cleaned;
         }
         field(613; KitchenRadiatorCondition; Option)
         {
             Caption = 'Radiators condition';
             DataClassification = CustomerContent;
             OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
-            OptionMembers = "Not existing", Refurnished, "Good condition", "Bad condition", Worn;
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(614; KitchenRadiatorRepairs; Option)
         {
             Caption = 'Radiators repairs';
             DataClassification = CustomerContent;
             OptionCaption = 'No,Landlord,"Sanded/planed",lacquer,Painted,Repairs,Papering,Replaced,Cleaned';
-            OptionMembers = No, Landlord, "Sanded/planed", lacquer, Painted, Repairs, Papering, Replaced, Cleaned;
+            OptionMembers = No,Landlord,"Sanded/planed",Lacquer,Painted,Repairs,Papering,Replaced,Cleaned;
         }
         field(615; KitchenElCondition; Option)
         {
             Caption = 'Electricity condition';
             DataClassification = CustomerContent;
             OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
-            OptionMembers = "Not existing", Refurnished, "Good condition", "Bad condition", Worn;
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(616; KitchenElRepairs; Option)
         {
             Caption = 'Electric parts repairs';
             DataClassification = CustomerContent;
             OptionCaption = 'No,Landlord,"Sanded/planed",lacquer,Painted,Repairs,Papering,Replaced,Cleaned';
-            OptionMembers = No, Landlord, "Sanded/planed", lacquer, Painted, Repairs, Papering, Replaced, Cleaned;
+            OptionMembers = No,Landlord,"Sanded/planed",Lacquer,Painted,Repairs,Papering,Replaced,Cleaned;
         }
         field(617; KitchenDoorsCondition; Option)
         {
             Caption = 'Doors condition';
             DataClassification = CustomerContent;
             OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
-            OptionMembers = "Not existing", Refurnished, "Good condition", "Bad condition", Worn;
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(618; KitchenDoorsRepairs; Option)
         {
             Caption = 'Doors repairs';
             DataClassification = CustomerContent;
             OptionCaption = 'No,Landlord,"Sanded/planed",lacquer,Painted,Repairs,Papering,Replaced,Cleaned';
-            OptionMembers = No, Landlord, "Sanded/planed", lacquer, Painted, Repairs, Papering, Replaced, Cleaned;
+            OptionMembers = No,Landlord,"Sanded/planed",Lacquer,Painted,Repairs,Papering,Replaced,Cleaned;
         }
         field(619; KitchenTilesConditions; Option)
         {
             Caption = 'Tiles condition';
             DataClassification = CustomerContent;
             OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
-            OptionMembers = "Not existing", Refurnished, "Good condition", "Bad condition", Worn;
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(620; KitchenTilesRepairs; Option)
         {
             Caption = 'Tiles repairs';
             DataClassification = CustomerContent;
             OptionCaption = 'No,Landlord,"Sanded/planed",lacquer,Painted,Repairs,Papering,Replaced,Cleaned';
-            OptionMembers = No, Landlord, "Sanded/planed", lacquer, Painted, Repairs, Papering, Replaced, Cleaned;
+            OptionMembers = No,Landlord,"Sanded/planed",Lacquer,Painted,Repairs,Papering,Replaced,Cleaned;
         }
         field(621; KitchenTableCondition; Option)
         {
             Caption = 'Table condition';
             DataClassification = CustomerContent;
             OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
-            OptionMembers = "Not existing", Refurnished, "Good condition", "Bad condition", Worn;
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(622; KitchenTableRepairs; Option)
         {
             Caption = 'Table repairs';
             DataClassification = CustomerContent;
             OptionCaption = 'No,Landlord,"Sanded/planed",lacquer,Painted,Repairs,Papering,Replaced,Cleaned';
-            OptionMembers = No, Landlord, "Sanded/planed", lacquer, Painted, Repairs, Papering, Replaced, Cleaned;
+            OptionMembers = No,Landlord,"Sanded/planed",Lacquer,Painted,Repairs,Papering,Replaced,Cleaned;
         }
         field(623; KitchenSinkCondition; Option)
         {
             Caption = 'Sink condition';
             DataClassification = CustomerContent;
             OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
-            OptionMembers = "Not existing", Refurnished, "Good condition", "Bad condition", Worn;
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(624; KitchensinkRepairs; Option)
         {
             Caption = 'Sink repairs';
             DataClassification = CustomerContent;
             OptionCaption = 'No,Landlord,"Sanded/planed",lacquer,Painted,Repairs,Papering,Replaced,Cleaned';
-            OptionMembers = No, Landlord, "Sanded/planed", lacquer, Painted, Repairs, Papering, Replaced, Cleaned;
+            OptionMembers = No,Landlord,"Sanded/planed",Lacquer,Painted,Repairs,Papering,Replaced,Cleaned;
         }
         field(625; KitchenCabinetsCondition; Option)
         {
             Caption = 'Kitchen cabinets condition';
             DataClassification = CustomerContent;
             OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
-            OptionMembers = "Not existing", Refurnished, "Good condition", "Bad condition", Worn;
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(626; KitchenCabinetsRepairs; Option)
         {
             Caption = 'Kitchen cabinets repair';
             DataClassification = CustomerContent;
             OptionCaption = 'No,Landlord,"Sanded/planed",lacquer,Painted,Repairs,Papering,Replaced,Cleaned';
-            OptionMembers = No, Landlord, "Sanded/planed", lacquer, Painted, Repairs, Papering, Replaced, Cleaned;
+            OptionMembers = No,Landlord,"Sanded/planed",Lacquer,Painted,Repairs,Papering,Replaced,Cleaned;
         }
         field(627; KitchenWatertapsCondition; Option)
         {
             Caption = 'Watertaps condition';
             DataClassification = CustomerContent;
             OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
-            OptionMembers = "Not existing", Refurnished, "Good condition", "Bad condition", Worn;
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(628; KitchenWatertapsRepairs; Option)
         {
             Caption = 'Water taps repairs';
             DataClassification = CustomerContent;
             OptionCaption = 'No,Landlord,"Sanded/planed",lacquer,Painted,Repairs,Papering,Replaced,Cleaned';
-            OptionMembers = No, Landlord, "Sanded/planed", lacquer, Painted, Repairs, Papering, Replaced, Cleaned;
+            OptionMembers = No,Landlord,"Sanded/planed",Lacquer,Painted,Repairs,Papering,Replaced,Cleaned;
         }
         field(701; BathroomCeilingCondition; Option)
         {
             Caption = 'Ceiling condition';
             DataClassification = CustomerContent;
             OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
-            OptionMembers = "Not existing", Refurnished, "Good condition", "Bad condition", Worn;
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(702; BathroomCeilingRepairs; Option)
         {
             Caption = 'Ceiling repairs';
             DataClassification = CustomerContent;
             OptionCaption = 'No,Landlord,"Sanded/planed",lacquer,Painted,Repairs,Papering,Replaced,Cleaned';
-            OptionMembers = No, Landlord, "Sanded/planed", lacquer, Painted, Repairs, Papering, Replaced, Cleaned;
+            OptionMembers = No,Landlord,"Sanded/planed",Lacquer,Painted,Repairs,Papering,Replaced,Cleaned;
         }
         field(703; BathroomWallsCondition; Option)
         {
             Caption = 'Walls condition';
             DataClassification = CustomerContent;
             OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
-            OptionMembers = "Not existing", Refurnished, "Good condition", "Bad condition", Worn;
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(704; BathroomWallsRepairs; Option)
         {
             Caption = 'Wall repairs';
             DataClassification = CustomerContent;
             OptionCaption = 'No,Landlord,"Sanded/planed",lacquer,Painted,Repairs,Papering,Replaced,Cleaned';
-            OptionMembers = No, Landlord, "Sanded/planed", lacquer, Painted, Repairs, Papering, Replaced, Cleaned;
+            OptionMembers = No,Landlord,"Sanded/planed",Lacquer,Painted,Repairs,Papering,Replaced,Cleaned;
         }
         field(705; BathroomFloorsCondition; Option)
         {
             Caption = 'Floor condition';
             DataClassification = CustomerContent;
             OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
-            OptionMembers = "Not existing", Refurnished, "Good condition", "Bad condition", Worn;
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(706; BathroomFloorsRepairs; Option)
         {
             Caption = 'Floor repairs';
             DataClassification = CustomerContent;
             OptionCaption = 'No,Landlord,"Sanded/planed",lacquer,Painted,Repairs,Papering,Replaced,Cleaned';
-            OptionMembers = No, Landlord, "Sanded/planed", lacquer, Painted, Repairs, Papering, Replaced, Cleaned;
+            OptionMembers = No,Landlord,"Sanded/planed",Lacquer,Painted,Repairs,Papering,Replaced,Cleaned;
         }
         field(707; BathroomCarpetsCondition; Option)
         {
             Caption = 'Carpets condition';
             DataClassification = CustomerContent;
             OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
-            OptionMembers = "Not existing", Refurnished, "Good condition", "Bad condition", Worn;
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(708; BathroomCarpetsRepairs; Option)
         {
             Caption = 'Carpets repairs';
             DataClassification = CustomerContent;
             OptionCaption = 'No,Landlord,"Sanded/planed",lacquer,Painted,Repairs,Papering,Replaced,Cleaned';
-            OptionMembers = No, Landlord, "Sanded/planed", lacquer, Painted, Repairs, Papering, Replaced, Cleaned;
+            OptionMembers = No,Landlord,"Sanded/planed",Lacquer,Painted,Repairs,Papering,Replaced,Cleaned;
         }
         field(709; BathroomWoodworksCondition; Option)
         {
             Caption = 'Woodwork condition';
             DataClassification = CustomerContent;
             OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
-            OptionMembers = "Not existing", Refurnished, "Good condition", "Bad condition", Worn;
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(710; BathroomWoodworksRepairs; Option)
         {
             Caption = 'Woodworks repairs';
             DataClassification = CustomerContent;
             OptionCaption = 'No,Landlord,"Sanded/planed",lacquer,Painted,Repairs,Papering,Replaced,Cleaned';
-            OptionMembers = No, Landlord, "Sanded/planed", lacquer, Painted, Repairs, Papering, Replaced, Cleaned;
+            OptionMembers = No,Landlord,"Sanded/planed",Lacquer,Painted,Repairs,Papering,Replaced,Cleaned;
         }
         field(711; BathroomWindowsmvCondition; Option)
         {
             Caption = 'Windows etc condition';
             DataClassification = CustomerContent;
             OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
-            OptionMembers = "Not existing", Refurnished, "Good condition", "Bad condition", Worn;
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(712; BathroomWindowsRepairs; Option)
         {
             Caption = 'Windows etc. repairs';
             DataClassification = CustomerContent;
             OptionCaption = 'No,Landlord,"Sanded/planed",lacquer,Painted,Repairs,Papering,Replaced,Cleaned';
-            OptionMembers = No, Landlord, "Sanded/planed", lacquer, Painted, Repairs, Papering, Replaced, Cleaned;
+            OptionMembers = No,Landlord,"Sanded/planed",Lacquer,Painted,Repairs,Papering,Replaced,Cleaned;
         }
         field(713; BathroomRadiatorCondition; Option)
         {
             Caption = 'Radiators condition';
             DataClassification = CustomerContent;
             OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
-            OptionMembers = "Not existing", Refurnished, "Good condition", "Bad condition", Worn;
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(714; BathroomRadiatorRepairs; Option)
         {
             Caption = 'Radiators repairs';
             DataClassification = CustomerContent;
             OptionCaption = 'No,Landlord,"Sanded/planed",lacquer,Painted,Repairs,Papering,Replaced,Cleaned';
-            OptionMembers = No, Landlord, "Sanded/planed", lacquer, Painted, Repairs, Papering, Replaced, Cleaned;
+            OptionMembers = No,Landlord,"Sanded/planed",Lacquer,Painted,Repairs,Papering,Replaced,Cleaned;
         }
         field(715; BathroomElCondition; Option)
         {
             Caption = 'Electricity condition';
             DataClassification = CustomerContent;
             OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
-            OptionMembers = "Not existing", Refurnished, "Good condition", "Bad condition", Worn;
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(716; BathroomElRepairs; Option)
         {
             Caption = 'Electric parts repairs';
             DataClassification = CustomerContent;
             OptionCaption = 'No,Landlord,"Sanded/planed",lacquer,Painted,Repairs,Papering,Replaced,Cleaned';
-            OptionMembers = No, Landlord, "Sanded/planed", lacquer, Painted, Repairs, Papering, Replaced, Cleaned;
+            OptionMembers = No,Landlord,"Sanded/planed",Lacquer,Painted,Repairs,Papering,Replaced,Cleaned;
         }
         field(717; BathroomDoorsCondition; Option)
         {
             Caption = 'Doors condition';
             DataClassification = CustomerContent;
             OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
-            OptionMembers = "Not existing", Refurnished, "Good condition", "Bad condition", Worn;
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(718; BathroomDoorsRepairs; Option)
         {
             Caption = 'Doors repairs';
             DataClassification = CustomerContent;
             OptionCaption = 'No,Landlord,"Sanded/planed",lacquer,Painted,Repairs,Papering,Replaced,Cleaned';
-            OptionMembers = No, Landlord, "Sanded/planed", lacquer, Painted, Repairs, Papering, Replaced, Cleaned;
+            OptionMembers = No,Landlord,"Sanded/planed",Lacquer,Painted,Repairs,Papering,Replaced,Cleaned;
         }
         field(719; BathroomSinkCondition; Option)
         {
             Caption = 'Sink condition';
             DataClassification = CustomerContent;
             OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
-            OptionMembers = "Not existing", Refurnished, "Good condition", "Bad condition", Worn;
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(720; BathroomSinkRepairs; Option)
         {
             Caption = 'Sink repairs';
             DataClassification = CustomerContent;
             OptionCaption = 'No,Landlord,"Sanded/planed",lacquer,Painted,Repairs,Papering,Replaced,Cleaned';
-            OptionMembers = No, Landlord, "Sanded/planed", lacquer, Painted, Repairs, Papering, Replaced, Cleaned;
+            OptionMembers = No,Landlord,"Sanded/planed",Lacquer,Painted,Repairs,Papering,Replaced,Cleaned;
         }
         field(721; BathroomCisternDoorsCondition; Option)
         {
             Caption = 'Cistern condition';
             DataClassification = CustomerContent;
             OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
-            OptionMembers = "Not existing", Refurnished, "Good condition", "Bad condition", Worn;
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(722; BathroomCisternRepairs; Option)
         {
             Caption = 'Cistern repairs';
             DataClassification = CustomerContent;
             OptionCaption = 'No,Landlord,"Sanded/planed",lacquer,Painted,Repairs,Papering,Replaced,Cleaned';
-            OptionMembers = No, Landlord, "Sanded/planed", lacquer, Painted, Repairs, Papering, Replaced, Cleaned;
+            OptionMembers = No,Landlord,"Sanded/planed",Lacquer,Painted,Repairs,Papering,Replaced,Cleaned;
         }
         field(723; BathroomToiletBowlCondition; Option)
         {
             Caption = 'Toiletbowl condition';
             DataClassification = CustomerContent;
             OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
-            OptionMembers = "Not existing", Refurnished, "Good condition", "Bad condition", Worn;
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(724; BathroomToiletBowlRepairs; Option)
         {
             Caption = 'Toiletbowl repairs';
             DataClassification = CustomerContent;
             OptionCaption = 'No,Landlord,"Sanded/planed",lacquer,Painted,Repairs,Papering,Replaced,Cleaned';
-            OptionMembers = No, Landlord, "Sanded/planed", lacquer, Painted, Repairs, Papering, Replaced, Cleaned;
+            OptionMembers = No,Landlord,"Sanded/planed",Lacquer,Painted,Repairs,Papering,Replaced,Cleaned;
         }
         field(725; BathroomBathtopCondition; Option)
         {
             Caption = 'Bathtop condition';
             DataClassification = CustomerContent;
             OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
-            OptionMembers = "Not existing", Refurnished, "Good condition", "Bad condition", Worn;
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(726; BathroombathTopRepairs; Option)
         {
             Caption = 'Bathtop repairs';
             DataClassification = CustomerContent;
             OptionCaption = 'No,Landlord,"Sanded/planed",lacquer,Painted,Repairs,Papering,Replaced,Cleaned';
-            OptionMembers = No, Landlord, "Sanded/planed", lacquer, Painted, Repairs, Papering, Replaced, Cleaned;
+            OptionMembers = No,Landlord,"Sanded/planed",Lacquer,Painted,Repairs,Papering,Replaced,Cleaned;
         }
         field(727; BathroomShowerCondition; Option)
         {
             Caption = 'Shower condition';
             DataClassification = CustomerContent;
             OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
-            OptionMembers = "Not existing", Refurnished, "Good condition", "Bad condition", Worn;
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(728; BathroomShowerRepairs; Option)
         {
             Caption = 'Shower repairs';
             DataClassification = CustomerContent;
             OptionCaption = 'No,Landlord,"Sanded/planed",lacquer,Painted,Repairs,Papering,Replaced,Cleaned';
-            OptionMembers = No, Landlord, "Sanded/planed", lacquer, Painted, Repairs, Papering, Replaced, Cleaned;
+            OptionMembers = No,Landlord,"Sanded/planed",Lacquer,Painted,Repairs,Papering,Replaced,Cleaned;
         }
         field(729; BathroomWaterTapsCondition; Option)
         {
             Caption = 'Watertaps condition';
             DataClassification = CustomerContent;
             OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
-            OptionMembers = "Not existing", Refurnished, "Good condition", "Bad condition", Worn;
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(730; BathroomWaterTapsRepairs; Option)
         {
             Caption = 'Watertaps repairs';
             DataClassification = CustomerContent;
             OptionCaption = 'No,Landlord,"Sanded/planed",lacquer,Painted,Repairs,Papering,Replaced,Cleaned';
-            OptionMembers = No, Landlord, "Sanded/planed", lacquer, Painted, Repairs, Papering, Replaced, Cleaned;
+            OptionMembers = No,Landlord,"Sanded/planed",Lacquer,Painted,Repairs,Papering,Replaced,Cleaned;
         }
         field(801; ToiletCeilingCondition; Option)
         {
             Caption = 'Ceiling condition';
             DataClassification = CustomerContent;
             OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
-            OptionMembers = "Not existing", Refurnished, "Good condition", "Bad condition", Worn;
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(802; ToiletCeilingRepairs; Option)
         {
             Caption = 'Ceiling repairs';
             DataClassification = CustomerContent;
             OptionCaption = 'No,Landlord,"Sanded/planed",lacquer,Painted,Repairs,Papering,Replaced,Cleaned';
-            OptionMembers = No, Landlord, "Sanded/planed", lacquer, Painted, Repairs, Papering, Replaced, Cleaned;
+            OptionMembers = No,Landlord,"Sanded/planed",Lacquer,Painted,Repairs,Papering,Replaced,Cleaned;
         }
         field(803; ToiletWallsCondition; Option)
         {
             Caption = 'Walls condition';
             DataClassification = CustomerContent;
             OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
-            OptionMembers = "Not existing", Refurnished, "Good condition", "Bad condition", Worn;
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(804; ToiletWallsRepairs; Option)
         {
             Caption = 'Wall repairs';
             DataClassification = CustomerContent;
             OptionCaption = 'No,Landlord,"Sanded/planed",lacquer,Painted,Repairs,Papering,Replaced,Cleaned';
-            OptionMembers = No, Landlord, "Sanded/planed", lacquer, Painted, Repairs, Papering, Replaced, Cleaned;
+            OptionMembers = No,Landlord,"Sanded/planed",Lacquer,Painted,Repairs,Papering,Replaced,Cleaned;
         }
         field(805; ToiletFloorsCondition; Option)
         {
             Caption = 'Floor condition';
             DataClassification = CustomerContent;
             OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
-            OptionMembers = "Not existing", Refurnished, "Good condition", "Bad condition", Worn;
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(806; ToiletFloorsRepairs; Option)
         {
             Caption = 'Floor repairs';
             DataClassification = CustomerContent;
             OptionCaption = 'No,Landlord,"Sanded/planed",lacquer,Painted,Repairs,Papering,Replaced,Cleaned';
-            OptionMembers = No, Landlord, "Sanded/planed", lacquer, Painted, Repairs, Papering, Replaced, Cleaned;
+            OptionMembers = No,Landlord,"Sanded/planed",Lacquer,Painted,Repairs,Papering,Replaced,Cleaned;
         }
         field(807; ToiletCarpetsCondition; Option)
         {
             Caption = 'Carpets condition';
             DataClassification = CustomerContent;
             OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
-            OptionMembers = "Not existing", Refurnished, "Good condition", "Bad condition", Worn;
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(808; ToiletCarpetsRepairs; Option)
         {
             Caption = 'Carpets repairs';
             DataClassification = CustomerContent;
             OptionCaption = 'No,Landlord,"Sanded/planed",lacquer,Painted,Repairs,Papering,Replaced,Cleaned';
-            OptionMembers = No, Landlord, "Sanded/planed", lacquer, Painted, Repairs, Papering, Replaced, Cleaned;
+            OptionMembers = No,Landlord,"Sanded/planed",Lacquer,Painted,Repairs,Papering,Replaced,Cleaned;
         }
         field(809; ToiletWoodworksCondition; Option)
         {
             Caption = 'Woodwork condition';
             DataClassification = CustomerContent;
             OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
-            OptionMembers = "Not existing", Refurnished, "Good condition", "Bad condition", Worn;
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(810; ToiletWoodworksRepairs; Option)
         {
             Caption = 'Woodworks repairs';
             DataClassification = CustomerContent;
             OptionCaption = 'No,Landlord,"Sanded/planed",lacquer,Painted,Repairs,Papering,Replaced,Cleaned';
-            OptionMembers = No, Landlord, "Sanded/planed", lacquer, Painted, Repairs, Papering, Replaced, Cleaned;
+            OptionMembers = No,Landlord,"Sanded/planed",Lacquer,Painted,Repairs,Papering,Replaced,Cleaned;
         }
         field(811; ToiletWindowsmvCondition; Option)
         {
             Caption = 'Windows etc condition';
             DataClassification = CustomerContent;
             OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
-            OptionMembers = "Not existing", Refurnished, "Good condition", "Bad condition", Worn;
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(812; ToiletWindowsRepairs; Option)
         {
             Caption = 'Windows etc. repairs';
             DataClassification = CustomerContent;
             OptionCaption = 'No,Landlord,"Sanded/planed",lacquer,Painted,Repairs,Papering,Replaced,Cleaned';
-            OptionMembers = No, Landlord, "Sanded/planed", lacquer, Painted, Repairs, Papering, Replaced, Cleaned;
+            OptionMembers = No,Landlord,"Sanded/planed",Lacquer,Painted,Repairs,Papering,Replaced,Cleaned;
         }
         field(813; ToiletRadiatorCondition; Option)
         {
             Caption = 'Radiators condition';
             DataClassification = CustomerContent;
             OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
-            OptionMembers = "Not existing", Refurnished, "Good condition", "Bad condition", Worn;
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(814; ToiletRadiatorRepairs; Option)
         {
             Caption = 'Radiators repairs';
             DataClassification = CustomerContent;
             OptionCaption = 'No,Landlord,"Sanded/planed",lacquer,Painted,Repairs,Papering,Replaced,Cleaned';
-            OptionMembers = No, Landlord, "Sanded/planed", lacquer, Painted, Repairs, Papering, Replaced, Cleaned;
+            OptionMembers = No,Landlord,"Sanded/planed",Lacquer,Painted,Repairs,Papering,Replaced,Cleaned;
         }
         field(815; ToiletElCondition; Option)
         {
             Caption = 'Electricity condition';
             DataClassification = CustomerContent;
             OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
-            OptionMembers = "Not existing", Refurnished, "Good condition", "Bad condition", Worn;
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(816; ToiletElRepairs; Option)
         {
             Caption = 'Electric parts repairs';
             DataClassification = CustomerContent;
             OptionCaption = 'No,Landlord,"Sanded/planed",lacquer,Painted,Repairs,Papering,Replaced,Cleaned';
-            OptionMembers = No, Landlord, "Sanded/planed", lacquer, Painted, Repairs, Papering, Replaced, Cleaned;
+            OptionMembers = No,Landlord,"Sanded/planed",Lacquer,Painted,Repairs,Papering,Replaced,Cleaned;
         }
         field(817; ToiletDoorsCondition; Option)
         {
             Caption = 'Doors condition';
             DataClassification = CustomerContent;
             OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
-            OptionMembers = "Not existing", Refurnished, "Good condition", "Bad condition", Worn;
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(818; ToiletDoorsRepairs; Option)
         {
             Caption = 'Doors repairs';
             DataClassification = CustomerContent;
             OptionCaption = 'No,Landlord,"Sanded/planed",lacquer,Painted,Repairs,Papering,Replaced,Cleaned';
-            OptionMembers = No, Landlord, "Sanded/planed", lacquer, Painted, Repairs, Papering, Replaced, Cleaned;
+            OptionMembers = No,Landlord,"Sanded/planed",Lacquer,Painted,Repairs,Papering,Replaced,Cleaned;
         }
         field(819; ToiletSinkCondition; Option)
         {
             Caption = 'Sink condition';
             DataClassification = CustomerContent;
             OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
-            OptionMembers = "Not existing", Refurnished, "Good condition", "Bad condition", Worn;
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(820; ToiletSinkRepairs; Option)
         {
             Caption = 'Sink repairs';
             DataClassification = CustomerContent;
             OptionCaption = 'No,Landlord,"Sanded/planed",lacquer,Painted,Repairs,Papering,Replaced,Cleaned';
-            OptionMembers = No, Landlord, "Sanded/planed", lacquer, Painted, Repairs, Papering, Replaced, Cleaned;
+            OptionMembers = No,Landlord,"Sanded/planed",Lacquer,Painted,Repairs,Papering,Replaced,Cleaned;
         }
         field(821; ToiletCisternDoorsCondition; Option)
         {
             Caption = 'Cistern condition';
             DataClassification = CustomerContent;
             OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
-            OptionMembers = "Not existing", Refurnished, "Good condition", "Bad condition", Worn;
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(822; ToiletCisternRepairs; Option)
         {
             Caption = 'Cistern repairs';
             DataClassification = CustomerContent;
             OptionCaption = 'No,Landlord,"Sanded/planed",lacquer,Painted,Repairs,Papering,Replaced,Cleaned';
-            OptionMembers = No, Landlord, "Sanded/planed", lacquer, Painted, Repairs, Papering, Replaced, Cleaned;
+            OptionMembers = No,Landlord,"Sanded/planed",Lacquer,Painted,Repairs,Papering,Replaced,Cleaned;
         }
         field(823; ToiletToiletBowlCondition; Option)
         {
             Caption = 'Toiletbowl condition';
             DataClassification = CustomerContent;
             OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
-            OptionMembers = "Not existing", Refurnished, "Good condition", "Bad condition", Worn;
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(824; ToiletToiletBowlRepairs; Option)
         {
             Caption = 'Toiletbowl repairs';
             DataClassification = CustomerContent;
             OptionCaption = 'No,Landlord,"Sanded/planed",lacquer,Painted,Repairs,Papering,Replaced,Cleaned';
-            OptionMembers = No, Landlord, "Sanded/planed", lacquer, Painted, Repairs, Papering, Replaced, Cleaned;
+            OptionMembers = No,Landlord,"Sanded/planed",Lacquer,Painted,Repairs,Papering,Replaced,Cleaned;
         }
         field(825; ToiletwaterTapsCondition; Option)
         {
             Caption = 'Watertaps condition';
             DataClassification = CustomerContent;
             OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
-            OptionMembers = "Not existing", Refurnished, "Good condition", "Bad condition", Worn;
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(826; ToiletWaterTapsRepairs; Option)
         {
             Caption = 'Watertaps repairs';
             DataClassification = CustomerContent;
             OptionCaption = 'No,Landlord,"Sanded/planed",lacquer,Painted,Repairs,Papering,Replaced,Cleaned';
-            OptionMembers = No, Landlord, "Sanded/planed", lacquer, Painted, Repairs, Papering, Replaced, Cleaned;
+            OptionMembers = No,Landlord,"Sanded/planed",Lacquer,Painted,Repairs,Papering,Replaced,Cleaned;
         }
         field(901; StoveYear; Text[10])
         {
@@ -1437,14 +1436,14 @@ table 50009 "SVA MovingOut Status"
             Caption = 'Stove condition';
             DataClassification = CustomerContent;
             OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
-            OptionMembers = "Not existing", Refurnished, "Good condition", "Bad condition", Worn;
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(905; StoveRepairs; Option)
         {
             Caption = 'Stove repairs';
             DataClassification = CustomerContent;
             OptionCaption = 'None,Repair,Replaced';
-            OptionMembers = None, Repair, Replaced;
+            OptionMembers = None,Repair,Replaced;
         }
         field(906; CookYear; Text[10])
         {
@@ -1466,14 +1465,14 @@ table 50009 "SVA MovingOut Status"
             Caption = 'Cook condition';
             DataClassification = CustomerContent;
             OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
-            OptionMembers = "Not existing", Refurnished, "Good condition", "Bad condition", Worn;
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(910; CookRepairs; Option)
         {
             Caption = 'Cook repairs';
             DataClassification = CustomerContent;
             OptionCaption = 'None,Repair,Replaced';
-            OptionMembers = None, Repair, Replaced;
+            OptionMembers = None,Repair,Replaced;
         }
         field(911; OvenYear; Text[10])
         {
@@ -1495,14 +1494,14 @@ table 50009 "SVA MovingOut Status"
             Caption = 'Oven condition';
             DataClassification = CustomerContent;
             OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
-            OptionMembers = "Not existing", Refurnished, "Good condition", "Bad condition", Worn;
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(915; OvenRepairs; Option)
         {
             Caption = 'Oven repairs';
             DataClassification = CustomerContent;
             OptionCaption = 'None,Repair,Replaced';
-            OptionMembers = None, Repair, Replaced;
+            OptionMembers = None,Repair,Replaced;
         }
         field(916; HoodYear; Text[10])
         {
@@ -1524,14 +1523,14 @@ table 50009 "SVA MovingOut Status"
             Caption = 'Hood condition';
             DataClassification = CustomerContent;
             OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
-            OptionMembers = "Not existing", Refurnished, "Good condition", "Bad condition", Worn;
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(920; HoodeRepairs; Option)
         {
             Caption = 'Hood repairs';
             DataClassification = CustomerContent;
             OptionCaption = 'None,Repair,Replaced';
-            OptionMembers = None, Repair, Replaced;
+            OptionMembers = None,Repair,Replaced;
         }
         field(921; FridgeYear; Text[10])
         {
@@ -1553,14 +1552,14 @@ table 50009 "SVA MovingOut Status"
             Caption = 'Fridge condition';
             DataClassification = CustomerContent;
             OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
-            OptionMembers = "Not existing", Refurnished, "Good condition", "Bad condition", Worn;
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(925; FridgeRepairs; Option)
         {
             Caption = 'Fridge repairs';
             DataClassification = CustomerContent;
             OptionCaption = 'None,Repair,Replaced';
-            OptionMembers = None, Repair, Replaced;
+            OptionMembers = None,Repair,Replaced;
         }
         field(926; FreezerYear; Text[10])
         {
@@ -1582,14 +1581,14 @@ table 50009 "SVA MovingOut Status"
             Caption = 'Freezer condition';
             DataClassification = CustomerContent;
             OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
-            OptionMembers = "Not existing", Refurnished, "Good condition", "Bad condition", Worn;
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(930; FreezerRepairs; Option)
         {
             Caption = 'Freezer repairs';
             DataClassification = CustomerContent;
             OptionCaption = 'None,Repair,Replaced';
-            OptionMembers = None, Repair, Replaced;
+            OptionMembers = None,Repair,Replaced;
         }
         field(931; DishwasherYear; Text[10])
         {
@@ -1611,14 +1610,14 @@ table 50009 "SVA MovingOut Status"
             Caption = 'Dishwasher condition';
             DataClassification = CustomerContent;
             OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
-            OptionMembers = "Not existing", Refurnished, "Good condition", "Bad condition", Worn;
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(935; DishwasherRepairs; Option)
         {
             Caption = 'Dishwasher repairs';
             DataClassification = CustomerContent;
             OptionCaption = 'None,Repair,Replaced';
-            OptionMembers = None, Repair, Replaced;
+            OptionMembers = None,Repair,Replaced;
         }
         field(936; WasherYear; Text[10])
         {
@@ -1640,14 +1639,14 @@ table 50009 "SVA MovingOut Status"
             Caption = 'Washer condition';
             DataClassification = CustomerContent;
             OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
-            OptionMembers = "Not existing", Refurnished, "Good condition", "Bad condition", Worn;
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(940; WasherRepairs; Option)
         {
             Caption = 'Washer repairs';
             DataClassification = CustomerContent;
             OptionCaption = 'None,Repair,Replaced';
-            OptionMembers = None, Repair, Replaced;
+            OptionMembers = None,Repair,Replaced;
         }
         field(941; DryerYear; Text[10])
         {
@@ -1669,14 +1668,14 @@ table 50009 "SVA MovingOut Status"
             Caption = 'Dryer condition';
             DataClassification = CustomerContent;
             OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
-            OptionMembers = "Not existing", Refurnished, "Good condition", "Bad condition", Worn;
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(945; DryerRepairs; Option)
         {
             Caption = 'Dryer repairs';
             DataClassification = CustomerContent;
             OptionCaption = 'None,Repair,Replaced';
-            OptionMembers = None, Repair, Replaced;
+            OptionMembers = None,Repair,Replaced;
         }
         field(946; EntryPhoneYear; Text[10])
         {
@@ -1698,42 +1697,42 @@ table 50009 "SVA MovingOut Status"
             Caption = 'entryphone condition';
             DataClassification = CustomerContent;
             OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
-            OptionMembers = "Not existing", Refurnished, "Good condition", "Bad condition", Worn;
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(950; EntryPhoneRepairs; Option)
         {
             Caption = 'Entryphone repairs';
             DataClassification = CustomerContent;
             OptionCaption = 'None,Repair,Replaced';
-            OptionMembers = None, Repair, Replaced;
+            OptionMembers = None,Repair,Replaced;
         }
         field(951; AntennaCondition; Option)
         {
             Caption = 'Antenna condition';
             DataClassification = CustomerContent;
             OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
-            OptionMembers = "Not existing", Refurnished, "Good condition", "Bad condition", Worn;
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(952; AntennaRepairs; Option)
         {
             Caption = 'Antenna repairs';
             DataClassification = CustomerContent;
             OptionCaption = 'None,Repair,Replaced';
-            OptionMembers = None, Repair, Replaced;
+            OptionMembers = None,Repair,Replaced;
         }
         field(953; KeyCondition; Option)
         {
             Caption = 'Key condition';
             DataClassification = CustomerContent;
             OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
-            OptionMembers = "Not existing", Refurnished, "Good condition", "Bad condition", Worn;
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
         }
         field(954; KeyRepairs; Option)
         {
             Caption = 'Key repairs';
             DataClassification = CustomerContent;
             OptionCaption = 'None,Repair,Replaced';
-            OptionMembers = None, Repair, Replaced;
+            OptionMembers = None,Repair,Replaced;
         }
         field(980; Phone; Text[20])
         {
@@ -1767,9 +1766,9 @@ table 50009 "SVA MovingOut Status"
     }
 
     var
-        CompanyInfo: Record "Company Information";
-        Property: Record "SVA Property";
-        Tenancy: Record "SVA Tenancy";
-        OccupantCard: Record "SVA Occupant";
+        CompanyInformation: Record "Company Information";
+        SVAProperty: Record "SVA Property";
+        SVATenancy: Record "SVA Tenancy";
+        SVAOccupant: Record "SVA Occupant";
 }
 

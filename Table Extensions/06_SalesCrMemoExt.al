@@ -8,41 +8,41 @@ tableextension 50036 "SVA Sales Cr.memo Ext" extends "Sales Cr.Memo Header"
             Caption = 'Included';
             DataClassification = CustomerContent;
             Editable = true;
-            
+
         }
         field(50042; "SVA Send"; Boolean)
         {
             Caption = 'Send';
             DataClassification = CustomerContent;
             Editable = true;
-            
+
         }
         field(50043; "SVA Send Date"; Date)
         {
             Caption = 'Send date';
             DataClassification = CustomerContent;
             Editable = true;
-            
+
         }
         field(50044; "SVA Occupant"; Code[10])
         {
             Caption = 'Occupant';
             TableRelation = "SVA Occupant".Number;
             DataClassification = CustomerContent;
-            
+
         }
     }
     trigger OnBeforeInsert();
     var
-        OccupantRec: Record "SVA Occupant";
+        SVAOccupant: Record "SVA Occupant";
     begin
         if "SVA Occupant" = '' then begin
-            OccupantRec.Reset;
-            OccupantRec.SetRange("Customer No", "Sell-to Customer No.");
-            if OccupantRec.FindSet then
+            SVAOccupant.Reset();
+            SVAOccupant.SetRange("Customer No", "Sell-to Customer No.");
+            if SVAOccupant.FindSet() then
                 repeat
-                    "SVA Occupant" := OccupantRec.Number;
-                until OccupantRec.Next = 0;
+                    "SVA Occupant" := SVAOccupant.Number;
+                until SVAOccupant.NEXT() = 0;
         end;
     end;
 }

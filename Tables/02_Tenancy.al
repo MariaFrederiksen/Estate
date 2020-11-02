@@ -2,7 +2,6 @@
 {
     Caption = 'Tenancies';
     DataClassification = CustomerContent;
-    Permissions = TableData 50002 = rimd;
     DrillDownPageID = "SVA Tenancy List";
     LookupPageID = "SVA Tenancy List";
 
@@ -23,44 +22,44 @@
             trigger OnValidate();
             begin
 
-                PropertyCard.RESET;
-                PropertyCard.SETRANGE(PropertyCard.Property, PropertyNo);
-                IF PropertyCard.FINDFIRST() THEN BEGIN
-                    Address1 := PropertyCard.Address1;
-                    Address2 := PropertyCard.Address2;
-                    "Post Code" := PropertyCard."Post Code";
-                    City := PropertyCard.City;
-                    "Country/Region Code" := PropertyCard."Country/Region Code";
-                    TypeA9_1_Laundy := PropertyCard.TypeA9_1_Laundry;
-                    TypeA9_1_BicycleStorage := PropertyCard.TypeA9_1_Bicycle;
-                    TypeA9_1_Courtyard := PropertyCard.TypeA9_1_Courtyard;
+                SVAProperty.Reset();
+                SVAProperty.SETRANGE(SVAProperty.Property, PropertyNo);
+                IF SVAProperty.FINDFIRST() THEN BEGIN
+                    Address1 := SVAProperty.Address1;
+                    Address2 := SVAProperty.Address2;
+                    "Post Code" := SVAProperty."Post Code";
+                    City := SVAProperty.City;
+                    "Country/Region Code" := SVAProperty."Country/Region Code";
+                    TypeA9_1_Laundy := SVAProperty.TypeA9_1_Laundry;
+                    TypeA9_1_BicycleStorage := SVAProperty.TypeA9_1_Bicycle;
+                    TypeA9_1_Courtyard := SVAProperty.TypeA9_1_Courtyard;
                     TypeA9_1_Use := 'Beboelse';
-                    Deposit := PropertyCard.TypeA9_4_DepMth;
-                    PrepaidRent := PropertyCard.TypeA9_4_PrePaidMth;
-                    TypeA9_5_LandlordHeat := PropertyCard.TypeA9_5_LandlordHeat;
-                    TypeA9_5_LNatgas := PropertyCard.TypeA9_5_LNatgas;
-                    TypeA9_5_lOil := PropertyCard.TypeA9_5_lOil;
-                    TypeA9_5_LElHeat := PropertyCard.TypeA9_5_LEl;
-                    TypeA9_5_LOther := PropertyCard.TypeA9_5_LOther;
-                    TypeA9_5_LandlordWater := PropertyCard.TypeA9_5_Water;
-                    TypeA9_5_WaterMeter := PropertyCard.TypeA9_5_WM;
-                    TypeA9_5_LandlordEl := PropertyCard.TypeA9_5_El;
-                    TypeA9_5_LandlordCooling := PropertyCard.TypeA9_5_Cooling;
-                    TypeA9_5_CoolingMeter := PropertyCard.TypeA9_5_CM;
-                    TypeA9_6_AntennaLandlord := PropertyCard.TypeA9_6_LAntenna;
-                    TypeA9_6_AntennaTenancies := PropertyCard.TypeA9_6_TAntenna;
-                    TypeA9_6_Internet := PropertyCard.TypeA9_6_Internet;
-                    TypeA9_7_InspecionIn := PropertyCard.TypeA9_7_MoveIn;
-                    TypeA9_8_MaintainceInsideLandl := PropertyCard.TypeA9_8_MainLandlord;
-                    IF TypeA9_8_MaintainceInsideLandl = TRUE THEN BEGIN
+                    Deposit := SVAProperty.TypeA9_4_DepMth;
+                    PrepaidRent := SVAProperty.TypeA9_4_PrePaidMth;
+                    TypeA9_5_LandlordHeat := SVAProperty.TypeA9_5_LandlordHeat;
+                    TypeA9_5_LNatgas := SVAProperty.TypeA9_5_LNatgas;
+                    TypeA9_5_lOil := SVAProperty.TypeA9_5_lOil;
+                    TypeA9_5_LElHeat := SVAProperty.TypeA9_5_LEl;
+                    TypeA9_5_LOther := SVAProperty.TypeA9_5_LOther;
+                    TypeA9_5_LandlordWater := SVAProperty.TypeA9_5_Water;
+                    TypeA9_5_WaterMeter := SVAProperty.TypeA9_5_WM;
+                    TypeA9_5_LandlordEl := SVAProperty.TypeA9_5_El;
+                    TypeA9_5_LandlordCooling := SVAProperty.TypeA9_5_Cooling;
+                    TypeA9_5_CoolingMeter := SVAProperty.TypeA9_5_CM;
+                    TypeA9_6_AntennaLandlord := SVAProperty.TypeA9_6_LAntenna;
+                    TypeA9_6_AntennaTenancies := SVAProperty.TypeA9_6_TAntenna;
+                    TypeA9_6_Internet := SVAProperty.TypeA9_6_Internet;
+                    TypeA9_7_InspecionIn := SVAProperty.TypeA9_7_MoveIn;
+                    TypeA9_8_MaintainceInsideLandl := SVAProperty.TypeA9_8_MainLandlord;
+                    IF TypeA9_8_MaintainceInsideLandl = TRUE THEN
                         TypeA9_8_MaintainceInsideTenan := FALSE;
-                    END;
-                    IF TypeA9_8_MaintainceInsideLandl = FALSE THEN BEGIN
+
+                    IF TypeA9_8_MaintainceInsideLandl = FALSE THEN
                         TypeA9_8_MaintainceInsideTenan := TRUE;
-                    END;
-                    TypeA9_10_HouseRules := PropertyCard.TypeA9_10_Houserules;
-                    TypeA9_10_LiveStock := PropertyCard.TypeA9_10_HouseStock;
-                    TypeA9_10_TenRep := PropertyCard.TypeA9_10_Occgroup;
+
+                    TypeA9_10_HouseRules := SVAProperty.TypeA9_10_Houserules;
+                    TypeA9_10_LiveStock := SVAProperty.TypeA9_10_HouseStock;
+                    TypeA9_10_TenRep := SVAProperty.TypeA9_10_Occgroup;
                 END;
             end;
         }
@@ -73,15 +72,15 @@
             Caption = 'Address';
             trigger OnValidate();
             begin
-                Occupant.reset;
-                Occupant.SetRange(TenancyNo, Number);
+                SVAOccupant.Reset();
+                SVAOccupant.SetRange(TenancyNo, Number);
                 Rec.Vacant := true;
                 Rec.vacantDate := DMY2Date(1, 1, 1960);
-                IF Occupant.FindLast() then begin
-                    IF Occupant.EndDate > 0D THEN begin
-                        vacantDate := calcdate('<1D>', Occupant.EndDate);
-                    end;
-                    IF Occupant.EndDate = 0D THEN begin
+                IF SVAOccupant.FindLast() then begin
+                    IF SVAOccupant.EndDate > 0D THEN
+                        vacantDate := calcdate('<1D>', SVAOccupant.EndDate);
+
+                    IF SVAOccupant.EndDate = 0D THEN begin
                         VacantDate := 0D;
                         Vacant := false;
                     end;
@@ -316,9 +315,8 @@
 
             trigger OnValidate();
             begin
-                IF NOT TypeA9_1_Garage THEN BEGIN
+                IF NOT TypeA9_1_Garage THEN
                     TypeA9_1_GarageNo := ''
-                END;
             end;
         }
         field(114; TypeA9_1_GarageNo; Text[30])
@@ -331,9 +329,8 @@
 
             trigger OnValidate();
             begin
-                IF NOT TypeA9_1_Attic THEN BEGIN
+                IF NOT TypeA9_1_Attic THEN
                     TypeA9_1_AtticNo := ''
-                END;
             end;
         }
         field(116; TypeA9_1_AtticNo; Text[30])
@@ -537,9 +534,9 @@
 
             trigger OnValidate();
             begin
-                IF TypeA9_8_MaintainceInsideTenan THEN BEGIN
+                IF TypeA9_8_MaintainceInsideTenan THEN
                     TypeA9_8_MaintainceInsideLandl := FALSE;
-                END;
+
             end;
         }
         field(801; TypeA9_8_MaintainceInsideLandl; Boolean)
@@ -548,9 +545,9 @@
 
             trigger OnValidate();
             begin
-                IF TypeA9_8_MaintainceInsideLandl THEN BEGIN
+                IF TypeA9_8_MaintainceInsideLandl THEN
                     TypeA9_8_MaintainceInsideTenan := FALSE;
-                END;
+
             end;
         }
         field(802; TypeA9_8_Date; Date)
@@ -595,9 +592,8 @@
 
             trigger OnValidate();
             begin
-                IF NOT TypeA9_9_ElectricPanels THEN BEGIN
+                IF NOT TypeA9_9_ElectricPanels THEN
                     TypeA9_9_El_qty := 0;
-                END;
             end;
         }
         field(909; TypeA9_9_El_qty; Integer)
@@ -610,9 +606,9 @@
 
             trigger OnValidate();
             begin
-                IF NOT TypeA9_9_WaterHeater THEN BEGIN
+                IF NOT TypeA9_9_WaterHeater THEN
                     TypeA9_9_WaterHeater_qty := 0
-                END;
+
             end;
         }
         field(911; TypeA9_9_WaterHeater_qty; Integer)
@@ -827,50 +823,50 @@
     begin
         Vacant := TRUE;
         vacantDate := DMY2DATE(1, 1, 1960);
-        Parameters.Reset;
-        IF Parameters.FindSet() then begin
-            IF (Parameters.Dim1 = '') OR (Parameters.Dim2 = '') OR (Parameters.Dim3 = '') then begin
+        SVAParameters.Reset();
+        IF SVAParameters.FindSet() then
+            IF (SVAParameters.Dim1 = '') OR (SVAParameters.Dim2 = '') OR (SVAParameters.Dim3 = '') then
                 Error('Dimensioner mangler opsætning. Kørslen afbrydes');
-            end;
-        end;
+
         //Dimension lejemål på lejemål og dimension ejendom på lejemål
-        Parameters.Reset;
-        if Parameters.FindSet() then begin
-            DefaultDim.SetRange("Table ID", 50002);
-            DefaultDim.SetRange("No.", Number);
-            if DefaultDim.FindFirst then begin
-                DefaultDim."Dimension Value Code" := Number;
-                DefaultDim."Dimension Code" := Parameters.Dim1;
-                DefaultDim.Modify(true);
+        SVAParameters.Reset();
+        if SVAParameters.FindSet() then begin
+            DefaultDimension.SetRange("Table ID", 50002);
+            DefaultDimension.SetRange("No.", Number);
+            if DefaultDimension.FindFirst() then begin
+                DefaultDimension."Dimension Value Code" := Number;
+                DefaultDimension."Dimension Code" := SVAParameters.Dim1;
+                DefaultDimension.Modify(true);
             end else begin
-                DefaultDim."Table ID" := 50002;
-                DefaultDim."No." := Number;
-                DefaultDim."Dimension Code" := Parameters.Dim2;
-                DefaultDim."Dimension Value Code" := Number;
-                DefaultDim."Value Posting" := 1;
-                DefaultDim."Table Caption" := 'Lejemål';
-                DefaultDim.Insert(true);
+                DefaultDimension.Init();
+                DefaultDimension."Table ID" := 50002;
+                DefaultDimension."No." := Number;
+                DefaultDimension."Dimension Code" := SVAParameters.Dim2;
+                DefaultDimension."Dimension Value Code" := Number;
+                DefaultDimension."Value Posting" := 1;
+                DefaultDimension."Table Caption" := 'Lejemål';
+                DefaultDimension.Insert(true);
                 //Dimension ejendom på lejemål
-                DefaultDim."Dimension Code" := Parameters.Dim1;
-                DefaultDim."Dimension Value Code" := PropertyNo;
-                DefaultDim.Insert(true);
+                DefaultDimension."Dimension Code" := SVAParameters.Dim1;
+                DefaultDimension."Dimension Value Code" := PropertyNo;
+                DefaultDimension.Insert(true);
             end;
         end;
         //dimensionsværdi lejemål
-        DimensionValue.Reset;
-        DimensionValue.SetRange("Dimension Code", Parameters.Dim2);
+        DimensionValue.Reset();
+        DimensionValue.SetRange("Dimension Code", SVAParameters.Dim2);
         DimensionValue.SetRange(Code, Number);
-        if DimensionValue.FindFirst then begin
+        if DimensionValue.FindFirst() then begin
             DimensionValue.code := Number;
             DimensionValue.Modify(true);
         end else begin
-            DimensionValue.Init;
-            DimensionValue."Dimension Code" := Parameters.Dim2;
+            DimensionValue.Init();
+            DimensionValue."Dimension Code" := SVAParameters.Dim2;
             DimensionValue.Code := Number;
             DimensionValue.Name := 'Lejemål ' + Number;
             DimensionValue."Dimension Value Type" := 0;
             DimensionValue."Global Dimension No." := 2;
-            DimensionValue.Id := CreateGuid;
+            DimensionValue.Id := CreateGuid();
             DimensionValue."Last Modified Date Time" := CurrentDateTime;
             DimensionValue.Insert(true);
         end;
@@ -879,30 +875,30 @@
     trigger OnRename()
     begin
         TenNoOld := xrec.Number;
-        DimMgt.RenameDefaultDim(Database::"SVA Tenancy", xrec.Number, Number);
+        DimensionManagement.RenameDefaultDim(Database::"SVA Tenancy", xrec.Number, Number);
         //Dimension lejemål på lejemål og dimension ejendom på lejemål
-        Parameters.Reset;
-        if Parameters.FindSet() then begin
-            DefaultDim.SetRange("Table ID", 50002);
-            DefaultDim.SetRange("No.", Number);
-            if DefaultDim.FindFirst then begin
-                DefaultDim."Dimension Value Code" := Number;
-                DefaultDim."Dimension Code" := Parameters.Dim1;
-                DefaultDim.Modify(true);
+        SVAParameters.Reset();
+        if SVAParameters.FindSet() then begin
+            DefaultDimension.SetRange("Table ID", 50002);
+            DefaultDimension.SetRange("No.", Number);
+            if DefaultDimension.FindFirst() then begin
+                DefaultDimension."Dimension Value Code" := Number;
+                DefaultDimension."Dimension Code" := SVAParameters.Dim1;
+                DefaultDimension.Modify(true);
                 //Message('Modify Dim1');
             end else begin
-                DefaultDim."Table ID" := 50002;
-                DefaultDim."No." := Number;
-                DefaultDim."Dimension Code" := Parameters.Dim2;
-                DefaultDim."Dimension Value Code" := Number;
-                DefaultDim."Value Posting" := 1;
-                DefaultDim."Table Caption" := 'Lejemål';
-                DefaultDim.Insert(true);
+                DefaultDimension."Table ID" := 50002;
+                DefaultDimension."No." := Number;
+                DefaultDimension."Dimension Code" := SVAParameters.Dim2;
+                DefaultDimension."Dimension Value Code" := Number;
+                DefaultDimension."Value Posting" := 1;
+                DefaultDimension."Table Caption" := 'Lejemål';
+                DefaultDimension.Insert(true);
                 //Dimension ejendom på lejemål
-                DefaultDim."Dimension Code" := Parameters.Dim1;
-                DefaultDim."Dimension Value Code" := PropertyNo;
+                DefaultDimension."Dimension Code" := SVAParameters.Dim1;
+                DefaultDimension."Dimension Value Code" := PropertyNo;
                 //Message('Insert dim1');
-                DefaultDim.Insert(true);
+                DefaultDimension.Insert(true);
             end;
         end;
 
@@ -910,33 +906,32 @@
 
     trigger OnDelete();
     begin
-        Occupant.reset;
-        Occupant.SetRange(TenancyNo, Number);
-        Occupant.SetRange(PropertyNo, PropertyNo);
-        if Occupant.FindFirst then begin
+        SVAOccupant.Reset();
+        SVAOccupant.SetRange(TenancyNo, Number);
+        SVAOccupant.SetRange(PropertyNo, PropertyNo);
+        if SVAOccupant.FindFirst() then
             Error('Der findes beboeraftale på lejemålet. Slet disse først');
-        end;
 
-        Subscription.Reset;
-        Subscription.SetRange(Tenancies, Number);
-        if Subscription.Findset then begin
-            Subscription.Delete;
-        end;
-        DimMgt.DeleteDefaultDim(DATABASE::"SVA Tenancy", Number);
+
+        SVASubscriptionLines.Reset();
+        SVASubscriptionLines.SetRange(Tenancies, Number);
+        if SVASubscriptionLines.FindSet() then
+            SVASubscriptionLines.Delete();
+
+        DimensionManagement.DeleteDefaultDim(DATABASE::"SVA Tenancy", Number);
     end;
 
     var
-        Postcode: Record "Post Code";
-        Country: Text;
-        PropertyCard: Record "SVA Property";
-        Tenancies: Record "SVA Tenancy";
-        Occupant: Record "SVA Occupant";
+        PostCode: Record "Post Code";
+        SVAProperty: Record "SVA Property";
+        SVAOccupant: Record "SVA Occupant";
         DimensionValue: Record "Dimension Value";
-        DefaultDim: Record "Default Dimension";
-        Parameters: Record "SVA Parameters";
-        Subscription: Record "SVA Subscription Lines";
-        DimMgt: Codeunit DimensionManagement;
+        DefaultDimension: Record "Default Dimension";
+        SVAParameters: Record "SVA Parameters";
+        SVASubscriptionLines: Record "SVA Subscription Lines";
+        DimensionManagement: Codeunit DimensionManagement;
         TenNoOld: Text[20];
+        Country: Text;
 
 }
 

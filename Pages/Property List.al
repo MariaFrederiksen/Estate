@@ -1,7 +1,7 @@
 page 50015 "SVA Property List"
 //Tooltip created
 {
-    Caption = 'List of Properties';
+    Caption = 'List of SVAProperty';
     CardPageID = "SVA Property Card";
     PageType = List;
     SourceTable = "SVA Property";
@@ -80,85 +80,118 @@ page 50015 "SVA Property List"
         }
         area(reporting)
         {
-            action("Basic data report")
+            group(Overwiev)
             {
-                ApplicationArea = All;
-                Caption = 'Data sheet report';
-                Image = Report2;
-                RunObject = Report "SVA Property Data sheet";
+
+                Caption = 'Overwiew';
+                action("Basic data report")
+                {
+                    ApplicationArea = All;
+                    Caption = 'Data sheet report';
+                    Image = Report2;
+                    RunObject = Report "SVA Property Data sheet";
+                }
+                action("Vacant tenancies")
+                {
+                    ApplicationArea = All;
+                    Caption = 'Vacant tenancies';
+                    Image = Report2;
+                    RunObject = Report "SVA Vacant Tenancies";
+                }
+                action("RegulationList")
+                {
+                    ApplicationArea = All;
+                    Caption = 'List of regulations';
+                    Image = Report;
+                    RunObject = Report "SVA Occupants regulations";
+                }
             }
-            action("Vacant tenancies")
+            group(Deposita)
             {
-                ApplicationArea = All;
-                Caption = 'Vacant tenancies';
-                Image = Report2;
-                RunObject = Report "SVA Vacant Tenancies";
-            }
-            action("MoveInOut")
-            {
-                ApplicationArea = All;
-                Caption = 'Moving in and out';
-                Image = Report;
-                RunObject = Report "SVA MoveInOutList";
-            }
-            action("RegulationList")
-            {
-                ApplicationArea = All;
-                Caption = 'List of regulations';
-                Image = Report;
-                RunObject = Report "SVA Occupants regulations";
-            }
-            action(JournalShortReport)
-            {
-                ApplicationArea = All;
-                Caption = 'Collection journal (only balances)';
-                Image = Report2;
-                RunObject = Report "SVA Collection Journal Short";
+                Caption = 'Generel';
+
+                action("Deposit")
+                {
+                    ApplicationArea = All;
+                    Caption = 'Deposit';
+                    ToolTip = 'A list of deposit per occupant.';
+                    Image = "Report";
+                    RunObject = Report "SVA Deposit all";
+                }
+                action("Prepaid rent")
+                {
+                    ApplicationArea = All;
+                    Caption = 'Prepaid rent';
+                    ToolTip = 'A list of prepaid rent per occupant.';
+                    Image = "Report";
+                    RunObject = report "SVA Prepaid Rent All";
+                }
+
+
+                action("MoveInOut")
+                {
+                    ApplicationArea = All;
+                    Caption = 'Moving in and out';
+                    Image = Report;
+                    RunObject = Report "SVA MoveInOutList";
+                }
+
             }
 
         }
         area(processing)
         {
-            action(Journal)
+            group(Reports)
             {
-                ApplicationArea = All;
-                Caption = 'Collection journal';
-                Image = Report2;
-                RunObject = Report "SVA Collection Journal";
-            }
+                Caption = 'Journals';
 
-            action(Invoicing)
+                action(Journal)
+                {
+                    ApplicationArea = All;
+                    Caption = 'Collection journal';
+                    Image = Report2;
+                    RunObject = Report "SVA Collection Journal";
+                }
+                action(JournalShortReport)
+                {
+                    ApplicationArea = All;
+                    Caption = 'Collection journal (only balances)';
+                    Image = Report2;
+                    RunObject = Report "SVA Collection Journal Short";
+                }
+            }
+            group(Proces)
             {
-                ApplicationArea = All;
-                Caption = 'Subscription invoicing';
-                Image = SalesInvoice;
-                trigger OnAction()
-                begin
-                    // Message('Før kald');
-                    Codeunit.Run(Codeunit::"SVA Create Invoice Estate");
-                    // Message('Efter kald');
-                end;
+                Caption = 'Processing';
 
-            }
-            action(Nets)
-            {
-                ApplicationArea = All;
-                Caption = 'File for NETS type 0601';
-                Image = SalesInvoice;
-                RunObject = Page "SVA Sales Invoice NETS";
-            }
-            action(NetsIn)
-            {
-                ApplicationArea = All;
-                Caption = 'File from NETS type 0602';
-                Image = Payment;
-                Trigger OnAction();
-                begin
-                    Xmlport.run(Xmlport::"SVA Import NETS", false, true)
-                end;
+                action(Invoicing)
+                {
+                    ApplicationArea = All;
+                    Caption = 'Subscription invoicing';
+                    Image = SalesInvoice;
+                    RunObject = codeunit "SVA Create Invoice Estate";
 
+                }
+                action(Nets)
+                {
+                    ApplicationArea = All;
+                    Caption = 'File for NETS type 0601';
+                    Image = SalesInvoice;
+                    RunObject = Page "SVA Sales Invoice NETS";
+                }
+                action(NetsIn)
+                {
+                    ApplicationArea = All;
+                    Caption = 'File from NETS type 0602';
+                    Image = Payment;
+                    Trigger OnAction();
+                    begin
+                        Xmlport.run(Xmlport::"SVA Import NETS", false, true)
+                    end;
+
+                }
             }
-            group(Lejereguleringer)
+            group(Regulations)
             {
                 Caption = 'Regulations';
                 action(MakeRegulations)
@@ -169,41 +202,39 @@ page 50015 "SVA Property List"
                     Image = Recalculate;
                     RunObject = Codeunit "SVA Create Regulations";
                 }
-                action(Regulations)
+                action(Regulation)
                 {
                     ApplicationArea = all;
                     Caption = 'Rent regulations (indeks)';
                     ToolTip = 'List of rent regulations for futher processing.';
-                    Image = Report;
+                    Image = PriceAdjustment;
                     RunObject = Page "SVA Regulations";
                 }
             }
-
         }
-
     }
     trigger OnOpenPage()
     var
-        Properties: Record "SVA Property";
-        Tenancies: Record "SVA Tenancy";
+        SVAProperty: Record "SVA Property";
+        SVATenancy: Record "SVA Tenancy";
     begin
-        Properties.Reset;
-        if Properties.FindSet() then
+        SVAProperty.Reset();
+        if SVAProperty.FindSet() then
             repeat
-                Properties.SquareMetersLiv := 0;
-                Properties.SquareMetersProf := 0;
-                Properties.SquareMetersTotal := 0;
-                Tenancies.RESET;
-                Tenancies.SETRANGE(PropertyNo, Properties.Property);
-                if Tenancies.FindSet() then
+                SVAProperty.SquareMetersLiv := 0;
+                SVAProperty.SquareMetersProf := 0;
+                SVAProperty.SquareMetersTotal := 0;
+                SVATenancy.Reset();
+                SVATenancy.SETRANGE(PropertyNo, SVAProperty.Property);
+                if SVATenancy.FindSet() then
                     repeat
-                        Properties.SquareMetersLiv += Tenancies.AreaLiv;
-                        Properties.SquareMetersProf += Tenancies.AreaPro;
-                        Properties.SquareMetersTotal := Properties.SquareMetersLiv + Properties.SquareMetersProf;
-                    until Tenancies.NEXT = 0;
+                        SVAProperty.SquareMetersLiv += SVATenancy.AreaLiv;
+                        SVAProperty.SquareMetersProf += SVATenancy.AreaPro;
+                        SVAProperty.SquareMetersTotal := SVAProperty.SquareMetersLiv + SVAProperty.SquareMetersProf;
+                    until SVATenancy.NEXT() = 0;
 
-                Properties.Modify();
-            until Properties.Next = 0;
+                SVAProperty.Modify();
+            until SVAProperty.NEXT() = 0;
     end;
 
     trigger OnClosePage();

@@ -8,6 +8,7 @@ pageextension 50006 "SVA Posted CrMemo Line Ext." extends "Posted Sales Cr. Memo
             {
                 Caption = 'Costtype';
                 ApplicationArea = all;
+                ToolTip = 'Costtype on this line.';
             }
         }
     }

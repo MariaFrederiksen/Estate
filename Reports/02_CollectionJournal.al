@@ -13,6 +13,12 @@ report 50003 "SVA Collection Journal"
     {
         dataitem(CompanyInfo; "Company Information")
         {
+            column(Headline; Headline)
+            {
+            }
+            column(PageCaption; STRSUBSTNO(PageLbl, ''))
+            {
+            }
             column(CompanyName; Name)
             {
             }
@@ -28,7 +34,7 @@ report 50003 "SVA Collection Journal"
             column(CompanyVAT_Registration_No_; "VAT Registration No.")
             {
             }
-            column(CompanyGetVATRegistrationNumberLbl; GetVATRegistrationNumberLbl)
+            column(CompanyGetVATRegistrationNumberLbl; GetVATRegistrationNumberLbl())
             {
             }
             column(CompanyPhone_No_; "Phone No.")
@@ -37,13 +43,13 @@ report 50003 "SVA Collection Journal"
             column(COmpanyPicture; Picture)
             {
             }
-            column(CompanyBankBranchNo; Companyinfo."Bank Branch No.")
+            column(CompanyBankBranchNo; CompanyInformation."Bank Branch No.")
             {
             }
-            column(CompanyBanAccountNo; Companyinfo."Bank Branch No.")
+            column(CompanyBanAccountNo; CompanyInformation."Bank Branch No.")
             {
             }
-            column(CompanyBankName; Companyinfo."Bank Name")
+            column(CompanyBankName; CompanyInformation."Bank Name")
             {
             }
             column(CompanyE_Mail; "E-Mail")
@@ -60,11 +66,11 @@ report 50003 "SVA Collection Journal"
             }
             trigger OnAfterGetRecord()
             begin
-                IF DATE2DMY(WorkDate, 2) = 12 THEN
-                    PrDate := DMY2DATE(1, 1, DATE2DMY(WorkDate, 3) + 1)
+                Headline := HeadlineLbl;
+                IF DATE2DMY(WorkDate(), 2) = 12 THEN
+                    PrDate := DMY2DATE(1, 1, DATE2DMY(WorkDate(), 3) + 1)
                 ELSE
-                    PrDate := DMY2DATE(1, DATE2DMY(WorkDate, 2) + 1, DATE2DMY(WorkDate, 3));
-
+                    PrDate := DMY2DATE(1, DATE2DMY(WorkDate(), 2) + 1, DATE2DMY(WorkDate(), 3));
             end;
 
 
@@ -126,20 +132,20 @@ report 50003 "SVA Collection Journal"
                     trigger OnAfterGetRecord(); //Costtype
                     begin
                         IF ("Date To" < PrDate) AND ("Date To" <> 0D) THEN
-                            CurrReport.SKIP;
+                            CurrReport.Skip();
                         IF ("Date From" > PrDate) then
-                            CurrReport.Skip;
+                            CurrReport.Skip();
                         IF Type = 13 THEN //Fraflytninger
-                            CurrReport.SKIP;
+                            CurrReport.Skip();
 
-                        Customer.Reset;
+                        Customer.Reset();
                         Customer.SetRange("No.", Occupant."Customer No");
-                        if Customer.FindFirst then begin
-                            Vatpostinggroup.Reset;
-                            Vatpostinggroup.SetRange("Vat Prod. Posting Group", "Subscription Lines".VatGroup);
-                            Vatpostinggroup.SetRange("VAT Bus. Posting Group", Customer."VAT Bus. Posting Group");
-                            IF Vatpostinggroup.FindFirst() then
-                                Vatrate := 1 + (Vatpostinggroup."VAT %" / 100);
+                        if Customer.FindFirst() then begin
+                            VATPostingSetup.Reset();
+                            VATPostingSetup.SetRange("Vat Prod. Posting Group", "Subscription Lines".VatGroup);
+                            VATPostingSetup.SetRange("VAT Bus. Posting Group", Customer."VAT Bus. Posting Group");
+                            IF VATPostingSetup.FindFirst() then
+                                Vatrate := 1 + (VATPostingSetup."VAT %" / 100);
                             IF Vatrate = 0 then
                                 Vatrate := 1;
                             AmountInclVat := "Subscription Lines"."Amount Period" * Vatrate;
@@ -157,43 +163,43 @@ report 50003 "SVA Collection Journal"
 
                     Vatrate := 1;
                     IF (EndDate < PrDate) AND (EndDate <> 0D) THEN
-                        CurrReport.SKIP;
+                        CurrReport.Skip();
                     IF (StartDate > PrDate) THEN
-                        CurrReport.SKIP;
+                        CurrReport.Skip();
                     IF Blocked <> 0D THEN
-                        CurrReport.SKIP;
+                        CurrReport.Skip();
                     if FirstNets > PrDate then //FirstNets before or at invoicedate    
-                        CurrReport.Skip;
+                        CurrReport.Skip();
                     //START enddate in the middle of invoice period mth
                     Factor := 1;
-                    TenancyCard.Reset;
-                    TenancyCard.SetRange(Number, TenancyNo);
-                    TenancyCard.SetRange(PeriodYear, 0);
-                    if TenancyCard.FindFirst then begin  //monthly subscription
-                        if (Occupant.EndDate > PrDate) And (Occupant.EndDate < CalcDate('<1M-1D', PrDate)) then begin
-                            SetupEstate.Reset();
-                            IF SetupEstate.FindFirst() then begin
-                                if SetupEstate.Splitcalc = false then
+                    SVATenancy.Reset();
+                    SVATenancy.SetRange(Number, TenancyNo);
+                    SVATenancy.SetRange(PeriodYear, 0);
+                    if SVATenancy.FindFirst() then  //monthly subscription
+                        if (Occupant.EndDate > PrDate) And (Occupant.EndDate < CalcDate('<1M-1D>', PrDate)) then begin
+                            SVAParameters.Reset();
+                            IF SVAParameters.FindFirst() then begin
+                                if SVAParameters.Splitcalc = false then
                                     Factor := 1 / 2;
-                                if SetupEstate.Splitcalc = true then begin
+                                if SVAParameters.Splitcalc = true then begin
                                     Days := CalcDate('<1M-1D>', PrDate) - PrDate + 1;
                                     Factor := Date2DMY(Occupant.EndDate, 1) / Days;
                                 end;
                             end;
+
                         end;
-                    end;
                     //END enddate in the middle of invoice period
-                    TenancyCard.Reset;
-                    TenancyCard.SetRange(Number, TenancyNo);
-                    TenancyCard.SetRange(PeriodYear, 1, 3);
-                    if TenancyCard.FindFirst then begin  //not monthly subscription
-                        if TenancyCard.PeriodYear = 1 then begin //Kvartal
+                    SVATenancy.Reset();
+                    SVATenancy.SetRange(Number, TenancyNo);
+                    SVATenancy.SetRange(PeriodYear, 1, 3);
+                    if SVATenancy.FindFirst() then begin  //not monthly subscription
+                        if SVATenancy.PeriodYear = 1 then begin //Kvartal
                             //START enddate in the middle of invoice period
                             Factor := 1;
                             if (Occupant.EndDate > PrDate) and (Occupant.EndDate < CalcDate('<3M-1D>', PrDate)) then begin
-                                SetupEstate.Reset;
-                                if SetupEstate.FindFirst() then begin
-                                    if SetupEstate.Splitcalc = false then begin
+                                SVAParameters.Reset();
+                                if SVAParameters.FindFirst() then begin
+                                    if SVAParameters.Splitcalc = false then begin
                                         Days := (PrDate - Occupant.EndDate + 1); //qty of days paing for rent
                                         if (Days > 1) and (Days < 18) then
                                             Factor := 1 / 6;
@@ -208,7 +214,7 @@ report 50003 "SVA Collection Journal"
                                         if (Days > 79) then
                                             Factor := 1
                                     end;
-                                    if SetupEstate.Splitcalc = true then begin
+                                    if SVAParameters.Splitcalc = true then begin
                                         Days := CalcDate('<3M-1D>', PrDate) - PrDate + 1;
                                         Factor := (Date2DMY(Occupant.Enddate, 1) / Days);
                                     end;
@@ -216,87 +222,87 @@ report 50003 "SVA Collection Journal"
                             end;
                             //END enddate in the middle of invoice period
                             //jan,apr,jul,oct
-                            if (DATE2DMY(PrDate, 2) = 1) OR (DATE2DMY(PrDate, 2) = 4) OR (DATE2DMY(PrDate, 2) = 7) OR (DATE2DMY(PrDate, 2) = 10) then begin
+                            if (DATE2DMY(PrDate, 2) = 1) OR (DATE2DMY(PrDate, 2) = 4) OR (DATE2DMY(PrDate, 2) = 7) OR (DATE2DMY(PrDate, 2) = 10) then
                                 if ("Collection Month" = 1) OR ("Collection Month" = 2) OR
                                     ("Collection Month" = 4) OR ("Collection Month" = 5) OR
                                     ("Collection Month" = 7) OR ("Collection Month" = 8) OR
                                     ("Collection Month" = 10) OR ("Collection Month" = 11) then
-                                    CurrReport.Skip;
-                            end;
+                                    CurrReport.Skip();
+
 
                             //feb,may,aug,nov
-                            if (DATE2DMY(PrDate, 2) = 2) OR (DATE2DMY(PrDate, 2) = 5) OR (DATE2DMY(PrDate, 2) = 8) OR (DATE2DMY(PrDate, 2) = 11) then begin
+                            if (DATE2DMY(PrDate, 2) = 2) OR (DATE2DMY(PrDate, 2) = 5) OR (DATE2DMY(PrDate, 2) = 8) OR (DATE2DMY(PrDate, 2) = 11) then
                                 if ("Collection Month" = 0) OR ("Collection Month" = 2) OR
                                    ("Collection Month" = 3) OR ("Collection Month" = 5) OR
                                    ("Collection Month" = 6) OR ("Collection Month" = 8) OR
                                    ("Collection Month" = 9) OR ("Collection Month" = 11) then
-                                    CurrReport.Skip;
-                            end;
+                                    CurrReport.Skip();
+
 
                             //Mar,jun,sep,dec                                          
-                            if (DATE2DMY(PrDate, 2) = 3) OR (DATE2DMY(PrDate, 2) = 6) OR (DATE2DMY(PrDate, 2) = 9) OR (DATE2DMY(PrDate, 2) = 12) then begin
+                            if (DATE2DMY(PrDate, 2) = 3) OR (DATE2DMY(PrDate, 2) = 6) OR (DATE2DMY(PrDate, 2) = 9) OR (DATE2DMY(PrDate, 2) = 12) then
                                 if ("Collection Month" = 0) OR ("Collection Month" = 1) OR
                                    ("Collection Month" = 3) OR ("Collection Month" = 4) OR
                                    ("Collection Month" = 6) OR ("Collection Month" = 7) OR
                                    ("Collection Month" = 9) OR ("Collection Month" = 10) then
-                                    CurrReport.Skip;
-                            end;
+                                    CurrReport.Skip();
+
                         end; //kvartal
 
-                        if TenancyCard.PeriodYear = 2 then begin //halvår
-                            if (DATE2DMY(PrDate, 2) = 1) OR (DATE2DMY(PrDate, 2) = 7) then begin
+                        if SVATenancy.PeriodYear = 2 then //halvår
+                            if (DATE2DMY(PrDate, 2) = 1) OR (DATE2DMY(PrDate, 2) = 7) then
                                 if ("Collection Month" = 1) OR ("Collection Month" = 2) OR
                                    ("Collection Month" = 3) OR ("Collection Month" = 4) OR
                                    ("Collection Month" = 5) OR ("Collection Month" = 7) OR
                                    ("Collection Month" = 8) OR ("Collection Month" = 9) OR
                                    ("Collection Month" = 10) OR ("Collection Month" = 11) then
-                                    CurrReport.Skip;
-                            end;
-                            if (DATE2DMY(PrDate, 2) = 2) OR (DATE2DMY(PrDate, 2) = 8) then begin
-                                if ("Collection Month" = 0) OR ("Collection Month" = 2) OR
-                                   ("Collection Month" = 3) OR ("Collection Month" = 4) OR
-                                   ("Collection Month" = 5) OR ("Collection Month" = 6) OR
-                                   ("Collection Month" = 8) OR ("Collection Month" = 9) OR
-                                   ("Collection Month" = 10) OR ("Collection Month" = 11) then
-                                    CurrReport.Skip;
-                            end;
-                            if (DATE2DMY(PrDate, 2) = 3) OR (DATE2DMY(PrDate, 2) = 9) then begin //mar and sep
-                                if ("Collection Month" = 0) OR ("Collection Month" = 1) OR //jan feb
-                                   ("Collection Month" = 3) OR ("Collection Month" = 4) OR //apr may
-                                   ("Collection Month" = 5) OR ("Collection Month" = 6) OR //jun jul
-                                   ("Collection Month" = 7) OR ("Collection Month" = 9) OR //aug okt
-                                   ("Collection Month" = 10) OR ("Collection Month" = 11) then //nov dec
-                                    CurrReport.Skip;
-                            end;
-                            if (DATE2DMY(PrDate, 2) = 4) OR (DATE2DMY(PrDate, 2) = 10) then begin //apr okt
-                                if ("Collection Month" = 0) OR ("Collection Month" = 1) OR //jan feb
-                                   ("Collection Month" = 2) OR ("Collection Month" = 4) OR //mar may
-                                   ("Collection Month" = 5) OR ("Collection Month" = 6) OR //jun jul
-                                   ("Collection Month" = 7) OR ("Collection Month" = 8) OR //aug sep
-                                   ("Collection Month" = 10) OR ("Collection Month" = 11) then //nov dec
-                                    CurrReport.Skip;
-                            end;
-                            if (DATE2DMY(PrDate, 2) = 5) OR (DATE2DMY(PrDate, 2) = 11) then begin //may nov
-                                if ("Collection Month" = 0) OR ("Collection Month" = 1) OR //jan feb
-                                   ("Collection Month" = 2) OR ("Collection Month" = 3) OR //mar apr
-                                   ("Collection Month" = 5) OR ("Collection Month" = 6) OR //jun jul
-                                   ("Collection Month" = 7) OR ("Collection Month" = 8) OR //aug sep
-                                   ("Collection Month" = 9) OR ("Collection Month" = 11) then //okt nov
-                                    CurrReport.Skip;
-                            end;
-                            if (DATE2DMY(PrDate, 2) = 6) OR (DATE2DMY(PrDate, 2) = 12) then begin //jun dec
-                                if ("Collection Month" = 0) OR ("Collection Month" = 1) OR //jan feb
-                                   ("Collection Month" = 2) OR ("Collection Month" = 3) OR //mar apr
-                                   ("Collection Month" = 4) OR ("Collection Month" = 6) OR //maj jul
-                                   ("Collection Month" = 7) OR ("Collection Month" = 8) OR //aug sep
-                                   ("Collection Month" = 9) OR ("Collection Month" = 10) then //okt nov
-                                    CurrReport.Skip;
-                            end;
-                        end; //halvår
-                        if TenancyCard.PeriodYear = 3 then begin //year
+                                    CurrReport.Skip();
+
+                        if (DATE2DMY(PrDate, 2) = 2) OR (DATE2DMY(PrDate, 2) = 8) then
+                            if ("Collection Month" = 0) OR ("Collection Month" = 2) OR
+                               ("Collection Month" = 3) OR ("Collection Month" = 4) OR
+                               ("Collection Month" = 5) OR ("Collection Month" = 6) OR
+                               ("Collection Month" = 8) OR ("Collection Month" = 9) OR
+                               ("Collection Month" = 10) OR ("Collection Month" = 11) then
+                                CurrReport.Skip();
+
+                        if (DATE2DMY(PrDate, 2) = 3) OR (DATE2DMY(PrDate, 2) = 9) then  //mar and sep
+                            if ("Collection Month" = 0) OR ("Collection Month" = 1) OR //jan feb
+                               ("Collection Month" = 3) OR ("Collection Month" = 4) OR //apr may
+                               ("Collection Month" = 5) OR ("Collection Month" = 6) OR //jun jul
+                               ("Collection Month" = 7) OR ("Collection Month" = 9) OR //aug okt
+                               ("Collection Month" = 10) OR ("Collection Month" = 11) then //nov dec
+                                CurrReport.Skip();
+
+                        if (DATE2DMY(PrDate, 2) = 4) OR (DATE2DMY(PrDate, 2) = 10) then  //apr okt
+                            if ("Collection Month" = 0) OR ("Collection Month" = 1) OR //jan feb
+                               ("Collection Month" = 2) OR ("Collection Month" = 4) OR //mar may
+                               ("Collection Month" = 5) OR ("Collection Month" = 6) OR //jun jul
+                               ("Collection Month" = 7) OR ("Collection Month" = 8) OR //aug sep
+                               ("Collection Month" = 10) OR ("Collection Month" = 11) then //nov dec
+                                CurrReport.Skip();
+
+                        if (DATE2DMY(PrDate, 2) = 5) OR (DATE2DMY(PrDate, 2) = 11) then //may nov
+                            if ("Collection Month" = 0) OR ("Collection Month" = 1) OR //jan feb
+                               ("Collection Month" = 2) OR ("Collection Month" = 3) OR //mar apr
+                               ("Collection Month" = 5) OR ("Collection Month" = 6) OR //jun jul
+                               ("Collection Month" = 7) OR ("Collection Month" = 8) OR //aug sep
+                               ("Collection Month" = 9) OR ("Collection Month" = 11) then //okt nov
+                                CurrReport.Skip();
+
+                        if (DATE2DMY(PrDate, 2) = 6) OR (DATE2DMY(PrDate, 2) = 12) then //jun dec
+                            if ("Collection Month" = 0) OR ("Collection Month" = 1) OR //jan feb
+                               ("Collection Month" = 2) OR ("Collection Month" = 3) OR //mar apr
+                               ("Collection Month" = 4) OR ("Collection Month" = 6) OR //maj jul
+                               ("Collection Month" = 7) OR ("Collection Month" = 8) OR //aug sep
+                               ("Collection Month" = 9) OR ("Collection Month" = 10) then //okt nov
+                                CurrReport.Skip();
+
+                        //halvår
+                        if SVATenancy.PeriodYear = 3 then  //year
                             if (DATE2DMY(PrDate, 2)) - 1 <> "Collection Month" then
-                                CurrReport.Skip;
-                        end; //Year        
+                                CurrReport.Skip();
+                        //Year        
                     end; //Tenancy with collectionperiod <> mth
                          //Enddate in invoice period
 
@@ -305,7 +311,7 @@ report 50003 "SVA Collection Journal"
             trigger OnAfterGetRecord();
             begin
                 if Tenancy.Number = '' then
-                    CurrReport.skip;
+                    CurrReport.Skip();
             end;
         }
 
@@ -328,19 +334,23 @@ report 50003 "SVA Collection Journal"
     }
     trigger OnPreReport()
     begin
-        CompanyInfo.get;
+        CompanyInformation.GET();
     end;
 
     var
+        VATPostingSetup: Record "VAT Posting Setup";
+        CompanyInformation: Record "Company Information";
+        Customer: Record Customer;
+        SVATenancy: record "SVA Tenancy";
+        SVAParameters: Record "SVA Parameters";
+        Days: Integer;
+        HeadlineLbl: Label 'Collection Journal';
+        PageLbl: Label 'Page %1', Comment = '%1 = pagenumber';
+        Headline: Text[30];
         PrDate: Date;
         Vatrate: Decimal;
         AmountInclVat: Decimal;
-        Vatpostinggroup: Record "VAT Posting Setup";
-        Customer: Record Customer;
-        TenancyCard: record "SVA Tenancy";
         Factor: Decimal;
-        SetupEstate: Record "SVA Parameters";
-        Days: Integer;
 
 }
 

@@ -1,7 +1,7 @@
 Pageextension 50012 "SVA Team Member Act Ext." extends "Team Member Activities"
 //Extend page 9037 activites, belong to RoleCenter 9027
 {
-    
+
     Caption = 'Activities';
     layout
     {
@@ -35,7 +35,7 @@ Pageextension 50012 "SVA Team Member Act Ext." extends "Team Member Activities"
                     Image = Library;
                     ApplicationArea = all;
                 }
-                field("Vacant tenancies";"SVA Empty Tenancy")
+                field("Vacant tenancies"; "SVA Empty Tenancy")
                 {
                     ApplicationArea = all;
                     Caption = 'Vacant tenancies';
@@ -54,15 +54,15 @@ Pageextension 50012 "SVA Team Member Act Ext." extends "Team Member Activities"
 
     trigger OnOpenPage();
     begin
-        RESET;
-        IF NOT GET THEN BEGIN
-            INIT;
-            INSERT;
+        Reset();
+        IF NOT GET() THEN BEGIN
+            INIT();
+            Insert();
         END;
         SETFILTER("User ID Filter", USERID);
         SETFILTER("SVA Date Filter", '');
     end;
 
     var
-       
+
 }

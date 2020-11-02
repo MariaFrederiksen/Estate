@@ -113,7 +113,7 @@ page 50022 "SVA Subscription regulations"
 
     trigger OnAfterGetCurrRecord();
     begin
-        CurrPage.UPDATE;
+        CurrPage.UPDATE();
     end;
 }
 

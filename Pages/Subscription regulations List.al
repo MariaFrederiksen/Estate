@@ -83,7 +83,7 @@ page 50021 "SVA Subscription reg List"
                 ApplicationArea = All;
             }
         }
-       
+
     }
 
 }

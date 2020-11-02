@@ -7,72 +7,78 @@ report 50026 "SVA Occupant Trans"
 
     dataset
     {
-        dataitem("SVA Property"; "SVA Property")
-
+        dataitem(Occupant; "SVA Occupant")
         {
-            //DataItemTableView = SORTING(Property);
-            column(Property; Property)
+            column(Headline; Headline)
             {
-
             }
-            dataitem("SVA Tenancy"; "SVA Tenancy")
+            column(CompanyName; COMPANYPROPERTY.DISPLAYNAME())
             {
-                DataItemLink = PropertyNo = field(Property);
-                DataItemTableView = SORTING(Number);
-                column(Number; Number)
-                {
+            }
+            column(PropertyNo; PropertyNo)
+            {
+            }
+            column(Number; Number)
+            {
+            }
+            column(TenancyNo; TenancyNo)
+            {
+            }
+            column(Customer; "Customer No")
+            {
+            }
+            column(Name1; Name1)
+            {
+            }
+            column(EndDate; EndDate)
+            {
+            }
+            column(StartDate; StartDate)
+            {
+            }
+            dataitem("Occupant Trans"; "SVA Occupant Trans")
+            {
+                DataItemLink = Occupant = FIELD(Number);
 
+                column(OTransNo; Occupant)
+                {
                 }
-
-                dataitem(Occupant; "SVA Occupant")
+                column(Costtype; "Cost type Estate")
                 {
-                    DataItemLink = TenancyNo = field(Number);
-                    DataItemTableView = sorting(Number);
-                    column(CompanyName; COMPANYPROPERTY.DISPLAYNAME)
-                    {
-                    }
-                    column(OProperty; PropertyNo)
-                    {
-                    }
-                    column(ONo; Number)
-                    {
-                    }
-                    column(OTenancy; TenancyNo)
-                    {
-                    }
-                    column(OCustomer; "Customer No")
-                    {
-                    }
-                    column(OName; Name1)
-                    {
-                    }
-                    column(OEndDate; EndDate)
-                    {
-                    }
-                    column(OStartDate; StartDate)
-                    {
-                    }
-                    dataitem("Occupant Trans"; "SVA Occupant Trans")
-                    {
-                        DataItemLink = Occupant = FIELD(Number);
-
-                        column(OTransNo; Occupant)
-                        {
-                        }
-                        column(Costtype; "Cost type Estate")
-                        {
-                        }
-                        column(Date; Date)
-                        {
-                        }
-                        column(Amount; Amount)
-                        {
-                        }
-                    }
+                }
+                column(Date; Date)
+                {
+                }
+                column(Amount; Amount)
+                {
                 }
             }
+            trigger OnAfterGetRecord();
+            var
+                l_OccupantTrans: Record "SVA Occupant Trans";
+            begin
+                Headline := HeadlineLbl;
+                CosttypeFilter := "Occupant Trans".GetFilter("Cost type Estate");
+                DateFilter := "Occupant Trans".GetFilter(Date);
+                TypeCostFilter := "Occupant Trans".GetFilter(Type);
+
+                g_Amount := 0;
+                l_OccupantTrans.Reset();
+                l_OccupantTrans.SetRange(l_OccupantTrans.Occupant, Number);
+                l_OccupantTrans.SetFilter(Date, DateFilter);
+                l_OccupantTrans.SetFilter(Type, TypeCostFilter);
+                l_OccupantTrans.SetFilter("Cost type Estate", CosttypeFilter);
+                IF l_OccupantTrans.FindSet() then
+                    repeat
+                        g_Amount := g_Amount + l_OccupantTrans.Amount;
+                    until l_OccupantTrans.NEXT() = 0;
+                if g_amount = 0 then
+                    CurrReport.Skip();
+            end;
         }
     }
+
+
 
     requestpage
     {
@@ -89,5 +95,13 @@ report 50026 "SVA Occupant Trans"
     labels
     {
     }
+
+    var
+        Headline: Text[20];
+        HeadlineLbl: Label 'Beboerposteringer';
+        g_amount: Decimal;
+        CosttypeFilter: Text;
+        DateFilter: Text;
+        TypeCostFilter: Text;
 }
 

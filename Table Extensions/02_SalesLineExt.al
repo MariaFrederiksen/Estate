@@ -3,7 +3,7 @@ tableextension 50032 "SVA Sales Line" extends "Sales Line"
 {
     fields
     {
-        field(50041;"SVA CostType";Text[10])
+        field(50041; "SVA CostType"; Text[10])
         {
             Caption = 'Costtype';
             TableRelation = "SVA Cost type".Costtype;
@@ -11,5 +11,5 @@ tableextension 50032 "SVA Sales Line" extends "Sales Line"
             Editable = true;
         }
     }
-        
+
 }

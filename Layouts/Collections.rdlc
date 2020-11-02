@@ -378,6 +378,11 @@
                             <Border>
                               <Style>None</Style>
                             </Border>
+                            <TopBorder>
+                              <Color>Black</Color>
+                              <Style>Solid</Style>
+                              <Width>1pt</Width>
+                            </TopBorder>
                             <BottomBorder>
                               <Style>Solid</Style>
                             </BottomBorder>
@@ -815,7 +820,7 @@
                       <TablixMembers>
                         <TablixMember>
                           <TablixHeader>
-                            <Size>4.70118cm</Size>
+                            <Size>5.07636cm</Size>
                             <CellContents>
                               <Textbox Name="Textbox33">
                                 <CanGrow>true</CanGrow>
@@ -946,7 +951,7 @@
                           <TablixMembers>
                             <TablixMember>
                               <TablixHeader>
-                                <Size>4.70118cm</Size>
+                                <Size>5.07636cm</Size>
                                 <CellContents>
                                   <Textbox Name="OName1">
                                     <CanGrow>true</CanGrow>
@@ -1063,7 +1068,7 @@
                       <TablixMembers>
                         <TablixMember>
                           <TablixHeader>
-                            <Size>4.70118cm</Size>
+                            <Size>5.07636cm</Size>
                             <CellContents>
                               <Textbox Name="Textbox17">
                                 <CanGrow>true</CanGrow>
@@ -1172,7 +1177,7 @@
                       <TablixMembers>
                         <TablixMember>
                           <TablixHeader>
-                            <Size>4.70118cm</Size>
+                            <Size>5.07636cm</Size>
                             <CellContents>
                               <Textbox Name="Textbox21">
                                 <CanGrow>true</CanGrow>
@@ -1218,7 +1223,7 @@
             <Top>1.19998cm</Top>
             <Left>0.00506cm</Left>
             <Height>2.48355cm</Height>
-            <Width>16.61976cm</Width>
+            <Width>16.99494cm</Width>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -1234,10 +1239,10 @@
         <Height>12.51541cm</Height>
         <Style />
       </Body>
-      <Width>16.66365cm</Width>
+      <Width>18cm</Width>
       <Page>
         <PageHeader>
-          <Height>2.2225cm</Height>
+          <Height>2cm</Height>
           <PrintOnFirstPage>true</PrintOnFirstPage>
           <PrintOnLastPage>true</PrintOnLastPage>
           <ReportItems>
@@ -1252,17 +1257,16 @@
                           <Value>=Fields!CompanyName.Value</Value>
                           <Style>
                             <FontFamily>Segoe UI</FontFamily>
-                            <FontSize>11pt</FontSize>
+                            <FontSize>8pt</FontSize>
                           </Style>
                         </TextRun>
                       </TextRuns>
                       <Style />
                     </Paragraph>
                   </Paragraphs>
-                  <Top>0.74083cm</Top>
-                  <Left>0.0144cm</Left>
-                  <Height>21.99962pt</Height>
-                  <Width>7.5cm</Width>
+                  <Top>0.9cm</Top>
+                  <Height>11pt</Height>
+                  <Width>9cm</Width>
                   <Style>
                     <VerticalAlign>Middle</VerticalAlign>
                     <PaddingLeft>2pt</PaddingLeft>
@@ -1275,7 +1279,7 @@
                     <Paragraph>
                       <TextRuns>
                         <TextRun>
-                          <Value>Opkrævningsjournal</Value>
+                          <Value>=First(Fields!Headline.Value, "DataSet_Result")</Value>
                           <Style>
                             <FontFamily>Segoe UI</FontFamily>
                             <FontSize>14pt</FontSize>
@@ -1286,9 +1290,8 @@
                       <Style />
                     </Paragraph>
                   </Paragraphs>
-                  <Left>0.0144cm</Left>
                   <Height>20pt</Height>
-                  <Width>7.5cm</Width>
+                  <Width>9cm</Width>
                   <ZIndex>1</ZIndex>
                   <Style>
                     <Border />
@@ -1324,10 +1327,9 @@
                       </Style>
                     </Paragraph>
                   </Paragraphs>
-                  <Top>1.69333cm</Top>
-                  <Left>0.0144cm</Left>
-                  <Height>14pt</Height>
-                  <Width>7.5cm</Width>
+                  <Top>1.4cm</Top>
+                  <Height>11pt</Height>
+                  <Width>9cm</Width>
                   <ZIndex>2</ZIndex>
                   <Style>
                     <Border />
@@ -1354,10 +1356,10 @@
                       </Style>
                     </Paragraph>
                   </Paragraphs>
-                  <Top>0.81139cm</Top>
-                  <Left>8.65941cm</Left>
+                  <Top>1.2cm</Top>
+                  <Left>11cm</Left>
                   <Height>11pt</Height>
-                  <Width>7.96541cm</Width>
+                  <Width>6cm</Width>
                   <ZIndex>3</ZIndex>
                   <Style>
                     <VerticalAlign>Middle</VerticalAlign>
@@ -1384,9 +1386,9 @@
                       </Style>
                     </Paragraph>
                   </Paragraphs>
-                  <Left>8.65941cm</Left>
+                  <Left>11cm</Left>
                   <Height>11pt</Height>
-                  <Width>7.96541cm</Width>
+                  <Width>6cm</Width>
                   <ZIndex>4</ZIndex>
                   <Style>
                     <Border />
@@ -1401,28 +1403,7 @@
                     <Paragraph>
                       <TextRuns>
                         <TextRun>
-                          <Value>Side </Value>
-                          <Style>
-                            <FontFamily>Segoe UI</FontFamily>
-                            <FontSize>8pt</FontSize>
-                          </Style>
-                        </TextRun>
-                        <TextRun>
-                          <Value>=Globals!PageNumber</Value>
-                          <Style>
-                            <FontFamily>Segoe UI</FontFamily>
-                            <FontSize>8pt</FontSize>
-                          </Style>
-                        </TextRun>
-                        <TextRun>
-                          <Value>/</Value>
-                          <Style>
-                            <FontFamily>Segoe UI</FontFamily>
-                            <FontSize>8pt</FontSize>
-                          </Style>
-                        </TextRun>
-                        <TextRun>
-                          <Value>=Globals!TotalPages</Value>
+                          <Value>=Fields!PageCaption.Value</Value>
                           <Style>
                             <FontFamily>Segoe UI</FontFamily>
                             <FontSize>8pt</FontSize>
@@ -1435,16 +1416,23 @@
                             <FontSize>8pt</FontSize>
                           </Style>
                         </TextRun>
+                        <TextRun>
+                          <Value>=Globals!PageNumber &amp; " / " &amp; Globals!TotalPages</Value>
+                          <Style>
+                            <FontFamily>Segoe UI</FontFamily>
+                            <FontSize>8pt</FontSize>
+                          </Style>
+                        </TextRun>
                       </TextRuns>
                       <Style>
                         <TextAlign>Right</TextAlign>
                       </Style>
                     </Paragraph>
                   </Paragraphs>
-                  <Top>0.42333cm</Top>
-                  <Left>8.65941cm</Left>
+                  <Top>0.6cm</Top>
+                  <Left>11cm</Left>
                   <Height>11pt</Height>
-                  <Width>7.96541cm</Width>
+                  <Width>6cm</Width>
                   <ZIndex>5</ZIndex>
                   <Style>
                     <Border />
@@ -1455,9 +1443,8 @@
                 </Textbox>
               </ReportItems>
               <KeepTogether>true</KeepTogether>
-              <Top>0.03528cm</Top>
-              <Height>0.86111in</Height>
-              <Width>16.62482cm</Width>
+              <Height>0.73611in</Height>
+              <Width>18cm</Width>
               <Style>
                 <Border>
                   <Style>None</Style>
@@ -1545,6 +1532,12 @@ End Function
   <DataSets>
     <DataSet Name="DataSet_Result">
       <Fields>
+        <Field Name="Headline">
+          <DataField>Headline</DataField>
+        </Field>
+        <Field Name="PageCaption">
+          <DataField>PageCaption</DataField>
+        </Field>
         <Field Name="CompanyName">
           <DataField>CompanyName</DataField>
         </Field>
@@ -1560,8 +1553,8 @@ End Function
         <Field Name="CompanyVAT_Registration_No_">
           <DataField>CompanyVAT_Registration_No_</DataField>
         </Field>
-        <Field Name="CompanyGetVATRegistrationNumberLbl">
-          <DataField>CompanyGetVATRegistrationNumberLbl</DataField>
+        <Field Name="CompanyGetVATRegistrationNumberLbl()">
+          <DataField>CompanyGetVATRegistrationNumberLbl()</DataField>
         </Field>
         <Field Name="CompanyPhone_No_">
           <DataField>CompanyPhone_No_</DataField>

@@ -4,9 +4,8 @@
 
     Caption = 'Parameters';
     DataClassification = CustomerContent;
-    Permissions = TableData 50000 = rimd;
-    DrillDownPageID = "SVA Setup Estate List";
-    LookupPageID = "SVA Setup Estate List";
+    DrillDownPageID = "SVA Setup Estate Card";
+    LookupPageID = "SVA Setup Estate Card";
 
     fields
     {
@@ -98,7 +97,7 @@
             trigger OnValidate();
             begin
                 IF STRLEN(BS_Dataprovider) <> 8 THEN
-                    ERROR(TEXT008);
+                    ERROR(Digits8Lbl);
             end;
         }
         field(170; BS_Delsystem; Text[5])
@@ -109,7 +108,7 @@
             trigger OnValidate();
             begin
                 IF STRLEN(BS_Delsystem) <> 3 THEN
-                    ERROR(TEXT003);
+                    ERROR(Digits3Lbl);
             end;
         }
         field(180; BS_DebGrp; Text[5])
@@ -120,7 +119,7 @@
             trigger OnValidate();
             begin
                 IF STRLEN(BS_DebGrp) <> 5 THEN
-                    ERROR(TEXT005);
+                    ERROR(Digits5Lbl);
             end;
         }
         field(200; BS_AftaleNo; Text[10])
@@ -131,7 +130,7 @@
             trigger OnValidate();
             begin
                 IF STRLEN(BS_AftaleNo) <> 8 THEN
-                    ERROR(TEXT008);
+                    ERROR(Digits8Lbl);
             end;
         }
         field(220; BS_Advis; Text[60])
@@ -158,6 +157,30 @@
             Description = 'Finanskladde til bogføring af betalinger';
             TableRelation = "Gen. Journal Batch".Name WHERE("Journal Template Name" = field(BS_Worksheettype));
         }
+        field(453; IM_WorkSheet; Code[10])
+        {
+            Caption = 'Worksheet';
+            Description = 'Finanskladde til bogføring af §22';
+            TableRelation = "Gen. Journal Batch".Name WHERE("Journal Template Name" = field(IM_Worksheettype));
+        }
+        field(454; IM_Account; Code[10])
+        {
+            Caption = 'Obsolite';
+            Description = '';
+
+        }
+        field(455; IM_Costtype; Code[10])
+        {
+            Caption = 'Costtype';
+            Description = 'Costtype for posting §22';
+            TableRelation = "SVA Cost type";
+        }
+        field(456; "Balance account dim"; Option)
+        {
+            OptionMembers = OnePost,PostPerDepartment;
+            OptionCaption = 'Samlepost,Post pr afdeling';
+
+        }
         field(500; ReminderFeeRes; Decimal)
         {
             Caption = 'Fee for residens';
@@ -183,29 +206,15 @@
             Description = 'Finanskladdetype til bogføring af 22';
             TableRelation = "Gen. Journal Template".Name;
         }
-        field(453; IM_WorkSheet; Code[10])
-        {
-            Caption = 'Worksheet';
-            Description = 'Finanskladde til bogføring af §22';
-            TableRelation = "Gen. Journal Batch".Name WHERE("Journal Template Name" = field(IM_Worksheettype));
-        }
-        field(454; IM_Account; Code[10])
-        {
-            Caption = 'Obsolite';
-            Description = '';
-
-        }
-        field(455; IM_Costtype; Code[10])
-        {
-            Caption = 'Costtype';
-            Description = 'Costtype for posting §22';
-            TableRelation = "SVA Cost type";
-        }
         field(560; Numberserie; Code[20])
         {
             Caption = 'Numberserie for contracts';
             Description = 'Nummerserie for beboeraftaler';
             TableRelation = "No. Series".Code;
+        }
+        field(561; ContactNumberserie; Code[20])
+        {
+            Caption = 'Obsolite';
         }
         field(565; Splitcalc; Boolean)
         {
@@ -278,20 +287,18 @@
 
     var
         PostCode: Record "Post Code";
+        SVAProperty: Record "SVA Property";
         Country: Text;
-        TEXT005: Label 'There must be 5 digits';
-        PathError: Label 'Path must have a valid value';
-        VATRegNoFormat: Record "VAT Registration No. Format";
-        TEXT008: Label 'There must be 8 digits';
-        TEXT003: Label 'There must be 3 sign';
-        Properties: Record "SVA Property";
+        Digits5Lbl: Label 'There must be 5 digits';
+        Digits8Lbl: Label 'There must be 8 digits';
+        Digits3Lbl: Label 'There must be 3 sign';
 
     trigger OnInsert();
     begin
-        Properties.Reset;
-        if Properties.findset then begin
-            Properties.DataVendor := BS_Dataprovider;
-            Properties.Modify;
+        SVAProperty.Reset();
+        if SVAProperty.FindSet() then begin
+            SVAProperty.DataVendor := BS_Dataprovider;
+            SVAProperty.Modify();
         end;
     end;
 }

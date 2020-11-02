@@ -9,6 +9,8 @@ pageextension 50002 "SVA Sales Invoice Line Ext." extends "Sales Invoice Subform
             {
                 Caption = 'Costtype';
                 ApplicationArea = all;
+                ToolTip = 'Costtype on this line.';
+
             }
         }
     }

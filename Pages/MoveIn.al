@@ -1401,11 +1401,11 @@ page 50007 "SVA MoveIn"
 
                     trigger OnAction();
                     begin
-                        CLEAR(OccupantCard);
-                        OccupantCard.SETRANGE(Occupant, Rec.Occupant);
-                        CLEAR(MoveIn);
-                        MoveIn.SETTABLEVIEW(OccupantCard);
-                        MoveIn.RUNMODAL;
+                        CLEAR(SVAMovingInStatus);
+                        SVAMovingInStatus.SETRANGE(Occupant, Rec.Occupant);
+                        CLEAR(RepSVAMovinginstatus);
+                        RepSVAMovinginstatus.SETTABLEVIEW(SVAMovingInStatus);
+                        RepSVAMovinginstatus.RunModal();
                     end;
                 }
             }
@@ -1413,14 +1413,12 @@ page 50007 "SVA MoveIn"
     }
     trigger OnAfterGetCurrRecord();
     begin
-        CurrPage.UPDATE;
+        CurrPage.UPDATE();
     end;
 
     var
-        myInt: Integer;
-
-        OccupantCard: Record "SVA MovingIn Status";
-        MoveIn: Report "SVA Moving in status";
+        SVAMovingInStatus: Record "SVA MovingIn Status";
+        RepSVAMovinginstatus: Report "SVA Moving in status";
 
 
 }

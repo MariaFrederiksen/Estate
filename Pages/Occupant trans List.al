@@ -19,10 +19,12 @@ page 50010 "SVA Occupant Trans List"
                 field(Navn; Name)
                 {
                     ApplicationArea = all;
+                    Caption = 'Name';
                 }
                 field(Lejemål; Tenancy)
                 {
                     ApplicationArea = all;
+                    Caption = 'Tenancy';
                 }
                 field(Date; Date)
                 {
@@ -33,11 +35,11 @@ page 50010 "SVA Occupant Trans List"
                     ApplicationArea = all;
                     trigger OnValidate();
                     begin
-                        CosttypeEstateRec.RESET;
-                        CosttypeEstateRec.SETRANGE(Costtype, "Cost type Estate");
+                        SVACosttype.Reset();
+                        SVACosttype.SETRANGE(Costtype, "Cost type Estate");
                         IF FINDFIRST() THEN BEGIN
-                            Type := CosttypeEstateRec.Type;
-                            Description := CosttypeEstateRec.Description;
+                            Type := SVACosttype.Type;
+                            Description := SVACosttype.Description;
                             qty := 1;
                         END;
                     end;
@@ -98,32 +100,25 @@ page 50010 "SVA Occupant Trans List"
 
 
     Var
-        CosttypeEstateRec: Record "SVA Cost type";
-        Occupants: record "SVA Occupant";
+        SVACosttype: Record "SVA Cost type";
+        SVAOccupant: record "SVA Occupant";
         Name: Text[50];
         Tenancy: Text[10];
-
-    trigger OnModifyRecord(): Boolean;
-    begin
-        // IF "Invoice No" <> '1' then
-        //     Error('Posteringen er automatisk dannet og kan ikke rettes.');
-        Modify;
-    end;
 
     trigger OnDeleteRecord(): Boolean;
     begin
         //Error('Du kan ikke slette poster. Kontakt evt. din forhandler');
-        Delete;
+        //Delete;
     end;
 
 
     trigger OnAfterGetRecord();
     begin
-        Occupants.Reset;
-        Occupants.SetRange(Number, Occupant);
-        if Occupants.FindFirst then begin
-            Name := Occupants.Name1;
-            Tenancy := Occupants.TenancyNo;
+        SVAOccupant.Reset();
+        SVAOccupant.SetRange(Number, Occupant);
+        if SVAOccupant.FindFirst() then begin
+            Name := SVAOccupant.Name1;
+            Tenancy := SVAOccupant.TenancyNo;
         end;
 
     end;

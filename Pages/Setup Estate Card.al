@@ -5,6 +5,8 @@ page 50017 "SVA Setup Estate Card"
     CardPageID = "SVA Setup Estate Card";
     PageType = Card;
     SourceTable = "SVA Parameters";
+    UsageCategory = Administration;
+    ApplicationArea = All;
     DeleteAllowed = false;
 
     layout
@@ -285,7 +287,39 @@ page 50017 "SVA Setup Estate Card"
                 ApplicationArea = All;
                 trigger OnAction();
                 begin
-                    Xmlport.run(xmlport::"SVA Import Occupant Trans", false, true)//"SVA Import Occupant Trans"
+                    Xmlport.run(xmlport::"SVA Import Occupant Trans", false, true) //"SVA Import Occupant Trans"
+                end;
+            }
+            action(sessions)
+            {
+                Caption = 'Session';
+                ApplicationArea = All;
+                RunObject = page "SVA Sessions";
+                ToolTip = 'Active sessions';
+            }
+            action(MoveAddress)
+            {
+                Caption = 'MoveAddress';
+                ApplicationArea = All;
+                ToolTip = 'Copy address from occupants to customers using Account No.';
+                trigger OnAction()
+                var
+                    Customer: Record Customer;
+                    Occupant: Record "SVA Occupant";
+                begin
+                    Occupant.Reset();
+                    if Occupant.FindSet() then
+                        repeat
+                            Customer.Reset();
+                            Customer.SetRange("No.", Occupant."Customer No");
+                            if Customer.FindFirst() then begin
+                                Customer.Address := Occupant.Address;
+                                Customer."Address 2" := Occupant.Address2;
+                                Customer."Post Code" := Occupant."Post Code";
+                                Customer.City := Occupant.City;
+                                Customer.Modify();
+                            end;
+                        until Occupant.NEXT() = 0;
                 end;
             }
             action("Check transactions costtype")
@@ -296,32 +330,31 @@ page 50017 "SVA Setup Estate Card"
                 ApplicationArea = All;
                 trigger OnAction();
                 begin
-                    CosttypeTable.Reset();
-                    if CosttypeTable.FindSet() then
+                    SVACosttype.Reset();
+                    if SVACosttype.FindSet() then
                         repeat
-                            OccTrans.Reset();
-                            OccTrans.SetRange("Cost type Estate", CosttypeTable.Costtype);
-                            if OccTrans.FindSet() then
+                            SVAOccupantTrans.Reset();
+                            SVAOccupantTrans.SetRange("Cost type Estate", SVACosttype.Costtype);
+                            if SVAOccupantTrans.FindSet() then
                                 repeat
-                                    OccTrans.Type := CosttypeTable.Type;
-                                    OccTrans.Modify();
-                                until OccTrans.next = 0;
-                        until CosttypeTable.next = 0;
+                                    SVAOccupantTrans.Type := SVACosttype.Type;
+                                    SVAOccupantTrans.Modify();
+                                until SVAOccupantTrans.NEXT() = 0;
+                        until SVACosttype.NEXT() = 0;
                 end;
             }
         }
     }
     trigger OnOpenPage()
     var
-        Officemanagement: Codeunit 1630;
+        OfficeManagement: Codeunit "Office Management";
     begin
         IsOfficeAddin := Officemanagement.IsAvailable()
     end;
 
     var
-        OccTrans: Record "SVA Occupant Trans";
-        CosttypeTable: Record "SVA Cost type";
-        Customer: Record "Customer";
+        SVAOccupantTrans: Record "SVA Occupant Trans";
+        SVACosttype: Record "SVA Cost type";
         IsOfficeAddin: Boolean;
 }
 

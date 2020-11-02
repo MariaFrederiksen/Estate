@@ -35,9 +35,9 @@ report 50015 "SVA Repeal Res"
             }
             dataitem(Tenancy; "SVA Tenancy")
             {
-                DataItemLink = PropertyNo = FIELD (PropertyNo),
-                               Number = FIELD (TenancyNo);
-                DataItemTableView = SORTING (PropertyNo, Number)
+                DataItemLink = PropertyNo = FIELD(PropertyNo),
+                               Number = FIELD(TenancyNo);
+                DataItemTableView = SORTING(PropertyNo, Number)
                                     ORDER(Ascending);
                 column(TAddress1; Address1)
                 {
@@ -67,29 +67,29 @@ report 50015 "SVA Repeal Res"
             column(CCity; City)
             {
             }
-            column(CompanyVAT_Registration_No_;"VAT Registration No.")
+            column(CompanyVAT_Registration_No_; "VAT Registration No.")
             {
             }
-            column(CompanyGetVATRegistrationNumberLbl;GetVATRegistrationNumberLbl)
+            column(CompanyGetVATRegistrationNumberLbl; GetVATRegistrationNumberLbl())
             {
             }
-            column(CompanyPhone_No_;"Phone No.")
+            column(CompanyPhone_No_; "Phone No.")
             {
             }
-            column(COmpanyPicture;Picture)
+            column(COmpanyPicture; Picture)
             {
             }
-            column(CompanyBankBranchNo;Companyinfo."Bank Branch No.")
+            column(CompanyBankBranchNo; CompanyInformation."Bank Branch No.")
             {
             }
-            column(CompanyBanAccountNo;Companyinfo."Bank Branch No.")
+            column(CompanyBanAccountNo; CompanyInformation."Bank Branch No.")
             {
             }
-            column(CompanyBankName;Companyinfo."Bank Name")
+            column(CompanyBankName; CompanyInformation."Bank Name")
             {
             }
         }
-    }    
+    }
     requestpage
     {
 
@@ -108,10 +108,10 @@ report 50015 "SVA Repeal Res"
 
     trigger OnPreReport();
     begin
-        CompanyInfo.GET;
+        CompanyInformation.GET();
     end;
 
     var
-        CompanyInfo: Record "Company Information";
+    CompanyInformation: Record "Company Information";
 }
 

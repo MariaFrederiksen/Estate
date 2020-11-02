@@ -2,7 +2,6 @@ table 50008 "SVA PriceIndeks"
 {
     Caption='Netto price indeks';
     DataClassification = CustomerContent;
-    Permissions = TableData 50008 = rimd;
     
     fields
     {

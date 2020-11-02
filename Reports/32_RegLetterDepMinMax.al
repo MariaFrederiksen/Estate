@@ -151,10 +151,10 @@ report 50032 "SVA Regulation Indeks Dep Min"
     }
     trigger OnPreReport();
     begin
-        CompanyInfo.GET;
+        CompanyInformation.GET();
     end;
 
     var
-        CompanyInfo: Record "Company Information";
+        CompanyInformation: Record "Company Information";
 }
 

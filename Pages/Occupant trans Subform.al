@@ -2,7 +2,7 @@ page 50011 "SVA Occupant Trans Subform"
 //Tooltip created
 {
     AutoSplitKey = true;
-    Caption='Occupant Trans';
+    Caption = 'Occupant Trans';
     DelayedInsert = false;
     DeleteAllowed = false;
     Editable = false;
@@ -19,50 +19,50 @@ page 50011 "SVA Occupant Trans Subform"
         {
             repeater(Group)
             {
-                field(Date;Date)
-                {                    
+                field(Date; Date)
+                {
                     ApplicationArea = All;
-                    ToolTip='Posting date.';
+                    ToolTip = 'Posting date.';
                 }
-                field("Cost type Estate";"Cost type Estate")
-                {                    
+                field("Cost type Estate"; "Cost type Estate")
+                {
                     ApplicationArea = All;
-                    ToolTip='Costype';
+                    ToolTip = 'Costype';
                 }
-                field(Description;Description)
-                {                    
+                field(Description; Description)
+                {
                     ApplicationArea = All;
-                    ToolTip='Description as shown on invioce.';
+                    ToolTip = 'Description as shown on invioce.';
                 }
-                field(Qty;Qty)
-                {                    
+                field(Qty; Qty)
+                {
                     ApplicationArea = All;
-                    ToolTip='Quantiy';
+                    ToolTip = 'Quantiy';
                 }
-                field(Price;Price)
-                {                    
+                field(Price; Price)
+                {
                     ApplicationArea = All;
-                    ToolTip='Pris per quantity';
+                    ToolTip = 'Pris per quantity';
                 }
-                field(Amount;Amount)
-                {                    
+                field(Amount; Amount)
+                {
                     ApplicationArea = All;
-                    ToolTip='Lineamount';
+                    ToolTip = 'Lineamount';
                 }
-                field("Invoice No";"Invoice No")
-                {                    
+                field("Invoice No"; "Invoice No")
+                {
                     ApplicationArea = All;
-                    ToolTip='Invoice number';
+                    ToolTip = 'Invoice number';
                 }
-                field(Occupant;Occupant)
-                {                    
+                field(Occupant; Occupant)
+                {
                     ApplicationArea = All;
-                    ToolTip='Contract number';
+                    ToolTip = 'Contract number';
                 }
-                field(Type;Type)
-                {                    
+                field(Type; Type)
+                {
                     ApplicationArea = All;
-                    ToolTip='Type of costtype.';
+                    ToolTip = 'Type of costtype.';
                 }
             }
         }

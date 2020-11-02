@@ -2,9 +2,8 @@ table 50012 "SVA Contract regulations"
 {
     // Tabellen indeholder de nødvendige felter for aftalt regulering af leje samt evt. afdragsordning
 
-    Caption = 'Contract regulations';
+    Caption = 'SVALeaseContractA9 regulations';
     DataClassification = CustomerContent;
-    Permissions = TableData 50012 = rimd;
     DrillDownPageID = "SVA Subscription reg List";
     LookupPageID = "SVA Subscription reg List";
 
@@ -14,20 +13,21 @@ table 50012 "SVA Contract regulations"
         {
             Caption = 'Number';
             TableRelation = "SVA Occupant".Number;
+            DataClassification = CustomerContent;
 
             trigger OnValidate();
             begin
                 IF RegDate = 0D THEN BEGIN  //Empty record
-                    Contract.Reset;
-                    Contract.SetRange(Number, Number);
-                    IF Contract.FindFirst then begin
-                        MonthDeposit := Contract.TypeA9_4_DepMth;
-                        DepositAmount := Contract.TypeA9_4_DepAmount;
-                        MonthPrepaidRent := Contract.TypeA9_4_PrepaidRentMth;
-                        PrepaidRentAMount := Contract.TypeA9_4_PrepaidRent;
+                    SVALeaseContractA9.Reset();
+                    SVALeaseContractA9.SetRange(Number, Number);
+                    IF SVALeaseContractA9.FindFirst() then begin
+                        MonthDeposit := SVALeaseContractA9.TypeA9_4_DepMth;
+                        DepositAmount := SVALeaseContractA9.TypeA9_4_DepAmount;
+                        MonthPrepaidRent := SVALeaseContractA9.TypeA9_4_PrepaidRentMth;
+                        PrepaidRentAMount := SVALeaseContractA9.TypeA9_4_PrepaidRent;
                     end;
                 end;
-                Insert;
+                Insert();
             end;
         }
         field(2; MonthDeposit; Integer)
@@ -91,5 +91,5 @@ table 50012 "SVA Contract regulations"
 
     }
     var
-        Contract: Record "SVA LeaseContract_A9";
+        SVALeaseContractA9: Record "SVA LeaseContract_A9";
 }

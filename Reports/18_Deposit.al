@@ -5,129 +5,101 @@ report 50018 "SVA Deposit"
     Caption = 'Deposit';
     UsageCategory = ReportsAndAnalysis;
 
+
     dataset
     {
-        dataitem(Tenancy; "SVA Tenancy")
+        dataitem(Occupant; "SVA Occupant")
         {
-            column(CompanyName; COMPANYPROPERTY.DISPLAYNAME)
+            column(Headline; Headline)
             {
             }
+            column(CompanyName; COMPANYPROPERTY.DISPLAYNAME())
+            {
+            }
+
             column(PropertyNo; PropertyNo)
             {
-
             }
             column(Number; Number)
             {
-
+            }
+            column(TenancyNo; TenancyNo)
+            {
+            }
+            column(Customer; "Customer No")
+            {
+            }
+            column(Name1; Name1)
+            {
+            }
+            column(EndDate; EndDate)
+            {
+            }
+            column(StartDate; StartDate)
+            {
             }
 
-            dataitem(Occupant; "SVA Occupant")
+            dataitem("Occupant Trans"; "SVA Occupant Trans")
             {
-                DataItemLink = TenancyNo = FIELD(Number);
-                DataItemTableView = SORTING(TenancyNo, Number);
-
-                column(OProperty; PropertyNo)
-                {
-                }
-                column(ONo; Number)
-                {
-                }
-                column(OTenancy; TenancyNo)
-                {
-                }
-                column(OCustomer; "Customer No")
-                {
-                }
-                column(OName; Name1)
-                {
-                }
-                column(OEndDate; EndDate)
-                {
-                }
-                column(OStartDate; StartDate)
-                {
-                }
-                column(OID; ConsumptionAccountNo)
-                {
-                }
-                dataitem("Occupant Trans"; "SVA Occupant Trans")
-                {
-                    DataItemLink = Occupant = FIELD(Number);
-                    DataItemTableView = SORTING(Occupant, Date, "Cost type Estate", "Invoice No")
+                DataItemLink = Occupant = FIELD(Number);
+                DataItemTableView = SORTING(Occupant, Date, "Cost type Estate", "Invoice No")
                                     WHERE(Type = CONST(Deposit));
-                    column(OTransNo; Occupant)
-                    {
-                    }
-                    column(Costtype; "Cost type Estate")
-                    {
-                    }
-                    column(Date; Date)
-                    {
-                    }
-                    column(Amount; Amount)
-                    {
-                    }
-
+                column(OccupantNo; Occupant)
+                {
                 }
-                trigger OnAfterGetRecord();
-                var
-                    AmountVar: Decimal;
-                    OccupantTable: Record "SVA Occupant";
-                    OccupantTrans: record "SVA Occupant Trans";
-                    TenancyOK: Boolean;
-                    OccupantOK: Boolean;
-                begin
-                    AmountVar := 0;
-                    OccupantOK := false;
-                    OccupantTrans.reset;
-                    OccupantTrans.Setrange(Type, 10);
-                    OccupantTrans.SetRange(Occupant, Occupant.number);
-                    if OccupantTrans.FindSet then
-                        repeat
-                            AmountVar := AmountVar + OccupantTrans.Amount;
-                        until OccupantTrans.Next = 0;
-                    if AmountVar <> 0 then
-                        OccupantOK := true;
-                    if OccupantOK = false then
-                        CurrReport.Skip;
-                end;
+                column(Costtype; "Cost type Estate")
+                {
+                }
+                column(Date; Date)
+                {
+                }
+                column(Amount; Amount)
+                {
+                }
             }
 
             trigger OnAfterGetRecord();
             var
-                AmountVar: Decimal;
-                OccupantTable: Record "SVA Occupant";
-                OccupantTrans: record "SVA Occupant Trans";
-                TenancyOK: Boolean;
-                OccupantOK: Boolean;
-
+                l_OccupantRec: Record "SVA Occupant";
+                l_OccupantTrans: REcord "SVA Occupant Trans";
             begin
-                TenancyOK := false;
-                AmountVar := 0;
-                OccupantTable.reset;
-                OccupantTable.SetRange(TenancyNo, Tenancy.Number);
-                if Occupanttable.findset then
-                    repeat
-                        OccupantTrans.reset;
-                        OccupantTrans.SetRange(Occupant, OccupantTable.Number);
-                        OccupantTrans.Setrange(Type, 10);
-                        if OccupantTrans.findset then
-                            repeat
-                                AmountVar := AmountVar + OccupantTrans.Amount;
-                            until OccupantTrans.Next = 0;
-                        if AmountVar <> 0 then
-                            TenancyOK := true;
-                    until OccupantTable.Next = 0;
-                if TenancyOK = false then
-                    CurrReport.skip;
-
+                Headline := 'Depositum';
+                g_Amount := 0;
+                l_OccupantRec.Reset();
+                l_OccupantRec.SetRange(Number, Occupant.Number);
+                if l_OccupantRec.FindFirst() then begin
+                    l_OccupantTrans.Reset();
+                    l_OccupantTrans.SetRange(Type, 10);
+                    l_OccupantTrans.SetRange(l_OccupantTrans.Occupant, l_OccupantRec.Number);
+                    IF l_OccupantTrans.FindSet() then
+                        repeat
+                            g_Amount := g_Amount + l_OccupantTrans.Amount;
+                        until l_OccupantTrans.NEXT() = 0;
+                end;
+                if (g_Amount = 0) AND ((l_OccupantRec.Enddate < Today) AND (l_OccupantRec.Enddate <> 0D)) then
+                    CurrReport.Skip();
             end;
+
         }
     }
-    trigger OnpreReport()
-    var
-        myInt: Integer;
-    begin
+    requestpage
+    {
 
-    end;
+        layout
+        {
+        }
+
+        actions
+        {
+        }
+    }
+
+    labels
+    {
+    }
+
+    var
+        Headline: Text[20];
+        g_Amount: Decimal;
+
 }

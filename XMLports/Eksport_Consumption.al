@@ -1,18 +1,18 @@
-xmlport 50062 "SVA File for Consumption"
+xmlport 50002 "SVA File for Consumption"
 {
     Direction = Export;
     Format = FixedText;
     FormatEvaluate = Legacy;
     TextEncoding = WINDOWS;
-   
+
     schema
     {
         textelement(Root)
         {
-            tableelement("SVA Export Temp";"SVA Export Temp")
+            tableelement("SVA Export Temp"; "SVA Export Temp")
             {
                 XmlName = 'Table';
-                fieldattribute(Tekst;"SVA Export Temp"."Output Line")
+                fieldattribute(Tekst; "SVA Export Temp"."Output Line")
                 {
                     Width = 256;
                 }
@@ -33,14 +33,14 @@ xmlport 50062 "SVA File for Consumption"
     }
     trigger OninitXmlPort();
     begin
-            ExportTemp.Reset;
-            ExportTemp.SetRange("Line no.",1);
-            if ExportTemp.FindFirst then
-                currXMLport.Filename := ExportTemp.Name+'.txt';
+        SVAExportTemp.Reset();
+        SVAExportTemp.SetRange("Line no.", 1);
+        if SVAExportTemp.FindFirst() then
+            currXMLport.Filename := SVAExportTemp.Name + '.txt';
     end;
-  
+
     var
-    ExportTemp : Record "SVA Export Temp";
+        SVAExportTemp: Record "SVA Export Temp";
 
 }
 

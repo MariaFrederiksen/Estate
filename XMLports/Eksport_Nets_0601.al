@@ -1,4 +1,4 @@
-xmlport 50063 "SVA File for NETS"
+xmlport 50003 "SVA File for NETS"
 {
     Direction = Export;
     Format = FixedText;
@@ -18,7 +18,7 @@ xmlport 50063 "SVA File for NETS"
                     trigger OnBeforePassField();
                     begin
                         if "SVA Export Temp".Name <> 'BS0601' then
-                            currXMLport.Skip;
+                            currXMLport.Skip();
                     end;
                 }
             }
@@ -38,13 +38,13 @@ xmlport 50063 "SVA File for NETS"
     }
     trigger OnInitXmlPort();
     begin
-        Companyinfo.GET;
-        VatNo := DelChr(Companyinfo."VAT Registration No.", '=');
+        CompanyInformation.GET();
+        VatNo := DelChr(CompanyInformation."VAT Registration No.", '=');
         currxmlport.Filename := 'NETS 0601 ' + VatNo + '.txt';
     end;
 
     var
-        CompanyInfo: Record "Company Information";
+        CompanyInformation: Record "Company Information";
         VatNo: Text[8];
 
 }

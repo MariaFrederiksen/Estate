@@ -1,4 +1,4 @@
-xmlport 50070 "SVA Import Post Code"
+xmlport 50004 "SVA Import Post Code"
 {
     FieldSeparator = ';';
     Format = VariableText;

@@ -2,7 +2,6 @@ table 50005 "SVA Subscription Lines"
 {
     Caption = 'Subscription lines';
     DataClassification = CustomerContent;
-    Permissions = TableData 50005 = rimd;
 
     fields
     {
@@ -20,15 +19,15 @@ table 50005 "SVA Subscription Lines"
 
             trigger OnValidate();
             begin
-                SetPeriods;
-                CosttypeEstate.RESET();
-                CosttypeEstate.SETRANGE(CosttypeEstate.Costtype, "Cost Types");
-                IF CosttypeEstate.FINDFIRST THEN BEGIN
-                    Description := CosttypeEstate.Description;
-                    VatGroup := CosttypeEstate.VatGroup;
-                    ProductPostingGroup := CosttypeEstate.ProductPostingGroup;
-                    Type := CosttypeEstate.Type;
-                    Order := CosttypeEstate.Order;
+                SetPeriods();
+                SVACosttype.RESET();
+                SVACosttype.SETRANGE(SVACosttype.Costtype, "Cost Types");
+                IF SVACosttype.FindFirst() THEN BEGIN
+                    Description := SVACosttype.Description;
+                    VatGroup := SVACosttype.VatGroup;
+                    ProductPostingGroup := SVACosttype.ProductPostingGroup;
+                    Type := SVACosttype.Type;
+                    Order := SVACosttype.Order;
                 END;
             end;
         }
@@ -40,7 +39,7 @@ table 50005 "SVA Subscription Lines"
         {
             Caption = 'Type';
             OptionCaption = 'Other,Rent,ACheat,ACwater,ACElectric,ACCooling,ACOperating,Antenna,Internet,OccGroup,Deposit,Prepaid rent,Settlement,MovingCost';
-            OptionMembers = Other, Rent, ACheat, ACwater, ACElectric, ACCooling, ACOperating, Antenna, Internet, OccGroup, Deposit, "Prepaid rent", Settlement, Movingcost;
+            OptionMembers = Other,Rent,ACheat,ACwater,ACElectric,ACCooling,ACOperating,Antenna,Internet,OccGroup,Deposit,"Prepaid rent",Settlement,Movingcost;
         }
         field(6; Order; Integer)
         {
@@ -53,10 +52,10 @@ table 50005 "SVA Subscription Lines"
             NotBlank = true;
             trigger OnValidate();
             begin
-                if (DATE2DMY("Date From",1) > 1) then   
-                    "Date from" := DMY2Date(1,DATE2DMY("Date From",2),DATE2DMY("Date From",3))
-            end;    
-            
+                if (DATE2DMY("Date From", 1) > 1) then
+                    "Date from" := DMY2Date(1, DATE2DMY("Date From", 2), DATE2DMY("Date From", 3))
+            end;
+
         }
         field(12; "Date To"; Date)
         {
@@ -66,14 +65,14 @@ table 50005 "SVA Subscription Lines"
         {
             CaptionClass = '1,1,1';
             Caption = 'Global Dimension 1 Code';
-            TableRelation = "Dimension Value".Code WHERE ("Global Dimension No." = CONST (1));
+            TableRelation = "Dimension Value".Code WHERE("Global Dimension No." = CONST(1));
 
         }
         field(17; "Global Dimension 2 Code"; Code[20])
         {
             CaptionClass = '1,1,2';
             Caption = 'Global Dimension 2 Code';
-            TableRelation = "Dimension Value".Code WHERE ("Global Dimension No." = CONST (2));
+            TableRelation = "Dimension Value".Code WHERE("Global Dimension No." = CONST(2));
         }
 
         field(21; "Amount Year"; Decimal)
@@ -82,10 +81,10 @@ table 50005 "SVA Subscription Lines"
 
             trigger OnValidate();
             begin
-                SetPeriods;
-                IF "Amount Year" <> 0 THEN BEGIN
+                SetPeriods();
+                IF "Amount Year" <> 0 THEN
                     "Amount Period" := "Amount Year" / Periods;
-                END;
+
             end;
         }
         field(22; "Amount Period"; Decimal)
@@ -94,10 +93,10 @@ table 50005 "SVA Subscription Lines"
 
             trigger OnValidate();
             begin
-                SetPeriods;
-                IF "Amount Period" <> 0 THEN BEGIN
+                SetPeriods();
+                IF "Amount Period" <> 0 THEN
                     "Amount Year" := "Amount Period" * Periods;
-                END;
+
             end;
         }
         field(30; KeyNumber; Decimal)
@@ -125,11 +124,11 @@ table 50005 "SVA Subscription Lines"
             NotBlank = true;
             trigger OnValidate();
             begin
-                ProdPostGrp.Reset;
-                ProdPostGrp.SetRange(code, ProductPostingGroup);
-                if ProdPostGrp.FindFirst then begin
-                    VatGroup := ProdPostGrp."Def. VAT Prod. Posting Group";
-                end;
+                GenProductPostingGroup.Reset();
+                GenProductPostingGroup.SetRange(code, ProductPostingGroup);
+                if GenProductPostingGroup.FindFirst() then
+                    VatGroup := GenProductPostingGroup."Def. VAT Prod. Posting Group";
+
             end;
         }
     }
@@ -145,40 +144,41 @@ table 50005 "SVA Subscription Lines"
     }
 
     var
-        CosttypeEstate: Record "SVA Cost type";
+        SVACosttype: Record "SVA Cost type";
+        SVATenancy: Record "SVA Tenancy";
+        GenProductPostingGroup: Record "Gen. Product Posting Group";
         Periodtype: Integer;
         Periods: Integer;
-        Tenancy: Record "SVA Tenancy";
-        ProdPostGrp: Record "Gen. Product Posting Group";
-        Subscription: record "SVA Subscription Lines";
-        Enddate: Date;
+
+
+
 
     trigger OnInsert();
     begin
         if ProductPostingGroup = '' then
             Error('Der manger produktbogføringsgruppe');
         if VatGroup = '' then
-            Error('Der mangler momsproduktbogføringsgrupppe');    
+            Error('Der mangler momsproduktbogføringsgrupppe');
     end;
-    
+
     local procedure SetPeriods();
     begin
-        Tenancy.RESET;
-        Tenancy.SETRANGE(Number, Tenancies);
-        IF Tenancy.FINDFIRST() THEN BEGIN
-            Periodtype := Tenancy.PeriodYear;
-            IF Periodtype = 0 THEN BEGIN //Mth
+        SVATenancy.Reset();
+        SVATenancy.SETRANGE(Number, Tenancies);
+        IF SVATenancy.FINDFIRST() THEN BEGIN
+            Periodtype := SVATenancy.PeriodYear;
+            IF Periodtype = 0 THEN  //Mth
                 Periods := 12;
-            END;
-            IF Periodtype = 1 THEN BEGIN //Qty
+
+            IF Periodtype = 1 THEN  //Qty
                 Periods := 4;
-            END;
-            IF Periodtype = 2 THEN BEGIN //½Yr
+
+            IF Periodtype = 2 THEN //½Yr
                 Periods := 2;
-            END;
-            IF Periodtype = 3 THEN BEGIN //yr
+
+            IF Periodtype = 3 THEN  //yr
                 Periods := 1
-            END;
+
         END;
     end;
 }

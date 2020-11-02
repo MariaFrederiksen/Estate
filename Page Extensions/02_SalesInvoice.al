@@ -5,24 +5,25 @@ pageextension 50001 "SVA Sales Invoice Ext." extends "Sales Invoice"
         //addafter("Account Code")
         addlast(General)
         {
-            field(Occupant; "SVA Occupant")
+            field("SVA Occupant"; "SVA Occupant")
             {
                 Caption = 'Occupant';
                 ApplicationArea = all;
+                ToolTip = 'Occupant no. Related to occupant entries.';
             }
         }
     }
     trigger OnAfterGetRecord();
     var
-        OccupantCard: Record "SVA Occupant";
-        begin
-            if "SVA Occupant" = '' then begin
-                OccupantCard.Reset;
-                OccupantCard.SetRange("Customer No", "Sell-to Customer No.");
-                if OccupantCard.FindSet then
-                    repeat
-                        "SVA Occupant" := OccupantCard.Number;
-                    until OccupantCard.Next = 0;
-            end;
+        SVAOccupant: Record "SVA Occupant";
+    begin
+        if "SVA Occupant" = '' then begin
+            SVAOccupant.Reset();
+            SVAOccupant.SetRange("Customer No", "Sell-to Customer No.");
+            if SVAOccupant.FindSet() then
+                repeat
+                    "SVA Occupant" := SVAOccupant.Number;
+                until SVAOccupant.NEXT() = 0;
         end;
+    end;
 }

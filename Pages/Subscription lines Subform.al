@@ -22,7 +22,7 @@ page 50019 "SVA Subscription lines subform"
                     ApplicationArea = All;
                 }
                 field(Description; Description)
-                {                    
+                {
                     ToolTip = 'Description of costtype. Will apear on invoices.';
                     ApplicationArea = All;
                 }
@@ -33,17 +33,17 @@ page 50019 "SVA Subscription lines subform"
                     ApplicationArea = All;
                 }
                 field("Date To"; "Date To")
-                {                    
+                {
                     ApplicationArea = All;
                     ToolTip = 'This line is applicable to. Best practise is to leave it blank.';
                 }
                 field("Amount Year"; "Amount Year")
-                {                    
+                {
                     ApplicationArea = All;
                     ToolTip = 'Amount per year';
                 }
                 field("Amount Period"; "Amount Period")
-                {                    
+                {
                     ApplicationArea = All;
                     ToolTip = 'Amount per period (month, quater, halfyear or year';
                 }
@@ -61,7 +61,7 @@ page 50019 "SVA Subscription lines subform"
                     ApplicationArea = All;
                 }
                 field(PriceIndeks; PriceIndeks)
-                {                    
+                {
                     ApplicationArea = All;
                     ToolTip = 'This line is regulate by indeks.';
                 }

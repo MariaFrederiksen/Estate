@@ -2,120 +2,120 @@ report 50005 "SVA Moving out Journal"
 {
     DefaultLayout = RDLC;
     RDLCLayout = './layouts/Moving out collections.rdlc';
-    Caption='Move out collection Journal';
+    Caption = 'Move out collection Journal';
 
     dataset
     {
-        dataitem(Occupant;"SVA Occupant")
+        dataitem(Occupant; "SVA Occupant")
         {
-            column(CompanyName;COMPANYPROPERTY.DISPLAYNAME)
+            column(CompanyName; COMPANYPROPERTY.DISPLAYNAME())
             {
             }
-            column(Number_Occupant;Number)
+            column(Number_Occupant; Number)
             {
             }
-            column(TenancyNo_Occupant;TenancyNo)
+            column(TenancyNo_Occupant; TenancyNo)
             {
             }
-            column(CustomerNo_Occupant;"Customer No")
+            column(CustomerNo_Occupant; "Customer No")
             {
             }
-            column(Name1_Occupant;Name1)
+            column(Name1_Occupant; Name1)
             {
             }
-            column(Name2_Occupant;Name2)
+            column(Name2_Occupant; Name2)
             {
             }
-            column(EndDate_Occupant;EndDate)
+            column(EndDate_Occupant; EndDate)
             {
             }
-            column(CAddress;CAddress)
+            column(CAddress; CAddress)
             {
             }
-            column(CPostcode;CPostCode)
+            column(CPostcode; CPostCode)
             {
             }
-            column(CCIty;CCity)
+            column(CCIty; CCity)
             {
             }
-            column(TAddress;TAddress)
+            column(TAddress; TAddress)
             {
             }
-            column(TPostCode;TPostCode)
+            column(TPostCode; TPostCode)
             {
             }
-            column(TCity;TCity)
+            column(TCity; TCity)
             {
             }
-            dataitem("Occupant Trans";"SVA Occupant Trans")
+            dataitem("Occupant Trans"; "SVA Occupant Trans")
             {
-                DataItemLink = Occupant=FIELD(Number);
-                DataItemTableView = WHERE(Type=FILTER(>9));
-                column(Date;Date)
+                DataItemLink = Occupant = FIELD(Number);
+                DataItemTableView = WHERE(Type = FILTER(> 9));
+                column(Date; Date)
                 {
                 }
-                column(CostType;"Cost type Estate")
+                column(CostType; "Cost type Estate")
                 {
                 }
-                column(Description;Description)
+                column(Description; Description)
                 {
                 }
-                column(Qty;Qty)
+                column(Qty; Qty)
                 {
                 }
-                column(Price;Price)
+                column(Price; Price)
                 {
                 }
-                column(Amount;Amount)
+                column(Amount; Amount)
                 {
                 }
-                column(Type;Type)
+                column(Type; Type)
                 {
                 }
 
                 trigger OnAfterGetRecord();
                 begin
                     IF Type = 12 THEN //Afregning
-                        CurrReport.SKIP;
+                        CurrReport.Skip();
                     IF Type = 10 THEN //Depositum
-                        Qty := Qty*-1;
+                        Qty := Qty * -1;
                     IF Type = 11 THEN //Forudbetalt leje
-                        Qty := Qty*-1;
-                    Amount := Qty*Price;
+                        Qty := Qty * -1;
+                    Amount := Qty * Price;
                 end;
             }
-            dataitem("SVA Subscription Lines";"SVA Subscription Lines")
+            dataitem("SVA Subscription Lines"; "SVA Subscription Lines")
             {
-                DataItemLink = Tenancies=FIELD(TenancyNo);
-                DataItemTableView = WHERE(Type=FILTER('Flytning'));
-                column(CostTypes_SubscriptionLines;"Cost Types")
+                DataItemLink = Tenancies = FIELD(TenancyNo);
+                DataItemTableView = WHERE(Type = FILTER('Flytning'));
+                column(CostTypes_SubscriptionLines; "Cost Types")
                 {
                 }
-                column(Description_SubscriptionLines;Description)
+                column(Description_SubscriptionLines; Description)
                 {
                 }
-                column(AmountPeriod_SubscriptionLines;"Amount Period")
+                column(AmountPeriod_SubscriptionLines; "Amount Period")
                 {
                 }
             }
 
             trigger OnAfterGetRecord();
             begin
-                Customer.RESET;
-                Customer.SETRANGE("No.","Customer No");
-                IF Customer.FINDFIRST() THEN  BEGIN
-                  CAddress := Customer.Address;
-                  CPostCode := Customer."Post Code";
-                  CCity := Customer.City
-                  END;
+                Customer.Reset();
+                Customer.SETRANGE("No.", "Customer No");
+                IF Customer.FINDFIRST() THEN BEGIN
+                    CAddress := Customer.Address;
+                    CPostCode := Customer."Post Code";
+                    CCity := Customer.City
+                END;
 
-                Tenancy.RESET;
-                Tenancy.SETRANGE(Number,TenancyNo);
-                IF Tenancy.FINDFIRST() THEN BEGIN
-                  TAddress := Tenancy.Address1;
-                  TPostCode := Tenancy."Post Code";
-                  TCity := Tenancy.City;
-                  END;
+                SVATenancy.Reset();
+                SVATenancy.SETRANGE(Number, TenancyNo);
+                IF SVATenancy.FINDFIRST() THEN BEGIN
+                    TAddress := SVATenancy.Address1;
+                    TPostCode := SVATenancy."Post Code";
+                    TCity := SVATenancy.City;
+                END;
             end;
         }
     }
@@ -137,14 +137,13 @@ report 50005 "SVA Moving out Journal"
     }
 
     var
-        CostTypeType : Record "SVA Cost type";
-        Customer : Record "Customer";
-        Tenancy : Record "SVA Tenancy";
-        CAddress : Text[30];
-        CPostCode : Text[10];
-        CCity : Text[30];
-        TAddress : Text[30];
-        TPostCode : Text[10];
-        TCity : Text[30];
+        Customer: Record "Customer";
+        SVATenancy: Record "SVA Tenancy";
+        CAddress: Text[30];
+        CPostCode: Text[10];
+        CCity: Text[30];
+        TAddress: Text[30];
+        TPostCode: Text[10];
+        TCity: Text[30];
 }
 

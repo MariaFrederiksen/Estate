@@ -117,59 +117,59 @@ page 50016 "SVA Regulations"
 
                 trigger OnAction();
                 begin
-                    Regulations.reset;
-                    if Regulations.FindSet() then
+                    SVAregulations.Reset();
+                    if SVAregulations.FindSet() then
                         repeat
 
-                            RegLetter.reset;
-                            RegLetter.SetRange(RegLetter.ONumber, Regulations.ONumber);
-                            if RegLetter.FindFirst then begin
+                            FirstSVARegulations.Reset();
+                            FirstSVARegulations.SetRange(FirstSVARegulations.ONumber, SVAregulations.ONumber);
+                            if FirstSVARegulations.FindFirst() then begin
                                 //No max/min increase
                                 //Indeks regulations and solid increase
-                                if (RegLetter.Increase = 0) and (RegLetter.MaxRegulation = 0) and (RegLetter.MinRegulation = 0) then begin
+                                if (FirstSVARegulations.Increase = 0) and (FirstSVARegulations.MaxRegulation = 0) and (FirstSVARegulations.MinRegulation = 0) then begin
                                     //Letters for indeksregulations
                                     //Only deposit
-                                    if (RegLetter.RegulationPrepaidrent = 0) then begin
-                                        Clear(IndeksLetterDep);
-                                        IndeksLetterDep.SetTableView(RegLetter);
-                                        IndeksLetterDep.Run;
+                                    if (FirstSVARegulations.RegulationPrepaidrent = 0) then begin
+                                        Clear(SVARegulationIndeksDeposit);
+                                        SVARegulationIndeksDeposit.SetTableView(FirstSVARegulations);
+                                        SVARegulationIndeksDeposit.Run();
                                     end;
-                                    if (RegLetter.RegulationPrepaidrent <> 0) then begin
-                                        Clear(IndeksLetter);
-                                        IndeksLetter.SetTableView(RegLetter);
-                                        IndeksLetter.Run;
+                                    if (FirstSVARegulations.RegulationPrepaidrent <> 0) then begin
+                                        Clear(SVARegulationIndeks);
+                                        SVARegulationIndeks.SetTableView(FirstSVARegulations);
+                                        SVARegulationIndeks.Run();
                                     end;
                                 end;
-                                if (RegLetter.Increase <> 0) and (RegLetter.MaxRegulation = 0) and (RegLetter.MinRegulation = 0) then begin
+                                if (FirstSVARegulations.Increase <> 0) and (FirstSVARegulations.MaxRegulation = 0) and (FirstSVARegulations.MinRegulation = 0) then begin
                                     //Letters for solid Increase
                                     //Only deposit
                                     if (RegulationPrepaidrent = 0) then begin
-                                        Clear(IncreaseDepLetter);
-                                        IncreaseDepLetter.SetTableView(RegLetter);
-                                        IncreaseDepLetter.Run;
+                                        Clear(SVARegulIncreaseDeposit);
+                                        SVARegulIncreaseDeposit.SetTableView(FirstSVARegulations);
+                                        SVARegulIncreaseDeposit.Run();
                                     end;
                                     if (RegulationPrepaidrent <> 0) then begin
-                                        Clear(IncreaseLetter);
-                                        IncreaseLetter.SetTableView(RegLetter);
-                                        IncreaseLetter.Run;
+                                        Clear(SVARegulationIncrease);
+                                        SVARegulationIncrease.SetTableView(FirstSVARegulations);
+                                        SVARegulationIncrease.Run();
                                     end;
                                 end;
-                                if (RegLetter.MaxRegulation <> 0) OR (RegLetter.Minregulation <> 0) then begin
+                                if (FirstSVARegulations.MaxRegulation <> 0) OR (FirstSVARegulations.Minregulation <> 0) then begin
                                     //Letters for indeksregulations with max/min
                                     //Only deposit
                                     if (RegulationPrepaidrent = 0) then begin
-                                        Clear(IndeksLetterDepMax);
-                                        IndeksLetterDepMax.SetTableView(RegLetter);
-                                        IndeksLetterDepMax.Run;
+                                        Clear(SVARegulationIndeksDepMin);
+                                        SVARegulationIndeksDepMin.SetTableView(FirstSVARegulations);
+                                        SVARegulationIndeksDepMin.Run();
                                     end;
                                     if (RegulationPrepaidrent <> 0) then begin
-                                        Clear(IndeksLetterMax);
-                                        IndeksLetterMax.SetTableView(RegLetter);
-                                        IndeksLetterMax.Run;
+                                        Clear(SVARegulationIndeksMin);
+                                        SVARegulationIndeksMin.SetTableView(FirstSVARegulations);
+                                        SVARegulationIndeksMin.Run();
                                     end;
                                 end;
                             end;
-                        until Regulations.Next = 0;
+                        until SVAregulations.NEXT() = 0;
                 end;
             }
 
@@ -182,186 +182,186 @@ page 50016 "SVA Regulations"
 
                 trigger OnAction();
                 begin
-                    Regulations.Reset;
-                    Regulations.SetRange(Regulations.Closed, false);
-                    if Regulations.FindSet then begin
+                    SVAregulations.Reset();
+                    SVAregulations.SetRange(SVAregulations.Closed, false);
+                    if SVAregulations.FindSet() then
                         repeat
-                            RegLetter.reset;
-                            RegLetter.SetRange(RegLetter.ONumber, Regulations.ONumber);
-                            if RegLetter.FindFirst then begin
+                            FirstSVARegulations.Reset();
+                            FirstSVARegulations.SetRange(FirstSVARegulations.ONumber, SVAregulations.ONumber);
+                            if FirstSVARegulations.FindFirst() then begin
                                 //Find ud af om der er moms på aftalen
-                                Sublines.Reset;
-                                Sublines.SetRange(type, 1);
-                                if Sublines.FindFirst then begin
-                                    Vatgrp := Sublines.VatGroup;
-                                end;
+                                SVASubscriptionLines.Reset();
+                                SVASubscriptionLines.SetRange(type, 1);
+                                if SVASubscriptionLines.FindFirst() then
+                                    Vatgrp := SVASubscriptionLines.VatGroup;
+
                                 //Find periode på aftalen
-                                TenancyRec.Reset;
-                                TenancyRec.SetRange(Number, Regletter.TenancyNo);
-                                if TenancyRec.FindFirst then begin
-                                    if TenancyRec.PeriodYear = 0 then
+                                SVATenancy.Reset();
+                                SVATenancy.SetRange(Number, FirstSVARegulations.TenancyNo);
+                                if SVATenancy.FindFirst() then begin
+                                    if SVATenancy.PeriodYear = 0 then
                                         Periods := 12;
-                                    if TenancyRec.PeriodYear = 1 then
+                                    if SVATenancy.PeriodYear = 1 then
                                         Periods := 4;
-                                    if TenancyRec.PeriodYear = 2 then
+                                    if SVATenancy.PeriodYear = 2 then
                                         Periods := 2;
-                                    if TenancyRec.PeriodYear = 3 then
+                                    if SVATenancy.PeriodYear = 3 then
                                         Periods := 1;
                                 end;
 
                                 //Dan linje for regulering af deposita
-                                CosttypeRec.Reset;
-                                CosttypeRec.SetRange(type, 10); //deposita
-                                CosttypeRec.SetRange(VatGroup, Vatgrp);
-                                if CosttypeRec.FindFirst() then begin
-                                    Clear(Sublines);
-                                    Sublines.Tenancies := RegLetter.TenancyNo;
-                                    Sublines.Type := CosttypeRec.Type;
-                                    Sublines.VatGroup := Vatgrp;
-                                    Sublines.ProductPostingGroup := CosttypeRec.ProductPostingGroup;
-                                    Sublines.Order := CosttypeRec.Order;
-                                    Sublines.Description := 'Regulering af depositum';
-                                    Sublines."Date From" := RegLetter.Regulationdate;
-                                    Sublines."Cost Types" := CosttypeRec.Costtype;
-                                    Sublines."Amount Year" := RegLetter.RegulationDeposit * Periods;
-                                    Sublines."Amount Period" := RegLetter.RegulationDeposit;
+                                SVACosttype.Reset();
+                                SVACosttype.SetRange(type, 10); //deposita
+                                SVACosttype.SetRange(VatGroup, Vatgrp);
+                                if SVACosttype.FindFirst() then begin
+                                    Clear(SVASubscriptionLines);
+                                    SVASubscriptionLines.Tenancies := FirstSVARegulations.TenancyNo;
+                                    SVASubscriptionLines.Type := SVACosttype.Type;
+                                    SVASubscriptionLines.VatGroup := Vatgrp;
+                                    SVASubscriptionLines.ProductPostingGroup := SVACosttype.ProductPostingGroup;
+                                    SVASubscriptionLines.Order := SVACosttype.Order;
+                                    SVASubscriptionLines.Description := 'Regulering af depositum';
+                                    SVASubscriptionLines."Date From" := FirstSVARegulations.Regulationdate;
+                                    SVASubscriptionLines."Cost Types" := SVACosttype.Costtype;
+                                    SVASubscriptionLines."Amount Year" := FirstSVARegulations.RegulationDeposit * Periods;
+                                    SVASubscriptionLines."Amount Period" := FirstSVARegulations.RegulationDeposit;
                                     IF Periods = 12 then
-                                        Sublines."Date To" := CalcDate('<1m-1D>', Sublines."Date From");
+                                        SVASubscriptionLines."Date To" := CalcDate('<1m-1D>', SVASubscriptionLines."Date From");
                                     IF Periods = 4 then
-                                        Sublines."Date To" := CalcDate('<3m-1D>', Sublines."Date From");
+                                        SVASubscriptionLines."Date To" := CalcDate('<3m-1D>', SVASubscriptionLines."Date From");
                                     IF Periods = 2 then
-                                        Sublines."Date To" := CalcDate('<6m-1D>', Sublines."Date From");
+                                        SVASubscriptionLines."Date To" := CalcDate('<6m-1D>', SVASubscriptionLines."Date From");
                                     IF Periods = 1 then
-                                        Sublines."Date To" := CalcDate('<1y-1D>', Sublines."Date From");
-                                    if Sublines."Amount Year" <> 0 then
-                                        Sublines.Insert;
+                                        SVASubscriptionLines."Date To" := CalcDate('<1y-1D>', SVASubscriptionLines."Date From");
+                                    if SVASubscriptionLines."Amount Year" <> 0 then
+                                        SVASubscriptionLines.Insert();
                                 end;
                                 //Dan linje for regulering af forudbetalt leje
-                                CosttypeRec.Reset;
-                                CosttypeRec.SetRange(type, 11); //forudbetalt leje
-                                CosttypeRec.SetRange(VatGroup, Vatgrp);
-                                if CosttypeRec.FindFirst() then begin
-                                    Clear(Sublines);
-                                    Sublines.Tenancies := RegLetter.TenancyNo;
-                                    Sublines.Type := CosttypeRec.Type;
-                                    Sublines.VatGroup := Vatgrp;
-                                    Sublines.ProductPostingGroup := CosttypeRec.ProductPostingGroup;
-                                    Sublines.Order := CosttypeRec.Order;
-                                    Sublines.Description := 'Regulering af forudb. leje';
-                                    Sublines."Date From" := RegLetter.Regulationdate;
-                                    Sublines."Cost Types" := CosttypeRec.Costtype;
-                                    Sublines."Amount Year" := RegLetter.RegulationPrepaidrent * Periods;
-                                    Sublines."Amount Period" := RegLetter.RegulationPrepaidrent;
+                                SVACosttype.Reset();
+                                SVACosttype.SetRange(type, 11); //forudbetalt leje
+                                SVACosttype.SetRange(VatGroup, Vatgrp);
+                                if SVACosttype.FindFirst() then begin
+                                    Clear(SVASubscriptionLines);
+                                    SVASubscriptionLines.Tenancies := FirstSVARegulations.TenancyNo;
+                                    SVASubscriptionLines.Type := SVACosttype.Type;
+                                    SVASubscriptionLines.VatGroup := Vatgrp;
+                                    SVASubscriptionLines.ProductPostingGroup := SVACosttype.ProductPostingGroup;
+                                    SVASubscriptionLines.Order := SVACosttype.Order;
+                                    SVASubscriptionLines.Description := 'Regulering af forudb. leje';
+                                    SVASubscriptionLines."Date From" := FirstSVARegulations.Regulationdate;
+                                    SVASubscriptionLines."Cost Types" := SVACosttype.Costtype;
+                                    SVASubscriptionLines."Amount Year" := FirstSVARegulations.RegulationPrepaidrent * Periods;
+                                    SVASubscriptionLines."Amount Period" := FirstSVARegulations.RegulationPrepaidrent;
                                     IF Periods = 12 then
-                                        Sublines."Date To" := CalcDate('<1m-1D>', Sublines."Date From");
+                                        SVASubscriptionLines."Date To" := CalcDate('<1m-1D>', SVASubscriptionLines."Date From");
                                     IF Periods = 4 then
-                                        Sublines."Date To" := CalcDate('<3m-1D>', Sublines."Date From");
+                                        SVASubscriptionLines."Date To" := CalcDate('<3m-1D>', SVASubscriptionLines."Date From");
                                     IF Periods = 2 then
-                                        Sublines."Date To" := CalcDate('<6m-1D>', Sublines."Date From");
+                                        SVASubscriptionLines."Date To" := CalcDate('<6m-1D>', SVASubscriptionLines."Date From");
                                     IF Periods = 1 then
-                                        Sublines."Date To" := CalcDate('<1y-1D>', Sublines."Date From");
-                                    if Sublines."Amount Year" <> 0 then
-                                        Sublines.Insert(true);
+                                        SVASubscriptionLines."Date To" := CalcDate('<1y-1D>', SVASubscriptionLines."Date From");
+                                    if SVASubscriptionLines."Amount Year" <> 0 then
+                                        SVASubscriptionLines.Insert(true);
                                 end;
 
                                 //Dan ny linje til opkrævning af leje
-                                Clear(Sublines);
-                                Sublines.SetRange(Tenancies, RegLetter.TenancyNo);
-                                Sublines.setrange(type, 1);
-                                Sublines.SetRange("Date To", 0D);
-                                if Sublines.FindFirst() then begin
-                                    CosttypeVar := Sublines."Cost Types";
-                                end;
-                                CosttypeRec.Reset;
-                                CosttypeRec.SetRange(Costtype, CosttypeVar);
-                                if CosttypeRec.FindFirst() then begin
-                                    Clear(Sublines);
-                                    Sublines.Tenancies := RegLetter.TenancyNo;
-                                    Sublines.Type := CosttypeRec.Type;
-                                    Sublines.VatGroup := Vatgrp;
-                                    Sublines.ProductPostingGroup := CosttypeRec.ProductPostingGroup;
-                                    Sublines.Order := CosttypeRec.Order;
-                                    Sublines.Description := CosttypeRec.Description;
-                                    Sublines."Date From" := RegLetter.Regulationdate;
-                                    Sublines."Cost Types" := CosttypeRec.Costtype;
-                                    Sublines."Amount Year" := RegLetter.RentYearNew;
-                                    Sublines."Amount Period" := RegLetter.RentYearNew / Periods;
-                                    Sublines.PriceIndeks := true;
-                                    if Sublines."Amount Year" <> 0 then begin
-                                        Sublines.Insert(true);
-                                    end;
+                                Clear(SVASubscriptionLines);
+                                SVASubscriptionLines.SetRange(Tenancies, FirstSVARegulations.TenancyNo);
+                                SVASubscriptionLines.setrange(type, 1);
+                                SVASubscriptionLines.SetRange("Date To", 0D);
+                                if SVASubscriptionLines.FindFirst() then
+                                    CosttypeVar := SVASubscriptionLines."Cost Types";
+
+                                SVACosttype.Reset();
+                                SVACosttype.SetRange(Costtype, CosttypeVar);
+                                if SVACosttype.FindFirst() then begin
+                                    Clear(SVASubscriptionLines);
+                                    SVASubscriptionLines.Tenancies := FirstSVARegulations.TenancyNo;
+                                    SVASubscriptionLines.Type := SVACosttype.Type;
+                                    SVASubscriptionLines.VatGroup := Vatgrp;
+                                    SVASubscriptionLines.ProductPostingGroup := SVACosttype.ProductPostingGroup;
+                                    SVASubscriptionLines.Order := SVACosttype.Order;
+                                    SVASubscriptionLines.Description := SVACosttype.Description;
+                                    SVASubscriptionLines."Date From" := FirstSVARegulations.Regulationdate;
+                                    SVASubscriptionLines."Cost Types" := SVACosttype.Costtype;
+                                    SVASubscriptionLines."Amount Year" := FirstSVARegulations.RentYearNew;
+                                    SVASubscriptionLines."Amount Period" := FirstSVARegulations.RentYearNew / Periods;
+                                    SVASubscriptionLines.PriceIndeks := true;
+                                    if SVASubscriptionLines."Amount Year" <> 0 then
+                                        SVASubscriptionLines.Insert(true);
+
                                 end;
 
                                 //Luk gamle linje til opkrævning af leje
-                                Clear(SublineClose);
-                                Clear(Sublines);
-                                SublineClose.SetRange(Tenancies, RegLetter.TenancyNo);
-                                SublineClose.setrange(type, 1);
-                                SublineClose.SetRange("Date To", 0D);
-                                SublineClose.SetRange("Date From", 0D, CalcDate('-1D>', Regletter.Regulationdate));
-                                if SublineClose.Findfirst then begin
+                                Clear(CloseSVASubscriptionLines);
+                                Clear(SVASubscriptionLines);
+                                CloseSVASubscriptionLines.SetRange(Tenancies, FirstSVARegulations.TenancyNo);
+                                CloseSVASubscriptionLines.setrange(type, 1);
+                                CloseSVASubscriptionLines.SetRange("Date To", 0D);
+                                CloseSVASubscriptionLines.SetRange("Date From", 0D, CalcDate('<-1D>', FirstSVARegulations.Regulationdate));
+                                if CloseSVASubscriptionLines.FindFirst() then begin
                                     //Opret kopi
-                                    Sublines.Tenancies := SublineClose.Tenancies;
-                                    Sublines.Type := SublineClose.Type;
-                                    Sublines.VatGroup := SublineClose.VatGroup;
-                                    Sublines.ProductPostingGroup := SublineClose.ProductPostingGroup;
-                                    Sublines.PriceIndeks := false;
-                                    Sublines.Order := SublineClose.order;
-                                    Sublines.KeyNumber := SublineClose.KeyNumber;
-                                    Sublines.Description := SublineClose.Description;
-                                    Sublines."Date To" := CalcDate('<-1D>', Regletter.Regulationdate);
-                                    Sublines."Date From" := SublineClose."Date From";
-                                    Sublines."Cost Types" := SublineClose."Cost Types";
-                                    Sublines."Amount Year" := SublineClose."Amount Year";
-                                    Sublines."Amount Period" := SublineClose."Amount Period";
-                                    Sublines."Global Dimension 1 Code" := SublineClose."Global Dimension 1 Code";
-                                    Sublines."Global Dimension 2 Code" := SublineClose."Global Dimension 2 Code";
-                                    Sublines.Insert(true);
+                                    SVASubscriptionLines.Tenancies := CloseSVASubscriptionLines.Tenancies;
+                                    SVASubscriptionLines.Type := CloseSVASubscriptionLines.Type;
+                                    SVASubscriptionLines.VatGroup := CloseSVASubscriptionLines.VatGroup;
+                                    SVASubscriptionLines.ProductPostingGroup := CloseSVASubscriptionLines.ProductPostingGroup;
+                                    SVASubscriptionLines.PriceIndeks := false;
+                                    SVASubscriptionLines.Order := CloseSVASubscriptionLines.order;
+                                    SVASubscriptionLines.KeyNumber := CloseSVASubscriptionLines.KeyNumber;
+                                    SVASubscriptionLines.Description := CloseSVASubscriptionLines.Description;
+                                    SVASubscriptionLines."Date To" := CalcDate('<-1D>', FirstSVARegulations.Regulationdate);
+                                    SVASubscriptionLines."Date From" := CloseSVASubscriptionLines."Date From";
+                                    SVASubscriptionLines."Cost Types" := CloseSVASubscriptionLines."Cost Types";
+                                    SVASubscriptionLines."Amount Year" := CloseSVASubscriptionLines."Amount Year";
+                                    SVASubscriptionLines."Amount Period" := CloseSVASubscriptionLines."Amount Period";
+                                    SVASubscriptionLines."Global Dimension 1 Code" := CloseSVASubscriptionLines."Global Dimension 1 Code";
+                                    SVASubscriptionLines."Global Dimension 2 Code" := CloseSVASubscriptionLines."Global Dimension 2 Code";
+                                    SVASubscriptionLines.Insert(true);
                                     //Slet linje
-                                    SublineClose.Delete();
+                                    CloseSVASubscriptionLines.Delete();
                                 end;
 
 
                             end;
-                            Regulations.Closed := true;
-                            Regulations.Modify;
+                            SVAregulations.Closed := true;
+                            SVAregulations.Modify();
 
-                            ContractRegulations.reset;
-                            ContractRegulations.SetRange(Number, Regulations.ONumber);
-                            if ContractRegulations.FindFirst then begin
-                                ContractRegulations.Latest_regulation := Today;
-                                ContractRegulations.PrepaidRentAmount := Regulations.PrepaidRentNew;
-                                ContractRegulations.DepositAmount := Regulations.DepositNew;
-                                ContractRegulations.RegDate := Calcdate('<1Y>', RegLetter.Regulationdate);
-                                ContractRegulations.Indeks_Date := CalcDate('<1Y>', RegLetter.Indeksdate);
-                                ContractRegulations.Modify();
+                            SVACOntractregulations.Reset();
+                            SVACOntractregulations.SetRange(Number, SVAregulations.ONumber);
+                            if SVACOntractregulations.FindFirst() then begin
+                                SVACOntractregulations.Latest_regulation := Today;
+                                SVACOntractregulations.PrepaidRentAmount := SVAregulations.PrepaidRentNew;
+                                SVACOntractregulations.DepositAmount := SVAregulations.DepositNew;
+                                SVACOntractregulations.RegDate := Calcdate('<1Y>', FirstSVARegulations.Regulationdate);
+                                SVACOntractregulations.Indeks_Date := CalcDate('<1Y>', FirstSVARegulations.Indeksdate);
+                                SVACOntractregulations.Modify();
                             end;
 
-                        until Regulations.Next = 0;
-                    end;
+                        until SVAregulations.NEXT() = 0;
+
                     MESSAGE('Reguleringerne er overføret til beboeraftalerne.');
                 end;
             }
         }
     }
     var
-        RegLetter: Record "SVA Regulations";
-        IndeksLetter: Report "SVA Regulation Indeks";
-        IndeksLetterDep: Report "SVA Regulation Indeks Deposit";
-        IndeksLetterMax: Report "SVA Regulation Indeks Min";
-        IndeksLetterDepMax: Report "SVA Regulation Indeks Dep Min";
-        IncreaseLetter: Report "SVA Regulation Increase";
-        IncreaseDepLetter: Report "SVA Regul. Increase Deposit";
-        //Used in update
-        Regulations: Record "SVA regulations";
-        Sublines: Record "SVA Subscription Lines";
-        SublineClose: Record "SVA Subscription Lines";
-        CosttypeRec: Record "SVA Cost type";
+        FirstSVARegulations: Record "SVA Regulations";
+        SVARegulations: Record "SVA Regulations";
+        SVASubscriptionLines: Record "SVA Subscription Lines";
+        CloseSVASubscriptionLines: Record "SVA Subscription Lines";
+        SVACosttype: Record "SVA Cost type";
+        SVATenancy: Record "SVA Tenancy";
+        SVAContractregulations: Record "SVA Contract regulations";
+        SVARegulationIndeks: Report "SVA Regulation Indeks";
+        SVARegulationIndeksDeposit: Report "SVA Regulation Indeks Deposit";
+        SVARegulationIndeksMin: Report "SVA Regulation Indeks Min";
+        SVARegulationIndeksDepMin: Report "SVA Regulation Indeks Dep Min";
+        SVARegulationIncrease: Report "SVA Regulation Increase";
+        SVARegulIncreaseDeposit: Report "SVA Regul. Increase Deposit";
         Vatgrp: Text[10];
-        TenancyRec: Record "SVA Tenancy";
         Periods: Integer;
         CosttypeVar: Text[10];
-        ContractRegulations: Record "SVA Contract regulations";
+
 
 
 
