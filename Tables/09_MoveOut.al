@@ -1734,6 +1734,16 @@ table 50009 "SVA MovingOut Status"
             OptionCaption = 'None,Repair,Replaced';
             OptionMembers = None,Repair,Replaced;
         }
+        field(955; Keymanufactor; Text[30])
+        {
+            Caption = 'Manufactor';
+            DataClassification = CustomerContent;
+        }
+        field(956; KeyQty; Text[30])
+        {
+            Caption = 'Qty keys';
+            DataClassification = CustomerContent;
+        }
         field(980; Phone; Text[20])
         {
             Caption = 'Phone';

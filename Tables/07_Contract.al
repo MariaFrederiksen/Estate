@@ -14,248 +14,6 @@ table 50007 "SVA LeaseContract_A9"
         {
             Caption = 'Number';
             TableRelation = "SVA Occupant".Number;
-
-            trigger OnValidate();
-            begin
-                IF TypeA9_2_Startdate = 0D THEN BEGIN  //Empty record
-                    CompanyInformation.GET();
-                    TypeA9_1_Landlord := CompanyInformation.Name;
-                    TypeA9_1_LandlordCVR := CompanyInformation."VAT Registration No.";
-                    IF CompanyInformation.Address <> '' then
-                        TypeA9_1_LandlordAddress := CompanyInformation.Address + ', ' + CompanyInformation."Post Code" + ' ' + CompanyInformation.City;
-
-                    SVAOccupant.Reset();
-                    SVAOccupant.SETRANGE(SVAOccupant.Number, Number);
-                    if SVAOccupant.FINDFIRST() then begin
-                        TypeA9_1_TenentName := SVAOccupant.Name1 + ' ' + SVAOccupant.Name2;
-                        TypeA9_1_TenantCPR := SVAOccupant.CPRno1 + ' ' + SVAOccupant.CPRno2;
-                        TypeA9_1_Phone := SVAOccupant.CellPhone1 + ' ' + SVAOccupant.CellPhone2;
-                        TypeA9_1_Mail := SVAOccupant.Email1 + ' ' + SVAOccupant.Email2;
-                        TypeA9_2_Startdate := SVAOccupant.StartDate;
-                        TypeA9_4_RentFirstTime := CALCDATE('<+1M>', SVAOccupant.StartDate);
-                        if (DATE2DMY(TypeA9_2_Startdate, 1) > 13) AND (DATE2DMY(TypeA9_2_Startdate, 1) < 17) then begin
-                            TypeA9_4_RentFirstTime := CALCDATE('<+1M>', SVAOccupant.StartDate);
-                            Mnth := Date2DMY(TypeA9_4_RentFirstTime, 2);
-                            Yr := Date2DMY(TypeA9_4_RentFirstTime, 3);
-                            TypeA9_4_RentFirstTime := DMY2Date((Date2DMY(TypeA9_4_RentFirstTime, 1) - Date2DMY(TypeA9_4_RentFirstTime, 1) + 1), Mnth, Yr);
-                        end;
-                        SetAmounts(Number);
-                    end;
-
-                    SVAProperty.Reset();
-                    SVAProperty.SETRANGE(Property, SVAOccupant.PropertyNo);
-                    IF SVAProperty.FINDFIRST() THEN BEGIN
-                        TypeA9_3_BankRegNo := SVAProperty.BankRegNo;
-                        TypeA9_3_BankAccount := SVAProperty.Bankaccount;
-                        TypeA9_3_Bankname := SVAProperty.Bankname;
-                        TypeA9_3_TaxesPer := SVAProperty.TypeA9_3_Taxes;
-                        TypeA9_5_WaterAccounting := FORMAT(SVAProperty.WaterYearFrom);
-                        TypeA9_5_HeatAccounting := FORMAT(SVAProperty.HeatingYearFrom);
-                        TypeA9_5_ElAccounting := FORMAT(SVAProperty.ElectricYearFrom);
-                    END;
-
-
-                    Customer.Reset();
-                    Customer.SETRANGE(Customer."No.", SVAOccupant."Customer No");
-                    IF Customer.FINDFIRST() THEN
-                        TypeA9_1_TenentAddress := Customer.Address + ', ' + Customer."Post Code" + ' ' + Customer.City;
-
-                    IF TypeA9_1_TenentAddress = '' then
-                        TypeA9_1_TenentAddress := SVAOccupant.Address + ', ' + SVAOccupant."Post Code" + ' ' + SVAOccupant.City;
-
-                    IF TypeA9_4_DueDate = 0D THEN
-                        TypeA9_4_DueDate := TODAY + 8;
-
-
-                    /* SVASubscriptionLines.Reset();
-                    SVASubscriptionLines.SETRANGE(Tenancies, Occupant.TenancyNo);
-                    SVASubscriptionLines.SetRange("Date From", Today - 20000, Occupant.StartDate);
-                    IF SVASubscriptionLines.Findset() THEN begin
-                        REPEAT
-                            if (SVASubscriptionLines."Date To" = 0D) or (SVASubscriptionLines."Date To" > Occupant.StartDate) then begin
-                                SVACosttype.Reset();
-                                SVACosttype.SETRANGE(SVACosttype, SVASubscriptionLines."Cost Types");
-                                IF SVACosttype.FindSet() THEN begin
-                                    if SVACosttype.type = 0 then begin //andet, ex parking/garage
-                                        TypeA9_3_OtherText1 := SVASubscriptionLines.Description;
-                                        TypeA9_3_OtherAmount1 := SVASubscriptionLines."Amount Period";
-                                    end;
-                                    IF SVACosttype.Type = 1 THEN BEGIN //Rent
-                                        TypeA9_3_RentPerYear := SVASubscriptionLines."Amount Year";
-                                        TypeA9_3_RentPerPeriode := SVASubscriptionLines."Amount Period";
-                                        TypeA9_1_Vat := SVACosttype.VatGroup;
-                                    END;
-                                    IF SVACosttype.Type = 2 THEN BEGIN //ACVarme
-                                        TypeA9_3_ACHeat := SVASubscriptionLines."Amount Period";
-                                    END;
-                                    IF SVACosttype.Type = 3 THEN BEGIN //ACVand
-                                        TypeA9_3_ACWater := SVASubscriptionLines."Amount Period";
-                                    END;
-                                    IF SVACosttype.Type = 4 THEN BEGIN //ACEl
-                                        TypeA9_3_ACElectricity := SVASubscriptionLines."Amount Period";
-                                    END;
-                                    IF SVACosttype.Type = 5 THEN BEGIN //ACCooling
-                                        TypeA9_3_ACCooling := SVASubscriptionLines."Amount Period";
-                                    END;
-                                    IF SVACosttype.Type = 7 THEN BEGIN //Antenna
-                                        TypeA9_3_Antenna := SVASubscriptionLines."Amount Period";
-                                    END;
-                                    IF SVACosttype.Type = 8 THEN BEGIN //Internet
-                                        TypeA9_3_Internet := SVASubscriptionLines."Amount Period";
-                                    END;
-                                    IF SVACosttype.Type = 9 THEN BEGIN //Tenantgroup
-                                        TypeA9_3_TenantGroup := SVASubscriptionLines."Amount Period";
-                                    END;
-                                end; //SVACosttype find    
-                            end;//range for Date to    
-                        UNTIL SVASubscriptionLines.NEXT() = 0;
-                    end; //SVASubscriptionLines */
-
-                    SVATenancy.Reset();
-                    SVATenancy.SETRANGE(Number, SVAOccupant.TenancyNo);
-                    IF SVATenancy.FindSet() THEN BEGIN
-                        TypeA9_1_TenancyNo := SVATenancy.Number;
-                        TypeA9_1_Address := SVATenancy.Address1;
-                        TypeA9_1_City := SVATenancy."Post Code" + ' ' + SVATenancy.City;
-                        TypeA9_3_DueDay := '1.';
-                        IF SVATenancy.Type = 0 THEN BEGIN //Boliglejemål
-                                                          //1
-                            TypeA9_1_Apartment := SVATenancy.TypeA9_1_Apartment;
-                            TypeA9_1_Room := SVATenancy.TypeA9_1_Room;
-                            TypeA9_1_Condominium := SVATenancy.TypeA9_1_Condominium;
-                            TypeA9_1_HousingCoop := SVATenancy.TypeA9_1_HousingCoop;
-                            TypeA9_1_Other := SVATenancy.TypeA9_1_Other;
-                            TypeA9_1_OtherTxt := SVATenancy.TypeA9_1_OtherTxt;
-                            TypeA9_1_AreaTotal := SVATenancy.AreaTotal;
-                            TypeA9_1_AreaProf := SVATenancy.AreaPro;
-                            TypeA9_1_Rooms := SVATenancy.Rooms;
-                            TypeA9_1_Laundy := SVATenancy.TypeA9_1_Laundy;
-                            TypeA9_1_BicycleStorage := SVATenancy.TypeA9_1_BicycleStorage;
-                            TypeA9_1_Courtyard := SVATenancy.TypeA9_1_Courtyard;
-                            TypeA9_1_Garage := SVATenancy.TypeA9_1_Garage;
-                            TypeA9_1_GarageNo := SVATenancy.TypeA9_1_GarageNo;
-                            TypeA9_1_Attic := SVATenancy.TypeA9_1_Attic;
-                            TypeA9_1_AtticNo := SVATenancy.TypeA9_1_AtticNo;
-                            TypeA9_1_OtherT := SVATenancy.TypeA9_1_OtherT;
-                            TypeA9_1_OtherTTxt := SVATenancy.TypeA9_1_OtherTTxt;
-                            TypeA9_1_Use := SVATenancy.TypeA9_1_Use;
-                            IF SVATenancy.TypeA9_1_Use = '' THEN
-                                TypeA9_1_Use := 'Beboelse';
-
-
-                            //§3
-                            IF SVATenancy.PeriodYear = 0 THEN BEGIN
-                                TypeA9_3_Monthly := TRUE;
-                                TypeA9_3_Quater := FALSE;
-                            END;
-                            IF SVATenancy.PeriodYear <> 0 THEN BEGIN
-                                TypeA9_3_Monthly := FALSE;
-                                TypeA9_3_Quater := TRUE;
-                            END;
-
-                            //§4
-                            TypeA9_4_DepMth := SVATenancy.Deposit;
-                            TypeA9_4_PrepaidRentMth := SVATenancy.PrepaidRent;
-                            TypeA9_4_DepAmount := TypeA9_3_RentPerYear / 12 * TypeA9_4_DepMth;
-                            TypeA9_4_PrepaidRent := TypeA9_3_RentPerYear / 12 * TypeA9_4_PrepaidRentMth;
-                            TypeA9_4_RentFrom := SVAOccupant.StartDate;
-                            TypeA9_4_RentTo := CalcDate('<-1D>', TypeA9_4_RentFirstTime);
-                            IF TypeA9_4_DueDate = 0D THEN
-                                TypeA9_4_DueDate := TODAY + 8;
-                            //5 - Varme
-                            TypeA9_5_LandlordHeat := SVATenancy.TypeA9_5_LandlordHeat;
-                            TypeA9_5_LandlorNatGas := SVATenancy.TypeA9_5_LNatgas;
-                            TypeA9_5_LandlordOil := SVATenancy.TypeA9_5_lOil;
-                            TypeA9_5_LandlordElHeating := SVATenancy.TypeA9_5_LElHeat;
-                            TypeA9_5_LandlordOther := SVATenancy.TypeA9_5_LOther;
-                            TypeA9_5_LandlordText := SVATenancy.TypeA9_5_LOtherText;
-
-                            TypeA9_5_TenantHeat := SVATenancy.TypeA9_5_TenantHeat;
-                            TypeA9_5_TenantEl := SVATenancy.TypeA9_5_TEl;
-                            TypeA9_5_TenantGas := SVATenancy.TypeA9_5_Tgas;
-                            TypeA9_5_TenantOil := SVATenancy.TypeA9_5_TOil;
-                            TypeA9_5_TenantNatGas := SVATenancy.TypeA9_5_TNatgas;
-                            TypeA9_5_TenOtherHeat := SVATenancy.TypeA9_5_TOTher;
-                            TypeA9_5_TenOtherText := SVATenancy.TypeA9_5_TOtherText;
-
-                            //Vand
-                            TypeA9_5_LandlordWater := SVATenancy.TypeA9_5_LandlordWater;
-                            TypeA9_5_WaterMeter := SVATenancy.TypeA9_5_WaterMeter;
-                            //El
-                            TypeA9_5_LandlordEl := SVATenancy.TypeA9_5_LandlordEl;
-                            TypeA9_5_TenantEl := SVATenancy.TypeA9_5_TEl;
-                            //Køling
-                            TypeA9_5_LandlordCooling := SVATenancy.TypeA9_5_LandlordCooling;
-                            TypeA9_5_CoolingMeter := SVATenancy.TypeA9_5_CoolingMeter;
-                            //6
-                            TypeA9_6_AntennaLandlord := SVATenancy.TypeA9_6_AntennaLandlord;
-                            TypeA9_6_AntennaTenancies := SVATenancy.TypeA9_6_AntennaTenancies;
-                            TypeA9_6_Internet := SVATenancy.TypeA9_6_Internet;
-                            //7
-                            TypeA9_7_InspecionIn := SVATenancy.TypeA9_7_InspecionIn;
-                            //8
-                            TypeA9_8_MaintainceInsideLandl := SVATenancy.TypeA9_8_MaintainceInsideLandl;
-                            TypeA9_8_MaintainceInsideTenan := SVATenancy.TypeA9_8_MaintainceInsideTenan;
-                            IF TypeA9_8_MaintainceInsideLandl = TRUE THEN BEGIN
-                                TypeA9_8_Date := SVATenancy.TypeA9_8_Date;
-                                TypeA9_8_Amount := SVATenancy.TypeA9_8_Amount;
-                            END;
-                            IF (TypeA9_8_MaintainceInsideLandl = FALSE) AND (TypeA9_8_MaintainceInsideTenan = FALSE) THEN
-                                TypeA9_8_MaintainceInsideTenan := TRUE;
-
-                            //§9
-                            TypeA9_9_Stove := SVATenancy.TypeA9_9_Stove;
-                            TypeA9_9_Fridge := SVATenancy.TypeA9_9_Fridge;
-                            TypeA9_9_Freezer := SVATenancy.TypeA9_9_Freezer;
-                            TypeA9_9_dishwasher := SVATenancy.TypeA9_9_dishwasher;
-                            TypeA9_9_Washer := SVATenancy.TypeA9_9_Washer;
-                            TypeA9_9_Dryer := SVATenancy.TypeA9_9_Dryer;
-                            TypeA9_9_Hood := SVATenancy.TypeA9_9_Hood;
-                            TypeA9_9_ElectricPanels := SVATenancy.TypeA9_9_ElectricPanels;
-                            TypeA9_9_ElectricPanels_qty := SVATenancy.TypeA9_9_El_qty;
-                            TypeA9_9_WaterHeater := SVATenancy.TypeA9_9_WaterHeater;
-                            TypeA9_9_WaterHeater_qty := SVATenancy.TypeA9_9_WaterHeater_qty;
-                            TypeA9_9_Other1 := SVATenancy.TypeA9_9_Other1;
-                            TypeA9_9_Other2 := SVATenancy.TypeA9_9_Other2;
-                            TypeA9_9_Other3 := SVATenancy.TypeA9_9_Other3;
-                            TypeA9_9_Other1Text := SVATenancy.TypeA9_9_Other1Text;
-                            TypeA9_9_Other2Text := SVATenancy.TypeA9_9_Other2Text;
-                            TypeA9_9_Other3Text := SVATenancy.TypeA9_9_Other3Text;
-                            //10
-                            TypeA9_10_TenRep := SVATenancy.TypeA9_10_TenRep;
-                            TypeA9_10_LiveStock := SVATenancy.TypeA9_10_LiveStock;
-                            TypeA9_10_HouseRules := SVATenancy.TypeA9_10_HouseRules;
-                        END; //boliglejemål.
-
-                        IF SVATenancy.Type = 1 THEN BEGIN //Erhvervslejemål - i praksis garager.
-                                                          //1
-                            TypeA9_1_GarageNo := SVATenancy.TypeA9_1_GarageNo;
-                            //3
-                            IF SVATenancy.PeriodYear = 0 THEN BEGIN
-                                TypeA9_3_Monthly := TRUE;
-                                TypeA9_3_Quater := FALSE;
-                            END;
-                            IF SVATenancy.PeriodYear = 1 THEN BEGIN
-                                TypeA9_3_Monthly := FALSE;
-                                TypeA9_3_Quater := TRUE;
-                            END;
-                            //4
-                            TypeA9_4_DepMth := SVATenancy.Deposit;
-                            TypeA9_4_PrepaidRentMth := SVATenancy.PrepaidRent;
-                            TypeA9_4_DepAmount := TypeA9_3_RentPerYear / 12 * TypeA9_4_DepMth;
-                            TypeA9_4_PrepaidRent := TypeA9_3_RentPerYear / 12 * TypeA9_4_PrepaidRentMth;
-                            TypeA9_4_RentFrom := SVAOccupant.StartDate;
-                            TypeA9_4_RentTo := CalcDate('<-1D>', TypeA9_4_RentFirstTime);
-                            IF TypeA9_4_DueDate = 0D THEN
-                                TypeA9_4_DueDate := TODAY + 8;
-                        END; //erhvervslejemål - i praksis garager
-
-                    END; //Lejemål
-                         //Insert();
-                END;
-                MoveInAmount();
-                PeriodAmount();
-            end;
         }
         field(2; TypeA9_1_Mail; Text[100])
         {
@@ -293,9 +51,9 @@ table 50007 "SVA LeaseContract_A9"
         {
             Caption = 'Other';
         }
-        field(106; TypeA9_1_OtherTTxt; Text[30])
+        field(106; TypeA9_1_OtherTTxt; Text[100])
         {
-            Caption = 'Desciption';
+            Caption = 'Description';
         }
         field(107; TypeA9_1_Sublease; Boolean)
         {
@@ -642,6 +400,10 @@ table 50007 "SVA LeaseContract_A9"
         field(435; TypeA9_4_RentFirstTime; Date)
         {
             Caption = 'First time rent after this';
+        }
+        field(436; TypeA9_4_DueDateFirstMonth; Date)
+        {
+            Caption = 'Duedate, first month';
         }
         field(501; TypeA9_5_LandlordHeat; Boolean)
         {
@@ -1234,6 +996,8 @@ table 50007 "SVA LeaseContract_A9"
         {
 
         }
+
+
     }
 
     keys
@@ -1246,44 +1010,25 @@ table 50007 "SVA LeaseContract_A9"
     fieldgroups
     {
     }
-
-    trigger OnInsert();
+    trigger OnInsert()
     begin
-        IF TypeA9_4_DueDate = 0D THEN
-            TypeA9_4_DueDate := TODAY;
         SetBoolean();
         SetDate();
-        PeriodAmount();
-        MoveInAmount();
-        SetHeat();
-
     end;
 
-    trigger OnModify();
+    trigger OnModify()
     begin
-        IF TypeA9_4_DueDate = 0D THEN
-            TypeA9_4_DueDate := TODAY;
         SetBoolean();
         SetDate();
-        SetAmounts(Number);
-        if TypeA9_4_Rentetc <> 0 THEN
-            PeriodAmount();
-        MoveInAmount();
-        SetHeat();
     end;
+
+
+
 
     var
-        SVAOccupant: Record "SVA Occupant";
-        SVATenancy: Record "SVA Tenancy";
-        Customer: Record "Customer";
-        CompanyInformation: Record "Company Information";
-        SVAProperty: Record "SVA Property";
-        SVASubscriptionLines: Record "SVA Subscription Lines";
-        SVAParameters: Record "SVA Parameters";
-        SVACosttype: Record "SVA Cost type";
-        Mnth: Integer;
-        Yr: Integer;
 
+        SVATenancy: Record "SVA Tenancy";
+        SVAParameters: Record "SVA Parameters";
         Days: Integer;
         PeriodType: Integer;
         Periods: Integer;
@@ -1770,60 +1515,6 @@ table 50007 "SVA LeaseContract_A9"
         END;
 
 
-    end;
-
-    local procedure SetAmounts(OcNumber: Code[10])
-    var
-        l_SVAOccupant: Record "SVA Occupant";
-    begin
-        l_SVAOccupant.Reset();
-        l_SVAOccupant.SetRange(Number, OcNumber);
-        if l_SVAOccupant.FindFirst() then begin
-
-            SVASubscriptionLines.Reset();
-            SVASubscriptionLines.SETRANGE(Tenancies, l_SVAOccupant.TenancyNo);
-            SVASubscriptionLines.SetRange("Date From", Today - 20000, l_SVAOccupant.StartDate);
-            IF SVASubscriptionLines.FindSet() THEN
-                REPEAT
-                    if (SVASubscriptionLines."Date To" = 0D) or (SVASubscriptionLines."Date To" > l_SVAOccupant.StartDate) then begin
-                        SVACosttype.Reset();
-                        SVACosttype.SETRANGE(Costtype, SVASubscriptionLines."Cost Types");
-                        IF SVACosttype.FindSet() THEN
-                            if SVACosttype.type = 0 then begin //andet, ex parking/garage
-                                TypeA9_3_OtherText1 := SVASubscriptionLines.Description;
-                                TypeA9_3_OtherAmount1 := SVASubscriptionLines."Amount Period";
-                            end;
-                        IF SVACosttype.Type = 1 THEN BEGIN //Rent
-                            TypeA9_3_RentPerYear := SVASubscriptionLines."Amount Year";
-                            TypeA9_3_RentPerPeriode := SVASubscriptionLines."Amount Period";
-                            TypeA9_1_Vat := SVACosttype.VatGroup;
-                        END;
-                        IF SVACosttype.Type = 2 THEN//ACVarme
-                            TypeA9_3_ACHeat := SVASubscriptionLines."Amount Period";
-
-                        IF SVACosttype.Type = 3 THEN//ACVand
-                            TypeA9_3_ACWater := SVASubscriptionLines."Amount Period";
-
-                        IF SVACosttype.Type = 4 THEN  //ACEl
-                            TypeA9_3_ACElectricity := SVASubscriptionLines."Amount Period";
-
-                        IF SVACosttype.Type = 5 THEN  //ACCooling
-                            TypeA9_3_ACCooling := SVASubscriptionLines."Amount Period";
-
-                        IF SVACosttype.Type = 7 THEN  //Antenna
-                            TypeA9_3_Antenna := SVASubscriptionLines."Amount Period";
-
-                        IF SVACosttype.Type = 8 THEN  //Internet
-                            TypeA9_3_Internet := SVASubscriptionLines."Amount Period";
-
-                        IF SVACosttype.Type = 9 THEN //Tenantgroup
-                            TypeA9_3_TenantGroup := SVASubscriptionLines."Amount Period";
-
-                        //SVACosttype find    
-                    end;//range for Date to    
-                UNTIL SVASubscriptionLines.NEXT() = 0;
-            //SVASubscriptionLines
-        end;
     end;
 }
 

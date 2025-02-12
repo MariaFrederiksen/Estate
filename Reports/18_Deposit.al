@@ -38,6 +38,9 @@ report 50018 "SVA Deposit"
             column(StartDate; StartDate)
             {
             }
+            column(PrDate; PrDate)
+            {
+            }
 
             dataitem("Occupant Trans"; "SVA Occupant Trans")
             {
@@ -56,7 +59,20 @@ report 50018 "SVA Deposit"
                 column(Amount; Amount)
                 {
                 }
+                trigger OnAfterGetRecord()
+                begin
+                    if Date > PrDate then
+                        CurrReport.Skip();
+                end;
+
+
             }
+            Trigger OnPreDataItem()
+            begin
+                PrDate := StatementDate;
+                if PrDate = 0D then
+                    PrDate := Today();
+            end;
 
             trigger OnAfterGetRecord();
             var
@@ -71,6 +87,7 @@ report 50018 "SVA Deposit"
                     l_OccupantTrans.Reset();
                     l_OccupantTrans.SetRange(Type, 10);
                     l_OccupantTrans.SetRange(l_OccupantTrans.Occupant, l_OccupantRec.Number);
+                    l_OccupantTrans.SetRange(l_OccupantTrans.Date, 0D, PrDate);
                     IF l_OccupantTrans.FindSet() then
                         repeat
                             g_Amount := g_Amount + l_OccupantTrans.Amount;
@@ -79,19 +96,34 @@ report 50018 "SVA Deposit"
                 if (g_Amount = 0) AND ((l_OccupantRec.Enddate < Today) AND (l_OccupantRec.Enddate <> 0D)) then
                     CurrReport.Skip();
             end;
-
         }
     }
+
     requestpage
     {
-
         layout
         {
+            area(content)
+            {
+                group(Options)
+                {
+                    Caption = 'Filter';
+                    field(StatementDate; StatementDate)
+                    {
+                        ApplicationArea = all;
+                        Caption = 'Date';
+                        ToolTip = 'Opgørelse pr.';
+                        trigger OnValidate()
+                        begin
+                            if StatementDate = 0D then
+                                StatementDate := Today();
+                        end;
+                    }
+                }
+            }
+
         }
 
-        actions
-        {
-        }
     }
 
     labels
@@ -101,5 +133,9 @@ report 50018 "SVA Deposit"
     var
         Headline: Text[20];
         g_Amount: Decimal;
+        StatementDate: Date;
+        PrDate: Date;
+
+
 
 }

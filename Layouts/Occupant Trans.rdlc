@@ -173,14 +173,14 @@
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="ONo">
+                        <Textbox Name="Number">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!ONo.Value</Value>
+                                  <Value>=Fields!Number.Value</Value>
                                   <Style>
                                     <FontFamily>Segoe UI</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -191,7 +191,7 @@
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>ONo</rd:DefaultName>
+                          <rd:DefaultName>Number</rd:DefaultName>
                           <Style>
                             <Border>
                               <Style>None</Style>
@@ -409,7 +409,7 @@
                                   </Style>
                                 </TextRun>
                                 <TextRun>
-                                  <Value>=Fields!Property.Value</Value>
+                                  <Value>=Fields!PropertyNo.Value</Value>
                                   <Style>
                                     <FontFamily>Segoe UI</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -953,14 +953,14 @@
                   <KeepWithGroup>After</KeepWithGroup>
                 </TablixMember>
                 <TablixMember>
-                  <Group Name="OProperty2">
+                  <Group Name="PropertyNo">
                     <GroupExpressions>
-                      <GroupExpression>=Fields!OProperty.Value</GroupExpression>
+                      <GroupExpression>=Fields!PropertyNo.Value</GroupExpression>
                     </GroupExpressions>
                   </Group>
                   <SortExpressions>
                     <SortExpression>
-                      <Value>=Fields!OProperty.Value</Value>
+                      <Value>=Fields!PropertyNo.Value</Value>
                     </SortExpression>
                   </SortExpressions>
                   <TablixHeader>
@@ -973,7 +973,7 @@
                           <Paragraph>
                             <TextRuns>
                               <TextRun>
-                                <Value>=Fields!Property.Value</Value>
+                                <Value>=Fields!PropertyNo.Value</Value>
                                 <Style>
                                   <FontFamily>Segoe UI</FontFamily>
                                   <FontSize>8pt</FontSize>
@@ -997,9 +997,9 @@
                   </TablixHeader>
                   <TablixMembers>
                     <TablixMember>
-                      <Group Name="Number">
+                      <Group Name="Tenancy">
                         <GroupExpressions>
-                          <GroupExpression>=Fields!Number.Value</GroupExpression>
+                          <GroupExpression>=Fields!TenancyNo.Value</GroupExpression>
                         </GroupExpressions>
                       </Group>
                       <SortExpressions>
@@ -1010,14 +1010,14 @@
                       <TablixHeader>
                         <Size>1.91792cm</Size>
                         <CellContents>
-                          <Textbox Name="Number1">
+                          <Textbox Name="TenancyNo">
                             <CanGrow>true</CanGrow>
                             <KeepTogether>true</KeepTogether>
                             <Paragraphs>
                               <Paragraph>
                                 <TextRuns>
                                   <TextRun>
-                                    <Value>=Fields!Number.Value</Value>
+                                    <Value>=Fields!TenancyNo.Value</Value>
                                     <Style>
                                       <FontFamily>Segoe UI</FontFamily>
                                       <FontSize>8pt</FontSize>
@@ -1027,7 +1027,7 @@
                                 <Style />
                               </Paragraph>
                             </Paragraphs>
-                            <rd:DefaultName>Number1</rd:DefaultName>
+                            <rd:DefaultName>TenancyNo</rd:DefaultName>
                             <Style>
                               <Border>
                                 <Style>None</Style>
@@ -1037,18 +1037,19 @@
                               <PaddingRight>2pt</PaddingRight>
                             </Style>
                           </Textbox>
+                          <rd:Selected>true</rd:Selected>
                         </CellContents>
                       </TablixHeader>
                       <TablixMembers>
                         <TablixMember>
-                          <Group Name="ONo">
+                          <Group Name="Number">
                             <GroupExpressions>
-                              <GroupExpression>=Fields!ONo.Value</GroupExpression>
+                              <GroupExpression>=Fields!Number.Value</GroupExpression>
                             </GroupExpressions>
                           </Group>
                           <SortExpressions>
                             <SortExpression>
-                              <Value>=Fields!ONo.Value</Value>
+                              <Value>=Fields!Number.Value</Value>
                             </SortExpression>
                           </SortExpressions>
                           <TablixMembers>
@@ -1056,14 +1057,14 @@
                               <TablixHeader>
                                 <Size>1.98833cm</Size>
                                 <CellContents>
-                                  <Textbox Name="ONo1">
+                                  <Textbox Name="Number2">
                                     <CanGrow>true</CanGrow>
                                     <KeepTogether>true</KeepTogether>
                                     <Paragraphs>
                                       <Paragraph>
                                         <TextRuns>
                                           <TextRun>
-                                            <Value>=Fields!ONo.Value</Value>
+                                            <Value>=Fields!Number.Value</Value>
                                             <Style>
                                               <FontFamily>Segoe UI</FontFamily>
                                               <FontSize>8pt</FontSize>
@@ -1073,7 +1074,7 @@
                                         <Style />
                                       </Paragraph>
                                     </Paragraphs>
-                                    <rd:DefaultName>ONo1</rd:DefaultName>
+                                    <rd:DefaultName>Number2</rd:DefaultName>
                                     <Style>
                                       <Border>
                                         <Style>None</Style>
@@ -1100,14 +1101,14 @@
                                   <TablixHeader>
                                     <Size>4.16687cm</Size>
                                     <CellContents>
-                                      <Textbox Name="OName">
+                                      <Textbox Name="Name1">
                                         <CanGrow>true</CanGrow>
                                         <KeepTogether>true</KeepTogether>
                                         <Paragraphs>
                                           <Paragraph>
                                             <TextRuns>
                                               <TextRun>
-                                                <Value>=Fields!OName.Value</Value>
+                                                <Value>=Fields!Name1.Value</Value>
                                                 <Style>
                                                   <FontFamily>Segoe UI</FontFamily>
                                                   <FontSize>8pt</FontSize>
@@ -1117,7 +1118,7 @@
                                             <Style />
                                           </Paragraph>
                                         </Paragraphs>
-                                        <rd:DefaultName>OName</rd:DefaultName>
+                                        <rd:DefaultName>Name1</rd:DefaultName>
                                         <Style>
                                           <Border>
                                             <Style>None</Style>
@@ -2559,35 +2560,32 @@ End Function
   <DataSets>
     <DataSet Name="DataSet_Result">
       <Fields>
-        <Field Name="Property">
-          <DataField>Property</DataField>
-        </Field>
-        <Field Name="Number">
-          <DataField>Number</DataField>
+        <Field Name="Headline">
+          <DataField>Headline</DataField>
         </Field>
         <Field Name="CompanyName">
           <DataField>CompanyName</DataField>
         </Field>
-        <Field Name="OProperty">
-          <DataField>OProperty</DataField>
+        <Field Name="PropertyNo">
+          <DataField>PropertyNo</DataField>
         </Field>
-        <Field Name="ONo">
-          <DataField>ONo</DataField>
+        <Field Name="Number">
+          <DataField>Number</DataField>
         </Field>
-        <Field Name="OTenancy">
-          <DataField>OTenancy</DataField>
+        <Field Name="TenancyNo">
+          <DataField>TenancyNo</DataField>
         </Field>
-        <Field Name="OCustomer">
-          <DataField>OCustomer</DataField>
+        <Field Name="Customer">
+          <DataField>Customer</DataField>
         </Field>
-        <Field Name="OName">
-          <DataField>OName</DataField>
+        <Field Name="Name1">
+          <DataField>Name1</DataField>
         </Field>
-        <Field Name="OEndDate">
-          <DataField>OEndDate</DataField>
+        <Field Name="EndDate">
+          <DataField>EndDate</DataField>
         </Field>
-        <Field Name="OStartDate">
-          <DataField>OStartDate</DataField>
+        <Field Name="StartDate">
+          <DataField>StartDate</DataField>
         </Field>
         <Field Name="OTransNo">
           <DataField>OTransNo</DataField>

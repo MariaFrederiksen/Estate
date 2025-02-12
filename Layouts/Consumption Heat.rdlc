@@ -1367,6 +1367,20 @@
                                                   <FontSize>8pt</FontSize>
                                                 </Style>
                                               </TextRun>
+                                              <TextRun>
+                                                <Value xml:space="preserve"> </Value>
+                                                <Style>
+                                                  <FontFamily>Segoe UI</FontFamily>
+                                                  <FontSize>8pt</FontSize>
+                                                </Style>
+                                              </TextRun>
+                                              <TextRun>
+                                                <Value>=Fields!Address.Value</Value>
+                                                <Style>
+                                                  <FontFamily>Segoe UI</FontFamily>
+                                                  <FontSize>8pt</FontSize>
+                                                </Style>
+                                              </TextRun>
                                             </TextRuns>
                                             <Style />
                                           </Paragraph>
@@ -2052,6 +2066,9 @@ End Function
         </Field>
         <Field Name="Name1">
           <DataField>Name1</DataField>
+        </Field>
+        <Field Name="Address">
+          <DataField>Address</DataField>
         </Field>
         <Field Name="EndDate">
           <DataField>EndDate</DataField>

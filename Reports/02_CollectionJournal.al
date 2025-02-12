@@ -80,6 +80,9 @@ report 50003 "SVA Collection Journal"
             column(TNumber; Tenancy.Number)
             {
             }
+            column(Address1; Address1)
+            {
+            }
             dataitem("Occupant"; "SVA Occupant")
             {
                 DataItemLink = TenancyNo = FIELD(Number);
@@ -99,7 +102,7 @@ report 50003 "SVA Collection Journal"
                 dataitem("Subscription Lines"; "SVA Subscription Lines")
                 {
                     DataItemLink = Tenancies = FIELD(TenancyNo);
-                    DataItemTableView = SORTING(Tenancies, Order, "Cost Types", "Date From", "Date To", KeyNumber)
+                    DataItemTableView = SORTING(Tenancies, Order, "Cost Types")
                                     ORDER(Ascending)
                                     WHERE(Type = FILTER(<> 13));
                     column(STenancy; Tenancies)
@@ -137,6 +140,7 @@ report 50003 "SVA Collection Journal"
                             CurrReport.Skip();
                         IF Type = 13 THEN //Fraflytninger
                             CurrReport.Skip();
+
 
                         Customer.Reset();
                         Customer.SetRange("No.", Occupant."Customer No");
@@ -239,6 +243,7 @@ report 50003 "SVA Collection Journal"
                                     CurrReport.Skip();
 
 
+
                             //Mar,jun,sep,dec                                          
                             if (DATE2DMY(PrDate, 2) = 3) OR (DATE2DMY(PrDate, 2) = 6) OR (DATE2DMY(PrDate, 2) = 9) OR (DATE2DMY(PrDate, 2) = 12) then
                                 if ("Collection Month" = 0) OR ("Collection Month" = 1) OR
@@ -249,7 +254,7 @@ report 50003 "SVA Collection Journal"
 
                         end; //kvartal
 
-                        if SVATenancy.PeriodYear = 2 then //halvår
+                        if SVATenancy.PeriodYear = 2 then begin
                             if (DATE2DMY(PrDate, 2) = 1) OR (DATE2DMY(PrDate, 2) = 7) then
                                 if ("Collection Month" = 1) OR ("Collection Month" = 2) OR
                                    ("Collection Month" = 3) OR ("Collection Month" = 4) OR
@@ -258,46 +263,46 @@ report 50003 "SVA Collection Journal"
                                    ("Collection Month" = 10) OR ("Collection Month" = 11) then
                                     CurrReport.Skip();
 
-                        if (DATE2DMY(PrDate, 2) = 2) OR (DATE2DMY(PrDate, 2) = 8) then
-                            if ("Collection Month" = 0) OR ("Collection Month" = 2) OR
-                               ("Collection Month" = 3) OR ("Collection Month" = 4) OR
-                               ("Collection Month" = 5) OR ("Collection Month" = 6) OR
-                               ("Collection Month" = 8) OR ("Collection Month" = 9) OR
-                               ("Collection Month" = 10) OR ("Collection Month" = 11) then
-                                CurrReport.Skip();
+                            if (DATE2DMY(PrDate, 2) = 2) OR (DATE2DMY(PrDate, 2) = 8) then
+                                if ("Collection Month" = 0) OR ("Collection Month" = 2) OR
+                                   ("Collection Month" = 3) OR ("Collection Month" = 4) OR
+                                   ("Collection Month" = 5) OR ("Collection Month" = 6) OR
+                                   ("Collection Month" = 8) OR ("Collection Month" = 9) OR
+                                   ("Collection Month" = 10) OR ("Collection Month" = 11) then
+                                    CurrReport.Skip();
 
-                        if (DATE2DMY(PrDate, 2) = 3) OR (DATE2DMY(PrDate, 2) = 9) then  //mar and sep
-                            if ("Collection Month" = 0) OR ("Collection Month" = 1) OR //jan feb
-                               ("Collection Month" = 3) OR ("Collection Month" = 4) OR //apr may
-                               ("Collection Month" = 5) OR ("Collection Month" = 6) OR //jun jul
-                               ("Collection Month" = 7) OR ("Collection Month" = 9) OR //aug okt
-                               ("Collection Month" = 10) OR ("Collection Month" = 11) then //nov dec
-                                CurrReport.Skip();
+                            if (DATE2DMY(PrDate, 2) = 3) OR (DATE2DMY(PrDate, 2) = 9) then  //mar and sep
+                                if ("Collection Month" = 0) OR ("Collection Month" = 1) OR //jan feb
+                                   ("Collection Month" = 3) OR ("Collection Month" = 4) OR //apr may
+                                   ("Collection Month" = 5) OR ("Collection Month" = 6) OR //jun jul
+                                   ("Collection Month" = 7) OR ("Collection Month" = 9) OR //aug okt
+                                   ("Collection Month" = 10) OR ("Collection Month" = 11) then //nov dec
+                                    CurrReport.Skip();
 
-                        if (DATE2DMY(PrDate, 2) = 4) OR (DATE2DMY(PrDate, 2) = 10) then  //apr okt
-                            if ("Collection Month" = 0) OR ("Collection Month" = 1) OR //jan feb
-                               ("Collection Month" = 2) OR ("Collection Month" = 4) OR //mar may
-                               ("Collection Month" = 5) OR ("Collection Month" = 6) OR //jun jul
-                               ("Collection Month" = 7) OR ("Collection Month" = 8) OR //aug sep
-                               ("Collection Month" = 10) OR ("Collection Month" = 11) then //nov dec
-                                CurrReport.Skip();
+                            if (DATE2DMY(PrDate, 2) = 4) OR (DATE2DMY(PrDate, 2) = 10) then  //apr okt
+                                if ("Collection Month" = 0) OR ("Collection Month" = 1) OR //jan feb
+                                   ("Collection Month" = 2) OR ("Collection Month" = 4) OR //mar may
+                                   ("Collection Month" = 5) OR ("Collection Month" = 6) OR //jun jul
+                                   ("Collection Month" = 7) OR ("Collection Month" = 8) OR //aug sep
+                                   ("Collection Month" = 10) OR ("Collection Month" = 11) then //nov dec
+                                    CurrReport.Skip();
 
-                        if (DATE2DMY(PrDate, 2) = 5) OR (DATE2DMY(PrDate, 2) = 11) then //may nov
-                            if ("Collection Month" = 0) OR ("Collection Month" = 1) OR //jan feb
-                               ("Collection Month" = 2) OR ("Collection Month" = 3) OR //mar apr
-                               ("Collection Month" = 5) OR ("Collection Month" = 6) OR //jun jul
-                               ("Collection Month" = 7) OR ("Collection Month" = 8) OR //aug sep
-                               ("Collection Month" = 9) OR ("Collection Month" = 11) then //okt nov
-                                CurrReport.Skip();
+                            if (DATE2DMY(PrDate, 2) = 5) OR (DATE2DMY(PrDate, 2) = 11) then //may nov
+                                if ("Collection Month" = 0) OR ("Collection Month" = 1) OR //jan feb
+                                   ("Collection Month" = 2) OR ("Collection Month" = 3) OR //mar apr
+                                   ("Collection Month" = 5) OR ("Collection Month" = 6) OR //jun jul
+                                   ("Collection Month" = 7) OR ("Collection Month" = 8) OR //aug sep
+                                   ("Collection Month" = 9) OR ("Collection Month" = 11) then //okt nov
+                                    CurrReport.Skip();
 
-                        if (DATE2DMY(PrDate, 2) = 6) OR (DATE2DMY(PrDate, 2) = 12) then //jun dec
-                            if ("Collection Month" = 0) OR ("Collection Month" = 1) OR //jan feb
-                               ("Collection Month" = 2) OR ("Collection Month" = 3) OR //mar apr
-                               ("Collection Month" = 4) OR ("Collection Month" = 6) OR //maj jul
-                               ("Collection Month" = 7) OR ("Collection Month" = 8) OR //aug sep
-                               ("Collection Month" = 9) OR ("Collection Month" = 10) then //okt nov
-                                CurrReport.Skip();
-
+                            if (DATE2DMY(PrDate, 2) = 6) OR (DATE2DMY(PrDate, 2) = 12) then //jun dec
+                                if ("Collection Month" = 0) OR ("Collection Month" = 1) OR //jan feb
+                                   ("Collection Month" = 2) OR ("Collection Month" = 3) OR //mar apr
+                                   ("Collection Month" = 4) OR ("Collection Month" = 6) OR //maj jul
+                                   ("Collection Month" = 7) OR ("Collection Month" = 8) OR //aug sep
+                                   ("Collection Month" = 9) OR ("Collection Month" = 10) then //okt nov
+                                    CurrReport.Skip();
+                        end;
                         //halvår
                         if SVATenancy.PeriodYear = 3 then  //year
                             if (DATE2DMY(PrDate, 2)) - 1 <> "Collection Month" then
@@ -311,6 +316,8 @@ report 50003 "SVA Collection Journal"
             trigger OnAfterGetRecord();
             begin
                 if Tenancy.Number = '' then
+                    CurrReport.Skip();
+                if (Tenancy.ArchiveDate < WorkDate()) and (Tenancy.ArchiveDate > DMY2Date(1, 1, 1960)) then
                     CurrReport.Skip();
             end;
         }

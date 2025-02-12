@@ -44,7 +44,7 @@ report 50002 "SVA Collection Journal Short"
                 dataitem("Subscription Lines"; "SVA Subscription Lines")
                 {
                     DataItemLink = Tenancies = FIELD(TenancyNo);
-                    DataItemTableView = SORTING(Tenancies, Order, "Cost Types", "Date From", "Date To", KeyNumber)
+                    DataItemTableView = SORTING(Tenancies, Order, "Cost Types")
                                     ORDER(Ascending)
                                     WHERE(Type = FILTER(<> 13));
                     column(STenancy; Tenancies)

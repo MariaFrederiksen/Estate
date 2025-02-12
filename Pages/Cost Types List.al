@@ -13,45 +13,50 @@ page 50002 "SVA Cost Type Estate List"
         {
             repeater(Group)
             {
-                field(Costtype; Costtype)
+                field(Costtype; Rec.Costtype)
                 {
                     ApplicationArea = All;
                     ToolTip = 'Name on costtype';
                 }
-                field(Description; Description)
+                field(Description; Rec.Description)
                 {
                     ApplicationArea = All;
                     ToolTip = 'Description of costtype. Will appear on invoces and creditmemos';
                 }
-                field(Type; Type)
+                field(Type; Rec.Type)
                 {
                     ApplicationArea = All;
                     ToolTip = 'Costtype. Is used so different acconts can be used for the same purpose (ex. with or without Vat';
                 }
-                field(Account; Account)
+                field(Account; Rec.Account)
                 {
                     ApplicationArea = All;
                     ToolTip = 'Ledaccount for accounting';
                 }
-                field(ProductPostingGroup; ProductPostingGroup)
+                field(ProductPostingGroup; Rec.ProductPostingGroup)
                 {
                     ApplicationArea = All;
                     ToolTip = 'Gen. prod.postinggroup. Mandatory field.';
                 }
-                field(VatGroup; VatGroup)
+                field(VatGroup; Rec.VatGroup)
                 {
                     ApplicationArea = All;
                     ToolTip = 'Vatprod.posting group. Mandatory field.';
                 }
-                field(Order; Order)
+                field(Order; Rec.Order)
                 {
                     ApplicationArea = All;
                     ToolTip = 'In wich order will costtypes be shown on invoices.';
                 }
-                field(Reminder; Reminder)
+                field(Reminder; Rec.Reminder)
                 {
                     ApplicationArea = All;
                     ToolTip = 'Is the costtype a mandatory payment?';
+                }
+                field(Indeks; Rec.Indeks)
+                {
+                    ApplicationArea = all;
+                    ToolTip = 'When regulating rent, this will be regulatet too';
                 }
             }
         }

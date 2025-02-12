@@ -15,8 +15,7 @@ page 50001 "SVA Bookkeeper Activities"
             {
                 Caption = 'Basic data';
 
-
-                field("Occpupants"; "SVA Occupant")
+                field("Occpupants"; Rec."SVA Occupant")
                 {
                     Caption = 'Occupants';
                     ToolTip = 'Liste over beboeraftaler for alle ejendomme';
@@ -24,7 +23,7 @@ page 50001 "SVA Bookkeeper Activities"
                     Image = Person;
                     ApplicationArea = all;
                 }
-                field("Tenancies"; "SVA Tenancy")
+                field("Tenancies"; Rec."SVA Tenancy")
                 {
                     Caption = 'Tenancies';
                     ToolTip = 'Liste over alle lejemål';
@@ -32,7 +31,7 @@ page 50001 "SVA Bookkeeper Activities"
                     Image = "Key";
                     ApplicationArea = all;
                 }
-                field("Properties"; "SVA Property")
+                field("Properties"; Rec."SVA Property")
                 {
                     Caption = 'Properties';
                     ToolTip = 'Liste over ejendomme i virksomheden';
@@ -40,7 +39,7 @@ page 50001 "SVA Bookkeeper Activities"
                     Image = Library;
                     ApplicationArea = all;
                 }
-                field("Vacant tenancies"; "SVA Empty Tenancy")
+                field("Vacant tenancies"; Rec."SVA Empty Tenancy")
                 {
                     ApplicationArea = all;
                     Caption = 'Vacant tenancies';
@@ -53,7 +52,7 @@ page 50001 "SVA Bookkeeper Activities"
             cuegroup(Tilgodehavender)
             {
                 Caption = 'Receivables';
-                field("Overdue Sales Documents"; "Overdue Sales Documents")
+                field("Overdue Sales Documents"; Rec."Overdue Sales Documents")
                 {
                     ApplicationArea = all;
                     Caption = 'Overdue Sales Documents';
@@ -71,16 +70,16 @@ page 50001 "SVA Bookkeeper Activities"
 
     trigger OnOpenPage();
     begin
-        Reset();
-        IF NOT Get() THEN BEGIN
-            Init();
-            Insert();
+        Rec.Reset();
+        IF NOT Rec.Get() THEN BEGIN
+            Rec.Init();
+            Rec.Insert();
         END;
 
-        SETFILTER("Due Date Filter", '<=%1', WORKDATE());
-        SETFILTER("Overdue Date Filter", '<%1', WORKDATE());
-        SETFILTER("User ID Filter", USERID);
-        SETFILTER("SVA Date Filter", '');
+        Rec.SETFILTER("Due Date Filter", '<=%1', WORKDATE());
+        Rec.SETFILTER("Overdue Date Filter", '<%1', WORKDATE());
+        //SETFILTER("User ID Filter", USERID);
+        Rec.SETFILTER("SVA Date Filter", '');
     end;
 
     var

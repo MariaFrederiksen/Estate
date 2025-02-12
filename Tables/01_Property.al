@@ -6,6 +6,7 @@
     DataClassification = CustomerContent;
     DrillDownPageID = "SVA Property List";
     LookupPageID = "SVA Property List";
+    DataCaptionFields = Property, Address1, City;
 
     fields
     {
@@ -17,6 +18,21 @@
         field(2; Name; Text[50])
         {
             Caption = 'Property name';
+            trigger OnValidate()
+            begin
+                SVAParameters.Reset();
+                IF SVAParameters.FindFirst() then begin
+                    DimensionValue.SetRange("Dimension Code", SVAParameters.Dim1);
+                    DimensionValue.SetRange(Code, Rec.Property);
+                    IF DimensionValue.FindFirst() then begin
+                        DimensionValue.Code := Rec.Property;
+                        DimensionValue.Name := 'Ejendom ' + Rec.Name;
+                        DimensionValue."Dimension Value Type" := 0;
+                        DimensionValue."Global Dimension No." := 1;
+                        DimensionValue.Modify(true);
+                    end;
+                end;
+            end;
         }
         field(3; Address1; Text[50])
         {
@@ -32,8 +48,6 @@
             TableRelation = IF ("Country/Region Code" = CONST()) "Post Code".Code
             ELSE
             IF ("Country/Region Code" = FILTER(<> '')) "Post Code".Code WHERE("Country/Region Code" = FIELD("Country/Region Code"));
-            //This property is currently not supported
-            //TestTableRelation = false;
             ValidateTableRelation = false;
 
             trigger OnValidate();
@@ -73,11 +87,23 @@
         }
         field(11; Emails; Text[2000])
         {
-            Caption = 'E-mails';
+            Caption = 'Obsolite';
         }
         field(12; EmailAll; Blob)
         {
-            Caption = 'E-mails';
+            Caption = 'Obsolite';
+        }
+        field(13; "Resident representation"; Boolean)
+        {
+            Caption = 'Resident representation';
+        }
+        field(14; RR_Fromdate; Date)
+        {
+            Caption = 'Res.rep. start at';
+        }
+        field(15; RR_Amount; Decimal)
+        {
+            Caption = 'Res. rep. amount per month';
         }
         field(16; "Global Dimension 1 Code"; Code[20])
         {
@@ -90,6 +116,24 @@
             CaptionClass = '1,1,2';
             Caption = 'Global Dimension 2 Code';
             TableRelation = "Dimension Value".Code WHERE("Global Dimension No." = CONST(2));
+        }
+        field(18; RR_Contact; Code[20])
+        {
+            Caption = 'Res. rep. contractno.';
+            TableRelation = "SVA Occupant".Number where(PropertyNo = field(Property));
+            trigger OnValidate()
+            var
+                SVAOccupant: Record "SVA Occupant";
+            begin
+                SVAOccupant.Get(RR_Contact);
+                RR_Name := SVAOccupant.Name1;
+                "Resident representation" := true;
+            end;
+
+        }
+        field(19; RR_Name; Text[50])
+        {
+            Caption = 'Res. rep. name';
         }
         field(20; Owner; Text[50])
         {
@@ -149,6 +193,11 @@
         {
             Caption = 'E-mail';
             ExtendedDatatype = EMail;
+        }
+        field(30; "VAT Prod. Posting Group"; Code[29])
+        {
+            Caption = 'VAT Prod. Posting Group';
+            TableRelation = "VAT Product Posting Group";
         }
         field(40; SquareMetersTotal; Decimal)
         {
@@ -220,6 +269,21 @@
         field(81; ArchiveDate; Date)
         {
             Caption = 'Archive date';
+            trigger OnValidate()
+            var
+                SVATenancy: Record "SVA Tenancy";
+            begin
+                //Sold or archived
+                if ArchiveDate > DMY2Date(1, 1, 1960) then begin
+                    SVATenancy.Reset();
+                    SVATenancy.SetRange(PropertyNo, Property);
+                    if SVATenancy.FindSet() then
+                        repeat
+                            SVATenancy.Vacant := false;
+                            SVATenancy.Modify();
+                        until SVATenancy.Next() = 0;
+                end;
+            end;
         }
         field(110; FinancialYearFrom; Option)
         {
@@ -408,6 +472,14 @@
         {
             Caption = 'Latest report';
         }
+        field(164; HeatCompanyLogin; Text[20])
+        {
+            Caption = 'Login';
+        }
+        field(165; HeatEmailMoving; Text[50])
+        {
+            Caption = 'E-mail (moving)';
+        }
         field(170; WaterCompany; Text[50])
         {
             Caption = 'Water company';
@@ -423,6 +495,14 @@
         field(173; WaterLatest; Date)
         {
             Caption = 'Latest report';
+        }
+        field(174; WaterCompanyLogin; Text[20])
+        {
+            Caption = 'Login';
+        }
+        field(175; WaterEmailMoving; Text[50])
+        {
+            Caption = 'E-mail (moving)';
         }
         field(180; ElCompany; Text[50])
         {
@@ -747,9 +827,15 @@
 
     fieldgroups
     {
+        fieldgroup(DropDown; Property, Address1, "Post Code", City)
+        {
+        }
+
     }
 
     trigger OnInsert();
+    var
+
     begin
         SVAParameters.Reset();
         IF NOT SVAParameters.FindFirst() then
@@ -757,30 +843,30 @@
 
         SVAParameters.Reset();
         IF SVAParameters.FindFirst() then begin
+            IF (SVAParameters.Dim1 = '') OR (SVAParameters.Dim2 = '') OR (SVAParameters.Dim3 = '') then
+                Error('Dimensioner mangler opsætning. Kørslen afbrydes');
             if Bankname = '' then
                 Bankname := SVAParameters."Bank Name";
             if BankRegNo = '' then
                 BankRegNo := SVAParameters."Bank Branch No";
             if Bankaccount = '' then
                 Bankaccount := SVAParameters."Bank Account No.";
-            IF (SVAParameters.Dim1 = '') OR (SVAParameters.Dim2 = '') OR (SVAParameters.Dim3 = '') then
-                Error('Dimensioner mangler opsætning. Kørslen afbrydes');
         end;
 
         SVAParameters.Reset();
         IF SVAParameters.FindFirst() then begin
             DefaultDimension.SetRange("Table ID", 50001);
-            DefaultDimension.SetRange("No.", Property);
+            DefaultDimension.SetRange("No.", Rec.Property);
             IF DefaultDimension.FindFirst() then begin
-                DefaultDimension."Dimension Value Code" := Property;
+                DefaultDimension."Dimension Value Code" := Rec.Property;
                 DefaultDimension.Modify(true);
             end else begin
                 DefaultDimension.Init();
                 DefaultDimension."Table ID" := 50001;
-                DefaultDimension."No." := Property;
+                DefaultDimension."No." := Rec.Property;
                 DefaultDimension."Dimension Code" := SVAParameters.Dim1;
-                DefaultDimension."Dimension Value Code" := Property;
-                DefaultDimension."Value Posting" := 1;
+                DefaultDimension."Dimension Value Code" := Rec.Property;
+                DefaultDimension."Value Posting" := "Default Dimension Value Posting Type"::"Code Mandatory";
                 DefaultDimension.Insert();
             end;
         end;
@@ -788,23 +874,24 @@
         SVAParameters.Reset();
         IF SVAParameters.FindFirst() then begin
             DimensionValue.SetRange("Dimension Code", SVAParameters.Dim1);
-            DimensionValue.SetRange(Code, Property);
+            DimensionValue.SetRange(Code, Rec.Property);
             IF DimensionValue.FindFirst() then begin
-                DimensionValue.Code := Property;
+                DimensionValue.Code := Rec.Property;
                 DimensionValue.Modify(true);
             end else begin
                 DimensionValue.Init();
                 DimensionValue."Dimension Code" := SVAParameters.Dim1;
-                DimensionValue.Code := Property;
-                DimensionValue.Name := 'Ejendom ' + Property;
+                DimensionValue.Code := Rec.Property;
+                DimensionValue.Name := 'Ejendom ' + Rec.Name;
                 DimensionValue."Dimension Value Type" := 0;
                 DimensionValue."Global Dimension No." := 1;
-                DimensionValue.Id := CreateGuid();
+                DimensionValue.SystemId := CreateGuid();
                 DimensionValue."Last Modified Date Time" := CurrentDateTime;
                 DimensionValue.Insert();
             end;
         end;
     end;
+
 
 
     var
@@ -827,10 +914,119 @@
                 SVATenancy.PrepaidRent := TypeA9_4_PrePaidMth;
                 SVATenancy.Modify();
             UNTIL SVATenancy.NEXT() = 0;
+    end;
+
+    procedure SendEmailToSomeOccupants()
+    var
+        SVAOccupant: Record "SVA Occupant";
+        User: Record User;
+        EmailMessage: Codeunit "Email Message";
+        cu_Email: Codeunit Email;
+        Recipients: List of [Text];
+        CCRecipients: List of [Text];
+        BCCRecipients: List of [Text];
+        Subject: Text;
+        Body: Text;
+        TitleMsg: Label 'Information for occupants';
+        BodyMsg: Label 'Dear occupant.<br><br>Attached to this mail, there is information regarding your lease<br><br><strong>Regards %1</strong>', Comment = '%1 = username';
+
+    begin
+        User.Reset();
+        User.Get(UserSecurityId());
+        Recipients.Add(User."Contact Email");
+        SVAOccupant.Reset();
+        SVAOccupant.SetRange(EndDate, 0D);
+        SVAOccupant.SetRange(AddToMail, true);
+        if SVAOccupant.FindSet() then
+            repeat
+                if SVAOccupant.Email1 <> '' then
+                    BCCRecipients.Add(SVAOccupant.Email1);
+                if SVAOccupant.Email2 <> '' then
+                    BCCRecipients.Add(SVAOccupant.Email2);
+            Until SVAOccupant.Next() = 0;
+
+        Subject := StrSubstNo(TitleMsg);
+        Body := StrSubstNo(BodyMsg, User."Full Name");
+        EmailMessage.Create(Recipients, Subject, Body, true, CCRecipients, BCCRecipients);
+        cu_Email.OpenInEditor(EmailMessage);
 
     end;
 
+    procedure ResetAddToEmail(pProperty: Record "SVA Property")
+    var
+        SVAOccupant: Record "SVA Occupant";
+    begin
+        SVAOccupant.Reset();
+        SVAOccupant.SetRange(PropertyNo, pProperty.Property);
+        if SVAOccupant.FindSet() then
+            SVAOccupant.ModifyAll(AddToMail, false);
+    end;
+
+    procedure SendEmailToOccupants(pProperty: Record "SVA Property"; CommitIsSuppressed: Boolean)
+    var
+        SVAOccupant: Record "SVA Occupant";
+        User: Record User;
+        EmailMessage: Codeunit "Email Message";
+        cu_Email: Codeunit Email;
+        Recipients: List of [Text];
+        CCRecipients: List of [Text];
+        BCCRecipients: List of [Text];
+        Subject: Text;
+        Body: Text;
+        TitleMsg: Label 'Information for occupants in %1.', comment = '%1 = Property address';
+        BodyMsg: Label 'Dear occupant.<br><br>Attached to this mail, there is information regarding your lease<br><br><strong>Regards %1</strong>', Comment = '%1 = username';
+
+    begin
+        User.Reset();
+        User.Get(UserSecurityId());
+        Recipients.Add(User."Contact Email");
+        SVAOccupant.Reset();
+        SVAOccupant.SetRange(PropertyNo, pProperty.Property);
+        SVAOccupant.SetRange(EndDate, 0D);
+        if SVAOccupant.FindSet() then
+            repeat
+                if SVAOccupant.Email1 <> '' then
+                    BCCRecipients.Add(SVAOccupant.Email1);
+                if SVAOccupant.Email2 <> '' then
+                    BCCRecipients.Add(SVAOccupant.Email2);
+            Until SVAOccupant.Next() = 0;
+
+        Subject := StrSubstNo(TitleMsg, pProperty.Address1);
+        Body := StrSubstNo(BodyMsg, User."Full Name");
+        EmailMessage.Create(Recipients, Subject, Body, true, CCRecipients, BCCRecipients);
+        cu_Email.OpenInEditor(EmailMessage);
+
+    end;
+
+    procedure CreateResRepOnOccupants(Properties: Record "SVA Property")
+    var
+        l_SVATenancy: Record "SVA Tenancy";
+        SVASubscriptionLines: record "SVA Subscription Lines";
+        SVACostType: Record "SVA Cost type";
+    begin
+        SVACostType.Reset();
+        SVACostType.SetRange(Type, SVACostType.Type::OccGroup);
+        if SVACostType.FindFirst() then begin
+            l_SVATenancy.Reset();
+            l_SVATenancy.SetRange(PropertyNo, Properties.Property);
+            if l_SVATenancy.FindSet() then
+                repeat
+                    SVACostType.Reset();
+                    SVASubscriptionLines.Init();
+                    SVASubscriptionLines.Tenancies := l_SVATenancy.Number;
+                    SVASubscriptionLines."Cost Types" := SVACostType.Costtype;
+                    SVASubscriptionLines.Validate("Cost Types");
+                    SVASubscriptionLines."Date From" := Properties.RR_Fromdate;
+                    SVASubscriptionLines."Amount Period" := Properties.RR_Amount;
+                    SVASubscriptionLines.Validate("Amount Period");
+                    if not SVASubscriptionLines.Insert() then
+                        SVASubscriptionLines.Modify();
+                until l_SVATenancy.Next() = 0;
+        end;
+    end;
+
     trigger OnModify();
+    var
     begin
         //Update SVATenancy when changes in Type A9 on property
         SVATenancy.Reset();
@@ -874,6 +1070,7 @@
                 SVATenancy.TypeA9_10_HouseRules := TypeA9_10_Houserules;
                 SVATenancy.TypeA9_10_LiveStock := TypeA9_10_HouseStock;
                 SVATenancy.TypeA9_10_TenRep := TypeA9_10_Occgroup;
+                SVATenancy.ArchiveDate := ArchiveDate;
                 SVATenancy.Modify(true);
             until SVATenancy.NEXT() = 0;
     end;
@@ -884,7 +1081,6 @@
         SVATenancy.SetRange(PropertyNo, Property);
         if SVATenancy.FindFirst() then
             Error('Der findes lejemål på ejendommen. Slet disse først');
-
     end;
 
 }

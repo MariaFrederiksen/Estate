@@ -1884,6 +1884,9 @@ End Function
         <Field Name="StartDate">
           <DataField>StartDate</DataField>
         </Field>
+        <Field Name="PrDate">
+          <DataField>PrDate</DataField>
+        </Field>
         <Field Name="OccupantNo">
           <DataField>OccupantNo</DataField>
         </Field>

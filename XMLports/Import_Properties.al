@@ -47,6 +47,7 @@ xmlport 50008 "SVA Import Properties"
         {
         }
     }
+    
     trigger OnPostXmlPort();
     begin
         Message('Ejendomme er indlæst');

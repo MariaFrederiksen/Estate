@@ -7,19 +7,19 @@ tableextension 50040 "SVA TeamMember Cue Ext" extends "Team Member Cue"
         {
             Caption = 'Vacant Tenancies';
             FieldClass = FlowField;
-            CalcFormula = count ("SVA Tenancy" where(Vacant = const(true)));
+            CalcFormula = count("SVA Tenancy" where(Vacant = const(true)));
         }
         field(50002; "SVA Property"; Integer)
         {
             Caption = 'Properties';
             FieldClass = FlowField;
-            CalcFormula = count ("SVA Property");
+            CalcFormula = count("SVA Property");
         }
         field(50003; "SVA Tenancy"; Integer)
         {
             Caption = 'Tenancy';
             FieldClass = FlowField;
-            CalcFormula = count ("SVA Tenancy");
+            CalcFormula = count("SVA Tenancy");
 
         }
         field(50004; "SVA Occupant"; Integer)

@@ -12,7 +12,7 @@ report 50006 "SVA Consumption Heat"
             column(Headline; Headline)
             {
             }
-            column(CompanyName; COMPANYPROPERTY.DISPLAYNAME())
+            column(CompanyName; PropertyName)
             {
             }
             column(ConsumptionFrom; ConsumptionFrom)
@@ -34,6 +34,9 @@ report 50006 "SVA Consumption Heat"
             {
             }
             column(Name1; Name1)
+            {
+            }
+            column(Address; Address)
             {
             }
             column(EndDate; EndDate)
@@ -74,7 +77,10 @@ report 50006 "SVA Consumption Heat"
                 PropNo := PropertyNo;
                 SVAProperty.Reset();
                 SVAProperty.SETRANGE(SVAProperty.Property, PropNo);
-                IF SVAProperty.FINDFIRST() THEN
+                IF SVAProperty.FINDFIRST() then begin
+                    PropertyName := SVAProperty.Name;
+                    if PropertyName = '' then
+                        PropertyName := SVAProperty.Address1;
                     If ConsumptionTo = 0D then begin
                         ConsumptionFrom := DMY2DATE(1, SVAProperty.HeatingYearFrom, DATE2DMY(TODAY, 3));
                         ConsumptionTo := CALCDATE('<1Y-1D>', ConsumptionFrom);
@@ -83,6 +89,7 @@ report 50006 "SVA Consumption Heat"
                             ConsumptionTo := CalcDate('<-1Y>', ConsumptionTo);
                         end;
                     end;
+                end;
 
                 IF (EndDate < ConsumptionFrom) AND (EndDate <> 0D) THEN
                     CurrReport.Skip();
@@ -115,6 +122,7 @@ report 50006 "SVA Consumption Heat"
         ConsumptionFrom: Date;
         PropNo: Code[10];
         HeadlineLbl: Label 'A conto heat';
+        PropertyName: Text[50];
 
 }
 

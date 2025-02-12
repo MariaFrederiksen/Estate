@@ -2,7 +2,8 @@ report 50031 "SVA Regulation Indeks Min"
 {
     DefaultLayout = Word;
     WordLayout = './layouts/SVA Regulation IndeksMinMax.docx';
-    Caption = 'Regulation letters';
+    Caption = 'Regulation letters with min/max regulations';
+
 
     dataset
     {
@@ -55,6 +56,10 @@ report 50031 "SVA Regulation Indeks Min"
             }
             column(Regulationdate; format("SVA Regulations".Regulationdate))
             {
+            }
+            column(OldIndeksDate; format("SVA Regulations".OldIndeksDate))
+            {
+
             }
             column(IndeksOld; "SVA Regulations".Indeks_Old)
             {
@@ -119,18 +124,63 @@ report 50031 "SVA Regulation Indeks Min"
         }
         dataitem("Company Information"; "Company Information")
         {
-            column(CName; "Company Information".Name)
+            column(CompanyAddress1; "Company Information".Name)
             {
             }
-            column(CAddress; "Company Information".Address)
+            column(CompanyAddress2; "Company Information".Address)
             {
             }
-            column(CPostCode; "Company Information"."Post Code")
+            column(CompanyAddress3; "Company Information"."Post Code" + ' ' + "Company Information".City)
             {
             }
-            column(CCity; "Company Information".City)
+            column(CompanyPhoneNo; "Company Information"."Phone No.")
             {
             }
+            column(CompanyHomePage; "Company Information"."Home Page")
+            {
+            }
+            column(CompanyVatRegNo; "Company Information"."VAT Registration No.")
+            {
+            }
+            column(CompanyPicture; "Company Information".Picture)
+            {
+            }
+            column(UserName; UserName)
+            {
+            }
+            column(UserEmail; UserEmail)
+            {
+
+            }
+            column(UserText; UserText)
+            {
+
+            }
+            column(UserPhone; UserPhone)
+            {
+
+            }
+            column(VatText; VatText)
+            {
+
+            }
+            trigger OnAfterGetrecord()
+            var
+                User: record User;
+            begin
+                User.Reset();
+                User.SetRange("User Security ID", UserSecurityId());
+                if User.FindFirst() then begin
+                    UserName := User."Full Name";
+                    UserEmail := User."Contact Email";
+                    UserText := 'Ejendomsadministrator';
+                    UserPhone := '8722 4543';
+                end;
+                VatText := '';
+                if "SVA Regulations"."Vat Charge" = true then
+                    VatText := VatTextLbl;
+
+            end;
         }
     }
 
@@ -156,5 +206,11 @@ report 50031 "SVA Regulation Indeks Min"
 
     var
         CompanyInformation: Record "Company Information";
+        UserName: Text;
+        UserEmail: Text;
+        UserText: Text;
+        UserPhone: Text;
+        VatTextLbl: Label 'The above amount is subject to VAT';
+        VatText: Text;
 }
 

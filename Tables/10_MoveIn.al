@@ -25,6 +25,8 @@ table 50010 "SVA MovingIn Status"
                     IF SVAOccupant.FINDFIRST() THEN BEGIN
                         Name := SVAOccupant.Name1;
                         Name2 := SVAOccupant.Name2;
+                        Phone := SVAOccupant.CellPhone1 + ' ' + SVAOccupant.CellPhone2;
+                        Email1 := SVAOccupant.Email1;
                     END;
 
                     SVATenancy.Reset();
@@ -149,7 +151,7 @@ table 50010 "SVA MovingIn Status"
         field(30; BebrepProperty; Boolean)
         {
             DataClassification = CustomerContent;
-            Caption = 'Has the SVAProperty a tenantgroup?';
+            Caption = 'Has the Property a tenantgroup?';
         }
         field(31; BebrepInd; Boolean)
         {
@@ -308,6 +310,11 @@ table 50010 "SVA MovingIn Status"
             OptionCaption = 'No,Tenant,Landlord';
             OptionMembers = No,Tenant,Landlord;
         }
+        field(119; Room1Notes; Text[100])
+        {
+            Caption = 'Note for room 1';
+            DataClassification = CustomerContent;
+        }
         field(200; Room2Description; Text[30])
         {
             DataClassification = CustomerContent;
@@ -438,6 +445,11 @@ table 50010 "SVA MovingIn Status"
             DataClassification = CustomerContent;
             OptionCaption = 'No,Tenant,Landlord';
             OptionMembers = No,Tenant,Landlord;
+        }
+        field(219; Room2Notes; Text[100])
+        {
+            Caption = 'Note for room 2';
+            DataClassification = CustomerContent;
         }
         field(300; Room3Description; Text[30])
         {
@@ -570,6 +582,11 @@ table 50010 "SVA MovingIn Status"
             OptionCaption = 'No,Tenant,Landlord';
             OptionMembers = No,Tenant,Landlord;
         }
+        field(319; Room3Notes; Text[100])
+        {
+            Caption = 'Note for room 3';
+            DataClassification = CustomerContent;
+        }
         field(400; Room4Description; Text[30])
         {
             DataClassification = CustomerContent;
@@ -701,6 +718,11 @@ table 50010 "SVA MovingIn Status"
             OptionCaption = 'No,Tenant,Landlord';
             OptionMembers = No,Tenant,Landlord;
         }
+        field(419; Room4Notes; Text[100])
+        {
+            Caption = 'Note for room 4';
+            DataClassification = CustomerContent;
+        }
         field(501; EntreCeilingCondition; Option)
         {
             Caption = 'Ceiling condition';
@@ -826,6 +848,11 @@ table 50010 "SVA MovingIn Status"
             DataClassification = CustomerContent;
             OptionCaption = 'No,Tenant,Landlord';
             OptionMembers = No,Tenant,Landlord;
+        }
+        field(519; EntreNotes; Text[100])
+        {
+            Caption = 'Note for the room';
+            DataClassification = CustomerContent;
         }
         field(601; KitchenCeilingCondition; Option)
         {
@@ -1022,6 +1049,11 @@ table 50010 "SVA MovingIn Status"
             DataClassification = CustomerContent;
             OptionCaption = 'No,Tenant,Landlord';
             OptionMembers = No,Tenant,Landlord;
+        }
+        field(629; KitchenNotes; Text[100])
+        {
+            Caption = 'Note for the room';
+            DataClassification = CustomerContent;
         }
         field(701; BathroomCeilingCondition; Option)
         {
@@ -1233,6 +1265,11 @@ table 50010 "SVA MovingIn Status"
             OptionCaption = 'No,Tenant,Landlord';
             OptionMembers = No,Tenant,Landlord;
         }
+        field(731; BathroomNotes; Text[100])
+        {
+            Caption = 'Note for the room';
+            DataClassification = CustomerContent;
+        }
         field(801; ToiletCeilingCondition; Option)
         {
             Caption = 'Ceiling condition';
@@ -1414,6 +1451,11 @@ table 50010 "SVA MovingIn Status"
             DataClassification = CustomerContent;
             OptionCaption = 'No,Tenant,Landlord';
             OptionMembers = No,Tenant,Landlord;
+        }
+        field(827; ToiletroomNotes; Text[100])
+        {
+            Caption = 'Note for the room';
+            DataClassification = CustomerContent;
         }
         field(901; StoveYear; Text[10])
         {
@@ -1732,6 +1774,55 @@ table 50010 "SVA MovingIn Status"
             DataClassification = CustomerContent;
             OptionCaption = 'None,Repair,Replaced';
             OptionMembers = None,Repair,Replaced;
+        }
+        field(955; Keymanufactor; Text[30])
+        {
+            Caption = 'Manufactor';
+            DataClassification = CustomerContent;
+        }
+        field(956; KeyQty; Text[30])
+        {
+            Caption = 'Qty keys';
+            DataClassification = CustomerContent;
+        }
+        field(961; MailboxYear; Text[10])
+        {
+            Caption = 'Year';
+            DataClassification = CustomerContent;
+        }
+        field(962; MailboxManufactor; Text[30])
+        {
+            Caption = 'Mailbox Manufactor';
+            DataClassification = CustomerContent;
+        }
+        field(963; MailboxModel; Text[30])
+        {
+            Caption = 'Model';
+            DataClassification = CustomerContent;
+        }
+        field(964; MailboxCondition; Option)
+        {
+            Caption = 'Mailbox condition';
+            DataClassification = CustomerContent;
+            OptionCaption = 'Not existing,Refurnished,Good condition,Bad condition,Worn';
+            OptionMembers = "Not existing",Refurnished,"Good condition","Bad condition",Worn;
+        }
+        field(965; MailboxRepairs; Option)
+        {
+            Caption = 'Mailbox repairs';
+            DataClassification = CustomerContent;
+            OptionCaption = 'None,Repair,Replaced';
+            OptionMembers = None,Repair,Replaced;
+        }
+        field(966; WashKeymanufactor; Text[30])
+        {
+            Caption = 'Washkey Manufactor';
+            DataClassification = CustomerContent;
+        }
+        field(967; WashKeyQty; Text[30])
+        {
+            Caption = 'Qty washkeys';
+            DataClassification = CustomerContent;
         }
         field(980; Phone; Text[20])
         {

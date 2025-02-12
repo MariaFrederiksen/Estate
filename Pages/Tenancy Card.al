@@ -10,57 +10,70 @@ page 50023 "SVA Tenancy Card"
         {
             group(Generelt)
             {
-                field(PropertyNo; PropertyNo)
+                field(PropertyNo; Rec.PropertyNo)
                 {
                     ApplicationArea = All;
+                    ToolTip = 'Property No.';
                 }
-                field(Number; Number)
+                field(Number; Rec.Number)
                 {
                     ApplicationArea = All;
+                    ToolTip = 'Tenancy No.';
                 }
-                field(Address1; Address1)
+                field(Address1; Rec.Address1)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Address';
                 }
-                field(Address2; Address2)
+                field(Address2; Rec.Address2)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Address 2';
                 }
-                field("Post Code"; "Post Code")
+                field("Post Code"; Rec."Post Code")
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Postcode';
                 }
-                field(City; City)
+                field(City; Rec.City)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'City';
                 }
-                field("Country/Region Code"; "Country/Region Code")
+                field("Country/Region Code"; Rec."Country/Region Code")
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Country/region code';
                 }
-                field(Type; Type)
+                field(Type; Rec.Type)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Type of rent';
                 }
-                field(PeriodYear; PeriodYear)
+                field(PeriodYear; Rec.PeriodYear)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Periods';
                 }
-                field(Rooms; Rooms)
+                field(Rooms; Rec.Rooms)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Rooms incl. livingroom';
                 }
-                field(AreaT; AreaTotal)
+                field(AreaT; Rec.AreaTotal)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Area';
                 }
-                field(AreaLiv; AreaLiv)
+                field(AreaLiv; Rec.AreaLiv)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Living area';
                 }
-                field(AreaPro; AreaPro)
+                field(AreaPro; Rec.AreaPro)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Commercial area';
                 }
             }
             group("Appliancies")
@@ -69,145 +82,172 @@ page 50023 "SVA Tenancy Card"
                 group("Stove")
                 {
                     Caption = 'Stove';
-                    field(StoveManufactor; StoveManufactor)
+                    field(StoveManufactor; Rec.StoveManufactor)
                     {
                         ApplicationArea = All;
+                        Tooltip = 'Manufactor';
                     }
-                    field(StoveModel; StoveModel)
+                    field(StoveModel; Rec.StoveModel)
                     {
                         ApplicationArea = All;
+                        Tooltip = 'Model code';
                     }
-                    field(StoveYear; StoveYear)
+                    field(StoveYear; Rec.StoveYear)
                     {
                         ApplicationArea = All;
+                        Tooltip = 'Production year';
                     }
                 }
                 group("Cook")
                 {
                     Caption = 'Cook';
-                    field(CookManufactor; CookManufactor)
+                    field(CookManufactor; Rec.CookManufactor)
                     {
                         ApplicationArea = All;
+                        Tooltip = 'Manufactor';
                     }
-                    field(CookModel; CookModel)
+                    field(CookModel; Rec.CookModel)
                     {
                         ApplicationArea = All;
+                        Tooltip = 'Model code';
                     }
-                    field(CookYear; CookYear)
+                    field(CookYear; Rec.CookYear)
                     {
                         ApplicationArea = All;
+                        Tooltip = 'Production year';
                     }
                 }
                 group(Oven)
                 {
-                    caption = 'Oven';
-                    field(Ovenmanufactor; OvenManufactor)
+                    Caption = 'Oven';
+                    field(Ovenmanufactor; Rec.OvenManufactor)
                     {
                         ApplicationArea = All;
+                        Tooltip = 'Manufactor';
                     }
-                    field(OvenModel; OvenModel)
+                    field(OvenModel; Rec.OvenModel)
                     {
                         ApplicationArea = All;
+                        Tooltip = 'Model code';
                     }
-                    field(OvenYear; OvenYear)
+                    field(OvenYear; Rec.OvenYear)
                     {
                         ApplicationArea = All;
+                        Tooltip = 'Production year';
                     }
                 }
                 group("Hood")
                 {
                     Caption = 'Hood';
-                    field(HoodManufactor; HoodManufactor)
+                    field(HoodManufactor; Rec.HoodManufactor)
                     {
                         ApplicationArea = All;
+                        Tooltip = 'Manufactor';
                     }
-                    field(HoodStoveModel; HoodStoveModel)
+                    field(HoodStoveModel; Rec.HoodStoveModel)
                     {
                         ApplicationArea = All;
+                        Tooltip = 'Model code';
                     }
-                    field(HoodYear; HoodYear)
+                    field(HoodYear; Rec.HoodYear)
                     {
                         ApplicationArea = All;
+                        Tooltip = 'Production year';
                     }
                 }
                 group("Fridge")
                 {
                     Caption = 'Fridge';
-                    field(FridgeManufactor; FridgeManufactor)
+                    field(FridgeManufactor; Rec.FridgeManufactor)
                     {
                         ApplicationArea = All;
+                        Tooltip = 'Manufactor';
                     }
-                    field(FridgeModel; FridgeModel)
+                    field(FridgeModel; Rec.FridgeModel)
                     {
                         ApplicationArea = All;
+                        Tooltip = 'Model code';
                     }
-                    field(FridgeYear; FridgeYear)
+                    field(FridgeYear; Rec.FridgeYear)
                     {
                         ApplicationArea = All;
+                        Tooltip = 'Production year';
                     }
                 }
                 Group(Freezer)
                 {
                     Caption = 'Freezer';
-                    field(FreezerManufactor; FreezerManufactor)
+                    field(FreezerManufactor; Rec.FreezerManufactor)
                     {
                         ApplicationArea = All;
+                        Tooltip = 'Manufactor';
                     }
-                    field(FreezerModel; FreezerModel)
+                    field(FreezerModel; Rec.FreezerModel)
                     {
                         ApplicationArea = All;
+                        Tooltip = 'Model code';
                     }
-                    field(FreezerYear; FreezerYear)
+                    field(FreezerYear; Rec.FreezerYear)
                     {
                         ApplicationArea = All;
+                        Tooltip = 'Production year';
                     }
                 }
                 group(Dishwasher)
                 {
                     Caption = 'Dishwasher';
-                    field(DishwasherManufactor; DishwasherManufactor)
+                    field(DishwasherManufactor; Rec.DishwasherManufactor)
                     {
                         ApplicationArea = All;
+                        Tooltip = 'Manufactor';
                     }
-                    field(DishwasherModel; DishwasherModel)
+                    field(DishwasherModel; Rec.DishwasherModel)
                     {
                         ApplicationArea = All;
+                        Tooltip = 'Model code';
                     }
-                    field(DishwasherYear; DishwasherYear)
+                    field(DishwasherYear; Rec.DishwasherYear)
                     {
                         ApplicationArea = All;
+                        Tooltip = 'Production year';
                     }
                 }
                 group("Washer")
                 {
                     Caption = 'Washer';
-                    field(WasherManufactor; WasherManufactor)
+                    field(WasherManufactor; Rec.WasherManufactor)
                     {
                         ApplicationArea = All;
+                        Tooltip = 'Manufactor';
                     }
-                    field(WasherModel; WasherModel)
+                    field(WasherModel; Rec.WasherModel)
                     {
                         ApplicationArea = All;
+                        Tooltip = 'Model code';
                     }
-                    field(WasherYear; WasherYear)
+                    field(WasherYear; Rec.WasherYear)
                     {
                         ApplicationArea = All;
+                        Tooltip = 'Production year';
                     }
                 }
                 group("Dryer")
                 {
                     Caption = 'Dryer';
-                    field(DryerManufactor; DryerManufactor)
+                    field(DryerManufactor; Rec.DryerManufactor)
                     {
                         ApplicationArea = All;
+                        Tooltip = 'Manufactor';
                     }
-                    field(DryerModel; DryerModel)
+                    field(DryerModel; Rec.DryerModel)
                     {
                         ApplicationArea = All;
+                        Tooltip = 'Model code';
                     }
-                    field(DryerYear; DryerYear)
+                    field(DryerYear; Rec.DryerYear)
                     {
                         ApplicationArea = All;
+                        Tooltip = 'Production year';
                     }
                 }
 
@@ -218,277 +258,338 @@ page 50023 "SVA Tenancy Card"
                 group("Paragraph 1")
                 {
                     Caption = 'Paragraph 1';
-                    field(TypeA9_1_Apartment; TypeA9_1_Apartment)
+                    field(TypeA9_1_Apartment; Rec.TypeA9_1_Apartment)
                     {
                         ApplicationArea = All;
+                        Tooltip = 'Apartment';
                     }
-                    field(TypeA9_1_Room; TypeA9_1_Room)
+                    field(TypeA9_1_Room; Rec.TypeA9_1_Room)
                     {
                         ApplicationArea = All;
+                        Tooltip = 'Room';
                     }
-                    field(TypeA9_1_Condominium; TypeA9_1_Condominium)
+                    field(TypeA9_1_Condominium; Rec.TypeA9_1_Condominium)
                     {
                         ApplicationArea = All;
+                        Tooltip = 'Condeminium';
                     }
-                    field(TypeA9_1_HousingCoop; TypeA9_1_HousingCoop)
+                    field(TypeA9_1_HousingCoop; Rec.TypeA9_1_HousingCoop)
                     {
                         ApplicationArea = All;
+                        Tooltip = 'Housing cooperative';
                     }
-                    field(TypeA9_1_OtherT; TypeA9_1_OtherT)
+                    field(TypeA9_1_OtherT; Rec.TypeA9_1_OtherT)
                     {
                         ApplicationArea = All;
+                        Tooltip = 'Other type of tenancy';
                     }
-                    field(TypeA9_1_OtherTTxt; TypeA9_1_OtherTTxt)
+                    field(TypeA9_1_OtherTTxt; Rec.TypeA9_1_OtherTTxt)
                     {
                         ApplicationArea = All;
+                        Tooltip = 'Kind of tenancy';
                     }
-                    field(TypeA9_1_Laundy; TypeA9_1_Laundy)
+                    field(TypeA9_1_Laundy; Rec.TypeA9_1_Laundy)
                     {
                         ApplicationArea = All;
+                        Tooltip = 'Is there access to a laundry';
                     }
-                    field(TypeA9_1_BicycleStorage; TypeA9_1_BicycleStorage)
+                    field(TypeA9_1_BicycleStorage; Rec.TypeA9_1_BicycleStorage)
                     {
                         ApplicationArea = All;
+                        Tooltip = 'Is there access to bicyclestorage?';
                     }
-                    field(TypeA9_1_Courtyard; TypeA9_1_Courtyard)
+                    field(TypeA9_1_Courtyard; Rec.TypeA9_1_Courtyard)
                     {
                         ApplicationArea = All;
+                        Tooltip = 'Is there access to a courtyard?';
                     }
-                    field(TypeA9_1_Garage; TypeA9_1_Garage)
+                    field(TypeA9_1_Garage; Rec.TypeA9_1_Garage)
                     {
                         ApplicationArea = All;
+                        Tooltip = 'Is there a garage';
                     }
-                    field(TypeA9_1_GarageNo; TypeA9_1_GarageNo)
+                    field(TypeA9_1_GarageNo; Rec.TypeA9_1_GarageNo)
                     {
                         ApplicationArea = All;
+                        Tooltip = 'Garage no.';
                     }
-                    field(TypeA9_1_Attic; TypeA9_1_Attic)
+                    field(TypeA9_1_Attic; Rec.TypeA9_1_Attic)
                     {
                         ApplicationArea = All;
+                        Tooltip = 'Is there access to atticroom og basementroom?';
                     }
-                    field(TypeA9_1_AtticNo; TypeA9_1_AtticNo)
+                    field(TypeA9_1_AtticNo; Rec.TypeA9_1_AtticNo)
                     {
                         ApplicationArea = All;
+                        Tooltip = 'No. on atticroom og basemantroom';
                     }
-                    field(TypeA9_1_Other; TypeA9_1_Other)
+                    field(TypeA9_1_Other; Rec.TypeA9_1_Other)
                     {
                         ApplicationArea = All;
+                        Tooltip = 'Other to use';
                     }
-                    field(TypeA9_1_OtherTxt; TypeA9_1_OtherTxt)
+                    field(TypeA9_1_OtherTxt; Rec.TypeA9_1_OtherTxt)
                     {
                         ApplicationArea = All;
+                        Tooltip = 'Description';
                     }
-                    field(TypeA9_1_Use; TypeA9_1_Use)
+                    field(TypeA9_1_Use; Rec.TypeA9_1_Use)
                     {
                         ApplicationArea = All;
+                        Tooltip = 'What can the lease be uset for';
                     }
                 }
                 group("Paragraf 4")
                 {
                     Caption = 'Paragraph 4';
-                    field(Deposit; Deposit)
+                    field(Deposit; Rec.Deposit)
                     {
                         ApplicationArea = All;
+                        Tooltip = 'Month deposit';
                     }
-                    field(PrepaidRent; PrepaidRent)
+                    field(PrepaidRent; Rec.PrepaidRent)
                     {
                         ApplicationArea = All;
+                        Tooltip = 'Month prepaid rent';
                     }
                 }
                 group("Paragraf 5")
                 {
                     Caption = 'Paragraph 5';
-                    field(TypeA9_5_LandlordHeat; TypeA9_5_LandlordHeat)
+                    field(TypeA9_5_LandlordHeat; Rec.TypeA9_5_LandlordHeat)
                     {
                         ApplicationArea = All;
+                        Tooltip = 'Landlord deliver heat';
                     }
-                    field(TypeA9_5_LNatgas; TypeA9_5_LNatgas)
+                    field(TypeA9_5_LNatgas; Rec.TypeA9_5_LNatgas)
                     {
                         ApplicationArea = All;
+                        Tooltip = 'Natural gas';
                     }
-                    field(TypeA9_5_lOil; TypeA9_5_lOil)
+                    field(TypeA9_5_lOil; Rec.TypeA9_5_lOil)
                     {
                         ApplicationArea = All;
+                        Tooltip = 'Oil';
                     }
-                    field(TypeA9_5_LElHeat; TypeA9_5_LElHeat)
+                    field(TypeA9_5_LElHeat; Rec.TypeA9_5_LElHeat)
                     {
                         ApplicationArea = All;
+                        Tooltip = 'Electric heat';
                     }
-                    field(TypeA9_5_LOther; TypeA9_5_LOther)
+                    field(TypeA9_5_LOther; Rec.TypeA9_5_LOther)
                     {
                         ApplicationArea = All;
+                        Tooltip = 'Other';
                     }
-                    field(TypeA9_5_LOtherText; TypeA9_5_LOtherText)
+                    field(TypeA9_5_LOtherText; Rec.TypeA9_5_LOtherText)
                     {
                         ApplicationArea = All;
+                        Tooltip = 'Description';
                     }
-                    field(TypeA9_5_TenantHeat; TypeA9_5_TenantHeat)
+                    field(TypeA9_5_TenantHeat; Rec.TypeA9_5_TenantHeat)
                     {
                         ApplicationArea = All;
+                        Tooltip = 'tTe tenant takes care of the heat';
                     }
-                    field(TypeA9_5_Tgas; TypeA9_5_Tgas)
+                    field(TypeA9_5_Tgas; Rec.TypeA9_5_Tgas)
                     {
                         ApplicationArea = All;
+                        Tooltip = 'Gas';
                     }
-                    field(TypeA9_5_TNatgas; TypeA9_5_TNatgas)
+                    field(TypeA9_5_TNatgas; Rec.TypeA9_5_TNatgas)
                     {
                         ApplicationArea = All;
+                        Tooltip = 'Natural gas';
                     }
-                    field(TypeA9_5_TOil; TypeA9_5_TOil)
+                    field(TypeA9_5_TOil; Rec.TypeA9_5_TOil)
                     {
                         ApplicationArea = All;
+                        Tooltip = 'Oil';
                     }
-                    field(TypeA9_5_TOTher; TypeA9_5_TOTher)
+                    field(TypeA9_5_TOTher; Rec.TypeA9_5_TOTher)
                     {
                         ApplicationArea = All;
+                        Tooltip = 'Other';
                     }
-                    field(TypeA9_5_TOtherText; TypeA9_5_TOtherText)
+                    field(TypeA9_5_TOtherText; Rec.TypeA9_5_TOtherText)
                     {
                         ApplicationArea = All;
+                        Tooltip = 'Description';
                     }
-                    field(TypeA9_5_LandlordWater; TypeA9_5_LandlordWater)
+                    field(TypeA9_5_LandlordWater; Rec.TypeA9_5_LandlordWater)
                     {
                         ApplicationArea = All;
+                        Tooltip = 'The landlord provides water for the lease';
                     }
-                    field(TypeA9_5_WaterMeter; TypeA9_5_WaterMeter)
+                    field(TypeA9_5_WaterMeter; Rec.TypeA9_5_WaterMeter)
                     {
                         ApplicationArea = All;
+                        Tooltip = 'Watermeter';
                     }
-                    field(TypeA9_5_LandlordEl; TypeA9_5_LandlordEl)
+                    field(TypeA9_5_LandlordEl; Rec.TypeA9_5_LandlordEl)
                     {
                         ApplicationArea = All;
+                        Tooltip = 'The landlord provides electricity for the lease';
                     }
-                    field(TypeA9_5_LandlordCooling; TypeA9_5_LandlordCooling)
+                    field(TypeA9_5_LandlordCooling; Rec.TypeA9_5_LandlordCooling)
                     {
                         ApplicationArea = All;
+                        Tooltip = 'The landlord provides cooling for the lease';
                     }
-                    field(TypeA9_5_CoolingMeter; TypeA9_5_CoolingMeter)
+                    field(TypeA9_5_CoolingMeter; Rec.TypeA9_5_CoolingMeter)
                     {
                         ApplicationArea = All;
+                        Tooltip = 'Coolingmeter';
                     }
                 }
                 group("Paragraf 6")
                 {
                     Caption = 'Paragraph 6';
-                    field(TypeA9_6_AntennaLandlord; TypeA9_6_AntennaLandlord)
+                    field(TypeA9_6_AntennaLandlord; Rec.TypeA9_6_AntennaLandlord)
                     {
                         ApplicationArea = All;
+                        Tooltip = 'The landlord provides a common signal supply, to which the tenant must pay a contribution';
                     }
-                    field(TypeA9_6_AntennaTenancies; TypeA9_6_AntennaTenancies)
+                    field(TypeA9_6_AntennaTenancies; Rec.TypeA9_6_AntennaTenancies)
                     {
                         ApplicationArea = All;
+                        Tooltip = 'The tenants´ antenna association in the property provides a common signal supply';
                     }
-                    field(TypeA9_6_Internet; TypeA9_6_Internet)
+                    field(TypeA9_6_Internet; Rec.TypeA9_6_Internet)
                     {
                         ApplicationArea = All;
+                        Tooltip = 'The landlord provides access for internet';
                     }
                 }
                 group(" Paragraf 7")
                 {
                     Caption = 'Paragraph 7';
-                    field(TypeA9_7_InspecionIn; TypeA9_7_InspecionIn)
+                    field(TypeA9_7_InspecionIn; Rec.TypeA9_7_InspecionIn)
                     {
                         ApplicationArea = All;
+                        Tooltip = 'Is / is the condition of the tenancy determined by a move-in inspection?';
                     }
                 }
                 group("Paragraf 8")
                 {
                     Caption = 'Paragraph 8';
-                    field(TypeA9_8_MaintainceInsideTenan; TypeA9_8_MaintainceInsideTenan)
+                    field(TypeA9_8_MaintainceInsideTenan; Rec.TypeA9_8_MaintainceInsideTenan)
                     {
                         ApplicationArea = All;
+                        Tooltip = 'The interior maintenance of the lease is for the tenant';
                     }
-                    field(TypeA9_8_MaintainceInsideLandl; TypeA9_8_MaintainceInsideLandl)
+                    field(TypeA9_8_MaintainceInsideLandl; Rec.TypeA9_8_MaintainceInsideLandl)
                     {
                         ApplicationArea = All;
+                        Tooltip = 'The interior maintenance of the lease is for the landlord';
                     }
                 }
                 group("Paragraf 9")
                 {
                     Caption = 'Paragraph 9';
-                    field(TypeA9_9_Stove; TypeA9_9_Stove)
+                    field(TypeA9_9_Stove; Rec.TypeA9_9_Stove)
                     {
                         ApplicationArea = All;
+                        Tooltip = 'In the tenancy, is there a stove';
                     }
-                    field(TypeA9_9_Fridge; TypeA9_9_Fridge)
+                    field(TypeA9_9_Fridge; Rec.TypeA9_9_Fridge)
                     {
                         ApplicationArea = All;
+                        Tooltip = 'In the tenancy, is there a fridge';
                     }
-                    field(TypeA9_9_Freezer; TypeA9_9_Freezer)
+                    field(TypeA9_9_Freezer; Rec.TypeA9_9_Freezer)
                     {
                         ApplicationArea = All;
+                        Tooltip = 'In the tenancy, is there a freezer';
                     }
-                    field(TypeA9_9_dishwasher; TypeA9_9_dishwasher)
+                    field(TypeA9_9_dishwasher; Rec.TypeA9_9_dishwasher)
                     {
                         ApplicationArea = All;
+                        Tooltip = 'In the tenancy, is there a dishwasher';
                     }
-                    field(TypeA9_9_Washer; TypeA9_9_Washer)
+                    field(TypeA9_9_Washer; Rec.TypeA9_9_Washer)
                     {
                         ApplicationArea = All;
+                        Tooltip = 'In the tenancy, is there a washer';
                     }
-                    field(TypeA9_9_Dryer; TypeA9_9_Dryer)
+                    field(TypeA9_9_Dryer; Rec.TypeA9_9_Dryer)
                     {
                         ApplicationArea = All;
+                        Tooltip = 'In the tenancy, is there a dryer';
                     }
-                    field(TypeA9_9_Hood; TypeA9_9_Hood)
+                    field(TypeA9_9_Hood; Rec.TypeA9_9_Hood)
                     {
                         ApplicationArea = All;
+                        Tooltip = 'In the tenancy, is there a hood';
                     }
-                    field(TypeA9_9_ElectricPanels; TypeA9_9_ElectricPanels)
+                    field(TypeA9_9_ElectricPanels; Rec.TypeA9_9_ElectricPanels)
                     {
                         ApplicationArea = All;
+                        Tooltip = 'In the tenancy, is there electric panels';
                     }
-                    field(TypeA9_9_El_qty; TypeA9_9_El_qty)
+                    field(TypeA9_9_El_qty; Rec.TypeA9_9_El_qty)
                     {
                         ApplicationArea = All;
+                        Tooltip = 'Qty of panels';
                     }
-                    field(TypeA9_9_WaterHeater; TypeA9_9_WaterHeater)
+                    field(TypeA9_9_WaterHeater; Rec.TypeA9_9_WaterHeater)
                     {
                         ApplicationArea = All;
+                        Tooltip = 'In the tenancy, is there a waterheater';
                     }
-                    field(TypeA9_9_WaterHeater_qty; TypeA9_9_WaterHeater_qty)
+                    field(TypeA9_9_WaterHeater_qty; Rec.TypeA9_9_WaterHeater_qty)
                     {
                         ApplicationArea = All;
+                        Tooltip = 'Qty of waterheater';
                     }
-                    field(TypeA9_9_Other1; TypeA9_9_Other1)
+                    field(TypeA9_9_Other1; Rec.TypeA9_9_Other1)
                     {
                         ApplicationArea = All;
+                        Tooltip = 'In the tenancy, is there anything else';
                     }
-                    field(TypeA9_9_Other1Text; TypeA9_9_Other1Text)
+                    field(TypeA9_9_Other1Text; Rec.TypeA9_9_Other1Text)
                     {
                         ApplicationArea = All;
+                        Tooltip = 'Description';
                     }
-                    field(TypeA9_9_Other2; TypeA9_9_Other2)
+                    field(TypeA9_9_Other2; Rec.TypeA9_9_Other2)
                     {
                         ApplicationArea = All;
+                        Tooltip = 'In the tenancy, is there anything else';
                     }
-                    field(TypeA9_9_Other2Text; TypeA9_9_Other2Text)
+                    field(TypeA9_9_Other2Text; Rec.TypeA9_9_Other2Text)
                     {
                         ApplicationArea = All;
+                        Tooltip = 'Description';
                     }
-                    field(TypeA9_9_Other3; TypeA9_9_Other3)
+                    field(TypeA9_9_Other3; Rec.TypeA9_9_Other3)
                     {
                         ApplicationArea = All;
+                        Tooltip = 'In the tenancy, is there anything else';
                     }
-                    field(TypeA9_9_Other3Text; TypeA9_9_Other3Text)
+                    field(TypeA9_9_Other3Text; Rec.TypeA9_9_Other3Text)
                     {
                         ApplicationArea = All;
+                        Tooltip = 'Description';
                     }
                 }
                 group("Paragraf 10")
                 {
                     Caption = 'Paragraph 10';
-                    field(TypeA9_10_TenRep; TypeA9_10_TenRep)
+                    field(TypeA9_10_TenRep; Rec.TypeA9_10_TenRep)
                     {
                         ApplicationArea = All;
+                        Tooltip = 'Are there tenant representative in the property?';
                     }
-                    field(TypeA9_10_LiveStock; TypeA9_10_LiveStock)
+                    field(TypeA9_10_LiveStock; Rec.TypeA9_10_LiveStock)
                     {
                         ApplicationArea = All;
+                        Tooltip = 'Are livestock allowed?';
                     }
-                    field(TypeA9_10_HouseRules; TypeA9_10_HouseRules)
+                    field(TypeA9_10_HouseRules; Rec.TypeA9_10_HouseRules)
                     {
                         ApplicationArea = All;
+                        Tooltip = 'Is the houserules handed out?';
                     }
                 }
             }
@@ -496,20 +597,19 @@ page 50023 "SVA Tenancy Card"
             {
                 Caption = 'Subscription Lines';
                 SubPageLink = Tenancies = FIELD(Number);
-                SubPageView = SORTING(Tenancies, "Cost Types", "Date From", "Date To", KeyNumber)
-                              ORDER(Ascending);
+                SubPageView = SORTING(Tenancies, order, "Date From")
+                              ORDER(Descending);
                 ApplicationArea = All;
             }
         }
         area(factboxes)
         {
-            part("Attached Documents"; 1174)
+            part("Document Attachment Factbox"; "Document Attachment Factbox")
             {
-                ApplicationArea = All;
                 Caption = 'Attachments';
-                SubPageLink = "Table ID" = CONST(50002),
-                              "No." = FIELD(Number);
-                Visible = NOT IsOfficeAddin;
+                ApplicationArea = all;
+                SubPageLink = "Table ID" = Const(50002), "No." = field(Number);
+                Visible = not IsOfficeAddin;
             }
             systempart(Links; Links)
             {
@@ -519,6 +619,7 @@ page 50023 "SVA Tenancy Card"
             {
                 ApplicationArea = All;
             }
+
 
         }
     }
@@ -547,8 +648,27 @@ page 50023 "SVA Tenancy Card"
                 ShortCutKey = 'Shift+Ctrl+D';
                 ToolTip = 'View or edits dimensions, such as area, project, or department, that you can assign to sales and purchase documents to distribute costs and analyze transaction history.';
             }
+            action(Attachments)
+            {
+                ApplicationArea = All;
+                Caption = 'Attachments';
+                Image = Attach;
+                ToolTip = 'Add a file as an attachment. You can attach images as well as documents.';
+
+                trigger OnAction()
+                var
+                    DocumentAttachmentDetails: Page "Document Attachment Details";
+                    RecRef: RecordRef;
+                begin
+                    RecRef.GetTable(Rec);
+                    DocumentAttachmentDetails.OpenForRecRef(RecRef);
+                    DocumentAttachmentDetails.RunModal();
+                end;
+            }
         }
     }
+
+
     trigger OnOpenPage()
     var
         OfficeManagement: Codeunit "Office Management";

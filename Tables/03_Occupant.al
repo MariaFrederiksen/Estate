@@ -1,4 +1,5 @@
 ﻿table 50003 "SVA Occupant"
+
 {
     Caption = 'Occupant';
     DataClassification = CustomerContent;
@@ -22,6 +23,7 @@
         {
             Caption = 'Tenancy';
             TableRelation = "SVA Tenancy".Number;
+            NotBlank = true;
 
             trigger OnValidate();
             begin
@@ -75,7 +77,7 @@
                         DefaultDimension."No." := Number;
                         DefaultDimension."Dimension Code" := SVAParameters.Dim2;
                         DefaultDimension."Dimension Value Code" := TenancyNo;
-                        DefaultDimension."Value Posting" := 1;
+                        DefaultDimension."Value Posting" := "Default Dimension Value Posting Type"::"Code Mandatory";
                         DefaultDimension."Table Caption" := 'Lejemål på beboer';
                         DefaultDimension.Insert(true);
                     end;
@@ -95,7 +97,7 @@
                         DefaultDimension."No." := Number;
                         DefaultDimension."Dimension Code" := SVAParameters.Dim1;
                         DefaultDimension."Dimension Value Code" := PropertyNo;
-                        DefaultDimension."Value Posting" := 1;
+                        DefaultDimension."Value Posting" := "Default Dimension Value Posting Type"::"Code Mandatory";
                         DefaultDimension."Table Caption" := 'Ejendom på beboer';
                         DefaultDimension.Insert(true);
                     end;
@@ -111,6 +113,7 @@
         {
             Caption = 'Customer No.';
             TableRelation = Customer."No.";
+            NotBlank = true;
 
             trigger OnValidate();
             begin
@@ -127,6 +130,7 @@
                     Name2 := Customer."Name 2";
                     Email1 := Customer."E-Mail";
                     Phone := Customer."Phone No.";
+                    CellPhone1 := Customer."Mobile Phone No.";
                 END;
             end;
         }
@@ -200,11 +204,19 @@
         {
             Caption = 'E-mail';
             ExtendedDatatype = EMail;
+            trigger OnValidate()
+            begin
+                ValidateEmail();
+            end;
         }
         field(25; Email2; Text[80])
         {
             Caption = 'E-mail 2';
             ExtendedDatatype = EMail;
+            trigger OnValidate()
+            begin
+                ValidateEmail();
+            end;
         }
         field(26; "Global Dimension 1 Code"; Code[20])
         {
@@ -250,85 +262,82 @@
 
             trigger OnValidate();
             var
-                OccupantLocal: Record "SVA Occupant";
-                TenancyLocal: Record "SVA Tenancy";
-                Start: Date;
-                Stop: Date;
-                OK: Boolean;
-                QtyOcc: Integer;
+                SVASubscriptionLines: Record "SVA Subscription Lines";
             begin
-                Start := Startdate;
-                Stop := EndDate;
-                //Check for korrekt ledig dato på alle lejemål. Kan være for langsom ved mange poster
-                TenancyLocal.Reset();
-                if TenancyLocal.FindSet() then
-                    repeat
-                        OccupantLocal.Reset();
-                        OccupantLocal.SetRange(TenancyNo, TenancyLocal.Number);
-                        TenancyLocal.Vacant := true;
-                        TenancyLocal.vacantDate := DMY2Date(1, 1, 1960);
-                        IF OccupantLocal.FindLast() then begin
-                            IF OccupantLocal.EndDate > 0D then
-                                TenancyLocal.vacantDate := calcdate('<1D>', OccupantLocal.EndDate);
-                            IF OccupantLocal.EndDate = 0D THEN begin
-                                TenancyLocal.VacantDate := 0D;
-                                TenancyLocal.Vacant := false;
-                            end;
-                        end;
-                        TenancyLocal.Modify(true);
-                    Until TenancyLocal.NEXT() = 0;
-                //Check for om lejemålet er ledigt i den givne periode
-                ok := false;
                 SVATenancy.Reset();
                 SVATenancy.SETRANGE(SVATenancy.Number, TenancyNo);
-                if SVATenancy.FINDFIRST() then begin
-                    OccupantLocal.Reset();
-                    OccupantLocal.SetRange(TenancyNo, SVATenancy.Number);
-                    if OccupantLocal.FindSet() then
-                        repeat
-                            if OccupantLocal.Number <> Number then begin
-                                if (OccupantLocal.EndDate < Start) and (OccupantLocal.EndDate <> 0D) then
-                                    ok := true; //den fundne kontrakt er udløbet.
-                                if (OccupantLocal.StartDate > Stop) and (Stop > 0D) then
-                                    ok := true; //den fundne kontrakt starter efter.
-                                QtyOcc += 1
-                            end;
-                        until OccupantLocal.NEXT() = 0;
-                    if (ok = true) or (qtyocc = 0) then begin
-                        SVATenancy.Vacant := FALSE;
-                        SVATenancy.vacantDate := 0D;
-                        SVATenancy.MODIFY(TRUE);
-                        ok := true;
-                    end;
-                end;
-
-                if ok = false then begin
-                    SVATenancy.Reset();
-                    SVATenancy.SETRANGE(SVATenancy.Number, TenancyNo);
-                    IF SVATenancy.FINDFIRST() THEN BEGIN
-                        //Ingen opsagt dato på lejemålet
-                        IF SVATenancy.vacantDate <= StartDate THEN
-                            IF (SVATenancy.vacantDate = 0D) AND (SVATenancy.Vacant = FALSE) THEN BEGIN
-                                MESSAGE('lejemålet er ikke ledigt.');
-                                Startdate := 0D;
-                            END;
-                        //Opsagt dato efter nye startdato
-                        IF SVATenancy.vacantDate > StartDate THEN BEGIN
-                            MESSAGE('Lejemålet er ikke ledigt før ' + FORMAT(SVATenancy.vacantDate));
+                IF SVATenancy.FINDFIRST() THEN BEGIN
+                    //Ingen opsagt dato på lejemålet
+                    IF SVATenancy.vacantDate <= StartDate THEN
+                        IF (SVATenancy.vacantDate = 0D) AND (SVATenancy.Vacant = FALSE) THEN BEGIN
+                            Message('lejemålet er ikke ledigt.');
                             StartDate := 0D;
                         END;
-                        //Lejemålet er ledigt
-                        IF SVATenancy.vacantDate <= StartDate THEN  //Ledigt lejemål
-                            IF SVATenancy.vacantDate <> 0D THEN BEGIN
-                                SVATenancy.Vacant := FALSE;
-                                SVATenancy.vacantDate := 0D;
-                                SVATenancy.MODIFY(TRUE);
-                                //MESSAGE('lejemål opdateret');
-                            END;
+                    //Opsagt dato efter nye startdato
+                    IF SVATenancy.vacantDate > StartDate THEN BEGIN
+                        MESSAGE('Lejemålet er ikke ledigt før ' + FORMAT(SVATenancy.vacantDate));
+                        StartDate := 0D;
                     END;
+                    //Lejemålet er ledigt
+                    IF SVATenancy.vacantDate <= StartDate THEN  //Ledigt lejemål
+                        IF SVATenancy.vacantDate <> 0D THEN BEGIN
+                            SVATenancy.Vacant := FALSE;
+                            SVATenancy.vacantDate := 0D;
+                            SVATenancy.MODIFY(TRUE);
+                            //MESSAGE('lejemål opdateret');
+                        END;
+
                 END;
-                if StartDate < Today then
+                if StartDate <> 0D then begin
                     FirstNets := CalcDate('<1M>', StartDate);
+                    FirstNets := DMY2Date(1, Date2DMY(FirstNets, 2), Date2DMY(FirstNets, 3));
+                end;
+                // if Contract come from vacant tenancy
+                Rec.SetPeriods();
+                if Rec.Rent = 0 then begin
+                    SVASubscriptionLines.Reset();
+                    SVASubscriptionLines.SetRange(Tenancies, Rec.TenancyNo);
+                    SVASubscriptionLines.SetRange(Type, SVASubscriptionLines.Type::Rent);
+                    if SVASubscriptionLines.FindSet() then
+                        repeat
+                            if (SVASubscriptionLines."Date To" = 0D) or (SVASubscriptionLines."Date To" > Rec.StartDate) then
+                                Rec.Rent := SVASubscriptionLines."Amount Year" / Rec.SetPeriods();
+                        until SVASubscriptionLines.Next() = 0;
+
+                end;
+                if Rec.Heat = 0 then begin
+                    SVASubscriptionLines.Reset();
+                    SVASubscriptionLines.SetRange(Tenancies, Rec.TenancyNo);
+                    SVASubscriptionLines.SetRange(Type, SVASubscriptionLines.Type::ACheat);
+                    if SVASubscriptionLines.FindSet() then
+                        repeat
+                            if (SVASubscriptionLines."Date To" = 0D) or (SVASubscriptionLines."Date To" > Rec.StartDate) then
+                                Rec.Heat := SVASubscriptionLines."Amount Year" / Rec.SetPeriods();
+                        until SVASubscriptionLines.Next() = 0;
+
+                end;
+                if Rec.Water = 0 then begin
+                    SVASubscriptionLines.Reset();
+                    SVASubscriptionLines.SetRange(Tenancies, Rec.TenancyNo);
+                    SVASubscriptionLines.SetRange(Type, SVASubscriptionLines.Type::ACwater);
+                    if SVASubscriptionLines.FindSet() then
+                        repeat
+                            if (SVASubscriptionLines."Date To" = 0D) or (SVASubscriptionLines."Date To" > Rec.StartDate) then
+                                Rec.Water := SVASubscriptionLines."Amount Year" / Rec.SetPeriods();
+                        until SVASubscriptionLines.Next() = 0;
+
+                end;
+                if Rec.BebRep = 0 then begin
+                    SVASubscriptionLines.Reset();
+                    SVASubscriptionLines.SetRange(Tenancies, Rec.TenancyNo);
+                    SVASubscriptionLines.SetRange(Type, SVASubscriptionLines.Type::OccGroup);
+                    if SVASubscriptionLines.FindSet() then
+                        repeat
+                            if (SVASubscriptionLines."Date To" = 0D) or (SVASubscriptionLines."Date To" > Rec.StartDate) then
+                                Rec.BebRep := SVASubscriptionLines."Amount Year" / Rec.SetPeriods();
+                        until SVASubscriptionLines.Next() = 0;
+                end;
+
             end;
         }
         field(31; EndDate; Date)
@@ -355,11 +364,11 @@
                         SVATenancy.Modify();
                     END;
                 END;
-                SVACOntractregulations.Reset();
-                SVACOntractregulations.SetRange(Number, Number);
-                if SVACOntractregulations.FindFirst() then begin
-                    SVACOntractregulations.EndDate := EndDate;
-                    SVACOntractregulations.Modify();
+                SVAContractregulations.Reset();
+                SVAContractregulations.SetRange(Number, Number);
+                if SVAContractregulations.FindFirst() then begin
+                    SVAContractregulations.EndDate := EndDate;
+                    SVAContractregulations.Modify();
                 end;
 
 
@@ -392,6 +401,14 @@
             Caption = 'Collection Month';
             OptionCaption = 'Jan,Feb,Mar,Apr,May,Jun,Jul,Aug,Sep,Oct,Nov,Dec';
             OptionMembers = jan,feb,mar,apr,may,jun,jul,aug,sep,oct,nov,dec;
+        }
+        field(38; TransferNETS; Enum "SVA NETS Transfer")
+        {
+            Caption = 'Status NETS';
+        }
+        field(39; "Effective Date"; Date)
+        {
+            Caption = 'Effective date';
         }
         field(40; ChairmanOfTheBoard; Boolean)
         {
@@ -434,6 +451,78 @@
         {
             Caption = 'Dimension set Id';
         }
+        field(51; OldAccountNo; Text[50])
+        {
+            Caption = 'Old No.';
+        }
+        field(52; "Date Filter"; Date)
+        {
+            Caption = 'Date filter';
+
+        }
+        field(53; DepositAmount; Decimal)
+        {
+            FieldClass = FlowField;
+            //CalcFormula = sum("SVA Occupant Trans".Amount where(Occupant = field(Number), Type = const(10), Date = field("Date Filter")));
+            CalcFormula = sum("SVA Occupant Trans".Amount where(Occupant = field(Number), Type = const(10)));
+        }
+        field(54; PrepaidRentAmount; Decimal)
+        {
+            FieldClass = FlowField;
+            CalcFormula = sum("SVA Occupant Trans".Amount where(Occupant = field(Number), Type = const(11)));
+        }
+        field(55; AddToMail; Boolean)
+        {
+            Caption = 'Send Email';
+        }
+        field(12003; CustomerAdress1; Text[100])
+        {
+            Caption = 'Current adress';
+        }
+        field(12004; CustomerCity; Text[100])
+        {
+            Caption = 'Current city';
+        }
+        field(12005; CustomerPhone; Text[20])
+        {
+            Caption = 'Phone number';
+        }
+        field(12006; CustomerPhone2; Text[20])
+        {
+            Caption = 'Phone number';
+        }
+        field(12007; CustomerEmail; Text[80])
+        {
+            Caption = 'Email';
+        }
+        field(12008; CustomerEmail2; Text[80])
+        {
+            Caption = 'Email';
+        }
+        field(12009; CustomerSocNo; Text[12])
+        {
+            Caption = 'Social Security Number';
+        }
+        field(12010; CustomerSocNo2; Text[12])
+        {
+            Caption = 'Social Security Number';
+        }
+        field(12011; Rent; Decimal)
+        {
+            Caption = 'Rent per month';
+        }
+        field(12012; Heat; Decimal)
+        {
+            Caption = 'A conto heat per month';
+        }
+        field(12013; Water; Decimal)
+        {
+            Caption = 'A conto water per month';
+        }
+        field(12014; BebRep; Decimal)
+        {
+            Caption = 'Resident representation';
+        }
     }
 
     keys
@@ -443,16 +532,23 @@
         }
         key(key2; TenancyNo)
         {
+
         }
         key(key3; PropertyNo, TenancyNo)
         {
 
         }
-    }
 
+    }
     fieldgroups
     {
+        fieldgroup(DropDown; Number, Name1, Address, "Post Code", City)
+        {
+        }
+
     }
+
+
 
     var
         PostCode: Record "Post Code";
@@ -474,6 +570,7 @@
 
     trigger OnDelete();
     begin
+        SVAOccupant.VacantTenancies();
         SVAOccupantTrans.Reset();
         SVAOccupantTrans.SetRange(Occupant, Number);
         if SVAOccupantTrans.FindFirst() then
@@ -508,20 +605,14 @@
 
     trigger OnModify();
     begin
-        SVAParameters.Reset();
-        if SVAParameters.FindFirst() then begin
-            PaymentMethod := SVAParameters.PaymentMethodForNets;
-            PaymentTerms := SVAParameters.PaymentTerms;
-        end;
+        if Rec.TenancyNo = '' then
+            Error('TenancyNo must be specified for the residents agreement.');
+        SVAOccupant.VacantTenancies();
+        CreateDim(
+                Database::"SVA Property", PropertyNo,
+                Database::"SVA Tenancy", TenancyNo,
+                Database::"SVA Occupant", Number);
 
-        //Paymentcode on customer
-        Customer.Reset();
-        Customer.SetRange("No.", SVAOccupant."Customer No");
-        if Customer.FindFirst() then begin
-            Customer."Payment Method Code" := PaymentMethod;
-            Customer."Payment Terms Code" := PaymentTerms;
-            Customer.Modify();
-        end;
     end;
 
     trigger OnInsert();
@@ -532,15 +623,6 @@
             PaymentTerms := SVAParameters.PaymentTerms;
             IF (SVAParameters.Dim1 = '') OR (SVAParameters.Dim2 = '') OR (SVAParameters.Dim3 = '') then
                 Error('Dimensioner mangler opsætning. Kørslen afbrydes');
-
-        end;
-        //Paymentcode on customer
-        Customer.Reset();
-        Customer.SetRange("No.", SVAOccupant."Customer No");
-        if Customer.FindFirst() then begin
-            Customer."Payment Method Code" := PaymentMethod;
-            Customer."Payment Terms Code" := PaymentTerms;
-            Customer.Modify();
         end;
 
         //Dimension beboer på beboer
@@ -558,12 +640,12 @@
                 DefaultDimension."No." := Number;
                 DefaultDimension."Dimension Code" := SVAParameters.Dim3;
                 DefaultDimension."Dimension Value Code" := Number;
-                DefaultDimension."Value Posting" := 1;
+                DefaultDimension."Value Posting" := "Default Dimension Value Posting Type"::"Code Mandatory";
                 DefaultDimension."Table Caption" := 'Beboeraftale på beboer';
                 DefaultDimension.Insert(true);
             end;
         end;
-        //Dimensionsæværdi beboer
+        //Dimensionsværdi beboer
         DimensionValue.Reset();
         DimensionValue.SetRange("Dimension Code", SVAParameters.Dim3);
         DimensionValue.SetRange(Code, Number);
@@ -576,9 +658,38 @@
             DimensionValue.Code := Number;
             DimensionValue.Name := 'Beboer ' + Name1;
             DimensionValue."Dimension Value Type" := 0;
-            DimensionValue.Id := CreateGuid();
+            DimensionValue.SystemId := CreateGuid();
             DimensionValue."Last Modified Date Time" := CurrentDateTime;
             DimensionValue.Insert(true);
+        end;
+        CreateDim(
+                Database::"SVA Property", PropertyNo,
+                Database::"SVA Tenancy", TenancyNo,
+                Database::"SVA Occupant", Number);
+
+        //Dimension on Customer
+        Customer.Reset();
+        Customer.SetRange("No.", SVAOccupant."Customer No");
+        if Customer.FindFirst() then begin
+            if SVAOccupant.EndDate = 0D then begin
+                Customer."Global Dimension 1 Code" := SVAOccupant."Global Dimension 1 Code";
+                if Customer."Global Dimension 1 Code" = '' then
+                    Customer."Global Dimension 1 Code" := SVAOccupant."Shortcut Dimension 1 Code";
+                Customer.Validate("Global Dimension 1 Code");
+            end;
+            if (SVAOccupant.EndDate <> 0D) and (Customer."Global Dimension 1 Code" = '') then begin
+                Customer."Global Dimension 1 Code" := SVAOccupant."Global Dimension 1 Code";
+                if Customer."Global Dimension 1 Code" = '' then
+                    Customer."Global Dimension 1 Code" := SVAOccupant."Shortcut Dimension 1 Code";
+                Customer.Validate("Global Dimension 1 Code");
+            end;
+            //Paymentcode on customer
+            SVAParameters.Reset();
+            if SVAParameters.FindFirst() then begin
+                Customer."Payment Method Code" := SVAParameters.PaymentMethodForNets;
+                Customer."Payment Terms Code" := SVAParameters.PaymentTerms;
+            end;
+            Customer.Modify();
         end;
     end;
 
@@ -615,6 +726,127 @@
             Modify();
 
     end;
+
+    procedure VacantTenancies();
+    var
+        l_SVAProperty: Record "SVA Property";
+        l_SVATenancy: Record "SVA Tenancy";
+        l_SVAOccupant: Record "SVA Occupant";
+    begin
+        l_SVAProperty.Reset();
+        if l_SVAProperty.FindSet() then
+            repeat
+                //Only Active properties is calculated
+                if l_SVAProperty.ArchiveDate < DMY2Date(1, 1, 1960) then begin
+                    l_SVATenancy.Reset();
+                    l_SVATenancy.SetRange(PropertyNo, l_SVAProperty.Property);
+                    if l_SVATenancy.FindSet() then
+                        repeat
+                            l_SVATenancy.Vacant := true;
+                            l_SVATenancy.vacantDate := DMY2Date(1, 1, 1960);
+                            l_SVATenancy.Modify();
+                            l_SVAOccupant.Reset();
+                            l_SVAOccupant.SetRange(TenancyNo, l_SVATenancy.Number);
+                            IF l_SVAOccupant.FindSet() then
+                                repeat
+                                    IF (l_SVAOccupant.EndDate = 0D) and (l_SVAOccupant.StartDate > l_SVAOccupant.EndDate) THEN begin
+                                        l_SVATenancy.VacantDate := 0D;
+                                        l_SVATenancy.Vacant := false;
+                                        l_SVATenancy.Modify();
+                                    end;
+                                    IF (l_SVAOccupant.EndDate > 0D) and (l_SVATenancy.Vacant = true) and (l_SVAOccupant.EndDate > l_SVATenancy.vacantDate) then begin
+                                        l_SVATenancy.vacantDate := calcdate('<1D>', l_SVAOccupant.EndDate);
+                                        l_SVATenancy.Vacant := true;
+                                        l_SVATenancy.Modify();
+                                    end;
+                                until l_SVAOccupant.Next() = 0;
+                        Until l_SVATenancy.NEXT() = 0;
+                end;
+            until l_SVAProperty.Next() = 0;
+    end;
+
+    local procedure ValidateEmail()
+    var
+        MailManagement: Codeunit "Mail Management";
+        IsHandled: Boolean;
+    begin
+        IsHandled := false;
+        if IsHandled then
+            exit;
+
+        if Email1 = '' then
+            exit;
+        MailManagement.CheckValidEmailAddresses(Email1);
+
+        if Email2 = '' then
+            exit;
+        MailManagement.CheckValidEmailAddresses(Email2);
+    end;
+
+    procedure SendEmailToOccupant(Occupant: Record "SVA Occupant")
+    var
+        SVAProperty: Record "SVA Property";
+        CompanyInformation: Record "Company Information";
+        User: Record User;
+        EmailMessage: Codeunit "Email Message";
+        cu_Email: Codeunit Email;
+        Recipients: List of [Text];
+        CCRecipients: List of [Text];
+        BCCRecipients: List of [Text];
+        Subject: Text;
+        Body: Text;
+        TitleMsg: Label 'Information from %1', Comment = '%1 = companyname';
+        BodyMsg: Label 'Dear occupant.<br><br>Attached to this mail, there is information regarding your lease<br><br><strong>Regards %1</strong>', Comment = '%1 = username';
+
+    begin
+        SVAProperty.Reset();
+        SVAProperty.SetRange(Property, Occupant.PropertyNo);
+        if SVAProperty.FindFirst() then begin
+            if SVAProperty.OwnerEmail <> '' then
+                BCCRecipients.Add(SVAProperty.OwnerEmail);
+            if SVAProperty.Email <> '' then
+                BCCRecipients.Add((SVAProperty.Email));
+        end;
+
+        User.Reset();
+        User.Get(UserSecurityId());
+        BCCRecipients.Add(User."Contact Email");
+
+        if Occupant.Email1 <> '' then
+            Recipients.Add(Occupant.Email1);
+        if Occupant.Email2 <> '' then
+            Recipients.Add(SVAOccupant.Email2);
+
+        CompanyInformation.Get();
+        Subject := StrSubstNo(TitleMsg, CompanyInformation.Name);
+        Body := StrSubstNo(BodyMsg, User."Full Name");
+        EmailMessage.Create(Recipients, Subject, Body, true, CCRecipients, BCCRecipients);
+        cu_Email.OpenInEditor(EmailMessage);
+    end;
+
+    procedure SetPeriods() Periods: integer;
+    var
+        l_SVATenancy: Record "SVA Tenancy";
+        PeriodType: Integer;
+    begin
+        l_SVATenancy.Reset();
+        l_SVATenancy.SETRANGE(Number, rec.TenancyNo);
+        IF l_SVATenancy.FINDFIRST() THEN BEGIN
+            Periodtype := l_SVATenancy.PeriodYear;
+            IF Periodtype = 0 THEN  //Mth
+                Periods := 12;
+
+            IF Periodtype = 1 THEN  //Qty
+                Periods := 4;
+
+            IF Periodtype = 2 THEN //½Yr
+                Periods := 2;
+
+            IF Periodtype = 3 THEN  //yr
+                Periods := 1
+        END;
+    end;
+
 
 }
 

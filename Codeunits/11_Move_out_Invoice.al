@@ -1,13 +1,17 @@
 codeunit 50011 "SVA Move Out Invoice"
 {
+    //We don't know wether is ends as a invoice or a Cr.memo, so we make the accounting basis away from standard BC
+    //Create lines based on former entries deposit and prepaid rent.
     TableNo = "SVA Occupant";
+    Permissions = TableData "Dimension Set Entry" = rm;
 
     trigger OnRun();
     begin
         SVAOccupant.Copy(Rec);
         Rec := SVAOccupant;
-        IF SVAOccupant.FINDFIRST() THEN BEGIN
-            //VAT - if rent is with VAT, all is with VAT at moving out.     
+
+        if SVAOccupant.FindFirst() then begin
+            //VAT - if rent is with VAT, all is with VAT at moving out
             SVASubscriptionLines.Reset();
             SVASubscriptionLines.Setrange(Tenancies, SVAOccupant.TenancyNo);
             SVASubscriptionLines.SetRange(type, 1);
@@ -28,163 +32,172 @@ codeunit 50011 "SVA Move Out Invoice"
                         VatType := SVACosttype.VatGroup;
                 end;
             end;
-
-
-            //Make salesheader
-            Salesheader.INIT();
-            Salesheader.VALIDATE("Document Type", Salesheader."Document Type"::Order);
-            Salesheader."No." := '';
-            Salesheader."Sell-to Customer No." := SVAOccupant."Customer No";
-            Salesheader.Validate("Sell-to Customer No.");
-
-            Salesheader."Posting Date" := Today();
-            Salesheader."Due Date" := Today() + 14;   //RETTES
-            Salesheader."SVA Included" := false;
-            Salesheader."SVA Occupant" := SVAOccupant.Number;
-            Salesheader."Dimension Set ID" := SVAOccupant."Dimension Set Id";
-
-            //If no adress, then use from SVAOccupant
-            if Salesheader."Sell-to Address" = '' then begin
-                Salesheader."Bill-to Address" := SVAOccupant.Address;
-                Salesheader."Bill-to Address 2" := SVAOccupant.Address2;
-                Salesheader."Bill-to Post Code" := SVAOccupant."Post Code";
-                Salesheader."Bill-to City" := SVAOccupant.City;
-                Salesheader."Bill-to Country/Region Code" := SVAOccupant."Country/Region Code";
-                Salesheader."Sell-to Customer No." := SVAOccupant."Customer No";
-                Salesheader."Sell-to Customer Name" := SVAOccupant.Name1;
-                Salesheader."Sell-to Address" := SVAOccupant.Address;
-                Salesheader."Sell-to Address 2" := SVAOccupant.Address2;
-                Salesheader."Sell-to Post Code" := SVAOccupant."Post Code";
-                Salesheader."Sell-to City" := SVAOccupant.City;
-                Salesheader."Sell-to Country/Region Code" := SVAOccupant."Country/Region Code";
+            //Find vatrate
+            Customer.Reset();
+            Customer.SetRange("No.", SVAOccupant."Customer No");
+            if Customer.FindFirst() then begin
+                VATPostingSetup.Reset();
+                VATPostingSetup.SetRange("VAT Prod. Posting Group", VatType);
+                VATPostingSetup.SetRange("VAT Bus. Posting Group", Customer."VAT Bus. Posting Group");
+                IF VATPostingSetup.FindFirst() then
+                    Vatrate := 1 + (VATPostingSetup."VAT %" / 100);
+                IF Vatrate = 0 then
+                    Vatrate := 1;
             end;
-            if Salesheader."Gen. Bus. Posting Group" = '' then begin
-                Customer.Reset();
-                Customer.SETRANGE("No.", SVAOccupant."Customer No");
-                IF Customer.FINDFIRST() THEN BEGIN
-                    Salesheader."Payment Terms Code" := Customer."Payment Terms Code";
-                    Salesheader."Currency Code" := Customer."Currency Code";
-                    Salesheader."Customer Posting Group" := Customer."Customer Posting Group";
-                    Salesheader."Gen. Bus. Posting Group" := Customer."Gen. Bus. Posting Group";
-                    Salesheader."VAT Bus. Posting Group" := Customer."VAT Bus. Posting Group"
-                END;
-            end;
-            Salesheader.INSERT(TRUE);
-        END;
-        //Deposita
-        LineNo := 1;
-        CLEAR(SVAOccupantTrans);
-        SVAOccupantTrans.Reset();
-        SVAOccupantTrans.SETRANGE(Occupant, SalesHeader."SVA Occupant");
-        SVAOccupantTrans.SETRANGE(Type, 10);
-        IF SVAOccupantTrans.FindSet() THEN
-            REPEAT
-                IF SVAOccupantTrans.Occupant = SalesHeader."SVA Occupant" THEN begin
-                    SaleslineInitTrans(10);
-                    SalesLine.INSERT(TRUE);
-                end;
-            UNTIL SVAOccupantTrans.Next() = 0;
-        //Deposita
-        //Prepaid rent
-        CLEAR(SVAOccupantTrans);
-        SVAOccupantTrans.Reset();
-        SVAOccupantTrans.SETRANGE(Occupant, SalesHeader."SVA Occupant");
-        SVAOccupantTrans.SETRANGE(Type, 11);
-        IF SVAOccupantTrans.FindSet() THEN
-            REPEAT
-                IF SVAOccupantTrans.Occupant = SalesHeader."SVA Occupant" THEN BEGIN
-                    SaleslineInitTrans(11);
-                    SalesLine.INSERT(TRUE);
-                END;
-            UNTIL SVAOccupantTrans.NEXT() = 0;
-        //Prepaid Rent
-        //Moving out costs
-        CLEAR(SVACosttype);
-        SVACosttype.RESET();
-        SVACosttype.SETRANGE(Type, 13, 14);
-        IF SVACosttype.FINDFIRST() THEN BEGIN
-            CLEAR(SVASubscriptionLines);
-            SVASubscriptionLines.RESET();
-            SVASubscriptionLines.SETRANGE(Tenancies, SVAOccupant.TenancyNo);
-            SVASubscriptionLines.SETRANGE("Cost Types", SVACosttype.Costtype);
-            IF SVASubscriptionLines.FindSet() THEN
-                REPEAT
-                    SalesLine.INIT();
-                    SalesLine.VALIDATE(SalesLine."Document Type", Salesheader."Document Type"::Order);
-                    SalesLine."Line No." := LineNo;
+
+            //Make MoveOut invoice Header
+            MoveOutInvoiceHeader.Reset();
+            MoveOutInvoiceHeader.SetRange(Number, Rec.Number);
+            if not MoveOutInvoiceHeader.FindFirst() then begin
+                MoveOutInvoiceHeader.Init();
+                MoveOutInvoiceHeader.Number := SVAOccupant.Number;
+                MoveOutInvoiceHeader."Customer No" := SVAOccupant."Customer No";
+                MoveOutInvoiceHeader.Name1 := SVAOccupant.Name1;
+                MoveOutInvoiceHeader.Name2 := SVAOccupant.Name2;
+                MoveOutInvoiceHeader.Address := SVAOccupant.Address;
+                MoveOutInvoiceHeader.Address2 := SVAOccupant.Address2;
+                MoveOutInvoiceHeader."Post Code" := SVAOccupant."Post Code";
+                MoveOutInvoiceHeader.City := SVAOccupant.City;
+                MoveOutInvoiceHeader."Country/Region Code" := SVAOccupant."Country/Region Code";
+                MoveOutInvoiceHeader.StartDate := SVAOccupant.StartDate;
+                MoveOutInvoiceHeader.EndDate := SVAOccupant.EndDate;
+                MoveOutInvoiceHeader."Posting Date" := WorkDate();
+                MoveOutInvoiceHeader.DueDate := WorkDate() + 14;
+                MoveOutInvoiceHeader."Dimension Set Id" := SVAOccupant."Dimension Set Id";
+                MoveOutInvoiceHeader.Insert();
+                //Make MoveOut Invoice lines
+
+                //Deposita
+                LineNo := 1;
+                CLEAR(SVAOccupantTrans);
+                SVAOccupantTrans.Reset();
+                SVAOccupantTrans.SETRANGE(Occupant, MoveOutInvoiceHeader.Number);
+                SVAOccupantTrans.SETRANGE(Type, 10);
+                IF SVAOccupantTrans.FindSet() THEN
+                    REPEAT
+                        IF SVAOccupantTrans.Occupant = MoveOutInvoiceHeader.Number THEN begin
+                            MoveOutInvoiceLineInitTrans(10);
+                            MoveOutInvoiceLine.INSERT(TRUE);
+                        end;
+                    UNTIL SVAOccupantTrans.Next() = 0;
+                //Deposita
+                //Prepaid rent
+                CLEAR(SVAOccupantTrans);
+                SVAOccupantTrans.Reset();
+                SVAOccupantTrans.SETRANGE(Occupant, MoveOutInvoiceHeader.Number);
+                SVAOccupantTrans.SETRANGE(Type, 11);
+                IF SVAOccupantTrans.FindSet() THEN
+                    REPEAT
+                        IF SVAOccupantTrans.Occupant = MoveOutInvoiceHeader.Number THEN BEGIN
+                            MoveOutInvoiceLineInitTrans(11);
+                            MoveOutInvoiceLine.INSERT(TRUE);
+                        END;
+                    UNTIL SVAOccupantTrans.NEXT() = 0;
+                //Prepaid Rent
+                //Moving out costs
+                CLEAR(SVACosttype);
+                SVACosttype.RESET();
+                SVACosttype.SETRANGE(Type, 13, 14);
+                IF SVACosttype.FINDFIRST() THEN BEGIN
+                    CLEAR(SVASubscriptionLines);
+                    SVASubscriptionLines.RESET();
+                    SVASubscriptionLines.SETRANGE(Tenancies, SVAOccupant.TenancyNo);
+                    SVASubscriptionLines.SETRANGE("Cost Types", SVACosttype.Costtype);
+                    IF SVASubscriptionLines.FindSet() THEN
+                        REPEAT
+                            MoveOutInvoiceLine.INIT();
+                            MoveOutInvoiceLine."Line No." := LineNo;
+                            LineNo := LineNo + 1;
+                            MoveOutInvoiceLine."Line Number" := MoveOutInvoiceHeader.Number;
+                            MoveOutInvoiceLine.Quantity := 1;
+                            MoveOutInvoiceLine."Unit Price" := SVASubscriptionLines."Amount Period";
+                            MoveOutInvoiceLine."Line Amount" := MoveOutInvoiceLine.Quantity * MoveOutInvoiceLine."Unit Price";
+                            MoveOutInvoiceLine.Account := SVACosttype.Account;
+                            MoveOutInvoiceLine.Description := SVASubscriptionLines.Description;
+                            MoveOutInvoiceLine."VAT Prod. Posting Group" := SVACosttype.VatGroup;
+                            MoveOutInvoiceLine."Gen. Prod. Posting Group" := SVACosttype.ProductPostingGroup;
+                            MoveOutInvoiceLine."Cost Type" := SVACosttype.Costtype;
+                            MoveOutInvoiceLine."Dimension Set Id" := MoveOutInvoiceHeader."Dimension Set Id";
+                            IF MoveOutInvoiceLine."Line Amount" <> 0 THEN
+                                MoveOutInvoiceLine.INSERT(TRUE);
+                        UNTIL SVASubscriptionLines.NEXT() = 0
+                END; //Moving out costs
+                //Heat
+                CLEAR(SVACosttype);
+                SVACosttype.RESET();
+                SVACosttype.SETRANGE(Type, 2);
+                IF SVACosttype.FINDFIRST() THEN BEGIN
+                    MoveOutInvoiceLine.INIT();
+                    MoveOutInvoiceLine."Line No." := LineNo;
                     LineNo := LineNo + 1;
-                    SalesLine.Type := 1;
-                    SalesLine."Document No." := Salesheader."No.";
-                    SalesLine.Quantity := 1;
-                    SalesLine."Qty. to Ship" := SalesLine.Quantity;
-                    SalesLine."Qty. to Invoice" := SalesLine.Quantity;
-                    SalesLine."Unit Price" := SVASubscriptionLines."Amount Period";
-                    SalesLine."Line Amount" := SalesLine.Quantity * SalesLine."Unit Price";
-                    SalesLine.Amount := SalesLine.Quantity * SalesLine."Unit Price";
-                    SalesLine."No." := SVACosttype.Account;
-                    SalesLine.Description := SVASubscriptionLines.Description;
-                    SalesLine."VAT Prod. Posting Group" := SVACosttype.VatGroup;
-                    SalesLine."Gen. Prod. Posting Group" := SVACosttype.ProductPostingGroup;
-                    SalesLine.Validate(SalesLine."Gen. Bus. Posting Group");
-                    SalesLine."Dimension Set ID" := SalesHeader."Dimension Set ID";
-                    Salesline.Validate("Dimension Set ID");
-                    SalesLine."Gen. Bus. Posting Group" := SalesHeader."Gen. Bus. Posting Group";
-                    SalesLine."VAT Bus. Posting Group" := SalesHeader."VAT Bus. Posting Group";
-                    SalesLine."SVA Costtype" := SVACosttype.Costtype;
-                    Salesline.Validate(SalesLine."Gen. Bus. Posting Group");
-                    SalesLine.Validate("VAT Prod. Posting Group");
-                    SalesLine.Validate("Gen. Prod. Posting Group");
-                    IF SalesLine.Amount <> 0 THEN
-                        SalesLine.INSERT(TRUE);
-                UNTIL SVASubscriptionLines.NEXT() = 0
-
-        END; //Moving out costs
-        //to futher processing
-        Page.Run(page::"Sales Order List");
-
+                    MoveOutInvoiceLine."Line Number" := MoveOutInvoiceHeader.Number;
+                    MoveOutInvoiceLine.Quantity := 1;
+                    MoveOutInvoiceLine."Unit Price" := 1500;
+                    MoveOutInvoiceLine."Line Amount" := MoveOutInvoiceLine.Quantity * MoveOutInvoiceLine."Unit Price";
+                    MoveOutInvoiceLine.Account := SVACosttype.Account;
+                    MoveOutInvoiceLine.Description := 'Tilb. varmeregnskab';
+                    MoveOutInvoiceLine."VAT Prod. Posting Group" := SVACosttype.VatGroup;
+                    MoveOutInvoiceLine."Gen. Prod. Posting Group" := SVACosttype.ProductPostingGroup;
+                    MoveOutInvoiceLine."Cost Type" := SVACosttype.Costtype;
+                    MoveOutInvoiceLine."Dimension Set Id" := MoveOutInvoiceHeader."Dimension Set Id";
+                    IF MoveOutInvoiceLine.Account <> '' THEN
+                        MoveOutInvoiceLine.INSERT(TRUE);
+                END; //Heat
+                //Water
+                CLEAR(SVACosttype);
+                SVACosttype.RESET();
+                SVACosttype.SETRANGE(Type, 3);
+                IF SVACosttype.FINDFIRST() THEN BEGIN
+                    MoveOutInvoiceLine.INIT();
+                    MoveOutInvoiceLine."Line No." := LineNo;
+                    LineNo := LineNo + 1;
+                    MoveOutInvoiceLine."Line Number" := MoveOutInvoiceHeader.Number;
+                    MoveOutInvoiceLine.Quantity := 1;
+                    MoveOutInvoiceLine."Unit Price" := 1500;
+                    MoveOutInvoiceLine."Line Amount" := MoveOutInvoiceLine.Quantity * MoveOutInvoiceLine."Unit Price";
+                    MoveOutInvoiceLine.Account := SVACosttype.Account;
+                    MoveOutInvoiceLine.Description := 'Tilb. vandregnskab';
+                    MoveOutInvoiceLine."VAT Prod. Posting Group" := SVACosttype.VatGroup;
+                    MoveOutInvoiceLine."Gen. Prod. Posting Group" := SVACosttype.ProductPostingGroup;
+                    MoveOutInvoiceLine."Cost Type" := SVACosttype.Costtype;
+                    MoveOutInvoiceLine."Dimension Set Id" := MoveOutInvoiceHeader."Dimension Set Id";
+                    IF MoveOutInvoiceLine.Account <> '' THEN
+                        MoveOutInvoiceLine.INSERT(TRUE);
+                END; //Water
+            end;
+        end;
     end;
 
     var
         SVAOccupant: Record "SVA Occupant";
-        SalesHeader: Record "Sales Header";
-        SalesLine: Record "Sales Line";
-        SVAOccupantTrans: Record "SVA Occupant Trans";
-        SVACosttype: Record "SVA Cost type";
         SVASubscriptionLines: Record "SVA Subscription Lines";
+        SVACosttype: Record "SVA Cost type";
+        SVAOccupantTrans: Record "SVA Occupant Trans";
+        MoveOutInvoiceHeader: Record "SVA MoveOut Invoice Header";
+        MoveOutInvoiceLine: Record "SVA MoveOut Invoice Line";
+        VatPostingSetup: Record "VAT Posting Setup";
         Customer: Record Customer;
         LineNo: Integer;
         VatType: Code[10];
+        VATRate: Decimal;
 
-    local procedure SaleslineInitTrans(Costtype: Integer);
+    local procedure MoveOutInvoiceLineInitTrans(Costtype: Integer);
     begin
-        SalesLine.INIT();
-        SalesLine.VALIDATE(SalesLine."Document Type", Salesheader."Document Type"::Order);
-        SalesLine."Line No." := LineNo;
-        LineNo := LineNo + 1;
-        SalesLine.Type := 1;
-        SalesLine."Document No." := Salesheader."No.";
-        SalesLine.Quantity := SVAOccupantTrans.Qty * -1;
-        SalesLine."Qty. to Ship" := SalesLine.Quantity;
-        SalesLine."Qty. to Invoice" := SalesLine.Quantity;
-        SalesLine."Unit Price" := SVAOccupantTrans.Price;
-        SalesLine."Line Amount" := SalesLine.Quantity * SalesLine."Unit Price";
-        SalesLine.Amount := SalesLine.Quantity * SalesLine."Unit Price";
-        SalesLine."Dimension Set ID" := SalesHeader."Dimension Set ID";
-        Salesline.Validate("Dimension Set ID");
-        SalesLine."Gen. Bus. Posting Group" := SalesHeader."Gen. Bus. Posting Group";
-        Salesline.Validate(SalesLine."Gen. Bus. Posting Group");
-        SalesLine."VAT Bus. Posting Group" := SalesHeader."VAT Bus. Posting Group";
+        MoveOutInvoiceLine.INIT();
+        MoveOutInvoiceLine."Line No." := LineNo;
+        LineNo := LineNo + 10000;
+        MoveOutInvoiceLine."Line Number" := MoveOutInvoiceHeader.Number;
+        MoveOutInvoiceLine.Quantity := SVAOccupantTrans.Qty * -1;
+        MoveOutInvoiceLine."Unit Price" := SVAOccupantTrans.Price;
+        MoveOutInvoiceLine."Line Amount" := MoveOutInvoiceLine.Quantity * MoveOutInvoiceLine."Unit Price";
         SVACosttype.Reset();
         SVACosttype.SETRANGE(Type, Costtype);
         IF SVACosttype.FINDFIRST() THEN BEGIN
-            SalesLine."No." := SVACosttype.Account;
-            SalesLine.Description := SVACosttype.Description;
-            SalesLine."SVA CostType" := SVACosttype.Costtype;
-            SalesLine."VAT Prod. Posting Group" := SVACosttype.VatGroup;
-            SalesLine."Gen. Prod. Posting Group" := SVACosttype.ProductPostingGroup;
-            SalesLine.Validate("VAT Prod. Posting Group");
-            SalesLine.Validate("Gen. Prod. Posting Group");
+            MoveOutInvoiceLine.Account := SVACosttype.Account;
+            MoveOutInvoiceLine.Description := SVACosttype.Description;
+            MoveOutInvoiceLine."Cost Type" := SVACosttype.Costtype;
+            MoveOutInvoiceLine."VAT Prod. Posting Group" := SVACosttype.VatGroup;
+            MoveOutInvoiceLine."Gen. Prod. Posting Group" := SVACosttype.ProductPostingGroup;
         END;
     end;
-
 }

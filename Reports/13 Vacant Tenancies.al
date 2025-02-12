@@ -45,7 +45,7 @@ report 50013 "SVA Vacant Tenancies"
             dataitem("SVA Subscription Lines"; "SVA Subscription Lines")
             {
                 DataItemLink = Tenancies = FIELD(Number);
-                DataItemTableView = SORTING(Tenancies, Order, "Cost Types", "Date From", "Date To", KeyNumber)
+                DataItemTableView = SORTING(Tenancies, Order, "Cost Types")
                                     ORDER(Ascending)
                                     WHERE(Type = const(Rent));
                 column(Amount_Period; "Amount Period")
@@ -64,6 +64,8 @@ report 50013 "SVA Vacant Tenancies"
 
                 IF vacantDate = 0D THEN
                     CurrReport.SKIP();
+                if ArchiveDate > DMY2Date(1, 1, 1960) then
+                    CurrReport.Skip();
             end;
         }
     }

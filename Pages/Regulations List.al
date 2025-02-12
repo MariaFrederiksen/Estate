@@ -15,68 +15,68 @@ page 50016 "SVA Regulations"
             repeater(Group)
             {
                 //Bebeoerinfo
-                field(Number; Onumber)
+                field(Number; Rec.Onumber)
                 {
                     ApplicationArea = All;
                     ToolTip = 'Occupant';
                 }
-                field(TenancyNo; TenancyNo)
+                field(TenancyNo; Rec.TenancyNo)
                 {
                     ApplicationArea = All;
                     ToolTip = 'Tenancy number';
                 }
-                field(Name1; OName1)
+                field(Name1; Rec.OName1)
                 {
                     ApplicationArea = All;
                     ToolTip = 'Name';
                 }
-                field(Costtype; Costtype)
+                field(Costtype; Rec.Costtype)
                 {
                     ApplicationArea = All;
                     ToolTip = 'Costtype';
                 }
-                field(Indeks_Old; Indeks_Old)
+                field(Indeks_Old; Rec.Indeks_Old)
                 {
                     ApplicationArea = All;
                     ToolTip = 'Indeks old';
                 }
-                field(Indeks_New; Indeks_New)
+                field(Indeks_New; Rec.Indeks_New)
                 {
                     ApplicationArea = All;
                     ToolTip = 'Indeks new';
                 }
-                field(ActualRegulation; ActualRegulation)
+                field(ActualRegulation; Rec.ActualRegulation)
                 {
                     ApplicationArea = All;
                     ToolTip = 'Regulering';
                 }
-                field(RentPerNow; RentPerNow)
+                field(RentPerNow; Rec.RentPerNow)
                 {
                     ApplicationArea = All;
                     Tooltip = 'Current rent';
                 }
-                field(RentPerNew; RentPerNew)
+                field(RentPerNew; Rec.RentPerNew)
                 {
                     ApplicationArea = All;
                     ToolTip = 'New rent';
                 }
-                field(RegulationDeposit; RegulationDeposit)
+                field(RegulationDeposit; Rec.RegulationDeposit)
                 {
                     ApplicationArea = All;
                     ToolTip = 'Regulation deposit';
                 }
-                field(RegulationPrepaidrent; RegulationPrepaidrent)
+                field(RegulationPrepaidrent; Rec.RegulationPrepaidrent)
                 {
                     ApplicationArea = All;
                     ToolTip = 'Regulation prepaid rent';
                 }
-                field(Regulationdate; Regulationdate)
+                field(Regulationdate; Rec.Regulationdate)
                 {
                     ApplicationArea = All;
                     ToolTip = 'Regulation date';
                 }
 
-                field(Closed; Closed)
+                field(Closed; Rec.Closed)
                 {
                     ApplicationArea = All;
                     ToolTip = 'Updated';
@@ -112,88 +112,54 @@ page 50016 "SVA Regulations"
             action(Letters)
             {
                 Caption = 'Make letters';
+                ToolTip = 'Make regulation letters for occupants';
                 Image = Report;
                 ApplicationArea = All;
-
-                trigger OnAction();
-                begin
-                    SVAregulations.Reset();
-                    if SVAregulations.FindSet() then
-                        repeat
-
-                            FirstSVARegulations.Reset();
-                            FirstSVARegulations.SetRange(FirstSVARegulations.ONumber, SVAregulations.ONumber);
-                            if FirstSVARegulations.FindFirst() then begin
-                                //No max/min increase
-                                //Indeks regulations and solid increase
-                                if (FirstSVARegulations.Increase = 0) and (FirstSVARegulations.MaxRegulation = 0) and (FirstSVARegulations.MinRegulation = 0) then begin
-                                    //Letters for indeksregulations
-                                    //Only deposit
-                                    if (FirstSVARegulations.RegulationPrepaidrent = 0) then begin
-                                        Clear(SVARegulationIndeksDeposit);
-                                        SVARegulationIndeksDeposit.SetTableView(FirstSVARegulations);
-                                        SVARegulationIndeksDeposit.Run();
-                                    end;
-                                    if (FirstSVARegulations.RegulationPrepaidrent <> 0) then begin
-                                        Clear(SVARegulationIndeks);
-                                        SVARegulationIndeks.SetTableView(FirstSVARegulations);
-                                        SVARegulationIndeks.Run();
-                                    end;
-                                end;
-                                if (FirstSVARegulations.Increase <> 0) and (FirstSVARegulations.MaxRegulation = 0) and (FirstSVARegulations.MinRegulation = 0) then begin
-                                    //Letters for solid Increase
-                                    //Only deposit
-                                    if (RegulationPrepaidrent = 0) then begin
-                                        Clear(SVARegulIncreaseDeposit);
-                                        SVARegulIncreaseDeposit.SetTableView(FirstSVARegulations);
-                                        SVARegulIncreaseDeposit.Run();
-                                    end;
-                                    if (RegulationPrepaidrent <> 0) then begin
-                                        Clear(SVARegulationIncrease);
-                                        SVARegulationIncrease.SetTableView(FirstSVARegulations);
-                                        SVARegulationIncrease.Run();
-                                    end;
-                                end;
-                                if (FirstSVARegulations.MaxRegulation <> 0) OR (FirstSVARegulations.Minregulation <> 0) then begin
-                                    //Letters for indeksregulations with max/min
-                                    //Only deposit
-                                    if (RegulationPrepaidrent = 0) then begin
-                                        Clear(SVARegulationIndeksDepMin);
-                                        SVARegulationIndeksDepMin.SetTableView(FirstSVARegulations);
-                                        SVARegulationIndeksDepMin.Run();
-                                    end;
-                                    if (RegulationPrepaidrent <> 0) then begin
-                                        Clear(SVARegulationIndeksMin);
-                                        SVARegulationIndeksMin.SetTableView(FirstSVARegulations);
-                                        SVARegulationIndeksMin.Run();
-                                    end;
-                                end;
-                            end;
-                        until SVAregulations.NEXT() = 0;
-                end;
+                RunObject = codeunit "SVA Regulation Letters";
             }
-
 
             action(Updates)
             {
                 Caption = 'Updates';
+                ToolTip = 'Create subscriptionlines for each regulation on each occupant.';
                 Image = Report;
                 ApplicationArea = All;
 
                 trigger OnAction();
+                var
+                    l_SVAOccupantTrans: Record "SVA Occupant Trans";
+                    l_SVACosttype: Record "SVA Cost type";
+                    VATgrpDeposita: Text[10];
+                    VATGrpPrepaidRent: Text[10];
+                    ProdGrpDeposita: Text[10];
+                    ProdGrpPrepaidRent: Text[10];
+
                 begin
                     SVAregulations.Reset();
                     SVAregulations.SetRange(SVAregulations.Closed, false);
                     if SVAregulations.FindSet() then
                         repeat
+                            //Find VATcodes
+                            l_SVAOccupantTrans.Reset();
+                            l_SVAOccupantTrans.SetRange(Occupant, SVARegulations.ONumber);
+                            l_SVAOccupantTrans.SetRange(Type, 10);
+                            if l_SVAOccupantTrans.FindFirst() then begin
+                                l_SVACosttype.Get(l_SVAOccupantTrans."Cost type Estate");
+                                VATgrpDeposita := l_SVACosttype.VatGroup;
+                                ProdGrpDeposita := l_SVACosttype.ProductPostingGroup;
+                            end;
+                            l_SVAOccupantTrans.Reset();
+                            l_SVAOccupantTrans.SetRange(Occupant, SVARegulations.ONumber);
+                            l_SVAOccupantTrans.SetRange(Type, 11);
+                            if l_SVAOccupantTrans.FindFirst() then begin
+                                l_SVACosttype.Get(l_SVAOccupantTrans."Cost type Estate");
+                                VATGrpPrepaidRent := l_SVACosttype.VatGroup;
+                                ProdGrpPrepaidRent := l_SVACosttype.ProductPostingGroup;
+                            end;
+
                             FirstSVARegulations.Reset();
                             FirstSVARegulations.SetRange(FirstSVARegulations.ONumber, SVAregulations.ONumber);
                             if FirstSVARegulations.FindFirst() then begin
-                                //Find ud af om der er moms på aftalen
-                                SVASubscriptionLines.Reset();
-                                SVASubscriptionLines.SetRange(type, 1);
-                                if SVASubscriptionLines.FindFirst() then
-                                    Vatgrp := SVASubscriptionLines.VatGroup;
 
                                 //Find periode på aftalen
                                 SVATenancy.Reset();
@@ -212,12 +178,12 @@ page 50016 "SVA Regulations"
                                 //Dan linje for regulering af deposita
                                 SVACosttype.Reset();
                                 SVACosttype.SetRange(type, 10); //deposita
-                                SVACosttype.SetRange(VatGroup, Vatgrp);
+                                SVACosttype.SetRange(VatGroup, VATgrpDeposita);
                                 if SVACosttype.FindFirst() then begin
                                     Clear(SVASubscriptionLines);
                                     SVASubscriptionLines.Tenancies := FirstSVARegulations.TenancyNo;
                                     SVASubscriptionLines.Type := SVACosttype.Type;
-                                    SVASubscriptionLines.VatGroup := Vatgrp;
+                                    SVASubscriptionLines.VatGroup := VATgrpDeposita;
                                     SVASubscriptionLines.ProductPostingGroup := SVACosttype.ProductPostingGroup;
                                     SVASubscriptionLines.Order := SVACosttype.Order;
                                     SVASubscriptionLines.Description := 'Regulering af depositum';
@@ -233,18 +199,21 @@ page 50016 "SVA Regulations"
                                         SVASubscriptionLines."Date To" := CalcDate('<6m-1D>', SVASubscriptionLines."Date From");
                                     IF Periods = 1 then
                                         SVASubscriptionLines."Date To" := CalcDate('<1y-1D>', SVASubscriptionLines."Date From");
-                                    if SVASubscriptionLines."Amount Year" <> 0 then
+                                    if SVASubscriptionLines."Amount Year" <> 0 then begin
+                                        SVASubscriptionLines."Amount Year" := Round(SVASubscriptionLines."Amount Year", 0.01, '=');
+                                        SVASubscriptionLines."Amount Year" := Round(SVASubscriptionLines."Amount Period", 0.01, '=');
                                         SVASubscriptionLines.Insert();
+                                    end;
                                 end;
                                 //Dan linje for regulering af forudbetalt leje
                                 SVACosttype.Reset();
                                 SVACosttype.SetRange(type, 11); //forudbetalt leje
-                                SVACosttype.SetRange(VatGroup, Vatgrp);
+                                SVACosttype.SetRange(VatGroup, VATGrpPrepaidRent);
                                 if SVACosttype.FindFirst() then begin
                                     Clear(SVASubscriptionLines);
                                     SVASubscriptionLines.Tenancies := FirstSVARegulations.TenancyNo;
                                     SVASubscriptionLines.Type := SVACosttype.Type;
-                                    SVASubscriptionLines.VatGroup := Vatgrp;
+                                    SVASubscriptionLines.VatGroup := VATGrpPrepaidRent;
                                     SVASubscriptionLines.ProductPostingGroup := SVACosttype.ProductPostingGroup;
                                     SVASubscriptionLines.Order := SVACosttype.Order;
                                     SVASubscriptionLines.Description := 'Regulering af forudb. leje';
@@ -260,8 +229,11 @@ page 50016 "SVA Regulations"
                                         SVASubscriptionLines."Date To" := CalcDate('<6m-1D>', SVASubscriptionLines."Date From");
                                     IF Periods = 1 then
                                         SVASubscriptionLines."Date To" := CalcDate('<1y-1D>', SVASubscriptionLines."Date From");
-                                    if SVASubscriptionLines."Amount Year" <> 0 then
+                                    if SVASubscriptionLines."Amount Year" <> 0 then begin
+                                        SVASubscriptionLines."Amount Year" := Round(SVASubscriptionLines."Amount Year", 0.01, '=');
+                                        SVASubscriptionLines."Amount Year" := Round(SVASubscriptionLines."Amount Period", 0.01, '=');
                                         SVASubscriptionLines.Insert(true);
+                                    end;
                                 end;
 
                                 //Dan ny linje til opkrævning af leje
@@ -269,6 +241,7 @@ page 50016 "SVA Regulations"
                                 SVASubscriptionLines.SetRange(Tenancies, FirstSVARegulations.TenancyNo);
                                 SVASubscriptionLines.setrange(type, 1);
                                 SVASubscriptionLines.SetRange("Date To", 0D);
+                                SVASubscriptionLines.SetRange(PriceIndeks, true);
                                 if SVASubscriptionLines.FindFirst() then
                                     CosttypeVar := SVASubscriptionLines."Cost Types";
 
@@ -278,7 +251,7 @@ page 50016 "SVA Regulations"
                                     Clear(SVASubscriptionLines);
                                     SVASubscriptionLines.Tenancies := FirstSVARegulations.TenancyNo;
                                     SVASubscriptionLines.Type := SVACosttype.Type;
-                                    SVASubscriptionLines.VatGroup := Vatgrp;
+                                    SVASubscriptionLines.VatGroup := SVACosttype.VatGroup;
                                     SVASubscriptionLines.ProductPostingGroup := SVACosttype.ProductPostingGroup;
                                     SVASubscriptionLines.Order := SVACosttype.Order;
                                     SVASubscriptionLines.Description := SVACosttype.Description;
@@ -287,8 +260,11 @@ page 50016 "SVA Regulations"
                                     SVASubscriptionLines."Amount Year" := FirstSVARegulations.RentYearNew;
                                     SVASubscriptionLines."Amount Period" := FirstSVARegulations.RentYearNew / Periods;
                                     SVASubscriptionLines.PriceIndeks := true;
-                                    if SVASubscriptionLines."Amount Year" <> 0 then
+                                    if SVASubscriptionLines."Amount Year" <> 0 then begin
+                                        SVASubscriptionLines."Amount Year" := Round(SVASubscriptionLines."Amount Year", 0.01, '=');
+                                        SVASubscriptionLines."Amount Year" := Round(SVASubscriptionLines."Amount Period", 0.01, '=');
                                         SVASubscriptionLines.Insert(true);
+                                    end;
 
                                 end;
 
@@ -333,7 +309,8 @@ page 50016 "SVA Regulations"
                                 SVACOntractregulations.PrepaidRentAmount := SVAregulations.PrepaidRentNew;
                                 SVACOntractregulations.DepositAmount := SVAregulations.DepositNew;
                                 SVACOntractregulations.RegDate := Calcdate('<1Y>', FirstSVARegulations.Regulationdate);
-                                SVACOntractregulations.Indeks_Date := CalcDate('<1Y>', FirstSVARegulations.Indeksdate);
+                                if SVACOntractregulations.Indeks_Date <> 0D then
+                                    SVACOntractregulations.Indeks_Date := CalcDate('<1Y>', FirstSVARegulations.Indeksdate);
                                 SVACOntractregulations.Modify();
                             end;
 
@@ -352,18 +329,8 @@ page 50016 "SVA Regulations"
         SVACosttype: Record "SVA Cost type";
         SVATenancy: Record "SVA Tenancy";
         SVAContractregulations: Record "SVA Contract regulations";
-        SVARegulationIndeks: Report "SVA Regulation Indeks";
-        SVARegulationIndeksDeposit: Report "SVA Regulation Indeks Deposit";
-        SVARegulationIndeksMin: Report "SVA Regulation Indeks Min";
-        SVARegulationIndeksDepMin: Report "SVA Regulation Indeks Dep Min";
-        SVARegulationIncrease: Report "SVA Regulation Increase";
-        SVARegulIncreaseDeposit: Report "SVA Regul. Increase Deposit";
-        Vatgrp: Text[10];
         Periods: Integer;
         CosttypeVar: Text[10];
-
-
-
 
 }
 

@@ -47,12 +47,22 @@ table 50006 "SVA Occupant Trans"
             OptionCaption = 'Other,Rent,ACheat,ACwater,ACElectric,ACCooling,ACOperating,Antenna,Internet,OccGroup,Deposit,Prepaid rent,Settlement,MovingCost';
             OptionMembers = Other, Rent, ACheat, ACwater, ACElectric, ACCooling, ACOperating, Antenna, Internet, OccGroup, Deposit, "Prepaid rent", Settlement, Movingcost;
         }
+        field(10;Costtype;Enum "SVA Cost types")
+        {
+            Caption = 'Type';            
+        }
+        field(11; "Date Filter"; Date)
+        {
+            Caption = 'Date Filter';
+            FieldClass = FlowFilter;
+        }
     }
 
     keys
     {
         key(Key1; Occupant, Date, "Cost type Estate", "Invoice No")
         {
+            SumIndexFields = Amount;
         }
     }
 

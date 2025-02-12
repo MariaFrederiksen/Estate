@@ -4,6 +4,7 @@ report 50014 "SVA DemandNoticeProf"
     WordLayout = './Layouts/DemandNoticeProf.docx';
     Caption = 'Demand notice Prof';
     DefaultLayout = Word;
+    //UseRequestPage = false;
 
     dataset
     {
@@ -152,7 +153,7 @@ report 50014 "SVA DemandNoticeProf"
             column(CompanyBankBranchNo; CompanyInformation."Bank Branch No.")
             {
             }
-            column(CompanyBanAccountNo; CompanyInformation."Bank Branch No.")
+            column(CompanyBanAccountNo; CompanyInformation."Bank Account No.")
             {
             }
             column(CompanyBankName; CompanyInformation."Bank Name")
@@ -166,6 +167,14 @@ report 50014 "SVA DemandNoticeProf"
             }
             column(LiableAmount; LiableAmountTotal)
             {
+            }
+            column(E_Mail; "E-Mail")
+            {
+
+            }
+            column(Home_Page; "Home Page")
+            {
+
             }
         }
     }

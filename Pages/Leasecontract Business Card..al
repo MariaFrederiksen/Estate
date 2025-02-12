@@ -16,132 +16,132 @@ page 50005 "SVA Lease Business"
             group(Lejeaftale)
             {
                 Caption = 'Leasecontract';
-                field(Number; Number)
+                field(Number; Rec.Number)
                 {
                     ApplicationArea = All;
                     ToolTip = 'Number on leasecontract';
                 }
-                field(TypeA9_1_Address; TypeA9_1_Address)
+                field(TypeA9_1_Address; Rec.TypeA9_1_Address)
                 {
                     ApplicationArea = All;
                     ToolTip = 'Tenancy address';
                 }
-                field(TypeA9_1_City; TypeA9_1_City)
+                field(TypeA9_1_City; Rec.TypeA9_1_City)
                 {
                     ApplicationArea = All;
                     ToolTip = 'Tenancy city';
                 }
-                field(TypeA9_1_Landlord; TypeA9_1_Landlord)
+                field(TypeA9_1_Landlord; Rec.TypeA9_1_Landlord)
                 {
                     ApplicationArea = All;
                     ToolTip = 'Landlord name';
                 }
-                field(TypeA9_1_LandlordCVR; TypeA9_1_LandlordCVR)
+                field(TypeA9_1_LandlordCVR; Rec.TypeA9_1_LandlordCVR)
                 {
                     ApplicationArea = All;
                     ToolTip = 'Landlord ESRno.';
                 }
-                field(TypeA9_1_LandlordAddress; TypeA9_1_LandlordAddress)
+                field(TypeA9_1_LandlordAddress; Rec.TypeA9_1_LandlordAddress)
                 {
                     ApplicationArea = All;
                     ToolTip = 'Landlord address';
                 }
-                field(TypeA9_1_TenentName; TypeA9_1_TenentName)
+                field(TypeA9_1_TenentName; Rec.TypeA9_1_TenentName)
                 {
                     ApplicationArea = All;
                     ToolTip = 'Tenant name(s)';
                 }
-                field(TypeA9_1_TenentAddress; TypeA9_1_TenentAddress)
+                field(TypeA9_1_TenentAddress; Rec.TypeA9_1_TenentAddress)
                 {
                     ApplicationArea = All;
                     ToolTip = 'Tenant invoice address';
                 }
-                field(TypeA9_1_TenantCPR; TypeA9_1_TenantCPR)
+                field(TypeA9_1_TenantCPR; Rec.TypeA9_1_TenantCPR)
                 {
                     ApplicationArea = All;
                     ToolTip = 'Tenant social security number';
                 }
-                field(TypeA9_1_GarageNo; TypeA9_1_GarageNo)
+                field(TypeA9_1_GarageNo; Rec.TypeA9_1_GarageNo)
                 {
                     ApplicationArea = All;
                     ToolTip = 'Garage no. or letter';
                 }
-                field(TypeA9_2_Startdate; TypeA9_2_Startdate)
+                field(TypeA9_2_Startdate; Rec.TypeA9_2_Startdate)
                 {
                     ApplicationArea = All;
                     ToolTip = 'Startdate leaseperiod';
                 }
-                field(TypeA9_3_RentPerPeriode; TypeA9_3_RentPerPeriode)
+                field(TypeA9_3_RentPerPeriode; Rec.TypeA9_3_RentPerPeriode)
                 {
                     ApplicationArea = All;
                     ToolTip = 'Rent per period (month, quarter, halfyear or year).';
                 }
-                field(TypeA9_3_RentPerYear; TypeA9_3_RentPerYear)
+                field(TypeA9_3_RentPerYear; Rec.TypeA9_3_RentPerYear)
                 {
                     ApplicationArea = All;
                     ToolTip = 'Rent per year';
                 }
-                field(TypeA9_4_DepMth; TypeA9_4_DepMth)
+                field(TypeA9_4_DepMth; Rec.TypeA9_4_DepMth)
                 {
                     ApplicationArea = All;
                     ToolTip = 'Deposit qty month';
                 }
-                field(TypeA9_4_DepAmount; TypeA9_4_DepAmount)
+                field(TypeA9_4_DepAmount; Rec.TypeA9_4_DepAmount)
                 {
                     ApplicationArea = All;
                     ToolTip = 'Deposit amount. If deposit month is blank, amount can be filled out';
                 }
-                field(TypeA9_4_PrepaidRentMth; TypeA9_4_PrepaidRentMth)
+                field(TypeA9_4_PrepaidRentMth; Rec.TypeA9_4_PrepaidRentMth)
                 {
                     ApplicationArea = All;
                     ToolTip = 'Prepaid rent qty month';
                 }
-                field(TypeA9_4_PrepaidRent; TypeA9_4_PrepaidRent)
+                field(TypeA9_4_PrepaidRent; Rec.TypeA9_4_PrepaidRent)
                 {
                     ApplicationArea = All;
                     ToolTip = 'Prepaid rent amount';
                 }
-                field(TypeA9_4_Rentetc; TypeA9_4_Rentetc)
+                field(TypeA9_4_Rentetc; Rec.TypeA9_4_Rentetc)
                 {
                     ApplicationArea = All;
                     ToolTip = 'Rent first period';
                 }
-                field(TypeA9_4_RentFrom; TypeA9_4_RentFrom)
+                field(TypeA9_4_RentFrom; Rec.TypeA9_4_RentFrom)
                 {
                     ApplicationArea = All;
                     ToolTip = 'Rent first period startdate';
                 }
-                field(TypeA9_4_RentTo; TypeA9_4_RentTo)
+                field(TypeA9_4_RentTo; Rec.TypeA9_4_RentTo)
                 {
                     ApplicationArea = All;
                     ToolTip = 'Rent first period enddate';
                 }
-                field(TypeA9_4_TotalAmount; TypeA9_4_TotalAmount)
+                field(TypeA9_4_TotalAmount; Rec.TypeA9_4_TotalAmount)
                 {
                     ApplicationArea = All;
                     ToolTip = 'Total amount to be paid at commissioning';
                 }
-                field(TypeA9_4_DueDate; TypeA9_4_DueDate)
+                field(TypeA9_4_DueDate; Rec.TypeA9_4_DueDate)
                 {
                     ApplicationArea = All;
                     ToolTip = 'Duedate for moving in costs';
                 }
-                field(TypeA9_4_RentFirstTime; TypeA9_4_RentFirstTime)
+                field(TypeA9_4_RentFirstTime; Rec.TypeA9_4_RentFirstTime)
                 {
                     ApplicationArea = All;
                     ToolTip = 'Rent first time then';
                 }
-                field(TypeA9_3_Bankname; TypeA9_3_Bankname)
+                field(TypeA9_3_Bankname; Rec.TypeA9_3_Bankname)
                 {
                     ApplicationArea = All;
                     ToolTip = 'Landlords bankname';
                 }
-                field(TypeA9_3_BankRegNo; TypeA9_3_BankRegNo)
+                field(TypeA9_3_BankRegNo; Rec.TypeA9_3_BankRegNo)
                 {
                     ApplicationArea = All;
                     ToolTip = 'Landlord bank branch no';
                 }
-                field(TypeA9_3_BankAccount; TypeA9_3_BankAccount)
+                field(TypeA9_3_BankAccount; Rec.TypeA9_3_BankAccount)
                 {
                     ApplicationArea = All;
                     ToolTip = 'Landlord bank account no.';

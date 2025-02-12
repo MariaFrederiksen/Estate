@@ -645,7 +645,9 @@
                               <TextRuns>
                                 <TextRun>
                                   <Value>=Fields!Amount_Period.Value</Value>
-                                  <Style />
+                                  <Style>
+                                    <Format>n2</Format>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style />
@@ -754,7 +756,7 @@
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value>Aktuelle opkrævninger pr. lejemål</Value>
+                      <Value>Aktuel leje pr. lejemål</Value>
                       <Style>
                         <FontSize>20pt</FontSize>
                         <FontWeight>Bold</FontWeight>
@@ -856,7 +858,7 @@
                       <Style />
                     </TextRun>
                     <TextRun>
-                      <Value>=Fields!TotalPages.Value</Value>
+                      <Value>=Globals!TotalPages</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -974,6 +976,9 @@ End Function
         </Field>
         <Field Name="PropertyNo_Tenancy">
           <DataField>PropertyNo_Tenancy</DataField>
+        </Field>
+        <Field Name="OccupantName">
+          <DataField>OccupantName</DataField>
         </Field>
         <Field Name="Address1_Tenancy">
           <DataField>Address1_Tenancy</DataField>

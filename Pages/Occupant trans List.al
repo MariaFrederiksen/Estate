@@ -12,61 +12,72 @@ page 50010 "SVA Occupant Trans List"
         {
             repeater(Group)
             {
-                field(Occupant; Occupant)
+                field(Occupant; Rec.Occupant)
                 {
                     ApplicationArea = all;
+                    ToolTip = 'Occupant';
                 }
                 field(Navn; Name)
                 {
                     ApplicationArea = all;
                     Caption = 'Name';
+                    ToolTip = 'Name of occupant.';
                 }
                 field(Lejemål; Tenancy)
                 {
                     ApplicationArea = all;
                     Caption = 'Tenancy';
+                    ToolTip = 'Tenancy';
                 }
-                field(Date; Date)
+                field(Date; Rec.Date)
                 {
                     ApplicationArea = all;
+                    ToolTip = 'Postingdate';
                 }
-                field("Cost type Estate"; "Cost type Estate")
+                field("Cost type Estate"; Rec."Cost type Estate")
                 {
                     ApplicationArea = all;
+                    ToolTip = 'Costtype';
                     trigger OnValidate();
                     begin
                         SVACosttype.Reset();
-                        SVACosttype.SETRANGE(Costtype, "Cost type Estate");
-                        IF FINDFIRST() THEN BEGIN
-                            Type := SVACosttype.Type;
-                            Description := SVACosttype.Description;
-                            qty := 1;
+                        SVACosttype.SETRANGE(Costtype, Rec."Cost type Estate");
+                        IF SVACosttype.FindFirst() THEN BEGIN
+                            Rec.Type := SVACosttype.Type;
+                            Rec.Description := SVACosttype.Description;
+                            Rec.qty := 1;
                         END;
                     end;
                 }
-                field(Description; Description)
+                field(Description; Rec.Description)
                 {
                     ApplicationArea = all;
+                    ToolTip = 'Invoice description';
                 }
-                field(Qty; Qty)
+                field(Qty; Rec.Qty)
                 {
                     ApplicationArea = all;
+                    ToolTip = 'Quantity';
                 }
-                field(Price; Price)
+                field(Price; Rec.Price)
                 {
                     ApplicationArea = all;
+                    ToolTip = 'Unit price';
                 }
-                field(Amount; Amount)
+                field(Amount; Rec.Amount)
                 {
                     ApplicationArea = all;
+                    ToolTip = 'Line amount.';
                 }
-                field("Invoice No"; "Invoice No")
+                field("Invoice No"; Rec."Invoice No")
                 {
                     ApplicationArea = all;
+                    Tooltip = 'Posted invoice';
                 }
-                field(Type; Type)
+                field(Type; Rec.Type)
                 {
                     ApplicationArea = all;
+                    ToolTip = 'Type';
                 }
 
             }
@@ -92,6 +103,7 @@ page 50010 "SVA Occupant Trans List"
             {
                 ApplicationArea = All;
                 Caption = 'Translist report';
+                ToolTip = 'List of entries, report';
                 Image = Report2;
                 RunObject = Report "SVA Occupant Trans";
             }
@@ -115,7 +127,7 @@ page 50010 "SVA Occupant Trans List"
     trigger OnAfterGetRecord();
     begin
         SVAOccupant.Reset();
-        SVAOccupant.SetRange(Number, Occupant);
+        SVAOccupant.SetRange(Number, Rec.Occupant);
         if SVAOccupant.FindFirst() then begin
             Name := SVAOccupant.Name1;
             Tenancy := SVAOccupant.TenancyNo;

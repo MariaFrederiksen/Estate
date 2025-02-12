@@ -12,201 +12,237 @@ page 50014 "SVA Property Card"
             group(General)
             {
                 Caption = 'General';
-                field(Property; Property)
+                field(Property; Rec.Property)
                 {
                     ApplicationArea = All;
                     ToolTip = 'Property number';
                 }
-                field(Name; Name)
+                field(Name; Rec.Name)
                 {
                     ApplicationArea = All;
                     ToolTip = 'Possibly property name';
                 }
-                field(Address1; Address1)
+                field(Address1; Rec.Address1)
                 {
                     ApplicationArea = All;
                     ToolTip = 'Property address';
                 }
-                field(Address2; Address2)
+                field(Address2; Rec.Address2)
                 {
                     ApplicationArea = All;
                     ToolTip = 'Property address 2';
                 }
-                field("Post Code"; "Post Code")
+                field("Post Code"; Rec."Post Code")
                 {
                     ApplicationArea = All;
                     ToolTip = 'Property post code';
                 }
-                field(City; City)
+                field(City; Rec.City)
                 {
                     ApplicationArea = All;
                     ToolTip = 'Property city';
                 }
-                field("Country/Region Code"; "Country/Region Code")
+                field("Country/Region Code"; Rec."Country/Region Code")
                 {
                     ApplicationArea = All;
                     ToolTip = 'Property country';
                 }
-                field(Email; Email)
+                field("VAT Prod. Posting Group"; Rec."VAT Prod. Posting Group")
                 {
-                    ApplicationArea = All;
-                    ToolTip = 'Main email.';
+                    ApplicationArea = all;
+                    ToolTip = 'Vat product posting group for this property. Dimension 1 should be set equal to the propertynumber.';
                 }
-                field(CompanyRegNo; CompanyRegNo)
+                field(Email; Rec.Email)
+                {
+                    ApplicationArea = all;
+                    ToolTip = 'Emails to occupant and customers is sent to this mail too.';
+                }
+                /* field(CompanyRegNo; Rec.CompanyRegNo)
                 {
                     ApplicationArea = All;
                     ToolTip = 'Company registration number';
-                }
-                field(CadastralNo; CadastralNo)
+                } */
+                field(CadastralNo; Rec.CadastralNo)
                 {
                     ApplicationArea = All;
                     ToolTip = 'Property cadastral number';
                 }
-                field(SquareMetersTotal; SquareMetersTotal)
+                field(SquareMetersTotal; Rec.SquareMetersTotal)
                 {
                     ApplicationArea = All;
                     ToolTip = 'Property total square meter.';
                 }
-                field(SquareMetersProf; SquareMetersProf)
+                field(SquareMetersProf; Rec.SquareMetersProf)
                 {
                     ApplicationArea = All;
                     ToolTip = 'Property square meter used for business';
                 }
-                field(SquareMetersLiv; SquareMetersLiv)
+                field(SquareMetersLiv; Rec.SquareMetersLiv)
                 {
                     ApplicationArea = All;
                     ToolTip = 'Property square meter used for living';
                 }
-                field(Startdate; Startdate)
+                field(Startdate; Rec.Startdate)
                 {
                     ApplicationArea = All;
                     ToolTip = 'Startdate for the administration';
                 }
-                field(ArchiveDate; ArchiveDate)
+                field(ArchiveDate; Rec.ArchiveDate)
                 {
                     ApplicationArea = All;
                     ToolTip = 'Archived date. The date, administration of the property stopped';
                 }
             }
+            group(Bebrepresentative)
+            {
+                Caption = 'Residential representative';
+                field("Resident representation"; Rec."Resident representation")
+                {
+                    ApplicationArea = all;
+                    ToolTip = 'Resident representation for this property.';
+                }
+                field(RR_Contact; Rec.RR_Contact)
+                {
+                    ApplicationArea = all;
+                    ToolTip = 'Contact ID';
+                }
+                field(RR_Name; Rec.RR_Name)
+                {
+                    ApplicationArea = all;
+                    ToolTip = 'Contact name';
+                }
+                field(RR_Amount; Rec.RR_Amount)
+                {
+                    ApplicationArea = all;
+                    ToolTip = 'Amount per month';
+                }
+                field(RR_Fromdate; Rec.RR_Fromdate)
+                {
+                    ApplicationArea = all;
+                    ToolTip = 'Valid from';
+                }
+            }
             group(Own)
             {
                 Caption = 'Owner';
-                field(Owner; Owner)
+                field(Owner; Rec.Owner)
                 {
                     ApplicationArea = All;
                     ToolTip = 'Owner name. Not uset for associations';
                 }
-                field(OwnerAddress1; OwnerAddress1)
+                field(OwnerAddress1; Rec.OwnerAddress1)
                 {
                     ApplicationArea = All;
                     ToolTip = 'Owner address. Not uset for associations';
                 }
-                field(OwnerAddress2; OwnerAddress2)
+                field(OwnerAddress2; Rec.OwnerAddress2)
                 {
                     ApplicationArea = All;
                     ToolTip = 'Owner address 2. Not uset for associations';
                 }
-                field(OwnerPostCode; OwnerPostCode)
+                field(OwnerPostCode; Rec.OwnerPostCode)
                 {
                     ApplicationArea = All;
                     ToolTip = 'Owner post code. Not uset for associations';
                 }
-                field(OwnerCity; OwnerCity)
+                field(OwnerCity; Rec.OwnerCity)
                 {
                     ApplicationArea = All;
                     ToolTip = 'Owner city. Not uset for associations';
                 }
-                field(OwnerCountry; OwnerCountry)
+                field(OwnerCountry; Rec.OwnerCountry)
                 {
                     ApplicationArea = All;
                     ToolTip = 'Owner country. Not uset for associations';
                 }
-                field(OwnerPhone; OwnerPhone)
+                field(OwnerPhone; Rec.OwnerPhone)
                 {
                     ApplicationArea = All;
                     ToolTip = 'Owner phone. Not uset for associations';
                 }
-                field(OwnerCell; OwnerCell)
+                field(OwnerCell; Rec.OwnerCell)
                 {
                     ApplicationArea = All;
                     ToolTip = 'Owner cellphone. Not uset for associations';
                 }
-                field(OwnerEmail; OwnerEmail)
+                field(OwnerEmail; Rec.OwnerEmail)
                 {
                     ApplicationArea = All;
-                    ToolTip = 'Owner email. Not uset for associations';
+                    ToolTip = 'Owner email. Emails to occupant and customers is sent to this mail too.';
                 }
             }
-            group(Bankinformations)
+            /* group(Bankinformations)
+            NOTE:
+            Do not delete. Can be handy at some time.
             {
                 Caption = 'Bank and NETS';
-                field(Bankname; Bankname)
+                field(Bankname; Rec.Bankname)
                 {
                     ApplicationArea = All;
                     ToolTip = 'Bankname for this property';
                 }
-                field(BankRegNo; BankRegNo)
+                field(BankRegNo; Rec.BankRegNo)
                 {
                     ApplicationArea = All;
                     ToolTip = 'Bank branch no for this property';
                 }
-                field(Bankaccount; Bankaccount)
+                field(Bankaccount; Rec.Bankaccount)
                 {
                     ApplicationArea = All;
                     ToolTip = 'Bankaccount for this property';
                 }
-                field(ESRAgrType; ESRAgrType)
+                field(ESRAgrType; Rec.ESRAgrType)
                 {
                     ApplicationArea = All;
                     ToolTip = 'ESR type for agreement with NETS';
                 }
-                field(ESRNumber; ESRNumber)
+                field(ESRNumber; Rec.ESRNumber)
                 {
                     ApplicationArea = All;
                     ToolTip = 'ESR number for agreement with NETS';
                 }
-                field(ESRSystem; ESRSystem)
+                field(ESRSystem; Rec.ESRSystem)
                 {
                     ApplicationArea = All;
                     ToolTip = 'ESRsystem type for agreement with NETS';
                 }
-                field(ESRCustgrp; ESRCustgrp)
+                field(ESRCustgrp; Rec.ESRCustgrp)
                 {
                     ApplicationArea = All;
                     ToolTip = 'ESR customer group at NETS';
                 }
-                field("ESR Advis"; "ESR Advis")
+                field("ESR Advis"; Rec."ESR Advis")
                 {
                     ApplicationArea = All;
                     ToolTip = 'ESR advis';
 
                 }
-            }
+            } */
             group(Periods)
             {
                 Caption = 'Periods';
-                field(FinCompany; FinCompany)
+                field(FinCompany; Rec.FinCompany)
                 {
                     ApplicationArea = All;
                     ToolTip = 'Audit office';
                 }
-                field(FinCompanyNo; FinCompanyNo)
+                field(FinCompanyNo; Rec.FinCompanyNo)
                 {
                     ApplicationArea = All;
                     ToolTip = 'Our account at audit office';
                 }
-                field(FinEmail; FinEmail)
+                field(FinEmail; Rec.FinEmail)
                 {
                     ExtendedDatatype = EMail;
                     ToolTip = 'Audit office email';
                     ApplicationArea = All;
                 }
-                field(FinancialYearFrom; FinancialYearFrom)
+                field(FinancialYearFrom; Rec.FinancialYearFrom)
                 {
                     ApplicationArea = All;
                     ToolTip = 'Financial year from';
                 }
-                field(FinancialYearTo; FinancialYearTo)
+                field(FinancialYearTo; Rec.FinancialYearTo)
                 {
                     ApplicationArea = All;
                     ToolTip = 'Financial year to';
@@ -218,33 +254,44 @@ page 50014 "SVA Property Card"
                 group(Heat)
                 {
                     Caption = 'Heat accounting';
-                    field(HeatCompany; HeatCompany)
+                    field(HeatCompany; Rec.HeatCompany)
                     {
                         ToolTip = 'Company, wich prepare accounting';
                         ApplicationArea = all;
                     }
-                    field(HeatCompanyNo; HeatCompanyNo)
+                    field(HeatCompanyNo; Rec.HeatCompanyNo)
                     {
                         ToolTip = 'Our account at heatcompany';
                         ApplicationArea = all;
                     }
-                    field(HeatEmail; HeatEmail)
+                    field(HeatCompanyLogin; Rec.HeatCompanyLogin)
+                    {
+                        ToolTip = 'Login at heatcompany';
+                        ApplicationArea = all;
+                    }
+                    field(HeatEmail; Rec.HeatEmail)
                     {
                         ExtendedDatatype = EMail;
                         ToolTip = 'Heatcompany email';
                         ApplicationArea = all;
                     }
-                    field(HeatingYearFrom; HeatingYearFrom)
+                    field(HeatEmailMoving; Rec.HeatEmailMoving)
+                    {
+                        ExtendedDatatype = EMail;
+                        ToolTip = 'Heatcompany email';
+                        ApplicationArea = all;
+                    }
+                    field(HeatingYearFrom; Rec.HeatingYearFrom)
                     {
                         ToolTip = 'Year from';
                         ApplicationArea = all;
                     }
-                    field(HeatingYearTo; HeatingYearTo)
+                    field(HeatingYearTo; Rec.HeatingYearTo)
                     {
                         ApplicationArea = All;
                         ToolTip = 'Year to';
                     }
-                    field(HeatLatest; HeatLatest)
+                    field(HeatLatest; Rec.HeatLatest)
                     {
                         ApplicationArea = All;
                         ToolTip = 'Latest accounting';
@@ -253,33 +300,44 @@ page 50014 "SVA Property Card"
                 group(Water)
                 {
                     Caption = 'Water accounting';
-                    field(WaterCompany; WaterCompany)
+                    field(WaterCompany; Rec.WaterCompany)
                     {
                         ApplicationArea = All;
                         ToolTip = 'Company, wich prepare accounting';
                     }
-                    field(WaterCompanyNo; WaterCompanyNo)
+                    field(WaterCompanyNo; Rec.WaterCompanyNo)
                     {
                         ApplicationArea = All;
                         ToolTip = 'Our account at watercompany';
                     }
-                    field(WaterEmail; WaterEmail)
+                    field(WaterCompanyLogin; Rec.WaterCompanyLogin)
+                    {
+                        ToolTip = 'Login at heatcompany';
+                        ApplicationArea = all;
+                    }
+                    field(WaterEmail; Rec.WaterEmail)
                     {
                         ApplicationArea = All;
                         ToolTip = 'Watercompany email';
                         ExtendedDatatype = EMail;
                     }
-                    field(WaterYearFrom; WaterYearFrom)
+                    field(WaterEmailMoving; Rec.WaterEmailMoving)
+                    {
+                        ExtendedDatatype = EMail;
+                        ToolTip = 'Watercompany email';
+                        ApplicationArea = all;
+                    }
+                    field(WaterYearFrom; Rec.WaterYearFrom)
                     {
                         ApplicationArea = All;
                         ToolTip = 'Year from';
                     }
-                    field(WaterYearTo; WaterYearTo)
+                    field(WaterYearTo; Rec.WaterYearTo)
                     {
                         ApplicationArea = All;
                         ToolTip = 'Year to';
                     }
-                    field(WaterLatest; WaterLatest)
+                    field(WaterLatest; Rec.WaterLatest)
                     {
                         ApplicationArea = All;
                         ToolTip = 'Latest accounting';
@@ -288,33 +346,33 @@ page 50014 "SVA Property Card"
                 group(Electric)
                 {
                     Caption = 'El-accounting';
-                    field(ElCompany; ElCompany)
+                    field(ElCompany; Rec.ElCompany)
                     {
                         ApplicationArea = All;
                         ToolTip = 'Company, wich prepare accounting';
                     }
-                    field(ELCompanyNo; ELCompanyNo)
+                    field(ELCompanyNo; Rec.ELCompanyNo)
                     {
                         ApplicationArea = All;
                         ToolTip = 'Our account at el-company';
                     }
-                    field(ElEmail; ElEmail)
+                    field(ElEmail; Rec.ElEmail)
                     {
                         ApplicationArea = All;
                         ToolTip = 'El-company email';
                         ExtendedDatatype = EMail;
                     }
-                    field(ElectricYearFrom; ElectricYearFrom)
+                    field(ElectricYearFrom; Rec.ElectricYearFrom)
                     {
                         ApplicationArea = All;
                         ToolTip = 'Year from';
                     }
-                    field(ElectricYearTo; ElectricYearTo)
+                    field(ElectricYearTo; Rec.ElectricYearTo)
                     {
                         ApplicationArea = All;
                         ToolTip = 'Year to';
                     }
-                    field(ElLatest; ElLatest)
+                    field(ElLatest; Rec.ElLatest)
                     {
                         ApplicationArea = All;
                         ToolTip = 'Latest accounting';
@@ -323,17 +381,17 @@ page 50014 "SVA Property Card"
                 group(Manage)
                 {
                     Caption = 'Maintenance accounting';
-                    field(ManYearFrom; ManYearFrom)
+                    field(ManYearFrom; Rec.ManYearFrom)
                     {
                         ApplicationArea = All;
                         ToolTip = 'Year from';
                     }
-                    field(ManYearTo; ManYearTo)
+                    field(ManYearTo; Rec.ManYearTo)
                     {
                         ApplicationArea = All;
                         ToolTip = 'Year to';
                     }
-                    field(ManLatest; ManLatest)
+                    field(ManLatest; Rec.ManLatest)
                     {
                         ApplicationArea = All;
                         ToolTip = 'Latest accounting';
@@ -346,17 +404,17 @@ page 50014 "SVA Property Card"
                 group(Par1)
                 {
                     Caption = 'Paragraph 1';
-                    field(TypeA9_1_Laundry; TypeA9_1_Laundry)
+                    field(TypeA9_1_Laundry; Rec.TypeA9_1_Laundry)
                     {
                         ApplicationArea = All;
                         ToolTip = 'Is there access to laundy?';
                     }
-                    field(TypeA9_1_Bicycle; TypeA9_1_Bicycle)
+                    field(TypeA9_1_Bicycle; Rec.TypeA9_1_Bicycle)
                     {
                         ApplicationArea = All;
                         ToolTip = 'Is there access to bicyclestorage?';
                     }
-                    field(TypeA9_1_Courtyard; TypeA9_1_Courtyard)
+                    field(TypeA9_1_Courtyard; Rec.TypeA9_1_Courtyard)
                     {
                         ApplicationArea = All;
                         ToolTip = 'Is there access to Courtyard?';
@@ -365,7 +423,7 @@ page 50014 "SVA Property Card"
                 group(Par3)
                 {
                     Caption = 'Paragraph 3';
-                    field(TypeA9_3_Taxes; TypeA9_3_Taxes)
+                    field(TypeA9_3_Taxes; Rec.TypeA9_3_Taxes)
                     {
                         ApplicationArea = all;
                         ToolTip = 'The rent is based on taxes per date.';
@@ -374,12 +432,12 @@ page 50014 "SVA Property Card"
                 group(Par4)
                 {
                     Caption = 'Paragraph 4';
-                    field(TypeA9_4_Deposit; TypeA9_4_DepMth)
+                    field(TypeA9_4_Deposit; Rec.TypeA9_4_DepMth)
                     {
                         ApplicationArea = All;
                         ToolTip = 'Month of deposit.';
                     }
-                    field(TypeA9_4_PrepaidRent; TypeA9_4_PrePaidMth)
+                    field(TypeA9_4_PrepaidRent; Rec.TypeA9_4_PrePaidMth)
                     {
                         ApplicationArea = All;
                         Tooltip = 'Month of prepaid rent';
@@ -388,94 +446,94 @@ page 50014 "SVA Property Card"
                 group(Par5)
                 {
                     Caption = 'Paragraph 5';
-                    field(TypeA9_5_LandlordHeat; TypeA9_5_LandlordHeat)
+                    field(TypeA9_5_LandlordHeat; Rec.TypeA9_5_LandlordHeat)
                     {
                         ApplicationArea = All;
                         Tooltip = 'Landlord provides heat.';
                     }
-                    field(TypeA9_5_LNatgas; TypeA9_5_LNatgas)
+                    field(TypeA9_5_LNatgas; Rec.TypeA9_5_LNatgas)
                     {
                         ApplicationArea = All;
                         Tooltip = 'The tenancy is heatet by natural gas/distant heat .';
                     }
-                    field(TypeA9_5_lOil; TypeA9_5_lOil)
+                    field(TypeA9_5_lOil; Rec.TypeA9_5_lOil)
                     {
                         ApplicationArea = All;
                         Tooltip = 'The tenancy is heatet by Oil.';
                     }
-                    field(TypeA9_5_LEl; TypeA9_5_LEl)
+                    field(TypeA9_5_LEl; Rec.TypeA9_5_LEl)
                     {
                         ApplicationArea = All;
                         Tooltip = 'The tenancy is heatet by electricity.';
                     }
-                    field(TypeA9_5_LOther; TypeA9_5_LOther)
+                    field(TypeA9_5_LOther; Rec.TypeA9_5_LOther)
                     {
                         ApplicationArea = All;
                         Tooltip = 'The tenancy is heatet by other.';
                     }
-                    field(TypeA9_5_LOtherText; TypeA9_5_LOtherText)
+                    field(TypeA9_5_LOtherText; Rec.TypeA9_5_LOtherText)
                     {
                         ApplicationArea = All;
                         Tooltip = 'Wich type of heat?';
                     }
-                    field(TypeA9_5_TenantHeat; TypeA9_5_TenantHeat)
+                    field(TypeA9_5_TenantHeat; Rec.TypeA9_5_TenantHeat)
                     {
                         ApplicationArea = All;
                         Tooltip = 'Tenant provides heat.';
                     }
-                    field(TypeA9_5_TEl; TypeA9_5_TEl)
+                    field(TypeA9_5_TEl; Rec.TypeA9_5_TEl)
                     {
                         ApplicationArea = All;
                         Tooltip = 'The tenancy is heatet by electricity.';
                     }
-                    field(TypeA9_5_Tgas; TypeA9_5_Tgas)
+                    field(TypeA9_5_Tgas; Rec.TypeA9_5_Tgas)
                     {
                         ApplicationArea = All;
                         Tooltip = 'The tenancy is heatet by gas.';
                     }
-                    field(TypeA9_5_TOil; TypeA9_5_TOil)
+                    field(TypeA9_5_TOil; Rec.TypeA9_5_TOil)
                     {
                         ApplicationArea = All;
                         Tooltip = 'The tenancy is heatet by oil.';
                     }
-                    field(TypeA9_5_TNatgas; TypeA9_5_TNatgas)
+                    field(TypeA9_5_TNatgas; Rec.TypeA9_5_TNatgas)
                     {
                         ApplicationArea = All;
                         Tooltip = 'The tenancy is heatet by natural gas.';
                     }
-                    field(TypeA9_5_TOTher; TypeA9_5_TOTher)
+                    field(TypeA9_5_TOTher; Rec.TypeA9_5_TOTher)
                     {
                         ApplicationArea = All;
                         Tooltip = 'The tenancy is heatet by other.';
                     }
-                    field(TypeA9_5_TOtherText; TypeA9_5_TOtherText)
+                    field(TypeA9_5_TOtherText; Rec.TypeA9_5_TOtherText)
                     {
                         ApplicationArea = All;
                         Tooltip = 'What is the tenancy heatet by.';
                     }
-                    field(TypeA9_5_Water; TypeA9_5_Water)
+                    field(TypeA9_5_Water; Rec.TypeA9_5_Water)
                     {
                         ApplicationArea = All;
                         Tooltip = 'Landlord provides water.';
                     }
-                    field(TypeA9_5_WM; TypeA9_5_WM)
+                    field(TypeA9_5_WM; Rec.TypeA9_5_WM)
                     {
                         ApplicationArea = All;
                         Tooltip = 'Tenancy has water meter';
                     }
 
-                    field(TypeA9_5_El; TypeA9_5_El)
+                    field(TypeA9_5_El; Rec.TypeA9_5_El)
                     {
                         ApplicationArea = All;
                         Tooltip = 'Landlord provides electricity for other use than heat.';
                     }
 
-                    field(TypeA9_5_Cooling; TypeA9_5_Cooling)
+                    field(TypeA9_5_Cooling; Rec.TypeA9_5_Cooling)
                     {
                         ApplicationArea = All;
                         Tooltip = 'Landlord provides cooling.';
                     }
-                    field(TypeA9_5_CM; TypeA9_5_CM)
+                    field(TypeA9_5_CM; Rec.TypeA9_5_CM)
                     {
                         ApplicationArea = All;
                         Tooltip = 'Tenancy has cooling meter';
@@ -485,12 +543,12 @@ page 50014 "SVA Property Card"
                 group(Par6)
                 {
                     Caption = 'Paragraph 6';
-                    field(TypeA9_6_TAntenna; TypeA9_6_TAntenna)
+                    field(TypeA9_6_TAntenna; Rec.TypeA9_6_TAntenna)
                     {
                         ApplicationArea = All;
                         Tooltip = 'Tenant pays for common signal';
                     }
-                    field(TypeA9_6_Internet; TypeA9_6_Internet)
+                    field(TypeA9_6_Internet; Rec.TypeA9_6_Internet)
                     {
                         ApplicationArea = All;
                         Tooltip = 'Landlord provides for internet which tenants pays contribution';
@@ -499,16 +557,17 @@ page 50014 "SVA Property Card"
                 group(Par7)
                 {
                     Caption = 'Paragraph 7';
-                    field(TypeA9_7_MoveIn; TypeA9_7_MoveIn)
+                    field(TypeA9_7_MoveIn; Rec.TypeA9_7_MoveIn)
                     {
                         ApplicationArea = all;
+                        ToolTip = 'Is / will the condition of the lease be ascertained by a move-in inspection';
                     }
                 }
 
                 group(Par8)
                 {
                     Caption = 'Paragraph 8';
-                    field(TypeA9_8_MainLandlord; TypeA9_8_MainLandlord)
+                    field(TypeA9_8_MainLandlord; Rec.TypeA9_8_MainLandlord)
                     {
                         ApplicationArea = All;
                         Tooltip = 'Inside maintenance by landlord';
@@ -517,17 +576,17 @@ page 50014 "SVA Property Card"
                 group(Par10)
                 {
                     Caption = 'Paragraph 10';
-                    field(TypeA9_10_HouseStock; TypeA9_10_HouseStock)
+                    field(TypeA9_10_HouseStock; Rec.TypeA9_10_HouseStock)
                     {
                         ApplicationArea = All;
                         Tooltip = 'Er det tilladt at holde husdyr i lejemålet?';
                     }
-                    field(TypeA9_10_Houserules; TypeA9_10_Houserules)
+                    field(TypeA9_10_Houserules; Rec.TypeA9_10_Houserules)
                     {
                         ApplicationArea = All;
                         Tooltip = 'Foreligger der ved lejeforholdets indgåelse en husorden for ejendommen?';
                     }
-                    field(TypeA9_10_Occgroup; TypeA9_10_Occgroup)
+                    field(TypeA9_10_Occgroup; Rec.TypeA9_10_Occgroup)
                     {
                         ApplicationArea = All;
                         Tooltip = 'Er der ved kontraktens indgåelse etableret beboerrepræsentation i ejendommen?';
@@ -537,14 +596,14 @@ page 50014 "SVA Property Card"
         }
         area(factboxes)
         {
-            part("Attached Documents"; 1174)
+            part("Document Attachment Factbox"; "Document Attachment Factbox")
             {
-                ApplicationArea = All;
                 Caption = 'Attachments';
-                SubPageLink = "Table ID" = CONST(50001),
-                              "No." = FIELD(Property);
-                Visible = NOT IsOfficeAddin;
+                ApplicationArea = all;
+                SubPageLink = "Table ID" = Const(50001), "No." = field(Property);
+                Visible = not IsOfficeAddin;
             }
+
             systempart(Links; Links)
             {
                 ApplicationArea = All;
@@ -553,6 +612,7 @@ page 50014 "SVA Property Card"
             {
                 ApplicationArea = All;
             }
+
 
         }
     }
@@ -631,6 +691,7 @@ page 50014 "SVA Property Card"
                 {
                     ApplicationArea = All;
                     Caption = 'AC Maintenace';
+                    ToolTip = 'Making a status report for paid ac maintenance for the period';
                     Image = "Report";
 
                     trigger OnAction();
@@ -655,7 +716,7 @@ page 50014 "SVA Property Card"
                 {
                     ApplicationArea = All;
                     Caption = 'Deposit';
-                    ToolTip = 'A list of deposit per SVAOccupant.';
+                    ToolTip = 'A list of deposit per Occupant.';
                     Image = "Report";
 
                     trigger OnAction();
@@ -669,6 +730,15 @@ page 50014 "SVA Property Card"
                         end;
                     end;
                 }
+                /* action(DepositPrepaidRent)
+                {
+                    ApplicationArea = all;
+                    Caption = 'Deposit and prepaid rent';
+                    ToolTip = 'Deposit and prepaid rent paid by each occupant by a given date';
+                    Image = Receivables;
+                    RunObject = Page "SVA Occupant Deposit Date";
+                    RunPageLink = PropertyNo = FIELD(Property);
+                } */
                 action("Prepaid rent")
                 {
                     ApplicationArea = All;
@@ -751,6 +821,7 @@ page 50014 "SVA Property Card"
 
         area(Processing)
         {
+
             group(Files)
             {
                 Caption = 'Write AC heat to file';
@@ -759,14 +830,14 @@ page 50014 "SVA Property Card"
                     ApplicationArea = All;
                     Caption = 'Heat file';
                     ToolTip = 'Making file for heat accounting in this company.';
-                    Image = "ExportFile";
+                    Image = SaveViewAs;
 
                     trigger OnAction();
                     begin
                         if Rec.HeatCompany = '' then
                             Error('Denne ejendom har ikke varmeregnskab.');
                         SVAExportTemp.Reset();
-                        SVAExportTemp.SetRange(Name, 'Varme ' + Property);
+                        SVAExportTemp.SetRange(Name, 'Varme ' + Rec.Property);
                         if SVAExportTemp.FindSet() then
                             repeat
                                 SVAExportTemp.Delete();
@@ -785,6 +856,33 @@ page 50014 "SVA Property Card"
                         MakeFile();
                     end;
                 }
+
+            }
+            action("SendEmail")
+            {
+                ApplicationArea = All;
+                Caption = 'Email to occupants';
+                ToolTip = 'Forms an email to all active residents of this property';
+                Image = Email;
+                trigger OnAction();
+                var
+                    SVAProperty: Record "SVA Property";
+                begin
+                    SVAProperty.SendEmailToOccupants(Rec, true);
+                end;
+            }
+            action(Bebrep)
+            {
+                ApplicationArea = all;
+                Caption = 'Fee for resident representation';
+                ToolTip = 'Create fee for resident representation on every tenancy';
+                Image = Create;
+                trigger OnAction()
+                var
+                    SVAProperty: Record "SVA Property";
+                begin
+                    SVAProperty.CreateResRepOnOccupants(Rec);
+                end;
             }
         }
         area(Navigation)
@@ -793,6 +891,7 @@ page 50014 "SVA Property Card"
             {
                 ApplicationArea = All;
                 Caption = 'Tenancies';
+                ToolTip = 'Navigate to tenancies for this property.';
                 Image = AlternativeAddress;
                 RunObject = Page "SVA Tenancy List";
                 RunPageLink = PropertyNo = FIELD(Property);
@@ -802,6 +901,7 @@ page 50014 "SVA Property Card"
             {
                 ApplicationArea = all;
                 Caption = 'Occupants';
+                ToolTip = 'Navigate to occupants for this property.';
                 Image = Customer;
                 RunObject = Page "SVA Occupant List";
                 RunPageLink = PropertyNo = FIELD(Property);
@@ -818,6 +918,7 @@ page 50014 "SVA Property Card"
                 ShortCutKey = 'Shift+Ctrl+D';
                 ToolTip = 'View or edits dimensions, such as area, project, or department, that you can assign to sales and purchase documents to distribute costs and analyze transaction history.';
             }
+
         }
     }
     trigger OnOpenPage()
@@ -875,8 +976,8 @@ page 50014 "SVA Property Card"
             OcNumber := DELSTR(OcNumber, STRPOS(OcNumber, 'L'), 1);
         Templine := '';
         Templine := PADSTR(Templine, 40, '0');
-        TempLine := InsStr(TempLine, HeatcompanyNo, 10 - StrLen(HeatcompanyNo)); //1-10 heatcompanyaccountNo
-        TempLine := InsStr(TempLine, Property, 20 - StrLen(Property));//11-20 Property
+        TempLine := InsStr(TempLine, Rec.HeatcompanyNo, 10 - StrLen(Rec.HeatcompanyNo)); //1-10 heatcompanyaccountNo
+        TempLine := InsStr(TempLine, Rec.Property, 20 - StrLen(Rec.Property));//11-20 Property
         TempLine := InsStr(TempLine, SVAOccupant.TenancyNo, 40 - Strlen(SVAOccupant.TenancyNo) + 1); //31-40 TenancyNo only numbers
         Templine := InsStr(TempLine, OcNumber, 50 - StrLen(OcNumber) + 1); //41-50 OccupantNo
         TempLine := InsStr(TempLine, '                                                                                         ', 51); //51-80 Name 1
@@ -890,7 +991,6 @@ page 50014 "SVA Property Card"
             TempLine := InsStr(TempLine, '00000000', 173);
         if SVAOccupant.EndDate <> 0D then
             TempLine := InsStr(TempLine, format(SVAOccupant.StartDate, 0, '<Day,2><Month,2><Year4>'), 173); //173-180 enddate
-        //OccupantAmount := 1999; //testbeløb
         OcAmountInt := OccupantAmount * 100;
         OcAmountText := Format(OcAmountInt);
         if OccupantAmount < 0 then
@@ -926,8 +1026,8 @@ page 50014 "SVA Property Card"
             OcNumber := DELSTR(OcNumber, STRPOS(OcNumber, 'L'), 1);
         Templine := '';
         Templine := PADSTR(Templine, 40, '0');
-        TempLine := InsStr(TempLine, HeatcompanyNo, 10 - StrLen(HeatcompanyNo)); //1-10 heatcompanyaccountNo
-        TempLine := InsStr(TempLine, Property, 20 - StrLen(Property));//11-20 Property
+        TempLine := InsStr(TempLine, Rec.HeatcompanyNo, 10 - StrLen(Rec.HeatcompanyNo)); //1-10 heatcompanyaccountNo
+        TempLine := InsStr(TempLine, Rec.Property, 20 - StrLen(Rec.Property));//11-20 Property
         TempLine := InsStr(TempLine, SVAOccupant.TenancyNo, 40 - Strlen(SVAOccupant.TenancyNo) + 1); //31-40 TenancyNo only numbers
         Templine := InsStr(TempLine, OcNumber, 50 - StrLen(OcNumber) + 1); //41-50 OccupantNo
         TempLine := InsStr(TempLine, '                                                                                         ', 51); //51-80 Name 1
@@ -962,7 +1062,7 @@ page 50014 "SVA Property Card"
         SVAExportTemp.Init();
         TempCount += 1;
         SVAExportTemp."Line No." := TempCount;
-        SVAExportTemp.Name := 'Varme ejd ' + Property;
+        SVAExportTemp.Name := 'Varme ejd ' + Rec.Property;
         SVAExportTemp."Output Line" := Text250;
         SVAExportTemp.Insert();
     end;
@@ -975,7 +1075,7 @@ page 50014 "SVA Property Card"
     local procedure FindDates();
     begin
         If ConsumptionTo = 0D then begin
-            ConsumptionFrom := DMY2DATE(1, HeatingYearFrom, DATE2DMY(TODAY, 3));
+            ConsumptionFrom := DMY2DATE(1, Rec.HeatingYearFrom, DATE2DMY(TODAY, 3));
             ConsumptionTo := CALCDATE('<1Y-1D>', ConsumptionFrom);
             while Today < ConsumptionTo do begin
                 ConsumptionFrom := CalcDate('<-1Y>', ConsumptionFrom);

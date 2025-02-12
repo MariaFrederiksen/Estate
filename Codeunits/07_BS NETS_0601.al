@@ -7,10 +7,10 @@ codeunit 50007 "SVA NETS BS 0601"
     trigger OnRun();
     begin
         Codeunit.Run(Codeunit::"SVA Send");
-        SVAExportTemp.Reset();
-        SVAExportTemp.SetRange(Name, 'BS0601');
-        if SVAExportTemp.FindSet() then
-            SVAExportTemp.DeleteAll();
+        SVAExport.Reset();
+        SVAExport.SetRange(Name, 'BS0601');
+        if SVAExport.FindSet() then
+            SVAExport.DeleteAll();
 
         IF DATE2DMY(TODAY, 2) = 12 THEN
             FromDate := DMY2DATE(1, 1, DATE2DMY(TODAY, 3) + 1)
@@ -20,10 +20,15 @@ codeunit 50007 "SVA NETS BS 0601"
         ToDate := CALCDATE('<1M-1D>', FromDate);
 
         SVAParameters.Reset();
-        IF SVAParameters.Findfirst() then
+        IF SVAParameters.Findfirst() then begin
             Datasupplier := SVAParameters.BS_Dataprovider;
-        Subsystem := SVAParameters.BS_Delsystem;
-        Arrears := SVAParameters.CustomerArrears;
+            Subsystem := SVAParameters.BS_Delsystem;
+            CreditorPBSno := SVAParameters.BS_AftaleNo;
+            Arrears := SVAParameters.CustomerArrears;
+            DebtorGroupNo := SVAParameters.BS_DebGrp;
+            Advis := SVAParameters.BS_Advis;
+            PaymentMethod := SVAParameters.PaymentMethodForNets;
+        end;
         IF StrLen(Datasupplier) = 0 then
             Error('Der mangler opsætning. Kørslen afbrydes.');
 
@@ -35,20 +40,6 @@ codeunit 50007 "SVA NETS BS 0601"
         SVAProperty.Reset();
         if SVAProperty.FindSet() then
             repeat
-                Subsystem := SVAProperty.ESRSystem;
-                CreditorPBSno := SVAProperty.ESRNumber;
-                DebtorGroupNo := SVAProperty.ESRCustgrp;
-                PaymentMethod := SVAParameters.PaymentMethodForNets;
-                Advis := SVAParameters.BS_Advis;
-                If Subsystem = '' then
-                    Subsystem := SVAParameters.BS_Delsystem;
-                if CreditorPBSno = '' then
-                    CreditorPBSno := SVAParameters.BS_AftaleNo;
-                if DebtorGroupNo = '' then
-                    DebtorGroupNo := SVAParameters.BS_DebGrp;
-                if Advis = '' then
-                    Advis := SVAParameters.BS_Advis;
-
                 Customer.Reset();
                 Customer.SetRange("Payment Method Code", PaymentMethod);
                 if Customer.FindSet() then
@@ -64,6 +55,7 @@ codeunit 50007 "SVA NETS BS 0601"
                         SalesInvoiceHeader.SETRANGE(SalesInvoiceHeader."SVA Included", TRUE);
                         SalesInvoiceHeader.SETRANGE(SalesInvoiceHeader."SVA Send", FALSE);
                         SalesInvoiceHeader.SETRANGE(SalesInvoiceHeader."Due Date", FromDate, ToDate);
+                        SalesInvoiceHeader.SetRange(SalesInvoiceHeader.Closed, false);
                         if SalesInvoiceHeader.FindSet() then
                             repeat
                                 SVAContractregulations.Reset();
@@ -82,6 +74,7 @@ codeunit 50007 "SVA NETS BS 0601"
                         SalesInvoiceHeader.SETRANGE(SalesInvoiceHeader."SVA Included", TRUE);
                         SalesInvoiceHeader.SETRANGE(SalesInvoiceHeader."SVA Send", FALSE);
                         SalesInvoiceHeader.SETRANGE(SalesInvoiceHeader."Due Date", FromDate, ToDate);
+                        SalesInvoiceHeader.SetRange(SalesInvoiceHeader.Closed, false);
                         if SalesInvoiceHeader.FindSet() then begin
                             F012();
                             RecordNo := '00001';
@@ -128,6 +121,7 @@ codeunit 50007 "SVA NETS BS 0601"
                         SalesInvoiceHeader.SETRANGE(SalesInvoiceHeader."SVA Included", TRUE);
                         SalesInvoiceHeader.SETRANGE(SalesInvoiceHeader."SVA Send", FALSE);
                         SalesInvoiceHeader.SETRANGE(SalesInvoiceHeader."Due Date", FromDate, ToDate);
+                        SalesInvoiceHeader.SetRange(SalesInvoiceHeader.Closed, false);
                         if SalesInvoiceHeader.FindSet() then
                             //Find amount for F042
                             repeat
@@ -157,6 +151,7 @@ codeunit 50007 "SVA NETS BS 0601"
                             SalesInvoiceHeader.SETRANGE(SalesInvoiceHeader."SVA Included", TRUE);
                             SalesInvoiceHeader.SETRANGE(SalesInvoiceHeader."SVA Send", FALSE);
                             SalesInvoiceHeader.SETRANGE(SalesInvoiceHeader."Due Date", FromDate, ToDate);
+                            SalesInvoiceHeader.SetRange(SalesInvoiceHeader.Closed, false);
                             if SalesInvoiceHeader.FindSet() then
                                 repeat
                                     //Find lejemålets adresse
@@ -176,7 +171,7 @@ codeunit 50007 "SVA NETS BS 0601"
                                         RecordNo := '000' + FORMAT(CountRecord, 2)
                                     ELSE
                                         RecordNo := '0000' + FORMAT(CountRecord, 1);
-                                    F052(RecordNo, SpecText);
+                                    F052(RecordNo);
                                     //Second line
                                     SpecText := 'Vedr.: ' + TenAdd;
                                     SpecText := PADSTR(SpecText, 60, ' ');
@@ -185,7 +180,7 @@ codeunit 50007 "SVA NETS BS 0601"
                                         RecordNo := '000' + FORMAT(CountRecord, 2)
                                     ELSE
                                         RecordNo := '0000' + FORMAT(CountRecord, 1);
-                                    F052(RecordNo, SpecText);
+                                    F052(RecordNo);
                                     SalesInvoiceLine.Reset();
                                     SalesInvoiceLine.SETRANGE(SalesInvoiceLine."Document No.", SalesInvoiceHeader."No.");
                                     CLEAR(Amount52_ExVat);
@@ -203,7 +198,7 @@ codeunit 50007 "SVA NETS BS 0601"
                                                 RecordNo := '000' + FORMAT(CountRecord, 2)
                                             ELSE
                                                 RecordNo := '0000' + FORMAT(CountRecord, 1);
-                                            F052(RecordNo, SpecText);
+                                            F052(RecordNo);
                                             Amount52_InVat += SalesInvoiceLine."Amount Including VAT";
                                             Amount52_ExVat += SalesInvoiceLine.Amount;
                                         UNTIL SalesInvoiceLine.NEXT() = 0;
@@ -218,9 +213,9 @@ codeunit 50007 "SVA NETS BS 0601"
                                             RecordNo := '000' + FORMAT(CountRecord, 2)
                                         ELSE
                                             RecordNo := '0000' + FORMAT(CountRecord, 1);
-                                        F052(RecordNo, SpecText);
+                                        F052(RecordNo);
                                     END;
-                                    SpecText := 'I alt opkrævning nr. ' + SalesInvoiceHeader."No.";
+                                    SpecText := 'I alt opkrævning ' + SalesInvoiceHeader."No.";
                                     SpecText := PADSTR(SpecText, 60, ' ');
                                     SpecText := INSSTR(SpecText, FORMAT(Amount52_InVat, 10, '<Precision,2:2><Standard Format,0>'), 50);
                                     SpecText := DELSTR(SpecText, 60, 50);
@@ -229,7 +224,7 @@ codeunit 50007 "SVA NETS BS 0601"
                                         RecordNo := '000' + FORMAT(CountRecord, 2)
                                     ELSE
                                         RecordNo := '0000' + FORMAT(CountRecord, 1);
-                                    F052(RecordNo, SpecText);
+                                    F052(RecordNo);
                                     Amount52_ExVat := 0;
                                     Amount52_InVat := 0;
                                     Marked();
@@ -245,11 +240,13 @@ codeunit 50007 "SVA NETS BS 0601"
                                     RecordNo := '000' + FORMAT(CountRecord, 2)
                                 ELSE
                                     RecordNo := '0000' + FORMAT(CountRecord, 1);
-                                F052(RecordNo, SpecText);
+                                F052(RecordNo);
                                 DueAmount := 0;
                             end;
                             if Repayment <> 0 then begin
-                                SpecText := 'Afragsordning';
+                                SpecText := SVAContractregulations.Description;
+                                if SpecText = '' then
+                                    SpecText := 'Afdragsordning';
                                 SpecText := PADSTR(SpecText, 60, ' ');
                                 SpecText := INSSTR(SpecText, FORMAT(SVAContractregulations.RepaymentPeriod, 10, '<Precision,2:2><Standard Format,0>'), 50);
                                 SpecText := DELSTR(SpecText, 60, 50);
@@ -258,7 +255,7 @@ codeunit 50007 "SVA NETS BS 0601"
                                     RecordNo := '000' + FORMAT(CountRecord, 2)
                                 ELSE
                                     RecordNo := '0000' + FORMAT(CountRecord, 1);
-                                F052(RecordNo, SpecText);
+                                F052(RecordNo);
                                 Repayment := 0
                             end;
                         end;
@@ -277,7 +274,7 @@ codeunit 50007 "SVA NETS BS 0601"
         SalesInvoiceHeader: Record "Sales Invoice Header";
         SalesInvoiceLine: Record "Sales Invoice Line";
         Customer: Record "Customer";
-        SVAExportTemp: Record "SVA Export Temp";
+        SVAExport: Record "SVA Export Temp";
         CompanyInformation: Record "Company Information";
         SVATenancy: Record "SVA Tenancy";
         SVAOccupant: Record "SVA Occupant";
@@ -490,12 +487,12 @@ codeunit 50007 "SVA NETS BS 0601"
     begin
         //mark invoice as send
         SalesInvoiceHeader."SVA Send" := TRUE;
-        SalesInvoiceHeader."SVA Send date" := TODAY();
+        SalesInvoiceHeader."SVA Send date" := WorkDate();
         SalesinvoiceHeader.Modify();
 
     end;
 
-    local procedure F052(Counter: Text[5]; Specification: Text[60]);
+    local procedure F052(Counter: Text[5]);
     begin
         CLEAR(TMP);
         CLEAR(STR052);
@@ -531,7 +528,7 @@ codeunit 50007 "SVA NETS BS 0601"
 
     local procedure F092();
     begin
-        IF OnceF092 = 1 then begin
+        IF OnceF092 = 0 then begin
             CLEAR(TMP);
             CLEAR(STR092);
             STR092 := 'BS092';
@@ -678,7 +675,7 @@ codeunit 50007 "SVA NETS BS 0601"
             Count42 := 0;
             Count52 := 0;
             CountAmount42 := 0;
-            OnceF092 := 0;
+            OnceF092 := 1;
         end;
     end;
 
@@ -689,10 +686,13 @@ codeunit 50007 "SVA NETS BS 0601"
         STR992 := 'BS992';
         TMP := Datasupplier;
         STR992 := INSSTR(STR992, TMP, 6);
+
         TMP := Subsystem;
         STR992 := INSSTR(STR992, TMP, 14);
+
         TMP := '0601';
         STR992 := INSSTR(STR992, TMP, 17);
+
         TMP := '';
         TMP := PADSTR(TMP, 11, '0');
         IF CountSection < 10 THEN
@@ -732,7 +732,6 @@ codeunit 50007 "SVA NETS BS 0601"
                 TMP := INSSTR(TMP, SpecText, 7);
             END;
         STR992 := INSSTR(STR992, TMP, 32);
-
         TMP := '';
         TMP := PADSTR(TMP, 11, '0');
         IF CountAmount42_all * 100 > 999 THEN
@@ -771,7 +770,6 @@ codeunit 50007 "SVA NETS BS 0601"
                 TMP := INSSTR(TMP, SpecText, 6);
             END;
         STR992 := INSSTR(STR992, TMP, 43);
-
         TMP := '';
         TMP := PADSTR(TMP, 15, '0');
         IF count52_all < 10 THEN BEGIN
@@ -803,7 +801,6 @@ codeunit 50007 "SVA NETS BS 0601"
         TMP := '';
         TMP := PADSTR(TMP, 15, '0');
         STR992 := INSSTR(STR992, TMP, 69);
-
         TMP := '';
         TMP := PADSTR(TMP, 11, '0');
         IF Count22_all < 10 THEN BEGIN
@@ -842,23 +839,20 @@ codeunit 50007 "SVA NETS BS 0601"
         STR992 := DELSTR(STR992, 95, 150);
         STR992 := INSSTR(STR992, TMP, 95);
         F_Save_Table(STR992);
-
         IF Count22_all = 0 THEN
             MESSAGE('Der er ingen faktura til NETS.');
-        IF Count22_all <> 0 then begin
-            MESSAGE('Filen til NETS er klar.');
-            Message('Filen indeholder ' + Format(Count42_all) + ' opkrævninger med et samlet beløb på kr ' + Format(CountAmount42_all, 10, '<Precision,2:2><Standard Format,0>'), 50);
-        end;
+        IF Count22_all <> 0 then
+            MESSAGE('Fil til NETS med opkrævninger for kr ' + Format(CountAmount42_all, 15, '<Precision,2:2><Standard Format,0>') + ' er klar.');
     end;
 
     local procedure F_Save_Table(Text128: Text[128]);
     begin
-        SVAExportTemp.Init();
+        SVAExport.Init();
         TempCount += 1;
-        SVAExportTemp."Line No." := TempCount;
-        SVAExportTemp.Name := 'BS0601';
-        SVAExportTemp."Output Line 128" := Text128;
-        SVAExportTemp.Insert();
+        SVAExport."Line No." := TempCount;
+        SVAExport.Name := 'BS0601';
+        SVAExport."Output Line 128" := Text128;
+        SVAExport.Insert();
     end;
 }
 

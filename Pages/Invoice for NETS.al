@@ -10,6 +10,7 @@ page 50003 "SVA Sales Invoice NETS"
     SourceTable = "Sales Invoice Header";
     SourceTableView = SORTING("No.")
                 WHERE(Closed = CONST(false));
+    Permissions = tabledata "Sales Invoice Header" = rmi;
 
     layout
     {
@@ -17,59 +18,61 @@ page 50003 "SVA Sales Invoice NETS"
         {
             repeater(Group)
             {
-                field("No."; "No.")
+                field("No."; Rec."No.")
                 {
                     Editable = false;
                     ToolTip = 'Invoicenumber. No change posible';
                     ApplicationArea = all;
                 }
-                field("Bill-to Customer No."; "Bill-to Customer No.")
+                field("Bill-to Customer No."; Rec."Bill-to Customer No.")
                 {
                     Editable = false;
                     ToolTip = 'Customer Number. No change posible';
                     ApplicationArea = all;
                 }
-                field("Bill-to Name"; "Bill-to Name")
+                field("Bill-to Name"; Rec."Bill-to Name")
                 {
                     Editable = false;
                     ToolTip = 'Customer name. No change posible';
                     ApplicationArea = all;
                 }
-                field("Posting Date"; "Posting Date")
+                field("Posting Date"; Rec."Posting Date")
                 {
                     Editable = false;
                     ToolTip = 'Posting date. No change posible';
                     ApplicationArea = all;
                 }
-                field("Due Date"; "Due Date")
+                field("Due Date"; Rec."Due Date")
                 {
                     Editable = false;
                     ToolTip = 'Duedate. No change posible';
                     ApplicationArea = all;
                 }
-                field("Amount Including VAT"; "Amount Including VAT")
+                field("Amount Including VAT"; Rec."Amount Including VAT")
                 {
                     Editable = false;
                     ToolTip = 'Amount including VAT. No change posible';
                     ApplicationArea = all;
                 }
-                field("SVA Included"; "SVA Included")
+                field("SVA Included"; Rec."SVA Included")
                 {
+                    Editable = true;
                     ToolTip = 'This invoice will be included in the file for NETS';
                     ApplicationArea = all;
                 }
-                field("SVA Send"; "SVA Send")
+                    
+                field("SVA Send"; Rec."SVA Send")
                 {
                     ToolTip = 'This invoice has been added to the file for NETS';
                     ApplicationArea = all;
                 }
-                field("SVA Send date"; "SVA Send date")
+                field("SVA Send date"; Rec."SVA Send date")
                 {
                     Editable = false;
                     ToolTip = 'This invoice has been added to the file for NETS at this date.';
                     ApplicationArea = all;
                 }
-                field("SVA Occupant"; "SVA Occupant")
+                field("SVA Occupant"; Rec."SVA Occupant")
                 {
                     Editable = false;
                     ToolTip = 'Occupant. No change posible';
@@ -143,12 +146,12 @@ page 50003 "SVA Sales Invoice NETS"
 
     trigger OnInit();
     begin
-        IF DATE2DMY(WorkDate(), 2) = 12 THEN 
+        IF DATE2DMY(WorkDate(), 2) = 12 THEN
             FromDate := DMY2DATE(1, DATE2DMY(WorkDate(), 2) - 11, DATE2DMY(WorkDate(), 3) + 1); //01-01-Next year
-        
-        IF DATE2DMY(WorkDate(), 2) < 12 THEN 
+
+        IF DATE2DMY(WorkDate(), 2) < 12 THEN
             FromDate := DMY2DATE(1, DATE2DMY(WorkDate(), 2) + 1, DATE2DMY(WorkDate(), 3)); //01-next month
-        
+
         ToDate := CalcDate('<1M-1D>', FromDate);
     end;
 
@@ -158,8 +161,8 @@ page 50003 "SVA Sales Invoice NETS"
         if SVAParameters.FindFirst() then
             PaymentMethodForNets := SVAParameters.PaymentMethodForNets;
 
-        SETRANGE("Due Date", FromDate, ToDate);
-        SetRange("Payment Method Code", PaymentMethodForNets);
+        Rec.SetRange("Due Date", FromDate, ToDate);
+        Rec.SetRange("Payment Method Code", PaymentMethodForNets);
     end;
 
     var

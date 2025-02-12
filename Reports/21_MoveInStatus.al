@@ -146,6 +146,10 @@ report 50020 "SVA Moving in status"
             column(Rum1DoorsRepairs_MovingOutStatus; Rum1DoorsRepairs)
             {
             }
+            column(Room1Notes; Room1Notes)
+            {
+
+            }
             column(Room2Description_MovingOutStatus; Room2Description)
             {
             }
@@ -202,6 +206,10 @@ report 50020 "SVA Moving in status"
             }
             column(Rum2DoorsRepairs_MovingOutStatus; Rum2DoorsRepairs)
             {
+            }
+            column(Room2Notes; Room2Notes)
+            {
+
             }
             column(Room3Description_MovingOutStatus; Room3Description)
             {
@@ -260,6 +268,10 @@ report 50020 "SVA Moving in status"
             column(Rum3DoorsRepairs_MovingOutStatus; Rum3DoorsRepairs)
             {
             }
+            column(Room3Notes; Room3Notes)
+            {
+
+            }
             column(Room4Description_MovingOutStatus; Room4Description)
             {
             }
@@ -317,6 +329,10 @@ report 50020 "SVA Moving in status"
             column(Rum4DoorsRepairs_MovingOutStatus; Rum4DoorsRepairs)
             {
             }
+            column(Room4Notes; Room4Notes)
+            {
+
+            }
             column(EntreCeilingCondition_MovingOutStatus; EntreCeilingCondition)
             {
             }
@@ -370,6 +386,10 @@ report 50020 "SVA Moving in status"
             }
             column(EntreDoorsRepairs_MovingOutStatus; EntreDoorsRepairs)
             {
+            }
+            column(EntreNotes; EntreNotes)
+            {
+
             }
             column(KitchenCeilingCondition_MovingOutStatus; KitchenCeilingCondition)
             {
@@ -454,6 +474,10 @@ report 50020 "SVA Moving in status"
             }
             column(KitchenWatertapsRepairs_MovingOutStatus; KitchenWatertapsRepairs)
             {
+            }
+            column(KitchenNotes; KitchenNotes)
+            {
+
             }
             column(BathroomCeilingCondition_MovingOutStatus; BathroomCeilingCondition)
             {
@@ -545,6 +569,10 @@ report 50020 "SVA Moving in status"
             column(BathroomWaterTapsRepairs_MovingOutStatus; BathroomWaterTapsRepairs)
             {
             }
+            column(BathroomNotes; BathroomNotes)
+            {
+
+            }
             column(ToiletCeilingCondition_MovingOutStatus; ToiletCeilingCondition)
             {
             }
@@ -622,6 +650,10 @@ report 50020 "SVA Moving in status"
             }
             column(ToiletWaterTapsRepairs_MovingOutStatus; ToiletWaterTapsRepairs)
             {
+            }
+            column(ToiletroomNotes; ToiletroomNotes)
+            {
+
             }
             column(StoveYear_MovingOutStatus; StoveYear)
             {
@@ -773,6 +805,26 @@ report 50020 "SVA Moving in status"
             column(EntryPhoneRepairs_MovingOutStatus; EntryPhoneRepairs)
             {
             }
+            column(MailboxYear; MailboxYear)
+            {
+
+            }
+            column(MailboxManufactor; MailboxManufactor)
+            {
+
+            }
+            column(MailboxModel; MailboxModel)
+            {
+
+            }
+            column(MailboxCondition; MailboxCondition)
+            {
+
+            }
+            column(MailboxRepairs; MailboxRepairs)
+            {
+
+            }
             column(AntennaCondition_MovingOutStatus; AntennaCondition)
             {
             }
@@ -784,6 +836,22 @@ report 50020 "SVA Moving in status"
             }
             column(KeyRepairs_MovingOutStatus; KeyRepairs)
             {
+            }
+            column(Keymanufactor; Keymanufactor)
+            {
+
+            }
+            column(KeyQty; KeyQty)
+            {
+
+            }
+            column(WashKeymanufactor; WashKeymanufactor)
+            {
+
+            }
+            column(WashKeyQty; WashKeyQty)
+            {
+
             }
         }
     }

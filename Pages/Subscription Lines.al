@@ -12,62 +12,70 @@ page 50020 "SVA Subscription Lines"
         {
             repeater(Group)
             {
-                field(Tenancies; Tenancies)
+                field(Tenancies; Rec.Tenancies)
                 {
                     ApplicationArea = All;
                     ToolTip = 'Tenancy';
                 }
-                field("Cost Types"; "Cost Types")
+                field("Cost Types"; Rec."Cost Types")
                 {
                     ApplicationArea = All;
-                    ToolTip = 'SVACosttype.';
+                    ToolTip = 'Costtype.';
 
                     trigger OnValidate();
                     begin
-                        Description := SVACosttype.Description
+                        Rec.Description := SVACosttype.Description
                     end;
                 }
-                field(Description; Description)
+                field(Description; Rec.Description)
                 {
                     ApplicationArea = All;
                     ToolTip = 'Description of SVACosttype.';
                 }
-                field("Date From"; "Date From")
+                field("Date From"; Rec."Date From")
                 {
                     ApplicationArea = All;
                     ToolTip = 'This line was applicable from';
                 }
-                field("Date To"; "Date To")
+                field("Date To"; Rec."Date To")
                 {
                     ApplicationArea = All;
                     ToolTip = 'This line was applicable to.';
                 }
-                field("Amount Year"; "Amount Year")
+                field("Amount Year"; Rec."Amount Year")
                 {
                     ApplicationArea = All;
                     ToolTip = 'Amount per year';
                 }
-                field("Amount Period"; "Amount Period")
+                field("Amount Period"; Rec."Amount Period")
                 {
                     ApplicationArea = All;
                     ToolTip = 'Amount per period (month, quater, halfyear or year';
                 }
-                field(VatGroup; VatGroup)
+                field(VatGroup; Rec.VatGroup)
                 {
                     ApplicationArea = All;
                     ToolTip = 'Vatgroup to calculate VAT for this line.';
                 }
-                field(ProductPostingGroup; ProductPostingGroup)
+                field(ProductPostingGroup; Rec.ProductPostingGroup)
                 {
                     ApplicationArea = All;
                     ToolTip = 'Gen. prod. group';
                 }
-                field(Type; Type)
+                field(Type; Rec.Type)
                 {
                     ApplicationArea = all;
+                    ToolTip = 'Type of costtype. Is used for reports, moving in/moving out invoices, supscriptions and a conto.';
                 }
+                field(PriceIndeks; Rec.PriceIndeks)
+                {
+                    ApplicationArea = all;
+                    ToolTip = 'Is the rent regulated by indeks?';
+                }
+
             }
         }
+       
         area(factboxes)
         {
             systempart(Links; Links)

@@ -5,6 +5,7 @@ page 50008 "SVA MoveOut"
     Caption = 'Moving out status';
     UsageCategory = Tasks;
     ApplicationArea = All;
+
     layout
     {
         area(content)
@@ -12,833 +13,1032 @@ page 50008 "SVA MoveOut"
             group(General)
             {
                 Caption = 'General';
-                field(Occupant; Occupant)
+                field(Occupant; Rec.Occupant)
                 {
                     ApplicationArea = All;
+                    ToolTip = 'Occupant';
                 }
-                field(Name; Name)
+                field(Name; Rec.Name)
                 {
                     ApplicationArea = All;
+                    ToolTip = 'Name';
                 }
-                field(Name2; Name2)
+                field(Name2; Rec.Name2)
                 {
                     ApplicationArea = All;
+                    ToolTip = 'Name on second occupant';
                 }
-                field("Address (new)"; "Address (new)")
+                field("Address (new)"; Rec."Address (new)")
                 {
                     ApplicationArea = All;
+                    Tooltip = 'New address';
                 }
-                field(PostCode; PostCode)
+                field(PostCode; Rec.PostCode)
                 {
                     ApplicationArea = All;
+                    ToolTip = 'Postcode';
                 }
-                field(City; City)
+                field(City; Rec.City)
                 {
                     ApplicationArea = All;
+                    ToolTip = 'City';
                 }
-                field(TenancyNo; TenancyNo)
+                field(TenancyNo; Rec.TenancyNo)
                 {
                     ApplicationArea = All;
+                    ToolTip = 'Tenancy No.';
                 }
-                field(TenancyAddress; TenancyAddress)
+                field(TenancyAddress; Rec.TenancyAddress)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Tenancy address';
                 }
-                field(TenancyPostCode; TenancyPostCode)
+                field(TenancyPostCode; Rec.TenancyPostCode)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Tenancy Postcode';
                 }
-                field(TenancyCity; TenancyCity)
+                field(TenancyCity; Rec.TenancyCity)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Tenancy city';
                 }
-                field(LandlordName; LandlordName)
+                field(LandlordName; Rec.LandlordName)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Landlord';
                 }
-                field(landlordAddress; landlordAddress)
+                field(landlordAddress; Rec.landlordAddress)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Landlord address';
                 }
-                field(LandlordPostCode; LandlordPostCode)
+                field(LandlordPostCode; Rec.LandlordPostCode)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Landlord Postcode';
                 }
-                field(Landlordcity; Landlordcity)
+                field(Landlordcity; Rec.Landlordcity)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Landlord city';
                 }
-                field(Representative; Representative)
+                field(Representative; Rec.Representative)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Occupant representative';
                 }
-                field(BebrepProperty; BebrepProperty)
+                field(BebrepProperty; Rec.BebrepProperty)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Is there occupant representative at the property?';
                 }
-                field(BebrepInd; BebrepInd)
+                field(BebrepInd; Rec.BebrepInd)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Occupant representative called in';
                 }
-                field(BebrepTilstede; BebrepTilstede)
+                field(BebrepTilstede; Rec.BebrepTilstede)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Occupant representative present';
                 }
-                field(BebrepName; BebrepName)
+                field(BebrepName; Rec.BebrepName)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Occupant representative name';
                 }
-                field(BebrepEmail; BebrepEmail)
+                field(BebrepEmail; Rec.BebrepEmail)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Occupant representative email';
                 }
-                field(BebrepKopi; BebrepKopi)
+                field(BebrepKopi; Rec.BebrepKopi)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Do occupant representative get a copy';
                 }
             }
             group("Room 1")
             {
                 Caption = 'Room 1';
-                field(Room1Description; Room1Description)
+                field(Room1Description; Rec.Room1Description)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Unique description of the room (livingroom, room facing west)';
                 }
-                field(Rum1CeilingCondition; Rum1CeilingCondition)
+                field(Rum1CeilingCondition; Rec.Rum1CeilingCondition)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Ceiling condition';
                 }
-                field(Rum1CeilingRepairs; Rum1CeilingRepairs)
+                field(Rum1CeilingRepairs; Rec.Rum1CeilingRepairs)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Repairs of the ceiling';
                 }
-                field(Rum1WallsCondition; Rum1WallsCondition)
+                field(Rum1WallsCondition; Rec.Rum1WallsCondition)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Condition of walls';
                 }
-                field(Rum1WallsRepairs; Rum1WallsRepairs)
+                field(Rum1WallsRepairs; Rec.Rum1WallsRepairs)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Repairs of the walls';
                 }
-                field(Rum1FloorsCondition; Rum1FloorsCondition)
+                field(Rum1FloorsCondition; Rec.Rum1FloorsCondition)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Condition of floor';
                 }
-                field(Rum1FloorsRepairs; Rum1FloorsRepairs)
+                field(Rum1FloorsRepairs; Rec.Rum1FloorsRepairs)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Repairs of the floor';
                 }
-                field(Rum1CarpetsCondition; Rum1CarpetsCondition)
+                field(Rum1CarpetsCondition; Rec.Rum1CarpetsCondition)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Condition of carpet';
                 }
-                field(Rum1CarpetsRepairs; Rum1CarpetsRepairs)
+                field(Rum1CarpetsRepairs; Rec.Rum1CarpetsRepairs)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Repairs of the carpet';
                 }
-                field(Rum1WoodworksCondition; Rum1WoodworksCondition)
+                field(Rum1WoodworksCondition; Rec.Rum1WoodworksCondition)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Condition of woodwork';
                 }
-                field(Rum1WoodworksRepairs; Rum1WoodworksRepairs)
+                field(Rum1WoodworksRepairs; Rec.Rum1WoodworksRepairs)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Repairs of the woodwork';
                 }
-                field(Rum1WindowsmvCondition; Rum1WindowsmvCondition)
+                field(Rum1WindowsmvCondition; Rec.Rum1WindowsmvCondition)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Condition of windows etc';
                 }
-                field(Rum1WindowsRepairs; Rum1WindowsRepairs)
+                field(Rum1WindowsRepairs; Rec.Rum1WindowsRepairs)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Repairs of the windows';
                 }
-                field(Rum1RadiatorCondition; Rum1RadiatorCondition)
+                field(Rum1RadiatorCondition; Rec.Rum1RadiatorCondition)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Condition of radiator';
                 }
-                field(Rum1RadiatorRepairs; Rum1RadiatorRepairs)
+                field(Rum1RadiatorRepairs; Rec.Rum1RadiatorRepairs)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Repairs of radiator';
                 }
-                field(Rum1ElCondition; Rum1ElCondition)
+                field(Rum1ElCondition; Rec.Rum1ElCondition)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Condition of the electric installations';
                 }
-                field(Rum1ElRepairs; Rum1ElRepairs)
+                field(Rum1ElRepairs; Rec.Rum1ElRepairs)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Repairs of the electric installations';
                 }
-                field(Rum1DoorsCondition; Rum1DoorsCondition)
+                field(Rum1DoorsCondition; Rec.Rum1DoorsCondition)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Condition of the door(s)';
                 }
-                field(Rum1DoorsRepairs; Rum1DoorsRepairs)
+                field(Rum1DoorsRepairs; Rec.Rum1DoorsRepairs)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Repairs of the door(s)';
                 }
             }
             group("Room 2")
             {
                 Caption = 'Room 2';
-                field(Room2Description; Room2Description)
+                field(Room2Description; Rec.Room2Description)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Unique description of the room (livingroom, room facing west)';
                 }
-                field(Rum2CeilingCondition; Rum2CeilingCondition)
+                field(Rum2CeilingCondition; Rec.Rum2CeilingCondition)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Ceiling condition';
                 }
-                field(Rum2CeilingRepairs; Rum2CeilingRepairs)
+                field(Rum2CeilingRepairs; Rec.Rum2CeilingRepairs)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Repairs of the ceiling';
                 }
-                field(Rum2WallsCondition; Rum2WallsCondition)
+                field(Rum2WallsCondition; Rec.Rum2WallsCondition)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Condition of walls';
                 }
-                field(Rum2WallsRepairs; Rum2WallsRepairs)
+                field(Rum2WallsRepairs; Rec.Rum2WallsRepairs)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Repairs of the walls';
                 }
-                field(Rum2FloorsCondition; Rum2FloorsCondition)
+                field(Rum2FloorsCondition; Rec.Rum2FloorsCondition)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Condition of floor';
                 }
-                field(Rum2FloorsRepairs; Rum2FloorsRepairs)
+                field(Rum2FloorsRepairs; Rec.Rum2FloorsRepairs)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Repairs of the floor';
                 }
-                field(Rum2CarpetsCondition; Rum2CarpetsCondition)
+                field(Rum2CarpetsCondition; Rec.Rum2CarpetsCondition)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Condition of carpet';
                 }
-                field(Rum2CarpetsRepairs; Rum2CarpetsRepairs)
+                field(Rum2CarpetsRepairs; Rec.Rum2CarpetsRepairs)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Repairs of the carpet';
                 }
-                field(Rum2WoodworksCondition; Rum2WoodworksCondition)
+                field(Rum2WoodworksCondition; Rec.Rum2WoodworksCondition)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Condition of woodwork';
                 }
-                field(Rum2WoodworksRepairs; Rum2WoodworksRepairs)
+                field(Rum2WoodworksRepairs; Rec.Rum2WoodworksRepairs)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Repairs of the woodwork';
                 }
-                field(Rum2WindowsmvCondition; Rum2WindowsmvCondition)
+                field(Rum2WindowsmvCondition; Rec.Rum2WindowsmvCondition)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Condition of windows etc';
                 }
-                field(Rum2WindowsRepairs; Rum2WindowsRepairs)
+                field(Rum2WindowsRepairs; Rec.Rum2WindowsRepairs)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Repairs of the windows';
                 }
-                field(Rum2RadiatorCondition; Rum2RadiatorCondition)
+                field(Rum2RadiatorCondition; Rec.Rum2RadiatorCondition)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Condition of radiator';
                 }
-                field(Rum2RadiatorRepairs; Rum2RadiatorRepairs)
+                field(Rum2RadiatorRepairs; Rec.Rum2RadiatorRepairs)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Repairs of radiator';
                 }
-                field(Rum2ElCondition; Rum2ElCondition)
+                field(Rum2ElCondition; Rec.Rum2ElCondition)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Condition of the electric installation';
                 }
-                field(Rum2ElRepairs; Rum2ElRepairs)
+                field(Rum2ElRepairs; Rec.Rum2ElRepairs)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Repairs of the electric installations';
                 }
-                field(Rum2DoorsCondition; Rum2DoorsCondition)
+                field(Rum2DoorsCondition; Rec.Rum2DoorsCondition)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Condition of the door(s)';
                 }
-                field(Rum2DoorsRepairs; Rum2DoorsRepairs)
+                field(Rum2DoorsRepairs; Rec.Rum2DoorsRepairs)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Repairs of the door(s)';
                 }
             }
             group("Room 3")
             {
                 Caption = 'Room 3';
-                field(Room3Description; Room3Description)
+                field(Room3Description; Rec.Room3Description)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Unique description of the room (livingroom, room facing west)';
                 }
-                field(Rum3CeilingCondition; Rum3CeilingCondition)
+                field(Rum3CeilingCondition; Rec.Rum3CeilingCondition)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Ceiling condition';
                 }
-                field(Rum3CeilingRepairs; Rum3CeilingRepairs)
+                field(Rum3CeilingRepairs; Rec.Rum3CeilingRepairs)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Repairs of the ceiling';
                 }
-                field(Rum3WallsCondition; Rum3WallsCondition)
+                field(Rum3WallsCondition; Rec.Rum3WallsCondition)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Condition of walls';
                 }
-                field(Rum3WallsRepairs; Rum3WallsRepairs)
+                field(Rum3WallsRepairs; Rec.Rum3WallsRepairs)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Repairs of the walls';
                 }
-                field(Rum3FloorsCondition; Rum3FloorsCondition)
+                field(Rum3FloorsCondition; Rec.Rum3FloorsCondition)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Condition of floor';
                 }
-                field(Rum3FloorsRepairs; Rum3FloorsRepairs)
+                field(Rum3FloorsRepairs; Rec.Rum3FloorsRepairs)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Repairs of the floor';
                 }
-                field(Rum3CarpetsCondition; Rum3CarpetsCondition)
+                field(Rum3CarpetsCondition; Rec.Rum3CarpetsCondition)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Condition of carpet';
                 }
-                field(Rum3CarpetsRepairs; Rum3CarpetsRepairs)
+                field(Rum3CarpetsRepairs; Rec.Rum3CarpetsRepairs)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Repairs of the carpet';
                 }
-                field(Rum3WoodworksCondition; Rum3WoodworksCondition)
+                field(Rum3WoodworksCondition; Rec.Rum3WoodworksCondition)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Condition of woodwork';
                 }
-                field(Rum3WoodworksRepairs; Rum3WoodworksRepairs)
+                field(Rum3WoodworksRepairs; Rec.Rum3WoodworksRepairs)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Repairs of the woodwork';
                 }
-                field(Rum3WindowsmvCondition; Rum3WindowsmvCondition)
+                field(Rum3WindowsmvCondition; Rec.Rum3WindowsmvCondition)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Condition of windows etc';
                 }
-                field(Rum3WindowsRepairs; Rum3WindowsRepairs)
+                field(Rum3WindowsRepairs; Rec.Rum3WindowsRepairs)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Repairs of the windows';
                 }
-                field(Rum3RadiatorCondition; Rum3RadiatorCondition)
+                field(Rum3RadiatorCondition; Rec.Rum3RadiatorCondition)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Condition of radiator';
                 }
-                field(Rum3RadiatorRepairs; Rum3RadiatorRepairs)
+                field(Rum3RadiatorRepairs; Rec.Rum3RadiatorRepairs)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Repairs of radiator';
                 }
-                field(Rum3ElCondition; Rum3ElCondition)
+                field(Rum3ElCondition; Rec.Rum3ElCondition)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Condition of the electric installation';
                 }
-                field(Rum3ElRepairs; Rum3ElRepairs)
+                field(Rum3ElRepairs; Rec.Rum3ElRepairs)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Repairs of the electric installations';
                 }
-                field(Rum3DoorsCondition; Rum3DoorsCondition)
+                field(Rum3DoorsCondition; Rec.Rum3DoorsCondition)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Condition of the door(s)';
                 }
-                field(Rum3DoorsRepairs; Rum3DoorsRepairs)
+                field(Rum3DoorsRepairs; Rec.Rum3DoorsRepairs)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Repairs of the door(s)';
                 }
             }
             group("Room 4")
             {
                 Caption = 'Room 4';
-                field(Room4Description; Room4Description)
+                field(Room4Description; Rec.Room4Description)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Unique description of the room (livingroom, room facing west)';
                 }
-                field(Rum4CeilingCondition; Rum4CeilingCondition)
+                field(Rum4CeilingCondition; Rec.Rum4CeilingCondition)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Ceiling condition';
                 }
-                field(Rum4CeilingRepairs; Rum4CeilingRepairs)
+                field(Rum4CeilingRepairs; Rec.Rum4CeilingRepairs)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Repairs of the ceiling';
                 }
-                field(Rum4WallsCondition; Rum4WallsCondition)
+                field(Rum4WallsCondition; Rec.Rum4WallsCondition)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Condition of walls';
                 }
-                field(Rum4WallsRepairs; Rum4WallsRepairs)
+                field(Rum4WallsRepairs; Rec.Rum4WallsRepairs)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Repairs of the walls';
                 }
-                field(Rum4FloorsCondition; Rum4FloorsCondition)
+                field(Rum4FloorsCondition; Rec.Rum4FloorsCondition)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Condition of floor';
                 }
-                field(Rum4FloorsRepairs; Rum4FloorsRepairs)
+                field(Rum4FloorsRepairs; Rec.Rum4FloorsRepairs)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Repairs of the floor';
                 }
-                field(Rum4CarpetsCondition; Rum4CarpetsCondition)
+                field(Rum4CarpetsCondition; Rec.Rum4CarpetsCondition)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Condition of carpet';
                 }
-                field(Rum4CarpetsRepairs; Rum4CarpetsRepairs)
+                field(Rum4CarpetsRepairs; Rec.Rum4CarpetsRepairs)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Repairs of the carpet';
                 }
-                field(Rum4WoodworksCondition; Rum4WoodworksCondition)
+                field(Rum4WoodworksCondition; Rec.Rum4WoodworksCondition)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Condition of woodwork';
                 }
-                field(Rum4WoodworksRepairs; Rum4WoodworksRepairs)
+                field(Rum4WoodworksRepairs; Rec.Rum4WoodworksRepairs)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Repairs of the woodwork';
                 }
-                field(Rum4WindowsmvCondition; Rum4WindowsmvCondition)
+                field(Rum4WindowsmvCondition; Rec.Rum4WindowsmvCondition)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Condition of windows etc';
                 }
-                field(Rum4WindowsRepairs; Rum4WindowsRepairs)
+                field(Rum4WindowsRepairs; Rec.Rum4WindowsRepairs)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Repairs of the windows';
                 }
-                field(Rum4RadiatorCondition; Rum4RadiatorCondition)
+                field(Rum4RadiatorCondition; Rec.Rum4RadiatorCondition)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Condition of radiator';
                 }
-                field(Rum4RadiatorRepairs; Rum4RadiatorRepairs)
+                field(Rum4RadiatorRepairs; Rec.Rum4RadiatorRepairs)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Repairs of radiator';
                 }
-                field(Rum4ElCondition; Rum4ElCondition)
+                field(Rum4ElCondition; Rec.Rum4ElCondition)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Condition of the electric installation';
                 }
-                field(Rum4ElRepairs; Rum4ElRepairs)
+                field(Rum4ElRepairs; Rec.Rum4ElRepairs)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Repairs of the electric installations';
                 }
-                field(Rum4DoorsCondition; Rum4DoorsCondition)
+                field(Rum4DoorsCondition; Rec.Rum4DoorsCondition)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Condition of the door(s)';
                 }
-                field(Rum4DoorsRepairs; Rum4DoorsRepairs)
+                field(Rum4DoorsRepairs; Rec.Rum4DoorsRepairs)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Repairs of the door(s)';
                 }
             }
             group(Entre)
             {
                 Caption = 'Entre';
-                field(EntreCeilingCondition; EntreCeilingCondition)
+                field(EntreCeilingCondition; Rec.EntreCeilingCondition)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Ceiling condition';
                 }
-                field(EntreCeilingRepairs; EntreCeilingRepairs)
+                field(EntreCeilingRepairs; Rec.EntreCeilingRepairs)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Repairs of the ceiling';
                 }
-                field(EntreWallsCondition; EntreWallsCondition)
+                field(EntreWallsCondition; Rec.EntreWallsCondition)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Condition of walls';
                 }
-                field(EntreWallsRepairs; EntreWallsRepairs)
+                field(EntreWallsRepairs; Rec.EntreWallsRepairs)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Repairs of the walls';
                 }
-                field(EntreFloorsCondition; EntreFloorsCondition)
+                field(EntreFloorsCondition; Rec.EntreFloorsCondition)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Condition of floor';
                 }
-                field(EntreFloorsRepairs; EntreFloorsRepairs)
+                field(EntreFloorsRepairs; Rec.EntreFloorsRepairs)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Repairs of the floor';
                 }
-                field(EntreCarpetsCondition; EntreCarpetsCondition)
+                field(EntreCarpetsCondition; Rec.EntreCarpetsCondition)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Condition of carpet';
                 }
-                field(EntreCarpetsRepairs; EntreCarpetsRepairs)
+                field(EntreCarpetsRepairs; Rec.EntreCarpetsRepairs)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Repairs of the carpet';
                 }
-                field(EntreWoodworksCondition; EntreWoodworksCondition)
+                field(EntreWoodworksCondition; Rec.EntreWoodworksCondition)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Condition of woodwork';
                 }
-                field(EntreWoodworksRepairs; EntreWoodworksRepairs)
+                field(EntreWoodworksRepairs; Rec.EntreWoodworksRepairs)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Repairs of the woodwork';
                 }
-                field(EntreWindowsmvCondition; EntreWindowsmvCondition)
+                field(EntreWindowsmvCondition; Rec.EntreWindowsmvCondition)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Condition of windows etc';
                 }
-                field(EntreWindowsRepairs; EntreWindowsRepairs)
+                field(EntreWindowsRepairs; Rec.EntreWindowsRepairs)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Repairs of the windows';
                 }
-                field(EntreRadiatorCondition; EntreRadiatorCondition)
+                field(EntreRadiatorCondition; Rec.EntreRadiatorCondition)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Condition of radiator';
                 }
-                field(EntreRadiatorRepairs; EntreRadiatorRepairs)
+                field(EntreRadiatorRepairs; Rec.EntreRadiatorRepairs)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Repairs of radiator';
                 }
-                field(EntreElCondition; EntreElCondition)
+                field(EntreElCondition; Rec.EntreElCondition)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Condition of the electric installation';
                 }
-                field(EntreElRepairs; EntreElRepairs)
+                field(EntreElRepairs; Rec.EntreElRepairs)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Repairs of the electric installations';
                 }
-                field(EntreDoorsCondition; EntreDoorsCondition)
+                field(EntreDoorsCondition; Rec.EntreDoorsCondition)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Condition of the door(s)';
                 }
-                field(EntreDoorsRepairs; EntreDoorsRepairs)
+                field(EntreDoorsRepairs; Rec.EntreDoorsRepairs)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Repairs of the door(s)';
                 }
             }
             group(Kitchen)
             {
                 Caption = 'Kitchen';
-                field(KitchenCeilingCondition; KitchenCeilingCondition)
+                field(KitchenCeilingCondition; Rec.KitchenCeilingCondition)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Ceiling condition';
                 }
-                field(KitchenCeilingRepairs; KitchenCeilingRepairs)
+                field(KitchenCeilingRepairs; Rec.KitchenCeilingRepairs)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Repairs of the ceiling';
                 }
-                field(KitchenWallsCondition; KitchenWallsCondition)
+                field(KitchenWallsCondition; Rec.KitchenWallsCondition)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Condition of walls';
                 }
-                field(KitchenWallsRepairs; KitchenWallsRepairs)
+                field(KitchenWallsRepairs; Rec.KitchenWallsRepairs)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Repairs of the walls';
                 }
-                field(KitchenFloorsCondition; KitchenFloorsCondition)
+                field(KitchenFloorsCondition; Rec.KitchenFloorsCondition)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Condition of floor';
                 }
-                field(KitchenFloorsRepairs; KitchenFloorsRepairs)
+                field(KitchenFloorsRepairs; Rec.KitchenFloorsRepairs)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Repairs of the floor';
                 }
-                field(KitchenCarpetsCondition; KitchenCarpetsCondition)
+                field(KitchenCarpetsCondition; Rec.KitchenCarpetsCondition)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Condition of carpet';
                 }
-                field(KitchenCarpetsRepairs; KitchenCarpetsRepairs)
+                field(KitchenCarpetsRepairs; Rec.KitchenCarpetsRepairs)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Repairs of the carpet';
                 }
-                field(KitchenWoodworksCondition; KitchenWoodworksCondition)
+                field(KitchenWoodworksCondition; Rec.KitchenWoodworksCondition)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Condition of woodwork';
                 }
-                field(KitchenWoodworksRepairs; KitchenWoodworksRepairs)
+                field(KitchenWoodworksRepairs; Rec.KitchenWoodworksRepairs)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Repairs of the woodwork';
                 }
-                field(KitchenWindowsmvCondition; KitchenWindowsmvCondition)
+                field(KitchenWindowsmvCondition; Rec.KitchenWindowsmvCondition)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Condition of windows etc';
                 }
-                field(KitchenWindowsRepairs; KitchenWindowsRepairs)
+                field(KitchenWindowsRepairs; Rec.KitchenWindowsRepairs)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Repairs of the windows';
                 }
-                field(KitchenRadiatorCondition; KitchenRadiatorCondition)
+                field(KitchenRadiatorCondition; Rec.KitchenRadiatorCondition)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Condition of radiator';
                 }
-                field(KitchenRadiatorRepairs; KitchenRadiatorRepairs)
+                field(KitchenRadiatorRepairs; Rec.KitchenRadiatorRepairs)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Repairs of radiator';
                 }
-                field(KitchenElCondition; KitchenElCondition)
+                field(KitchenElCondition; Rec.KitchenElCondition)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Condition of the electric installation';
                 }
-                field(KitchenElRepairs; KitchenElRepairs)
+                field(KitchenElRepairs; Rec.KitchenElRepairs)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Repairs of the electric installations';
                 }
-                field(KitchenDoorsCondition; KitchenDoorsCondition)
+                field(KitchenDoorsCondition; Rec.KitchenDoorsCondition)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Condition of the door(s)';
                 }
-                field(KitchenDoorsRepairs; KitchenDoorsRepairs)
+                field(KitchenDoorsRepairs; Rec.KitchenDoorsRepairs)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Repairs of the door(s)';
                 }
-                field(KitchenTilesConditions; KitchenTilesConditions)
+                field(KitchenTilesConditions; Rec.KitchenTilesConditions)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Condition of tiles in the kitchen';
                 }
-                field(KitchenTilesRepairs; KitchenTilesRepairs)
+                field(KitchenTilesRepairs; Rec.KitchenTilesRepairs)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Repairs of tiles in the kitchen';
                 }
-                field(KitchenTableCondition; KitchenTableCondition)
+                field(KitchenTableCondition; Rec.KitchenTableCondition)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Condition of kitchentable';
                 }
-                field(KitchenTableRepairs; KitchenTableRepairs)
+                field(KitchenTableRepairs; Rec.KitchenTableRepairs)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Repairs of kitchentable';
                 }
-                field(KitchenSinkCondition; KitchenSinkCondition)
+                field(KitchenSinkCondition; Rec.KitchenSinkCondition)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Condition of the sink';
                 }
-                field(KitchensinkRepairs; KitchensinkRepairs)
+                field(KitchensinkRepairs; Rec.KitchensinkRepairs)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Repairs of the sink';
                 }
-                field(KitchenCabinetsCondition; KitchenCabinetsCondition)
+                field(KitchenCabinetsCondition; Rec.KitchenCabinetsCondition)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Condition of cabinets.';
                 }
-                field(KitchenCabinetsRepairs; KitchenCabinetsRepairs)
+                field(KitchenCabinetsRepairs; Rec.KitchenCabinetsRepairs)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Repairs of cabinets';
                 }
-                field(KitchenWatertapsCondition; KitchenWatertapsCondition)
+                field(KitchenWatertapsCondition; Rec.KitchenWatertapsCondition)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Condition of the watertap';
                 }
-                field(KitchenWatertapsRepairs; KitchenWatertapsRepairs)
+                field(KitchenWatertapsRepairs; Rec.KitchenWatertapsRepairs)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Repairs of the watertap';
                 }
             }
             group(Bathroom)
             {
                 Caption = 'Bathroom';
-                field(BathroomCeilingCondition; BathroomCeilingCondition)
+                field(BathroomCeilingCondition; Rec.BathroomCeilingCondition)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Ceiling condition';
                 }
-                field(BathroomCeilingRepairs; BathroomCeilingRepairs)
+                field(BathroomCeilingRepairs; Rec.BathroomCeilingRepairs)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Repairs of the ceiling';
                 }
-                field(BathroomWallsCondition; BathroomWallsCondition)
+                field(BathroomWallsCondition; Rec.BathroomWallsCondition)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Condition of walls';
                 }
-                field(BathroomWallsRepairs; BathroomWallsRepairs)
+                field(BathroomWallsRepairs; Rec.BathroomWallsRepairs)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Repairs of the walls';
                 }
-                field(BathroomFloorsCondition; BathroomFloorsCondition)
+                field(BathroomFloorsCondition; Rec.BathroomFloorsCondition)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Condition of floor';
                 }
-                field(BathroomFloorsRepairs; BathroomFloorsRepairs)
+                field(BathroomFloorsRepairs; Rec.BathroomFloorsRepairs)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Repairs of the floor';
                 }
-                field(BathroomCarpetsCondition; BathroomCarpetsCondition)
+                field(BathroomCarpetsCondition; Rec.BathroomCarpetsCondition)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Condition of carpet';
                 }
-                field(BathroomCarpetsRepairs; BathroomCarpetsRepairs)
+                field(BathroomCarpetsRepairs; Rec.BathroomCarpetsRepairs)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Repairs of the carpet';
                 }
-                field(BathroomWoodworksCondition; BathroomWoodworksCondition)
+                field(BathroomWoodworksCondition; Rec.BathroomWoodworksCondition)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Condition of woodwork';
                 }
-                field(BathroomWoodworksRepairs; BathroomWoodworksRepairs)
+                field(BathroomWoodworksRepairs; Rec.BathroomWoodworksRepairs)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Repairs of the woodwork';
                 }
-                field(BathroomWindowsmvCondition; BathroomWindowsmvCondition)
+                field(BathroomWindowsmvCondition; Rec.BathroomWindowsmvCondition)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Condition of windows etc';
                 }
-                field(BathroomWindowsRepairs; BathroomWindowsRepairs)
+                field(BathroomWindowsRepairs; Rec.BathroomWindowsRepairs)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Repairs of the windows';
                 }
-                field(BathroomRadiatorCondition; BathroomRadiatorCondition)
+                field(BathroomRadiatorCondition; Rec.BathroomRadiatorCondition)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Condition of radiator';
                 }
-                field(BathroomRadiatorRepairs; BathroomRadiatorRepairs)
+                field(BathroomRadiatorRepairs; Rec.BathroomRadiatorRepairs)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Repairs of radiator';
                 }
-                field(BathroomElCondition; BathroomElCondition)
+                field(BathroomElCondition; Rec.BathroomElCondition)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Condition of the electric installation';
                 }
-                field(BathroomElRepairs; BathroomElRepairs)
+                field(BathroomElRepairs; Rec.BathroomElRepairs)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Repairs of the electric installations';
                 }
-                field(BathroomDoorsCondition; BathroomDoorsCondition)
+                field(BathroomDoorsCondition; Rec.BathroomDoorsCondition)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Condition of the door(s)';
                 }
-                field(BathroomDoorsRepairs; BathroomDoorsRepairs)
+                field(BathroomDoorsRepairs; Rec.BathroomDoorsRepairs)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Repairs of the door(s)';
                 }
-                field(BathroomSinkCondition; BathroomSinkCondition)
+                field(BathroomSinkCondition; Rec.BathroomSinkCondition)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Condition of the sink';
                 }
-                field(BathroomSinkRepairs; BathroomSinkRepairs)
+                field(BathroomSinkRepairs; Rec.BathroomSinkRepairs)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Repairs of sink';
                 }
-                field(BathroomCisternDoorsCondition; BathroomCisternDoorsCondition)
+                field(BathroomCisternDoorsCondition; Rec.BathroomCisternDoorsCondition)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Condition of the door(s)';
                 }
-                field(BathroomCisternRepairs; BathroomCisternRepairs)
+                field(BathroomCisternRepairs; Rec.BathroomCisternRepairs)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Repairs of the cistern';
                 }
-                field(BathroomToiletBowlCondition; BathroomToiletBowlCondition)
+                field(BathroomToiletBowlCondition; Rec.BathroomToiletBowlCondition)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Condition of the toilet bowl';
                 }
-                field(BathroomToiletBowlRepairs; BathroomToiletBowlRepairs)
+                field(BathroomToiletBowlRepairs; Rec.BathroomToiletBowlRepairs)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Repairs of the toilet bowl';
                 }
-                field(BathroomBathtopCondition; BathroomBathtopCondition)
+                field(BathroomBathtopCondition; Rec.BathroomBathtopCondition)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Condition of Bathtop';
                 }
-                field(BathroombathTopRepairs; BathroombathTopRepairs)
+                field(BathroombathTopRepairs; Rec.BathroombathTopRepairs)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Repairs of Bathtop';
                 }
-                field(BathroomShowerCondition; BathroomShowerCondition)
+                field(BathroomShowerCondition; Rec.BathroomShowerCondition)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Condition of the shower';
                 }
-                field(BathroomShowerRepairs; BathroomShowerRepairs)
+                field(BathroomShowerRepairs; Rec.BathroomShowerRepairs)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Repairs of shower';
                 }
-                field(BathroomWaterTapsCondition; BathroomWaterTapsCondition)
+                field(BathroomWaterTapsCondition; Rec.BathroomWaterTapsCondition)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Condition of the watertap';
                 }
-                field(BathroomWaterTapsRepairs; BathroomWaterTapsRepairs)
+                field(BathroomWaterTapsRepairs; Rec.BathroomWaterTapsRepairs)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Repairs of the watertap';
                 }
             }
             group(Toilet)
             {
                 Caption = 'Toilet';
-                field(ToiletCeilingCondition; ToiletCeilingCondition)
+                field(ToiletCeilingCondition; Rec.ToiletCeilingCondition)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Ceiling condition';
                 }
-                field(ToiletCeilingRepairs; ToiletCeilingRepairs)
+                field(ToiletCeilingRepairs; Rec.ToiletCeilingRepairs)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Repairs of the ceiling';
                 }
-                field(ToiletWallsCondition; ToiletWallsCondition)
+                field(ToiletWallsCondition; Rec.ToiletWallsCondition)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Condition of walls';
                 }
-                field(ToiletWallsRepairs; ToiletWallsRepairs)
+                field(ToiletWallsRepairs; Rec.ToiletWallsRepairs)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Repairs of the walls';
                 }
-                field(ToiletFloorsCondition; ToiletFloorsCondition)
+                field(ToiletFloorsCondition; Rec.ToiletFloorsCondition)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Condition of floor';
                 }
-                field(ToiletFloorsRepairs; ToiletFloorsRepairs)
+                field(ToiletFloorsRepairs; Rec.ToiletFloorsRepairs)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Repairs of the floor';
                 }
-                field(ToiletCarpetsCondition; ToiletCarpetsCondition)
+                field(ToiletCarpetsCondition; Rec.ToiletCarpetsCondition)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Condition of carpet';
                 }
-                field(ToiletCarpetsRepairs; ToiletCarpetsRepairs)
+                field(ToiletCarpetsRepairs; Rec.ToiletCarpetsRepairs)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Repairs of the carpet';
                 }
-                field(ToiletWoodworksCondition; ToiletWoodworksCondition)
+                field(ToiletWoodworksCondition; Rec.ToiletWoodworksCondition)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Condition of woodwork';
                 }
-                field(ToiletWoodworksRepairs; ToiletWoodworksRepairs)
+                field(ToiletWoodworksRepairs; Rec.ToiletWoodworksRepairs)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Repairs of the woodwork';
                 }
-                field(ToiletWindowsmvCondition; ToiletWindowsmvCondition)
+                field(ToiletWindowsmvCondition; Rec.ToiletWindowsmvCondition)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Condition of windows etc';
                 }
-                field(ToiletWindowsRepairs; ToiletWindowsRepairs)
+                field(ToiletWindowsRepairs; Rec.ToiletWindowsRepairs)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Repairs of the windows';
                 }
-                field(ToiletRadiatorCondition; ToiletRadiatorCondition)
+                field(ToiletRadiatorCondition; Rec.ToiletRadiatorCondition)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Condition of radiator';
                 }
-                field(ToiletRadiatorRepairs; ToiletRadiatorRepairs)
+                field(ToiletRadiatorRepairs; Rec.ToiletRadiatorRepairs)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Repairs of radiator';
                 }
-                field(ToiletElCondition; ToiletElCondition)
+                field(ToiletElCondition; Rec.ToiletElCondition)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Condition of the electric installations';
                 }
-                field(ToiletElRepairs; ToiletElRepairs)
+                field(ToiletElRepairs; Rec.ToiletElRepairs)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Repairs of the electric installations';
                 }
-                field(ToiletDoorsCondition; ToiletDoorsCondition)
+                field(ToiletDoorsCondition; Rec.ToiletDoorsCondition)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Condition of the door(s)';
                 }
-                field(ToiletDoorsRepairs; ToiletDoorsRepairs)
+                field(ToiletDoorsRepairs; Rec.ToiletDoorsRepairs)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Repairs of the door(s)';
                 }
-                field(ToiletSinkCondition; ToiletSinkCondition)
+                field(ToiletSinkCondition; Rec.ToiletSinkCondition)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Condition of the sink';
                 }
-                field(ToiletSinkRepairs; ToiletSinkRepairs)
+                field(ToiletSinkRepairs; Rec.ToiletSinkRepairs)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Repairs of the sink';
                 }
-                field(ToiletCisternDoorsCondition; ToiletCisternDoorsCondition)
+                field(ToiletCisternDoorsCondition; Rec.ToiletCisternDoorsCondition)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Condition of the door(s)';
                 }
-                field(ToiletCisternRepairs; ToiletCisternRepairs)
+                field(ToiletCisternRepairs; Rec.ToiletCisternRepairs)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Repairs of toilet cistern';
                 }
-                field(ToiletToiletBowlCondition; ToiletToiletBowlCondition)
+                field(ToiletToiletBowlCondition; Rec.ToiletToiletBowlCondition)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Condition of the toilet bowl';
                 }
-                field(ToiletToiletBowlRepairs; ToiletToiletBowlRepairs)
+                field(ToiletToiletBowlRepairs; Rec.ToiletToiletBowlRepairs)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Repairs of toiletbowl';
                 }
-                field(ToiletwaterTapsCondition; ToiletwaterTapsCondition)
+                field(ToiletwaterTapsCondition; Rec.ToiletwaterTapsCondition)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Condition of the watertap';
                 }
-                field(ToiletWaterTapsRepairs; ToiletWaterTapsRepairs)
+                field(ToiletWaterTapsRepairs; Rec.ToiletWaterTapsRepairs)
                 {
                     ApplicationArea = All;
+                    Tooltip = 'Repairs of the watertap';
                 }
             }
             group(Appliances)
@@ -847,264 +1047,318 @@ page 50008 "SVA MoveOut"
                 Group(stove)
                 {
                     Caption = 'Stove';
-                    field(StoveYear; StoveYear)
+                    field(StoveYear; Rec.StoveYear)
                     {
-                        ApplicationArea = all;
+                        ApplicationArea = All;
+                        Tooltip = 'Productionyear';
                     }
-                    field(StoveManufactor; StoveManufactor)
+                    field(StoveManufactor; Rec.StoveManufactor)
                     {
-                        ApplicationArea = all;
+                        ApplicationArea = All;
+                        Tooltip = 'Manufactor';
                     }
-                    field(StoveModel; StoveModel)
+                    field(StoveModel; Rec.StoveModel)
                     {
-                        ApplicationArea = all;
+                        ApplicationArea = All;
+                        Tooltip = 'Model code';
                     }
-                    field(StoveCondition; StoveCondition)
+                    field(StoveCondition; Rec.StoveCondition)
                     {
-                        ApplicationArea = all;
+                        ApplicationArea = All;
+                        Tooltip = 'Condition';
                     }
-                    field(StoveRepairs; StoveRepairs)
+                    field(StoveRepairs; Rec.StoveRepairs)
                     {
-                        ApplicationArea = all;
+                        ApplicationArea = All;
+                        Tooltip = 'Repairs';
                     }
                 }
                 group(Cook)
                 {
-                    caption = 'Cook';
+                    Caption = 'Cook';
 
-                    field(CookYear; CookYear)
+                    field(CookYear; Rec.CookYear)
                     {
-                        ApplicationArea = all;
+                        ApplicationArea = All;
+                        Tooltip = 'Productionyear';
                     }
-                    field(CookManufactor; CookManufactor)
+                    field(CookManufactor; Rec.CookManufactor)
                     {
-                        ApplicationArea = all;
+                        ApplicationArea = All;
+                        Tooltip = 'Manufactor';
                     }
-                    field(CookModel; CookModel)
+                    field(CookModel; Rec.CookModel)
                     {
-                        ApplicationArea = all;
+                        ApplicationArea = All;
+                        Tooltip = 'Model code';
                     }
-                    field(CookCondition; CookCondition)
+                    field(CookCondition; Rec.CookCondition)
                     {
-                        ApplicationArea = all;
+                        ApplicationArea = All;
+                        Tooltip = 'Condition';
                     }
-                    field(CookRepairs; CookRepairs)
+                    field(CookRepairs; Rec.CookRepairs)
                     {
-                        ApplicationArea = all;
+                        ApplicationArea = All;
+                        Tooltip = 'Repairs';
                     }
 
                 }
                 Group(Oven)
                 {
                     Caption = 'Oven';
-                    field(OvenYear; OvenYear)
+                    field(OvenYear; Rec.OvenYear)
                     {
-                        ApplicationArea = all;
+                        ApplicationArea = All;
+                        Tooltip = 'Productionyear';
                     }
-                    field(OvenManufactor; OvenManufactor)
+                    field(OvenManufactor; Rec.OvenManufactor)
                     {
-                        ApplicationArea = all;
+                        ApplicationArea = All;
+                        Tooltip = 'Manufactor';
                     }
-                    field(OvenModel; OvenModel)
+                    field(OvenModel; Rec.OvenModel)
                     {
-                        ApplicationArea = all;
+                        ApplicationArea = All;
+                        Tooltip = 'Model code';
                     }
-                    field(OvenCondition; OvenCondition)
+                    field(OvenCondition; Rec.OvenCondition)
                     {
-                        ApplicationArea = all;
+                        ApplicationArea = All;
+                        Tooltip = 'Condition';
                     }
-                    field(OvenRepairs; OvenRepairs)
+                    field(OvenRepairs; Rec.OvenRepairs)
                     {
-                        ApplicationArea = all;
+                        ApplicationArea = All;
+                        Tooltip = 'Repairs';
                     }
                 }
                 group(Hood)
                 {
-                    caption = 'Hood';
-                    field(HoodYear; HoodYear)
+                    Caption = 'Hood';
+                    field(HoodYear; Rec.HoodYear)
                     {
-                        ApplicationArea = all;
+                        ApplicationArea = All;
+                        Tooltip = 'Productionyear';
                     }
-                    field(HoodManufactor; HoodManufactor)
+                    field(HoodManufactor; Rec.HoodManufactor)
                     {
-                        ApplicationArea = all;
+                        ApplicationArea = All;
+                        Tooltip = 'Manufactor';
                     }
-                    field(HoodStoveModel; HoodStoveModel)
+                    field(HoodStoveModel; Rec.HoodStoveModel)
                     {
-                        ApplicationArea = all;
+                        ApplicationArea = All;
+                        Tooltip = 'Model code';
                     }
-                    field(HoodCondition; HoodCondition)
+                    field(HoodCondition; Rec.HoodCondition)
                     {
-                        ApplicationArea = all;
+                        ApplicationArea = All;
+                        Tooltip = 'Condition';
                     }
-                    field(HoodRepairs; HoodeRepairs)
+                    field(HoodRepairs; Rec.HoodeRepairs)
                     {
-                        ApplicationArea = all;
+                        ApplicationArea = All;
+                        Tooltip = 'Repairs';
                     }
                 }
                 group(Fridge)
                 {
-                    caption = 'Fridge';
-                    field(FridgeYear; FridgeYear)
+                    Caption = 'Fridge';
+                    field(FridgeYear; Rec.FridgeYear)
                     {
-                        ApplicationArea = all;
+                        ApplicationArea = All;
+                        Tooltip = 'Productionyear';
                     }
-                    field(FridgeManufactor; FridgeManufactor)
+                    field(FridgeManufactor; Rec.FridgeManufactor)
                     {
-                        ApplicationArea = all;
+                        ApplicationArea = All;
+                        Tooltip = 'Manufactor';
                     }
-                    field(FridgeModel; FridgeModel)
+                    field(FridgeModel; Rec.FridgeModel)
                     {
-                        ApplicationArea = all;
+                        ApplicationArea = All;
+                        Tooltip = 'Model code';
                     }
-                    field(FridgeCondition; FridgeCondition)
+                    field(FridgeCondition; Rec.FridgeCondition)
                     {
-                        ApplicationArea = all;
+                        ApplicationArea = All;
+                        Tooltip = 'Condition';
                     }
-                    field(FridgeRepairs; FridgeRepairs)
+                    field(FridgeRepairs; Rec.FridgeRepairs)
                     {
-                        ApplicationArea = all;
+                        ApplicationArea = All;
+                        Tooltip = 'Repairs';
                     }
                 }
                 group(Freezer)
                 {
-                    caption = 'Frezer';
-                    field(FreezerYear; FreezerYear)
+                    Caption = 'Frezer';
+                    field(FreezerYear; Rec.FreezerYear)
                     {
-                        ApplicationArea = all;
+                        ApplicationArea = All;
+                        Tooltip = 'Productionyear';
                     }
-                    field(FreezerManufactor; FreezerManufactor)
+                    field(FreezerManufactor; Rec.FreezerManufactor)
                     {
-                        ApplicationArea = all;
+                        ApplicationArea = All;
+                        Tooltip = 'Manufactor';
                     }
-                    field(FreezerModel; FreezerModel)
+                    field(FreezerModel; Rec.FreezerModel)
                     {
-                        ApplicationArea = all;
+                        ApplicationArea = All;
+                        Tooltip = 'Model code';
                     }
-                    field(FreezerCondition; FreezerCondition)
+                    field(FreezerCondition; Rec.FreezerCondition)
                     {
-                        ApplicationArea = all;
+                        ApplicationArea = All;
+                        Tooltip = 'Condition';
                     }
-                    field(FreezerRepairs; FreezerRepairs)
+                    field(FreezerRepairs; Rec.FreezerRepairs)
                     {
-                        ApplicationArea = all;
+                        ApplicationArea = All;
+                        Tooltip = 'Repairs';
                     }
                 }
                 Group(Dishwasher)
                 {
-                    caption = 'Dishwasher';
-                    field(DishwasherYear; DishwasherYear)
+                    Caption = 'Dishwasher';
+                    field(DishwasherYear; Rec.DishwasherYear)
                     {
-                        ApplicationArea = all;
+                        ApplicationArea = All;
+                        Tooltip = 'Productionyear';
                     }
-                    field(DishwasherManufactor; DishwasherManufactor)
+                    field(DishwasherManufactor; Rec.DishwasherManufactor)
                     {
-                        ApplicationArea = all;
+                        ApplicationArea = All;
+                        Tooltip = 'Manufactor';
                     }
-                    field(DishwasherModel; DishwasherModel)
+                    field(DishwasherModel; Rec.DishwasherModel)
                     {
-                        ApplicationArea = all;
+                        ApplicationArea = All;
+                        Tooltip = 'Model code';
                     }
-                    field(DishwasherCondition; DishwasherCondition)
+                    field(DishwasherCondition; Rec.DishwasherCondition)
                     {
-                        ApplicationArea = all;
+                        ApplicationArea = All;
+                        Tooltip = 'Condition';
                     }
-                    field(DishwasherRepairs; DishwasherRepairs)
+                    field(DishwasherRepairs; Rec.DishwasherRepairs)
                     {
-                        ApplicationArea = all;
+                        ApplicationArea = All;
+                        Tooltip = 'Repairs';
                     }
                 }
                 group(Washer)
                 {
                     Caption = 'Washer';
-                    field(WasherYear; WasherYear)
+                    field(WasherYear; Rec.WasherYear)
                     {
-                        ApplicationArea = all;
+                        ApplicationArea = All;
+                        Tooltip = 'Productionyear';
                     }
-                    field(WasherManufactor; WasherManufactor)
+                    field(WasherManufactor; Rec.WasherManufactor)
                     {
-                        ApplicationArea = all;
+                        ApplicationArea = All;
+                        Tooltip = 'Manufactor';
                     }
-                    field(WasherModel; WasherModel)
+                    field(WasherModel; Rec.WasherModel)
                     {
-                        ApplicationArea = all;
+                        ApplicationArea = All;
+                        Tooltip = 'Model code';
                     }
-                    field(WasherCondition; WasherCondition)
+                    field(WasherCondition; Rec.WasherCondition)
                     {
-                        ApplicationArea = all;
+                        ApplicationArea = All;
+                        Tooltip = 'Condition';
                     }
-                    field(WasherRepairs; WasherRepairs)
+                    field(WasherRepairs; Rec.WasherRepairs)
                     {
-                        ApplicationArea = all;
+                        ApplicationArea = All;
+                        Tooltip = 'Repairs';
                     }
                 }
                 group(Dryer)
                 {
                     Caption = 'Dryer';
-                    field(DryerYear; DryerYear)
+                    field(DryerYear; Rec.DryerYear)
                     {
-                        ApplicationArea = all;
+                        ApplicationArea = All;
+                        Tooltip = 'Productionyear';
                     }
-                    field(DryerManufactor; DryerManufactor)
+                    field(DryerManufactor; Rec.DryerManufactor)
                     {
-                        ApplicationArea = all;
+                        ApplicationArea = All;
+                        Tooltip = 'Manufactor';
                     }
-                    field(DryerModel; DryerModel)
+                    field(DryerModel; Rec.DryerModel)
                     {
-                        ApplicationArea = all;
+                        ApplicationArea = All;
+                        Tooltip = 'Model code';
                     }
-                    field(DryerCondition; DryerCondition)
+                    field(DryerCondition; Rec.DryerCondition)
                     {
-                        ApplicationArea = all;
+                        ApplicationArea = All;
+                        Tooltip = 'Condition';
                     }
-                    field(DryerRepairs; DryerRepairs)
+                    field(DryerRepairs; Rec.DryerRepairs)
                     {
-                        ApplicationArea = all;
+                        ApplicationArea = All;
+                        Tooltip = 'Repairs';
                     }
                 }
                 group(EntryPhone)
                 {
                     Caption = 'EntryPhone';
 
-                    field(EntryPhoneYear; EntryPhoneYear)
+                    field(EntryPhoneYear; Rec.EntryPhoneYear)
                     {
-                        ApplicationArea = all;
+                        ApplicationArea = All;
+                        Tooltip = 'Productionyear';
                     }
-                    field(EntryPhoneManufactor; EntryPhoneManufactor)
+                    field(EntryPhoneManufactor; Rec.EntryPhoneManufactor)
                     {
-                        ApplicationArea = all;
+                        ApplicationArea = All;
+                        Tooltip = 'Manufactor';
                     }
-                    field(EntryPhoneModel; EntryPhoneModel)
+                    field(EntryPhoneModel; Rec.EntryPhoneModel)
                     {
-                        ApplicationArea = all;
+                        ApplicationArea = All;
+                        Tooltip = 'Model code';
                     }
-                    field(EntryPhoneCondition; EntryPhoneCondition)
+                    field(EntryPhoneCondition; Rec.EntryPhoneCondition)
                     {
-                        ApplicationArea = all;
+                        ApplicationArea = All;
+                        Tooltip = 'Condition';
                     }
-                    field(EntryPhoneRepairs; EntryPhoneRepairs)
+                    field(EntryPhoneRepairs; Rec.EntryPhoneRepairs)
                     {
-                        ApplicationArea = all;
+                        ApplicationArea = All;
+                        Tooltip = 'Repairs';
                     }
                 }
                 group(Other)
                 {
                     Caption = 'Other';
-                    field(AntennaCondition; AntennaCondition)
+                    field(AntennaCondition; Rec.AntennaCondition)
                     {
-                        ApplicationArea = all;
+                        ApplicationArea = All;
+                        Tooltip = 'Condition';
                     }
-                    field(AntennaRepairs; AntennaRepairs)
+                    field(AntennaRepairs; Rec.AntennaRepairs)
                     {
-                        ApplicationArea = all;
+                        ApplicationArea = All;
+                        Tooltip = 'Repairs';
                     }
-                    field(KeyCondition; KeyCondition)
+                    field(KeyCondition; Rec.KeyCondition)
                     {
-                        ApplicationArea = all;
+                        ApplicationArea = All;
+                        Tooltip = 'Condition';
                     }
-                    field(KeyRepairs; KeyRepairs)
+                    field(KeyRepairs; Rec.KeyRepairs)
                     {
-                        ApplicationArea = all;
+                        ApplicationArea = All;
+                        Tooltip = 'Repairs';
                     }
                 }
             }
@@ -1134,6 +1388,7 @@ page 50008 "SVA MoveOut"
                 {
                     ApplicationArea = all;
                     Caption = 'Moving out report';
+                    ToolTip = 'Report to sign for moving out status.';
                     Image = MakeAgreement;
                     Promoted = true;
                     PromotedCategory = Report;

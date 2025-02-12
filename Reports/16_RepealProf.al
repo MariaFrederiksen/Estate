@@ -3,6 +3,7 @@ report 50016 "SVA Repeal Prof"
     WordLayout = './Layouts/RepealProf.docx';
     DefaultLayout = Word;
     Caption = 'Repeal professional';
+    //UseRequestPage = false;
 
     dataset
     {
@@ -81,11 +82,19 @@ report 50016 "SVA Repeal Prof"
             column(CompanyBankBranchNo; CompanyInformation."Bank Branch No.")
             {
             }
-            column(CompanyBanAccountNo; CompanyInformation."Bank Branch No.")
+            column(CompanyBanAccountNo; CompanyInformation."Bank Account No.")
             {
             }
             column(CompanyBankName; CompanyInformation."Bank Name")
             {
+            }
+            column(E_Mail; "E-Mail")
+            {
+
+            }
+            column(Home_Page; "Home Page")
+            {
+
             }
         }
     }

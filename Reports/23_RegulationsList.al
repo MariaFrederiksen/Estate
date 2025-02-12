@@ -80,7 +80,7 @@ report 50022 "SVA Occupants regulations"
                 begin
                     IndeksNew := 0;
                     IndeksOld := 0;
-                    if "SVA Contract regulations".Latest_regulation <> 0D then begin
+                    if "SVA Contract regulations".Indeks_Date <> 0D then begin
                         SVAPriceIndeks.Reset();
                         SVAPriceIndeks.setrange(IndeksNo, 'Netto');
                         SVAPriceIndeks.SetRange(IndeksDate, CalcDate('<-1Y>', "SVA Contract regulations".Indeks_Date));

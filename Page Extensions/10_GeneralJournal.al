@@ -4,11 +4,12 @@ pageextension 50010 "SVA General Journal" extends "General Journal"
     {
         addlast(Control1)
         {
-            field("SVA Occupant"; "SVA Occupant")
+            field("SVA Occupant"; Rec."SVA Occupant")
             {
                 ApplicationArea = all;
                 ToolTip = 'Occupant no. Related to occupant entries.';
             }
         }
     }
+   
 }

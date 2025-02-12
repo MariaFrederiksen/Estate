@@ -4590,7 +4590,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>WC kumme</Value>
+                                  <Value>Toiletkumme</Value>
                                   <Style>
                                     <FontSize>9pt</FontSize>
                                   </Style>
@@ -6212,7 +6212,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>WC kumme</Value>
+                                  <Value>Toiletkumme</Value>
                                   <Style>
                                     <FontSize>9pt</FontSize>
                                   </Style>
@@ -12818,7 +12818,6 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
-                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                   </TablixCells>

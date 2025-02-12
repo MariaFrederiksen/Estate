@@ -36,9 +36,13 @@ report 50026 "SVA Occupant Trans"
             column(StartDate; StartDate)
             {
             }
+        
+           
             dataitem("Occupant Trans"; "SVA Occupant Trans")
             {
                 DataItemLink = Occupant = FIELD(Number);
+                //DataItemTableView = WHERE(Date = FILTER(   ));
+
 
                 column(OTransNo; Occupant)
                 {
@@ -53,10 +57,13 @@ report 50026 "SVA Occupant Trans"
                 {
                 }
             }
+
+
             trigger OnAfterGetRecord();
             var
                 l_OccupantTrans: Record "SVA Occupant Trans";
             begin
+                
                 Headline := HeadlineLbl;
                 CosttypeFilter := "Occupant Trans".GetFilter("Cost type Estate");
                 DateFilter := "Occupant Trans".GetFilter(Date);
@@ -71,14 +78,12 @@ report 50026 "SVA Occupant Trans"
                 IF l_OccupantTrans.FindSet() then
                     repeat
                         g_Amount := g_Amount + l_OccupantTrans.Amount;
-                    until l_OccupantTrans.NEXT() = 0;
+                    until l_OccupantTrans.Next() = 0;
                 if g_amount = 0 then
                     CurrReport.Skip();
             end;
         }
     }
-
-
 
     requestpage
     {

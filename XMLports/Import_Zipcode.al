@@ -8,16 +8,16 @@ xmlport 50004 "SVA Import Post Code"
     {
         textelement(Root)
         {
-            tableelement("Post Code"; "Post Code")
+            tableelement("SVA PostCode"; "SVA PostCode")
             {
                 XmlName = 'PostcodeDK';
-                fieldattribute(Zipcode; "Post Code".Code)
+                fieldattribute(Code;"SVA PostCode".PostCode)
                 {
                 }
-                fieldattribute(Zipcode; "Post Code".City)
+                fieldattribute(Country;"SVA PostCode".Country)
                 {
                 }
-                fieldattribute(Zipcode; "Post Code"."Country/Region Code")
+                fieldattribute(City;"SVA PostCode".City)
                 {
                 }
 

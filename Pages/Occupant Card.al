@@ -1,7 +1,7 @@
 page 50009 "SVA Occupant Card"
-//Tooltip created
+
 {
-    Caption = 'SVAOccupants';
+    Caption = 'Occupants';
     PageType = Card;
     SourceTable = "SVA Occupant";
 
@@ -12,202 +12,203 @@ page 50009 "SVA Occupant Card"
             group(Generelt)
             {
                 Caption = 'General';
-                field("Customer No"; "Customer No")
+                field("Customer No"; Rec."Customer No")
                 {
                     ApplicationArea = All;
                     ToolTip = 'Costumer no. from customer table.';
                 }
-                field(TenancyNo; TenancyNo)
+                field(TenancyNo; Rec.TenancyNo)
                 {
                     ApplicationArea = All;
                     ToolTip = 'The tenancy, the customer rents';
                 }
-                field(startdate; StartDate)
+                field(startdate; Rec.StartDate)
                 {
                     ApplicationArea = All;
                     ToolTip = 'Startdate of the contract.';
                 }
-                field("Collection Month"; "Collection Month")
+                field("Collection Month"; Rec."Collection Month")
                 {
                     ApplicationArea = All;
                     ToolTip = 'Collection month. Importen when the collecion period is quarter, halfyear or year';
                 }
-                field(FirstNets; FirstNets)
+                field(FirstNets; Rec.FirstNets)
                 {
                     ApplicationArea = All;
                     ToolTip = 'First time to NETS or first time to be invoiced after moving in invoice.';
                 }
-                field(Name1; Name1)
+                field(Name1; Rec.Name1)
                 {
                     ApplicationArea = All;
                     ToolTip = 'Tenants full name';
                 }
-                field(Name2; Name2)
+                field(Name2; Rec.Name2)
                 {
                     ApplicationArea = All;
                     ToolTip = 'Second tenants name';
                 }
-                field(Address; Address)
+                field(Address; Rec.Address)
                 {
                     ApplicationArea = All;
                     ToolTip = 'Invoice address';
                 }
-                field(Address2; Address2)
+                field(Address2; Rec.Address2)
                 {
                     ApplicationArea = All;
                     ToolTip = 'Invoice address 2';
                 }
-                field("Post Code"; "Post Code")
+                field("Post Code"; Rec."Post Code")
                 {
                     ApplicationArea = All;
                     ToolTip = 'Invoice post code';
                 }
-                field(City; City)
+                field(City; Rec.City)
                 {
                     ApplicationArea = All;
                     ToolTip = 'Invoice city';
                 }
-                field("Country/Region Code"; "Country/Region Code")
+                field("Country/Region Code"; Rec."Country/Region Code")
                 {
                     ApplicationArea = All;
                     ToolTip = 'Invoice Country code';
                 }
-                field(Email1; Email1)
+                field(Email1; Rec.Email1)
                 {
                     ApplicationArea = All;
                     ToolTip = 'Tenants email';
+                    ExtendedDatatype = EMail;
                 }
-                field(Email2; Email2)
+                field(Email2; Rec.Email2)
                 {
                     ApplicationArea = All;
                     ToolTip = 'Second email';
                 }
-                field(Phone; Phone)
+                field(Phone; Rec.Phone)
                 {
                     ApplicationArea = All;
                     ToolTip = 'Tenants phone no.';
                 }
-                field(CellPhone1; CellPhone1)
+                field(CellPhone1; Rec.CellPhone1)
                 {
                     ApplicationArea = All;
                     ToolTip = 'Tenants cellphone no.';
                 }
-                field(CellPhone2; CellPhone2)
+                field(CellPhone2; Rec.CellPhone2)
                 {
                     ApplicationArea = All;
                     ToolTip = 'Tenants cellphone no.';
                 }
-                field(CPRno1; CPRno1)
+                field(CPRno1; Rec.CPRno1)
                 {
                     ApplicationArea = All;
                     ToolTip = 'Tenants security no.';
                 }
-                field(CPRno2; CPRno2)
+                field(CPRno2; Rec.CPRno2)
                 {
                     ApplicationArea = All;
                     ToolTip = 'Second Tenants social security no.';
                 }
-                field(EndDate; EndDate)
+                field(EndDate; Rec.EndDate)
                 {
                     ApplicationArea = All;
                     ToolTip = 'The date this contract expire';
                 }
 
-                field(ConsumptionAccountNo; ConsumptionAccountNo)
+                field(ConsumptionAccountNo; Rec.ConsumptionAccountNo)
                 {
                     ApplicationArea = All;
                     ToolTip = 'Tenants consumption account no.';
                 }
-                field(Blocked; Blocked)
+                field(Bankname; Rec.Bankname)
+                {
+                    ApplicationArea = all;
+                    ToolTip = 'Tenants bankinformation';
+                }
+                field("Bankreg-no"; Rec."Bankreg-no")
+                {
+                    ApplicationArea = all;
+                    ToolTip = 'Tenants bankinformation';
+                }
+                field(BankAccount; Rec.BankAccount)
+                {
+                    ApplicationArea = all;
+                    ToolTip = 'Tenants bankinformation';
+                }
+                field(TransferNETS; Rec.TransferNETS)
+                {
+                    ApplicationArea = all;
+                    ToolTip = 'Status for NETS agreement';
+                }
+                field(Blocked; Rec.Blocked)
                 {
                     ApplicationArea = All;
                     ToolTip = 'Blocked date';
                 }
+
             }
             group("Div. oplysniger")
             {
                 Caption = 'Mis. information';
-                field(ChairmanOfTheBoard; ChairmanOfTheBoard)
+                field(ChairmanOfTheBoard; Rec.ChairmanOfTheBoard)
                 {
                     ApplicationArea = All;
                     ToolTip = 'Is tenant chairman of the board? Not relevant if the tenancy is rented';
                 }
-                field(BoardMember; BoardMember)
+                field(BoardMember; Rec.BoardMember)
                 {
                     ApplicationArea = All;
                     ToolTip = 'Is tenant member of the board? Not relevant if the tenancy is rented';
                 }
-                field(BoardAccountent; BoardAccountent)
+                field(BoardAccountent; Rec.BoardAccountent)
                 {
                     ApplicationArea = All;
                     ToolTip = 'Is tenant accountant of the board? Not relevant if the tenancy is rented';
                 }
-                field(ResidentRepresentative; ResidentRepresentative)
+                field(ResidentRepresentative; Rec.ResidentRepresentative)
                 {
                     ApplicationArea = All;
                     ToolTip = 'Is tenant Residents representative? Only relevant if the tenancy is rented';
                 }
-                field(Type_1; Type_1)
-                {
-                    ApplicationArea = All;
-                    Tooltip = 'Is tenant grp 1?';
-                }
-                field(TypeT1; TypeT1)
-                {
-                    ApplicationArea = All;
-                    Tooltip = 'Description grp. 1';
-                }
-
-                field(Type_2; Type_2)
-                {
-                    ApplicationArea = All;
-                    Tooltip = 'Is tenant grp 2?';
-                }
-                field(Type_T2; Type_T2)
-                {
-                    ApplicationArea = All;
-                    Tooltip = 'Description grp. 2';
-                }
             }
+
             part("Subscription lines"; "SVA Subscription lines subform")
             {
                 Caption = 'Subscription lines';
-                Tooltip = 'Subscription lines for this contract.';
                 ApplicationArea = All;
                 SubPageLink = Tenancies = FIELD(TenancyNo);
-                SubPageView = SORTING(Tenancies, "Date To")
-                              ORDER(Ascending);
+                SubPageView = SORTING(Tenancies, Order, "Date from")
+                              ORDER(Descending);
+
             }
             part("SVAOccupant transactions"; "SVA Occupant Trans Subform")
             {
-                Caption = 'SVAOccupant Trans';
-                Tooltip = 'SVAOccupant trans for this contract.';
+                Caption = 'Occupant Trans';
                 ApplicationArea = All;
                 SubPageLink = Occupant = FIELD(Number);
-                SubPageView = SORTING(Occupant, Date, "Cost type Estate", "Invoice No");
+                SubPageView = SORTING(Occupant, Date, "Cost type Estate", "Invoice No") order(descending);
             }
+
         }
         area(factboxes)
         {
-            part("Attached Documents"; 1174)
+            part("Document Attachment Factbox"; "Document Attachment Factbox")
             {
-                ApplicationArea = All;
                 Caption = 'Attachments';
-                SubPageLink = "Table ID" = CONST(50003),
-                              "No." = FIELD(Number);
-                Visible = NOT IsOfficeAddin;
+                ApplicationArea = all;
+                SubPageLink = "Table ID" = Const(50003), "No." = field(Number);
+                Visible = not IsOfficeAddin;
             }
-
             systempart(Links; Links)
             {
-                ApplicationArea = All;
+                ApplicationArea = RecordLinks;
             }
             systempart(Notes; Notes)
             {
-                ApplicationArea = All;
+                ApplicationArea = Notes;
             }
         }
     }
+
 
     actions
     {
@@ -216,16 +217,24 @@ page 50009 "SVA Occupant Card"
             group(Kontrakter)
             {
                 Caption = 'Contracts';
+
                 action(LeasContractA9)
                 {
                     ApplicationArea = All;
-                    Caption = 'Leasecontract Type A, 9. edistion';
-                    Tooltip = 'Go to leasecontract type A, 9. edition for filling';
+                    Caption = 'Leasecontract Type A, 10. edistion';
+                    Tooltip = 'Go to leasecontract type A, 10. edition for filling';
                     Image = MakeAgreement;
-                    RunObject = Page "SVA Leasecontract_A9";
-                    RunPageLink = Number = FIELD(Number);
-                    RunPageMode = Edit;
-                    RunPageOnRec = false;
+                    trigger OnAction()
+                    var
+                        SVALeaseContractA10: Record "SVA LeaseContract_A9";
+                    begin
+                        if (rec.Number <> '') then
+                            Codeunit.Run(Codeunit::"SVA Create Contract A10", Rec);
+                        Clear(SVALeaseContractA10);
+                        SVALeaseContractA10.SetRange(Number, Rec.Number);
+                        if SVALeaseContractA10.FindFirst() then
+                            Page.Run(Page::"SVA Leasecontract_A9", SVALeaseContractA10);
+                    end;
                 }
                 action(LeasContractGarage)
                 {
@@ -233,9 +242,18 @@ page 50009 "SVA Occupant Card"
                     Caption = 'Leasecontract for garage';
                     Tooltip = 'Go to leasecontract for garage for filling';
                     Image = MakeAgreement;
-                    RunObject = Page "SVA Leasecontract_Garage";
-                    RunPageLink = Number = FIELD(Number);
-                    RunPageMode = Edit;
+                    trigger OnAction()
+                    var
+                        SVALeaseContractA9: Record "SVA LeaseContract_A9";
+                    begin
+                        if (rec.Number <> '') then
+                            Codeunit.Run(Codeunit::"SVA Create Contract A9", Rec);
+                        Clear(SVALeaseContractA9);
+                        SVALeaseContractA9.SetRange(Number, Rec.Number);
+                        if SVALeaseContractA9.FindFirst() then
+                            Page.Run(Page::"SVA Leasecontract_Garage", SVALeaseContractA9);
+                    end;
+
                 }
                 action(LeaseBusiness)
                 {
@@ -243,24 +261,39 @@ page 50009 "SVA Occupant Card"
                     Caption = 'Lease Business';
                     Tooltip = 'Go to lease business for invoicing of moving in costs';
                     Image = MakeAgreement;
-                    RunObject = Page "SVA Lease Business";
-                    RunPageLink = Number = FIELD(Number);
-                    RunPageMode = Edit;
+                    trigger OnAction()
+                    var
+                        SVALeaseContractA9: Record "SVA LeaseContract_A9";
+                    begin
+                        if (rec.Number <> '') then
+                            Codeunit.Run(Codeunit::"SVA Create Contract A9", Rec);
+                        Clear(SVALeaseContractA9);
+                        SVALeaseContractA9.SetRange(Number, Rec.Number);
+                        if SVALeaseContractA9.FindFirst() then
+                            Page.Run(Page::"SVA Lease Business", SVALeaseContractA9);
+                    end;
                 }
             }
-            group(reguleringer)
+            group(Regulations)
             {
                 Caption = 'Regulations';
-                action(Regulations)
+                action(Regulation)
                 {
                     ApplicationArea = All;
                     Caption = 'Agreed regulation of rent and repayments';
                     Tooltip = 'Contract conditions for regulations and agreed repayments';
                     Image = MakeAgreement;
-                    RunObject = Page "SVA Subscription regulations";
-                    RunPageLink = Number = FIELD(Number);
-                    RunPageMode = Edit;
-                    RunPageOnRec = false;
+                    trigger OnAction()
+                    var
+                        SVAContractregulations: record "SVA Contract regulations";
+                    begin
+                        if (rec.Number <> '') then
+                            Codeunit.Run(Codeunit::"SVA Create Occupant regulation", Rec);
+                        Clear(SVAContractregulations);
+                        SVAContractregulations.SetRange(SVAContractregulations.Number, Rec.Number);
+                        if SVAContractregulations.FindFirst() then
+                            Page.Run(Page::"SVA Subscription regulations", SVAContractregulations);
+                    end;
                 }
             }
             group(Moving)
@@ -298,6 +331,9 @@ page 50009 "SVA Occupant Card"
                     Image = Report;
 
                     trigger OnAction();
+                    var
+                        SVAOccupant: Record "SVA Occupant";
+                        SVAMovingoutJournal: Report "SVA Moving out Journal";
                     begin
                         CLEAR(SVAOccupant);
                         SVAOccupant.SETRANGE(Number, Rec.Number);
@@ -312,8 +348,13 @@ page 50009 "SVA Occupant Card"
                     Caption = 'Invoice Moving out';
                     Tooltip = 'Make a moving out invoice based on transactions and subscription lines.';
                     Image = SalesInvoice;
+                    RunObject = Page "SVA Move Out Invoice";
+                    RunPageLink = Number = FIELD(Number);
+                    RunPageMode = Edit;
 
                     trigger OnAction();
+                    var
+                        SVAOccupant: Record "SVA Occupant";
                     begin
                         CLEAR(SVAOccupant);
                         SVAOccupant.SETRANGE(Number, Rec.Number);
@@ -333,6 +374,11 @@ page 50009 "SVA Occupant Card"
                     Image = Reminder;
 
                     trigger OnAction();
+                    var
+                        SVATenancy: Record "SVA Tenancy";
+                        SVAOccupant: Record "SVA Occupant";
+                        SVADemandNoticeResidence: Report "SVA DemandNoticeResidence";
+                        SVADemandNoticeProf: Report "SVA DemandNoticeProf";
                     begin
                         Clear(SVATenancy);
                         SVATenancy.SetRange(number, Rec.TenancyNo);
@@ -342,14 +388,14 @@ page 50009 "SVA Occupant Card"
                                 SVAOccupant.SETRANGE(Number, Rec.Number);
                                 CLEAR(SVADemandNoticeResidence);
                                 SVADemandNoticeResidence.SETTABLEVIEW(SVAOccupant);
-                                SVADemandNoticeResidence.RunModal();
+                                SVADemandNoticeResidence.Run();
                             END;
                             IF SVATenancy.Type = 1 then begin //erhverv
                                 CLEAR(SVAOccupant);
                                 SVAOccupant.SETRANGE(Number, Rec.Number);
                                 CLEAR(SVADemandNoticeProf);
                                 SVADemandNoticeProf.SETTABLEVIEW(SVAOccupant);
-                                SVADemandNoticeProf.RunModal();
+                                SVADemandNoticeProf.Run();
                             END;
                         end;
                     end;
@@ -362,6 +408,11 @@ page 50009 "SVA Occupant Card"
                     Image = Report;
 
                     trigger OnAction();
+                    var
+                        SVATenancy: Record "SVA Tenancy";
+                        SVAOccupant: Record "SVA Occupant";
+                        SVARepealProf: report "SVA Repeal Prof";
+                        SVARepealRes: report "SVA Repeal Res";
                     begin
                         Clear(SVATenancy);
                         SVATenancy.SetRange(number, Rec.TenancyNo);
@@ -384,6 +435,21 @@ page 50009 "SVA Occupant Card"
                     end;
 
                 }
+                action(Mail)
+                {
+                    ApplicationArea = All;
+                    Caption = 'Send email';
+                    Tooltip = 'Send email to the occupant';
+                    Image = SendMail;
+
+                    Trigger OnAction()
+                    var
+                        SVAOccupant: Record "SVA Occupant";
+                    begin
+                        SVAOccupant.SendEmailToOccupant(Rec);
+                    end;
+
+                }
             }
 
 
@@ -401,35 +467,52 @@ page 50009 "SVA Occupant Card"
                 ShortCutKey = 'Shift+Ctrl+D';
                 ToolTip = 'View or edits dimensions, such as area, project, or department, that you can assign to sales and purchase documents to distribute costs and analyze transaction history.';
             }
+            action(Customer)
+            {
+                ApplicationArea = All;
+                Caption = 'Customer';
+                Image = Customer;
+                RunObject = Page "Customer Card";
+                RunPageLink = "No." = field("Customer No");
+                ToolTip = 'Customer card';
+            }
         }
 
     }
     trigger OnOpenPage()
     var
+
         OfficeManagement: Codeunit "Office Management";
+
     begin
-        IsOfficeAddin := Officemanagement.IsAvailable()
+        IsOfficeAddin := Officemanagement.IsAvailable();
+
     end;
 
     trigger OnNewRecord(BelowxRec: Boolean);
+    var
+        SVAParameters: Record "SVA Parameters";
+        SVAOccupant: Record "SVA Occupant";
+        NoSeriesManagement: Codeunit "NoSeriesManagement";
     begin
         SVAOccupant.Init();
         SVAParameters.Reset();
         IF SVAParameters.FindFirst() then
-            Number := NoSeriesManagement.GetNextNo(SVAParameters.Numberserie, WorkDate(), TRUE);
+            Rec.Number := NoSeriesManagement.GetNextNo(SVAParameters.Numberserie, WorkDate(), TRUE);
 
-        IF Number = '' then
+        IF Rec.Number = '' then
             Error('Nummerserie er ikke opsat. Kørslen afbrydes');
 
     end;
 
     trigger OnDeleteRecord(): Boolean;
+    var
+        SVAOccupantTrans: Record "SVA Occupant Trans";
     begin
         SVAOccupantTrans.Reset();
         SVAOccupantTrans.SetRange(SVAOccupantTrans.Occupant, rec.Number);
-        IF SVAOccupantTrans.FindFirst() then
+        if not SVAOccupantTrans.IsEmpty then
             Error('Kontrakten kan ikke slettes, da der er posteringer.')
-
     end;
 
     trigger OnClosePage();
@@ -437,17 +520,8 @@ page 50009 "SVA Occupant Card"
         Codeunit.Run(Codeunit::"SVA Send");
     end;
 
+
     var
-        SVATenancy: Record "SVA Tenancy";
-        SVAOccupant: Record "SVA Occupant";
-        SVAParameters: Record "SVA Parameters";
-        SVAOccupantTrans: Record "SVA Occupant Trans";
-        SVADemandNoticeResidence: Report "SVA DemandNoticeResidence";
-        SVAMovingoutJournal: Report "SVA Moving out Journal";
-        SVADemandNoticeProf: Report "SVA DemandNoticeProf";
-        SVARepealProf: report "SVA Repeal Prof";
-        SVARepealRes: report "SVA Repeal Res";
-        NoSeriesManagement: Codeunit "NoSeriesManagement";
         IsOfficeAddin: Boolean;
 }
 

@@ -16,23 +16,25 @@ page 50013 "SVA Priceindeks"
         {
             repeater(Group)
             {
-                field(IndeksNo; IndeksNo)
+                field(IndeksNo; Rec.IndeksNo)
                 {
                     ToolTip = 'Indeks number.';
                     ApplicationArea = All;
                 }
-                field(IndeksDate; IndeksDate)
+                field(IndeksDate; Rec.IndeksDate)
                 {
                     ToolTip = 'Indeks per date';
                     ApplicationArea = All;
                 }
-                field(Indeksrate; Indeksrate)
+                field(Indeksrate; Rec.Indeksrate)
                 {
                     ToolTip = 'Indeks rate.';
                     ApplicationArea = All;
                 }
             }
         }
+
+
         area(factboxes)
         {
             systempart(Links; Links)
@@ -50,206 +52,15 @@ page 50013 "SVA Priceindeks"
     {
         area(processing)
         {
-            action("Read old indeks")
+            action("Import Indeks")
             {
-                ApplicationArea = all;
-                Caption = 'Read indeks from 2017';
-                ToolTip = 'Load old indekses from january 2017';
-                Image = Add;
-
+                Caption = 'Import Indeks';
+                ToolTip = 'Import Indeks';
+                Image = Apply;
+                ApplicationArea = All;
                 trigger OnAction();
                 begin
-                    IndeksNo := 'NETTO';
-                    IndeksDate := DMY2DATE(1, 1, 2017);
-                    Indeksrate := 100.5;
-                    Insert();
-                    IndeksNo := 'NETTO';
-                    IndeksDate := DMY2DATE(1, 2, 2017);
-                    Indeksrate := 101.4;
-                    Insert();
-                    IndeksNo := 'NETTO';
-                    IndeksDate := DMY2DATE(1, 3, 2017);
-                    Indeksrate := 101.4;
-                    Insert();
-                    IndeksNo := 'NETTO';
-                    IndeksDate := DMY2DATE(1, 4, 2017);
-                    Indeksrate := 101.8;
-                    Insert();
-                    IndeksNo := 'NETTO';
-                    IndeksDate := DMY2DATE(1, 5, 2017);
-                    Indeksrate := 101.6;
-                    Insert();
-                    IndeksNo := 'NETTO';
-                    IndeksDate := DMY2DATE(1, 6, 2017);
-                    Indeksrate := 101.5;
-                    Insert();
-                    IndeksNo := 'NETTO';
-                    IndeksDate := DMY2DATE(1, 7, 2017);
-                    Indeksrate := 102.5;
-                    Insert();
-                    IndeksNo := 'NETTO';
-                    IndeksDate := DMY2DATE(1, 8, 2017);
-                    Indeksrate := 102.2;
-                    Insert();
-                    IndeksNo := 'NETTO';
-                    IndeksDate := DMY2DATE(1, 9, 2017);
-                    Indeksrate := 102.1;
-                    Insert();
-                    IndeksNo := 'NETTO';
-                    IndeksDate := DMY2DATE(1, 10, 2017);
-                    Indeksrate := 102.3;
-                    Insert();
-                    IndeksNo := 'NETTO';
-                    IndeksDate := DMY2DATE(1, 11, 2017);
-                    Indeksrate := 101.9;
-                    Insert();
-                    IndeksNo := 'NETTO';
-                    IndeksDate := DMY2DATE(1, 12, 2017);
-                    Indeksrate := 101.6;
-                    Insert();
-                    IndeksNo := 'NETTO';
-                    IndeksDate := DMY2DATE(1, 1, 2018);
-                    Indeksrate := 101.3;
-                    Insert();
-                    IndeksNo := 'NETTO';
-                    IndeksDate := DMY2DATE(1, 2, 2018);
-                    Indeksrate := 102.1;
-                    Insert();
-                    IndeksNo := 'NETTO';
-                    IndeksDate := DMY2DATE(1, 3, 2018);
-                    Indeksrate := 102.1;
-                    Insert();
-                    IndeksNo := 'NETTO';
-                    IndeksDate := DMY2DATE(1, 4, 2018);
-                    Indeksrate := 102.6;
-                    Insert();
-                    IndeksNo := 'NETTO';
-                    IndeksDate := DMY2DATE(1, 5, 2018);
-                    Indeksrate := 102.7;
-                    Insert();
-                    IndeksNo := 'NETTO';
-                    IndeksDate := DMY2DATE(1, 6, 2018);
-                    Indeksrate := 102.7;
-                    IndeksNo := 'NETTO';
-                    Insert();
-                    IndeksNo := 'NETTO';
-                    IndeksDate := DMY2DATE(1, 7, 2018);
-                    Indeksrate := 103.6;
-                    IndeksNo := 'NETTO';
-                    Insert();
-                    IndeksNo := 'NETTO';
-                    IndeksDate := DMY2DATE(1, 8, 2018);
-                    Indeksrate := 103.1;
-                    IndeksNo := 'NETTO';
-                    Insert();
-                    IndeksDate := DMY2DATE(1, 9, 2018);
-                    Indeksrate := 102.8;
-                    IndeksNo := 'NETTO';
-                    Insert();
-                    IndeksDate := DMY2DATE(1, 10, 2018);
-                    Indeksrate := 103.1;
-                    IndeksNo := 'NETTO';
-                    Insert();
-                    IndeksDate := DMY2DATE(1, 11, 2018);
-                    Indeksrate := 102.8;
-                    IndeksNo := 'NETTO';
-                    IndeksDate := DMY2DATE(1, 12, 2018);
-                    Indeksrate := 102.4;
-                    IndeksNo := 'NETTO';
-                    Insert();
-                    IndeksDate := DMY2DATE(1, 1, 2019);
-                    Indeksrate := 102.6;
-                    IndeksNo := 'NETTO';
-                    Insert();
-                    IndeksDate := DMY2DATE(1, 2, 2019);
-                    Indeksrate := 103.3;
-                    IndeksNo := 'NETTO';
-                    Insert();
-                    IndeksDate := DMY2DATE(1, 3, 2019);
-                    Indeksrate := 103.4;
-                    IndeksNo := 'NETTO';
-                    Insert();
-                    IndeksDate := DMY2DATE(1, 4, 2019);
-                    Indeksrate := 103.7;
-                    IndeksNo := 'NETTO';
-                    Insert();
-                    IndeksDate := DMY2DATE(1, 5, 2019);
-                    Indeksrate := 103.6;
-                    IndeksNo := 'NETTO';
-                    Insert();
-                    IndeksDate := DMY2DATE(1, 6, 2019);
-                    Indeksrate := 103.4;
-                    IndeksNo := 'NETTO';
-                    Insert();
-                    IndeksDate := DMY2DATE(1, 7, 2019);
-                    Indeksrate := 104.1;
-                    IndeksNo := 'NETTO';
-                    Insert();
-                    IndeksDate := DMY2DATE(1, 8, 2019);
-                    Indeksrate := 103.7;
-                    IndeksNo := 'NETTO';
-                    Insert();
-                    IndeksDate := DMY2DATE(1, 9, 2019);
-                    Indeksrate := 103.4;
-                    IndeksNo := 'NETTO';
-                    Insert();
-                    IndeksDate := DMY2DATE(1, 10, 2019);
-                    Indeksrate := 103.8;
-                    IndeksNo := 'NETTO';
-                    Insert();
-                    IndeksDate := DMY2DATE(1, 11, 2019);
-                    Indeksrate := 103.6;
-                    IndeksNo := 'NETTO';
-                    Insert();
-                    IndeksDate := DMY2DATE(1, 12, 2019);
-                    Indeksrate := 103.4;
-                    IndeksNo := 'NETTO';
-                    Insert();
-                    IndeksDate := DMY2DATE(1, 1, 2020);
-                    Indeksrate := 103.6;
-                    IndeksNo := 'NETTO';
-                    Insert();
-                    IndeksDate := DMY2DATE(1, 2, 2020);
-                    Indeksrate := 104.3;
-                    IndeksNo := 'NETTO';
-                    Insert();
-                    IndeksDate := DMY2DATE(1, 3, 2020);
-                    Indeksrate := 103.9;
-                    IndeksNo := 'NETTO';
-                    Insert();
-                    IndeksDate := DMY2DATE(1, 4, 2020);
-                    Indeksrate := 103.9;
-                    IndeksNo := 'NETTO';
-                    Insert();
-                    IndeksDate := DMY2DATE(1, 5, 2020);
-                    Indeksrate := 103.7;
-                    IndeksNo := 'NETTO';
-                    Insert();
-                    IndeksDate := DMY2DATE(1, 6, 2020);
-                    Indeksrate := 103.8;
-                    IndeksNo := 'NETTO';
-                    Insert();
-                    IndeksDate := DMY2DATE(1, 7, 2020);
-                    Indeksrate := 104.6;
-                    IndeksNo := 'NETTO';
-                    Insert();
-
-                    /* IndeksDate := DMY2DATE(1, 8, 2019);
-                    Indeksrate := 103.7;
-                    IndeksNo := 'NETTO';
-                    Insert();
-                    IndeksDate := DMY2DATE(1, 9, 2019);
-                    Indeksrate := 103.4;
-                    IndeksNo := 'NETTO';
-                    Insert();
-                    IndeksDate := DMY2DATE(1, 10, 2019);
-                    Indeksrate := 103.8;
-                    IndeksNo := 'NETTO';
-                    Insert();
-                    IndeksDate := DMY2DATE(1, 11, 2019);
-                    Indeksrate := 103.6;
-                    IndeksNo := 'NETTO';
-                    Insert(); */
+                    Codeunit.Run(Codeunit::"SVA Import Priceindeks");
                 end;
             }
         }

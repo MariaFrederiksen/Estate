@@ -18,6 +18,10 @@ report 50023 "SVA Income Property"
             column(PropertyNo_Tenancy; PropertyNo)
             {
             }
+            column(OccupantName; OccupantName)
+            {
+
+            }
             column(Address1_Tenancy; Address1)
             {
             }
@@ -36,10 +40,11 @@ report 50023 "SVA Income Property"
             column(Rooms_Tenancy; Rooms)
             {
             }
+
             dataitem("SVA Subscription Lines"; "SVA Subscription Lines")
             {
                 DataItemLink = Tenancies = FIELD(Number);
-                DataItemTableView = SORTING(Tenancies, Order, "Cost Types", "Date From", "Date To", KeyNumber)
+                DataItemTableView = SORTING(Tenancies, Order, "Cost Types")
                                     ORDER(Ascending)
                                     WHERE(Type = const(Rent));
                 column(Amount_Period; "Amount Period")
@@ -49,9 +54,18 @@ report 50023 "SVA Income Property"
                 begin
                     if ("Date To" < Today) and ("Date To" <> 0D) then
                         CurrReport.Skip();
-                    
+
                 end;
             }
+            trigger OnAfterGetRecord()
+            var
+                SVAOccupant: Record "SVA Occupant";
+            begin
+                SVAOccupant.Reset();
+                SVAOccupant.SetRange(TenancyNo, Number);
+                if SVAOccupant.FindLast() then
+                    OccupantName := SVAOccupant.Name1;
+            end;
 
         }
     }
@@ -72,6 +86,6 @@ report 50023 "SVA Income Property"
     {
     }
     var
-       
+        OccupantName: Text[50];
 }
 

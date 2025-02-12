@@ -20,18 +20,18 @@ tableextension 50034 "SVA Sales Invoice Line" extends "Sales Invoice Line"
     begin
 
         SalesInvoiceHeader.Reset();
-        SalesInvoiceHeader.SetRange("No.", Rec."Document No.");
+        SalesInvoiceHeader.SetRange("No.", "Document No.");
         if SalesInvoiceHeader.FindFirst() then
             Occupant := SalesInvoiceHeader."SVA Occupant";
-        if Occupant <> '' then begin
+        if (Occupant <> '') and (Rec."SVA CostType" <> '') then begin
             SVAOccupantTrans.Occupant := Occupant;
-            SVAOccupantTrans.Date := Rec."Posting Date";
-            SVAOccupantTrans.Description := Rec.Description;
-            SVAOccupantTrans."Invoice No" := Rec."Document No." + '_' + Format(Rec."Line No.");
-            SVAOccupantTrans.Price := Rec."Unit Price";
-            SVAOccupantTrans.Qty := Rec.Quantity;
+            SVAOccupantTrans.Date := "Posting Date";
+            SVAOccupantTrans.Description := Description;
+            SVAOccupantTrans."Invoice No" := "Document No." + '_' + Format("Line No.");
+            SVAOccupantTrans.Price := "Unit Price";
+            SVAOccupantTrans.Qty := Quantity;
             SVAOccupantTrans.Amount := SVAOccupantTrans.Price * SVAOccupantTrans.Qty;
-            SVAOccupantTrans."Cost type Estate" := Rec."SVA CostType";
+            SVAOccupantTrans."Cost type Estate" := "SVA CostType";
             SVACosttype.Reset();
             SVACosttype.SETRANGE(Costtype, SVAOccupantTrans."Cost type Estate");
             IF SVACosttype.FINDFIRST() THEN

@@ -1,6 +1,4 @@
 {
     "al.enableCodeAnalysis": true,
-    "al.codeAnalyzers": ["${CodeCop}"
-    ],
-    "al.ruleSetPath": ".\\EstateApp.ruleset.json"
+    "al.ruleSetPath": ".\\ProjApp.ruleset.json"
 }

@@ -8,8 +8,8 @@ report 50035 "SVA Prepaid Rent All"
     dataset
     {
         dataitem("SVA Property"; "SVA Property")
-
         {
+            DataItemTableView = sorting(Property);
             column(Headline; Headline)
             {
             }
@@ -23,7 +23,6 @@ report 50035 "SVA Prepaid Rent All"
             dataitem(Occupant; "SVA Occupant")
             {
                 DataItemLink = PropertyNo = field(Property);
-                DataItemTableView = sorting(Number);
 
                 column(OProperty; PropertyNo)
                 {
@@ -69,7 +68,7 @@ report 50035 "SVA Prepaid Rent All"
             trigger OnAfterGetRecord();
             var
                 l_OccupantRec: Record "SVA Occupant";
-                l_OccupantTrans: REcord "SVA Occupant Trans";
+                l_OccupantTrans: Record "SVA Occupant Trans";
             begin
                 Headline := HeadlineLbl;
                 g_Amount := 0;
@@ -77,16 +76,16 @@ report 50035 "SVA Prepaid Rent All"
                 l_OccupantRec.SetRange(Number, Occupant.Number);
                 if l_OccupantRec.FindFirst() then begin
                     l_OccupantTrans.Reset();
-                    l_OccupantTrans.SetRange(Type, 9);
+                    l_OccupantTrans.SetRange(Type, 11); //11 forudbetalt leje
                     l_OccupantTrans.SetRange(l_OccupantTrans.Occupant, l_OccupantRec.Number);
                     IF l_OccupantTrans.FindSet() then
                         repeat
                             g_Amount := g_Amount + l_OccupantTrans.Amount;
-                        until l_OccupantTrans.NEXT() = 0;
-                end;
-                if (g_Amount = 0) AND ((l_OccupantRec.Enddate < Today) AND (l_OccupantRec.Enddate <> 0D)) then
-                    CurrReport.Skip();
+                        until l_OccupantTrans.next() = 0;
 
+                    if (g_Amount = 0) AND ((l_OccupantRec.Enddate < Today) AND (l_OccupantRec.Enddate <> 0D)) then
+                        CurrReport.Skip();
+                end;
             end;
 
         }

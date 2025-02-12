@@ -4,6 +4,7 @@ report 50015 "SVA Repeal Res"
     WordLayout = './Layouts/RepealRes.docx';
     DefaultLayout = Word;
     Caption = 'Repeal Residense';
+    //UseRequestPage = false;
 
     dataset
     {
@@ -16,6 +17,9 @@ report 50015 "SVA Repeal Res"
             {
             }
             column(OName; Name1)
+            {
+            }
+            column(Name2; Name2)
             {
             }
             column(Oaddress; Address)
@@ -82,11 +86,19 @@ report 50015 "SVA Repeal Res"
             column(CompanyBankBranchNo; CompanyInformation."Bank Branch No.")
             {
             }
-            column(CompanyBanAccountNo; CompanyInformation."Bank Branch No.")
+            column(CompanyBanAccountNo; CompanyInformation."Bank Account No.")
             {
             }
             column(CompanyBankName; CompanyInformation."Bank Name")
             {
+            }
+            column(E_Mail; "E-Mail")
+            {
+
+            }
+            column(Home_Page; "Home Page")
+            {
+
             }
         }
     }
@@ -112,6 +124,6 @@ report 50015 "SVA Repeal Res"
     end;
 
     var
-    CompanyInformation: Record "Company Information";
+        CompanyInformation: Record "Company Information";
 }
 

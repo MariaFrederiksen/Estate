@@ -3,6 +3,7 @@ report 50012 "SVA DemandNoticeResidence"
     WordLayout = './Layouts/DemandNoticeResidence.docx';
     Caption = 'Demand notice residence';
     DefaultLayout = Word;
+    //UseRequestPage = false;
 
     dataset
     {
@@ -57,6 +58,8 @@ report 50012 "SVA DemandNoticeResidence"
             dataitem("Sales Invoice Header"; "Sales Invoice Header")
             {
                 DataItemLink = "SVA Occupant" = FIELD(Number);
+                DataItemTableView = sorting("Posting Date", "No.") where(Closed = Const(False));
+
                 column(No_SalesInvoiceHeader; "No.")
                 {
                 }
@@ -90,20 +93,31 @@ report 50012 "SVA DemandNoticeResidence"
 
                     trigger OnAfterGetRecord();
                     begin
+
+                        i += 1;
                         SVACosttype.Reset();
                         SVACosttype.SETRANGE(Costtype, "SVA Costtype");
                         IF SVACosttype.FINDFIRST() THEN
                             IF SVACosttype.Type = 8 THEN
                                 LiableAmountTotal -= "Amount Including VAT";
+
+                        SVADemandSpecification.Init();
+                        SVADemandSpecification.Rownumber := i;
+                        i += 1;
+                        SVADemandSpecification.DocNo := "Sales Invoice Line"."Document No.";
+                        SVADemandSpecification.Description := "Sales Invoice Line".Description;
+                        SVADemandSpecification.Amount := "Sales Invoice Line"."Amount Including VAT";
+                        SVADemandSpecification.Insert();
                     end;
                 }
 
                 trigger OnAfterGetRecord();
                 begin
-                    IF "Due Date" > TODAY THEN
+                    if "Due Date" > WorkDate() THEN
                         CurrReport.Skip();
-                    InvoiceAmountTotal += "Amount Including VAT";
-                    LiableAmountTotal += "Amount Including VAT";
+                    //InvoiceAmountTotal += "Amount Including VAT";
+                    InvoiceAmountTotal += "Remaining Amount";
+                    LiableAmountTotal += "Remaining Amount";
                 end;
             }
             dataitem(Parameters; "SVA Parameters")
@@ -122,6 +136,22 @@ report 50012 "SVA DemandNoticeResidence"
                 end;
             }
         }
+        dataitem("SVA Demand Specification"; "SVA Demand Specification")
+        {
+            column(DocNo; DocNo)
+            {
+
+            }
+            column(Description; Description)
+            {
+
+            }
+            column(Amount; Amount)
+            {
+
+            }
+        }
+
         dataitem("Company Information"; "Company Information")
         {
             column(CName; Name)
@@ -133,7 +163,7 @@ report 50012 "SVA DemandNoticeResidence"
             column(CPostcode; "Post Code")
             {
             }
-            column(CCIty; City)
+            column(CCity; City)
             {
             }
             column(CompanyVAT_Registration_No_; "VAT Registration No.")
@@ -151,7 +181,7 @@ report 50012 "SVA DemandNoticeResidence"
             column(CompanyBankBranchNo; CompanyInformation."Bank Branch No.")
             {
             }
-            column(CompanyBanAccountNo; CompanyInformation."Bank Branch No.")
+            column(CompanyBanAccountNo; CompanyInformation."Bank Account No.")
             {
             }
             column(CompanyBankName; CompanyInformation."Bank Name")
@@ -165,6 +195,14 @@ report 50012 "SVA DemandNoticeResidence"
             }
             column(LiableAmount; LiableAmountTotal)
             {
+            }
+            column(E_Mail; "E-Mail")
+            {
+
+            }
+            column(Home_Page; "Home Page")
+            {
+
             }
         }
     }
@@ -188,13 +226,18 @@ report 50012 "SVA DemandNoticeResidence"
     trigger OnPreReport();
     begin
         CompanyInformation.GET();
+        "SVA Demand Specification".DeleteAll();
     end;
+
+
 
     var
         CompanyInformation: Record "Company Information";
         SVACosttype: Record "SVA Cost type";
+        SVADemandSpecification: Record "SVA Demand Specification";
         InvoiceAmountTotal: Decimal;
         TotalAmount: Decimal;
         LiableAmountTotal: Decimal;
+        i: Integer;
 }
 

@@ -6,10 +6,10 @@ codeunit 50010 "SVA NETS BS 0601 Arrears"
     trigger OnRun();
     begin
         Codeunit.Run(Codeunit::"SVA Send");
-        SVAExportTemp.Reset();
-        SVAExportTemp.SetRange(Name, 'BS0601');
-        if SVAExportTemp.FindSet() then
-            SVAExportTemp.DeleteAll();
+        TempSVAExport.Reset();
+        TempSVAExport.SetRange(Name, 'BS0601');
+        if TempSVAExport.FindSet() then
+            TempSVAExport.DeleteAll();
 
         IF DATE2DMY(TODAY, 2) = 12 THEN
             FromDate := DMY2DATE(1, 1, DATE2DMY(TODAY, 3) + 1)
@@ -133,7 +133,7 @@ codeunit 50010 "SVA NETS BS 0601 Arrears"
                             RecordNo := '000' + FORMAT(CountRecord, 2)
                         ELSE
                             RecordNo := '0000' + FORMAT(CountRecord, 1);
-                        F052(RecordNo, SpecText);
+                        F052(RecordNo);
                         CLEAR(Amount52_ExVat);
                         CLEAR(Amount52_InVat);
 
@@ -147,7 +147,7 @@ codeunit 50010 "SVA NETS BS 0601 Arrears"
                                 RecordNo := '000' + FORMAT(CountRecord, 2)
                             ELSE
                                 RecordNo := '0000' + FORMAT(CountRecord, 1);
-                            F052(RecordNo, SpecText);
+                            F052(RecordNo);
                             DueAmount := 0;
                         end;
                         if Repayment <> 0 then begin
@@ -160,7 +160,7 @@ codeunit 50010 "SVA NETS BS 0601 Arrears"
                                 RecordNo := '000' + FORMAT(CountRecord, 2)
                             ELSE
                                 RecordNo := '0000' + FORMAT(CountRecord, 1);
-                            F052(RecordNo, SpecText);
+                            F052(RecordNo);
                             Repayment := 0
                         end;
                     end;
@@ -178,7 +178,7 @@ codeunit 50010 "SVA NETS BS 0601 Arrears"
         SVAParameters: Record "SVA Parameters";
         Customer: Record "Customer";
         SalesInvoiceHeader: Record "Sales Invoice Header";
-        SVAExportTemp: Record "SVA Export Temp";
+        TempSVAExport: Record "SVA Export Temp" temporary;
         CompanyInformation: Record "Company Information";
         SVAOccupant: Record "SVA Occupant";
         SVAProperty: record "SVA Property";
@@ -385,7 +385,7 @@ codeunit 50010 "SVA NETS BS 0601 Arrears"
         CLEAR(SpecText);
     end;
 
-    local procedure F052(Counter: Text[5]; Specification: Text[60]);
+    local procedure F052(Counter: Text[5]);
     begin
         CLEAR(TMP);
         CLEAR(STR052);
@@ -743,12 +743,12 @@ codeunit 50010 "SVA NETS BS 0601 Arrears"
 
     local procedure F_Save_Table(Text128: Text[128]);
     begin
-        SVAExportTemp.Init();
+        TempSVAExport.Init();
         TempCount += 1;
-        SVAExportTemp."Line No." := TempCount;
-        SVAExportTemp.Name := 'BS0601';
-        SVAExportTemp."Output Line 128" := Text128;
-        SVAExportTemp.Insert();
+        TempSVAExport."Line No." := TempCount;
+        TempSVAExport.Name := 'BS0601';
+        TempSVAExport."Output Line 128" := Text128;
+        TempSVAExport.Insert();
     end;
 }
 

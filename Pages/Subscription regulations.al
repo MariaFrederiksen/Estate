@@ -11,62 +11,62 @@ page 50022 "SVA Subscription regulations"
             group(General)
             {
                 Caption = 'General';
-                field(Number; Number)
+                field(Number; Rec.Number)
                 {
                     ApplicationArea = All;
                     ToolTip = 'Nummer på beboeraftalen';
                 }
-                field(MonthDeposit; MonthDeposit)
+                field(MonthDeposit; Rec.MonthDeposit)
                 {
                     ApplicationArea = All;
                     ToolTip = 'Måneders depositum.';
                 }
-                field(DepositAmount; DepositAmount)
+                field(DepositAmount; Rec.DepositAmount)
                 {
                     ApplicationArea = All;
-                    ToolTip = 'Depotitum i kr.';
+                    ToolTip = 'Depositum i kr.';
                 }
-                field(MonthPrepaidRent; MonthPrepaidRent)
+                field(MonthPrepaidRent; Rec.MonthPrepaidRent)
                 {
                     ApplicationArea = All;
                     ToolTip = 'Måneders forudbetalt leje';
                 }
-                field(PrepaidRentAMount; PrepaidRentAMount)
+                field(PrepaidRentAMount; Rec.PrepaidRentAMount)
                 {
                     ApplicationArea = All;
                     ToolTip = 'Forudbetalt leje i kr.';
                 }
-                field(MinRegulation; MinRegulation)
+                field(MinRegulation; Rec.MinRegulation)
                 {
                     ApplicationArea = All;
                     ToolTip = 'Mindste regulering i %';
                 }
-                field(MaxRegulations; MaxRegulations)
+                field(MaxRegulations; Rec.MaxRegulations)
                 {
                     ApplicationArea = All;
                     ToolTip = 'Max. regulering i %';
                 }
-                field(Increase; Increase)
+                field(Increase; Rec.Increase)
                 {
                     ApplicationArea = All;
                     ToolTip = 'Fast reguleringsprocent';
                 }
-                field(RegDate; RegDate)
+                field(RegDate; Rec.RegDate)
                 {
                     ApplicationArea = All;
                     ToolTip = 'Reguleringsdato';
                 }
-                field(Indeks_Date; Indeks_Date)
+                field(Indeks_Date; Rec.Indeks_Date)
                 {
                     ApplicationArea = All;
                     ToolTip = 'Hvis der skal indeksreguleres, skal indeks pr. denne dato benyttes.';
                 }
-                field(Latest_regulation; Latest_regulation)
+                field(Latest_regulation; Rec.Latest_regulation)
                 {
                     ApplicationArea = All;
                     ToolTip = 'Seneste regulering';
                 }
-                field(EndDate; EndDate)
+                field(EndDate; Rec.EndDate)
                 {
                     ApplicationArea = All;
                     ToolTip = 'Slutdato';
@@ -75,20 +75,25 @@ page 50022 "SVA Subscription regulations"
             group(Repayment)
             {
                 Caption = 'Repayments';
-                field(RepaymentPeriod; RepaymentPeriod)
+                field(RepaymentPeriod; Rec.RepaymentPeriod)
                 {
                     ApplicationArea = all;
                     ToolTip = 'Agreed amount for each period';
                 }
-                field(StartRepayment; StartRepayment)
+                field(StartRepayment; Rec.StartRepayment)
                 {
                     ApplicationArea = all;
                     ToolTip = 'First date of repayments';
                 }
-                field(EndRepayment; EndRepayment)
+                field(EndRepayment; Rec.EndRepayment)
                 {
                     ApplicationArea = all;
                     ToolTip = 'Last date of repayments';
+                }
+                field(Description; Rec.Description)
+                {
+                    ApplicationArea = all;
+                    ToolTip = 'Description of repayment or payment';
                 }
             }
         }
@@ -115,5 +120,11 @@ page 50022 "SVA Subscription regulations"
     begin
         CurrPage.UPDATE();
     end;
+
+    trigger OnAfterGetRecord()
+    begin
+        Rec.Validate(Number);
+    end;
+
 }
 

@@ -12,12 +12,12 @@ table 50013 "SVA Regulations"
         {
             Caption = 'Number';
             TableRelation = "SVA Occupant".Number;
-            
+
         }
         field(2; PropertyNo; Code[10])
         {
             Caption = 'Property';
-            
+
         }
         field(10; OName1; Text[50])
         {
@@ -105,6 +105,10 @@ table 50013 "SVA Regulations"
         {
             Caption = 'Actual regulation pct';
         }
+        field(39; OldIndeksDate; Date)
+        {
+            Caption = 'Indeksdate last time';
+        }
         field(40; RentYearNow; Decimal)
         {
             Caption = 'Rent year now';
@@ -112,6 +116,7 @@ table 50013 "SVA Regulations"
         field(41; RentYearNew; Decimal)
         {
             Caption = 'Rent year new';
+            DecimalPlaces = 2;
         }
         field(42; RegulationYear; Decimal)
         {
@@ -124,10 +129,12 @@ table 50013 "SVA Regulations"
         field(51; RentPerNew; Decimal)
         {
             Caption = 'Rent period new';
+            DecimalPlaces = 2;
         }
         field(45; RegulationPer; Decimal)
         {
             Caption = 'Regulation period';
+            DecimalPlaces = 2;
         }
         field(60; DepositNow; Decimal)
         {
@@ -136,10 +143,16 @@ table 50013 "SVA Regulations"
         field(61; DepositNew; Decimal)
         {
             Caption = 'Deposit new';
+            DecimalPlaces = 2;
         }
         field(62; RegulationDeposit; Decimal)
         {
             Caption = 'Regulation deposit';
+            DecimalPlaces = 2;
+        }
+        field(63; "Vat Charge"; Boolean)
+        {
+            Caption = 'Vat charge';
         }
         field(70; Closed; Boolean)
         {
@@ -156,11 +169,14 @@ table 50013 "SVA Regulations"
         field(81; PrepaidRentNew; Decimal)
         {
             Caption = 'Prepaid rent new';
+            DecimalPlaces = 2;
         }
         field(82; RegulationPrepaidrent; Decimal)
         {
             Caption = 'Regulation prepaid rent';
+            DecimalPlaces = 2;
         }
+
     }
     keys
     {
@@ -168,5 +184,5 @@ table 50013 "SVA Regulations"
         {
         }
     }
-    
+
 }

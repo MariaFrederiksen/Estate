@@ -19,47 +19,47 @@ page 50011 "SVA Occupant Trans Subform"
         {
             repeater(Group)
             {
-                field(Date; Date)
+                field(Date; Rec.Date)
                 {
                     ApplicationArea = All;
                     ToolTip = 'Posting date.';
                 }
-                field("Cost type Estate"; "Cost type Estate")
+                field("Cost type Estate"; Rec."Cost type Estate")
                 {
                     ApplicationArea = All;
                     ToolTip = 'Costype';
                 }
-                field(Description; Description)
+                field(Description; Rec.Description)
                 {
                     ApplicationArea = All;
                     ToolTip = 'Description as shown on invioce.';
                 }
-                field(Qty; Qty)
+                field(Qty; Rec.Qty)
                 {
                     ApplicationArea = All;
                     ToolTip = 'Quantiy';
                 }
-                field(Price; Price)
+                field(Price; Rec.Price)
                 {
                     ApplicationArea = All;
                     ToolTip = 'Pris per quantity';
                 }
-                field(Amount; Amount)
+                field(Amount; Rec.Amount)
                 {
                     ApplicationArea = All;
                     ToolTip = 'Lineamount';
                 }
-                field("Invoice No"; "Invoice No")
+                field("Invoice No"; Rec."Invoice No")
                 {
                     ApplicationArea = All;
                     ToolTip = 'Invoice number';
                 }
-                field(Occupant; Occupant)
+                field(Occupant; Rec.Occupant)
                 {
                     ApplicationArea = All;
                     ToolTip = 'Contract number';
                 }
-                field(Type; Type)
+                field(Type; Rec.Type)
                 {
                     ApplicationArea = All;
                     ToolTip = 'Type of costtype.';

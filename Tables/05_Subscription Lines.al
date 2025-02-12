@@ -45,6 +45,10 @@ table 50005 "SVA Subscription Lines"
         {
             Caption = 'Order';
         }
+        field(9; Costtype; Enum "SVA Cost types")
+        {
+            Caption = 'Type';
+        }
 
         field(11; "Date From"; Date)
         {
@@ -110,7 +114,8 @@ table 50005 "SVA Subscription Lines"
         }
         field(40; PriceIndeks; Boolean)
         {
-            Caption = 'Priceindekseres';
+            //Caption = 'Priceindekseres'; //New caption. It is not only priceindex.
+            Caption = 'Regulated';
             trigger OnValidate();
             begin
                 IF Type <> 1 then
@@ -134,7 +139,7 @@ table 50005 "SVA Subscription Lines"
     }
     keys
     {
-        key(Key1; Tenancies, Order, "Cost Types", "Date From", "Date To", Keynumber)
+        key(Key1; Tenancies, Order, "Cost Types", "Date From", Keynumber)
         {
         }
     }

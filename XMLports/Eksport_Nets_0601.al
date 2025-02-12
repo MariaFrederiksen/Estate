@@ -12,6 +12,7 @@ xmlport 50003 "SVA File for NETS"
             tableelement("SVA Export Temp"; "SVA Export Temp")
             {
                 XmlName = 'Table';
+
                 fieldattribute(Tekst; "SVA Export Temp"."Output Line 128")
                 {
                     Width = 128;
@@ -21,6 +22,12 @@ xmlport 50003 "SVA File for NETS"
                             currXMLport.Skip();
                     end;
                 }
+                trigger OnAfterGetRecord()
+                begin
+                    if "SVA Export Temp".Name <> 'BS0601' then
+                        currXMLport.Skip();
+                end;
+
             }
         }
     }
@@ -37,10 +44,22 @@ xmlport 50003 "SVA File for NETS"
         }
     }
     trigger OnInitXmlPort();
+    var
+
     begin
         CompanyInformation.GET();
         VatNo := DelChr(CompanyInformation."VAT Registration No.", '=');
         currxmlport.Filename := 'NETS 0601 ' + VatNo + '.txt';
+    end;
+
+    trigger OnPostXmlPort()
+    var
+        SVAExportTemp: Record "SVA Export Temp";
+    begin
+        SVAExportTemp.Reset();
+        SVAExportTemp.SetRange(Name, 'BS0605');
+        if SVAExportTemp.FindSet() then
+            SVAExportTemp.DeleteAll();
     end;
 
     var

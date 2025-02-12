@@ -56,6 +56,15 @@
 
             end;
         }
+        field(9; "Costtype type"; Enum "SVA Cost types")
+        {
+            Caption = 'Type';
+        }
+        field(10; Indeks; Boolean)
+        {
+            //Caption = 'Priceindekseres'; //New caption. It is not only priceindex.
+            Caption = 'Regulate';
+        }
     }
     keys
     {

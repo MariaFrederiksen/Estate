@@ -4,19 +4,29 @@
   "publisher": "Svane IT",
   "brief": "Nav Ejendom",
   "description": "Ejendomsadministrationsløsning til Microsoft Dynamics Business Central",
-  "version": "17.0.16993.1",
+  "version": "20.3.42673.7",
   "privacyStatement": "https://Estate.dk/PrivacyStatement",
   "EULA": "https://d365ejendom.dk/EULA",
   "help": "https://d365ejendom.dk/",
   "url": "",
   "logo": "logo.gif",
-  "dependencies": [],
+  "dependencies": [
+    {"id": "08d69832-9231-429e-be2c-8bab2c96905b", "name": "Email - Current User Connector", "publisher": "Microsoft", "version": "1.0.0.0"}
+  ],
+  "supportedLocales": [
+    "da-DK",
+    "en-US"
+  ],
   "screenshots": [],
-  "platform": "14.0.0.0",
-  "application": "14.0.0.0",
+  "platform": "19.0.0.0",
+  "application": "19.0.0.0",
   "features": ["TranslationFile"],
   "idRanges": [{"from": 50000,"to": 50099}],
+  "resourceExposurePolicy": {
+    "allowDebugging": false,
+    "allowDownloadingSource": false,
+    "includeSourceInSymbolFile": true
+  },
   "contextSensitiveHelpUrl": "https://d365ejendom.dk/",
-  "showMyCode": false,
-  "runtime": "3.0"
+  "runtime": "9.0"
 }

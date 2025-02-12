@@ -13,6 +13,7 @@ xmlport 50006 "SVA Import Occupants"
                 XmlName = 'Occupant';
                 fieldattribute(Number; "SVA Occupant".Number)
                 {
+                    FieldValidate = Yes;
                 }
                 fieldattribute(Account; "SVA Occupant"."Customer No")
                 {
@@ -63,7 +64,7 @@ xmlport 50006 "SVA Import Occupants"
                 }
                 fieldattribute(Startdate; "SVA Occupant".StartDate)
                 {
-                    FieldValidate = Yes;
+                    //FieldValidate = Yes;
                 }
             }
         }

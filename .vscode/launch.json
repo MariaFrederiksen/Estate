@@ -5,15 +5,42 @@
             "type": "al",
             "request": "launch",
             "name": "Your own server",
-            "server": "http://localhost",
-            "serverInstance": "BC140",
-            "authentication": "Windows",
+            "environmentType": "Sandbox",
+            "environmentName": "Consignor",
+            "tenant": "02b231dc-918d-47e2-a97a-140e518391f6",
+            "startupObjectType": "Page",
             "breakOnError": true,
             "launchBrowser": true,
             "enableSqlInformationDebugger": true,
             "enableLongRunningSqlStatements":true,
             "longRunningSqlStatementsThreshold": 500,
-            "numberOfSqlStatements": 10
+            "numberOfSqlStatements": 10,
+            "schemaUpdateMode":"ForceSync"
+            
+        }
+    ]
+} 
+/* 
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "al",
+            "request": "launch",
+            "name": "Your own server",
+            "environmentType": "Sandbox",
+            "environmentName": "Test_Reguleringer",
+            "tenant": "c09ebef3-cfff-4d05-89cf-a7340b2e0000",
+            "startupObjectType": "Page",
+            "breakOnError": true,
+            "launchBrowser": false,
+            "enableSqlInformationDebugger": true,
+            "enableLongRunningSqlStatements":true,
+            "longRunningSqlStatementsThreshold": 500,
+            "numberOfSqlStatements": 10,
+            "schemaUpdateMode":"Synchronize"
+            
         }
     ]
 }
+*/

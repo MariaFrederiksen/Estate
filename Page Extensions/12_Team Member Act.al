@@ -11,7 +11,7 @@ Pageextension 50012 "SVA Team Member Act Ext." extends "Team Member Activities"
             {
                 Caption = 'Basic data';
 
-                field("Occpupants"; "SVA Occupant")
+                field("Occpupants"; Rec."SVA Occupant")
                 {
                     Caption = 'Occupants';
                     ToolTip = 'Liste over beboeraftaler for alle ejendomme';
@@ -19,7 +19,7 @@ Pageextension 50012 "SVA Team Member Act Ext." extends "Team Member Activities"
                     Image = Person;
                     ApplicationArea = all;
                 }
-                field("Tenancies"; "SVA Tenancy")
+                field("Tenancies"; Rec."SVA Tenancy")
                 {
                     Caption = 'Tenancies';
                     ToolTip = 'Liste over alle lejemål';
@@ -27,7 +27,7 @@ Pageextension 50012 "SVA Team Member Act Ext." extends "Team Member Activities"
                     Image = "Key";
                     ApplicationArea = all;
                 }
-                field("Properties"; "SVA Property")
+                field("Properties"; Rec."SVA Property")
                 {
                     Caption = 'Properties';
                     ToolTip = 'Liste over ejendomme i virksomheden';
@@ -35,7 +35,7 @@ Pageextension 50012 "SVA Team Member Act Ext." extends "Team Member Activities"
                     Image = Library;
                     ApplicationArea = all;
                 }
-                field("Vacant tenancies"; "SVA Empty Tenancy")
+                field("Vacant tenancies"; Rec."SVA Empty Tenancy")
                 {
                     ApplicationArea = all;
                     Caption = 'Vacant tenancies';
@@ -54,13 +54,12 @@ Pageextension 50012 "SVA Team Member Act Ext." extends "Team Member Activities"
 
     trigger OnOpenPage();
     begin
-        Reset();
-        IF NOT GET() THEN BEGIN
-            INIT();
-            Insert();
+        Rec.Reset();
+        IF NOT Rec.GET() THEN BEGIN
+            Rec.INIT();
+            Rec.Insert();
         END;
-        SETFILTER("User ID Filter", USERID);
-        SETFILTER("SVA Date Filter", '');
+        Rec.SETFILTER("SVA Date Filter", '');
     end;
 
     var

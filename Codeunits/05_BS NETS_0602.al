@@ -15,7 +15,7 @@ codeunit 50005 "SVA BS NETS 0602"
         if CSVBuffer.FindSet() then
             repeat
                 if CopyStr(CSVBuffer.Value, 3, 3) = '002' then
-                    ;
+                    Evaluate(PaymentDate, CopyStr(CSVBuffer.Value, 50, 6)); //actual payment date and bankdate
                 if (CopyStr(CSVBuffer.Value, 3, 3) = '012') then begin
                     IF (CopyStr(CSVBuffer.Value, 6, 8) <> Aftaleno) then
                         Error('Filen tilhører ikke dette regnskab.');
@@ -28,9 +28,10 @@ codeunit 50005 "SVA BS NETS 0602"
                     //0238, cancelled automated payment
                     //0239, charged back payment
                     if (CopyStr(CSVBuffer.Value, 3, 3) = '042') then begin
-                        Evaluate(DueDate, CopyStr(CSVBuffer.Value, 50, 6)); //exp. payment date
+                        Evaluate(DueDate, CopyStr(CSVBuffer.Value, 50, 6)); //expected payment date
                         if CopyStr(CSVBuffer.Value, 104, 6) <> '000000' then
-                            Evaluate(PaymentDate, CopyStr(CSVBuffer.Value, 104, 6)); //act. payment date
+                            Evaluate(PaymentDate, CopyStr(CSVBuffer.Value, 104, 6)); //actual payment date
+
                         if CopyStr(CSVBuffer.Value, 15, 3) = '236' then
                             Payment();
 
@@ -51,10 +52,10 @@ codeunit 50005 "SVA BS NETS 0602"
 
                 //NETS paymentinfo for payments via giro
                 IF Sektion = '215' then begin
+                    if (CopyStr(CSVBuffer.Value, 3, 3) = '012') then
+                        Evaluate(PaymentDate, CopyStr(CSVBuffer.Value, 50, 6)); //actual payment date and bankdate
                     //NETS betalingsinfo
                     if (CopyStr(CSVBuffer.Value, 3, 3) = '042') then begin
-                        Evaluate(PaymentDate, CopyStr(CSVBuffer.Value, 104, 6)); //act. payment date
-                        Evaluate(DueDate, CopyStr(CSVBuffer.Value, 53, 6)); //expected payment date
                         if (CopyStr(CSVBuffer.Value, 15, 3) = '297') then
                             Payment();
                         if (CopyStr(CSVBuffer.Value, 15, 3) = '299') then
@@ -62,7 +63,8 @@ codeunit 50005 "SVA BS NETS 0602"
                     end;
                     if CopyStr(CSVBuffer.Value, 3, 3) = '092' then
                         InsOffsetAccount();
-                end; //sektion 215            
+                end; //sektion 215
+
                 if CopyStr(CSVBuffer.Value, 3, 3) = '099' then
                     Message('Filen er indlæst');
             until CSVBuffer.NEXT() = 0;
@@ -81,7 +83,11 @@ codeunit 50005 "SVA BS NETS 0602"
         GenJournalLine: Record "Gen. Journal Line";
         GenJournalBatch: Record "Gen. Journal Batch";
         SourceCodeSetup: Record "Source Code Setup";
+        InvoiceHeader: Record "Sales Invoice Header";
+        Customer: Record Customer;
+        SVAOccupant: Record "SVA Occupant";
         NoSeriesManagement: Codeunit NoSeriesManagement;
+
         Aftaleno: Text[8];
         JournalName: Code[10];
         JournalType: Code[10];
@@ -91,15 +97,16 @@ codeunit 50005 "SVA BS NETS 0602"
         AmountStr15: Text[15];
         PaymentDate: Date;
         DueDate: Date;
-
-
         Sektion: text[3];
         Ledaccount: Text[10];
         DocNo: Text[20];
         PostingText: Text[50];
+        InvoiceNumber: Code[20];
 
 
     local procedure Payment()
+    var
+        SalesInvoiceHeader: record "Sales Invoice Header";
     begin
         SourceCodeSetup.GET();
         GenJournalBatch.Reset();
@@ -125,12 +132,31 @@ codeunit 50005 "SVA BS NETS 0602"
                 GenJournalLine."Posting Date" := PaymentDate;
                 GenJournalLine.Validate("Posting Date");
                 GenJournalLine."Document No." := DocNo;
-                GenJournalLine."Document Type" := 1;
+                GenJournalLine."Document Type" := "Gen. Journal Document Type"::Payment;
                 GenJournalLine.Validate("Document Type");
-                GenJournalLine."Account Type" := 1;
+                GenJournalLine."Account Type" := "Gen. Journal Account Type"::Customer;
                 GenJournalLine.Validate("Account Type");
                 GenJournalLine."Account No." := CopyStr(CSVBuffer.Value, 30, 15);
                 RemoveZero(GenJournalLine."Account No.");
+                Customer.Reset();
+                Customer.SetRange("No.", GenJournalLine."Account No.");
+                if Customer.IsEmpty() then begin
+                    //Så er det en faktura, som ikke har debitornummer på plads 30,15, men fakturanummer på plads 30,14
+                    InvoiceNumber := CopyStr(CSVBuffer.value, 30, 14);
+                    while CopyStr(InvoiceNumber, 1, 1) = '0' do
+                        InvoiceNumber := CopyStr(InvoiceNumber, 2, 15);
+                    InvoiceNumber := CopyStr(InvoiceNumber, 1, 6);
+                    InvoiceHeader.Reset();
+                    InvoiceHeader.SetRange("No.", InvoiceNumber);
+                    if InvoiceHeader.FindFirst() then
+                        GenJournalLine."Account No." := InvoiceHeader."Sell-to Customer No.";
+                end;
+                SVAOccupant.Reset();
+                SVAOccupant.SetRange("Customer No", GenJournalLine."Account No.");
+                if SVAOccupant.FindFirst() then begin
+                    GenJournalLine."Dimension Set ID" := SVAOccupant."Dimension Set Id";
+                    GenJournalLine.Validate(GenJournalLine."Dimension Set ID");
+                end;
                 GenJournalLine.Validate("Account No.");
                 if PostingText <> '' then
                     GenJournalLine.Description := PostingText;
@@ -139,34 +165,52 @@ codeunit 50005 "SVA BS NETS 0602"
                 GenJournalLine.Amount := -AmountVar / 100;
                 GenJournalLine."Amount (LCY)" := -AmountVar;
                 GenJournalLine.Validate(Amount);
-                GenJournalLine."Bal. Account Type" := 3; //bankkonto
+                GenJournalLine."Bal. Account Type" := "Gen. Journal Account Type"::"Bank Account";  //3; //bankkonto
                 GenJournalLine.Validate("Line No.", GenJournalLine.GetNewLineNo(Journaltype, JournalName));
-                if (PaymentDate >= DueDate) and (PaymentDate - 10 < DueDate) then begin
-                    GenJournalLine."Applies-to Doc. Type" := 2; //Invoice
-                    GenJournalLine."Applies-to Doc. No." := CopyStr(CSVBuffer.Value, 73, 7); //Invoice No
+
+
+                //udligning
+                GenJournalLine."Applies-to Doc. Type" := "Gen. Journal Document Type"::Invoice; //Invoice
+                GenJournalLine."Applies-to Doc. No." := CopyStr(CSVBuffer.Value, 73, 7); //Invoice No
+                GenJournalLine."Applies-to Doc. No." := DelChr(GenJournalLine."Applies-to Doc. No.", '=', ' ');
+                if GenJournalLine."Applies-to Doc. No." = '' then begin
+                    GenJournalLine."Applies-to Doc. Type" := "Gen. Journal Document Type"::Invoice; //Invoice
+                    GenJournalLine."Applies-to Doc. No." := InvoiceNumber; //Invoice No
                     GenJournalLine."Applies-to Doc. No." := DelChr(GenJournalLine."Applies-to Doc. No.", '=', ' ');
-                    GenJournalLine.Validate("Applies-to Doc. No.");
                 end;
-                if (PaymentDate < DueDate) or (PaymentDate - 10 > DueDate) then begin
+                //Only if date is on or after postingdate
+                SalesInvoiceHeader.Reset();
+                SalesInvoiceHeader.SetRange("No.", GenJournalLine."Applies-to Doc. No.");
+                if SalesInvoiceHeader.FindFirst() then begin
+                    if SalesInvoiceHeader."Posting Date" <= GenJournalLine."Posting Date" then
+                        if GenJournalLine."Applies-to Doc. No." <> '' then
+                            GenJournalLine.Validate("Applies-to Doc. No.");
+                    if SalesInvoiceHeader."Posting Date" > GenJournalLine."Posting Date" then
+                        GenJournalLine."Applies-to Doc. No." := '';
+                    GenJournalLine.Validate("Applies-to Doc. No.");
+
+                end;
+                //Write invoicenumber in description line, when not posible to settle
+                if GenJournalLine."Applies-to Doc. No." = '' then begin
                     GenJournalLine.Description := PostingText + ' F: ' + CopyStr(CSVBuffer.Value, 73, 7);
-                    GenJournalLine."Applies-to Doc. Type" := 0;
-                    GenJournalLine."Applies-to Doc. No." := '';
+                    GenJournalLine."Applies-to Doc. Type" := "Gen. Journal Document Type"::" ";
                 end;
                 GenJournalLine.Insert(true);
+
             end;
             if CopyStr(CSVBuffer.Value, 15, 3) = '236' then begin
                 GenJournalLine."Document Date" := PaymentDate;
                 GenJournalLine."Posting Date" := PaymentDate;
                 GenJournalLine.Validate("Posting Date");
                 GenJournalLine."Document No." := DocNo;
-                GenJournalLine."Document Type" := 1;
+                GenJournalLine."Document Type" := "Gen. Journal Document Type"::Payment;
                 GenJournalLine.Validate("Document Type");
-                GenJournalLine."Account Type" := 1;
+                GenJournalLine."Account Type" := "Gen. Journal Account Type"::Customer;
                 GenJournalLine.Validate("Account Type");
                 GenJournalLine."Account No." := CopyStr(CSVBuffer.Value, 26, 15);
                 RemoveZero(GenJournalLine."Account No.");
                 GenJournalLine.Validate("Account No.");
-                GenJournalLine."Bal. Account Type" := 3; //bankkonto
+                GenJournalLine."Bal. Account Type" := "Gen. Journal Account Type"::"Bank Account";  //3; //bankkonto
                 if PostingText <> '' then
                     GenJournalLine.Description := PostingText;
                 AmountStr := CopyStr(CSVBuffer.Value, 116, 13);
@@ -175,16 +219,16 @@ codeunit 50005 "SVA BS NETS 0602"
                 GenJournalLine."Amount (LCY)" := -AmountVar;
                 GenJournalLine.Validate(Amount);
                 GenJournalLine.Validate("Line No.", GenJournalLine.GetNewLineNo(Journaltype, JournalName));
-                GenJournalLine."Applies-to Doc. Type" := 2; //Invoice
+                GenJournalLine."Applies-to Doc. Type" := "Gen. Journal Document Type"::Invoice; //Invoice
                 if PaymentDate >= DueDate then begin
                     GenJournalLine."Applies-to Doc. No." := CopyStr(CSVBuffer.Value, 70, 7); //Invoice No
                     GenJournalLine."Applies-to Doc. No." := DelChr(GenJournalLine."Applies-to Doc. No.", '=', ' ');
                     GenJournalLine.Validate("Applies-to Doc. No.");
                 end;
                 if PaymentDate < DueDate then begin
-                    GenJournalLine.Description := PostingText + ' F: ' + CopyStr(CSVBuffer.Value, 73, 7);
+                    GenJournalLine.Description := PostingText + ' F: ' + CopyStr(CSVBuffer.Value, 70, 7);
                     GenJournalLine."Applies-to Doc. No." := '';
-                    GenJournalLine."Applies-to Doc. Type" := 0;
+                    GenJournalLine."Applies-to Doc. Type" := "Gen. Journal Document Type"::" ";
                 end;
                 GenJournalLine.Insert(true);
             end;
@@ -198,7 +242,7 @@ codeunit 50005 "SVA BS NETS 0602"
             GenJournalLine."Posting Date" := PaymentDate;
             GenJournalLine.Validate("Posting Date");
             GenJournalLine."Document No." := DocNo;
-            GenJournalLine."Document Type" := 1;
+            GenJournalLine."Document Type" := "Gen. Journal Document Type"::Payment;
             GenJournalLine.Validate("Document Type");
             GenJournalLine."Bal. Account Type" := GenJournalBatch."Bal. Account Type";
             GenJournalLine."Account Type" := GenJournalBatch."Bal. Account Type";
@@ -221,10 +265,11 @@ codeunit 50005 "SVA BS NETS 0602"
 
 
             GenJournalLine."Applies-to Doc. No." := '';
-            GenJournalLine."Applies-to Doc. Type" := 0;
+            GenJournalLine."Applies-to Doc. Type" := "Gen. Journal Document Type"::" ";
             if GenJournalLine.Amount > 0 then
                 GenJournalLine.Insert(true);
             if GenJournalLine.Amount <= 0 then begin
+                GenJournalLine."Document Type" := "Gen. Journal Document Type"::" ";
                 GenJournalLine.Amount := -AmountOut;
                 GenJournalLine."Amount (LCY)" := -AmountOut;
                 GenJournalLine.Validate(Amount);
@@ -264,11 +309,11 @@ codeunit 50005 "SVA BS NETS 0602"
             GenJournalLine."Posting Date" := PaymentDate;
             GenJournalLine.Validate("Posting Date");
             GenJournalLine."Document No." := DocNo;
-            GenJournalLine."Document Type" := 0;
+            GenJournalLine."Document Type" := "Gen. Journal Document Type"::" ";
             GenJournalLine.Validate("Document Type");
-            GenJournalLine."Account Type" := 1;
+            GenJournalLine."Account Type" := "Gen. Journal Account Type"::Customer;
             GenJournalLine.Validate("Account Type");
-            GenJournalLine."Bal. Account Type" := 3; //bankkonto
+            GenJournalLine."Bal. Account Type" := "Gen. Journal Account Type"::"Bank Account";  //3; //bankkonto
             if (CopyStr(CSVBuffer.Value, 15, 3) = '299') then
                 GenJournalLine."Account No." := CopyStr(CSVBuffer.Value, 30, 15);
             if (CopyStr(CSVBuffer.Value, 15, 3) = '237') then
@@ -277,7 +322,7 @@ codeunit 50005 "SVA BS NETS 0602"
                 GenJournalLine."Account No." := CopyStr(CSVBuffer.Value, 26, 15);
             RemoveZero(GenJournalLine."Account No.");
             GenJournalLine.Validate("Account No.");
-            GenJournalLine.Description := 'NETS betaling retur';
+            GenJournalLine.Description := 'NETS betaling retur/afvist';
             AmountStr := CopyStr(CSVBuffer.Value, 116, 13);
             Evaluate(AmountVar, AmountStr);
             GenJournalLine.Amount := AmountVar / 100;

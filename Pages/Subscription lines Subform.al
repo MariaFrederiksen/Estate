@@ -15,58 +15,59 @@ page 50019 "SVA Subscription lines subform"
         {
             repeater(Group)
             {
-                field("Cost Types"; "Cost Types")
+                field("Cost Types"; Rec."Cost Types")
                 {
                     NotBlank = true;
                     ToolTip = 'Costtype.';
                     ApplicationArea = All;
                 }
-                field(Description; Description)
+                field(Description; Rec.Description)
                 {
                     ToolTip = 'Description of costtype. Will apear on invoices.';
                     ApplicationArea = All;
                 }
-                field("Date From"; "Date From")
+                field("Date From"; Rec."Date From")
                 {
                     NotBlank = true;
                     ToolTip = 'This line is applicable from';
                     ApplicationArea = All;
                 }
-                field("Date To"; "Date To")
+                field("Date To"; Rec."Date To")
                 {
                     ApplicationArea = All;
                     ToolTip = 'This line is applicable to. Best practise is to leave it blank.';
                 }
-                field("Amount Year"; "Amount Year")
+                field("Amount Year"; Rec."Amount Year")
                 {
                     ApplicationArea = All;
                     ToolTip = 'Amount per year';
                 }
-                field("Amount Period"; "Amount Period")
+                field("Amount Period"; Rec."Amount Period")
                 {
                     ApplicationArea = All;
                     ToolTip = 'Amount per period (month, quater, halfyear or year';
                 }
 
-                field(ProductPostingGroup; ProductPostingGroup)
+                field(ProductPostingGroup; Rec.ProductPostingGroup)
                 {
                     NotBlank = true;
                     ToolTip = 'Prod.posting group for this line.';
                     ApplicationArea = All;
                 }
-                field(VatGroup; VatGroup)
+                field(VatGroup; Rec.VatGroup)
                 {
                     NotBlank = true;
                     ToolTip = 'Vatgroup to calculate VAT for this line.';
                     ApplicationArea = All;
                 }
-                field(PriceIndeks; PriceIndeks)
+                field(PriceIndeks; Rec.PriceIndeks)
                 {
                     ApplicationArea = All;
-                    ToolTip = 'This line is regulate by indeks.';
+                    ToolTip = 'If set to true, this line can be adjusted automatically according to the setup on the contract';
                 }
             }
         }
     }
+
 }
 

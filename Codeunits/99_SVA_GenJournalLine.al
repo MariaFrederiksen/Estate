@@ -15,6 +15,7 @@ codeunit 50099 "SVA Gen. JournalLine"
         Costtype22: Code[20];
         Account22: Code[20];
     begin
+        //Only §22
         if GenJnlLine."SVA Occupant" <> '' then begin
             SVAParameters.Reset();
             if SVAParameters.FindFirst() then begin
@@ -60,7 +61,25 @@ codeunit 50099 "SVA Gen. JournalLine"
                     SVAOccupantTrans.Type := 0;
                     SVAOccupantTrans.Insert(true);
                 end;
-
+            //Create Occupant Trans for other entries
+            SVACosttype.Reset();
+            SVACosttype.SetRange(Account, GenJnlLine."Account No.");
+            if SVACosttype.FindFirst() then begin
+                SVAOccupantTrans.Reset();
+                SVAOccupantTrans.Occupant := GenJnlLine."SVA Occupant";
+                SVAOccupantTrans.Date := GenJnlLine."Posting Date";
+                SVAOccupantTrans.Amount := -GenJnlLine.Amount;
+                SVAOccupantTrans."Cost type Estate" := SVACosttype.Costtype;
+                SVAOccupantTrans.Description := GenJnlLine.Description;
+                SVAOccupantTrans."Invoice No" := GenJnlLine."Document No.";
+                SVAOccupantTrans.Price := SVAOccupantTrans.Amount;
+                SVAOccupantTrans.Qty := GenJnlLine.Quantity;
+                SVAOccupantTrans.Amount := SVAOccupantTrans.Price * GenJnlLine.Quantity;
+                SVAOccupantTrans.Type := SVACosttype.Type;
+                SVAOccupantTrans."Invoice No" := Format(GenJnlLine."Line No.");
+                if SVAOccupantTrans.Type > 1 then
+                    SVAOccupantTrans.Insert(true);
+            end;
         end;
     end;
 }

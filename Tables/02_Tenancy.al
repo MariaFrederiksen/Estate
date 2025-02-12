@@ -70,22 +70,6 @@
         field(4; Address1; Text[50])
         {
             Caption = 'Address';
-            trigger OnValidate();
-            begin
-                SVAOccupant.Reset();
-                SVAOccupant.SetRange(TenancyNo, Number);
-                Rec.Vacant := true;
-                Rec.vacantDate := DMY2Date(1, 1, 1960);
-                IF SVAOccupant.FindLast() then begin
-                    IF SVAOccupant.EndDate > 0D THEN
-                        vacantDate := calcdate('<1D>', SVAOccupant.EndDate);
-
-                    IF SVAOccupant.EndDate = 0D THEN begin
-                        VacantDate := 0D;
-                        Vacant := false;
-                    end;
-                end;
-            end;
         }
         field(5; Address2; Text[50])
         {
@@ -218,6 +202,10 @@
         field(35; Rooms; Integer)
         {
             Caption = 'Rooms';
+        }
+        field(81; ArchiveDate; Date)
+        {
+            Caption = 'Archive date';
         }
         field(101; TypeA9_1_Apartment; Boolean)
         {
@@ -814,27 +802,30 @@
 
         }
     }
-
     fieldgroups
     {
+        fieldgroup(DropDown; Number, Address1, "Post Code", City, Vacant)
+        {
+        }
+
     }
 
     trigger OnInsert();
     begin
-        Vacant := TRUE;
+        Vacant := true;
         vacantDate := DMY2DATE(1, 1, 1960);
         SVAParameters.Reset();
         IF SVAParameters.FindSet() then
             IF (SVAParameters.Dim1 = '') OR (SVAParameters.Dim2 = '') OR (SVAParameters.Dim3 = '') then
                 Error('Dimensioner mangler opsætning. Kørslen afbrydes');
 
-        //Dimension lejemål på lejemål og dimension ejendom på lejemål
+        //Dimension 'lejemål' på lejemål og dimension 'ejendom' på lejemål
         SVAParameters.Reset();
         if SVAParameters.FindSet() then begin
             DefaultDimension.SetRange("Table ID", 50002);
             DefaultDimension.SetRange("No.", Number);
             if DefaultDimension.FindFirst() then begin
-                DefaultDimension."Dimension Value Code" := Number;
+                DefaultDimension."Dimension Value Code" := PropertyNo;
                 DefaultDimension."Dimension Code" := SVAParameters.Dim1;
                 DefaultDimension.Modify(true);
             end else begin
@@ -843,7 +834,7 @@
                 DefaultDimension."No." := Number;
                 DefaultDimension."Dimension Code" := SVAParameters.Dim2;
                 DefaultDimension."Dimension Value Code" := Number;
-                DefaultDimension."Value Posting" := 1;
+                DefaultDimension."Value Posting" := "Default Dimension Value Posting Type"::"Code Mandatory";
                 DefaultDimension."Table Caption" := 'Lejemål';
                 DefaultDimension.Insert(true);
                 //Dimension ejendom på lejemål
@@ -863,45 +854,13 @@
             DimensionValue.Init();
             DimensionValue."Dimension Code" := SVAParameters.Dim2;
             DimensionValue.Code := Number;
-            DimensionValue.Name := 'Lejemål ' + Number;
+            DimensionValue.Name := Address1;
             DimensionValue."Dimension Value Type" := 0;
             DimensionValue."Global Dimension No." := 2;
-            DimensionValue.Id := CreateGuid();
+            DimensionValue.SystemId := CreateGuid();
             DimensionValue."Last Modified Date Time" := CurrentDateTime;
             DimensionValue.Insert(true);
         end;
-    end;
-
-    trigger OnRename()
-    begin
-        TenNoOld := xrec.Number;
-        DimensionManagement.RenameDefaultDim(Database::"SVA Tenancy", xrec.Number, Number);
-        //Dimension lejemål på lejemål og dimension ejendom på lejemål
-        SVAParameters.Reset();
-        if SVAParameters.FindSet() then begin
-            DefaultDimension.SetRange("Table ID", 50002);
-            DefaultDimension.SetRange("No.", Number);
-            if DefaultDimension.FindFirst() then begin
-                DefaultDimension."Dimension Value Code" := Number;
-                DefaultDimension."Dimension Code" := SVAParameters.Dim1;
-                DefaultDimension.Modify(true);
-                //Message('Modify Dim1');
-            end else begin
-                DefaultDimension."Table ID" := 50002;
-                DefaultDimension."No." := Number;
-                DefaultDimension."Dimension Code" := SVAParameters.Dim2;
-                DefaultDimension."Dimension Value Code" := Number;
-                DefaultDimension."Value Posting" := 1;
-                DefaultDimension."Table Caption" := 'Lejemål';
-                DefaultDimension.Insert(true);
-                //Dimension ejendom på lejemål
-                DefaultDimension."Dimension Code" := SVAParameters.Dim1;
-                DefaultDimension."Dimension Value Code" := PropertyNo;
-                //Message('Insert dim1');
-                DefaultDimension.Insert(true);
-            end;
-        end;
-
     end;
 
     trigger OnDelete();
@@ -930,7 +889,6 @@
         SVAParameters: Record "SVA Parameters";
         SVASubscriptionLines: Record "SVA Subscription Lines";
         DimensionManagement: Codeunit DimensionManagement;
-        TenNoOld: Text[20];
         Country: Text;
 
 }
